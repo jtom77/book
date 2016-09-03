@@ -1,0 +1,3703 @@
+
+\chapter{Metrische R\"aume und ihre Topologie}
+
+Ein allgemeines begriffliches Konzept für die Behandlung der in der 
+Analysis und ihren Anwendungen auftretenden Funktionen und Abbildungen 
+stellen die \slanted{metrischen Räume} und ihre Spezialfälle, 
+die \slanted{normierten Räume}, dar. 
+Allgemeiner ist der Begriff des \slanted{topologischen Raumes}, 
+den wir in diesem Kapitel aber nur streifen werden. Wir nehmen 
+hier einen schon früher gesponnenen Faden etwas systematischer wieder auf. 
+
+\section{Grundbegriffe}
+
+%% --- 1 --- %%
+\begin{frage}\index{Metrik}\index{metrischer Raum}
+  Was versteht man unter einer \bold{Metrik} auf einer 
+  nichtleeren Menge $X$?
+\end{frage}
+
+\begin{antwort}
+  Eine Metrik auf $X$ ist eine Funktion 
+  $d\fd X\times X \to \RR$ mit den Eigenschaften 
+  {\setlength{\labelsep}{7mm}
+    \satz{\begin{itemize}
+      \item[\desc{M1}] $d(x,x)=0$ \quad und \quad $d(x,y)>0$ für $x\not=y$,\\[-3mm]
+      \item[\desc{M2}] $d(x,y)=d(y,x)$,\\[-3mm]
+      \item[\desc{M3}] $d(x,y) \le d(x,z)+d(z,y)$. \qquad(Dreiecksungleichung) 
+      \end{itemize}} }
+  Die Zahl $d(x,y)$ heißt \slanted{Abstand} von $x$ und $y$. \AntEnd
+  
+\end{antwort}
+
+%% --- 2 --- %%
+\begin{frage}\index{metrischer Raum}
+  Was ist ein \bold{metrischer Raum}?
+\end{frage}
+
+\begin{antwort}
+  Ein \slanted{metrischer Raum} $(X,d)$ ist eine nichtleere Menge 
+  $X$ zusammen mit einer Abbildung 
+  $d\fd X\times X \to \RR$, die die Eigenschaften \desc{M1}, \desc{M2} 
+  und \desc{M3} besitzt.
+  \AntEnd
+\end{antwort}
+
+%% --- 3 --- %%
+\begin{frage}\index{Norm}
+  Was versteht man unter einer \bold{Norm} 
+  auf einem $\KK$-Vektorraum $V$ ($\KK=\CC$ ode $\KK=\RR$)?
+\end{frage}
+
+\begin{antwort}
+  Eine \slanted{Norm} ist eine Funktion $\|\;\, \| \fd V\to \RR$ mit der 
+  Eigenschaft, dass für alle $x,y\in V$ und $\alpha \in \KK$ gilt:
+  {\setlength{\labelsep}{7mm}
+    \satz{\begin{itemize}
+      \item[\desc{N1}] $\| 0 \| =0$ \quad und \quad $\| x \|> 0$ für $x\not=0$.\\[-3mm]
+      \item[\desc{N2}] $\| \alpha x\|=|\alpha| \cdot \| x \|$,\\[-3mm]
+      \item[\desc{N3}] $\| x+ y \| \le \| x \| + \|y \|$. 
+        \qquad(Dreiecksungleichung)  \AntEnd 
+      \end{itemize}}}
+\end{antwort}
+
+%% --- 4 --- %%
+\begin{frage}\index{Metrik!von Norm induzierte}
+  Wie erhält man aus einer Norm auf $V$ eine Metrik auf $V$?
+\end{frage}
+
+\begin{antwort}
+  Für $x,y\in V$ setze man $d(x,y) := \| x-y \|$. Dann erfüllt  
+  die Abbildung $d \fd V\times V \to \RR$ 
+  alle Eigenschaften einer Metrik, 
+  wie man ohne Weiteres nachprüft. \AntEnd
+\end{antwort}
+
+%% --- 5 --- %%
+\begin{frage}\label{08_diskr}\index{Metrik!diskrete}
+  Kennen Sie ein Beispiel eines metrischen Raumes, dessen Metrik 
+  \slanted{nicht} von einer Norm induziert wird?
+\end{frage}
+
+\begin{antwort}
+  Durch
+  \[
+  \dis d(x,y) := \left\{ \begin{array}{ll} 0, & \text{falls $x=y$,} \\
+      1, & \text{falls $x\not=y$.} \end{array} \right.
+  \]
+  ist auf jeder nichtleeren Menge $X$ eine Metrik (die sogenannte 
+  \slanted{diskrete} oder \slanted{triviale Metrik}) gegeben. Diese kann
+  nicht von einer Norm induziert sein, denn für 
+  $0\not=\alpha\not=1$ und $x\not=y$ erhielte man aus 
+  dieser Annahme den Widerspruch    
+  \begin{equation}
+    1 = \| x-y \| = d(x,y) = d( \alpha x, \alpha y) 
+    = \alpha \cdot \| x-y \| = \alpha \not=1.
+    \EndTag
+  \end{equation} 
+\end{antwort}
+
+%% --- 6 --- %%
+\begin{frage}\index{metrischer Raum}\index{normierter Raum}
+  Können Sie Beispiele für metrische bzw. normierte 
+  Räume nennen?
+\end{frage} 
+
+\begin{antwort}
+  Beispiele für normierte Räume sind: 
+  {\setlength{\labelsep}{5mm}
+    \begin{itemize}
+    \item[\desc{i}] $\KK$-Vektorräume ($\KK=\RR$ oder $\KK=\CC$), wenn man sie 
+      zum Beispiel mit einer der $p$-Normen aus Frage \ref{08_pnorm}  
+      versieht,
+    \item[\desc{ii}] der Raum der stetigen (differenzierbaren, integrierbaren) 
+      Funktionen auf $[a,b]$ bezüglich der Supremumsnorm, 
+    \item[\desc{iii}] jeder Unterraum eines normierten Raums,
+    \item[\desc{iv}] Der Raum der \slanted{quadratintegrierbaren} Funktionen 
+      auf einer beliebigen Menge $U$, d.\,i. die Menge aller 
+      auf $U$ lokal integrierbaren Funktionen 
+      mit $\int_U |f(x)|^2 \difx < \infty$. Die Norm von $f$ ist dann 
+      gerade der Wert dieses Integrals, 
+    \item[\desc{v}] Banach- und Hilberträume. 
+    \end{itemize}}
+  \noindent
+  Alle diese Räume sind zusammen mit der durch die Norm induzierten Metrik 
+  automatisch auch metrische Räume. 
+  Beispiele metrischer Räume, deren Metrik nicht von einer Norm induziert ist, 
+  sind nach Frage \ref{08_diskr} beliebige mit der diskreten Metrik 
+  versehenen nichtleere Mengen $X$.
+  \AntEnd
+\end{antwort}
+
+%% --- 7 --- %%
+\begin{frage}\label{08_pnorm}\index{p-Norm@$p$-Norm}
+  Wie sind die sogenannten $p$-Normen auf $\KK^n$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Für $p \ge 1$ ist die $p$-Norm eines Vektors $x\in \KK^n$ definiert 
+  durch   
+  \[
+  {\| x \|}_p := \big( {\left| x_1 \right|}^p + \cdots + 
+  {\left|x_n \right|}^p \big)^{1/p}.  
+  \]
+
+  Für $p=2$ ist das gerade die \slanted{Euklidische Metrik}\index{Euklidische Metrik} 
+  \[
+  {\| x \|}_2 = \sqrt{ x_1^2+\cdots + x_n^2 }.
+  \] 
+  Weiter definiert man als \slanted{Maximumsnorm}\index{Maximumsnorm}
+  \begin{equation}
+    {\| x \|}_\infty := \max\{ x_1, \ldots, x_n \}.
+    \notag
+  \end{equation}
+
+  \begin{center}
+    \includegraphics{mp/08_p-norm}
+    \captionof{figure}{Einheitskreis im $\RR^2$ bezüglich unterschiedlicher $p$-Normen.}
+    \label{fig:08_p-norm}
+  \end{center}
+
+  Die Abbildung \ref{fig:08_p-norm} zeigt den Einheitskreis im $\RR^2$ 
+  bezüglich unterschiedlicher $p$-Normen. \AntEnd
+\end{antwort}
+
+%% --- 8 --- %%
+\begin{frage}\label{08_pnormaq}
+  Können Sie für $x\in \KK^n$ und $1\le p \le q < \infty$ die 
+  Abschätzungen 
+  \[
+  {\| x \|}_\infty \le {\| x \|}_p \le {\| x \|}_q \le {\| x \|}_1 
+  \le n {\| x \|}_\infty .  
+  \]
+  beweisen?
+\end{frage}
+
+\begin{antwort}
+  Die Antwort zu dieser Frage wurde schon in Frage 
+  \ref{01_pnorm} gegeben.\AntEnd
+\end{antwort}
+
+%% --- 9 --- %%
+\begin{frage}\index{Translationsinvarianz}
+  Was bedeutet die \bold{Translationsinvarianz} einer 
+  von einer Norm abgeleiteten Metrik $d$ auf $V$?
+\end{frage}
+
+
+\begin{antwort}
+  Der Begriff besagt, dass für je zwei Vektoren $x, y \in V$ 
+  und einen beliebigen Vektor $v\in V$ gilt: 
+  \[
+  d(x+v, y+v )= d(x,y),
+  \]
+  \sieheAbbildung\ref{fig:08_translation}
+
+  \begin{center}
+    \includegraphics{mp/08_translation}
+    \captionof{figure}{Der Abstand von $x$ und $y$ ist translationsinvariant.}
+    \label{fig:08_translation}
+  \end{center}
+
+  Diese Beziehung folgt für jede aus einer Norm abgeleiteten Metrik unmittelbar 
+  aus $d(x,y)=\| x-y \|$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 10 --- %%
+\begin{frage}\label{08_par}\index{Parallelogrammidentität}
+  Warum erfüllt die von einem Skalarprodukt induzierte Norm 
+  $ \| v \| := \sqrt{ \langle v,v \rangle }$ die 
+  \bold{Parallelogrammidentität}
+  \[
+  \| v+w \|^2 + \|v-w \|^2 = 2 \left( \| v \|^2 + \| w \|^2 \right)
+  \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Beweis wörtlich wie in der Antwort zu Frage 
+  \ref{01_parallelogramm}, also 
+  mit purem Nachrechnen.  
+  \AntEnd
+\end{antwort}
+
+%% --- 11 --- %%
+\begin{frage}
+  Gilt zu der Behauptung aus Frage \ref{08_par} auch die Umkehrung?
+\end{frage}
+
+\begin{antwort}
+  Die Umkehrung gilt ebenfalls. 
+  Um das entsprechende Skalarprodukt 
+  $\langle \;, \; \rangle$ zu finden, beachte man, 
+  dass dieses die Gleichung 
+  \[
+  \| v+ w \|^2 = \| v \|^2 + \|w \|^2 + 2\langle v,w \rangle 
+  \]
+  erfüllen muss. Daraus folgt mit der Parallelogrammidentität
+  \begin{eqnarray*}
+    \langle v, w \rangle = \frac{1}{4} 
+    \left( \| v+w \|^2 - \| v-w \|^2 \right).
+  \end{eqnarray*}
+  Damit hätte man einen Kandidaten gefunden, für den jetzt 
+  noch im Einzelnen nachgewiesen werden muss, dass er die Eigenschaften 
+  eines Skalarprodukts (Bilinearität, Symmetrie, positive Definitheit) 
+  besitzt. Die Symmetrie und positive Definitheit ergeben sich unmittelbar 
+  aus den Eigenschaften der Norm. 
+  Die Bilinearität weist man in mehreren Schritten nach. 
+  Durch eine direkte Rechnung zeigt man 
+  $\langle v+v', w \rangle = \langle v, w \rangle + \langle v', w \rangle$ und 
+  folgert daraus, dass  $\langle \lambda v, w \rangle 
+  = \lambda\cdot \langle v, w \rangle$ zunächst für alle 
+  $\lambda \in \NN$ gilt. Aus Linearitätsgründen folgt daraus, dass die  
+  Gleichung auch für alle $\lambda\in\QQ$ gilt. 
+  In einem letzten Schritt folgert man daraus mit einem 
+  Stetigkeitsargument, dass die Gleichung auch noch für 
+  beliebige $\lambda\in \RR$ 
+  gültig bleibt.\AntEnd 
+\end{antwort}
+
+%% --- 12 --- %%
+\begin{frage}\index{Maximumsnorm}
+  Warum kann die Maximumsnorm ${\| x \|}_\infty$ auf $\KK^n$ nicht von 
+  einem Skalarprodukt induziert sein?
+\end{frage}
+
+\begin{antwort}
+  Für die Maximumsnorm gilt die Parallelogramm-Identität nicht. 
+  Für die Vektoren $v:=(1,0,0,\ldots,0)$ und $w:=(0,1,0,\ldots,0)$ 
+  aus $\KK^n$ etwa erhält man 
+  \begin{equation}
+    2 = {\| v+w \|}_\infty^2 + {\| v-w \|}_\infty^2 \not= 
+    2 \left( {\| v \|}^2_\infty + {\| w\|}^2_\infty \right)= 4.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% --- 13 --- %%
+\begin{frage}\index{eps@$\eps$-Umgebung}\index{offene Kugel}
+  Wie ist der Begriff der $\eps$-Umgebung (offene Kugel) 
+  eines Punktes in einem metrischen Raum $X$ erklärt?
+\end{frage}
+
+
+\begin{antwort}
+  Unter der offenen $\eps$-Umgebung $U_\eps(a)$ eines 
+  Punktes $a\in X$ versteht man die Menge aller Punkte, die 
+  von $a$ bezüglich der Metrik auf $X$ einen kleineren Abstand als 
+  $\eps$ haben, also die Menge
+  \begin{equation}
+    U_\eps( a ) := \{ x\in X \sets d(x,a) < \eps \}. \EndTag
+  \end{equation}
+
+  \begin{center}
+    \includegraphics{mp/08_ueps}
+    \captionof{figure}{$\eps$-Umgebung von $a$.}
+    \label{fig:08_ueps}
+  \end{center}
+\end{antwort}
+
+%% --- 14 --- %%
+\begin{frage}\label{08_ofdef}\index{Umgebung}\index{offene Menge}
+  Wie sind die Begriffe \bold{"`offene Menge"'} 
+  und \bold{"`Umgebung"'} in einem metrischen Raum $X$ erklärt?
+\end{frage}
+
+\begin{antwort}
+  Eine Menge $U \subset X$ heißt \slanted{Umgebung} von $a\in X$, wenn 
+  sie eine offene $\eps$-Kugel um $a$ enthält.
+
+  Eine Menge $U$ heißt 
+  \slanted{offen}, wenn sie für jeden ihrer Punkte eine Umgebung ist,  
+  {\dasheisst} wenn zu jedem $a\in U$ eine $\eps$-Kugel $U_\eps(a)$ 
+  existiert, die vollständig in $U$ enthalten ist, 
+  \sieheAbbildung\ref{fig:08_umgebung}.
+
+  \begin{center}
+    \includegraphics{mp/08_umgebung}
+    \captionof{figure}{Jede offene Umgebung $U$ von $a$ enthält eine 
+      $\eps$-Kugel um $a$.} 
+    \label{fig:08_umgebung}
+  \end{center}
+
+  In metrischen Räumen wird "`Offenheit"' somit über den Begriff der 
+  $\eps$-Umgebung definiert, der seinerseits über den Abstandsbegriff 
+  eingeführt wird. 
+  \AntEnd
+\end{antwort}
+
+%% --- 15 --- %%
+\begin{frage}\index{offene Kugel}\index{eps@$\eps$-Umgebung}
+  Warum ist die offene Kugel 
+  ($\eps$-Umgebung) $U_\eps(a)$ eines Punktes $a\in X$ stets offen?
+\end{frage}
+
+\begin{antwort}
+  Für einen Punkt $x \in U_\eps(a)$ ist eine vollständige 
+  $\eps^*$-Umgebung von $x$ in $K_\eps(a)$ enthalten, \sieheAbbildung\ref{fig:08_ueps2}. 
+  Das ist eine Konsequenz aus der Dreiecksungleichung. 
+  Setzt man $\eps^* := \eps-d(x,a) >0$, so gilt 
+  für jedes $y\in U_{\eps^*}(x)$ 
+  \[
+  d(a,y) \le d(a,x) + d(x,y) < (\eps - \eps^*) + \eps^* = \eps,
+  \]
+  also $y\in U_\eps(a)$. Das zeigt $U_{\eps^*}(a) \subset U_\eps(a)$, 
+  nach Definition ist $U_\eps(a)$ somit offen. \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/08_ueps2}
+    \captionof{figure}{Jeder Punkt $x$ einer $\eps$-Umgebung 
+      besitzt selbst eine $\eps^*$-Umgebung, die in der ersten enthalten ist.}
+    \label{fig:08_ueps2}
+  \end{center}
+\end{antwort}
+
+%% --- 16 --- %%
+\begin{frage}\index{abgeschlossen}
+  Wann heißt eine Teilmenge eines metrischen Raumes 
+  \bold{abgeschlossen}?
+\end{frage}
+
+\begin{antwort}
+  Eine Teilmenge $A$ eines metrischen Raumes $X$ 
+  heißt abgeschlossen, wenn 
+  das Komplement $A^C = X \mengeminus A$ offen ist.
+  \AntEnd
+\end{antwort}
+
+%% --- 17 --- %%
+\begin{frage}\label{08_oua} 
+  Sind $\emptyset$ und $X$ offen oder abgeschlossen in $X$?
+\end{frage}
+
+\begin{antwort}
+  Die leere Menge und $X$ selbst sind 
+  beide gleichzeitig offen \slanted{und} abgeschlossen. 
+  Offen sind sie, weil sie die Definition 
+  der "`Offenheit"' aus Frage \ref{08_ofdef} erfüllen. 
+  Daraus folgt aber wegen $X^C = \emptyset$ und 
+  $\emptyset^C = X$ auch deren Abgeschlossenheit. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 18 --- %%
+\begin{frage}\label{08_grund}
+  Welche \bold{Grundeigenschaften} hat das 
+  System $\calli{O}(d)$ der 
+  offenen Mengen in einem metrischen Raum?
+  \nomenclature{$\calli{O}$}{System der offenen in einem topologischen Raum}
+\end{frage}
+
+\begin{antwort}
+  Es gilt: 
+  {\setlength{\labelsep}{6mm}
+    \begin{itemize} 
+    \item[\desc{O1}] Der Durchschnitt endlich vieler offener Mengen ist offen.
+      \\[-4mm]
+    \item[\desc{O2}] Die Vereinigung beliebig vieler offener Mengen ist offen.
+    \end{itemize}}
+
+  \begin{center}
+    \includegraphics{mp/08_durchschnitt}
+    \captionof{figure}{Jeder Punkt im Durchschnitt zweier offener Mengen 
+      besitzt eine offene $\eps$-Umgebung, die im Durchschnitt enthalten ist.}
+    \label{fig:08_durchschnitt}
+  \end{center}
+
+  Die erste Eigenschaft ergibt sich daraus, dass der Durchschnitt je zweier 
+  offener Kugeln eines Punktes wieder eine offene Kugel enthält 
+  (nämlich zumindest die offene Kugel mit dem kleineren Radius, vgl. 
+  Abbildung \ref{fig:08_durchschnitt}), 
+  bezüglich der zweiten ist nur zu sagen, dass wenn eine Teilmenge eine 
+  offene Kugel enthält, diese Kugel erst recht in jeder Obermenge 
+  enthalten ist.  
+  \AntEnd
+\end{antwort}
+
+%% --- 19 --- %%
+\begin{frage}
+  Warum ist der Durchschnitt beliebig vieler 
+  offener Mengen eines metrischen Raumes im Allgemeinen nicht mehr offen?
+\end{frage}
+
+\begin{antwort}
+  Als Beispiel betrachte man zu einem Punkt $a\in \RR^n$ die Menge 
+  aller offenen Kugeln $U_{1/k}(a)$ mit $k\in \NN$. Dann ist $
+  \bigcap_{k\in\NN} U_{1/k} (a) = \{ a \}$
+  nicht mehr offen in $\RR^n$. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 20 --- %%
+\begin{frage}\index{induzierte Metrik}
+  Ist $(X,d)$ ein metrischer Raum, was versteht man unter der 
+  von $d$ \bold{induzierten Metrik} auf einer Teilmenge $M\subset X$?
+\end{frage}
+
+\begin{antwort}
+  Die induzierte Metrik ist die Einschränkung der Abbildung 
+  $d$ auf $M$, also die Abbildung $d|_M \fd M\times M \to \RR$. 
+  Auf diese Weise wird $(M, d|_M)$ selbst zu einem metrischen Raum.
+  \AntEnd
+\end{antwort}
+
+%% --- 21 --- %%
+\begin{frage}\label{08_topdef}\index{Topologie}\index{topologischer Raum}
+  Was versteht man unter einem \bold{topologischen Raum}?
+\end{frage}
+
+\begin{selbeseite}
+  \begin{antwort}
+    Ein \slanted{topologischer Raum} ist ein Paar $(X, \calli{O})$, 
+    bestehend aus einer Menge $X$ und einer Menge 
+    $\calli{O}$ von Teilmengen (\slanted{offene} Mengen genannt) 
+    von $X$, derart, dass gilt:
+    {\setlength{\labelsep}{7mm}
+      \begin{itemize}
+      \item[\desc{T1}] Beliebige Vereinigungen von offenen Mengen sind offen.
+      \item[\desc{T2}] Der Durchschnitt von je zwei offenen Mengen ist offen.
+      \item[\desc{T3}] Die leere Menge und $X$ sind offen.\AntEnd
+      \end{itemize}}\vss
+  \end{antwort}
+\end{selbeseite}
+
+%% --- 22 --- %%
+\begin{frage}\index{Umgebung!in allgemeinen topologischen Räumen}
+  Wie ist der \bold{Umgebungsbegriff} 
+  in einem allgemeinen topologischen Raum $X$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Eine Menge $U\subset X$ heißt \slanted{Umgebung} eines Punktes $a\in X$, 
+  wenn eine offene Menge $V$ mit $a\in V$ und $V\subset U$ existiert.
+  \AntEnd
+\end{antwort}
+
+%% --- 23 --- %%
+\begin{frage}\index{offene Menge}
+  Wie lassen sich die offenen Mengen in einem topologischen Raum mit dem 
+  Umgebungsbegriff charakterisieren?
+\end{frage}
+
+\begin{antwort}
+  Eine Teilmenge $M\subset X$ ist genau dann offen in $X$, 
+  wenn $M$ eine Umgebung für jeden ihrer Punkte ist. 
+
+  Enthält nämlich $M$ zu jedem Punkt $a\in M$ eine offene Umgebung $U(a)$ 
+  von $a$, dann ist $M$ gerade die Vereinigung aller $U(a)$ und daher 
+  nach \ref{08_topdef}\,\desc{T2} offen. Ist $M$ andersherum offen, so ist 
+  $M$ selbst bereits eine \slanted{offene} Umgebung für jeden ihrer 
+  Punkte und damit erst recht eine Umgebung.
+  \AntEnd
+\end{antwort}
+
+%% --- 24 --- %%
+\begin{frage}\index{metrischer Raum}\index{topologischer Raum}
+  Warum ist jeder metrische Raum ein topologischer Raum?
+\end{frage}
+
+\begin{antwort}
+  Die durch die Metrik induzierte Menge an offenen Teilmengen 
+  eines metrischen Raumes erfüllt nach Frage \ref{08_grund} 
+  die drei Eigenschaften \desc{T1}, \desc{T2} und \desc{T3}
+  eines topologischen Raumes.
+  \AntEnd
+\end{antwort}
+
+%% --- 25 --- %%
+\begin{frage}\index{Aquivalenz@Äquivalenz!von Metriken}
+  Wann heißen zwei Metriken auf einem Raum $X$ \bold{äquivalent}?
+\end{frage}
+
+\begin{antwort}
+  
+  Zwei Metriken $d$ und $d^*$ auf $X$ heißen \slanted{äquivalent}, 
+  wenn sie dieselbe Topologie auf $X$ induzieren, wenn also die 
+  Systeme offener Mengen $\calli{O}(d)$ und 
+  $\calli{O}(d^*)$ gleich sind.\AntEnd
+\end{antwort} 
+
+%% --- 26 --- %%
+\begin{frage}\label{08_klumpen}\index{diskrete Topologie}
+  Was versteht man unter der \bold{diskreten Topologie} 
+  auf einer Menge $X$?
+\end{frage}
+
+\begin{antwort}
+  
+  Die \slanted{diskrete Topologie} erhält man, 
+  wenn man \slanted{alle} Teilmengen 
+  von $X$ als offen kennzeichnet. 
+  In dem Fall ist $\calli{O} = \mathfrak{P}(X)$.
+  \AntEnd
+\end{antwort} 
+
+%% --- 27 --- %%
+\begin{frage}\index{chaotische Topologie}\index{Klumpentopologie}
+  Was versteht man unter der \bold{chaotischen Topologie} bzw. 
+  \bold{Klumpentopologie} auf $X$? 
+\end{frage}   
+
+\begin{antwort}
+  Die \slanted{Klumpentopologie} ist diejenige Topologie auf $X$, 
+  in der nur die Mengen $X$ und $\emptyset$ offen sind, also 
+  $\calli{O} = \{ X, \emptyset \}$.
+  \AntEnd
+  
+\end{antwort}
+
+%% --- 28 --- %%
+\begin{frage}\label{08_diskto}\index{diskrete Metrik}\index{diskrete Topologie}
+  Induziert die \slanted{diskrete Metrik} 
+  die \slanted{diskrete Topologie} $d$ auf $X$?
+\end{frage}
+
+\begin{antwort}
+  Hinsichtlich der diskreten Metrik enthält jede $\eps$-Kugel $U_\eps(a)$ 
+  für $\eps<1$ nur den Punkt $a$ selbst, es gilt also $U_\eps(a)=\{ a \}$. 
+  Für eine beliebige Teilmenge $M$ von $X$ folgt aus $a\in M$ damit 
+  sogleich $U_\eps(a)\subset M$, {\dasheisst} $M$ ist 
+  offen. Somit ist \slanted{jede} Teilmenge des metrischen Raums $(X,d)$ 
+  offen. Die diskrete Metrik induziert also 
+  in der Tat die diskrete Topologie auf $X$.
+  \AntEnd
+\end{antwort}
+
+%% --- 29 --- %%
+\begin{frage}\index{metrisierbar}
+  Wann heißt ein topologischer Raum \bold{metrisierbar}?
+\end{frage}
+
+\begin{antwort}
+  Ein topologischer Raum $(X,\calli{O})$ ist dann metrisierbar, wenn 
+  eine Metrik $d$ auf $X$ existiert, die als offene Mengen 
+  gerade diejenigen der Topologie $\calli{O}$ bestimmt,  
+  mit der also $\calli{O}(d)=\calli{O}$ gilt.
+  \AntEnd
+\end{antwort}
+
+%% --- 30 --- %%
+\begin{frage}
+  Ist $(X, \calli{Q})$ mit $\calli{Q} := \{ \emptyset, \mathrm{Pot}(X) \}$ 
+  ($\calli{Q}$ ist die \bold{chaotische Topologie}) metrisierbar?
+\end{frage}
+
+\begin{antwort}
+  
+  Ist ein topologischer Raum $X$ metrisierbar, 
+  so existieren zu je zwei verschiedenen 
+  Punkten $a,b\in X$ disjunkte offene $\eps$-Umgebungen 
+  (Hausdorff\sch e Trennungseigenschaft). Das folgt 
+  mit $\eps := d(a,b)/2$ aus der Dreiecksungleichung. 
+  \index{Hausdorffsche@Hausdorff'sche Trennungseigenschaft}
+  \index{Hausdorff}
+
+  Man kann also festhalten, dass ein metrisierbarer topologischer Raum mit
+  mehr als einem Punkt stets mindestens zwei 
+  nichtleere offene Mengen besitzt, und hieraus folgt schon, dass 
+  $(X,\calli{Q})$ (falls $X$ mehr als einen Punkt hat) 
+  nicht metrisierbar sein kann, da die Topologie $\calli{Q}$ nur eine 
+  einzige nichtleere Menge enthält.   \AntEnd
+\end{antwort}
+
+%% --- 31 --- %%
+\begin{frage}\index{Haufunspunkt@Häufungspunkt}
+  \index{Beruhrpunkt@Berührpunkt}
+  \index{isolierter Punkt}
+  \index{ausserer@äußerer Punkt}
+  \index{innerer Punkt}\index{Randpunkt}
+  Wie sind in einem beliebigen topologischen Raum $X$ für eine Teilmenge 
+  $M\subset X$ und einen Punkt $a\in X$ die folgenden Begriffe 
+  erklärt:
+  \vspace*{-2mm}
+  \begin{center}
+    \begin{tabular}{llll}
+      \desc{i}  &   $a$ ist ein  \bold{Häufungspunkt} von $M$, & 
+      \desc{ii} &  $a$ ist ein \bold{Berührpunkt} von $M$, \\
+      \desc{iii}  & $a$ ist ein \bold{isolierter Punkt} von $M$, &
+      \desc{iv}  & $a$ ist ein \bold{äußerer Punkt} von $M$, \\
+      \desc{v}  &  $a$ ist ein \bold{innerer Punkt} von $M$, & 
+      \desc{vi}  & $a$ ist ein \bold{Randpunkt} von $M$?
+    \end{tabular}
+  \end{center}
+\end{frage}
+
+\begin{antwort}
+  Die Bezeichnungen treffen genau dann zu, wenn 
+  {\setlength{\labelsep}{5mm}
+    \begin{itemize}
+    \item[\desc{i}] jede Umgebung von $a$ einen 
+      von $a$ verschiedenen weiteren Punkt aus $M$ enthält, \\[-4mm]
+    \item[\desc{ii}] jede Umgebung von $a$ mit $M$ einen nichtleeren Durchschnitt 
+      hat,\\[-4mm]   
+    \item[\desc{iii}] eine offene Menge $V\subset X$ existiert, für 
+      die $M\cap V = \{ a \}$ gilt,\\[-4mm]
+    \item[\desc{iv}] $X\mengeminus M$ eine Umgebung von $a$ ist (äquivalent: 
+      wenn eine Umgebung von $a$ existiert, in der keine Punkte aus $M$ liegen),
+      \\[-4mm]
+    \item[\desc{v}] $M$ eine Umgebung von $a$ ist,\\[-4mm]
+    \item[\desc{vi}] weder $M$ noch $X\mengeminus M$ eine Umgebung von $a$ ist 
+      (äquivalent: wenn in jeder Umgebung von $a$ sowohl Punkte aus 
+      $M$ als auch Punkte aus $X\mengeminus M$ liegen).\AntEnd
+    \end{itemize} }
+\end{antwort}
+
+%% --- 32 --- %%
+\begin{frage}\label{08_inner}
+  Warum liegen \bold{innere Punkte} und \bold{isolierte Punkte} von $M$ 
+  stets in $M$?
+\end{frage}
+
+\begin{antwort}
+  Nach Definition gibt es für einen inneren Punkt $a$ eine Umgebung $U$ 
+  mit $U\subset M$, und freilich gilt $a\in U$ und somit $a\in M$. 
+  Ist $a$ ein isolierter Punkt von $M$, so gibt es eine offene Menge 
+  $V\subset X$ mit $\{ a \} = V\cap M$. Daraus folgt $a\in M$.  
+  \AntEnd
+\end{antwort}
+
+%% --- 33 --- %%
+\begin{frage}
+  Warum ist ein Häufungspunkt von $M$ stets auch ein Berührpunkt 
+  von $M$? Gilt hiervon auch die Umkehrung?
+\end{frage}
+
+\begin{antwort}
+  Ist $U$ eine Umgebung von $a$ und $a$ ein Häufungspunkt von $M$, 
+  so enthält $U$ einen Punkt aus $M$. Damit gilt 
+  $U\cap M \not= \emptyset $, und $a$ ist ein Berührpunkt 
+  von $M$. 
+
+  Ein Berührunspunkt muss aber kein Häufungspunkt sein, 
+  da die Definition von "`Berührpunkt"' den Fall 
+  $U\cap M = \{ a \}$ (also den Fall, dass 
+  $a$ ein isolierter Punkt ist) miteinbezieht. 
+  In diesem Fall ist $a$ aber kein Häufungspunkt. 
+  \AntEnd
+\end{antwort}
+
+%% --- 34 --- %%
+\begin{frage}
+  Wieso besteht jede offene Teilmenge von $M$ nur aus inneren 
+  Punkten von $M$?
+\end{frage}
+
+\begin{antwort}
+  \nomenclature{$\overline{M}$}{topologischer Abschluss von $M$}
+  Andernfalls läge ein Randpunkt $\overline{m}\in M$ 
+  in $U$. Aber dann enthält 
+  jede Umgebung von $\overline{m}$ definitionsgemäß 
+  einen Punkt, der nicht zu $U\subset M$ gehört, {\dasheisst}, 
+  $U$ kann nicht offen in $M$ sein. 
+  \AntEnd
+\end{antwort}
+
+
+
+%% --- 35 --- %%
+\begin{frage}\nomenclature{$M^\circ$}{Menge der inneren Punkte von $M$}
+  Warum ist die Menge $M^\circ$ der inneren 
+  Punkte von $M$ stets offen und warum gilt 
+  \[
+  \text{$M$ offen in $X$ \quad $\LLa$ \quad $M=M^\circ$ ?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Ist $M$ offen in $X$, dann gilt nach der vorigen Frage  
+  gilt $M \subset M^\circ$. Da andererseits nach Frage 
+  \ref{08_inner} stets $M^\circ \subset M$ ist, folgt  
+  daraus die Implikation "`$\Ra$"'.
+
+  Da jede offene Teilmenge von $M$ nur innere Punkte enthält, gilt      
+  \[
+  \bigcup_{\substack{U\subset M \\ \text{$U$ offen in $X$}}} U 
+  \subset M^\circ.
+  \] 
+  Andererseits liegt jeder innere Punkt aus $M$ in einer offenen Teilmenge 
+  von $M$, woraus sich 
+  \[
+  M^\circ \subset \bigcup_{\substack{U\subset M \\ \text{$U$ offen in $X$}}} U
+  \] 
+  ergibt. Daraus folgt, dass $M^\circ$ gerade die 
+  Vereinigung aller in $X$ offenen Teilmengen von $M$ ist. 
+  Nach Frage \ref{08_topdef} \desc{T2} ist dann $M^\circ$  
+  offen in $X$. 
+  Das zeigt die Behauptung und die Richtung "`$\La$"'.  
+  \AntEnd
+\end{antwort}
+
+%% --- 36 --- %%
+\begin{frage}\label{08_ber}
+  Ist $\overline{M}$ die Menge aller Berührpunkte von $M$, dann 
+  ist $\overline{M}$ stets abgeschlossen und es gilt:
+  \[
+  \text{$M$ abgeschlossen in $X$ \quad $\LLa$ \quad $M=\overline{M}$}.
+  \]
+\end{frage}
+
+\begin{antwort}
+  Für den Beweis der ersten Behauptung und der Richtung "`$\La$"' 
+  müssen wir zeigen, dass $X\mengeminus \overline{M}$ offen ist. 
+  Angenommen, das ist nicht der Fall. 
+  Dann existiert ein $x\in X\mengeminus \overline{M}$ derart, dass 
+  \slanted{jede} offene Umgebung $U$ von $x$ einen Punkt 
+  $\overline{m} \in \overline{M}$ enthält. 
+  Da $U$ offen ist, gibt es dann aber auch eine Umgebung 
+  $V$ von $\overline{m}$ mit $V\subset U$. 
+  Nun ist $\overline{m}$ ein Berührpunkt von $M$, folglich 
+  liegt ein $a \in M$ in $V$. Jede Umgebung von $x$ 
+  enthält also einen Punkt aus $M$. 
+  Daraus folgt $x\in \overline{M}$, im Widerspruch zur Annahme.
+
+  Um "`$\Ra$"' zu zeigen, sei $M$ jetzt 
+  abgeschlossen, {\dasheisst}, $X\mengeminus M$ ist offen in 
+  $X$. Sei $a$ ein beliebiger Punkt aus $\overline{M}$. Da $a$ Berührpunkt  
+  von $M$ ist, liegt in jeder Umgebung von $a$ ein Punkt aus $M$. 
+  Das bedeutet aber, dass $a$ nicht in $X\mengeminus M$ liegen kann, weil 
+  $X\mengeminus M$ andernfalls nicht offen wäre. Folglich gilt $a\in M$ 
+  und insgesamt $M=\overline{M}$. \AntEnd  
+\end{antwort}
+
+%% --- 37 --- %%
+\begin{frage}\label{08_haufab}
+  Ist $M'$ die Menge aller Häufungspunkte von $M$, warum gilt dann 
+  $\overline{M} = M \cup M'$, 
+  und warum ist $M$ genau dann abgeschlossen in $X$, wenn $M\supset M'$ gilt?
+\end{frage}
+
+\begin{antwort}
+  
+  $\overline{M}$ besteht aus der Menge aller Häufungspunkte $M'$ 
+  zusammen mit den isolierten Punkten von $M$. Da Letztere in 
+  $M$ liegen, folgt $\overline{M} = M \cup M'$. 
+
+  Gilt $M\supset M'$, so folgt daraus $M=\overline{M}$ und schließlich 
+  mit der Äquivalenz aus Frage \ref{08_ber} die Abgeschlossenheit von $M$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 38 --- %%
+\begin{frage} 
+  Durch Anwendung der De Morgan'schen Regeln für die Komplementbildung 
+  erhält man aus den Grundeigenschaften der offenen Mengen auch 
+  Grundeigenschaften abgeschlossener Mengen. Welche sind das?
+\end{frage} 
+
+\begin{antwort}
+  Durch Anwendung der Regel $(A \cup B)^C = A^C \cap B^C$ 
+  erhält man aus den Grundeigenschaften \desc{T1} bis \desc{T3} für offene 
+  Mengen als korrespendierende Eigenschaften abgeschlossener Mengen:
+  {\setlength{\labelsep}{9mm}
+    \begin{enumerate}
+    \item[\desc{TA1}] Beliebige Durchschnitte abgeschlossener Mengen sind abgeschlossen.
+    \item[\desc{TA2}] Die Vereinigung von je zwei abgeschlossenen 
+      Mengen ist abgeschlossen.
+    \item[\desc{TA3}] Die leere Menge und $X$ sind abgeschlossen.
+    \end{enumerate}}
+  Diese drei "`Axiome"' liefern eine alternative Definition des 
+  Begriffs "`topologischer Raum"'.
+  \AntEnd 
+\end{antwort}
+
+%% --- 39 --- %%
+\begin{frage}
+  Warum ist eine \slanted{beliebige Vereinigung} abgeschlossener Mengen 
+  im Allgemeinen nicht abgeschlossen?
+\end{frage}
+
+\begin{antwort}
+  Ein Gegenbeispiel liefert etwa die Vereinigung 
+  aller abgeschlossenen Mengen 
+  $\RR \supset A_n := [ -1+1/n, 1-1/n ]$ mit $n\in \NN$. Die Menge  
+  $\bigcup_{n\in\NN} A_n = \open{-1,1}$ ist nicht abgeschlossen in $\RR$.
+  \AntEnd
+\end{antwort}
+
+%% --- 40 --- %%
+\begin{frage}\index{folgenabgeschlossen}
+  Was versteht man unter eine \bold{folgenabgeschlossenen Teilmenge} 
+  eines metrischen Raumes?
+\end{frage}
+
+\begin{antwort}
+  Eine Teilmenge $M\subset X$ heißt \slanted{folgenabgeschlossen}, wenn 
+  der Grenzwert $a\in X$ jeder konvergenten Folge $(a_n) \subset M$ 
+  in $M$ liegt.
+  
+  So ist beispielsweise die Menge $\QQ$ als Teilmenge von $\RR$ 
+  \slanted{nicht} folgenabgeschlossen, $\ZZ\subset \RR$ 
+  aber schon, da die einzig konvergenten Folgen in $\ZZ$ diejenigen sind, die 
+  ab einem bestimmten Glied konstant sind.
+  \AntEnd
+\end{antwort}
+
+%% --- 41 --- %%
+\begin{frage}%\label{08_folgabg}
+  Warum ist eine Teilmenge $M$ eines metrischen Raumes 
+  $X$ genau dann abgeschlossen, wenn sie folgenabgeschlossen ist?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_n)$ eine Folge in $M$ mit dem Grenzwert $a$ und sei $M$ 
+  abgeschlossen. Wenn $a$ nicht in $M$ liegt, dann gibt es -- da 
+  $X \setminus M$ offen ist -- eine offene 
+  $\eps$-Umgebung von $a$, die vollständig in 
+  $X\setminus M$ liegt. Dann gilt 
+  $d(a_n,a)>\eps$ für alle $n\in \NN$ und $(a_n)$ 
+  kann somit nicht konvergieren.
+
+  Sei jetzt $M$ folgenabgeschlossen und sei $h\in X$ ein beliebiger  
+  Häufungspunkt von $M$. Nach Frage \ref{08_haufab} ist für die 
+  Abgeschlossenheit von $M$ nur $h\in M$ zu zeigen. Da $h$ 
+  ein Häufungspunkt ist, enthält die Umgebung 
+  $K_{\frac{1}{n}}(h)$ für jedes $n\in \NN$ einen Punkt $b_n\in M$. 
+  Die Folge $(b_n)$ konvergiert gegen $h$, und da $M$ nach Voraussetzung 
+  folgenabgeschlossen ist, folgt $h\in M$. Das zeigt die Behauptung.
+  \AntEnd   
+\end{antwort}
+
+%% --- 42 --- %%
+\begin{frage}\nomenclature{$\partial M$}{Menge der Randpunkte der Menge $M$}
+  Ist $\partial M $ die Menge aller Randpunkte von $M$, dann ist 
+  $\partial M$ stets abgeschlossen, Können Sie das begründen?
+\end{frage}
+
+\begin{antwort}
+  Für jeden Punkt $a\in X\setminus \partial M$ ist nach Definition entweder 
+  $M$ oder $X\setminus M$ eine Umgebung. $X\setminus \partial M$ ist also 
+  offen, $\partial M$ folglich abgeschlossen.\AntEnd
+\end{antwort}
+
+%% --- 43 --- %%
+\begin{frage}
+  Kennen Sie ein Beispiel eines metrischen Raumes $M$, für den 
+  $M\subset \partial M$ gilt, der also in seinem Rand enthalten ist?
+\end{frage}
+
+\begin{antwort}
+  Die Menge $\QQ \subset \RR$ mit der durch den Absolutbetrag induzierten 
+  Metrik $d(x,y)=|x-y|$ ist {\zB} 
+  ein metrischer Raum mit dieser Eigenschaft. Da sowohl die 
+  rationalen als auch die irrationalen Zahlen dicht in $\RR$ liegen, besitzt 
+  jede reelle Zahl die Eigenschaft, ein Randpunkt von $\QQ$ zu sein. 
+  Es ist also in der Tat $\QQ \subset \partial \QQ = \RR$   
+  \AntEnd 
+\end{antwort} 
+
+
+
+
+
+\section{Konvergenz, Cauchy-Folgen, Vollständigkeit}
+
+Die Begriffe "`Cauchy-Folgen"',"`Konvergenz"' und "`Vollständigkeit"' 
+werden in allgemeinen metrischen Räumen in völliger Analogie zu 
+$\RR$ oder $\CC$ erklärt.  
+
+%% --- 44 --- %%
+\begin{frage}\index{Konvergenz!in einem metrischen Raum}
+  Wann heißt eine Folge $(x_k)$ von Elementen eines metrischen Raumes 
+  \bold{konvergent}?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(x_k)$ in einem metrischen Raum $(X,d)$ 
+  heißt \slanted{konvergent}, wenn ein 
+  $a\in X$ mit der folgenden Eigenschaft existiert: 
+  Zu jedem $\eps>0$ gibt es ein $N\in \NN$, sodass $d(a,x_k)< \eps$ 
+  für alle $k>N$ gilt. In diesem Fall heißt $a$ dann 
+  der \slanted{Grenzwert} Folge. 
+
+  Äquivalent dazu ist die Formulierung, dass für jedes $\eps>0$ 
+  \slanted{fast alle} Folgenglieder in $U_\eps(a)$ liegen.  
+  \AntEnd
+\end{antwort}
+
+%% --- 45 --- %%
+\begin{frage}\index{Grenzwert!Eindeutigkeit}
+  Warum ist im Falle der Konvergenz einer Folge der Grenzwert eindeutig 
+  bestimmt?
+\end{frage}
+
+\begin{antwort}
+  Ein metrischer Raum besitzt 
+  die \slanted{Hausdorff\sch e Trennungseigenschaft}. Damit folgt 
+  die Eindeutigkeit des Grenzwerts wie in Frage \ref{01_hausdorff}.
+  \index{Hausdorffsche@Hausdorff'sche Trennungseigenschaft}  
+  \AntEnd
+\end{antwort}
+
+%% --- 46 --- %%
+\begin{frage}\heavy \index{Konvergenz!in einem topologischen Raum}
+  Wie kann man die Konvergenz einer Folge in einem beliebigen 
+  \slanted{topologischen Raum} definieren?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(x_k)$ in einem topologischen Raum konvergiert, wenn ein 
+  $x\in X$ existiert, sodass zu \slanted{jeder} Umgebung $U$ von $x$ ein 
+  $N\in \NN$ derart existiert, dass für alle $k>N$ gilt: $x_k \in U$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 47 --- %%
+\begin{frage}\index{Klumpentopologie}
+  Ist $X$ eine nichtleere Menge, die mit der "`Klumpentopologie"' 
+  aus Frage \ref{08_klumpen} versehen ist, warum konvergiert dann \slanted{jede} 
+  Folge aus $X$ gegen \slanted{jedes} Element aus $X$?
+\end{frage}
+
+\begin{antwort}
+  Bezüglich der Klumpentopologie besitzt jedes Element aus $X$ nur 
+  eine einzige Umgebung, nämlich $X$. Ist $a\in X$ ein beliebiges Element 
+  und $(a_k)$ eine beliebige Folge aus $X$, dann liegen also alle 
+  Folgenglieder $a_k$ in jeder Umgebung von $X$. 
+  Die Folge konvergiert also im Sinne der Definition gegen $x$.
+  \AntEnd 
+\end{antwort} 
+
+%% --- 48 --- %%
+\begin{frage} \index{diskrete Metrik}
+  Ist $d$ die \slanted{diskrete Metrik} auf einer Menge $X$ 
+  (vgl. Frage \ref{08_diskr}). 
+  Wie kann man die konvergenten Folgen aus $X$ charakterisieren?
+\end{frage}
+
+\begin{antwort}
+  Wegen $d(x,y)=1$ für alle $x\not= y$ sind die konvergenten Folgen genau 
+  die ab einem bestimmten Index konstanten. 
+
+  Alternativ kann man mit dem Ergebnis aus Frage \ref{08_diskto} auch 
+  rein topologisch argumentieren: 
+  Die diskrete Metrik induziert die triviale Topologie auf $X$, 
+  und bezüglich dieser sind alle Teilmengen offen. 
+  Insbesondere hat dann jedes Element $a$ die Menge 
+  $\{ a \}$ als ihre Umgebung, und diese kann nur dann 
+  fast alle Glieder einer Folge $(a_k)$ enthalten, wenn ab einem 
+  bestimmten Index $a_k = a$ gilt.\AntEnd
+\end{antwort}
+
+%% --- 49 --- %%
+\begin{frage}\index{p-Norm@$p$-Norm}
+  Versieht man den $\RR^n$ mit einer der $p$-Normen 
+  (vgl. Frage \ref{08_pnorm}), 
+  dann ist eine Folge $(a_k)_{k\in \NN}$ 
+  mit $a_k := (\alpha_{1,k}, \ldots \alpha_{n,k} )$ genau dann konvergent 
+  gegen $a:=(\alpha_1,\ldots,\alpha_n)$, wenn jede Komponentenfolge 
+  $(\alpha_{\nu,k})_{k\in \NN}$, $\nu=1,\ldots,n$, 
+  gegen $\alpha_\nu$ konvergiert. Können Sie das begründen?
+\end{frage}
+
+\begin{antwort}
+  Aus 
+  \begin{equation}
+    \n{ a_k - a }_p = \Big( |\alpha_{1,k}-\alpha_1|^p + 
+    \cdots +|\alpha_{n,k}-\alpha_n|^p 
+    \Big)^{1/p} 
+    < \eps \qquad\text{für alle $k>N$}
+    \asttag
+  \end{equation}
+  folgt $| \alpha_{\nu,k} - \alpha_\nu |^p \le \eps^p $ und damit 
+  $| \alpha_{\nu,k} - \alpha_\nu | < \eps $ für alle 
+  $k>N$ und $\nu=1,\ldots, n$. Die 
+  Komponentenfolgen sind also konvergent.
+
+  Gilt umgekehrt $| \alpha_{\nu,k} - \alpha_\nu | < \eps $ 
+  für alle $\nu=1,\ldots, n$ 
+  und alle $k>N$, dann folgt $\| a_k-a \|_p \le \sqrt[p]{n}\eps$ für 
+  alle $k>N$. Das zeigt die Behauptung auch in der anderen Richtung. 
+  \AntEnd
+\end{antwort}
+
+
+%% --- 50 --- %%
+\begin{frage}\label{08_folgabg}\index{folgenabgeschlossen}
+  Ist $X$ ein metrischer Raum und $A\subset X$ eine Teilmenge. Können Sie 
+  begründen, warum $A$ genau dann abgeschlossen in $X$ ist, wenn $A$ 
+  \bold{folgenabgeschlossen} ist in dem Sinne, dass für jede Folge 
+  $(a_k) \subset A$, die gegen einen Punkt $x\in X$ konvergiert, bereits 
+  $x\in A$ gilt? Kurz gesagt, können Sie zeigen, dass eine Teilmenge 
+  $A$ eines metrischen Raumes genau dann abgeschlossen ist, 
+  wenn sie folgenabgeschlossen ist?
+\end{frage}
+
+\begin{antwort}
+  Man betrachte einen beliebigen Punkt 
+  $x\in X \setminus A$. Ist $A$ folgenabgeschlossen, dann kann nicht 
+  jede Umgebung von $x$ Punkte aus $A$ enthalten. Daraus folgt die Offenheit 
+  von $X\setminus A$. Aus dieser folgt umgekehrt, dass jeder Punkt aus 
+  $X\mengeminus A$ eine Umgebung besitzt, die keine Elemente aus $A$ enthält 
+  und damit nicht Grenzwert einer Folge aus $A$ sein kann.
+  \AntEnd
+\end{antwort}
+
+
+%% --- 51 --- %%
+\begin{frage}\index{Cauchy-Folge!in einem allgemeinen metrischen Raum}
+  Wann heißt eine Folge $(x_k)$ eines metrischen Raums $(X,d)$ 
+  eine Cauchy-Folge?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(x_k)$ ist eine \slanted{Cauchy-Folge} in $(X,d)$ genau dann, 
+  wenn sie die Eigenschaft besitzt, dass für jedes $\eps>0$ ein $N\in \NN$ 
+  existiert, sodass gilt:
+  \[
+  d(x_m,x_n)<\eps \quad\text{für alle $n,m>N$}.
+  \EndTag
+  \] 
+\end{antwort}
+
+%% --- 52 --- %%
+\begin{frage}
+  Können Sie begründen, warum jede \slanted{konvergente} Folge in einem 
+  metrischen Raum eine Cauchy-Folge ist?
+\end{frage}
+
+\begin{antwort}
+  Sei $x$ der Grenzwert der Folge $(x_k)$. 
+  Der Zusammenhang beruht auf der Dreiecksungleichung:
+  \begin{equation}
+    d(x_m, x_n ) \le d(x_m,x) + d( x_n, x ). 
+    \notag
+  \end{equation}
+  Die beiden hinteren Summen sind beide kleiner als $\eps/2$, wenn 
+  $n$ und $m$ beide größer als ein bestimmtes $N\in \NN$ sind.
+  \AntEnd
+\end{antwort}
+
+%% --- 53 --- %%
+\begin{frage}
+  Können Sie Beispiele für metrische Räume angeben, für welche die 
+  Umkehrung \slanted{nicht} gilt? 
+\end{frage} 
+
+\begin{antwort}
+  Das erste Beispiel, das einem dafür in der Mathematik begegnet, ist die 
+  Menge $\QQ$ der rationalen Zahlen. 
+  Bekanntlich (oder wie man in der Antwort zu Frage \ref{02_eirr} 
+  nachlesen kann) 
+  besitzt etwa die konvergente 
+  Folge $(e_n)\subset \QQ$ mit $e_n:= (1+1/n)^n$ keinen Grenzwert in $\QQ$. 
+
+  Ein weiteres Beispiel ist der Raum der Treppenfunktionen 
+  auf einem Intervall $[a,b]$ bezüglich der 
+  Supremumsnorm. Der Grenzwert einer konvergenten 
+  Folge von Treppenfunktionen auf $[a,b]$ ist eine Regelfunktion, also 
+  im Allgemeinen keine Treppenfunktion mehr. 
+  \AntEnd
+\end{antwort}
+
+%% --- 54 --- %%
+\begin{frage}\label{09_voll}\index{vollständiger metrischer Raum}
+  Was ist ein \bold{vollständiger metrischer Raum}?
+\end{frage}
+
+\begin{antwort}
+  Ein metrischer Raum $X$ 
+  ist vollständig genau dann, wenn er die Eigenschaft besitzt, dass 
+  \slanted{jede} Cauchy-Folge aus $X$ einen Grenzwert in $X$ besitzt. 
+
+  Beispielsweise ist $\QQ$ \slanted{nicht} vollständig, $\RR$ aber schon. 
+  \AntEnd
+\end{antwort}
+
+
+
+%% --- 55 --- %%
+\begin{frage}\label{q:banachraum}\index{Banachraum}\index{Hilbertraum}
+  Was ist ein \bold{Banachraum}, was ein \bold{Hilbertraum}? 
+  Können Sie jeweils zwei Beispiele nennen?
+\end{frage}
+
+\begin{antwort}
+  Banach- und Hilberträume haben gemeinsam, beides 
+  $\KK$-Vektorräume zu sein, die mit einer \slanted{Norm} 
+  versehen sind und die 
+  \slanted{vollständig} im Sinne von Frage \ref{09_voll} sind. 
+
+  \slanted{Hilberträume} besitzen darüber hinaus die Eigenschaft, dass 
+  ihre Norm durch ein Skalarprodukt $\langle \;,\; \rangle$ gegeben ist,  
+  sie sind also \slanted{euklidische bzw. unitäre Vektorräume}. 
+
+  Der Begriff des Banachraums ist damit allgemeiner. Jeder Hilbertraum ist 
+  auch Banachraum, aber nicht umgekehrt. 
+
+  Das naheliegendste Beispiel für einen 
+  Hilbertraum ist der $\RR^n$ mit dem Standard\-skalar\-produkt. 
+  Speziellere Kandidaten sind etwa der Folgenraum $\ell^2$,  
+  der in Frage \ref{09_ell} behandelt wird, 
+  oder der in der Theorie der Fourierreihen auftretende  
+  Raum der $2\pi$-periodischen $L^2$-Funktionen auf $[0,2\pi]$ mit 
+  dem Skalarprodukt 
+  \[
+  \langle f, g \rangle = \frac{1}{2\pi} \int_{0}^{2\pi} f(x) g(x) \difx.  
+  \]
+  Dies alles sind auch Beispiele für Banachräume. 
+  Banachräume, die keine Hilberträume sind, sind {\zB} der 
+  $\RR^n$ versehen mit der Maximumsnorm 
+  $\n{\,\;}_\infty$ oder der Raum $\calli{C}([a,b])$ 
+  der stetigen Funktionen auf $[a,b]$ bezüglich der Supremumsnorm. 
+  Dass diese Räume keine Hilberträume sind, kann man mit dem Ergebnis 
+  von Frage \ref{08_par} daran sehen, dass in ihnen die Parallelogrammidentität 
+  nicht gilt.
+  \AntEnd
+\end{antwort}
+
+%% --- 56 --- %%
+\begin{frage}\label{09_ell}\index{l@$\ell^2$-Folge}
+  \index{Hilbert'scher Folgenraum $\ell^2$}
+  \nomenclature{$\ell_2$}{Hilbert'scher Folgenraum}
+  \index{Hilbert@\textsc{Hilbert}, David (1862-1943)}
+  Warum ist der \bold{Hilbert'sche Folgenraum} $\ell^2$, das ist der 
+  Raum aller Folgen $a:=(\alpha_\nu)$ komplexer Zahlen mit 
+  \[
+  \n{ a }_2 := \left( \sum_{\nu=1}^\infty |\alpha_\nu|^2 \right)^{1/2} < \infty,
+  \]
+  ein Vektorraum?
+\end{frage}
+
+\begin{antwort}
+  Seien  
+  $a:= (\alpha_\nu)$ und $b := ( \beta_\nu )$ zwei Folgen aus $\ell^2$. 
+  Es muss gezeigt werden, dass $\sum_{\nu=1}^\infty 
+  | \alpha_\nu + \beta_\nu |^2 < \infty$ gilt (die Abgeschlossenheit 
+  des Raumes bezüglich Skalarmultiplikation ist offensichtlich). 
+  Mit Binomischer Formel und Dreiecksungleichung erhält man für alle 
+  $n\in\NN$ die Abschätzung  
+  \[
+  \sum_{\nu=1}^n \left| \alpha_\nu + \beta_\nu \right|^2  
+  \le 
+  \n{ a }_2^2 + 2 \sum_{\nu=1}^n \left| \alpha_\nu \beta_\nu \right| 
+  +
+  \n{ b }_2^2. 
+  \]
+  Für die Abschätzung des mittleren Terms 
+  beachte man, dass nach der Cauchy-Schwarz'schen Ungleichung 
+  für alle $n\in \NN$ gilt: 
+  $ \sum_{\nu=1}^n \left| \alpha_\nu \beta_\nu \right|  \le 
+  \| a \|_2 \cdot \| b \|_2$. Damit ist 
+  $\sum_{\nu=1}^\infty \left| \alpha_\nu + \beta_\nu \right|^2 < \infty$, 
+  und folglich ist mit $a$ und $b$ auch die Folge $(a+b)$ 
+  ein Element aus dem Folgenraum $\ell^2$, 
+  der damit tatsächlich ein $\CC$-Vektorraum ist. 
+  Ein Skalarprodukt ist gegeben durch
+  \[
+  \langle a, b \rangle := \sum_{\nu=1}^\infty \alpha_\nu \overline{\beta}_\nu 
+  \EndTag
+  \]
+\end{antwort}
+
+%% --- 57 --- %%
+\begin{frage}\index{Hilbert'scher Folgenraum $\ell^2$}
+  Können Sie zeigen, dass $\ell^2$ vollständig ist?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_k)_{k\in \NN}$ mit 
+  $a_k := (\alpha_{k,\nu})_{\nu\in \NN}$ eine Cauchy-Folge in $\ell^2$ 
+  und $N$ so gewählt, dass für $k,l>N$ die Abschätzung 
+  \begin{equation}
+    \nnb{ a_k - a_l }_2^2  = \sum_{\nu=1}^\infty 
+    \left| \alpha_{k,\nu} - \alpha_{l,\nu} \right|^2 < \eps^2
+    \asttag
+  \end{equation}
+  zutrifft. Dann gilt 
+  $\left| \alpha_{k,\nu} - \alpha_{l,\nu} \right| < \eps$ 
+  für alle $\nu\in \NN$. Die Komponentenfolgen 
+  $(\alpha_{k,\nu})_{k\in \NN}$ sind also Cauchy-Folgen, 
+  folglich konvergent gegen einen Grenzwert $\alpha_{.,\nu} \in \CC$. 
+  Mit $a := ( \alpha_{.,1}, \alpha_{.,2},\ldots )$  folgt damit 
+  für  $l\to \infty$ aus {\astref} zunächst für endliche Summen 
+  \begin{equation}
+    \sum_{\nu=1}^K 
+    \left| \alpha_{k,\nu} - \alpha_{.,\nu} \right|^2 \le \eps^2 
+    \qquad\text{für alle $k > N$ und alle $K\in \NN$},
+    \notag
+  \end{equation}
+  und daraus schließlich für $K\to\infty$
+  \begin{equation}
+    \nnb{ a_k - a }_2^2  = \sum_{\nu=1}^\infty 
+    \left| \alpha_{k,\nu} - \alpha_{.,\nu} \right|^2 \le \eps^2 
+    \qquad\text{für alle $k > N$}.
+    \aasttag
+  \end{equation}
+  Demnach gehört die Folge $a_N-a$ zu $\ell^2$ und damit wegen 
+  der Vektorraumeigenschaft von $\ell^2$ auch $a$ selbst. 
+  $a$ ist aber nach {\astastref} der Grenzwert der Folge 
+  $(a_k)_{k\in \NN}$. Damit ist die Vollständigkeit von $\ell^2$ gezeigt.
+  \AntEnd 
+\end{antwort}
+
+%% --- 58 --- %%
+\begin{frage}\index{Aquivalenz@Äquivalenz!von Normen}
+  Wann nennt man zwei Normen auf einem $\KK$-Vektorraum $V$ \bold{äquivalent}?
+\end{frage}
+
+\begin{antwort}
+  Zwei Normen $\| \;\, \|$ und $\| \;\, \|^*$ 
+  heißen \slanted{äquivalent}, wenn es positive reelle Zahlen 
+  $c$ und $C$ gibt, sodass für alle $v\in V$ gilt
+  \begin{equation}
+    c \cdot \|  v \| \le \| v \|^* \le C \cdot \| v \|.
+    \notag
+  \end{equation}
+  Das Ergebnis aus Frage \ref{08_pnormaq} besagt zum Beispiel, dass alle 
+  $p$-Normen im $\RR^n$ äquivalent sind. In Frage \ref{09_normaq} wird das
+  wichtige Ergebnis bewiesen, dass dies für 
+  \slanted{sämtliche} Normen auf einem 
+  \slanted{endlichdimensionalen} Vektorraum zutrifft. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 59 --- %%
+\begin{frage}
+  Warum ergeben äquivalente Normen auf einem 
+  $\KK$-Vektorraum $V$ denselben Konvergenzbegriff?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_k)\subset V$ eine Folge und $a$ deren Grenzwert. 
+  Gilt bezüglich einer Norm 
+  $\lim \n{ a- a_k } = 0$, so 
+
+  gilt wegen $\n{ a-a_k }^* < C \n{ a-a_k }$ 
+  auch $\lim \n{ a-a_k }^*=0$ bezüglich einer 
+  äquivalenten Norm $\n{ \;\, }^*$. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 60 --- %%
+\begin{frage}
+  Warum ist $\KK^n$ für $\KK=\CC$ oder $\KK=\RR$ ein Banachraum?
+\end{frage}
+
+\begin{antwort}
+  Die Räume $\RR^n$ bzw. $\CC^n$ sind vollständig, weil 
+  $\RR$ bzw. $\CC$ vollständig sind und der Grenzwert einer Folge von 
+  Vektoren in $\KK^n$ komponentenweise gebildet wird.
+  \AntEnd
+\end{antwort}
+
+%% --- 61 --- %%
+\begin{frage}
+  \label{q:61}
+  Sei $\calli{C}([a,b])$ der Vektorraum der stetigen Funktionen 
+  auf $[a,b]$ mit der Supremumsnorm ${\| \; \, \|}_\infty$ und 
+  mit der $1$-Norm ${\| f \|}_1 := \int_a^b \left| f(x) \right| \difx$. 
+  Sind diese beiden Normen äquivalent?
+\end{frage}
+
+\begin{antwort}
+  Die Normen sind nicht äquivalent. Angenommen, 
+  es würde $C\cdot {\|f\|}_1 \ge  {\|f\|}_\infty$ 
+  für ein $C\in \RR_+$ 
+  gelten. Man wähle ein $K>C$ und betrachte
+  die stetige Funktion $g \fd [a,b]\to\RR$ mit 
+  \[
+  g(x) :=  \left\{\begin{array}{ll}
+      K^2 \cdot (x-a),   & \text{für $x\in [a,a+\frac{1}{K}]$}  \\
+      2K-K^2\cdot (x-a), & \text{für $x\in (a+\frac{1}{K},a+\frac{2}{K}]$} \\
+      0, & \text{sonst,}
+    \end{array} \right.,
+  \]
+  \sieheAbbildung\ref{fig:09_spitz}.  Es gilt dann 
+  $C\cdot {\| g \|}_1 = C \cdot 1 < K  = {\| g \|}_\infty$, im 
+  Widerspruch zur Annahme.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/09_spitz}
+    \captionof{figure}{Konstruktion der Funktion $g$ aus Frage \ref{q:61}.} 
+    \label{fig:09_spitz}
+  \end{center}
+\end{antwort}
+
+%% --- 62 --- %%
+\begin{frage}\index{Schachtelungsprinzip, allgemeines}
+  Was besagt das \bold{allgemeine Schachtelungsprinzip} für vollständige 
+  metrische Räume?
+\end{frage}
+
+\begin{antwort}
+  \index{Durchmesser}
+  Für die Formulierung des Schachtelungsprinzips ist der Begriff des 
+  \slanted{Durchmessers} 
+  \[
+  \mathrm{diam}(A) = \sup\{ d(a,b) \sets a,b \in A \}
+  \]
+  einer \slanted{beschränkten} Teilmenge $A$ eines 
+  metrischen Raumes $X$ hilfreich. Dabei heißt eine eine Teilmenge 
+  $A$ eines metrischen Raumes \slanted{beschränkt}, wenn eine Kugel 
+  $U_R \subset X$ mit $A\subset U_R$ existiert.
+
+
+  Das allgemeine Schachtelungsprinzip besagt: 
+
+  \medskip\noindent
+  \slanted{
+    Ist $(A_k)$ eine Folge 
+    von abgeschlossenen, beschränkten Intervallen in einem \slanted{vollständigen} 
+    metrischen Raum $X$, für die $A_{k+1} \subset A_k$ für alle $k\in \NN$ 
+    sowie $\mathrm{diam}\,A_k \to 0$ für $k\to\infty$ gilt, dann 
+    gibt es genau einen Punkt $a\in X$, der in allen $A_k$ enthalten 
+    ist: $a\in \bigcap_{k\in \NN} A_k$.}
+
+  \medskip\noindent
+  Der Beweis ist nicht schwierig. 
+  Man wähle eine Folge $(a_k)$ von Punkten $a_k \in A_k$. 
+  Da die Durchmesser der $A_k$ gegen $0$ konvergieren, gilt 
+  $d(a_n,a_m)< \eps$, falls $n$ und $m$ hinreichend groß sind. Somit ist 
+  $(a_k)$ eine Cauchy-Folge und besitzt wegen der Vollständigkeit von 
+  $X$ einen Grenzwert $a\in X$. 
+
+  Für ein beliebiges $N\in \NN$ gilt $a_n \in A_N$ für alle 
+  $n \ge N$. Damit ist $a$ ein Häufungspunkt von $A_N$, und wegen 
+  der Abgeschlossenheit von $A_N$ folgt $a \in A_N$. Da das für eine 
+  beliebige Wahl von $N$ gilt, ist der Grenzwert $a$ 
+  also in allen Mengen $A_k$ enthalten. 
+  Das beweist die Existenzbehauptung, die Eindeutigkeit folgt aus 
+  $\lim\limits_{k\to\infty} \mathrm{diam}\, A_k=0$.   \AntEnd
+\end{antwort}
+
+%% --- 63 --- %%
+\begin{frage}\label{09_produktmetrik}\index{Produktmetrik}
+  Sind $(X,d_X)$ und $(Y,d_Y)$ metrische Räume. Wie ist die 
+  \bold{Produkt-Metrik} auf $X\times Y$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Seien $(x_1,y_1)$ und $(x_2,y_2)$ Elemente aus $X\times Y$.  
+  Die Produktmetrik $d$ ist gegeben durch 
+  \[
+  d \big( (x_1, y_1 ), (x_2,y_2) \big) := 
+  \max\{ d_X(x_1, x_2), d_Y( y_1, y_2 ) \}.
+  \]
+  Man prüft ohne Probleme nach, dass die so definierte Funktion 
+  alle drei Eigenschaften einer Metrik besitzt. 
+
+
+  Die universelle Eigenschaft der Produktmetrik besteht darin, dass 
+  eine Abbildung $F \fd Z\to X\times Y$ von einem beliebigen 
+  metrischen Raum 
+  $Z$ bezüglich der Produktmetrik genau dann stetig ist, wenn die 
+  Zusammensetzungen mit den Projektionen, also die beiden 
+  Abbildungen $\mathrm{pr}_1\circ F$ und 
+  $\mathrm{pr}_2\circ F$ stetig sind. 
+
+  \begin{center}
+    \includegraphics{mp/09_produktmetrik}
+    \captionof{figure}{Offene Kugel $U_\eps \big( (x.y) \big)$ in der 
+      Produktmetrik.}
+    \label{fig:09_produktmetrik}
+  \end{center}
+
+  Die offene Kugel $U_\eps \big( (x.y) \big)$ um ein Element 
+  $(x,y)\in X\times Y$ ist bezüglich der Produktmetrik damit 
+  gerade das direkte Produkt der offenen Kugeln 
+  $U_\eps(x) \subset X$ und $U_\eps( y ) \subset Y$, \sieheAbbildung\ref{fig:09_produktmetrik}.
+  \AntEnd
+\end{antwort}
+
+%% --- 64 --- %%
+\begin{frage}\label{09_banach}\index{Banachscher Fixpunksatz@Banach\sch er Fixpunktsatz}
+  \index{Banach@\textsc{Banach}, Stefan (1892-1945)}
+  \index{Fixpunkt}
+  \index{Kontraktion}
+  \index{kontrahierende Selbstabbildung}
+  Was besagt der \bold{Banach\sch e Fixpunktsatz} für  
+  vollständige metrische Räume?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt:
+
+  \medskip\noindent
+  \slanted{Ist $M$ eine nichtleere abgeschlossene Teilmenge eines 
+    vollständigen metrischen Raumes und $\varphi \fd M\to M$ eine 
+    kontrahierende Selbstabbildung, dann besitzt $\varphi$ genau 
+    einen Fixpunkt, also genau einen Punkt $\xi\in M$ mit 
+    $\varphi(\xi)=\xi$. Für jeden Startwert $x_0\in M$ konvergiert die 
+    durch  
+    \[
+    x_{n+1} = \varphi( x_n) 
+    \]
+    rekursiv definierte Folge $(x_n)$ gegen $\xi$. 
+  }
+
+  \medskip
+  \noindent
+  Der Beweis ist sehr einfach. Sei $x_0$ irgendein Punkt aus $M$.  
+  Mit der Kontraktionskonstanten $\lambda<1$ erhält man wegen 
+  $d\big( \varphi(x), \varphi(y) \big) \le \lambda d( x,y )$ für alle $x,y\in M$ 
+  induktiv
+  \[
+  d (x_n,x_{n+1}) \le \lambda^n d ( x_0, x_1 ).
+  \]
+  Es folgt mit $C:=d(x_0,x_1)$
+  \[
+  d\big( x_n, x_{n+k} ) \le 
+  C\cdot (\lambda^n+\lambda^{n+1} +\cdots + \lambda^{n+k-1})
+  \le C\cdot\frac{\lambda^n}{1-\lambda}.
+  \]
+  Der Term auf der rechten konvergiert für $n\to\infty$ gegen Null, die Folge $(x_n)$ ist also eine Cauchy-Folge. 
+  Da $M$ als Teilraum eines vollständigen metrischen Raumes 
+  selbst vollständig ist (vgl. Frage \ref{09_vollstteilraum}), 
+  existiert dazu ein Grenzwert 
+  $\xi\in M$. Dieser ist 
+  ein Fixpunkt von $\varphi$. Das folgt aus der Stetigkeit von $\varphi$:
+  \[
+  \varphi( \xi) = \lim_{n\to\infty} \varphi( x_n )= \lim_{n\to\infty} 
+  x_{n+1} = \xi.
+  \]
+  Ferner ist $\xi$ der einzige Fixpunkt. Denn für einen 
+  weiteren Fixpunkt $\eta$ gälte
+  \[
+  d( \xi, \eta ) = d \big( \varphi(\xi), \varphi(\eta) \big) \le 
+  \lambda d( \xi,\eta ),\nodpagebreak
+  \]
+  wegen $\lambda<  1$ also $d(\xi,\eta)=0$. \AntEnd 
+
+  \begin{center}
+    \includegraphics{mp/09_banach}
+    \captionof{figure}{Die Folge 
+      $\varphi(M),\varphi\left(\varphi(M)\right),\ldots$ 
+      konvergiert gegen einen Fixpunkt.}
+    \label{fig:09_banach}
+  \end{center}
+\end{antwort} 
+
+%% --- 65 --- %%
+\begin{frage}
+  Kennen Sie eine Anwendung des Banach\sch en Fixpunktsatzes?
+\end{frage}
+
+\begin{antwort}
+  Der Banach\sch e Fixpunktsatz wird beispielsweise 
+  an einer zentralen Stelle  
+  beim Beweis des \slanted{lokalen Umkehrsatzes} verwendet 
+  (s. Kapitel \ref{umkehrsatz}, insbesondere Frage \ref{10_umkbanach}). 
+  Die gesuchte Umkehrfunktion wird dort als Lösung einer 
+  Fixpunktgleichung konstruiert. \index{lokaler Umkehrsatz}
+
+  \index{Differenzialgleichung!lokaler Existenzsatz}
+  \index{Picard-Lindelöf, lokaler Existenzsatz}
+  \index{Picard@\textsc{Picard}, Charles-Emile (1856-1941)}
+  \index{Lindelof@\textsc{Lindelöf}, Ernst Leonard (1870-1946)}
+  Ein weitere interessante Anwendung findet sich beim 
+  Beweis der Existenz von Lösungen gewöhnlicher Differenzialgleichungen, 
+  speziell dem Beweis des Satzes von \slanted{Picard-Lindelöf}. 
+  Dabei geht es um die folgende Fragestellung:  
+  Sei $F \fd U\to \RR^n$ eine Funktion auf einer Menge 
+  $U\subset [a,b] \times V$ mit $V\subset\RR^n$. 
+  Gesucht ist eine Lösung der Differenzialgleichung 
+  \[
+  x'(t) = F \big( t, x(t) \big)  
+  \]
+  Damit eine Lösung zu einem gegebenen 
+  Anfangswert existiert, muss $F$ nur die Bedingung erfüllen, 
+  \slanted{lokal Lipschitz-stetig}\index{lokal Lipschitz-stetig}
+  bezüglich $x$ zu sein, das heißt, dass es zu jedem Punkt 
+  $x_0\in V$ eine Umgebung 
+  $V_0\subset V$ gibt, für die eine Konstante $L>0$ existiert, 
+  sodass für alle $x_1,x_2\in V_0$ und alle 
+  $t\in[a,b]$ gilt: $
+  \nb{ F(t,x_1)-F(t,x_2) } \le L \cdot \nb{ x_1-x_2}$.
+  Mit diesen Bezeichnungen lautet der Satz von Picard-Lindelöf: 
+
+  \medskip\noindent
+  \satz{Sei $F\fd U\to  \RR^n$ mit 
+    $U \subset [a,b]\times \RR^n$ eine Funktion, die 
+    lokal Lipschitz-stetig bezüglich $x$ ist. Dann gibt es 
+    zu jedem Punkt $(x_0,t_0)\in U$ ein Intervall 
+    $I_\delta:=\open{t_0-\delta,t_0+\delta}$, auf dem das
+    Anfangswertproblem 
+    \[
+    x'(t) = F\big(t,x(t)\big), \qquad x(t_0)=x_0\asttag
+    \]
+    genau eine Lösung besitzt.}  
+
+  \medskip\noindent
+  Um eine eventuelle Lösung mithilfe des Banach\sch en Fixpunktsatzes 
+  zu finden, müssen wir die Suche in einem 
+  ersten Schritt auf einen \slanted{vollständigen}  
+  metrischen Raum $\calli{Q}$ stetiger Funktionen einschränken. 
+  Sei dazu $C$ irgendeine Zahl, sodass 
+  $F$ auf $M:=[a,b]\times \overline{K}_C (x_0)$ Lipschitz-stetig 
+  bezüglich $x$ mit der Konstanten $L$ ist. 
+  Sei $\delta > 0$ dazu so gewählt, dass gilt: 
+  \[
+  I_\delta := \open{ t_0-\delta, t_0+\delta } 
+  \subset [a,b],\qquad
+  \delta \n{ F }_M \le C, \qquad 
+  \delta L < 1. 
+  \]
+  Den Raum $\calli{Q}$, in dem eine Lösung gesucht wird, definieren wir 
+  durch 
+  \[
+  \calli{Q} := \big\{ 
+  \psi \fd I_\delta\to\RR^n\sets \text{$\psi$ stetig}, \; 
+  \nnb{ \psi(t)-x_0 } \le b \, \text{ für alle $t\in I_\delta$}
+  \big\} 
+  \tag{$\dagger$}
+  \]
+  Um $\calli{Q}$ zu einem vollständigen metrischen Raum zu 
+  machen, führen wir darauf die von der Supremumsnorm im $\RR^n$ 
+  induzierte Metrik ein, definieren also 
+  \[
+  d( \psi_1, \psi_2 ) := \sup \,\big\{ 
+  \nnb{\psi_1(t)-\psi_2(t) } \sets t\in I_\delta \big\}.
+  \]
+  Die Cauchy-Folgen in $\calli{Q}$ bezüglich $d$ sind dann 
+  genau die gleichmäßig konvergenten Folgen. Die Grenzfunktion 
+  ist in diesem Fall ebenfalls 
+  stetig und erfüllt aus Monotoniegründen 
+  die Ungleichung $\dagger$, 
+  also ist $(\calli{Q}, d )$ ein vollständiger metrischer Raum. 
+
+  Um eine Lösung der Differenzialgleichung {\astref} zu finden, 
+  genügt es nun, eine Funktion $\varphi$ zu konstruieren, die die 
+  Integralgleichung  
+  \[
+  \varphi( t ) = x_0 + \int_{t_0}^t F\big(u, \varphi(u)\big) \difu
+  \aasttag
+  \]
+  löst. Wir formulieren diese Gleichung zu einer 
+  Fixpunktgleichung bezüglich einer Abbildung 
+  $T \fd \calli{Q}\to\calli{Q}$ um. 
+  Für $\psi \in\calli{Q}$ sei 
+  $T\psi\fd I_\delta \to \RR^n$ definiert durch 
+  \[
+  T\psi(t) := x_0 + \int_{t_0}^t F\big( u, \psi(u) \big) \difu. 
+  \]
+  $T\psi$ ist dann stetig und damit $T(T\psi), T(T(T\psi)),\ldots$ 
+  wohldefiniert.
+  
+  Nun ist jede Lösung der Fixpunktgleichung $T\varphi = \varphi$ eine 
+  Lösung der Differenzialgleichung {\astref}. Aufgrund des 
+  Banach\sch en Fixpunktsatzes 
+  genügt es also, zu zeigen, dass die Abbildung $T$ eine 
+  kontrahierende Selbstabbildung 
+  $\calli{Q}\to\calli{Q}$ induziert. Das ist nun, nach all den 
+  Vorbereitungen, einfach geradlinig zu verifizieren:  
+  Einerseits ist
+  \[
+  \nnb{ T\psi (t) - x_0 } = 
+  \nnb{ \int_t^{t_0} F \big( u, \psi(u) \big) \difu } \le 
+  \left| \int_t^{t_0} \nnb{F \big(u,\psi(u) \big)}\difu \right|
+  \le  \delta \nnb{F}_M \le C.
+  \]
+  Für $\psi\in\calli{Q}$ liegt also $T\psi$ ebenfalls in $\calli{Q}$. 
+  Damit ist $T$ eine Selbstabbildung $\calli{Q}\to\calli{Q}$. 
+  Ferner ist $T$ eine Kontraktion, da gilt:
+  \begin{align*}
+    d\big( T\psi_1, T\psi_2 \big) &= 
+    \sup_{I_\delta} \nnb{ 
+      \int_{t_0}^t \Big( F\big( u, \psi_1(u) \big) -  
+      F\big( u, \psi_2(u) \big) \Big) \difu } \\
+    &\le 
+    \sup_{I_\delta} \left| 
+      \int_{t_0}^t \nnb{ F\big( u, \psi_1(u) \big) -  
+        F\big( u, \psi_2(u) \big) } \difu 
+    \right| \\
+    &\le 
+    \sup_{I_\delta} \left| 
+      \int_{t_0}^t L \nnb{ \psi_1(u)  - \psi_2(u) } \difu 
+    \right| \le \delta L \cdot d(\psi_1,\psi_2). 
+  \end{align*} 
+  Nach Voraussetzung ist $\delta L <1$, $T$ also eine kontrahierende 
+  Selbstabbildung von $\calli{Q}$. Die nach dem Banach\sch en 
+  Fixpunktsatz existierende Lösung der Fixpunktgleichung 
+  $T\psi = \psi$ ist die gesuchte Lösung der Differenzialgleichung 
+  {\astref}. \AntEnd
+\end{antwort} 
+
+%% --- 66 --- %%
+\begin{frage}\index{Anfangswertproblem}
+  Können Sie mithilfe des Iterationsverfahrens 
+  von Picard-Lindelöf die Differenzialgleichung 
+  (das Anfangswertproblem) $x'=tx$ f\"ur $x(0)=1$ 
+  lösen?
+\end{frage}
+
+\begin{antwort}
+  Als Startwert für die Picard-Lindelöf'sche Iteration 
+  wählen wir die Funktion $x_0(t)\equiv 1$. Daraus erhält man 
+  nach den ersten zwei Schritten
+  \begin{align*}
+    x_1(t) := Tx_0(t) &= 1 + \int_0^t u x_0(u) \difu =1+\frac{t^2}{2},\\
+    x_2(t) := Tx_1(t) &= 1 + \int_0^t u x_1(u) \difu 
+    =x_1(t)+ \int_0^t \frac{u^3}{2} \difu = 
+    1+\frac{t^2}{2}+\frac{t^4}{8},  
+  \end{align*}
+  und durch $n$-malige Wiederholung dieser Rechnung 
+  \[
+  x_n(t) := Tx_{n-1}(t) = x_{n-1}(t)+\int_0^t 
+  \frac{u^{2n-1}}{2\cdot 4\cdots (2n-2)} \difu = 
+  1+\sum_{k=1}^n \frac{t^{2k}}{2^k k!}.    
+  \]
+  Die Lösung des Anfangswertproblems lautet damit
+  \[
+  x(t) = \lim_{n\to\infty} x_n(t) = \sum_{k=0}^\infty  
+  \frac{t^{2k}}{2^k k!}.\EndTag
+  \]
+\end{antwort}  
+
+
+
+\section{Stetigkeit, gleichmäßige Konvergenz, stetige 
+  Fortsetzbarkeit, Grenzwerte}
+
+%% --- 67 --- %%
+\begin{frage}
+  \index{Stetigkeit!in allgemeinen metrischen Räumen}
+  \index{Stetigkeit!gleichmäßige}
+  Sind $(X,d_X)$ und $(Y,d_Y)$ metrische Räume, $D\subset X$ eine 
+  nichtleere Teilmenge und $f\fd D\to Y$ eine Abbildung. Wann heißt $f$
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] \bold{stetig in einem Punkt} $\mathbf{a\in D}$,\\[-3mm]
+    \item[\desc{b}] \bold{stetig auf $\mathbf{D}$},\\[-3mm]
+    \item[\desc{c}] \bold{gleichmäßig stetig} auf $\mathbf{D}$?
+    \end{itemize}}
+\end{frage}
+
+\begin{antwort}
+  Diese Begriffe wurden für reelle Funktionen bereits erklärt 
+  und bringen auch im Zusammenhang allgemeiner metrischer Räume 
+  keine konzeptionellen Neuerungen mit sich. Die Definitionen 
+  bleiben dieselben. Zur Wiederholung: 
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] $f$ ist \slanted{stetig in $a\in D$}, wenn für 
+      jedes $\eps>0$ ein $\delta>0$ existiert, sodass aus 
+      $d_X(a,x) < \delta$ stets $d_Y\big( f(a), f(x) \big)<\eps$ 
+      folgt. Das ist die adäquate Formulierung der zugrunde liegenden 
+      Idee, dass eine "`kleine"' Veränderung des Arguments $a$ auch nur  
+      eine "`kleine"' Änderung des Funktionswerts bewirkt. \\[-3mm] 
+    \item[\desc{b}] $f$ ist \slanted{stetig auf $D$}, wenn in $f$ in jedem 
+      Punkt $a\in D$ stetig ist.\\[-3mm]
+    \item[\desc{c}] $f$ ist \slanted{gleichmäßig stetig auf $D$}, wenn für 
+      \slanted{jedes} $\eps>0$ ein $\delta >0$ existiert, so dass 
+      für alle $x,y\in D$ gilt:
+      \begin{equation}
+        d_X(x,y) < \delta \Ra d_Y \big( f(x),f(y) \big) < \eps  
+        \notag
+      \end{equation}
+      Die Zahl $\delta$ ist im Fall gleichmäßiger Stetigkeit also nicht abhängig 
+      vom jeweiligen Stetigkeitspunkt, sondern gilt global auf ganz $X$. \AntEnd
+    \end{itemize}}
+\end{antwort}
+
+%% --- 68 --- %%
+\begin{frage}\index{Folgenstetigkeit}
+  Können Sie den Begriff "`Folgenstetigkeit"' erläutern? 
+\end{frage}
+
+\begin{antwort}
+  Die Funktion $f\fd D\to Y$ heißt \bold{folgenstetig} 
+  in $a\in D$, wenn für jede gegen $a$ konvergente  
+  Folge $(a_n)$ mit $a_n \in D$ gilt: 
+  \[
+  \lim_{n\to\infty} f(a_n)=f(a).   \EndTag
+  \]
+\end{antwort}
+
+%% --- 69 --- %%
+\begin{frage}
+  Warum sind Folgenstetigkeit und $\eps\delta$-Stetigkeit 
+  für einen metrischen Raum äquivalente Eigenschaften? 
+\end{frage}
+
+\begin{antwort} 
+  Die Äquivalenz beider Formulierung erhält man, wenn man den 
+  Konvergenzbegriff in metrische Terminologie übersetzt. 
+  Der Ausdruck $\lim a_n = a $ ist dann so zu verstehen, dass für jedes 
+  $\delta>0$ ab einem bestimmten Index $N$ alle Folgenglieder in 
+  $U_\delta(a)$ liegen. Wählt man für eine stetige Funktion $f$ zu 
+  einem vorgegebenen $\eps$ speziell $\delta$ so, 
+  wie es in der $\eps\delta$-Definition der 
+  Stetigkeit gefordert ist, so gilt damit:
+  \[
+  f(a_n) \subset U_\eps\big( f(a) \big) \quad \text{für alle $n>N$}. 
+  \]
+  Da $\eps$ beliebig klein sein kann, folgt daraus 
+  $\lim f(a_n) = f(a)$. 
+
+  Gelte nun umgekehrt $\lim f(a_n)=f(a)$ für jede 
+  gegen $a$ konvergente Folge $(a_n)\subset D$. 
+  Angenommen, $f$ erfüllt in $a$ 
+  nicht die $\eps\delta$-Definition der Stetigkeit. 
+  Dann gibt es ein $\eps_0>0$ mit der Eigenschaft, dass in jeder 
+  Umgebung von $a$ ein Punkt $a^*$ liegt, sodass $f(a^*)$ nicht 
+  in $U_{\eps_0}\big( f(a) \big)$ enthalten ist. Insbesondere 
+  existiert zu jedem $n\in\NN$ ein Punkt $a_n^*$ mit 
+  \[
+  a^*_n \in U_{1/n}(a), \qquad 
+  f(a^*_n) \not \in U_{\eps_0}( a ).
+  \]
+  Die Folge $(a^*_n)$ konvergiert gegen $a$, aber keines 
+  ihrer Glieder ist in $U_{\eps_0}\big( f(a) \big)$ enthalten. 
+  Somit kann auch nicht 
+  $\lim f(a^*_n) = f(a)$ gelten, im Widerspruch zur Voraussetzung. 
+  \AntEnd
+\end{antwort}
+
+%% --- 70 --- %%
+\begin{frage}\label{09_zusammensetzung}
+  \index{Stetigkeit!zusammengesetzter Funktionen}
+  Können Sie das Schlagwort "`Die Zusammensetzung stetiger Funktionen 
+  ist stetig"' erläutern und begründen?
+\end{frage}
+
+\begin{antwort}
+  Die Aussage bedeutet, dass für zwei stetige Funktionen 
+  $g\fd D \to X$ und $f\fd X\to Y$ die zusammengesetzte Funktion 
+  $f\circ g \fd D \to Y$ ebenfalls stetig auf $D$ ist. 
+
+  Das folgt {\zB} unmittelbar aus dem Folgenkriterium. Ist $a_n$ eine 
+  Folge in $D$ mit $\lim a_n=a$, dann gilt nach Voraussetzung 
+  $\lim g(a_n)=g(a)$, und daraus folgt wegen der Stetigkeit wiederum 
+  $\lim f\big(g(a_n)\big)=f\big(g(a)\big)$
+  \AntEnd
+\end{antwort}
+
+
+
+%% --- 71 --- %%
+\begin{frage}\label{09_komponenten}
+  \index{Stetigkeit!von Abbildungen in den 
+    $\RR^n$}
+  Warum ist für einen beliebigen metrischen Raum $X$ eine Abbildung 
+  $f\fd X\to \RR^n$ 
+  mit $f(x) := \big( f_1(x),\ldots, f_n(x) \big)$ 
+  genau dann stetig, wenn die Komponentenfunktionen 
+  $f_\nu \fd X \to \RR$ für alle $\nu \in \{1,\ldots, n \}$ 
+  stetig sind?
+\end{frage}
+
+\begin{antwort}
+  Das hängt damit zusammen, dass der Grenzwert einer 
+  Folge im $\RR^n$ komponentenweise gebildet wird. Genauer: 
+  Konvergieren für eine Folge $(x_k)\subset X$ 
+  die Folgen $\big(f_\nu (x_k) \big)$ gegen den Wert $f_\nu (x)$ 
+  ($\nu=1,\ldots,n$), so gilt 
+  \begin{equation}
+    \lim_{k\to\infty} f(x_k)= 
+    \big( f_1(x), \ldots, f_n(x) \big) = f(x). 
+    \asttag
+  \end{equation}
+  Sind die Komponentenfunktionen stetig, dann gilt 
+  für jede gegen $x$ konvergente Folge $(x_k)$: 
+  $\lim_{k\to\infty} f_\nu(x_k) = f_\nu(x)$ und somit wegen {\astref}  
+  $\lim_{k\to\infty} f (x_k) = f (x)$.  
+  Nach dem Folgenkriterium ist $f$ also stetig.
+  \AntEnd
+\end{antwort}
+
+%% --- 72 --- %%
+\begin{frage}\label{09_addstet}
+  \index{Stetigkeit!der Addition, Multiplikation, Division}
+  Können Sie begründen, warum die folgenden Abbildungen 
+  stetig sind:
+  \[
+  \begin{array}{ll}
+    \mathrm{add}\fd \RR\times \RR, & (x,y) \mapsto x+y,  \\
+    \mathrm{mult}\fd \RR\times \RR, & (x,y) \mapsto x\cdot y, \\ 
+    \mathrm{quot}\fd \RR\times \RR^*, &  (x,y) \mapsto x/y.
+  \end{array}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Ist $\big( (x_n,y_n) \big)$ eine Folge in $\RR\times\RR$, die 
+  gegen $(x,y)$ konvergiert, dann gilt $x_n \to x $ und $y_n \to y$, und 
+  daraus folgt mit den Permanenzeigenschaften für reelle Zahlenfolgen 
+  (vgl. Frage \ref{02_freg}):
+  \[
+  \lim_{n\to\infty} (x_n + y_n)=x+y, \qquad
+  \lim_{n\to\infty} x_n \cdot y_n = x\cdot y, \qquad
+  \lim_{n\to\infty} x_n / y_n = x/y.
+  \]
+  Daraus folgt die Stetigkeit der drei Abbildungen 
+  mithilfe des Folgenkriteriums. 
+
+  (Im Fall des Quotienten schränkt man die Folge $\left( (x_n,y_n) \right)$ 
+  auf eine Umgebung von $(x,y)$ ein, in der die $y_n$ nicht Null sind, 
+  die im Fall $y\not=0$ existiert). \AntEnd
+\end{antwort}
+
+%% --- 73 --- %%
+\begin{frage}\index{Stetigkeit!von Monomen}
+  Warum sind Monome, {\dasheisst} Abbildungen 
+  \[
+  \RR^n \to \RR; \qquad (x_1, \ldots, x_n ) 
+  \mapsto x_1^{k_1}x_2^{k_2}  \cdots x_n^{k_n} 
+  \qquad\text{mit $k_1,\ldots,k_n \in \NN_0$}
+  \]
+  stetige Funktionen (und damit auch Polynome)?  
+\end{frage}
+
+\begin{antwort}
+  Induktiv zeigt man zunächst, dass die Abbildung 
+  $x\mapsto x^m$ für jedes $m\in \NN$ stetig ist. 
+  Für $m=0$ ist das offensichtlich. 
+  Ist es für $m-1$ bereits gezeigt, so ist die Abbildung 
+  \begin{equation}
+    \RR \to \RR\times \RR \stackrel{\mathrm{mult}}{\to} \RR, 
+    \quad\text{mit}\quad
+    x \mapsto (x,x^{m-1}) \mapsto x\cdot x^{m-1} = x^m 
+    \asttag
+  \end{equation}
+  eine Verkettung stetiger Abbildungen und damit nach Frage 
+  \ref{09_zusammensetzung} stetig. 
+
+  Die Stetigkeit der Abbildung 
+  \begin{equation}
+    \varphi\fd \RR^n\to \RR; \qquad (x_1,\ldots,x_n) \mapsto x_1\cdots x_n
+    \aasttag
+  \end{equation}
+  zeigt man ebenfalls induktiv. Dabei 
+  bezieht man sich im Induktionsschritt auf die Abbildung  
+  \[
+  \varphi_{n-1} \fd \RR^n \to \RR^{n-1}; \qquad \big(x_1,\ldots,x_n\big) \mapsto 
+  \big( x_1,\ldots, x_{n-2}, \mathrm{mult}\,(x_{n-1},x_n) \big),
+  \]
+  die, wie wir aufgrund von Frage 
+  \ref{09_komponenten} und \ref{09_addstet} bereits wissen, stetig 
+  ist. Daraus folgt dann die Stetigkeit von $\varphi=\varphi_1 
+  \circ \cdots \circ \varphi_{n-1}$.  
+
+  Schließlich folgt die Stetigkeit der Monome durch Zusammenfassung 
+  und Einsetzung der Abbildungen in {\astref} und {\astastref} sowie 
+  einer wiederholten 
+  Anwendung der in Frage 
+  \ref{09_zusammensetzung} und \ref{09_komponenten} bewiesenen Zusammenhänge.
+  \AntEnd
+\end{antwort}
+
+%% --- 74 --- %%
+\begin{frage}\index{Homöomorphismus}\index{homöomorph}
+  Wann heißen zwei metrische Räume \bold{homöomorph} 
+  (oder \bold{topologisch äquivalent})?
+\end{frage}
+
+\begin{antwort}
+  Zwei topologische Räume $X$ und $Y$ heißen homöomorph, wenn ein 
+  \slanted{Homöomorphismus} zwischen ihnen existiert, {\dasist} eine 
+  \slanted{bijektive} Abbildung $f \fd X \to Y$ derart, dass sowohl 
+  $f$ als auch $f^{-1}$ stetig sind. 
+  \AntEnd
+\end{antwort}
+
+%% --- 75 --- %%
+\begin{frage}\label{09_homokugel}
+  Können Sie begründen, warum der $\RR^n$ und die offene euklidische 
+  Kugel 
+  \[
+  U_1 (0 ) := \{ x\in \RR^n \sets {\| x \|}_2 < 1 \}
+  \]
+  homöomorph sind?
+\end{frage}
+
+\begin{antwort}
+  Ein Homöomorphismus ist gegeben durch die Abbildung $f$ (und 
+  ihre Umkehrabbildung $f^{-1}$) mit   
+  \[
+  f \fd \RR^n \to U_1(0); \quad 
+  x \mapsto \frac{x}{1+{\| x\|}_2 }, \qquad
+  f^{-1} \fd U_1(0) \to \RR^n; \quad 
+  x \mapsto \frac{x}{1-{\| x\|}_2 }.  
+  \]
+  Beide Abbildungen sind stetig, da das für die Identität, 
+  die Normfunktion, die Division in $\RR$ 
+  und die Multiplikation mit einem Skalar in $\RR^n$ gilt.
+  \AntEnd
+\end{antwort}
+
+%% --- 76 --- %%
+\begin{frage}\index{Konvergenz!gleichmäßige} 
+  Ist $X$ eine beliebige nichtleere Menge und $(Y,d_Y)$ ein metrischer Raum, 
+  wann heißt eine Folge $(f_n)$ von Abbildungen $f_n \fd X\to Y$ 
+  \slanted{gleichmäßig konvergent} gegen eine Abbildung 
+  $f \fd X\to Y$?
+\end{frage}
+
+\begin{antwort}
+  Die Folge von Abbildungen ist genau dann \slanted{gleichmäßig konvergent} 
+  gegen die Grenzfunktion $f$,   
+  wenn es zu jedem $\eps >0$ einen Index $N\in \NN$ gibt, 
+  sodass gilt
+  \[
+  d_Y \big( f_n(x), f (x) \big) < \eps 
+  \quad\text{\slanted{für alle} $x\in X$ und alle $n>N$}.
+  \]
+  (Im Unterschied dazu ist bei nur punktweiser Konvergenz die 
+  Schranke $N$ von $x$ abhängig.) \AntEnd
+\end{antwort}
+
+%% --- 77 --- %%
+\begin{frage}\index{Stetigkeit!von Grenzfunktionen}
+  Sind $X$ und $Y$ metrische Räume und ist $(f_k)$ eine Folge 
+  von \slanted{stetigen} Abbildungen $f_n \fd X\to Y$, 
+  die \slanted{gleichmäßig} gegen die Abbildung $f \fd X\to Y$ 
+  konvergiert. Warum ist dann die Grenzfunktion ebenfalls wieder stetig?
+\end{frage}
+
+\begin{antwort}
+  Sei $a$ ein beliebiges Element aus $X$. 
+  Mit der Dreiecksungleichung bekommt man 
+  die für alle $x \in X$ und $n \in \NN$ 
+  gültige Abschätzung 
+  \begin{equation}
+    d \big( f(a), f(x) \big)\le
+    d \big( f(a), f_n(a) \big) + 
+    d \big( f_n(a), f_n(x) \big) + 
+    d \big( f_n(x), f(x) \big).
+    \asttag  
+  \end{equation}
+  Wegen der gleichmäßigen Konvergenz der Folge $(f_k)$ lässt sich 
+  $n$ nun speziell so wählen, dass der erste und letzte Summand in der 
+  rechten Summe jeweils kleiner als $\eps/3$ sind. Man fixiere 
+  ein $N\in\NN$ mit dieser Eigenschaft. Aufgrund der Stetigkeit 
+  von $f_N$ in $a$ gibt es dann ein $\delta>0$ derart, 
+  dass der mittlere Summand für $n=N$ ebenfalls kleiner als $\eps/3$ ist, 
+  falls $x\in U_\delta( a )$ gilt. 
+  Mit $n=N$ folgt damit aus {\astref} 
+  \[
+  d \big( f(a), f(x) \big) < \eps \quad \text{für alle $x\in K_\delta(a)$},
+  \]
+  also die Stetigkeit von $f$ in $a$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 78 --- %%
+\begin{frage}\heavy\index{Fortsetzungslemma von Tietze}
+  \index{Tietze@\textsc{Tietze}, Heinrich Franz Friedrich (1880-1964)}
+  Was besagt das \bold{Fortsetzungslemma von Tietze}?
+\end{frage}
+
+\begin{antwort}
+  Das Fortzsetzungslemma von Tietze ist ein wichtiges Hilfsmittel 
+  bei der Konstruktion stetiger Funktionen auf metrischen Räumen, deren 
+  Verhalten lokal (also auf bestimmten Teilmengen des metrischen 
+  Raumes) vorgegeben ist. Es besagt:
+
+
+  \medskip\noindent
+  \slanted{Jede stetige Funktion 
+    $f \fd A\to \RR$ auf einer \slanted{abgeschlossenen} 
+    Teilmenge $A$ eines metrischen Raumes $X$ kann zu einer 
+    stetigen Funktion $F\fd X\to \RR$ fortgesetzt 
+    werden.}
+
+  \medskip\noindent
+  Wir geben hier nur eine Beweisskizze (für einen vollständigen 
+  Beweis s. \citep{Koenig}). 
+  Man beweist das Fortsetzungslemma durch die Konstruktion einer 
+  gleichmäßig konvergenten Folge $(f_k)$ von auf $X$ 
+  stetigen Funktionen, die auf $A$ punktweise gegen $f$ konvergiert. 
+
+  Entscheidend dabei ist, dass es zu jeder stetigen 
+  Funktion $g\fd A\to \RR$ eine stetige "`Näherungsfunktion"' 
+  $v \fd X\to \RR$ gibt, für die gilt: 
+  \begin{align}
+    |v(x)|  &\le \frac{1}{3} \cdot \sup_{x\in A} |g(x)| 
+    \qquad\text{ für alle $x\in X$ und } \asttag  \\
+    |v(x)-g(x)| &\le \frac{2}{3} \cdot \sup_{x\in A} 
+    |g(x)| \qquad \text{ für alle $x\in A$,} \aasttag 
+  \end{align}
+  \sieheAbbildung\ref{fig:09_tietze}.
+
+
+  \begin{center}
+    \includegraphics{mp/09_tietze}
+    \captionof{figure}{Die Näherungsfunktion $v$ zu $g$ im Beweis 
+      des Fortsetzungslemmas von Tietze.}
+    \label{fig:09_tietze}
+  \end{center}
+
+  Die Existenz einer Funktion $v$ mit diesen Eigenschaften  
+  folgt für metrische Räume direkt aus dem 
+  \slanted{Urysohn'schen Lemma}, sie lässt sich aber 
+  auch ohne Weiteres explizit angeben.  
+
+  Die gesuchte Funktionenfolge $(f_k)$ kann man mit 
+  diesem Hilfsmittel nun induktiv konstruieren. 
+  Man beginne mit $f_0:=0$. Ist $f_k$ 
+  bereits gegeben, so finde man eine Näherungsfunktion $v_k$ zu 
+  der "`Fehlerfunktion"' $g_k := f-f_k$ 
+  mit den Eigenschaften {\astref} und {\astastref} und setze 
+  $f_{k+1}:= f_k + v_k$. Dann gilt für jedes $k\in\NN$ mit 
+  $a:= \sup_{x\in A} |f(x)|$ 
+  \begin{gather}
+    | f(x)-f_{k+1}(x) | = | f(x)-f_{k}(x)- v_k (x) | \le 
+    a \left( \frac{2}{3} \right)^{k+1} \quad\text{für alle $x\in A$ sowie } 
+    \notag\\
+    | v_k(x) | \le  a \cdot \frac{1}{3} \left( \frac{2}{3} \right)^k
+    \quad\text{für alle $x\in X$.}\notag
+  \end{gather}
+  Man prüft dann leicht nach, dass die Folge $(f_k)$   
+  auf $X$ gleichmäßig konvergiert, und dass 
+  deren Grenzfunktion $F$ auf $A$ mit $f$ übereinstimmt.  
+  Die Funktion $F$ ist dann die gesuchte stetige Fortsetzung von $f$.  
+  \AntEnd  
+\end{antwort}
+
+%% --- 79 --- %%
+\begin{frage}\label{09_op}\index{lineare Abbildung!Stetigkeit}
+  Können Sie zeigen, dass für eine \slanted{lineare Abbildung} 
+  $L \fd V \to W$ von normierten $\KK$-Vektorräumen $V$ und $W$ die 
+  folgenden Aussagen äquivalent sind:
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] Es gibt ein $C\ge 0$, sodass für alle 
+      $x\in V$ gilt: 
+      \[
+      {\| L(x) \|}_W \le C\cdot {\| x \| }_V,
+      \]
+      wobei ${\|\;\,\|}_W$ und ${\| \;\, \|}_V$ die Normen 
+      auf $V$ bzw. $W$ bezeichnen. 
+    \item[\desc{b}] $L$ ist gleichmäßig stetig (also insbesondere 
+      stetig) auf $V$, \\[-3mm]
+    \item[\desc{c}] $L$ ist stetig in $0$, \\[-3mm]
+    \item[\desc{d}] Es ist $
+      { \| L \| }_{V,W} := \sup\{ {\| L(x) \|}_W \sets {\| x \|}_V \le 1 \} 
+      < \infty.$
+    \end{itemize}}
+\end{frage}
+
+\begin{antwort}
+  \desc{a} $\Ra$ \desc{b}: Ist $\delta<\eps/C$, so gilt wegen der 
+  Linearität von $L$ für alle $x,y$ mit ${\| x-y \|}_V < \delta$: 
+  \[
+  {\| L(x)-L(y) \|}_W = {\| L( x-y ) \|}_W 
+  \le C {\| x-y \|}_V < \eps.
+  \]
+  Das zeigt die gleichmäßige Stetigkeit von $L$ (und insbesondere 
+  die Stetigkeit in $0$). 
+
+  \medskip
+  \noindent
+  \desc{c} $\Ra$ \desc{d}: Sei $L$ stetig in $0$. Dann gibt es 
+  ein $\delta>0$ so, dass ${\| L(\xi) \|}_W < 1 $ für alle 
+  $\xi\in V$ mit 
+  ${ \| \xi \| }_V < \delta$ gilt. Für ${ \| x \| }_V \le 1$ folgt 
+  daraus 
+  \[
+  {\| L(x) \|}_W  =   
+  \frac{ {\| x \|}_V }{\delta} \cdot 
+  \underbrace{
+    {\left\| L \left( \delta \cdot \frac{x}{ {\| x \|}_V } \right) \right\|}_W 
+  }_{ \le 1 } \le \frac{1}{\delta} {\| x \|}_V \le \infty.
+  \]
+  
+  \medskip
+  \noindent
+  \desc{d} $\Ra$ \desc{a}: Aus der Voraussetzung \desc{d} folgt 
+  insbesondere ${\|} L( \xi ) {\|}_W \le C$ für ein $C\in \RR$ und 
+  alle $\xi \in V$ mit ${\|} \xi {\|}_V = 1$. Damit gilt 
+  für alle $x\in V$
+  \[
+  {\| L(x) \|}_W = 
+  { \left\| L\left( 
+        {\| x \|}_V \cdot \frac{x}{ {\| x \|}_V } \right) \right \|}_W = 
+  {\| x \|}_V \cdot {\left\| L 
+      \left( \frac{x}{ {\|} x {\|}_V } \right) \right\|}_W  \le 
+  C {\| x \|}_V.
+  \]
+\end{antwort}
+
+%% --- 80 --- %%
+\begin{frage}\label{09_oper}\index{Operatornorm}
+  Wie ist die \bold{Operator-Norm} im Raum der \slanted{stetigen} 
+  linearen Abbildungen $L \fd V \to W$ definiert und welche Haupteigenschaften hat sie?
+\end{frage}
+
+\begin{antwort}
+  Die Operatornorm ist für eine stetige lineare Abbildung 
+  $L \fd V \to W$ definiert durch
+  \begin{equation}
+    \boxed{
+      {\| L \|}_{\mathrm{Lin(V,W)}} := 
+      \sup \bigg\{ {\| L (x) \|}_W \sets x \in V, \,\, {\| x \|}_V \le 1 \bigg\}.}
+    \asttag
+  \end{equation}
+  Dabei bezeichnet $\mathrm{Lin}(V,W)$ 
+  den Raum der stetigen linearen Abbildungen $V\to W$. 
+  Wenn keine Verwechslungsgefahr besteht, schreibt man auch 
+  einfach ${\| L \|}$. 
+
+  Aus der Linearität von $L$ folgt, dass die Bedingung $\n{ x }_V \le 1$ in 
+  {\astref} auch durch $\n{ x }=1$ ersetzt werden kann. Wegen 
+  $L\left( \frac{x}{ \n{x}_V } \right) = \frac{Lx}{ \n{x}_V }$ gilt ferner 
+  \begin{equation}
+    {\|} L {\|} = \sup\left\{  
+      \frac{ {\| L(x) \|}_W }{ {\| x \|}_V } \sets x\in V,\,\, x\not=0
+    \right\}.
+    \aasttag
+  \end{equation}
+  Diese Darstellung erlaubt es, 
+  die reelle Zahl $\n{L}$ als den größten 
+  \slanted{Streckungsfaktor} der linearen Abbildung $L$ zu interpretieren. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 81 --- %%
+\begin{frage}
+  Wieso ist durch {\astref} auch wirklich eine 
+  Norm auf $\mathrm{Lin}(V,W)$ gegeben?
+\end{frage}
+
+\begin{antwort} 
+  Nach Frage \ref{09_op} ist $\n{L} < \infty$ für alle 
+  $L\in\mathrm{Lin}(V,W)$.  
+  Die Eigenschaften \desc{N1} und \desc{N2} einer 
+  Norm folgen aus deren Gültigkeit 
+  für die Norm $\n{\;\,}_W$ und der Linearität von $L$, 
+  die Dreiecksungleichung ergibt sich mit der in der nächsten 
+  Frage unter \desc{i} erwähnten Eigenschaft. 
+  Nach dieser gilt für alle $x\in V$: 
+  \[
+  \n{ (L_1+L_2) x }_W \le \n{ L_1 x }_W+ \n{ L_2x }_W  
+  \stackrel{\text{\desc{i}}}{\le} 
+  ( \n{L_1} + \n{L_2} ) \cdot \n{x}_V,
+  \]
+  und daraus folgt $\n{ L_1 + L_2 } \le \n{L_1}+ \n{L_2}$.\AntEnd
+\end{antwort}  
+
+%% --- 82 --- %%
+\begin{frage}
+  Welche Eigenschaften hat die Operatornorm?
+\end{frage}
+
+\begin{antwort}
+  Es gelten die folgenden Eigenschaften:
+  {\setlength{\labelsep}{5mm}
+    \begin{enumerate}
+    \item[\desc{i}] Aus \ref{09_oper} {\astastref} folgt unmittelbar 
+      \[
+      {\| L(x) \|}_W \le {\| L \|} \cdot {\| x\|}_V \quad\text{für alle $x\in V$}.
+      \]
+    \item[\desc{ii}] Sind $L\fd U \to V$ und $L' \fd V \to W$ stetige 
+      Abbildungen zwischen normierten Räumen, so gilt 
+      \[
+      {\| L' \circ L \| }_{\mathrm{Lin}( U,W )}\le 
+      {\| L'\| }_{\mathrm{Lin}( V,W )}\cdot 
+      {\| L \| }_{\mathrm{Lin}( U,V )}.
+      \]
+      Nach \desc{i} ist nämlich  
+      ${\| (L' \circ L)(x) \|} \le {\|L'\|} \cdot {\| L(x) \|} \le 
+      {\|L'\|} \cdot {\|L\|} \cdot {\| x \|}$ 
+      für alle $x\in U$, und daraus folgt
+      \[
+      \sup_{\n{x}_U=1} \big\{ (L'\circ L)(x) \big\} \le \n{L'}\cdot \n{L}.
+      \EndTag
+      \]
+    \end{enumerate}}
+\end{antwort}
+
+%% --- 83 --- %%
+\begin{frage}\index{Stetigkeit!von linearen Abbildungen $\KK^n\to\KK^m$}
+  \index{Lipschitz-Stetigkeit}
+  Warum ist jede \slanted{lineare} Abbildung 
+  $L\fd V \to W$ mit $V := \KK^n$ und $W := \KK^m$ 
+  stetig, sogar Lipschitz-stetig und damit gleichmäßig stetig?
+\end{frage}
+
+\begin{antwort}
+  Seien $e_1, \ldots, e_n$ die Einheitsvektoren 
+  des $\KK^n$ und sei 
+  \[
+  M := \max \big\{ \n{L( e_i )}_W \sets 1\le i \le n \big\}.
+  \]
+  Dann gilt für jeden Vektor $x := (x_1,\ldots,x_n)$ aus $V$:  
+  \[
+  \nnb{L(x)}_W = 
+  \nnb{ L \left( \sum_{k=1}^n e_k \cdot x_k \right) }_W 
+  \le \sum_{k=1}^n \nnb{ L(e_k) \cdot x_k }_W \le 
+  M \cdot \sum_{k=1}^n \left|x_k\right| = 
+  M \cdot \nnb{ x }_1.
+  \] 
+  Da alle Normen auf einem endlich-dimensionalen Vektorraum 
+  äquivalent sind, folgt daraus für jede Norm 
+  $\n{\,\;}_W$ auf $W$ die Existenz eines $C\in\RR$ mit 
+  $\nnb{ L(x) } \le C \nnb{ x }_V$. Aus Linearitätsgründen 
+  gilt dann für $x,y \in V$
+  \[
+  \nnb{ L(x)-L(y) } = \nnb{ L(x-y) } \le C \nnb{ x-y }_V.
+  \]
+  Das zeigt die Lipschitz-Stetigkeit von $L$. 
+  \AntEnd    
+\end{antwort}
+
+%% --- 84 --- %%
+\begin{frage}\index{Zeilensummennorm}\index{Spaltensummennorm}
+  Was versteht man unter \bold{Zeilensummennorm}
+  einer Matrix $A=(a_{ij})\in \KK^{m \cdot n}$?
+\end{frage}
+
+\begin{antwort}
+  Die \slanted{Zeilensummennorm} ist die durch die Maximumsnorm 
+  induzierte Operatornorm. Das heißt, die Zeilensummennorm 
+  ist für eine Matrix $A$ definiert durch
+  \[
+  \n{ A }_\infty := \sup_{\n{ x }_\infty=1} \n{ Ax }_\infty.
+  \]
+  Das führt auf die Darstellung
+  \[
+  \n{ A }_\infty = \sup_{\n{ x }_\infty=1} 
+  \left\{ \max_i \sum_{j=1}^n \left| a_{ij} x_j \right| \right\} = 
+  \max_i \sum_{j=1}^n \left| a_{ij} \right|.
+  \]
+  Der letzte Schritt ist hier gerechtfertigt, da das Supremum gerade für 
+  die Vektoren der Form $x=(\pm 1, \ldots, \pm 1)$ angenommen wird. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 85 --- %%
+\begin{frage}
+  Wie ist die \bold{Spaltensummennorm}  
+  einer Matrix $A=(a_{ij})\in \KK^{m \cdot n}$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die \slanted{Spaltensummenorm} ist die 
+  durch die $1$-Norm induzierte Operatornorm auf $K^{m\times n}$, also 
+  definiert durch
+  \[
+  \n{ A }_1 := \sup_{\n{ x }_1=1} \n{ Ax }_1.
+  \]
+  Auch die Spaltensummennorm lässt sich durch die Einträge der 
+  Matrix $A$ ausdrücken. Es gilt
+  \[
+  \n{ A }_1 = \sup_{\n{ x }_1=1} = \max_{j} \sum_{i=1}^m | a_{ij} |,
+  \]
+  was sich mit einem ähnlichen Argument wie für die Zeilensummennorm zeigen 
+  lässt.
+  \AntEnd
+\end{antwort} 
+
+%% --- 86 --- %%
+\begin{frage}\index{Hilbert-Schmidt-Norm}
+  Wie ist die \bold{Hilbert-Schmidt-Norm} für eine Matrix 
+  $A:= (a_{ij}) \in K^{m\times n}$ definiert?
+\end{frage}
+
+
+\begin{antwort}
+  Die Hilbert-Schmidt-Norm ist definiert durch
+  \[
+  \n{ A }_{HS} := \sqrt{ \sum_{i,j}  a_{ij}^2  }.
+  \]
+  Von den drei Eigenschaften einer Norm ist allein die Gültigkeit 
+  der Dreiecksungleichung hier nicht offensichtlich.
+  Diese folgt aus 
+  \[ 
+  \n{ A+B }_{HS} = \sqrt{ \sum_{i,j} (a_{ij}+b_{ij} )^2 } \le 
+  \sqrt{ \sum_{i,j} a^2_{ij} + \sum_{i,j} b^2_{ij} + 
+    2 \sum_{i,j}  \left| a_{ij}b_{ij} \right| } \le 
+  \n{A}_{HS} + \n{B}_{HS}.
+  \]
+  Dabei wurde im letzten Schritt von der für alle 
+  $x,y \in \RR_+$ gültigen Ungleichung 
+  $\sqrt{x+y} \le \sqrt{x}+\sqrt{y}$ Gebrauch gemacht.
+  \AntEnd 
+\end{antwort}
+
+
+%% --- 87 --- %%
+\begin{frage}\index{Verträglichkeit von Normen}
+  Wann heißt eine Matrix-Norm \bold{verträglich} mit irgendwelchen 
+  Normen auf $V=\KK^n$ bzw. $W=\KK^m$.
+\end{frage}
+
+
+\begin{antwort}
+  Eine Matrix-Norm heißt \slanted{verträglich} mit Normen $\n{\,\;}_V$ und 
+  $\n{\;\,}_W$, wenn für alle $x\in V$ gilt 
+  \begin{equation}
+    \n{ Ax }_W \le \n{ A } \cdot \n{ x }_V
+    \notag
+  \end{equation}
+  Nach Frage \ref{09_oper}, \desc{1} sind {\zB} alle Operatornormen 
+  verträglich mit den Normen auf $\KK^n$ und $\KK^m$. 
+  \AntEnd 
+\end{antwort}
+
+
+%% --- 88 --- %%
+\begin{frage}\index{Hilbert-Schmidt-Norm}
+  Warum ist die Hilbert-Schmidt-Norm 
+  (Quadratsummennorm) auf $\KK^{m\times n}$ keine 
+  Operatornorm?
+\end{frage}
+
+
+\begin{antwort}
+  Für eine Operatornorm $\n{\;\,}$ gilt stets $\n{\mathrm{id}}=1$, 
+  die Hilbert-Schmidt-Norm liefert aber für die Einheitsmatrix 
+  $\nnb{ E_n }_{HS} = \sqrt{n}$.
+  \AntEnd 
+\end{antwort}
+
+
+%% --- 89 --- %%
+\begin{frage}\label{09_globstet}
+  \index{Stetigkeit!globale Charakterisierung}
+  Wie lässt sich die (globale) Stetigkeit einer Abbildung 
+  $X\to Y$ zwischen metrischen Räumen mithilfe offener Mengen 
+  charakterisieren?
+\end{frage}
+
+\begin{antwort}
+  Das Kriterium lautet:
+
+
+  \medskip\noindent%
+  \slanted{Eine Abbildung $f\fd X\to Y$ ist stetig genau dann, wenn 
+    das Urbild $f^{-1}(V)$ jeder offenen Menge $V\subset Y$ 
+    offen in $X$ ist.}
+
+
+  \medskip\noindent
+  Ist nämlich $f$ stetig im Sinne dieser Definition, dann ist für 
+  jedes $x\in X$ die Menge $f^{-1} \big( U_\eps(f(x))\big)$ offen in 
+  $X$ und enthält damit eine volle $\delta$-Umgebung von $X$. Das heißt, 
+  $f$ ist stetig im Sinne der $\eps\delta$-Definition.
+
+  Sei umgekehrt $f$ $\eps\delta$-stetig und sei $V\subset Y$ offen. 
+  Für hinreichend kleine $\eps$ ist $U_\eps\big( f(x) \big) \subset V$.  
+  Dann gilt $f\big( U_\delta(x) \big ) \subset  
+  U_\eps\big( f(x) \big)$ für ein hinreichend kleines, also 
+  $U_\delta (x) \subset f^{-1}(V)$. Das heißt, $f^{-1}(V)$ ist offen.  
+  \AntEnd 
+\end{antwort} 
+
+
+
+
+
+%% --- 90 --- %%
+\begin{frage}
+  Wie lautet eine äquivalente Definition der Stetigkeit mithilfe 
+  des Begriffs der abgeschlossenen Menge?
+\end{frage}
+
+\begin{antwort}
+  Mit der Charakterisierung abgeschlossener Mengen 
+  als Komplemente offener Mengen erhält man aus Antwort \ref{09_globstet} 
+
+  \medskip
+  \noindent 
+  \slanted{
+    Eine Abbildung $f\fd X\to Y$ ist stetig genau 
+    dann, wenn das Bild jeder in $X$ abgeschlossenen Menge 
+    abgeschlossen in $Y$ ist.} 
+  \AntEnd 
+\end{antwort}
+
+
+
+%% --- 91 --- %%
+\begin{frage}
+  Warum sind für eine stetige Abbildung $f\fd X\to \RR$ eines metrischen 
+  Raumes für jedes $c\in\RR$ die Mengen 
+  $U := \{ x\in X \sets f(x) < c \}$ offen und 
+  $A := \{ x\in X \sets f(x) \le c \}$ abgeschlossen in $X$?
+\end{frage}
+
+\begin{antwort}
+  Die Menge $U$ ist das Urbild der offenen Menge 
+  $\{ y \in Y\sets y < c \} \subset Y$ unter $f$. 
+  Wegen der Stetigkeit  von $f$ ist $U$ damit offen in $X$.
+
+  Die Menge $A^C$ ist das Urbild der offenen Menge 
+  $\{ y \in Y\sets y > c \}$ und damit offen in $X$, folglich ist 
+  $A$ abgeschlossen.
+  \AntEnd
+\end{antwort}
+
+%% --- 92 --- %%
+\begin{frage}\index{Einheitskugel}
+  Warum sind im $\RR^n$ die Einheitskugeln bezüglich der 
+  Normen ${\| \; \, \|}_1$, ${\| \; \, \|}_2$ und 
+  ${\| \; \, \|}_\infty$ homöomorph?
+\end{frage}
+
+\begin{antwort}
+  Die in Frage \ref{09_homokugel} 
+  speziell für die euklidische Norm 
+  betrachtete Abbildung 
+  \[
+  f_{\n{\;}} \fd x \mapsto \frac{x}{1+\n{x}} 
+  \]
+  liefert für beliebige Normen $\n{\;\,}$ einen Homöomorphismus 
+  zwischen $\RR^n$ und der jeweiligen Einheitskugel $U_{1,\n{\;}}$. 
+  Da jede Norm im $\RR^n$ bezüglich einer anderen eine stetige Abbildung 
+  darstellt, liefert die Verkettung dieser Funktionen bzw. ihrer 
+  Umkehrungen umkehrbare stetige Abbildungen zwischen den jeweiligen 
+  Einheitskugeln.
+  \AntEnd  
+\end{antwort}
+
+%% --- 93 --- %%
+\begin{frage}\index{stetige Fortsetzung}\index{Grenzwert!für Funktionen}
+  Sind $(X,d_X)$ und $(Y,d_Y)$ beliebige metrische Räume, 
+  $D\subset X$ eine nichtleere Teilmenge, $a\in X$ ein 
+  Häufungspunkt von $D$ und $l\in Y$. 
+  Was besagt dann für eine Funktion 
+  $f\fd D \to Y$ die Schreibweise 
+  \[
+  \lim_{x\to a} f(x) = l \text{?}
+  \]
+  Welche Sprechweise verwendet man hierfür?
+\end{frage}
+
+\begin{antwort}
+  Die Aussage $\lim_{x\to a} = l$ bedeutet, dass die 
+  Funktion 
+  \[
+  \tilde{f} \fd D \cup \{ a \} \to Y, \qquad
+  \tilde{f} (x) := \left\{ 
+    \begin{array}{ll} 
+      f(x),& \text{für $x\in D$, $x\not=a$} \\
+      l,   & \text{für $x=a$} 
+    \end{array} \right.
+  \]
+  im Punkt $a$ stetig ist (vgl. auch Frage \ref{03_fkon}).
+
+  Man verwendet in diesem Zusammenhang die Sprechweise 
+  "`$f$ hat bei Annäherung an 
+  $a$ den Grenzwert $l$."' 
+  \AntEnd
+\end{antwort}
+
+
+%% --- 94 --- %%
+\begin{frage}
+  Warum ist $l$ in diesem Fall eindeutig bestimmt?
+\end{frage}
+
+\begin{antwort}
+  Wäre $l^*\not=l$ ein anderer Grenzwert, dann besäßen $l$ und $l^*$ disjunkte 
+  $\eps$-Umgebungen, und für ein hinreichend kleines $\delta$ lägen die 
+  Funktionswerte $\tilde{f}(x)$ für alle $x\in D$ mit $d(x,a) < \delta$ 
+  in beiden disjunkten Umgebungen -- Widerspruch.
+  \AntEnd 
+\end{antwort}
+
+
+
+%% --- 95 --- %%
+\begin{frage}
+  Warum gilt im Fall $a\in D$ 
+  \[
+  \lim_{x\to a} f(x)=f(a) \LLa 
+  \text{$f$ stetig in $a$?}
+  \]
+\end{frage}
+
+\begin{antwort} 
+  Ist $f$ stetig in $a$, dann muss nach der vorigen Frage $f(a)=l$ 
+  gelten. Gilt andersherum $f(a)=l$, dann sind $f$ und $\tilde{f}$ 
+  identische Funktionen.
+  \AntEnd
+\end{antwort}
+
+%% --- 96 --- %%
+\begin{frage}\index{eps@$\eps\delta$-Charakterisierung des Grenzwerts}
+  Wie lautet die $\eps\delta$-Charakterisierung 
+  bzw. das Folgenkriterium für die Aussage $\lim_{x\to a} f(x)=l$? 
+\end{frage} 
+
+\begin{antwort}
+  Die Funktion $f$ hat bei Annäherung an $a$ den Grenzwert $l$,  
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] wenn für jedes $\eps>0$ ein 
+      $\delta>0$ existiert, 
+      sodass für alle $x\in D$ mit $d_X(a,x)<\delta$ gilt: 
+      $d_Y(a,x)< \eps$ (\slanted{$\eps\delta$-Charakterisierung}) \\[-3.5mm]
+    \item[\desc{ii}] wenn für jede gegen $a$ konvergente Folge $(x_k)\subset D$ 
+      die Folge $\big( f(x_k) \big)$ der Funktionswerte gegen $l$ konvergiert 
+      (\slanted{Folgenkriterium}).\AntEnd
+    \end{itemize}}
+\end{antwort}
+
+
+
+
+\section{Kompaktheit, stetige Funktionen auf kompakten Räumen}
+
+Im Folgenden werden verschiedene Kompaktheitsbegriffe 
+vorgestellt und das Verhalten stetiger Funktionen auf kompakten 
+Mengen untersucht. Man erhält auf diese Weise auch neue 
+Beweise und Verallgemeinerungen 
+für bereits aus der reellen Analysis bekannte Tatsachen.
+
+%% --- 97 --- %%
+\begin{frage}\index{Uberdeckung@Überdeckung}\index{Teilüberdeckung}
+  Können Sie die Begriffe \bold{Überdeckung} erläutern?
+\end{frage}
+
+\begin{antwort}
+  Ist $X$ ein topologischer Raum und  
+  $\frak{U} := \{ U_\lambda \}_{\lambda \in \Lambda}$ 
+  ($\Lambda$ bezeichnet hier irgendeine Indexmenge)
+  ein System von Mengen $U_\lambda \subset X$, dann heißt 
+  $\frak{U}$ eine \slanted{Überdeckung von $X$}, wenn 
+  $X = \bigcup_{\lambda\in \Lambda} U_\lambda$ gilt. 
+
+  Analog kann man von einer Überdeckung 
+  einer Teilmenge $M\subset X$ sprechen, wenn 
+  $M \subset \bigcup_{\lambda\in \Lambda} U_\lambda$ 
+  für ein System $\{ U_\lambda \}_{\lambda\in \Lambda}$ 
+  von Teilmengen aus $X$ gilt.
+
+  Im Folgenden spielen vor allem die \slanted{offenen Überdeckungen} 
+  eine Rolle. Eine Überdeckung heißt \slanted{offen}, wenn 
+  die Überdeckungsmengen $U_\lambda$ offen in $X$ sind. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 98 --- %%
+\begin{frage}\index{Teiluberdeckung@Teilüberdeckung}
+  Was versteht man unter einer \bold{Teilüberdeckung}?
+\end{frage}
+
+\begin{antwort}
+  Ist $\frak{U}=\{ U_\lambda \}_{\lambda\in \Lambda}$ 
+  eine Überdeckung von $X$ (bzw. $M\subset X$), dann heißt jede 
+  Teilmenge $\{ U_{k} \}_{k \in K \subset \Lambda}$ 
+  von $\frak{U}$ eine \slanted{Teilüberdeckung} von $X$ (bzw. $M$), 
+  wenn $\{ U_k \}_{k \in K}$ ebenfalls eine Überdeckung 
+  von $X$ (bzw. $M$) ist. 
+
+  Zum Beispiel ist die Menge  
+  $\frak{U}_1 := \{\open{ k,k+3 }\subset \RR \sets k\in \ZZ \}$ 
+  eine Überdeckung von $\RR$.  
+  Da bereits die Intervalle des Typs $\open{2k,2k+3}$ die reellen Zahlen 
+  überdecken, ist $\frak{U}_2 := \{\open{2k,2k+3} \subset \RR \sets k\in \ZZ \}$ 
+  eine Teilüberdeckung von $\frak{U}_1$. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 99 --- %%
+\begin{frage}\index{kompakt}\index{uberdeckungskompakt@überdeckungskompakt}
+  \index{Heine-Borel'sche Überdeckungseigenschaft}
+  \index{Borel@\textsc{Borel}, Emile (1871-1956)}
+  Wann heißt ein metrischer Raum $X$ \bold{(überdeckungs-)kompakt}?
+\end{frage}
+
+
+\begin{antwort}
+  
+  Ein metrischer Raum $X$ heißt kompakt, wenn er die 
+  \slanted{Heine-Borel'sche Überdeckungseigenschaft} besitzt. 
+
+  $X$ besitzt diese Eigenschaft, wenn jede 
+  (wohlgemerkt: \slanted{jede}) \slanted{offene} Überdeckung 
+  $\{ U_\lambda \}$ eine endliche Teilüberdeckung besitzt, wenn also 
+  endlich viele $U_{\lambda_1}, 
+  \ldots, U_{\lambda_n}$ aus $\{ U_\lambda \}_{\lambda\in \Lambda }$ 
+  existieren, sodass 
+  $X = U_{\lambda_1} \cup \cdots \cup U_{\lambda_n}$ gilt. \AntEnd 
+\end{antwort}
+
+%% --- 100 --- %%
+\begin{frage}
+  Wann heißt eine Teilmenge $K\subset X$ kompakt?
+\end{frage}
+
+\begin{antwort}
+  Eine Teilmenge $K\subset X$ heißt kompakt, 
+  wenn sich aus \slanted{jeder} Überdeckung von $K$ 
+  durch offene Mengen aus $X$ endlich viele auswählen lassen, die 
+  zusammen bereits eine Überdeckung von $K$ bilden, für die   
+  (mit den Bezeichnungen von oben) dann gilt: 
+  $M \subset U_{\lambda_1} \cup \cdots U_{\lambda_n}$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 101 --- %%
+\begin{frage}\label{09_kompaktbsp}
+  Ist $(a_k)$ eine konvergente Folge in einem metrischen Raum $X$, 
+  und $a\in X$ deren Grenzwert, warum ist die 
+  Menge $A_0:=\{ a_k\sets k\in \NN \} \cup \{ a \}$ dann kompakt? 
+\end{frage}
+
+\begin{antwort}
+  Sei $\mathfrak{U }:=\{ U_\lambda \}_{\lambda\in\Lambda}$ eine beliebige 
+  offene Überdeckung von $A_0$. Es muss gezeigt werden, dass 
+  $A_0$ bereits von endlich vielen der Mengen $U_\lambda$ überdeckt 
+  wird. Nun, mindestens eine der Mengen aus $\mathfrak{U}$ -- sagen wir 
+  $U_{\lambda_0}$ -- enthält den Grenzwert $a$, und nach der Definition 
+  der Konvergenz liegen in $U_{\lambda_0}$ dann fast alle Folgenglieder. 
+  Die endlich vielen anderen Folgenglieder $a_1,\ldots,a_r$ liegen 
+  jeweils in (nicht notwendig verschiedenen) 
+  Überdeckungsmengen $U_{\lambda_1},\ldots,U_{\lambda_r}$ aus $\mathfrak{U}$. 
+  Somit wird $A_0$ bereits von den endlich vielen 
+  Mengen  $U_{\lambda_0},U_{\lambda_1},\ldots,U_{\lambda_r}$ aus 
+  $\mathfrak{U}$ überdeckt. $A_0$ ist damit nach Definition eine 
+  kompakte Teilmenge von $X$. 
+  \AntEnd 
+\end{antwort} 
+
+%% --- 102 --- %%
+\begin{frage}
+  Ist in der Situation aus der vorigen Frage auch die Menge  
+  $A:=\{ a_k \sets k\in \NN \}$ stets kompakt?
+\end{frage}
+
+\begin{antwort}
+  Nein. Man betrachte etwa die Folge $(a_k)\subset \RR$ 
+  mit $a_k = 1/k$. Die Mengen aus 
+  $\mathfrak{U}:=\{ U_{1/(1+k)^3} (a_k) \sets k\in \NN \}$ 
+  bilden zusammen eine Überdeckung von $A$,  
+  es existiert dazu aber keine endliche Teilüberdeckung, denn 
+  jedes Element aus $\mathfrak{U}$ enthält nur ein Folgenglied. 
+  \AntEnd  
+  
+\end{antwort}
+
+%% --- 103 --- %%
+\begin{frage}
+  Warum ist der $\RR^n$ (versehen etwa mit der euklidischen Metrik) kein 
+  kompakter metrischer Raum?
+\end{frage}
+
+\begin{antwort}
+  Die Menge $\{ U_k (0 )\sets k \in \NN \}$ von offenen Kugeln 
+  um den Nullpunkt ist eine Überdeckung von $\RR^n$. Diese besitzt aber 
+  keine endliche Teilüberdeckung.
+  \AntEnd
+\end{antwort}
+
+%% --- 104 --- %%
+\begin{frage}\index{folgenkompakt}
+  Wann heißt ein metrischer Raum $X$ bzw. ein Teilraum 
+  $K\subset X$ (mit der induzierten 
+  Metrik) \bold{folgenkompakt}?
+\end{frage}
+
+\begin{antwort}
+  $X$ heißt folgenkompakt, wenn jede Folge in $X$ eine konvergente 
+  Teilfolge besitzt. 
+  Entsprechend heißt ein Teilraum $K\subset X$ folgenkompakt, 
+  wenn jede Folge in $K$ eine in $K$ konvergente Teilfolge besitzt. 
+
+  Zum Beispiel ist $\RR$ ersichtlich \slanted{nicht} folgenkompakt, 
+  da etwa die Folge der natürlichen Zahlen keine konvergente Teilfolge 
+  besitzt.  
+  Beispiele für folgenkompakte Räume sind alle kompakten 
+  \slanted{metrischen} Räume, was in der 
+  nächsten Frage gezeigt wird.
+  \AntEnd 
+\end{antwort}
+
+%% --- 105 --- %%
+\begin{frage}\label{09_kompfolgkomp}
+  Können Sie zeigen, dass 
+  ein kompakter metrischer Raum $X$ stets folgenkompakt ist?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_k)$ eine Folge in $X$ und sei $A\subset X$ die Menge 
+  ihrer Folgenglieder. Nimmt die Folge nur endlich 
+  viele verschiedene Werte an, so kann man offensichtlich eine (dann sogar 
+  konstante) konvergente Teilfolge auswählen. Wir können also davon 
+  ausgehen, dass $A$ unendlich ist. Dann muss $A$ einen Häufungspunkt 
+  besitzen. Denn angenommen, das wäre nicht der Fall. Dann gäbe es zu jedem 
+  $x\in X$ eine Umgebung $U(x)$, in der nur endlich viele Folgenglieder 
+  liegen. Die Mengen $U(x)$ bilden zusammen eine offene Überdeckung von 
+  $X$, und da $X$ kompakt ist, existiert dazu eine endliche Teilüberdeckung 
+  $\{ U(x_1), \ldots ,U(x_r) \}$. Insbesondere gilt dann 
+  $A\subset U(x_1)\cup \ldots  \cup U(x_r)$, und da $A$ unendlich ist, 
+  muss mindestens eine der Umgebungen $U(x_i)$ unendlich viele 
+  Folgenglieder enthalten, im Widerspruch zur Annahme. Also besitzt 
+  $A$ einen Häufungspunkt $h$. 
+  
+  Ausgehend von $h$ konstruieren wir jetzt eine konvergente Teilfolge 
+  nach wohlbekanntem Muster. Die 
+  Umgebungen $K_{1/\nu} (h)$ enthalten für alle $\nu\in \NN$ unendlich viele 
+  der Folgenglieder $a_k$. Daher lässt sich eine monoton wachsende Folge von 
+  Indizes $(k_\nu)_{\nu\in \in \NN}$ so bestimmen, dass 
+  $a_{k_\nu} \in K_{1/\nu}(h)$ für alle $\nu\in \NN$ gilt. 
+  Die Folge $(a_{k_\nu})$ ist dann eine gegen $h$ konvergente  
+  Teilfolge von $(a_k)$. Das zeigt die Folgenkompaktheit von $X$.  \AntEnd
+\end{antwort}
+
+%% --- 106 --- %%
+\begin{frage}\label{09_beschrabgeschlossen}
+  Wieso ist jede \slanted{folgenkompakte} Teilmenge $K$ eines metrischen 
+  Raumes stets beschränkt und abgeschlossen? (Eine Teilmenge 
+  $K$ heißt \slanted{beschränkt}, wenn eine offene Kugel $U \subset X$ mit 
+  $K \subset U$ existiert.) 
+\end{frage}
+
+\begin{antwort}
+  Ist $K$ folgenkompakt, so muss $K$ beschränkt sein. 
+  Denn andernfalls ließe sich zu jedem beliebigen Punkt $a\in K$ eine 
+  Folge $(x_k)$ mit $d(a,x_k)>k$ konstruieren. Wegen 
+  $d(x_m,x_n) \ge | d(a,x_m) - d(a,x_n )| = |m-n|$ für alle 
+  $m,n\in \NN$ könnte diese aber keine konvergente Teilfolge besitzen.  
+
+  Wäre $K$ nicht abgeschlossen, dann hätte $K$ einen 
+  Häufungspunkt $h$, der nicht zu $K$ gehört, 
+  und es gäbe eine Folge in $K$, die gegen $h$ konvergiert. 
+  Diese kann dann aber keine in $K$ konvergente Teilfolge besitzen.
+  \AntEnd
+\end{antwort}
+
+%% --- 107 --- %%
+\begin{frage}
+  Ist ein \slanted{folgenkompakter} metrischer Raum stets kompakt?
+\end{frage}
+
+\begin{antwort}
+  Dieser Zusammenhang gilt auch, für den Beweis s. etwa \citep{JaenichTop}. 
+  Für metrische Räume sind die beiden Begriffe "`kompakt"' und 
+  "`folgenkompakt"' somit äquivalent. Das gilt allerdings nicht 
+  für allgemeine topologische Räume, die durchaus eine der beiden 
+  Eigenschaften haben können, ohne die andere zu besitzen. 
+  \AntEnd
+\end{antwort}
+
+%% --- 108 --- %%
+\begin{frage}\label{09_abesch}
+  Ist eine beschränkte und abgeschlossene Teilmenge $K$ eines 
+  metrischen Raumes stets kompakt?
+\end{frage}
+
+\begin{antwort}
+  Nein. Man betrachte etwa die Teilmenge   
+  $E := \{ \exp(\i kx)\sets k \in \NN\}$ des metrischen Raumes 
+  $\calli{C}[0,\pi]$ bezüglich der Supremumsnorm. 
+  $E$ ist beschränkt und abgeschlossen, aber wegen 
+  $\nb{\exp(\i kx)-\exp(\i n x) }_\infty = 2$ für alle $k\not=n$ ist 
+  sie nicht folgenkompakt und daher auch nicht kompakt.
+  \AntEnd
+\end{antwort}
+
+%% --- 109 --- %%
+\begin{frage}\label{09_abkompakt}
+  Können Sie begründen, warum im Standardvektorraum $\KK^n$ für eine 
+  Teilmenge $K$ folgende Eigenschaften äquivalent sind:
+  \begin{itemize}[2mm]
+  \item[\desc{a}] $K$ ist beschränkt und abgeschlossen,
+  \item[\desc{b}] $K$ ist kompakt (im Sinne der Überdeckungseigenschaft),
+  \item[\desc{c}] $K$ ist folgenkompakt.
+  \end{itemize}
+\end{frage}
+
+\begin{antwort}
+  Nach den in Frage \ref{09_kompfolgkomp}
+  und \ref{09_beschrabgeschlossen} gegebenen Beweisen ist hier nur 
+  noch die Implikation \desc{a} $\Ra$ \desc{b} zu zeigen. 
+  Dies beweist man zunächst für $\KK=\RR$  
+  mit einem Schachtelungsargument.  
+
+  Sei also $K\subset \RR^n$ beschränkt und abgeschlossen. 
+  Dann gibt es einen  abgeschlossenen Würfel $W_0 \subset \RR^n$ mit 
+  $K\subset W_0$. Angenommen, es gäbe eine Überdeckung 
+  $\{U_\lambda \}_{\lambda\in \Lambda}$ von 
+  $K$, die keine endliche Teilüberdeckung von $K$ enthält. 
+  Ausgehend von $W_0$ ließe sich dann durch sukzessive 
+  Halbierung der Seitenlängen eine Folge 
+  $W_0 \supset W_1 \supset W_2 \supset \ldots$ von 
+  abgeschlossenen Würfeln konstruieren (\sieheAbbildung\ref{fig:test}), 
+  bei der $W_k$ für jedes $k\in \NN$ so ausgewählt wird, dass gilt: 
+  \begin{equation}
+    \text{$W_k \cap K$ wird von keiner 
+      endlichen Teilmenge von $\{ U_\lambda \}_{\lambda \in\Lambda }$
+      überdeckt}
+    \asttag
+  \end{equation}
+
+  \begin{center}
+    \includegraphics{mp/test}
+    \captionof{figure}{Die Konstruktion der Folge abgeschlossener Würfel 
+      im Beweis von Frage \ref{09_abkompakt}.}
+    \label{fig:test}
+  \end{center}
+
+  Eine derartige Auswahl ist aufgrund der Annahme, dass $K$ nicht kompakt ist, 
+  in jedem Schritt möglich. Wegen $\mathrm{diam}\,( W_k \cap K )\to 0$ 
+  und der Abgeschlossenheit von $K$ gibt es nach dem allgemeinen 
+  Schachtelungsprinzip genau ein $x\in K$, das in allen Mengen $W_k\cap K$ 
+  enthalten ist. Andererseits liegt $x$ in mindestens einer offenen Menge 
+  $U_x\in \{ U_\lambda \}_{\lambda \in\Lambda }$, und für hinreichend  
+  hinreichend große $k$ sind die Mengen $W_k \cap K$ alle in $U_x$ enthalten, 
+  im Widerspruch zu {\astref}.
+
+  Um aus diesem Ergebnis für reelle Vektorräume den 
+  allgemeinen Fall abzuleiten, betrachte man einen Isomorphismus 
+  $\varphi \fd \KK^n \to \RR^n$. Dieser ist in jedem 
+  Fall auch ein Homöomorphimus und gibt daher Anlass für die Schlusskette
+  \[
+  \begin{array}{ccc}
+    \text{$K \subset \KK^n$ beschränkt und abgeschlossen} 
+    &  & \text{$K\subset \KK^n$ kompakt} \\
+    \Downarrow & & \Uparrow \\
+    \text{$\varphi(K)\subset\RR^n$ beschränkt und abgeschlossen} & \Ra & 
+    \text{$\varphi(K)\subset\RR^n$ kompakt} 
+  \end{array}
+  \]
+  Damit ist der Zusammenhang auch für allgemeine endlichdimensionale 
+  Vektorräume gezeigt.
+  \AntEnd
+\end{antwort}
+
+%% --- 110 --- %%
+\begin{frage}\index{orthogonale Gruppe $O(n,\RR)$}
+  Fasst man die \slanted{orthogonale Gruppe}  
+  \[
+  O(n,\RR) := \{ A \in \RR^{n\times n} \sets A^T A = E_n \} 
+  \]
+  als Teilmenge von $\RR^{n^2} \simeq \RR^{n\times n}$ auf, dann 
+  ist $O(n,\RR)$ kompakt. Können Sie das begründen?
+\end{frage}
+
+\begin{antwort}
+  Jedes Element aus $O(n,\RR)$ liegt 
+  bezüglich der Maximumsnorm in der abgeschlossenen 
+  Einheitskugel von $\RR^{n^2}$ ({\dasheisst}, 
+  eine Matrix aus $O(n,\RR)$ besitzt keine Einträge, die 
+  betragsmäßig größer als $1$ sind). Die orthogonale 
+  Gruppe ist also beschränkt. 
+
+  Ferner ist $\RR^{n^2}\mengeminus O(n,\RR)$ offen. Das liegt 
+  daran, dass für jede Matrix $X = (x_{ij})$ die Komponenten 
+  von $X^T X$ \slanted{stetig} von den $x_{ij}$ abhängen. 
+  Aus $X^T X \not=E_N$ folgt damit, dass auch in einer Umgebung 
+  von $X$ die Ungleichung gilt.  
+
+  Somit ist $O(n,\RR)$ abgeschlossen und beschränkt, nach Frage 
+  \ref{09_abkompakt} also kompakt.\AntEnd
+\end{antwort}
+
+%% --- 111 --- %%
+\begin{frage}
+  Warum ist eine \slanted{abgeschlossene} Teilmenge $A$ eines 
+  \slanted{kompakten} metrischen Raumes $X$ wieder kompakt?
+\end{frage}
+
+\begin{antwort}
+  Sei $\frak{U} := \{ U_\lambda \}_{\lambda \in \Lambda}$ eine offene 
+  Überdeckung von $A$. 
+  Da $A$ abgeschlossen ist, ist $X\mengeminus A$ offen, 
+  und $X \mengeminus A$ und $\frak{U}$ bilden zusammen eine Überdeckung  
+  von $X$. Wegen der Kompaktheit von $X$ existiert dazu eine endliche 
+  Teilüberdeckung 
+  $\{ (X \mengeminus A),  U_{\lambda_1}, \ldots , U_{\lambda_r} \}$. 
+  Somit bilden die Menge 
+  $\{ U_{\lambda_1}, \ldots, U_{\lambda_r} \} \subset \frak{U}$ 
+  eine endliche Teilüberdeckung von $A$.
+  \AntEnd
+\end{antwort}
+
+%% --- 112 --- %%
+\begin{frage}\label{09_vollstteilraum}
+  \index{vollständiger metrischer Raum}
+  Warum ist eine nichtleere abgeschlossene Teilmenge $A$ eines 
+  vollständigen metrischen Raumes $X$ wieder vollständig?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_k)$ eine Cauchy-Folge in $A$. Wegen der Vollständigkeit von $X$ 
+  besitzt diese einen Grenzwert $a\in X$. In jeder Umgebung 
+  von $a$ liegen dann Elemente aus $A$. 
+  Würde $a$ nicht zu $A$, sondern zu $X\mengeminus A$ 
+  gehören, dann folgte daraus, dass $X\mengeminus A$ 
+  nicht offen und damit $A$ nicht abgeschlossen sein kann -- Widerspruch.
+  \AntEnd
+\end{antwort}
+
+%% --- 113 --- %%
+\begin{frage}\label{09_schlagwort}
+  Können Sie das Schlagwort "`stetige Bilder kompakter Räume sind kompakt"' 
+  erläutern und begründen?
+\end{frage}
+
+\begin{antwort}
+  
+  Die Sprechweise besagt, dass für eine \slanted{stetige} Abbildung 
+  $f\fd X\to Y$ zwischen metrischen Räumen und eine kompakte 
+  Teilmenge $K\subset X$ das Bild $f(K)$ eine kompakte Teilmenge 
+  von $Y$ ist. 
+
+  Für den Beweis sei $\{ U_\lambda \}_{\lambda\in\Lambda}$ 
+  eine offene Überdeckung 
+  von $f(K)$. Wegen der Stetigkeit von $f$ sind die Urbilder 
+  der $U_\lambda$ offen in $X$, und 
+  $\{ f^{-1} (U_\lambda) \}_{\lambda\in\Lambda}$ ist eine 
+  offene Überdeckung von $K$. Wegen der Kompaktheit von $K$ existiert 
+  dazu eine endliche Teilüberdeckung 
+  $\{ f^{-1} (U_{\lambda_1}), \ldots, f^{-1} (U_{\lambda_r}) \}$, 
+  und die Mengen $U_{\lambda_1}, \ldots, U_{\lambda_r} $ bilden 
+  dann eine endliche Teilüberdeckung von $f(K)$. \AntEnd
+\end{antwort}
+
+%% --- 114 --- %%
+\begin{frage}\index{Satz!von Weierstraß}\index{Satz!vom Maximum und Minimum}
+  Können Sie diesen \bold{Satz von Weierstraß} begründen: Ist $X$ ein 
+  kompakter metrischer Raum und $f\fd X\to\RR$ eine stetige Funktion, 
+  dann nimmt $f$ auf $X$ ein absolutes Maximum und absolutes Minimum 
+  an, {\dasheisst}, es gibt ein $x_{\min} \in X$ und ein $x_{\max} \in X$ 
+  mit $f( x_{\min} ) \le  f(x)  \le f( x_{\max} )$ für alle 
+  $x\in X$?
+\end{frage}
+
+\begin{antwort} 
+  Der Beweis für diesen wichtigen Satz ergibt sich mit der erarbeiteten 
+  Terminologie wie von selbst: 
+  $f(X)\subset \RR$ ist als stetiges Bild einer kompakten Menge kompakt, 
+  folglich beschränkt und besitzt ein Infimum $t$ und ein Supremum $s$. 
+  Diese müssen wegen der Abgeschlossenheit von $f(X)$ zu $f(X)$ gehören. 
+  Es gibt also ein $x_{\min}$ und ein $x_{\max}$ aus $X$ mit 
+  $f(x_{\min})=t$ und $f(x_{\max})=s$.\AntEnd   
+\end{antwort}
+
+%% --- 115 --- %%
+\begin{frage}\index{Stetigkeit!gleichmäßige}\label{09_glmstet}
+  Können Sie zeigen, dass eine stetige Abbildung 
+  $f\fd X\to Y$ zwischen metrischen Räumen sogar 
+  \slanted{gleichmäßig stetig} ist, falls $X$ kompakt ist?
+\end{frage}
+
+\begin{antwort}
+  
+  Es muss gezeigt werden, 
+  dass es zu jedem $\eps>0$ ein $\delta>0$ gibt, 
+  sodass \slanted{für alle} 
+  $x_1,x_2 \in X$ gilt:
+  \[
+  d_X (x_1, x_2 ) < \delta \Ra d_Y \big( f(x_1), f(x_2) \big) < \eps.
+  \]
+  Angenommen, es gibt ein $\eps_0$, für das kein 
+  $\delta$ mit dieser globalen Eigenschaft existiert. Dann gibt es zu jedem 
+  $n\in \NN$ zwei Punkte $x_n, x_n' \in X$ mit 
+  $d(x_n,x_n') < 1/n$ aber $d\big( f(x_n), f(x_n') \big) > \eps_0$. 
+  Wegen der Kompaktheit von $X$ besitzt $(x_n)$ eine  
+  Teilfolge $(x_{n_k})$, die gegen einen Punkt $\xi \in X$ konvergiert. 
+  Dann konvergiert aber auch $( x'_{n_k} )$ gegen $\xi$. 
+  Wegen der Stetigkeit von $f$ folgt 
+  $\lim\limits_{ k\to \infty } f(x_{n_k}) =f(\xi) =
+  \lim\limits_{ k\to \infty } f(x'_{n_k}) $, 
+  und das steht im Widerspruch zu 
+  $d_Y\big( f(x_n), f(x_n') \big) > \eps_0$ für alle $n\in \NN$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 116 --- %%
+\begin{frage}\label{09_normaq}\index{Aquivalenz@Äquivalenz!von Normen}
+  Warum sind im $\KK^n$ ($\KK=\RR$ oder $\KK=\CC$) alle Normen äquivalent?
+\end{frage}
+
+\begin{antwort}
+  Zum Beweis genügt es, die Äquivalenz einer beliebigen 
+  Norm $\n{\;\,}$ mit der $1$-Norm $\n{\;\,}_1$ zu zeigen. 
+  Das Argument beruht im Wesentlichen auf einer Anwendung des Satzes 
+  vom Maximum und Minimum und benutzt die beiden Tatsachen
+  {\setlength{\labelsep}{2mm}
+    \begin{itemize}[2mm]
+    \item[\desc{i}] 
+      \slanted{Die Norm $\n{\;\,}$ ist stetig bezüglich $\n{\;\,}_1$.}  \\[-3mm]
+    \item[\desc{ii}] 
+      \slanted{Die Sphäre $S^{n-1}_1 := \{ x\in \KK^n\sets \nnb{x}_1 = 1 \}$ 
+        ist kompakt.} 
+    \end{itemize}}
+  \noindent
+  Aus \desc{i} und \desc{ii} folgt, dass 
+  die Funktion $\n{\;\,}$ auf $S^{n-1}_1$ ein Maximum und 
+  ein Minimum annimmt, es gibt also reelle Zahlen 
+  $c$ und $C$ mit 
+  \begin{equation}
+    c \le  \n{ x } \le C \quad\text{für alle $x\in S^{n-1}_1$}, 
+    \asttag
+  \end{equation}
+  wobei $c$ und $C$ wegen $0\not\in S^{n-1}_1$ 
+  beide $\not=0$ sind. Sei nun 
+  $x\in \RR^n \mengeminus\{ 0 \}$ beliebig. Dann ist 
+  $\frac{x}{\n{x}_1} \in S_1$, und 
+  aus {\astref} folgt $c \le \nnb{ \frac{x}{\n{x}_1} } \le C$ und damit   
+  \[
+  c\cdot \n{x}_1 \le \n{x} \le C \cdot \n{x}_1.
+  \]
+  Diese Ungleichungskette drückt die Äquivalenz 
+  von $\n{\,\;}$ und $\n{\,\;}_1$ auf $\KK^n$ aus. 
+  \AntEnd
+\end{antwort}
+
+%% --- 117 --- %%
+\begin{frage}
+  Warum können die Einheitskreislinie 
+  \[
+  S^1 := \{ (x,y) \in \RR^2\sets x^2+y^2 =1 \} 
+  \]
+  und das Intervall $[ 0, 2\pi[ $ nicht homöomorph sein?
+\end{frage}
+
+\begin{antwort}
+  Bekanntlich lässt sich zwar das Intervall $\ropen{0,2\pi}$ stetig 
+  aus $S^1$ abbilden (etwa durch $t\mapsto \left( \cos t, 
+    \sin t \right)$), die 
+  Umkehrung kann aber nicht stetig sein, und zwar deswegen, weil 
+  $S^1$ kompakt ist und $\open{0,2\pi}$ nicht (\sieheAbbildung\ref{fig:09_homo3}), und weil die Bilder kompakter Mengen 
+  unter stetigen Abbildungen nach Frage \ref{09_schlagwort} 
+  immer kompakt sind. 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/09_homo3}
+    \captionof{figure}{Das Intervall $\ropen{0,2\pi}$ und die 
+      Einheitskreislinie $S^1$ sind nicht homöomorph.}
+    \label{fig:09_homo3}
+  \end{center}
+\end{antwort}
+
+%% --- 118 --- %%
+\begin{frage}
+  Ist $X$ ein metrischer Raum und sind $A,B \subset X$ kompakte Teilmengen. 
+  Warum sind dann $A\cap B$ und $A\cup B$ ebenfalls kompakt? 
+\end{frage}
+
+\begin{antwort}
+  \desc{i} 
+  Sei $\{ U_\lambda \}_{\lambda\in \Lambda}$ eine Überdeckung 
+  von $A\cap B$. Die Menge $A\cap B$ ist als Durchschnitt 
+  abgeschlossener Mengen abgeschlossen, und somit ist 
+  $\{ X\mengeminus ( A\cap B ) \} \cup \{ U_\lambda \}$ eine 
+  offene Überdeckung von $A$ und von $B$. Davon 
+  gibt es jeweils endliche Teilüberdeckungen 
+  für $A$ ebenso wie  für $B$. 
+  Die Zusammenfassung dieser beiden Teilüberdeckungen ist 
+  dann eine endliche Teilüberdeckung für $A\cap B$. Das zeigt, dass 
+  der Durchschnitt kompakt ist.
+
+  \desc{ii} Ist $\{ U_\lambda \}_{\lambda\in \Lambda}$ eine 
+  Überdeckung von $A\cup B$, so auch von $A$ und von $B$. Es existieren 
+  also jeweils endliche Teilüberdeckungen für $A$ und für $B$, und durch 
+  Zusammenfassung von diesen erhält man eine endliche Teilüberdeckung 
+  für $A\cup B$.
+  \AntEnd
+\end{antwort}
+
+%% --- 119 --- %%
+\begin{frage}\label{q:119}\heavy
+  Sind $X$ und $Y$ kompakte metrische Räume, ist dann auch das kartesische 
+  Produkt $X\times Y$ bezüglich der Produktmetrik kompakt?
+\end{frage}
+
+\begin{antwort}
+  Das kartesische Produkt ist in diesem Fall auch kompakt. 
+
+  Für den Beweis sei $\{ U_\lambda \}_{\lambda\in\Lambda}$ 
+  eine offene Überdeckung von $X\times Y$. 
+  Zu jedem $(x,y)\in U_\lambda$ gibt es eine offene Umgebungen 
+  $V_{(x,y)}$ in $X$ und $W_{(x,y)}$ in $Y$,  
+  sodass das offene "`Kästchen"' 
+  $V_{(x,y)}\times W_{(x,y)}$ 
+  in $U_\lambda$ enthalten ist 
+  (vgl. die erste Grafik in Abbildung \ref{fig:09_beweis}). 
+
+  Die Mengen $V_{(x,y)}$ bilden bei festgehaltenem $y$ eine 
+  offene Überdeckung von $X$, und wegen der Kompaktheit von 
+  $X$ gibt es endlich viele Punkte $x_1,\ldots, x_{r(y)} \in X$,   
+  sodass gilt:  
+  \begin{equation}
+    X \subset V_{(x_1,y)} \cup \cdots \cup V_{(x_r,y)}.
+    \tag{vgl. die zweite Abbildung}
+  \end{equation}
+  Im nächsten Schritt bilden wir für jedes $y\in Y$ die Menge 
+  \begin{equation}
+    W(y) := W_{(x_1,y)} \cap \cdots \cap W_{(x_{r(y)},y)}. 
+    \tag{vgl. die dritte Grafik in Abbildung \ref{fig:09_beweis}} 
+  \end{equation}
+  Die $W(y)$ sind dann eine Überdeckung von $Y$, und wegen der 
+  Kompaktheit von $Y$ lassen sich endlich viele $y_1,\ldots,y_s$ 
+  auswählen, für die bereits 
+  \[
+  Y \subset W(y_1)\cup \cdots \cup W(y_s)
+  \]
+  gilt. Die Mengen $V_{(x_{r(yj)},y_j)}\times W(y_j)$, $1\le j\le s$ 
+  sind dann eine endliche Überdeckung von $X\times Y$, 
+  und jedes dieser Kästchen ist 
+  in einem $U_\lambda$ enthalten. Man wähle zu jedem Kästchen eines, 
+  und man erhält eine endliche Teilüberdeckung der ursprünglichen 
+  Überdeckung von $X\times Y$.
+
+  \medskip
+
+  \begin{center}
+    \includegraphics[width=\textwidth]{mp/09_beweis}
+    \captionof{figure}{Konstruktionsschritte im Beweis zu Frage \ref{q:119}}
+    \label{fig:09_beweis}
+  \end{center}
+
+  Die Umkehrung dieses Zusammenhangs gilt im Übrigen auch und ist eine 
+  Folge davon, dass die kanonischen Projektionen $X\times Y \to X$ bzw. 
+  $X\times Y \to Y$ stetige Abbildungen sind.  
+  \AntEnd
+\end{antwort}
+
+
+
+\section{Wege, Zusammenhangsbegriffe}
+
+%% --- 120 --- %%
+\begin{frage}\index{wegweise zusammenhängend}\index{bogenweise zusammenhängend}
+  Wann heißt ein metrischer Raum $X$ bzw. eine Teilmenge $D\subset X$ 
+  \bold{wegweise} oder \bold{bogenweise zusammenhängend}?
+\end{frage}
+
+\begin{antwort}
+  $X$ heißt bogenweise zusammenhängend, wenn es zu je zwei Punkten 
+  $a,b\in X$ einen \slanted{Weg}, {\dasheisst} eine stetige Abbildung 
+  $\gamma\fd [0,1]\to X$ mit $\gamma(0)=a$ und $\gamma(1)=b$ gibt.
+  \AntEnd
+\end{antwort}
+
+%% --- 121 --- %%
+\begin{frage}
+  Was sind die bogenweise zusammenhängenden Teilmengen von $\RR$ 
+  (mit der natürlichen Metrik)?
+\end{frage}
+
+\begin{antwort}
+  Die bogenweise zusammenhängenden Teilmengen von 
+  $\RR$ sind gerade alle Typen von Intervallen.
+
+  Dass für je zwei Punkte eines reellen Intervalls ein  
+  Weg existiert, ist offensichtlich. Die Umkehrung ergibt sich als  
+  Folgerung aus dem Zwischenwertsatz.
+  \AntEnd
+\end{antwort}
+
+
+
+
+%% --- 122 --- %%
+\begin{frage}
+  Warum ist das stetige Bild eines bogenweise zusammenhängenden Raums wieder 
+  bogenweise zusammenhängend (allgemeiner Zwischenwertsatz)?
+\end{frage}
+
+
+\begin{antwort}
+  Ist $f \fd X\to Y$ stetig und $\gamma$ ein Weg von $a\in X$ 
+  nach $b\in X$, so ist $f \circ \gamma$ ein Weg 
+  von $f(a)$ nach $f(b)$.
+  \AntEnd   
+\end{antwort}
+
+
+
+
+%% --- 123 --- %%
+\begin{frage}\index{sternförmig}
+  Wann heißt eine Teilmenge $S$ eines normierten $\KK$-Vektorraums 
+  \bold{sternförmig}?
+\end{frage}
+
+
+
+\begin{antwort}
+  $S$ heißt  \slanted{sternförmig}, wenn ein Punkt 
+  $s^*\in S$ existiert, sodass für jeden Punkt $s\in S$ auch die 
+  "`Verbindungsstrecke"'
+  \[
+  \{ s+t\cdot( s^*-s ) \sets t\in [0,1] \}
+  \]
+  vollständig in $S$ enthalten ist, \sieheAbbildung\ref{fig:09_stern}.
+
+  \begin{center}
+    \includegraphics{mp/09_stern}
+    \captionof{figure}{Eine sternförmige Menge.}
+    \label{fig:09_stern}
+  \end{center}
+
+  \begin{center}
+    \includegraphics{mp/09_sterngebiet}
+    \captionof{figure}{Die "`geschlitzte"' komplexe Zahlenebene 
+      $\CC_-$ ist ein Sterngebiet.}
+    \label{fig:09_sterngebiet}
+  \end{center}
+
+  Beispielsweise ist die längs der negativen reellen Achse 
+  "`geschlitzte"' komplexe Zahlenebene 
+  $\CC_-:= \CC \mengeminus \{x\in\RR\sets x\le 0\}$ eine sternförmige Menge, 
+  \sieheAbbildung\ref{fig:09_sterngebiet}.  
+  Jeder Punkt auf der positiven reellen Achse ist ein Sternpunkt von $\CC_-$. 
+  \AntEnd
+\end{antwort}
+
+
+%% --- 124 --- %%
+\begin{frage}\index{polygonzusammenhängend}
+  Wann heißt eine Teilmenge eines normierten $\KK$-Vektorraums $X$ 
+  \bold{polygonzusammenhängend}?
+\end{frage}
+
+
+\begin{antwort}
+  Eine Menge $M\subset X$ heißt polygonzusammenhängend, wenn zu je zwei 
+  Punkten $a, b\in M$ Punkte $a=a_0, a_1, \ldots, a_n=b$ aus $M$ 
+  existieren derart, dass die Strecken 
+  \[
+  S_{a_{k-1}, a_k} := \{ 
+  x\in X \sets x = a_{k-1}+t(a_k - a_{k-1}), \, t\in [0,1] \}
+  \]
+  für $1\le k \le n$ ganz in $M$ enthalten sind. Diese einzelnen 
+  Strecken lassen sich dann zu einem \slanted{Streckenzug} zusammenfassen, 
+  der $a$ und $b$ verbindet.  
+  \AntEnd
+\end{antwort}
+
+%% --- 125 --- %%
+\begin{frage}
+  Warum ist eine sternförmige Menge $S$ stets bogenweise zusammenhängend?
+\end{frage}
+
+\begin{antwort}
+  Für zwei Elemente $s_1$ und $s_2$ eines sternförmig zusammenhängenden 
+  Raumes gibt es Verbindungsstrecken von $s_1$ nach $s^*$ und 
+  von $s_1$ nach $s^*$. 
+  Diese lassen sich zu Weg zwischen $s_1$ und $s_2$ zusammenfassen.
+  \AntEnd
+\end{antwort}
+
+%% --- 126 --- %%
+\begin{frage}\index{S@$S^{n-1}$!bogenweiser Zusammenhang}
+  Warum sind für $n \ge 2$ der Raum $\RR^n \mengeminus \{ 0 \}$ und 
+  die Sphäre $S^{n-1}$ bogenweise zusammenhängend?
+\end{frage}
+
+\begin{antwort}
+  Seien $a$ und $b$ beliebige Punkte auf $S^{n-1}$. Verläuft 
+  deren Verbindungsstrecke $\gamma(t)$ nicht durch den Nullpunkt, 
+  dann ist 
+  \[
+  \gamma\fd t\to S^{n-1};\quad t \mapsto \frac{\gamma(t)}{ \nnb{\gamma(t)} } 
+  \]
+  ein stetiger Weg auf $S^{n-1}$ von $a$ nach $b$, \sieheAbbildung\ref{fig:09_s1}.
+
+  \begin{center}
+    \includegraphics{mp/09_s1}
+    \captionof{figure}{Ein stetiger Weg auf $S^{n-1}$ von $a$ nach $b$.}
+    \label{fig:09_s1}
+  \end{center}
+
+  Für den Fall, dass die Verbindungsgerade von $a$ und $b$ durch den Nullpunkt 
+  läuft, gibt es einen weiteren Punkt $c$ derart, dass weder die Strecke 
+  von $a$ nach $c$ noch die von $b$ nach $c$ den Nullpunkt 
+  schneidet. Es gibt dann nach obigem 
+  stetige Wege von $a$ nach $c$ und von $c$ nach $b$. Diese lassen
+  sich zu einem stetigen Weg von $a$ nach $b$ verbinden lassen.
+  \AntEnd
+\end{antwort}
+
+%% --- 127 --- %%
+\begin{frage}
+  Können Sie begründen, warum für einen normierten Raum $X$ und eine 
+  nichtleere Teilmenge $D\subset X$ folgende Aussagen äquivalent sind:
+  {\setlength{\labelsep}{5mm}
+    \begin{enumerate}
+    \item[\desc{a}] $D$ ist polygonzusammenhängend,\\[-3.5mm]
+    \item[\desc{b}] $D$ ist bogenweise zusammenhängend,\\[-3.5mm]
+    \item[\desc{c}] Ist $\emptyset \not=M \subset D$ und $M$ in $D$ offen 
+      und abgeschlossen bezüglich der induzierten Metrik ist, dann ist $M=D$.
+    \end{enumerate}}
+\end{frage}
+
+
+\begin{antwort}
+  \desc{a} $\Ra$ \desc{b} ist offensichtlich.
+
+  \medskip\noindent
+  \desc{b} $\Ra$ \desc{c} Sei $D$ bogenweise zusammenhängend 
+  und $M\subset D$ offen und abgeschlossen in $D$. 
+  Angenommen, es ist $M\not=D$. Dann sind $D\mengeminus M$ und $M$ beide 
+  offen, nichtleer und disjunkt. Für einen stetigen Weg 
+  $\gamma\fd [0,1] \to D$ mit $\gamma(0)=a \in M$ und 
+  $\gamma(1)=b \in  D\mengeminus M$ sind dann die 
+  Urbilder $\gamma^{-1}(M)$ und $\gamma^{-1}(D\mengeminus M)$ beide 
+  offene, nichtleere und disjunkte Teilmengen von $[0,1]$, deren 
+  Vereinigung gerade das Intervall $[0,1]$ ist. 
+  Zwei Mengen mit dieser Eigenschaft kann es aber nicht geben 
+  (vgl. Frage \ref{09_intzus}). 
+  Also muss wirklich $M=D$ gelten. 
+
+
+  \medskip\noindent
+  \desc{c} $\Ra$ \desc{a} Sei $a$ irgendein Punkt aus $D$. 
+  Man betrachte die Teilmenge 
+  \[
+  U := 
+  \{ x \in D\sets \text{Es gibt einen Streckenzug in $D$ von $a$ nach $x$} \}.
+  \]
+  Wir zeigen, dass $U$ gleichzeitig offen und abgeschlossen ist. 
+  Aus der Voraussetzung folgt dann $U=D$, also \desc{a}.
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] Sei $u\in U$ und $K(u)$ eine beliebige offene Kugel um $u$. 
+      Jedes $b\in K(u)$ lässt sich durch einen Streckenzug mit dem 
+      Mittelpunkt $u$ verbinden, und für diesen wiederum existiert 
+      wegen $u\in U$ ein Streckenzug nach $a$. Die beiden Streckenzüge 
+      lassen sich dann zu einem Streckenzug von $a$ nach $b$ verbinden, \sieheAbbildung\ref{fig:09_zusammenhang}. 
+      Das zeigt $b\in U$ für jedes $b\in K(u)$. 
+
+      \begin{center}
+        \includegraphics{mp/09_zusammenhang}
+        \captionof{figure}{$a$ und $b$ lassen sich durch einen Polygonzug 
+          verbinden.}
+        \label{fig:09_zusammenhang}
+      \end{center}
+
+      Also ist $K(u)$ in $U$ enthalten. Das zeigt die Offenheit von $U$. \\[-2mm]
+    \item[\desc{ii}] 
+      \picskip{1}{\noindent}Für jedes Element $v\in D\setminus U$ liegt jede 
+      Kugel $K(v)$ um $v$ ebenfalls in $D\setminus U$, denn für einen 
+      Punkt $b \in K(v)\cap U$ existierten Polygonzüge nach $v$ und nach $a$, 
+      und durch Verknüpfung erhielte man einen von $a$ nach $v$, woraus $v\in U$ 
+      folgen würde, im Widerspruch zu $v\in D\mengeminus U$.
+    \end{itemize}}
+  \noindent
+  $U$ und $D\mengeminus U$ sind also beide offen, $U$ folglich  
+  offen \slanted{und} abgeschlossen in $D$. 
+  Nach Voraussetzung folgt $D=U$. Für jeden 
+  Punkt aus $D$ existiert also ein Streckenzug nach $a$. Da $a$ beliebig 
+  gewählt war, folgt, dass $D$ polygonzusammenhängend ist.
+  \AntEnd
+\end{antwort}
+
+
+%% --- 128 --- %%
+\begin{frage}\index{Zusammenhang}
+  Wann nennt man einen metrischen Raum im allgemeinen 
+  Sinne \bold{zusammenhängend}?
+\end{frage}   
+
+
+\begin{antwort}
+  Ein metrischer Raum $X$ heißt \slanted{zusammenhängend}, wenn es 
+  \slanted{keine} Zerlegung 
+  $X=U \cup V$ gibt, in welcher $U$ und $V$ beide offen, disjunkt und 
+  nicht leer sind.
+  \AntEnd
+\end{antwort}
+
+
+
+%% --- 129 --- %%
+\begin{frage}\label{09_intzus}\index{Zusammenhang}
+  Können Sie zeigen, dass das Intervall $[0,1]$ zusammenhängend ist?
+\end{frage}
+
+\begin{antwort}
+  Angenommen, es gäbe eine Zerlegung von $[0,1]$ in zwei disjunkte, 
+  offene und nichtleere Umgebungen $A$ und $B$. Man wähle irgendein 
+  $a\in A$ und ein $b\in B$. Ohne Beschränkung der Allgemeinheit sei 
+  $b>a$. Dann kann 
+  \[
+  t := \inf\{ x\in B \sets x>a \}  
+  \]
+  jedenfalls nicht in $B$ enthalten sein, denn $B$ ist offen. 
+  Andererseits liegen in jeder Umgebung von $t$ auch Punkte aus $a$. 
+  Denn wenn nicht schon $t=a$ gilt, dann ist $a<t$, und das Intervall 
+  $\open{a,t}$ ist vollständig in $A$ enthalten. Da $a$ offen ist, folgt 
+  $t\not\in A$. Es ist also $t \subset [0,1]$ 
+  weder in $A$ noch in $B$ enthalten, im Widerspruch zu $A\cup B=[0,1]$. 
+  \AntEnd  
+\end{antwort}
+
+%% --- 130 --- %%
+\begin{frage}
+  Warum ist jeder bogenweise zusammenhängende Raum zusammenhängend?
+\end{frage}
+
+\begin{antwort}
+  Angenommen, für einen bogenweise zusammenhängenden Raum $X$ gibt es eine 
+  Zerlegung $X=U\cup V$ in offene, disjunkte und nichtleere Mengen 
+  $U$ und $V$. Für einen stetigen Weg $\gamma\fd [0,1]\to X$ von 
+  $u \in U$ nach $v\in V$ sind dann die Mengen 
+  $\gamma^{-1}(U)$ und $\gamma^{-1}(V)$ beide offen, disjunkt, nichtleer 
+  und es gilt $\gamma^{-1}(U) \cup \gamma^{-1}(V)=[0,1]$. Eine solche 
+  Zerlegung von $[0,1]$ kann es aber nach Frage \ref{09_intzus} 
+  nicht geben.  
+  \AntEnd 
+\end{antwort}
+
+%% --- 131 --- %%
+\begin{frage}
+  Ist jeder zusammenhängende Raum auch wegzusammenhängend?
+\end{frage}
+
+\begin{antwort}
+  Nein. Ein Gegenbeispiel liefert etwa die Menge  
+  \[
+  \left\{  \left(x, \sin (1/x) \right)\sets 
+    x\in \lopen{0,1} \right\} \cup 
+  \left\{ ( 0, 0 ) \right\}.
+  \]
+
+  \begin{center}
+    \includegraphics{mp/09_sineinsdurchx}
+    \captionof{figure}{Der Graph der Funktion $x\mapsto \sin\frac1x$ ist 
+      zusammenhängend, aber nicht wegzusammenhängend.}
+    \label{fig:09_sineinsdurchx}
+  \end{center}
+
+  Die Menge lässt sich nicht in disjunkte offene 
+  und nichtleere Teilmengen zerlegen, aber für jeden Punkt auf 
+  dem Graphen gibt es keinen stetigen Weg zum Nullpunkt, \sieheAbbildung 
+  \ref{fig:09_sineinsdurchx}.
+  \AntEnd
+\end{antwort}
+
+%% --- 132 --- %%
+\begin{frage}\index{Gebiet}
+  Was versteht man unter einem \bold{Gebiet} in einem normierten Raum?
+\end{frage}
+
+\begin{antwort}
+  Ein Gebiet ist eine zusammenhängende offene Teilmenge von $X$. 
+  (Manchmal wird in der Definition der \slanted{bogenweise Zusammenhang} 
+  gefordert.)
+  \AntEnd
+\end{antwort}
+
+%% --- 133 --- %%
+\begin{frage}\heavy\index{Homöomorphie}
+  Können Sie begründen, 
+  warum für $n\ge 2$ $\RR^n$ und $\RR$ nicht homöomorph sind?
+\end{frage}  
+
+\begin{antwort}
+  
+  Das hängt damit zusammen, dass die Bilder 
+  bogenweise zusammenhängender Räume unter stetigen Abbildungen 
+  $f\fd X\to Y$ wieder bogenzusammenhängend sind (denn für einen Weg 
+  $\gamma$ zwischen $a$ und $b$ ist $f \circ \gamma$ ein Weg 
+  zwischen $f(a)$ und $f(b)$). 
+
+  Gäbe es eine stetige bijektive  
+  Abbildung $f \fd \RR^n \to \RR$, so wäre auch 
+  die Abbildung $\RR^n \mengeminus \{ 0 \} 
+  \to \RR \mengeminus \{ f(0) \}$ stetig und bijektiv. 
+  Aber $\RR^n \mengeminus \{ 0 \}$ ist bogenweise zusammenhängend, 
+  $\RR \mengeminus \{ f(0) \}$ aber nicht, da es kein Intervall ist.
+  \AntEnd    
+\end{antwort}
+
+
+
+\section{Der Satz von Stone-Weierstraß}
+\index{Weierstrass@\textsc{Weierstrass}, Karl Theodor Wilhelm (1815-1897)}
+
+Der klassische Approximationssatz von Weierstraß besagt, dass man jede 
+stetige Funktion $f\fd [a,b]\to \RR$ \slanted{gleichmäßig} durch Polynome 
+approximieren kann, dass also die Funktionenalgebra der Polynome auf 
+$[a,b]$ dicht im Raum $\calli{C}( [a,b] )$ liegt. Der Satz besitzt 
+wichtige Verallgemeinerungen für \slanted{kompakte} metrische 
+Räume $X$, mit dem man für geeignete Funktionenräume 
+$\calli{F}(X)\subset \calli{C}(X)$ 
+deren Dichtheit in $\calli{C}(X)$ nachweisen kann. 
+
+%% --- 134 --- %%
+\begin{frage}\label{09_appro}
+  Welche Voraussetzungen an einen Unterraum 
+  $\calli{F} \subset \calli{C}(X,\RR)$ ($X$ kompakter metrischer 
+  Raum) muss man {\zB} stellen, damit $\calli{F}$ dicht in $\calli{C}(X,\RR)$ 
+  ist?
+\end{frage}
+
+\begin{antwort}
+  Es gilt: \satz{Besitzt der 
+    Unterraum $\calli{F}\subset \calli{C}(X,\RR)$ die Eigenschaften 
+    \setlength{\labelsep}{4mm}
+    \begin{enumerate}
+    \item[\desc{i}] $f\in \calli{F} \Ra |f| \in \calli{F}$,\\[-3.5mm]
+    \item[\desc{ii}] $\calli{F}$ trennt die Punkte von $X$, {\dasheisst},  
+      zu $x,y\in X$ mit $x\not=y$ gibt es ein $f\in\calli{F}$ mit $f(x)\not=f(y)$,
+    \end{enumerate} 
+    dann ist $\calli{F}$ dicht in $\RR$. Das heißt, zu jedem 
+    $\varphi \in \calli{C}(X,\RR)$ und jedem $\eps>0$ gibt es ein $f\in \calli{F}$ 
+    mit $
+    \left| \varphi(x) - f(x) \right| < \eps \quad\text{für alle $x\in X$}.$
+    \AntEnd
+  }
+
+  \medskip
+  Wir geben hier als Zugabe einen Beweis dieses Approximationssatzes, 
+  weil er dazu beiträgt, den Nutzen der in diesem Kapitel entwickelten 
+  topologischen Methoden an einem interessanten Beispiel zu illustrieren. 
+
+  \medskip\noindent
+  Zwei Bemerkungen vorneweg. Die Eigenschaften \desc{i} bzw. \desc{ii} 
+  implizieren: 
+  {\setlength{\labelsep}{5mm}
+    \begin{itemize}
+    \item[\desc{i'}] Mit $f$ und $g$ gehören auch die Funktionen 
+      $f \wedge g $ und $f\vee g$, die durch 
+      \[
+      (f \vee g ) (x ) := \max\{ f(x) , g(x) \}, \quad
+      (f \wedge g ) (x ) := \min\{ f(x) , g(x) \}
+      \]
+      definiert sind, zu $\calli{F}$. 
+    \item[\desc{ii'}] Zu je zwei Punkten $x_1,x_2 \in $ mit $x_1\not=x_2$ und zwei 
+      Zahlen $a,b \in \RR$ gibt es eine Funktion $f\in \calli{F}$ mit 
+      $f(x_1)=a$ und $f(x_2)=b$. 
+    \end{itemize}}
+  Die Eigenschaft \desc{i'} folgt aus \desc{i} wegen 
+  \[
+  f\vee g= \frac{f+g}{2}+ \left| \frac{f-g}{2} \right|,\quad\text{und}\quad
+  f\wedge g= \frac{f+g}{2}- \left| \frac{f-g}{2} \right|.
+  \] 
+  Eigenschaft \desc{ii'} wird von der Funktion 
+  \[
+  \dis f(x) = a \frac{g(x)-g(x_2)}{g(x_1)-g(x_2)} +
+  b \frac{g(x)-g(x_1)}{g(x_2)-g(x_1)}
+  \]
+  erfüllt, wobei $g$ eine Funktion 
+  aus $\calli{F}$ ist, die die Punkte $x_1$ und $x_2$ trennt.
+
+  \medskip
+  Zum eigentlichen Beweis: Sei $\varphi \in \calli{C}(X,\RR)$ 
+  und $\eps>0$ gegeben. Zu je zwei Punkten $x,y \in X$ gibt es aufgrund 
+  von \desc{2'} eine Funktion $f_{x,y}\in \calli{F}$ mit 
+  $f_{x,y}(x)=\varphi(x)$ und $f_{x,y}(y)=\varphi(y)$. Das weitere Vorgehen 
+  besteht nun darin, aus "`Teilstücken"' der Funktionen $f_{x,y}$ mit 
+  den Operationen $\vee$ und $\wedge$ eine stetige Funktion zu konstruieren, 
+  deren Graph vollkommen im $\eps$-Streifen von $\varphi$ verläuft. Dass das 
+  mit endlich vielen Teilstücken funktioniert, hängt mit der Kompaktheit von 
+  $X$ zusammen.   
+  Man betrachte zu festgehaltenem $x$ zu jedem $y \in X$ die Mengen 
+  \[
+  U_{x,y} := \{ z\in X\sets \varphi(z)-\eps < f_{x,y}(z) \}.
+  \]
+  Diese Mengen 
+  sind jeweils offene Umgebungen von $y$ und überdecken zusammen $X$. 
+  Wegen der Kompaktheit von $X$ existiert dazu eine endliche Teilüberdeckung 
+  $\{ U_{x,y_1(x)}, \ldots , U_{x,y_{r(x)}(x)} \}$ (wobei die $y_i$ genauso 
+  wie deren Anzahl von $x$ abhängt). Die Funktionen $f_{x,y_i}$ verlaufen  
+  nun für alle $i\in\{ 1,\ldots, n(x) \}$ 
+  auf $U_{x,{y_i}}$ oberhalb von $\varphi-\eps$, die Funktion 
+  $g_x := f_{x,y_1(x)}\vee \cdots \vee f_{x,y_{r(x)}(x)}$ hat aus 
+  diesem Grund die Eigenschaft 
+  \[
+  g_x(z) > \varphi(z)-\eps \quad\text{für alle $z\in X$.}
+  \]
+  Jetzt wenden wir auf die Funktionen 
+  $g_x$ dasselbe Verfahren "`von oben"' an. 
+  Die Mengen 
+  \[
+  V_x = \{ z\in X\sets g_x(z)< \varphi+\eps \}
+  \] 
+  sind jeweils offene Umgebungen von $x$ und überdecken zusammen $X$. 
+  Es gibt also eine endliche Teilüberdeckung $\{ V_{x_1}, \ldots, V_{x_s} \}$. 
+  Auf $U_{x_i}$ verläuft $g_{x_i}$ dann für alle $i=1,\ldots,s$ 
+  unterhalb von $\varphi+\eps$. Man bilde also 
+  $h := g_{x_1} \wedge \cdots \wedge g_{x_s} $. 
+  Dann gilt $\varphi(z)-\eps < h(z) < \varphi(z)+\eps$ für alle 
+  $z\in X$, also $\left| h(z)-\varphi(z) \right| < \eps$ für alle 
+  $z\in X$. Die Funktion $h(z)$ ist damit die gesuchte Approximation 
+  zu $\varphi$. \AntEnd
+\end{antwort}
+
+%% --- 135 --- %%
+\begin{frage}
+  Was besagt der \bold{Satz von Stone-Weierstraß}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: \satz{Ist $X$ ein kompakter metrischer Raum und 
+    $\calli{A} \subset \calli{C}( X, \KK)$ ($\KK=\RR$ oder $\KK=\CC$) eine 
+    Funktionenalgebra mit
+    \setlength{\labelsep}{4mm}
+    \begin{enumerate}
+    \item[\desc{1}] $1\in \calli{A}$,\\[-3.5mm]
+    \item[\desc{2}] $f\in \calli{A} \Ra \overline{f} \in \calli{A}$,\\[-3.5mm]
+    \item[\desc{3}] $\calli{A}$ trennt die Punkte von $X$,
+    \end{enumerate} 
+    dann liegt $\calli{A}$ dicht in $X$.}
+
+  \medskip\noindent
+  Es gibt viele verschiedene Wege, den Satz von Stone-Weierstraß zu beweisen. 
+  Eine Möglichkeit besteht darin, ihn aus dem vorhergehenden Approximationssatz 
+  abzuleiten. Dabei sind aber erst einige Hindernisse zu überwinden, denn 
+  die Voraussetzung $f\in \calli{A} \Ra | f | \in \calli{A}$ ist 
+  für eine Funktionenalgebra im allgemeinen nicht erfüllt. Man kann aber 
+  zeigen, dass für eine reelle Funktionenalgebra $\calli{A}$ die 
+  die oberen drei Voraussetzungen erfüllt, $|f|$ beliebig genau durch 
+  Elemente aus $\calli{A}$ approximiert werden kann. Mit diesem Ergebnis 
+  greift dann der Satz aus Frage \ref{09_appro} und liefert den Satz 
+  von Stone-Weierstraß zunächst für reelle Funktionenalgebren. 
+
+  Für komplexe Funktionenalgebren, die die Eigenschaft \desc{2} erfüllen, 
+  lässt er sich auf den reellen Fall zurückführen. Denn diese Eigenschaft 
+  gilt genau dann, wenn mit $f$ auch $\Re f$ und $\Im f$ in $\calli{A}$ 
+  enthalten sind. 
+  \AntEnd
+\end{antwort}
+
+%% --- 136 --- %%
+\begin{frage}\label{09_stonekonsequenz}
+  Können Sie aus dem allgemeinen Satz von Stone-Weierstraß folgern: 
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] Ist $X\subset \RR^n$ kompakt, dann ist die Algebra der 
+      Polynome mit Koeffizienten in $\KK$ dicht in $\calli{C}(X,\KK)$.\\[-3.5mm]
+    \item[\desc{b}] Ist $S^1 := \{ z\in \CC\sets |z|=1 \}$ die Einheitskreislinie, 
+      dann ist die Algebra der trigonometrischen Polynome 
+      \[
+      \calli{T} := \left\{ \sum_{k=-n}^n c_k z^k \sets n\in\NN_0; c_k 
+        \in \CC \right\} 
+      \]
+      dicht in $\calli{C}( S^1, \CC )$. (Dies folgt auch aus dem Satz 
+      von Fej\'er (vgl. Frage \ref{07_fejer}).\\[-3.5mm]
+    \item[\desc{c}] Sind $X,Y$ kompakte metrische Räume, dann ist die 
+      Algebra
+      \[
+      \calli{C}(X) \otimes \calli{C}(Y) := \left\{ \sum_{k=1}^n f_k(x) g_k(y) \sets
+        f_k \in \calli{C}(X), \, g_k\in \calli{C}(Y) \right\}
+      \]
+      dicht in $\calli{C}( X\times Y)$. (Das ist für die Integrationstheorie sehr 
+      nützlich, vgl. Frage \ref{11_unabreihe}.)
+    \end{itemize}}
+\end{frage}
+
+\begin{antwort}
+  Es muss bei allen drei Antworten nur gezeigt werden, dass die 
+  jeweiligen Funktionenalgebren die Voraussetzungen des Satzes von 
+  Stone-Weierstraß erfüllen. Das ist aber offensichtlich. Alle enthalten 
+  nach Definition das Einselement und mit $f$ auch $\overline{f}$. 
+  In \desc{b} hat die identische Funktion die Eigenschaft, 
+  die Punkte zu trennen. Im Fall der Polynome $\RR^n \to \KK$ beachte man, 
+  dass sich zwei verschiedene Punkte des $\RR^n$ in mindestens einer 
+  Koordinate -- sagen wir der $k$-ten -- unterscheiden. 
+  Dann trennt das Polynom $p$ mit $p(x_1,\ldots,x_n):=x_k$ die beiden Punkte. 
+
+  Dass auch die Algebra unter \desc{c} die Eigenschaft besitzt, die 
+  Punkte in $X\times Y$ zu trennen, folgt daraus, dass es zu zwei verschiedenen 
+  Punkten $x_1,x_2$ eines metrischen Raumes stets eine stetige Funktion 
+  mit $\varphi(x_1)=0$ und $\varphi(x_2)=1$ gibt (eine Konsequenz des  
+  \slanted{Urysohn\sch en Lemmas}). Zu zwei verschiedenen Punkten 
+  $(x_1,y_1)$ und $(x_2,y_2)$ aus $X\times Y$, die sich etwa in der 
+  ersten Koordinate unterscheiden, hat dann die Funktion 
+  $\varphi(x) \cdot 1 \in \calli{C}(X) \otimes \calli{C}(Y)$ 
+  die Eigenschaft, die beiden Punkte zu trennen (im Fall $x_1=x_2$ 
+  funktioniert dasselbe natürlich mit $Y$ statt $X$). \AntEnd
+\end{antwort}
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 

@@ -1,0 +1,4692 @@
+
+\chapter{Anwendungen der Differenzial- und Integralrechnung}
+
+Die folgenden Fragen befassen sich mit verschiedenen Anwendungen der 
+Differenzial- und Integralrechnung und ihrem weiteren Ausbau. 
+Die einzelnen Teile hängen nicht systematisch voneinander ab. Wir haben uns 
+für die folgenden Themen entschieden:
+\begin{itemize}[2mm]
+\item[\desc{1}] Taylor'sche Formel und Taylorreihen
+\item[\desc{2}] Fixpunktiteration und Newton-Verfahren
+\item[\desc{3}] Interpolation und Elemente der numerischen Integration
+\item[\desc{4}] Uneigentliche Integrale, $\Gamma$-Funktion
+\item[\desc{5}] Fourierreihen (Elemente der Theorie)
+\item[\desc{6}] Bernoulli'sche Zahlen und Euler'sche Summenformel
+\item[\desc{7}] Differenzierbare Kurven und ihre Geometrie
+\end{itemize}
+
+
+\section{Taylor'sche Formel und Taylorreihen}
+
+Potenzreihen sind Verallgemeinerungen von Polynomen und wie diese 
+sehr gut handhabbar. Potenzreihen haben sehr angenehme Eigenschaften. Sie sind beispielsweise  
+stetig und beliebig oft differenzierbar, um nur zwei der zahlreichen Eigenschaften zu nennen. 
+Wenn eine Funktion in eine 
+Potenzreihe entwickelbar ist, dann ist diese Potenzreihe die 
+\slanted{Taylorreihe} zu dem entsprechenden Entwicklungspunkt. 
+Wir beschränken uns hier vorzugsweise auf den reellen Fall, in dem 
+man mithilfe der Taylor'schen Formel mit Restglied eine notwendige und 
+hinreichende Bedingung dafür erhält, dass die Taylorreihe einer 
+Funktion konvergiert und die Funktion darstellt.  
+
+%% Question 1
+\begin{frage}\index{Differenzierbarkeit!der Grenzfunktion}
+  Sei $[a,b]\subset \RR$ ein kompaktes Intervall und 
+  $(f_n)$ eine Folge von stetig differenzierbaren 
+  Funktionen $f_n \fd [a,b] \to \RR$, die punktweise 
+  gegen die Funktion $f\fd [a,b]\to\RR$ konvergiert. 
+  Die Folge $(f_n')$ der Ableitungen konvergiere gleichmäßig. 
+  Dann ist $f$ differenzierbar, und es gilt
+  \[
+  f'(x) = \lim_{n\to\infty} f_n'(x) \quad\text{für alle $x\in [a,b]$.}
+  \]
+  Können Sie diesen Vertauschungssatz beweisen?
+\end{frage}
+
+\begin{antwort}
+  Unter Anwendung des Hauptsatzes der 
+  Differenzial- und Integralrechnung schreibe man 
+  $f_n$ für ein beliebiges $x_0\in [a,b]$ in der Form
+  \[
+  f_n(x) = f_n (x_0) + \int_{x_0}^x f_n' (t) \dift.
+  \]
+  Daraus folgt zunächst  
+  \[
+  \limm f_n(x) = \limm f_n(x_0) + \limm \int_{x_0}^x f_n'( t ) \dift. 
+  \]
+  Da die Folge $(f_n')$ gleichmäßig konvergiert, darf in dem 
+  zweiten Term auf der rechten Seite Integration und Limesbildung 
+  vertauscht werden. Dies führt auf
+  \[
+  f(x) = f(x_0)+ \int_{x_0}^x \limm f_n'(t) \dift = 
+  f(x_0)+ \int_{x_0}^x f'(t) \dift.
+  \]
+  Nach dem Hauptsatz der Differenzial- und Integralrechnung ist 
+  $f$ somit differenzierbar, 
+  und es gilt $f'=\lim f_n'$. 
+  \AntEnd
+\end{antwort}
+
+%% Question 2
+\begin{frage}
+  Können Sie durch ein Gegenbeispiel belegen, dass selbst bei  
+  gleichmäßiger Konvergenz von $(f_n)$ gegen $f$ im Allgemeinen 
+  nicht $\lim f_n'=f'$ gilt?
+\end{frage}
+
+\begin{antwort}
+  Das wurde in \ref{04_glmdiff} schon mit dem Beispiel 
+  $f_n (x) = \frac{\sin(nx)}{\sqrt{n}}$ gezeigt.
+  \AntEnd 
+\end{antwort}
+
+%% Question 3
+\begin{frage}\index{Taylorpolynom}
+  \index{Taylor@\textsc{Taylor}, Brook (1685-1731)}
+  Ist $f\fd M\to \RR$ eine im Punkt $a\in M$  
+  mindestens $n$-mal differenzierbare Funktion, durch welche 
+  Eigenschaften ist dann das $n$-te Taylorpolynom 
+  $T_n f(x;a)$ von $f$ im Punkt $a$ bestimmt? 
+  Wie lauten die Koeffizienten?
+\end{frage}
+
+\begin{antwort}
+  Das Polynom $T_n f (x;a)$ ist die Lösung zu folgendem Problem:  
+  Gesucht ist ein Polynom $T$ mit $\grad T \le n$, das mit $f$ im Punkt 
+  $a$ übereinstimmt und dort dieselben ersten $n$ Ableitungen 
+  besitzt wie $f$. Für $T$ soll also gelten 
+  \begin{equation}
+    T(a)=f(a), \quad T'(a)=f'(a), \quad \ldots, 
+    \quad T^{(n)}(a) = f^{(n)} (a). 
+    %\asttag
+  \end{equation}
+  Die Koeffizienten eines solchen Polynoms 
+  $T(x)=\sum_{k=0}^n a_k (x-a)^k$ sind durch diese 
+  Vorgaben bereits eindeutig bestimmt. 
+  Wegen $T^{(k)}(a)=k! a_k$ gilt 
+  nämlich $a_k = \frac{f^{k}(a)}{k!}$ für $0 \le k \le n$. 
+  Es gibt somit genau ein Polynom $T_nf(x;a)$ vom Grad $n$, 
+  welches die Vorgaben ($\ast$) erfüllt. Dieses hat die Gestalt
+  \nomenclature{$Tf_n(x;a)$}{$n$-tes Taylorpolynom von $f$ in $a$}
+  \begin{equation}
+    T_nf(x;a) = f(a) + \frac{f'(a)}{1!} (x-a) + 
+    \frac{f''(a)}{2!} (x-a)^2 + \cdots + 
+    \frac{f^{(n)}(a)}{n!} (x-a)^n. 
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% Question 4
+\begin{frage}\label{q:taylor-formel-mit-integralrestglied}\index{Taylor'sche Formel!mit Integralrestglied}
+  Wie lautet die Taylor'sche Formel mit Integralrestglied?
+\end{frage}
+
+\begin{antwort}
+  Die Existenz eines Polynoms, 
+  das sich durch die lokalen Eigenschaften 
+  ($\ast$) auszeichnet, wurde in der vorigen Frage 
+  relativ problemlos gezeigt. 
+  Die Frage ist jetzt naheliegend, wie gut das Taylorpolynom 
+  die Funktion $f$ in einem beliebigen Punkt $x\in M$ approximiert. 
+  Es geht also um eine Berechnung des Restglieds 
+  \[
+  R_{n+1}(x) :=  f(x) - T_n f(x;a), \qquad x\in M.
+  \]
+  Der Fehler $R_{n+1}(x)$ lässt sich durch ein 
+  Integral darstellen. Dabei muss vorausgesetzt werden, 
+  dass $f$ mindestens $(n+1)$-mal stetig differenzierbar ist. 
+  In diesem Fall gilt die 
+  folgende \slanted{Integraldarstellung des Restglieds}
+  \begin{equation}
+    \boxed{
+      R_{n+1} (x) = \frac{1}{n!} \int_a^x (x-t)^n f^{(n+1)} (t) \dift.}
+    \asttag
+  \end{equation}
+  Diese Formel lässt sich durch vollständige Induktion über $n$ beweisen. 
+  Für $n=0$ entspricht sie gerade der Aussage des Hauptsatzes 
+  der Differenzial- und Integralrechnung. Der Schluss 
+  von $n$ auf $n+1$ erfolgt nun mittels partieller Integration von 
+  ($\ast$). Damit bekommt man  
+  \[
+  T_n f(x;a)+R_{n+1}(x)=
+  \underbrace{T_n f(x;a)+\frac{f^{(n+1)}}{(n+1)!} 
+    (x-a)^{n+1}}_{\dis T_{n+1} f (x;a)} 
+  + 
+  \underbrace{\int_a^x (x-t)^{n+1} f^{(n+2)} (t) \dift.}_{ \dis R_{n+2}(x)}
+  \]
+  Das zeigt die Integraldarstellung des Restglieds. 
+  \AntEnd
+\end{antwort}
+
+%% Question 5
+\begin{frage}
+  Ist $f\fd M\to \RR$ eine $(n+1)$-mal stetig differenzierbare Funktion 
+  auf einem Intervall $M\subset\RR$ 
+  mit 
+  \[
+  f^{(n+1)}( x )= 0 \quad\text{für alle $x\in M$}.
+  \]
+  Was können Sie dann über $f$ aussagen?
+\end{frage}
+
+\begin{antwort}
+  Die Funktion $f$ ist in diesem Fall ein Polynom vom Grad $\le n$. 
+  In diesem Fall verschwindet nämlich das Restglied 
+  $R_{n+1}(x)$ für alle $x\in M$. 
+  \AntEnd
+\end{antwort}
+
+%% Question 6
+\begin{frage}\index{Taylor'sche Formel!mit Lagrange'schem Restglied}
+  Welche weiteren Formeln für das Restglied sind Ihnen bekannt?
+\end{frage}
+
+\begin{antwort}
+  Die Funktion $t\mapsto (x-t)^n$ hat für $t\in \open{a,x}$ 
+  ein einheitliches Vorzeichen. Nach dem Mittelwertsatz der 
+  Integralrechnung existiert also ein $\xi \in  \open{a,x}$ mit
+  \[
+  \boxed{R_{n+1} (x) = \frac{f^{(n+1)}(\xi)}{ n! } \int_a^x (x-t)^n \dift
+    =  \frac{f^{(n+1)}(\xi)}{ (n+1)! }  (x-a)^{n+1}.} 
+  \]
+  Dies liefert eine weitere, integralfreie Darstellung des Restglieds, 
+  die sogenannte \slanted{Lagrange-Form} für das Restglied.
+  \index{Lagrange@\textsc{Lagrange}, Joseph-Louis (1736-1813)}
+  \AntEnd
+\end{antwort}
+
+%% Question 7
+\begin{frage}\index{Taylor'sche Formel!qualitative}
+  Was besagt die \bold{qualitative Taylor-Formel} 
+  für eine $n$-mal stetig differenzierbare 
+  Funktion $f\fd M \to \RR$?
+\end{frage}
+
+\begin{antwort}
+  Unter Benutzung der Lagrange-Form lässt sich das Restglied 
+  $R_{n+1}$ noch in der Form   
+  \[
+  R_{n+1}(x)= 
+  f(x)-T_n f(x;a)=
+  \frac{(x-a)^n}{n!} \big( f^{(n)}( \xi_x ) - f^{(n)} (a) \big) 
+  := (x-a)^n \cdot r(x)
+  \]
+  mit einem $\xi_x \in \open{a,x}$ und einer stetigen 
+  Funktion $r$ schreiben. Für $r$ gilt wegen der
+  Stetigkeit von $f^{(n)}$ dann $\lim_{x\to a} r(x)=0$. 
+
+  Die qualitative Taylor'sche Formel drückt das Restglied 
+  in der Taylorapproximation bezüglich der 
+  Existenz einer derartigen Funktion $r$ aus. 
+  Sie besagt: 
+
+  \medskip
+  \noindent\satz{Ist $f\fd M \to \RR$ $n$-mal stetig differenzierbar, 
+    so gibt es eine stetige Abbildung $r\fd M\to \RR$ mit $r(a)=0$ und
+    \[
+    \boxed{f(x)= T_n f(x;a)+(x-a)^n \cdot r(x).}
+    \]}
+
+  \medskip\noindent
+  Für das Restglied $R_{n+1}(x)$ bedeutet das, dass es 
+  für $x\to a$ schneller gegen null geht als $(x-a)^n$. 
+  Mit dem Landau-Symbols "`$o$"' 
+  lässt sich dieser Sachverhalt in der suggestiven Form
+  \[
+  \boxed{f(x)=T_n f (x;a)+ o \big( (x-a)^n \big)\qquad\text{für $x\to a$}}
+  \]
+  ausdrücken.\index{Landau-Symbol}
+  \AntEnd
+\end{antwort}
+
+%% Question 8
+\begin{frage}
+  Berechnen Sie für die Exponentialfunktion 
+  die Taylorpolynome vom Grad $n=1,2,3,4$ 
+  im Entwicklungspunkt $a=0$. 
+  Skizzieren Sie ihren Graphen.
+\end{frage}
+
+
+\picskip{7}
+\begin{antwort}
+  Für die Koeffizienten der Taylorpolynome gilt 
+  $a_k = \frac{\exp^{(k)}(0)}{k!}= \frac{1}{k!}$. 
+  Die Polynome lauten also\\[1.5mm]
+  \hspace*{0.5cm}$\dis T_1(x) = 1+x,$ \\[1.5mm]
+  \hspace*{0.5cm}$\dis T_2(x) = 1+x+\frac{x^2}{2},$\\[1.5mm]
+  \hspace*{0.5cm}$\dis T_3(x) = 1+x+\frac{x^2}{2}+\frac{x^3}{6},$ \\[1.5mm]
+  \hspace*{0.5cm}$\dis T_4(x) = 1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}.$
+  \hspace*{1cm}\proofsymbol
+
+  Abbildung \ref{fig:06_taylor_exp} zeigt die Graphen der vier Polynome.
+
+  \begin{center}
+    \includegraphics{mp/06_taylor_exp}
+    \captionof{figure}{Die ersten vier Taylorapproximationen zur Exponentialfunktion im
+      Nullpunkt.}
+    \label{fig:06_taylor_exp}
+  \end{center}
+
+\end{antwort}
+
+%% Question 9
+\begin{frage}
+  Berechnen Sie die Taylorpolynome $T_1$, $T_3$, $T_5$, $T_7$ 
+  von $\sin$ zum Entwicklungspunkt $c=0$ und skizzieren 
+  Sie deren Graphen im Intervall $[-2\pi,2\pi]$.
+\end{frage}
+
+\begin{antwort}
+  Die Koeffizienten der Taylorpolynome 
+  im Nullpunkt berechnen sich zu 
+  \[
+  a_{2k} = \frac{\sin^{(2k)}(0)}{(2k)!} = 0, \qquad
+  a_{2k+1} = \frac{\sin^{(2k+1)}(0)}{(2k+1)!} = \frac{(-1)^k}{(2k+1)!}. 
+  \]
+  Damit folgt allgemein
+  \[
+  T_{2n+1}(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k+1)!} x^{2k+1}, 
+  \]
+  also zum Beispiel
+  \begin{equation}
+    T_7 (x) = x-\frac{x^3}{6}+\frac{x^5}{120}-\frac{x^7}{5\,040}.
+   \end{equation}
+
+  \begin{center}
+    \includegraphics{mp/06_taylor_sin}
+    \captionof{figure}{Die Taylorpolynome $T_1$, $T_3$, $T_5$ und $T_7$ zur 
+      Sinusfunktion im Nullpunkt.}
+    \label{fig:06_taylor_sin}
+  \end{center}
+
+  Abbildung \ref{fig:06_taylor_exp} zeigt die Graphen der vier Polynome.
+  \AntEnd
+\end{antwort}
+
+%% Question 10
+\begin{frage}
+  Können Sie die Abschätzung 
+  \[
+  \left| \cos x- \sum_{k=0}^N (-1)^k \frac{x^{2k}}{(2k)!} \right|
+  \le \frac{|x|^{2N+2}}{(2N+2)!}
+  \]
+  begründen?
+\end{frage}
+
+\begin{antwort}
+  Die Summe von $0$ bis $N$ in den Betragsstrichen 
+  links ist das $2N$-te Taylorpolynom des Cosinus zum 
+  Entwicklungspunkt $0$. Dieses ist gleich dem 
+  $2N+1$-ten Taylorpolynom zu diesem Entwicklungspunkt, 
+  da die ungeraden Koeffizienten verschwinden. 
+  Die linke Seite der Gleichung ist somit 
+  gleich dem Betrag des Restglieds $R_{2N+2}(x)$ 
+  in der Taylorformel des Cosinus zum Entwicklungspunkt $0$. 
+  Mit der Formel ($R$) gilt für ein $\xi \in (0,x)$ 
+  \[
+  \left| \cos x- \sum_{k=0}^N (-1)^k \frac{x^{2k}}{(2k)!} \right|
+  = \left| \frac{\cos^{(2N+2)}( \xi )}{(2N+2)!} x^{2N+2} \right|.
+  \]
+  Wegen $|\cos^{(2N+2)}(\xi)|=|\pm\cos(\xi)|\le 1$ folgt daraus die 
+  zu beweisende Abschätzung. \AntEnd 
+\end{antwort}
+
+%% Question 11
+\begin{frage}\index{Taylorreihe}
+  Ist $M\subset \RR$ ein echtes Intervall $a\subset M$ 
+  und $f\in \calli{C}^\infty(M)$. Was versteht man unter 
+  der Taylorreihe von $f$ zum Entwicklungspunkt $a$?
+\end{frage}
+
+\begin{antwort}
+  Die Taylorreihe $Tf(x;a)$ \nomenclature{$Tf(x;a)$}{Taylorreihe von $f$ im Entwicklungspunkt $a$}
+  ist die Folge der Taylorpolynome 
+  $T_n f(x;a)$. Formal schreibt man
+  \begin{equation}
+    Tf(x;a) = \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!} (x-a)^k.
+    \EndTag
+  \end{equation}  
+\end{antwort}
+
+%% Question 12
+\begin{frage}
+  Als Potenzreihe konvergiert eine Taylorreihe trivialerweise 
+  stets für den Entwicklungspunkt $x=a$. 
+  Geben Sie ein Beispiel für eine Taylorreihe an, die 
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] 
+      einen endlichen Konvergenzradius hat, obwohl die dargestellte 
+      Funktion auf ganz $\RR$ definiert ist.
+    \item[\desc{b}] 
+      zwar überall konvergiert, 
+      die Funktion $f$ aber trotzdem nicht überall darstellt. 
+    \end{itemize}}
+  Gibt es auch Taylorreihen, die außer in ihrem Entwicklungspunkt nirgends 
+  konvergieren?
+\end{frage}
+
+\begin{antwort}
+  \desc{a} Die Funktion $f(x)=\frac{1}{1+x^2}$ 
+  ist auf ganz $\RR$ definiert, ihre Taylorreihe
+  \[
+  Tf(x,0)=1-x^2 + x^4 - x^6 \pm \cdots
+  \]
+  konvergiert aber nur für $|x| < 1$.
+
+  \medskip
+  \noindent
+  \desc{b} Ein Beispiel für den zweiten Fall bietet die Funktion 
+  \[
+  g(x) := \left\{ \begin{array}{ll} 
+      \exp(-1/x) & \text{für $x>0$} \\
+      0          & \text{für $x\le 0$}. 
+    \end{array} \right.
+  \]
+  Induktiv lässt sich leicht zeigen, dass $f$ 
+  unendlich oft differenzierbar ist und dass 
+  $g^{(k)}(0)=0$ für alle $k\in \NN$ gilt. 
+  Die Taylorreihe von $g$ um den Nullpunkt konvergiert 
+  also auf ganz $\RR$ gegen die Nullfunktion. 
+  Für positive $x$ ist diese aber verschieden von $g$, 
+  \sieheAbbildung\ref{fig:06_taylor_f}.
+
+  \begin{center}
+    \includegraphics{mp/06_taylor_f}
+    \captionof{figure}{Die Taylorreihe von $g$ konvergiert in einer Umgebung des     Nullpunkts nicht gegen $g$.}
+    \label{fig:06_taylor_f}
+  \end{center}
+
+  Die unter \desc{a} und \desc{b} 
+  vorgestellten Phänomene treten im Übrigen 
+  nur im Reellen auf und werden völlig verständlich, 
+  sobald man die Funktionen als Funktionen komplexer Variablen betrachtet. 
+  Die Funktion $f$ besitzt dann nämlich einen Pol bei $\pm \i$, 
+  während $g$ als komplexe Funktion im Nullpunkt 
+  noch nicht einmal stetig ist. 
+
+  Es gibt auch Taylorreihen, die außer im Entwicklungspunkt 
+  nirgends konvergieren. Nach einem Theorem von Borel 
+  \index{Borel@\textsc{Borel}, Emile (1871-1956)}
+  existiert zu einer 
+  beliebigen Folge $(c_n)$ reeller Zahlen eine $\calli{C}^\infty$-Funktion 
+  $f$ mit $f^{(n)}(0)=c_n$ (s. \citep{Kaballo}). 
+  Diese Funktion lässt sich in jedem Fall 
+  auch mittels eines konstruktiven Verfahrens finden und in einer 
+  Reihendarstellung angeben. Mit dieser Methode kann man also eine 
+  Funktion $f$ konstruieren, die die Eigenschaft $f^{(n)}(0)=n!^2$ 
+  besitzt. Deren Taylorreihe $Tf(x;0)=\sum k!x^k$ 
+  hat dann den Konvergenzradius $R=0$. 
+  \AntEnd 
+\end{antwort}
+
+%% Question 13
+\begin{frage}\index{Konvergenz!einer Taylorreihe}
+  \index{Taylorreihe!Konvergenz}
+  Können Sie ein notwendiges und hinreichendes Kriterium dafür nennen, 
+  dass die Taylorreihe einer Funktion $f\in \calli{C}^\infty(M)$ zum 
+  Entwicklungspunkt $a\in M$ konvergiert und 
+  für alle $x\in M$ die Funktion darstellt?
+\end{frage}
+
+\begin{antwort}
+  Die Taylorreihe $Tf(x;a)$ 
+  konvergiert genau dann auf $M$ und stellt dort die Funktion $f$ dar, 
+  wenn die Folge der Reste $R_n(x) = f(x)-T_nf(x;a)$ 
+  für alle $x\in M$ eine Nullfolge ist. 
+  \AntEnd
+\end{antwort}
+
+%% Question 14
+\begin{frage}
+  Hat die Taylorreihe $T f(x;0)$ einer $\calli{C}^\infty$-Funktion $f$ 
+  einen positiven Konvergenzradius $r$, dann konvergiert sie sicher im 
+  offenen Intervall $\open{-r,r}$. Konvergiert sie auch noch 
+  für $x=r$ (bzw. $x=-r$), so gilt für die dargestellte Funktion nach dem 
+  Abel'schen Grenzwertsatz \index{Abelscher_Grenzwertsatz@Abel'scher Grenzwertsatz}
+  \[
+  f(r) := \lim_{x\uparrow r} f(x)=\sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!} x^k.
+  \]
+  Ein analoger Zusammenhang gilt für $x\!\downarrow\!-r$.  
+  Können Sie die Formeln 
+  \[
+  \text{\desc{a}}\quad
+  \frac{\pi}{4} = \arctan 1 = 1-\frac{1}{3}+\frac{1}{5} - \frac{1}{7}\pm \cdots,
+  \qquad\text{\desc{b}}\quad
+  \log 2 = 1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4} \pm \cdots
+  \]
+  begründen?
+\end{frage} 
+
+\begin{antwort}
+  \desc{a} Für $|x|<1$ gilt 
+  $\arctan'(x)=\frac{1}{1+x^2} = 1-x^2+x^4-x^6 \pm \cdots$. 
+  Da diese Reihe für $|x|<1$ gleichmäßig konvergiert, 
+  darf sie gliedweise integriert werden, und das liefert
+  \[
+  \arctan x = \sum_{k=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1} + C.
+  \]
+  Durch Einsetzen von $x=0$ 
+  bestimmt man $C=0$. 
+  Die Potenzreihenentwicklung des Arcus-Tangens lautet also   
+  \[
+  \arctan x = \sum_{k=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1} = 
+  x-\frac{x^3}{3} +  \frac{x^5}{5} - \frac{x^7}{7} \pm \cdots
+  \qquad |x|<1. 
+  \]
+  Die Reihe konvergiert aber auch noch für $x=1$. 
+  Nach dem Abel'schen Grenzwertsatz kann man daraus auf auf die bemerkenswerte 
+  Leibniz'sche Formel\index{Leibnizsche@Leibniz'sche Formel} 
+  \[
+  \boxed{
+    \arctan 1 = \frac{\pi}{4} = 
+    1-\frac{1}{3}+\frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots 
+    = 0.785398163397448\ldots
+  }
+  \]
+  schließen. 
+
+  \medskip\noindent
+  \desc{b} Analog kann man beim Beweis der zweiten Formel vorgehen. 
+  Ausgehend von 
+  \[
+  \log' (1+x)= \frac{1}{1+x} = 1- x + x^2 
+  - x^3 + \cdots 
+  \quad\text{für $|x|<1$}
+  \]
+  kommt man durch gliedweise Integration 
+  und Bestimmung der Integrationskonstanten durch Einsetzen eines 
+  speziellen Funktionswertes auf
+  \[
+  \log(1+x)=x-\frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots
+  \quad\text{für $|x|<1$}.
+  \]
+  Da diese Reihe aber auch noch für $x=1$ konvergiert, 
+  gilt die Identität auch noch in diesem Fall. Daraus folgt die 
+  Reihendarstellung für $\log 2$. \AntEnd
+\end{antwort}
+
+\section{Fixpunktiteration und Newton-Verfahren}
+
+Ist $f$ eine nichtlineare Funktion, so ist die 
+exakte Angabe der Nullstellen von $f$, 
+also der Punkte $x_0 \in D(f)$ mit 
+$f(x_0)=0$, im Allgemeinen ein schwieriges Problem.  
+Mithilfe des Newton-Verfahrens lässt sich unter bestimmten 
+Differenzierbarkeitsvoraussetzungen an $f$ jedoch stets eine gegen 
+$x_0$ konvergente Folge in $D(f)$ angeben, die die 
+annäherungsweise Bestimmung der Nullstellen mit einer beliebigen 
+Genauigkeit ermöglicht. Das Problem der Nullstellenbestimmung 
+ist eng verwandt mit dem Problem, zu einer Funktion $g$ 
+eventuelle Fixpunkte mit $x_0$ mit $g(x_0)=x_0$ zu bestimmen. 
+Wir beginnen daher mit der Untersuchung von Fixpunktproblemen. 
+
+Ist $f\fd [a,b] \to \RR$ eine stetige Funktion mit $f(a)<0$ und $f(b)>0$, dann 
+hat $f$ nach dem Zwischenwertsatz (vgl. \ref{03_zwi}) eine Nullstelle $\xi$ im offenen 
+Intervall $(a,b)$. Um diese genauer zu bestimmen, kann man das Intervall halbieren 
+und den Punkt $x_0 = \frac{a+b}{2}$ betrachten. Ist $f(x_0)=0$, dann hat man eine 
+Nullstelle gefunden. Ist jedoch $f(x_0) \not=0$, so kann man die Intervalle 
+$\open{a,x_0}$ bzw. $\open{x_0, b}$ betrachten. 
+In einem dieser beiden Intervalle muss eine Nullstelle von $f$ liegen. 
+Man halbiert nun diese Intervalle und betrachtet die Funktionswerte in den 
+Mittelpunkten. Auf diese Weise erhält man zwei Folgen 
+$(a_n)$ und $(b_n)$ mit 
+\begin{itemize}
+\item[\desc{1}] $[a_{n},b_{n}] \subset [a_{n-1}, b_{n-1}]$ für $n\ge 1$.
+\item[\desc{2}] $b_n-a_n = \frac{1}{2^n} (b-a)$
+\item[\desc{3}] $f(b_n) \le 0$, $f(a_n) \ge 0$
+\end{itemize}
+Die Folge $(a_n)$ ist monoton wachsend und nach oben beschränkt, die Folge $(b_n)$ 
+ist monoton fallend und nach unten beschränkt, sie sind also konvergent und 
+wegen (2) gilt $\lim_{n\to\infty} a_n = \lim_{n\to\infty} b_n =: \xi$. 
+Nach den Rechenregeln für konvergente Folgen und der Stetigkeit von $f$ folgt 
+$\lim_{n\to\infty} a_n = \lim_{n\to\infty} b_n = f(\xi) = 0$.  
+
+Diese Intervallschachtelungsmethode zur Nullstellenbestimmung konvergiert aber 
+im Allgemeinen sehr langsam. Eine viel effektivere Methode erhält man unter der 
+Zusatzvoraussetzung, dass $f$ stetig differenzierbar ist. Diese Methode ist das 
+klassische Newtonverfahren, dessen Prinzip uns schon in Frage~\ref{02_fqua}
+begegnet ist. 
+
+
+
+
+%% Question 15
+\begin{frage}\index{kontrahierende Selbstabbildung}\index{Kontraktion}
+  Ist $X$ ein metrischer Raum und $A\subset X$ eine abgeschlossene 
+  Teilmenge, was versteht man unter einer 
+  \bold{kontrahierenden Selbstabbildung} $f\fd A\to X$?
+\end{frage}
+
+\begin{antwort}
+  
+  Die Funktion 
+  $f\fd A\to X$ ist eine \slanted{kontrahierende Selbstabbildung}, 
+  wenn sie die folgenden beiden Eigenschaften besitzt:
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] Für alle $x\in A$ ist 
+      $f(x) \in A$ (anders ausgedrückt: $f(A) \subset A$)\\[-3.5mm]
+    \item[\desc{ii}] $f$ ist eine \bold{Kontraktion}, {\dasheisst} es gibt 
+      ein $q \in \RR$ mit $0\le q <1$, sodass  für alle $x,y\in A$ gilt
+      \begin{equation}
+        d\big( f(x), f(y) \big) \le q\cdot d(x,y) .
+        \EndTag
+      \end{equation}
+    \end{itemize}}
+\end{antwort}
+
+%% Question 16
+\begin{frage}\label{06_banach}
+  \index{Banachscher Fixpunksatz@Banach\sch er Fixpunktsatz} 
+  \index{Fixpunkt!Iterationsverfahren}
+  Können Sie den folgenden Spezialfall des 
+  \bold{Banach'schen Fixpunktsatzes} beweisen?
+
+  \medskip
+  \noindent
+  Sei $A\subset \CC$ eine nichtleere abgeschlossene Teilmenge und 
+  $f\fd A\to \CC$ eine kontrahierende Selbstabbildung. Dann gilt 
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] $f$ besitzt genau einen Fixpunkt, es gibt also genau 
+      ein $\xi \in [a,b]$ mit $f(\xi)=\xi$.\\[-3.5mm]
+    \item[\desc{b}] Für \slanted{jeden} "`Startwert"' $x_0 \in A$ konvergiert die 
+      durch $x_{n+1}=f(x_n)$ rekursiv definierte Folge $(x_n)$ gegen $\xi$.
+    \end{itemize}}
+\end{frage}
+
+\begin{antwort}
+  Für den Abstand zweier aufeinanderfolgender 
+  Glieder gilt wegen \desc{ii}
+  \[
+  | x_{k+1} - x_k | \le q | x_k - x_{k-1} | 
+  \le q^2 | x_{k-1} - x_{k-2} | \le 
+  \cdots \le q^k | x_1-x_0 |.
+  \]
+  Daraus folgt für beliebige $m,n\in \NN$ mit $m>n$
+  \begin{align}
+    | x_{m+1} - x_n | &\le | x_{m+1} - x_{m} | + | x_{m} - x_{m-1} | + 
+    \cdots | x_{n+1} - x_n | \notag \\
+    &\le 
+    ( q^m + \cdots + q^n ) | x_1 - x_0 | =   
+    q^n \frac{1-q^{m+1}}{1-q} | x_1-x_0 | \asttag \\
+    &\le q^n | x_1-x_0 |. \notag
+  \end{align}
+  Wegen $q<1$ konvergiert die rechte Seite dieser Ungleichung 
+  für $n\to \infty$ gegen $0$. Das zeigt, dass $(x_n)$ eine 
+  Cauchy-Folge ist und konvergiert. 
+  Für den Grenzwert $\xi$ der Folge muss wegen $x_{n+1}=f(x_n)$ 
+  und der Stetigkeit von $f$ dann notwendigerweise $\xi=f(\xi)$ gelten.  
+  Somit ist $\xi$ ein Fixpunkt von $f$; dies ist der einzige, denn 
+  wäre $\eta \not= \xi$ ein weiterer Fixpunkt, der Widerspruch 
+  $| \eta - \xi | = | f(\eta) - f(\xi) | < | \eta-\xi |$ folgen. \AntEnd  
+\end{antwort} 
+
+%% Question 17
+\begin{frage}
+  Können Sie zeigen, dass 
+  für die Fixpunktiteration aus Frage \ref{06_banach} 
+  die folgenden Fehlerabschätzungen gelten:
+  \[
+  |x_n-\xi | \le \frac{q^n}{1-q} |x_1 - x_0 |, \qquad
+  |x_n-\xi | \le \frac{q}{1-q} |x_n - x_{n-1} |.
+  \]
+\end{frage}
+
+\begin{antwort}
+  
+  Die erste Abschätzung folgt für 
+  $m \to \infty$ aus ($\ast$), die zweite lässt sich 
+  durch Betrachtung der Folge mit dem Startwert 
+  $x_{n-1}$ auf die erste zurückführen.  
+  \AntEnd
+\end{antwort}
+
+%% Question 18
+\begin{frage}
+  Warum ist das obige Verfahren relativ unabhängig gegen Rundungsfehler 
+  und Fehlerfortpflanzung?
+\end{frage}
+
+\begin{antwort}
+  Jedes Glied der Folge kann als Startwert einer neuen Iteration 
+  angesehen werden. Die Fehler im $n-1$-ten Schritt 
+  haben daher keinen Einfluss auf das Verhalten der Iteration 
+  im $n$-ten Schritt. Mit anderen Worten, Fehler pflanzen sich 
+  nicht fort und können den Ausgang der Iteration nicht verändern, 
+  höchstens verzögern. 
+  \AntEnd 
+\end{antwort}
+
+%% Question 19
+\begin{frage}
+  Ist $[a,b]$ ein kompaktes Intervall und $f\fd [a,b]\to[a,b]$ 
+  stetig differenzierbar mit $\| f' \| < 1$. Begründen Sie, 
+  warum $f$ dann eine Kontraktion ist.
+\end{frage}
+
+\begin{antwort}
+  $f$ ist eine Selbstabbildung, und nach  
+  dem Schrankensatz aus Frage \ref{06_schr} gilt für beliebige 
+  Punkte $x,y \in\RR$ 
+  \[
+  | f(x)-f(y) | \le \| f' \| \cdot |x-y|.
+  \]
+  Daraus folgt die Behauptung. \AntEnd
+\end{antwort}
+
+%% Question 20
+\begin{frage} 
+  Ist $f \fd [a,b] \to [a,b]$ $p$-mal stetig differenzierbar mit 
+  \[
+  f'(\xi)=\cdots = f^{(p-1)}(\xi)=0,  
+  \quad\text{aber $f^{(p)} ( \xi ) \not=0$,}
+  \] 
+  dann gilt $|x_{n+1}-\xi| \le C| x_n - \xi | ^p$ mit einer 
+  geeigneten Konstanten $C>0$. Können Sie das begründen? 
+  (Man sagt in diesem Fall, die Folge $(x_n)$ hat die 
+  \bold{Konvergenzordnung} $p$.)
+\end{frage}
+
+\begin{antwort}
+  Die Taylorformel mit Lagrange'schem Restglied liefert 
+  für $f$ die Darstellung 
+  \[
+  f(x) = f(\xi)+\frac{f^{(p)}(\eta)}{ p! } (x-\xi)^p 
+  \]
+  mit einer Zahl $\eta$ zwischen $x$ und $\xi$. 
+  Mit $C:=\frac{1}{p!}\cdot \| f^{(p)} \|$ 
+  folgt die Behauptung.
+  \AntEnd 
+\end{antwort}
+
+%% Question 21
+\begin{frage}
+  Können Sie ein Beispiel einer Abbildung $f\fd \RR\to \RR$ 
+  angeben, die den Fixpunkt $\xi=1$ besitzt, aber keine 
+  Kontraktion ist. 
+\end{frage}
+
+\begin{antwort}
+  Zum Beispiel besitzen alle Funktionen $x^n$ mit 
+  beliebigem $n\in \NN$ einen Fixpunkt bei $x=1$, sind 
+  aber keine Kontraktionen, auch nicht bezüglich 
+  eines beliebigen kompakten Intervalls $I$ mit 
+  $1\in I$.
+  \AntEnd  
+\end{antwort}
+
+%% Question 22
+\begin{frage}
+  Wie kann man sich im Fall $f\fd [a,b] \to [a,b]$ den Ablauf der 
+  Iteration $x_{n+1}:=f(x_n)$ grafisch veranschaulichen?
+\end{frage}
+
+\begin{antwort}
+  Die Punkte $P_n:=\big(x_n,f(x_n)\big)$ auf dem Graphen 
+  von $f$ stehen so in Beziehung zueinander, dass die 
+  $x$-Koordinate von $P_{n+1}$ gerade der $y$-Koordinate 
+  von $P_n$ entspricht. Grafisch lassen sich die Punkte 
+  somit nach dem Algorithmus
+  \[
+  P_n = ( x, f(x_n) )  \ra 
+  ( f(x_n), f(x_n) \big)  \ra
+  \big( f(x_n), f(f(x_n)) \big) = P_{n+1}
+  \]
+  bestimmen, der in \Abb\ref{fig:06_banach1} veranschaulicht wird. 
+
+  \begin{center}
+    \includegraphics{mp/06_banach1}
+    \captionof{figure}{Geometrische Veranschaulichung des Fixpunktalgorithmus.}
+    \label{fig:06_banach1}
+  \end{center}
+
+  \noindent
+  Die beiden ersten Abbildungen 
+  zeigen Kontraktionen und die erwartungsgemäße Konvergenz 
+  der Folge. Die Folge in der dritten Abbildung 
+  divergiert, da die dargestellte Funktion 
+  keine Kontraktion ist. \AntEnd
+\end{antwort}
+
+%% Question 23
+\begin{frage}\index{Fixpunkt!anziehender, abstoßender}
+  Wann heißt ein Fixpunkt einer $\calli{C}^1$-Abbildung 
+  \bold{anziehend}, wann heißt er \bold{abstoßend}? Geben Sie jeweils 
+  ein Beispiel.
+\end{frage}
+
+\begin{antwort}
+  Ein Fixpunkt $\xi$ heißt \slanted{anziehend}, falls
+  $|f'(\xi)|<1$ und \slanted{abstoßend}, falls 
+  $|f'(\xi)|>1$ gilt, vergleiche dazu die Abbildungen \ref{fig:06_anziehend} 
+  und \ref{fig:06_banach1}. 
+  Die ersten beiden 
+  zeigen anziehende Fixpunkte, die letzte einen 
+  abstoßenden Fixpunkt. Daraus wird auch die Bezeichnung 
+  verständlich.
+
+  \begin{center}
+    \includegraphics{mp/06_anziehend}
+    \captionof{figure}{Ein Fixpunkt einer Funktion ist anziehend oder abstoßend, 
+      je nachdem, ob die Ableitung von $f$ an der entsprechenden Stelle 
+      größer oder kleiner als 1 ist.}
+    \label{fig:06_anziehend}
+  \end{center}
+
+  Die Funktionen $f(x):=x^2$ und 
+  $g(x):=\frac{x^2}{3}$ besitzen beide einen Fixpunkt bei $x=1$. Wegen 
+  $f'(1)=2>1$ und $g'(1)=2/3<1$ handelt es sich im ersten Fall um einen 
+  abstoßenden, im zweiten um einen anziehenden Fixpunkt. 
+  \AntEnd
+\end{antwort}
+
+%% Question 24
+\begin{frage}
+  Warum gibt es zu einem anziehenden 
+  Fixpunkt $\xi$ ein offenes Intervall $M$ mit $\xi \in M$, 
+  sodass gilt: Für \bold{jeden} 
+  Startwert $x_0\in M$ liegen alle Glieder $(x_n)$ mit 
+  $x_{n+1}=f(x_n)$ ebenfalls in $M$, und es ist 
+  $\lim_{n\to\infty} x_n = \xi$?
+\end{frage}
+
+\begin{antwort}
+  Wegen $|f'(\xi)|<1$ existiert aus Stetigkeitsgründen 
+  ein offenenes Intervall $I:=\open{\xi-\delta, \xi+\delta}$ mit 
+  $|f'(x)|\le q<1$ für alle $x\in I$. 
+  Zu einem beliebig vorgegebenen Punkt $x_0 \in I$ wähle man 
+  $\eta<\delta$ so, dass $x_0$ in dem abgeschlossenen 
+  Intervall $A:=[\xi-\eta, \xi+\eta]$ liegt. Aufgrund des Schrankensatzes 
+  gilt dann
+  \[
+  | f(x)-f(y) | \le q \cdot |x-y| \quad\text{für alle $x,y\in A$}
+  \]
+  Wegen $f(\xi)=\xi$ folgt daraus $f(A)\subset A$. 
+  Die Abbildung $f |_A  $ ist also eine kontrahierende 
+  Selbstabbildung, und nach Frage \ref{06_banach} enthält
+  $A\subset I$ alle Folgenglieder $x_n$.  
+  Mit $M:=I$ folgt die Behauptung.  
+  \AntEnd
+\end{antwort}  
+
+%% Question 25
+\begin{frage}
+  Warum gibt es zu einem abstoßenden Fixpunkt $\xi$ ein offenes 
+  Intervall $M$ mit $\xi \in M$, sodass gilt: 
+  Für \bold{keinen} Startwert $x_0\in M$ liegen alle Glieder $(x_n)$ mit 
+  $x_{n+1}=f(x_n)$ in $M$? Geben Sie ein Beispiel.
+\end{frage}
+
+\begin{antwort}
+  Es gibt unter den Voraussetzungen ein Intervall
+  $I:=\ropen{\xi-\delta, \xi+\delta}$, 
+  sodass $|f'(x)|\ge L > 1$ für alle $x\in I$ gilt. 
+  Angenommen, für einen Startwert $x_0\in I$ 
+  lägen alle Iterationsglieder $x_n$ in $M$. 
+  Mit dem Mittelwertsatz der 
+  Differenzialrechnung ergäbe sich daraus
+  \[
+  | f(\xi) - x_n | \ge L\cdot | \xi - x_{n-1} | \ge 
+  L^2 \cdot | \xi - x_{n-2} | > \cdots > L^n \cdot | \xi - x_0 |.
+  \]
+  Der Widerspruch folgt hieraus wegen $L>1$, 
+  also $L^n \to \infty$ für $n\to \infty$. 
+  Damit ist gezeigt, dass $I$ die 
+  in der Frage verlangten Eigenschaften besitzt.
+  \AntEnd 
+\end{antwort}
+
+%% Question 26
+\begin{frage}\label{07_newtondef}\index{Newton-Verfahren}\index{Newton}
+  Erläutern Sie -- auch anhand einer Grafik -- kurz die Vorgehensweise 
+  beim Newton-Verfahren.
+\end{frage}
+
+\begin{antwort}
+  Die Grundidee des Newton-Verfahrens lässt sich schön  
+  geometrisch beschreiben. Wir nehmen an, 
+  $f$ ist wie in der Abbildung \ref{fig:06_newton}.  
+  konvex, streng monoton und besitzt eine Nullstelle 
+  $\xi\in [a,b]$. Für 
+  einen Punkt $x_0>\xi$ betrachten wir die Tangente 
+  $T_0$ an den Punkt $\big(x_0,f(x_0) \big)$. 
+  Diese besitzt die Gleichung 
+  \[
+  T_0(x) = f(x_0)+f'(x_0)\cdot (x-x_0 ),
+  \]
+  und ihr Schnittpunkt $x_1$ mit der $x$-Achse ist gegeben durch 
+  \[
+  x_1 =  x_0 - \frac{f(x_0)}{f'(x_0)}. \quad\text{falls $f'(x_0)\not=0$.}
+  \]
+
+  \begin{center}
+    \includegraphics{mp/06_newton}
+    \captionof{figure}{Die ersten zwei Iterationsschritte beim Newton-Verfahren für eine 
+      konvexe Funktion.}
+    \label{fig:06_newton}
+  \end{center}
+
+  Es ist anschaulich evident, dass unter den gegebenen  
+  Voraussetzungen $x_1$ zwischen $\xi$ und $x_0$ 
+  liegt und damit eine bessere Annäherung an 
+  $\xi$ darstellt. Eine wiederholte Anwendung derselben 
+  Methode auf $x_1$ wird eine noch bessere Approximation $x_2$ 
+  liefern etc. Durch die Rekursionsgleichung 
+  \begin{equation}
+    \boxed{
+      x_{k+1} := N(x_k) := x_k - \frac{f(x_k)}{f'(x_k)} }
+    \asttag
+  \end{equation}
+  wird also eine Folge $(x_k)$ definiert 
+  (die strenge Monotonie impliziert $f'\not=0$), 
+  die für $k\to\infty$ gegen die Nullstelle $\xi$ 
+  von $f$ konvergieren sollte. 
+
+  Diese Methode zur Approximation einer Nullstelle von $f$ nennt man 
+  \slanted{Newton}-Verfahren. Man kann sich an einigen Skizzen 
+  schnell deutlich machen, dass die Konvergenz der Folge 
+  an bestimmte Voraussetzungen gebunden ist, was 
+  die Gestalt des Graphen angeht. 
+  Die Iteration funktioniert im Allgemeinen nicht für 
+  jeden Startwert, wenn $f$ in $[a,b]$ zum Beispiel 
+  einen Extremwert oder eine Wendestelle hat. 
+
+  Die Folge $(x_k)$ wird in den folgenden Fragen näher untersucht.
+  \AntEnd 
+\end{antwort}
+
+
+%% Question 27
+\begin{frage}\label{07_newtondef}\index{Newton-Verfahren}\index{Newton}
+  Können Sie die Grundidee des Newton-Verfahrens anhand der Funktion $f$, 
+  deren Graph in der Abbildung \ref{fig:06_newton} gezeigt ist, erläutern? 
+
+  Welche zentralen Fragen lassen sich hinsichtlich der 
+  Güte des Verfahrens formulieren?
+\end{frage}
+
+\begin{antwort}
+  Die Idee ist, für einen Punkt $x_0\in \open{a,b}$ die Tangente an den 
+  Graphen von $f$ im Punkt $\open{x_0,f(x_0)}$ zu betrachten. Diese ist eine 
+  affin-lineare Funktion mit der Gleichung
+  \[
+  T(x) = f(x_0) + f'(x_0) (x-x_0).
+  \]
+  Ihr Schnittpunkt $x_1$ mit der reellen Achse berechnet sich zu 
+  $x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}$ (falls $f'(x_0) \not=0$). Man nimmt 
+  nun $x_1$ als neue Näherung und iteriert das Verfahren. 
+  
+  Auf diese Weise erhält man eine Folge $(x_k)$ mit 
+  \[
+  x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}\quad (k \in \NN_0),
+  \]
+  vorausgesetzt natürlich, dass $f'(x_0) \not=0$ für alle $k$ gilt. 
+
+  Zur Abkürzung setzen wir 
+  \[
+  \boxed{N(x_k) := x_{k+1} := x_k - \frac{f(x_k)}{f'(x_k)} \quad (k\in \NN_0).}
+  \]
+  und nennen $N(x_0)$ die zu $(x_k)$ gehörige Newton-Folge. 
+
+  Wegen $N(\xi)=\xi \Leftrightarrow f(\xi)=0$ is die Bestimmung einer 
+  Nullstelle von $f$ damit äquivalent zur  
+  Bestimmung eines Fixpunktes von $N$. 
+
+  \medskip
+  \noindent
+  Es ergeben sich sofort folgende Fragen:
+  \begin{itemize}
+  \item Unter welchen Voraussetzungen existiert eine Newton-Folge?
+  \item Unter welchen Voraussetzungen konvergiert die Newton-Folge gegen 
+    eine Nullstelle von $f$?
+  \item Wie schnell konvergiert die Folge gegebenenfalls?
+  \item Gibt es effektive Fehlerabschätzungen?
+  \end{itemize}   
+  Die Antwort auf folgende Frage gibt Einblick in die genannten Probleme. \AntEnd 
+\end{antwort}
+
+
+\begin{frage}\label{q:newton-verfahren-beweis}
+  Können Sie folgende Aussage über das \textbf{Newton-Verfahren} beweisen? 
+
+  \medskip
+  Die stetig differenzierbare Funktion $f\fd [a,b] \to \RR$ habe im 
+  offenen Intervall $\open{a,b}$ eine Nullstelle $\xi$. Es sei 
+  \begin{align*}
+    m &:= \min\{ |f'(x_0)| ; a\le x \le b\} \quad\text{und} \\
+    M &:= \max\{ |f''(x_0)| ; a\le x \le b\} .
+  \end{align*}
+  Sei ferner $\varrho>0$ so gewählt, dass gilt: 
+  \[
+  q:=\frac{M}{2m}\varrho<1 \text{ und }
+  \overline{U}_{\varrho} (\xi) := \{ x\in\RR ;  |x-\xi| \le \varrho \} 
+  \subset [a,b].
+  \]
+  Dann liegen für \slanted{jeden} Startwert $x_0\in \overline{U}_{\varrho} (\xi)$ die Glieder $x_k$ 
+  der Newton-Folge für alle $k\in \NN_0$ in $\overline{U}_{\varrho} (\xi)$.
+
+  \medskip
+  \noindent
+  Die Folge $(x_k)$ konvergiert \slanted{quadratisch} gegen die Nullstelle 
+  $\xi$ von $f$ in $[a,b]$, \dasheisst 
+  \[
+  |x_{k+1}-\xi| \le \frac{M}{2m} | x_k-\xi |^2 \quad (k\in \NN_0).
+  \]
+  Genauer gelten die Abschätzungen
+  \begin{equation}
+  \left| x_k - \xi \right| \le \frac{2m}{M} q^{(2^k)}, \quad k\in\NN_0.\tag{1}
+  \end{equation}
+  und 
+  \begin{equation}
+  \left| x_k-\xi \right| \le \frac{1}{m} \left| f(x_k) \right| \le 
+  \frac{M}{2m} \left| x_k-x_{k-1} \right|^2. 
+  \tag{2}
+\end{equation}
+\end{frage}
+
+\begin{antwort}
+  Der Beweis erfordert einigen Aufwand. Es werden der Mittelwertsatz der 
+  Differentialrechnung (Frage~\ref{q:mittelwertsatz-der-differenzialrechnung}) 
+  und die Taylor'sche Formel mit Integralrestglied 
+  (Frage~\ref{q:taylor-formel-mit-integralrestglied}) benutzt. 
+  benutzt.
+
+  Die Abschätzung (1) nennt man in der Numerik eine a-priori-Abschätzung, weil 
+  sie ohne weitere Rechnung gilt. Die Abschätzung (2) nennt man eine 
+  a-posteriori-Abschätzung, weil sie erst nach einigen Rechnungen feststeht. 
+
+  Wir zeigen zunächst mit Induktion, dass alle Newton-Iterierte im Intervall 
+  $\overline{U}_\varrho (x)$ liegen. Wir nehmen an, dass für alle $j$ mit 
+  $0\le j\le k$ gilt: $x_k \in \overline{U}_\varrho (x_0)$. Aufgrund der 
+  Taylorformel mit Integralrestglied (Frage~\ref{q:taylor-formel-mit-integralrestglied}) gilt dann:
+  \[
+  0 = f(\xi) = f(x_k) + f'(x_k) (\xi-x_k) + \int_{x_k}^{\xi} f''(t) (\xi-t) \dift. 
+  \]
+  Setzt man in der \glqq Tangentengleichung\grqq 
+  \[
+  T(x) = f(x_k) + f'(x_k) (x-x_k) 
+  \]
+  zur Bestimmung ihrer Nullstelle $x=x_{k+1}$ ein und subtrahiert 
+  die Gleichung 
+  \[
+  0 = f(x_k) + f'(x_k) (x_{k+1} - x_k)
+  \]
+  von der obigen Gleichung, so folgt
+  \[
+  0 = f'(x_k) (x_{k+1}-\xi) +
+  \int_{x_k}^{\xi} f'(t) (\xi-t) \dift
+  \]
+  und damit auch
+  \[
+  x_{k+1}-\xi = \frac{1}{f'(x_0)} \int_{x_k}^{\xi} f''(t) (\xi-t) \dift,
+  \]
+  und hieraus ergibt sich
+  \[
+  |x_{k+1}-\xi| \le \frac{M} {2m} |x_k-\xi|^2.
+  \]
+  Weiter erhält man 
+  \[
+  |x_{k+1} - \xi | \le \frac{M}{2m} 
+  \left| x_k-\xi \right|^2 \le q \left| x_k-\xi \right| < \left| x_k-\xi \right| \le 
+  q,
+  \]
+  also liegen alle Newton-Iterierte $x_k$ im abgeschlossenen Intervall 
+  $\overline{U}_\varrho (\xi) = \left[\xi-\varrho, \xi+\varrho \right]$.
+    
+  Mit der Taylorformel mit Integralrestglied zum Entwicklungspunkt 
+  $x_{k-1}$ ergibt sich
+  \begin{align*}
+    f(x_k) &= \underbrace{f(x_{k-1}) + f'(x_{k-1}) (x_k-x_{k-1})}_{=0} 
+    + \int_{x_{k-1}}^{x_k} f''(t) (x_k -t ) ^2 \dift \\
+    &=\int_{x_{k-1}}^{x_k} f''(t) (x_k-t)^2 \dift.
+  \end{align*}
+  Hieraus folgt nun
+  \[
+  \left| f(x_k) \right| \le \frac{M}{2m} \left| x_k-x_{k-1} \right|^2
+  \]
+  und schließlich
+  \[
+  \left| x_k-\xi \right| \le \frac{\left| f(x_k) \right|}{m} \le 
+  \frac{M}{2m} \left| x_k-x_{k-1} \right|^2 .
+  \]
+  Damit sind alle Behauptungen aus der Frage bewiesen.
+
+
+  \medskip
+  \noindent
+  Bemerkung: 
+  \begin{itemize}
+    \item Für eine zweimal stetig differenzierbare Funktion $f$ 
+      existiert zu jeder einfachen Nullstelle $\xi$ stets eine 
+      (möglicherweise sehr kleine) Umgebung $\overline{U}_\varrho(\xi)$, für 
+      welche die Voraussetzungen der Frage erfüllt sind.
+      
+      Die Kunst in der Anwendung des Newton-Verfahrens besteht also darin, 
+      einen Startpunkt $x_0$ im \glqq Einzugsbereich\grqq\ der Nullstellen
+      zu bestimmen. Hat man einen geeigneten Startpunkt gefunden, so 
+      konvergiert das Newtonverfahren \glqq blitzartig\grqq\ gegen die 
+      Nullstelle $\xi$.
+
+      Ist $q\le \frac12$, so gilt \zB nach nur zehn Iterationsschritten 
+      (beachte $2^{10} = 1\,024 \sim 1\,000$) bereits
+      \[
+      \left| x_k-\xi \right| \le \frac{2m}{M} q^{1\,000} \sim 
+      \frac{2m}{M} 10^{-300}.
+      \]
+      Die in vorausgesetzte \slanted{Existenz} einer 
+      Nullstelle kann häufig mit Hilfe des Zwischenwertsatzes gesichert werden. 
+      Einen geeigneten Startwert $x_0$ kann man sich häufig mit Hilfe des 
+      Intervallhalbierungsverfahrens verschaffen. 
+
+      Liegt $x_0$ nicht nahe genug bei $\xi$, kann die Newton-Folge divergieren, 
+      vgl. \Abb~\ref{fig:06_arctan}.
+    \item Auch im Fall einer mehrfachen Nullstelle, etwa einer $p$-fachen Nullstelle 
+      ($f(\xi)=f'(\xi)=\ldots=f^{(p-1)}(\xi) = 0$, $f^{(p)} \not=0$) 
+      liegt häufig Konvergenz vor (dabei sei $\calli{C}^{p+1} \left([a,b]\right)$. 
+      Man betrachte dazu das Beispiel $f\fd \RR\to\RR$ mit $f(x)=x^p$ und $\xi=0$ 
+      (Hier liegt keine quadratische Konvergenz vor). 
+      Betrachtet man dagegen die modifizierte Newtonfolge 
+      \[
+      x_{k+1} = x_k - p \frac{f(x_k)}{f'(x_k)}
+      \]
+      so liegt für geeignete Startwerte wieder quadratische Konvergenz vor. 
+    \item Auch komplexe Nullstellen können mit Hilfe des Newtonverfahrens 
+      berechnet werden, schließlich werden bei der Bildung der Newtonfolge 
+      $N(x_k) = x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$ nur 
+      Körperoperationen verwendet. 
+      Ist \zB\ $p\fd\CC\to\CC$ ein Polynom mit $\grad p > 1$, so konvergiert 
+      die Newton-Folge
+      \[
+      z_{k+1} = z_k - \frac{p(z_k)}{p'(z_k)}, 
+      \]
+      (sogar quadratisch) gegen eine Nullstelle von $p$, falls der 
+      Startwert $z_0$ hinreichend nahe bei einer solchen gewählt wurde.
+
+      Man betrachte dazu das Polynom $p\fd\CC\to\CC$, $z\mapsto z^2+1$
+      und dem Startwert $z_0 = \frac12 + \i$. Die Newton-Folge 
+      konvergiert hier quadratisch gegen die (offensichtliche) Nullstelle 
+      $\xi=i$. 
+
+      Die Einzugsbereiche der Nullstellen können im Komplexen bizarre 
+      geometrische Gebilde sein (Mandelbrotmenge). 
+      
+    \item Ein häufig auftretender Fall ist, dass der Graph von $f$ eine 
+      der folgenden beiden Gestalten hat:
+
+      Wegen $m= \min\{ \left| f'(x_0) \right|; x\in[a,b] \}>0$ hat  
+      $f'$ auf $[a,b]$ konstantes Vorzeichen. Ändert auch $f''$ sein Vorzeichen 
+      nicht auf $[a,b]$, so liegen diese Fälle vor. Hat $\frac{f''}{f'}$ 
+      das gleiche Vorzeichen wie $x_0-\xi$, so folgt aus $\frac{M}{2m} \varrho <1$ 
+      \[
+      x_k - \xi = \frac{1}{f'(x_0)} \int_{x_k}^{\xi} f''(t) (\xi-t) \dift
+      \]
+      schon $x_k \in [x_0,\xi]$ oder $x_k \in [\xi,x_0]$ für alle $k$. 
+      Dann konvergiert die Folge $(x_k)$ monoton gegen $\xi$ und die Voraussetzung 
+      \[
+      \overline{U}_\varrho(\xi) = [\xi-\varrho, \xi+\varrho] \subset [a,b]
+      \]
+      ist überflüssig. 
+    \item
+      Auf vielen Rechnern wird die $p$-te Wurzel einer positiven Zahl $c$ 
+      berechnet, indem das Newton-Verfahren auf die Funktion 
+      \[
+      f\fd \ropen{0,\infty} \to \RR, \quad x\mapsto x^p-c 
+      \]
+      berechnet. Wegen $f(0) = -c <0$ und $f(b)>0$ für $b = 1+c$ 
+      hat $f$ eine Nullstelle $\xi$ in $[0,b]$ mit $\xi=\sqrt[p]{c}$. 
+    \end{itemize}
+  \end{antwort}
+
+
+
+
+  %% Question 30
+  \begin{frage}
+    Bei der Anwendung des Newton-Verfahrens wird die Existenz einer 
+    Nullstelle vorausgesetzt. Mit welchem Argument könnte 
+    man zuerst versuchen zu zeigen, dass eine Nullstelle existiert? 
+  \end{frage} 
+
+  \begin{antwort}
+    
+    Der Nachweis gelingt in vielen Fällen 
+    mithilfe des Zwischenwertsatzes. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 31
+  \begin{frage}\index{Newton-Verfahren!Konvergenzordnung}
+    Welche Konvergenzordnung hat die Newton-Folge $(x_n)$, wenn man 
+    das Newton-Verfahren mit einem Startwert $x_0>0$ zur Bestimmung der 
+    offensichtlichen Nullstelle $\xi=0$ von $f(x)=x^p$ mit $p\in \NN$, 
+    $p\ge 2$ anwendet?
+  \end{frage}
+
+  \begin{antwort}
+    
+    Wegen $\dis x_{n+1} = x_n - 
+    \frac{x_n^p}{px_n^{p-1}}
+    =\left(1-\frac{1}{p} \right) x_n$ 
+    liegt hier nur lineare Konvergenz vor.
+    (Man beachte, dass in diesem Fall $f'(\xi)=0$ gilt und die Voraussetzungen 
+    aus Frage \ref{q:newton-verfahren-beweis} nicht erfüllt sind.) 
+    \AntEnd 
+  \end{antwort}
+
+  %% Question 32
+  \begin{frage}
+    Welche Rekursionsformel erhält man zur Nullstellenberechnung 
+    bei der Funktion $f \fd \RR_+ \to \RR; \quad x\mapsto x^p-a$ mit 
+    $a>0$, $p\in \NN$, $p\ge2$? Welche Formel erhält man im 
+    Spezialfall $p=2$?
+  \end{frage}
+
+  \begin{antwort}
+    Die Rekursionsgleichung führt im allgemeinen Fall auf die 
+    Formel 
+    \[
+    x_{n+1} = x - \frac{x_n^p-a}{px_n^{p-1}} = 
+    \frac{p-1}{p} \left( x_n + \frac{a}{(p-1)x_n^{p-1} } \right).
+    \]
+    Für $n=2$ ist das gerade die Rekursionsformel 
+    $x_{n+1}= \frac{1}{2} \left( x_n + \frac{a}{x_n} \right)$, 
+    die in Frage \ref{02_quaf} bereits  als Rekursionsfolge zur Approximation 
+    von $\sqrt{a}$ untersucht wurde. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 33
+  \begin{frage}
+    Begründen Sie, warum man im Fall $p=a=2$ mit dem Startwert 
+    $x_0=2$ bereits nach sechs Iterationsschritten $36$ exakte 
+    Dezimalstellen erhält?
+  \end{frage}
+
+  \begin{antwort}
+    
+    Mit den Ergebnissen und Bezeichnungen aus Frage 
+    \ref{q:newton-verfahren-beweis} erhält man für den Fehler $| x_n-\xi |$ nach der 
+    $n$-ten Iteration allgemein
+    \[
+    | x_n - \xi | 
+    \le  C |x_{n-1}-\xi|^2 
+    \le  C^{1+2} |x_{n-2}-\xi|^{2\cdot 2} 
+    \le \cdots \le 
+    C^{1+2+\cdots+(n-1)} 
+    |x_{1}-\xi|^{2^{n-1}}.
+    \]
+    Für $N(x)=\frac{1}{2}\left( x- \frac{2}{x} \right)$ hat man 
+    nach Frage \ref{q:newton-verfahren-beweis} 
+    die Schranke $C = \| N'' \|_{[\sqrt{2},2]}=\frac{1}{\sqrt{2}}$ zur 
+    Verfügung. Der Fehler nach der ersten Iteration 
+    beträgt $|x_1 - \xi| = |1.5-\sqrt{2}| < 0.085$. 
+    Damit ergibt sich für den Fehler nach sechs Schritten
+    \[
+    | x_6 - \xi | \le \left( \frac{1}{\sqrt{2}} \right)^{15} 0.085^{32} 
+    \approx 0.1^{36.52}.
+    \]
+    Nach zwei weiteren Schritten verkleinert sich der Fehler auf 
+    \[ 
+    | x_8 - \xi | \le \left( \frac{1}{\sqrt{2}} \right)^3 | x_6-\xi |^4 
+    \approx 0.1^{4\cdot 36.52+0.45}.
+    \]
+    Der Fehler ist nach nur acht Iterationen
+    also bis auf die 146-te 
+    Dezimalstelle nach dem Komma geschrumpft.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 34
+  \begin{frage}
+    Wieso sind Nullstellen- und Fixpunktprobleme äquivalente Probleme?
+  \end{frage}
+
+  \begin{antwort}
+    
+    Das Problem, für eine Funktion $f$ die Fixpunktgleichung $f(x)=x$ 
+    zu lösen, ist gleichbedeutend damit, die Nullstelle der Funktion 
+    $f(x)-x$ zu bestimmen. Ebenso entspricht dem Nullstellenproblem $f(x)=0$ 
+    die Fixpunktgleichung $g(x)=x$ mit $g(x):=f(x)+x$. 
+    Nullstellen- und Fixpunktprobleme sind also äquivalente Fragestellungen. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 35
+  \begin{frage}
+    Wie unterscheiden sich das allgemeine Verfahren der 
+    Fixpunktiteration und das Newton-Verfahren bezüglich der Wahl des 
+    Startwerts $x_0$?
+  \end{frage}
+
+  \begin{antwort}
+    Beim allgemeinen Verfahren der Fixpunktiteration konvergiert die 
+    Folge $(x_n)$ für \slanted{jede} Wahl des Startwerts, 
+    während es beim Newton-Verfahren auf die geschickte Wahl des Startwerts 
+    ankommt, da die Folge andernfalls divergieren kann. 
+
+    \begin{center}
+      \includegraphics{mp/06_arctan}
+      \captionof{figure}{Das Newton-Verfahren kann für bestimmte Startwerte 
+        eine divergente Folge liefern, während das allgemeine Fixpunktverfahren
+        für jeden Startwert konvergiert.}
+      \label{fig:06_arctan}
+    \end{center}
+
+    Die Abbildung~\ref{fig:06_arctan} 
+    illustriert den Unterschied am Beispiel der Funktion 
+    $f(x)=\arctan x$ und dem Startwert $x_0=2$. 
+    \AntEnd 
+  \end{antwort}
+
+  \section{Interpolation und einfache Quadraturformeln}
+
+  Wie die Beispiele in der Antwort zu Frage \ref{06_elementf} zeigen, kann 
+  es für spezielle stetige Funktionen vorkommen, dass man keine 
+  Stammfunktion unter den "`elementaren"' Funktionen findet. Das Integral einer 
+  solchen Funktion $f\fd [a,b] \to \RR$ kann man aber aufgrund der 
+  Integraldefinition immer approximativ berechnen. Dazu konstruiert man eine 
+  Treppenfunktion $t$ auch $[a,b]$ mit $\n{ f-t }_\infty < \frac{\eps}{b-a}$. 
+  Dann gilt für die Integrale die Abschätzung $|I(f)-I(t)| <\eps$. Das 
+  Integral $I(t)$ kann durch eine \slanted{endliche} Anzahl an Multiplikationen 
+  und Additionen berechnet werden. Hierbei ist jedoch i.\,A. der 
+  Rechenaufwand sehr groß.  
+
+  Eine gewisse Verallgemeinerung 
+  dieser Idee besteht darin, den Integranden durch 
+  Näherungsfunktionen einer allgemeineren Klasse von 
+  "`einfacheren"' Funktionen zu ersetzen. Dafür bieten sich speziell 
+  Polynome an, deren Eigenschaften gut bekannt sind, 
+  Dieses Vorgehen 
+  führt auf allgemeine Methoden zur \slanted{numerischen Integration}, 
+  etwa die \slanted{Sehnen-Trapezregel} oder die 
+  \slanted{Kepler\sch e Fassregel}.  
+
+  \index{Lagrange@\textsc{Lagrange}, Joseph-Louis (1736-1813)}
+  %% Question 36
+  \begin{frage}\index{Lagrange\sch e Polynome}\index{Interpolation}
+    Wie sind die \bold{Lagrange\sch en Polynome} definiert, und wie 
+    kann man mit ihnen die  \bold{Lagrange\sch e Interpolationsaufgabe} 
+    lösen?
+  \end{frage} 
+
+  \begin{antwort}
+    Gegeben seien $n+1$ Paare $(x_0,y_0),\ldots, (x_n,y_n)$ 
+    reeller oder komplexer Zahlen, wobei die $x_j$ paarweise verschieden sind. 
+    Es geht um die Aufgabe, ein Polynom $L_n$ 
+    vom Grad $\le n$ zu finden, das durch diese Punkte verläuft, für das also 
+    $L_n(x_i) = y_i$ für $i=0,\ldots, n$ gilt. Dazu definiert man 
+    das \slanted{$k$-te Lagrange\sch e Polynom $n$-ten Grades} durch 
+    \[
+    \ell_k (x) = \prod_{\substack{i=0 \\ i \not=k }}^n 
+    \frac{x-x_i}{x_k - x_i}.
+    \]
+    Es gilt dann 
+    \[
+    \ell_k (x_j) = \delta_{kj} = \left\{ \begin{array}{ll} 
+        1 & \text{für $k=j$} \\
+        0 & \text{für $k\not=j$},
+      \end{array} \right. 
+    \]
+    und daher ist mit dem \slanted{$n$-ten Lagrange\sch en Interpolationspolynom}
+    \[
+    L_n (x) := y_0 \ell_0 (x) + \cdots y_n \ell_n (x)
+    \]
+    eine Lösung der Interpolationsaufgabe gefunden. 
+    Diese Lösung ist eindeutig bestimmt, denn für jedes andere Polynom $p(x)$ 
+    vom Grad $n$, welches die Interpolationsaufgabe löst, ist $L_n(x)-p(x)$ 
+    ein Polynom vom Grad $\le n$, das $n+1$ Nullstellen besitzt und 
+    daher konstant null sein muss. \AntEnd
+  \end{antwort}
+
+  %% Question 37
+  \begin{frage}\index{Newton-Polynome}
+    \index{Newton@\textsc{Newton}, Isaac (1643-1727)}
+    Wie sind die \bold{Newton-Polynome} zur Lösung der Interpolationsaufgabe 
+    definiert? Welcher Vorteil besitzt diese Definition gegenüber der 
+    mit den Lagrange\sch en Polynomen?
+  \end{frage}
+
+  \begin{antwort}
+    Bei der Newton\sch en Herangehensweise 
+    schreibt man das gesuchte Polynom in der Form 
+    \[
+    N(x) := c_0 + c_1( x-x_0 ) + c_2 (x-x_0) (x-x_1) + \cdots + 
+    c_n( x-x_0)(x-x_1) \cdots (x-x_n).
+    \]
+    Das Einsetzen der Interpolationspunkte führt auf ein 
+    eindeutig lösbares lineares Gleichungssystem in den Koeffizienten $c_i$. 
+    \begin{align*}
+      y_0 &= c_0 \\
+      y_1 &= c_0 + c_1(x_1-x_0) \\
+      y_2 &= c_0 + c_1(x_2-x_0) + c_2 (x_2-x_0)(x_2-x_1) \\
+      \vdots & \\
+      y_n &= c_0 + c_1(x_n-x_0) + c_2 (x_n-x_0)(x_n-x_1) + \cdots 
+      + c_n (x_n-x_0)\cdots (x_n-x_{n-1}).
+    \end{align*}
+    Das Gleichungssystem lässt sich bequem 
+    rekursiv lösen, indem man die bis zur $k$-ten Gleichung 
+    bestimmten Koeffizienten in die $k+1$-te einsetzt. 
+
+    Dieser Ansatz hat gegenüber der Interpolation mit Lagrange\sch en Polynomen 
+    den Vorteil, dass durch Hinzufügen eines weiteren Interpolationspunktes 
+    die Koeffizienten $c_0,\ldots, c_n$ unverändert erhalten bleiben. 
+    Dagegen müssen alle $n$ Lagrange\sch en Polynome 
+    $\ell_k (x)$ in diesem Fall neu berechnet werden.  
+    \AntEnd
+  \end{antwort}
+
+  %% Question 38
+  \begin{frage}\index{Interpolationsfehler}\label{06_interpolationsfehler}
+    Wie lässt sich für eine $\calli{C}^{n+1}$-Funktion 
+    $f\fd [a,b] \to\RR$ der \slanted{Interpolationsfehler} 
+    $| f(x)-L_n(x) |$ abschätzen,  
+    wobei bezeichnet $L_n(x)$ das $n$-te Lagrange\sch e 
+    Interpolationspolynom zu $f$  bezüglich der 
+    $n+1$ Stützstellen $a=x_0 <x_1< \ldots< x_n =b$ ist? 
+  \end{frage}
+
+  \begin{antwort}
+    Für einen beliebigen von $x_0, \ldots, x_n$ verschiedenen Punkt 
+    $x \in [a,b]$ betrachte man die Funktion
+    \[
+    \Phi(t) := f(t)-L_n(t) - 
+    \frac{ (t-x_0) (t-x_1) \cdots (t-x_n) }{ (x-x_0)(x-x_1) \cdots (x-x_n ) }
+    \bigl( f(x) - L_n(x) \bigr). 
+    \]
+    $\Phi$ hat dann die $n+2$ Nullstellen $x, x_0, \ldots, x_{n+1}$. 
+    Nach dem Satz von Rolle hat $\Phi'$ damit mindestens 
+    $n+1$ Nullstellen in $[a,b]$ und folglich $\Phi''$ 
+    mindestens $n$ und somit $\Phi'''$ mindestens $n-1$ Stück usw.
+    Auf diese Weise fortfahrend schließt man, dass 
+    die $(n+1)$-te Ableitung 
+    \[
+    \Phi^{(n+1)}(t) := f^{(n+1)}(t) - 
+    \frac{ (n+1)! }{ (x-x_0) (x-x_1) \cdots (x-x_n) }
+    \bigl( f(x) - L_n(x) \bigr) 
+    \]
+    an mindestens einer Stelle $\xi \in [a,b]$ verschwinden muss, sodass 
+    also gilt
+    \[
+    f(x) - L_n (x) = \frac{(x-x_0) \cdots (x-x_n)}{ (n+1)! } f^{(n+1)}( \xi ).
+    \]
+    Daraus folgt die Abschätzung  
+    \[
+    \boxed{
+      \left| f(x) - L_n (x) \right|  
+      \le \frac{(b-a)^{n+1}}{ (n+1)! } \nb{f^{(n+1)}}_{[a,b]}.
+    }
+    \]
+    Diese Abschätzung 
+    lässt sich bei Bedarf durch eine genauere Untersuchung 
+    der Extremwerte des Polynoms 
+    $(x-x_0) \cdots (x-x_n)$ noch verfeinern. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 39
+  \begin{frage}\label{06_elementf}\index{elementare Funktion}
+    Kennen Sie ein Beispiel einer Funktion $f$, deren Stammfunktion 
+    $F(x) := \int f(t) \dift$ zu einer "`höheren"' Funktionenklasse als 
+    $f$ gehört bzw. überhaupt nicht durch elementare Funktionen in 
+    geschlossener Form ausgedrückt werden kann?
+  \end{frage}
+
+  \begin{antwort}
+    
+    Das Standardbeispiel wäre $\log(x) = \int \frac{1}{x}\difx$. 
+    Hier ist der Integrand eine rationale Funktion, während die Stammfunktion 
+    nicht durch rationale Funktionen dargestellt werden kann.
+
+    Auf einer höheren Stufe findet man die Beispiele
+    \[
+    \int e^{-t^2} \dift, \quad 
+    \int \frac{e^t}{t} \dift, \quad 
+    \int \frac{\sin t}{t} \dift, \quad 
+    \int \frac{1}{\log t}\dift.
+    \]
+    Diese Funktionen treten in den verschiedensten Bereichen auf ganz natürliche 
+    Weise in Erscheinung, können aber nicht durch "`elementare"' Funktionen 
+    in geschlossener Form dargestellt werden. 
+    \AntEnd 
+  \end{antwort} 
+
+  %% Question 40
+  \begin{frage}
+    \index{Kepler\sch e Fassregel}
+    \index{Kepler@\textsc{Kepler}, Johannes (1571-1630)}
+    \index{Sehnen-Trapezregel}
+    \index{Trapezregel}
+    \index{Simpson-Regel}
+    \index{Drei@$\frac{3}{8}$-Regel}
+    \index{Mittelpunktregel}
+    \index{numerische Integration}
+    Was besagen   
+    \begin{itemize}[1mm]
+    \item[\desc{a}] die \bold{Trapez-Regel} (auch Sehnen-Trapezregel),\\[-3mm]
+    \item[\desc{b}] die \bold{Kepler\sch e Fassregel} (auch Simpson-Regel),\\[-3mm]
+    \item[\desc{c}] die \bold{$\mathbf{\frac{3}{8}}$-Regel}?
+    \end{itemize}
+  \end{frage}
+
+  \begin{antwort}
+    Bei allen drei Regeln handelt es sich um numerische Methoden 
+    zur annäherungsweisen Berechnung eines Integrals 
+    $\int_a^b f(t) \dift$. Das allen drei zugrunde liegende 
+    allgemeine Prinzip besteht darin, den Integranden $f$ durch 
+    das Lagrange\sch es Interpolationspolynom $L_n$ zu den Stützstellen 
+    $n+1$ Stützstellen $x_0=a < x_1<  \ldots< x_n=b$ 
+    zu ersetzen. Dies führt auf 
+    \[
+    \int_a^b f(x)\difx = \int_a^b L_n(x) \difx + R_n = 
+    \sum_{k=0}^n f(x_k) \int_a^b \ell_k (x) \difx + R_n. 
+    \]
+    Ist $f\in \calli{C}^{n+1} ([a,b])$, so hat man  
+    für den Fehler $R_n$ mit dem Ergebnis 
+    aus Frage \ref{06_interpolationsfehler} die grobe 
+    Abschätzung 
+    \[
+    R_n \le \frac{(b-a)^{n+2}}{(n+1)!} \nnb{f^{(n+1)}}_{[a,b]}. 
+    \asttag
+    \]
+    Im Fall \slanted{äquidistanter Stützstellen} führt 
+    {\astref} auf die sogenannten \slanted{Newton-Cotes}-Formeln. 
+    Die Sehnentrapez-Regel, die Kepler\sch e Fassregel 
+    und die $3/8$-Regel sind Spezialfälle davon. 
+    Bei der Sehnentrapez-Regel ersetzt man den Integranden 
+    durch das erste Interpolationspolynom zu $f$ bezüglich d
+    er Stützstellen $a$ und $b$ (also einfach durch die lineare 
+    Funktion durch die Punkte $\bigl( a, f(a) \bigr)$ und 
+    $\bigl( b, f(b) \bigr )$. Das führt auf 
+    \begin{equation} \boxed{
+        \int_a^b f(x) \difx = \frac{f(b)-f(a)}{2} (b-a) + R_{ST}.
+      }
+      \tag{ST}
+    \end{equation} 
+    Ersetzt man den Integranden durch 
+    das quadratische Interpolationspolynom bezüglich der 
+    äquidistanten Stützstellen $a$, $\frac{a+b}{2}$ und $b$, so liefert  
+    eine direkte (wenn auch mühselige) Rechnung die 
+    \slanted{Kepler\sch e Fassregel} 
+    \begin{equation}
+      \boxed{
+        \int_a^b f(x) \difx = \frac{b-a}{6} 
+        \left( f(a)+4f\left( \frac{a+b}{2} \right) + f(b) \right) + R_{KF}.
+      }
+      \tag{KF}
+    \end{equation}
+    Analog erhält man die $3/8$-Regel durch Integration des 
+    kubischen Interpolationspolynoms bezüglich der 
+    äquidistanten Stützstellen $a$, $x_1:=\frac{2a+b}{3}$, 
+    $x_2:=\frac{a+2b}{3}$ und $b$. Dies führt auf 
+    \begin{equation}
+      \boxed{
+        \int_a^b f(x) \difx = \frac{b-a}{8} 
+        \bigl( f(a)+3f\left( x_1\right) +
+        3f\left( x_2\right) +
+        f(b) \bigr) + R_{3/8}.}
+      \tag{$3/8$}
+    \end{equation}
+
+    \begin{center}
+      \begin{minipage}{\textwidth}
+        \includegraphics{mp/06_newton_cotes3}\quad
+        \includegraphics{mp/06_newton_cotes1}\quad
+        \includegraphics{mp/06_newton_cotes2}
+      \end{minipage}
+      \captionof{figure}{Numerische Approximation eines Integrals 
+        durch ein lineares, quadratisches bzw. kubisches Annäherungspolynom.} 
+      \label{fig:06_newton_cotes}
+    \end{center}
+
+    Abbildung \ref{fig:06_newton_cotes} veranschaulicht die drei Fälle.
+
+    \noindent
+    Durch eine genauere Untersuchung des Interpolationsfehlers lassen 
+    sich speziellere Fehlerabschätzungen als {\astref} finden. 
+    Man erhält etwa unter entsprechenden Differenzierbarkeitsvoraussetzungen  
+    \begin{equation}
+      |R_{ST}| \le \frac{(b-a)^3}{12} \nnb{f''}, \quad
+      |R_{KF}| \le \frac{(b-a)^5}{2880} \nnb{f^{(4)}}, \quad
+      |R_{3/8}| \le \frac{(b-a)^5}{6480} \nnb{f^{(4)}}.
+      \notag
+    \end{equation} 
+    Hieraus wird auch deutlich, dass die Genauigkeit 
+    der Methoden beträchtlich steigt, wenn man über Teilintervalle 
+    von $[a,b]$ integriert und die Ergebnisse anschließend summiert. \AntEnd
+  \end{antwort}
+
+  %% Question 41
+  \begin{frage}
+    Warum wird bei der Kepler\sch en Fassregel auch ein Polynom vom Grad 
+    $3$ exakt integriert?
+  \end{frage}
+
+  \begin{antwort}
+    
+    Das gilt zumindest für das Polynom  
+    $p(x) := \left( x-\frac{a+b}{2} \right)^3$, was man durch Einsetzen 
+    in die Formel unmittelbar erkennen kann. 
+    Daraus folgt aber auch schon der allgemeine Fall, da sich jedes 
+    kubische Polynom in der Form 
+    \[
+    \alpha_3 \left( x-\tfrac{a+b}{2} \right)^3 + 
+    \alpha_2 x^2 + 
+    \alpha_1 x + 
+    \alpha_0
+    \]
+    schreiben lässt. Setzt man das in die Formel ein, dann kürzt sich der 
+    Term mit der dritten Potenz weg und übrig bleibt die Formel für ein 
+    quadratisches Polynom, das mit der Kepler\sch en Fassregel 
+    freilich exakt integriert wird.\AntEnd 
+  \end{antwort}  
+
+
+
+
+  \section{Uneigentliche Integrale, $\Gamma$-Funktion} 
+
+  Sowohl bei der Definition des Integrals für Regelfunktionen als 
+  auch bei der Definition des Riemann-Integrals war wesentlich, dass das 
+  Integrationsintervall $M:=[a,b]$ \slanted{kompakt} war. Die 
+  wichtige Integralabschätzung $|I(f)| \le (b-a)\cdot \|f\|$ hat sonst keinen 
+  Sinn.
+
+  Durch naheliegende Grenzübergänge kann man nun die Integraldefinition 
+  erweitern, und zwar für den Fall, dass das Integrationsintervall nicht 
+  kompakt ist, als auch für den Fall, dass die zu integrierende Funktion in 
+  einer Umgebung eines Punktes nicht beschränkt ist. 
+  Auch die Kombination dieser Möglichkeiten kommt vor, 
+  ein typisches Beispiel ist die 
+  $\Gamma$-Funktion, die nach Euler durch 
+  ein im doppelten Sinne uneigentliches Integral definiert wird. Wegen 
+  $\Gamma(n+1)=n\Gamma(n)$ interpoliert die $\Gamma$-Funktion (genauer: 
+  $\Gamma(x+1)=x\Gamma(x)$) die Fakultät. 
+
+
+  %% Question 42
+  \begin{frage}
+    \label{q:8_41}
+    Man betrachte den "`Zwickel"' $Z$ aus Abbildung \ref{fig:06_zwickel}, 
+    definiert durch  
+    $$Z:=\left\{ (x,y)\in \RR\times\RR \sets \, x\ge 1, \; 0\le y \le 
+      \frac{1}{x^2} \right\}.$$ 
+    Warum kann man die Zahl $1$ als den Flächeninhalt von $Z$ definieren?
+  \end{frage}
+
+  \begin{antwort}
+    Schneidet man den "`Zwickel"' bei $x=R>1$ ab, so erhält man für den 
+    Flächeninhalt des gestutzten Objekts
+    \[
+    F(R) := \int_1^R \frac{1}{x^2} \difx = \frac{-1}{R}+1 = \frac{R-1}{R}.
+    \]
+    Diese Gleichung gilt für jedes $R>0$. Für $R\to\infty$ folgt daraus die 
+    Behauptung. \AntEnd
+
+    \begin{center}
+      \includegraphics{mp/06_zwickel}
+      \captionof{figure}{Die Menge $Z$ aus Frage \ref{q:8_41}}
+      \label{fig:06_zwickel}
+    \end{center}
+
+  \end{antwort}
+
+  %% Question 43
+  \begin{frage}\index{lokal integrierbar}
+    Ist $M\subset \RR$ ein beliebiges nichtleeres echtes Intervall. Wann 
+    heißt eine Funktion $f\fd M\to\RR$ \bold{lokal integrierbar}?
+  \end{frage}
+
+  \begin{antwort}
+    Die Funktion heißt lokal integrierbar, wenn die Einschränkung von 
+    $f$ auf jedes kompakte Intervall $[a,b]\subset M$ integrierbar ist 
+    (im Sinne des Regel- oder Riemann-Integrals). 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 44
+  \begin{frage}\index{uneigentlich integrierbar}\index{Integral!uneigentliches}
+    Sei $M:=[a,\infty)$.   
+    Was bedeutet die Aussage: $f$ ist \bold{uneigentlich integrierbar}, und 
+    das uneigentliche Integral von $f$ auf $M$ existiert (konvergiert)?
+  \end{frage}
+
+  \begin{antwort}
+    Die Funktion ist uneigentlich integrierbar genau dann, wenn $f$ auf 
+    $M$ lokal integrierbar ist. 
+    Das uneigentliche Integral existiert, wenn der Grenzwert 
+    \[
+    \boxed{
+      \int_a^\infty f(t) \dift = \lim_{x\uparrow \infty} \int_a^x f(t) \dift 
+    }
+    \] 
+    existiert. \AntEnd
+  \end{antwort}
+
+  %% Question 45
+  \begin{frage}\index{Cauchy-Kriterium!für uneigentliche Integrale}
+    Wie lautet das Cauchy-Kriterium für die Existenz eines uneigentlichen 
+    Integrals $\int_a^\infty f(t)\dift$?
+  \end{frage}
+
+  \begin{antwort}
+    Das Kriterium besagt: 
+
+    \medskip
+    \noindent\satz{Das Integral $\int_a^\infty f \dift $ 
+      existiert genau dann, wenn 
+      zu jedem $\eps>0$ eine Stelle $S>a$ existiert, 
+      sodass  die Ungleichung  
+      \[
+      \left| \int_{s_1}^{s_2} f(t) \dift \right | < \eps 
+      \qquad\text{für alle $s_1,s_2 \in [S,\infty[$}.
+      \]
+    }
+    \noindent
+    Man beweist hier beide Richtungen 
+    mit bereits oft vorgeführten 
+    Standardmethoden. "`$\Ra$"'  
+    zeigt man mit der Dreiecksungleichung, 
+    die andere Richtung, indem man den Grenzübergang $s_2\to\infty$ vollzieht.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 46
+  \begin{frage}\label{06_ubsp}
+    Für welches $\alpha\in \RR$ existiert das uneigentliche Integral 
+    $\int_1^\infty \frac{1}{t^\alpha} \dift$ 
+    und welchen Wert hat es im Fall der Existenz? 
+  \end{frage}
+
+  \begin{antwort}
+    Für jedes $R\in [1,\infty[$ ist 
+    \[
+    \int_1^R \frac{1}{t^\alpha} \dift = \left\{ \begin{array}{ll}
+        \dis \frac{-1}{\alpha-1} \cdot \left( \frac{1}{R^{\alpha-1}}-1 \right) &  
+        \text{für $\alpha\not=1$}, \\[2mm]
+        \log R  & \text{für $\alpha=1$}
+      \end{array}\right.
+    \]
+    Das Integral konvergiert für $R\to\infty$ genau dann, wenn 
+    $\alpha-1>0$, also $\alpha>1$ ist.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 47
+  \begin{frage}\label{07_sinxdurchx}
+    Können Sie mithilfe des Cauchy-Kriteriums die Existenz des 
+    uneigentlichen Integrals $\int_1^\infty \frac{\sin t}{t}\dift$ 
+    beweisen? 
+  \end{frage}
+
+  \begin{antwort}
+    Zunächst gilt für die speziellen Integrationsintervalle 
+    zwischen zwei Nullstellen des Sinus
+    \[
+    \Int_{2k\pi}^{2(k+1)\pi} \frac{\sin t}{t} \dift \le \frac{\pi}{2k\pi} =
+    \frac{1}{2k},
+    \quad\qquad
+    \Int_{2(k+1)\pi}^{2(k+2)\pi} \frac{\sin t}{t} \dift 
+    \ge -\frac{\pi}{2(k+1)\pi}=-\frac{1}{2(k+1)}.
+    \]
+    Dieses Verhalten des Integrals auf den Teilintervallen
+    gibt einen deutlichen Fingerzeig in Richtung Leibniz-Kriterium. 
+    Für jedes $k,n\in \NN$ mit $k<n$ ist nämlich 
+    \[
+    \Int_{k\pi}^{n\pi} \frac{\sin t}{t}\dift = 
+    \sum_{j=k}^{n-1} \Int_{j\pi}^{(j+1)\pi} \frac{\sin t}{t}\dift 
+    \]
+    eine \slanted{alternierende} Summe, deren Summandenbeträge eine monoton 
+    fallende Nullfolge bilden. Nach dem Leibnizkriterium ist die Summe 
+    betragsmäßig kleiner als der Betrag des ersten Summanden, also  
+    \[
+    \left| \Int_{k\pi}^{n\pi} \frac{\sin t}{t}\dift \right| \le 
+    \left| \Int_{k\pi}^{(k+1)\pi} \frac{\sin t}{t} \dift \right| \le 
+    \frac{1}{k}
+    \]
+    Sei $k\in \NN$ und $R>k\pi$ nun beliebig vorgegeben und 
+    sei $r=R-n\pi<\pi$ der Rest von $R$ bei Division durch $\pi$. 
+    Dann gilt also 
+    \[
+    \left| \Int_{k\pi}^{R} \frac{\sin t}{t} \dift \right|
+    \le
+    \left| \sum_{j=k}^{n-1}
+      \Int_{j\pi}^{(j+1)\pi} \frac{\sin t}{t} \dift \right|
+    + \left|\Int_{n\pi}^{n\pi+r}  \frac{\sin t}{t} \dift \right| 
+    \le 
+    \frac{1}{k} + \frac{r}{n\pi} < 
+    \frac{2}{k}.
+    \]
+    Da man $k$ beliebig groß wählen kann, ergibt sich mit dem  
+    Cauchy-Kriterium hieraus die Konvergenz des Integrals. 
+    \AntEnd  
+  \end{antwort}
+
+  %% Question 48
+  \begin{frage}\index{Majorantenkriterium!für unbestimmte Integrale}
+    Wie lautet das Majorantenkriterium für ein unbestimmtes Integral 
+    $\int_a^\infty f(t)\dift$?
+  \end{frage}
+
+  \begin{antwort}
+    Das Majorantenkriterium besagt in diesem Fall: 
+
+    \medskip\noindent
+    \satz{Sind $f$ und $g$ integrierbare Funktionen auf $[a,\infty[$ mit 
+      $|f| \le g$. Existiert dann das uneigentliche  
+      Integral $\int_a^\infty g(x) \difx$, 
+      so auch das uneigentliche Integral $\int_a^\infty f(x) \difx$  
+      (\sieheAbbildung\ref{fig:06_majorante}).} 
+
+    \begin{center}
+      \includegraphics{mp/06_majorante}
+      \captionof{figure}{Existiert $\int_a^\infty g(x)\difx$ und 
+        ist $|f| \le g$ auf $[a,\infty [$, so existiert 
+        $\int_a^\infty f(x)\difx$}
+      \label{fig:06_majorante}
+    \end{center}
+
+    \noindent
+    Das Majorantenkriterium folgt sofort aus dem Cauchy-Kriterium. 
+    Unter den gegebenen Bedingungen gilt nämlich 
+    $\left| \int_{s_1}^{s_2} f \right| \le \left| \int_{s_1}^{s_2} g \right|$ 
+    für alle $s_1,s_2\in [a,\infty[$. 
+    Die rechte Seite dieser Ungleichung 
+    ist nach Voraussetzung kleiner als $\eps$, 
+    sofern $s_1$ und $s_2$  nur genügend groß gewählt sind. \AntEnd
+  \end{antwort} 
+
+  %% Question 49
+  \begin{frage}\label{06_majobsp}
+    Können Sie mit dem Majorantenkriterium zeigen, dass 
+    das Integral $\int_1^\infty t^{p} e^{-t} \dift$ für alle 
+    $p\in \RR$ konvergiert?
+  \end{frage}
+
+  \begin{antwort}
+    Es gibt eine (von $p$ abhängige) Konstante $C$ mit 
+    \[
+    t^p \le C\cdot e^{t/2} \qquad\text{für alle $t\in\ropen{1,\infty}$}.
+    \]
+    Das folgt daraus, dass nach Frage \ref{05_exwa} 
+    der Quotient $\frac{t^p}{e^{t/2}}=2^p  
+    \frac{(t/2)^p}{e^{t/2}}$ für $t\to \infty $ gegen $0$ geht, 
+    also insbesondere auf $[1,\infty[$ beschränkt ist. 
+    
+    Das uneigentliche Integral $\int_1^\infty t^p e^{-t} \dift$ hat 
+    damit in $C \int_1^\infty e^{-t/2} \dift$ eine konvergente Majorante, 
+    konvergiert nach dem Majorantenkriterium also ebenfalls.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 50
+  \begin{frage}\index{absolute Konvergenz!eines uneigentlichen Integrals}
+    Wann heißt ein uneigentliches Integral 
+    $\int_c^\infty f(t)\dift$ \bold{absolut konvergent}?
+  \end{frage}
+
+  \begin{antwort}
+    Wenn das uneigentliche Integral 
+    $\int_c^\infty | f(t) | \dift$ konvergiert.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 51
+  \begin{frage}
+    Wieso folgt aus der absoluten Konvergenz eines 
+    unbestimmten Integrals die Konvergenz?
+  \end{frage}
+
+  \begin{antwort}
+    Das folgt aus dem Cauchy-Kriterium wegen 
+    $\left| \int_{s_1}^{s_2} f  \dift \right|
+    \le  \int_{s_1}^{s_2} |f| \dift $. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 52
+  \begin{frage}\label{06_itsu}
+    Ist $f\fd [1,\infty[ \to\RR$ eine nicht negative streng monoton 
+    fallende Funktion. Können Sie zeigen, dass die Reihe 
+    $\sum_{k=1}^\infty f(k)$ genau dann konvergiert, wenn das 
+    uneigentliche Integral $\int_1^\infty f(t)\dift$ existiert?
+  \end{frage}
+
+
+  \begin{antwort}
+    Da $f$ nicht negativ ist und streng monoton fällt, gilt 
+    \[
+    0\le f(k+1) \le  \int_k^{k+1} f(t) \dift \le 
+    f(k) .
+    \]
+    Für alle $K,N\in \NN$ mit $N>K$ folgt daraus
+    \[
+    0 \le \sum_{n=K+1}^{N+1} f(k) \le 
+    \int_K^N f(t) \dift  \le \sum_{n=K}^{N} f(k).
+    \]
+
+    \begin{center}
+      \includegraphics{mp/06_integral_reihe}
+      \captionof{figure}{%
+        Bei einer nicht-negativen streng monoton fallenden Funktion
+        können die Reihe $\sum_{k=1}^\infty f(k)$ und 
+        das Integral $\int_1^\infty f(x)\difx$ durch einander 
+        abgeschätzt werden.}
+      \label{fig:06_integral_reihe}
+    \end{center}
+
+    Die Konvergenz der Summe ergibt sich aus derjenigen des Integrals 
+    nun aus der zweiten Ungleichung; die Konvergenz 
+    des Integrals wiederum ist aufgrund der dritten Ungleichung 
+    eine Konsequenz aus der Konvergenz der Summe, \sieheAbbildung\ref{fig:06_integral_reihe}. 
+    Man kann nämlich $K$ und $N$ so groß wählen, 
+    dass die jeweils rechte Seite dieser 
+    Ungleichungen kleiner als $\eps$ ist. Der Rest ergibt 
+    sich dann mit dem Cauchy-Kriterium für uneigentliche Integrale bzw. 
+    Reihen.
+    \AntEnd         
+  \end{antwort}
+
+  %% Question 53
+  \begin{frage}\index{harmonische Reihe}
+    Können Sie mit dem Ergebnis von Frage \ref{06_itsu} zeigen, 
+    dass die \bold{allgemeine harmonische Reihe} 
+    \[
+    \zeta( s ) := \sum_{k=1}^\infty \frac{1}{k^s}, \qquad s\in \RR
+    \]
+    genau dann konvergiert, wenn $s>1$ gilt?
+  \end{frage}
+
+  \begin{antwort}
+    Das Integral $\int_1^\infty x^{-s} \difx$ konvergiert nach Frage 
+    \ref{06_ubsp} genau dann, wenn $s>1$ ist. Daraus folgt mit 
+    Frage \ref{06_itsu} bereits die Konvergenz der allgemeinen harmonischen 
+    Reihe für $s>1$. Dass die Reihe für $s\le 1$ nicht konvergieren kann, 
+    ergibt sich aufgrund der Divergenz der Reihe für $s=1$ (Frage \ref{02_cauchy}).
+    \AntEnd  
+  \end{antwort}
+
+  %% Question 54
+  \begin{frage}\label{06_typu}\index{Integral!uneigentliches}
+    Welche weiter en Typen von uneigentlichen Integralen sind Ihnen bekannt?
+    Können Sie jeweils ein Beispiel angeben?
+  \end{frage}
+
+  \begin{antwort}
+    Uneigentliche Integrale lassen sich 
+    auf allgemeinen halboffenen Intervallen  
+    $[a,b[$ bzw $]c,d]$ (die Fälle 
+    $b=\infty$ und $c=-\infty$ mit eingerechnet) auf dieselbe Weise 
+    wie für das spezielle Intervall $[a,\infty[$ definieren.  
+    Ist $f$ auf $[a,b[$ bzw. auf $]c,d]$ lokal integrierbar, 
+    dann definiert man 
+    \[
+    \int_a^b f(x)\difx = \lim_{\beta \uparrow b} \int_a^\beta f(x) \difx 
+    \qquad\text{bzw.}\qquad
+    \int_c^d f(x)\difx = \lim_{\gamma \downarrow c} \int_\gamma^d f(x) \difx.
+    \]
+    Die uneigentlichen Integrale konvergieren 
+    (existieren), wenn die jeweiligen Grenzwerte 
+    existieren. 
+    Im Fall eines beidseitig offenen Intervalls $\open{a,b}$ definiert man
+    \[
+    \int_a^b f(x) \difx = \int_a^c f(x)\difx + \int_c^b f(x) \difx,
+    \]
+    falls die beiden rechts stehenden Integrale für ein 
+    beliebig zu wählendes $c\in \open{a,b}$ konvergieren. 
+  \end{antwort} 
+
+  %% Question 55
+  \begin{frage}
+    Können Sie jeweils ein Beispiel für die verschiedenen 
+    Typen uneigentlicher Integrale angeben?
+  \end{frage}
+
+  \begin{antwort}
+    \desc{a} 
+    Intervalle der Form $[a,\infty[$. Hierfür wurden in den 
+    vorhergehenden Fragen schon einige Beispiele behandelt,
+    etwa $\int_1^\infty \frac{\difx}{x^s}$. 
+
+    \medskip
+    \noindent
+    \desc{b} Intervalle der Form $]-\infty,b]$. Für diese 
+    ist etwa $\int_{-\infty}^{-1} \frac{1}{x^2} \difx$ 
+    ein Beispiel.  
+
+    \medskip
+    \noindent
+    \desc{c} Beschränkte Intervalle der Form $]a,b]$. Hier kann man das 
+    Integral $\int_0^b x^{-s} \difx$ mit $s\in \RR$ betrachten. 
+    Wegen 
+    \[
+    \int_\alpha^b x^{-s}\difx = \left\{ 
+      \begin{array}{ll}
+        \frac{1}{1-s}\left(  b^{1-s} - \alpha^{1-s} \right) & \text{für $s\not=0$},
+        \\
+        \log (b) - \log(\alpha) & \text{für $s=1$}
+      \end{array} \right. 
+    \]
+    existiert der Grenzwert für $\alpha \downarrow 0$ genau dann, wenn 
+    $s<1$ ist. 
+
+    \medskip
+    \noindent
+    \desc{d} Das Intervall $]-\infty,\infty[$. Man betrachte das 
+    uneigentliche Integral $\int_{-\infty}^\infty \frac{\difx}{1+x^2}$. 
+    Es ist 
+    \[
+    \int_0^\beta \frac{\difx}{1+x^2} = \arctan \beta \qquad\text{und}\qquad 
+    \int_\alpha^0 \frac{\difx}{1+x^2} = -\arctan \alpha.
+    \]
+    Die Grenzwerte $\lim\limits_{\alpha\to- \infty} - \arctan \alpha$ und 
+    $\lim\limits_{\beta\to\infty} \arctan \beta$ existieren und haben beide  
+    den Wert $\frac{\pi}{2}$. Das uneigentliche Integral existiert 
+    also und konvergiert gegen $\pi$. \AntEnd
+  \end{antwort}
+
+  %% Question 56
+  \begin{frage}
+    Können Sie die Gleichung 
+    \[
+    \int_a^b \frac{1}{|t|^s} \dift = 
+    \frac{1}{1-s} \left( |a|^{1-s} + b^{1-s} \right), \qquad 
+    a<0<b, \quad 0<s<1
+    \]
+    begründen?
+  \end{frage}
+
+  \begin{antwort}
+    Im Beispiel $\desc{c}$ der Frage \ref{06_typu} wurde bereits
+    $\int_0^c \frac{\dift}{t^s}=\frac{c^{1-s}}{1-s}$ für $0<s<1$ gezeigt. 
+    Es folgt 
+    \begin{equation}
+      \int_a^b \frac{1}{|t|^s} \dift= 
+      \int_0^{|a|} \frac{1}{t^s} \dift+ 
+      \int_0^{b} \frac{1}{t^s} \dift= 
+      \frac{1}{1-s}\left( |a|^{1-s} + b^{1-s} \right). 
+      \EndTag
+    \end{equation} 
+  \end{antwort}
+
+  %% Question 57
+  \begin{frage}\index{Cauchy\sch er Hauptwert}
+    Können Sie begründen, warum das uneigentliche Integral 
+    $\int_{-\infty}^\infty \frac{t}{1+t^2} \dift$ nicht 
+    existiert, wohl aber der \bold{Cauchy\sch e Hauptwert}
+    \[
+    \int_{-\infty}^\infty \frac{t}{1+t^2} \dift := 
+    \lim_{R\to\infty} \int_{-R}^R \frac{t}{1+t^2} \dift = 0 
+    \text{?}
+    \]
+  \end{frage}
+
+  \begin{antwort}
+    Die Existenz des Cauchy\sch en Hauptwerts folgt daraus, dass es sich bei 
+    dem Integranden um eine ungerade Funktion handelt, womit das Integral 
+    von $-R$ bis $0$ gerade dem Negativen des Integrals von $0$ bis $R$ 
+    entspricht. 
+
+    Wegen $\frac{t}{1+t^2}>\frac{1}{2t}$ für alle $t\ge 1$ kann 
+    das unbestimmte Integral von $1$ bis $R$ aber nicht konvergieren. 
+    Aus dem Majorantenkriterium würde in diesem Fall nämlich auch 
+    die Existenz von $\int_1^\infty \frac{\dift}{t}$ folgen, im 
+    Widerspruch zum Ergebnis aus Frage \ref{06_ubsp}. 
+    \AntEnd 
+  \end{antwort}
+
+  %% Question 58
+  \begin{frage}\label{06_gamk}\index{Gammafunktion!Integraldarstellung}
+    Wie lautet die Euler'sche Integral-Definition der $\Gamma$-Funktion? 
+  \end{frage}
+
+  \begin{antwort}
+    Im Sinne der Euler\sch en Definition 
+    ist die $\Gamma$-Funktion für alle $x>0$ definiert als das im doppelten 
+    Sinne uneigentliche Integral
+    \[\boxed{
+      \Gamma( x ) := \int_0^\infty t^{x-1}e^{-t} \dift 
+      := \lim_{\eps\to 0} \int_{\eps}^1 t^{x-1}e^{-t}\dift + 
+      \lim_{R \to \infty} \int_{1}^R t^{x-1}e^{-t}\dift.
+    }
+    \EndTag
+    \]
+  \end{antwort} 
+
+  %% Question 59
+  \begin{frage}
+    Warum ist das $\Gamma$-Integral im doppelten Sinne uneigentlich?
+  \end{frage}
+
+  \begin{antwort}
+    Beide Integrationsgrenzen in der Euler'schen Integraldarstellung
+    sind kritisch (die untere allerdings nur für $x<1$)
+    und müssen gesondert überprüft werden: 
+    {\setlength{\labelsep}{5mm}
+      \begin{itemize}[2mm]
+      \item[\desc{i}] Es ist $t^{x-1} e^{-t} < t^{x-1}$ für alle $t>0$. 
+        Da das unbestimmte Integral $\int_0^1 t^{x-1}\dift$ 
+        nach dem Beispiel \desc{c} aus Frage 
+        \ref{06_typu} für alle $x>0$ existiert, existiert 
+        nach dem Majorantenkriterium auch $\int_0^1 t^{x-1}e^{-t} \dift$.\\[-3mm]
+      \item[\desc{ii}] Die Existenz des uneigentlichen Integrals 
+        $\int_1^\infty t^{x-1}e^{-t} \dift$ 
+        wurde in Frage \ref{06_majobsp} bereits gezeigt. 
+        \AntEnd
+      \end{itemize}}
+  \end{antwort}
+
+  %% Question 60
+  \begin{frage}\index{Gammafunktion}
+    Welche \bold{Haupteigenschaften der $\Gamma$-Funktion} sind Ihnen 
+    bekannt?
+  \end{frage}
+
+  \begin{antwort}
+    Die folgenden Eigenschaften sind grundlegend:
+    \begin{itemize}[4mm]
+    \item[\desc{a}]\satz{$\Gamma(x+1)=x\Gamma(x)$ (Funktionalgleichung der 
+        Gamma-Funktion)}\\[-3mm]
+    \item[\desc{b}]\satz{$\Gamma( x+n+1 ) = x(x+1) 
+        \cdots (x+n ) \cdot \Gamma(x)$ }\\[-3mm]
+    \item[\desc{c}]\satz{$\Gamma(1)=1$ und $\Gamma(n+1)=n!$ für alle 
+        $n\in\NN$}\\[-3mm]
+    \item[\desc{d}]\satz{$\Gamma$ ist stetig}\\[-3mm]
+    \item[\desc{e}]\satz{$\Gamma$ ist unendlich oft differenzierbar, und es gilt} 
+      \[
+      \Gamma^{(k)} (x) = \int_0^\infty (\log t)^k t^{x-1} e^{-t} \dift. 
+      \]
+    \item[\desc{f}]\satz{$\Gamma$ ist 
+        \slanted{logarithmisch konvex}, {\dasheisst},  
+        $\log \Gamma(x)$ ist eine konvexe Funktion. }
+    \end{itemize}
+
+    \noindent
+    Beweis: \desc{a} Die Funktionalgleichung erhält man 
+    mit partieller Integration:\index{Funktionalgleichung!der Gammafunktion}
+    \[
+    \Gamma(x)=
+    \int_0^\infty  t^{x-1}e^{-t} \dift = 
+    \frac{t^{x}}{x} e^{-t} \Big|_0^\infty + 
+    \frac{1}{x} \int_0^\infty t^{x}e^{-t} \dift = 
+    \frac{1}{x} \cdot \Gamma(x+1).
+    \]
+
+    \medskip
+    \noindent
+    \desc{b} Die Formel bekommt man durch induktive Anwendung der 
+    Funktionalgleichung. Man beachte, dass damit die Gamma-Funktion 
+    bereits durch ihre Werte im Intervall $\lopen{0,1}$ bestimmt ist. Weiter 
+    lässt sich die Gamma-Funktion mittels der Gleichung 
+    \[
+    \Gamma(x) = \frac{ \Gamma(x+n+1) }{ x(x+1) \cdot (x+n) }
+    \]
+    auf $\RR \mengeminus\{0,-1,-2,\ldots \}$ fortsetzen. 
+
+    \medskip
+    \noindent
+    \desc{c} Wegen $\Gamma(1)=1$ ist die 
+    Gleichung ein Spezialfall von \desc{b}. 
+    Aufgrund dieser Eigenschaft sagt man, 
+    die $\Gamma$-Funktion (genauer die 
+    Funktion $\Gamma(x+1)$) \slanted{interpoliere} die Fakultät, was heißen 
+    soll, dass sie auf den natürlichen Zahlen mit dieser übereinstimmt.
+
+    \medskip
+    \noindent
+    \desc{d} Die Stetigkeit folgt hier am leichtesten aus einem allgemeinen 
+    Satz über parameterabhängige Integrale, 
+    die in der Antwort zu Frage \ref{11_paramstetigkeit} gezeigt werden. 
+    Die Stetigkeit der $\Gamma$-Funktion wird in der Antwort zu 
+    Frage \ref{11_gammafunktion} gezeigt.  
+
+    \medskip
+    \noindent
+    \desc{e} Hier gilt dieselbe Bemerkung wie unter \desc{d}, man 
+    vgl. die Fragen \ref{11_paramdifferenzierbarkeit} und 
+    \ref{11_gammafunktion}
+
+    \medskip
+    \noindent
+    \desc{e} 
+    Die logarithmische Konvexität der Gamma-Funktion 
+    ist nach Frage \ref{06_konvex} gleichbedeutend mit
+    \[
+    \Gamma\left( \lambda x_1 + (1-\lambda) x_2 \right) \le 
+    \Gamma( x_1 )^\lambda \cdot \Gamma( x_2 )^{1-\lambda}, \quad
+    \lambda \in [0,1].
+    \]
+    Man kann diese Ungleichung beweisen, 
+    indem man die Hölder\sch e Ungleichung 
+    aus Frage \ref{01_hldi} auf die Funktionen 
+    $f(t) := t^{(x_1-1)/\lambda}e^{-t/\lambda}$ und 
+    $g(t) := t^{(x_2-1)/(1-\lambda)}e^{-t/(1-\lambda)}$ anwendet.
+
+    \begin{center}
+      \includegraphics{mp/06_gamma}
+      \captionof{figure}{Die reelle $\Gamma$-Funktion im Intervall $[-4,4]$.}
+      \label{fig:06_gamma}
+    \end{center}
+
+    Der Graph der $\Gamma$-Funktion ist in Abbildung \ref{fig:06_gamma} 
+    skizziert.
+  \end{antwort}
+
+  %% Question 61
+  \begin{frage}
+    Durch welche Eigenschaften ist die Gammafunktion auf 
+    ihrem Definitionsbereich eindeutig bestimmt?
+  \end{frage}
+
+  \begin{antwort}
+    Nach dem Satz von Bohr-Mollerup ist die 
+    Gamma-Funktion auf ihrem Definitionsbereich 
+    $ \RR_+$ durch die folgenden drei Eigenschaften 
+    eindeutig bestimmt: 
+    \begin{itemize}[2mm]
+    \item[\desc{i}] \satz{$\Gamma(1)=1$,}\\[-3mm]
+    \item[\desc{ii}] \satz{$\Gamma(x+1)=x\cdot \Gamma(x)$,}\\[-3mm]
+    \item[\desc{iii}] \satz{$\Gamma$ ist logarithmisch konvex.}
+    \end{itemize}
+
+    \medskip
+    \noindent
+    Zum Beweis sei 
+    $G\fd \open{0,\infty} \to \RR$ eine Funktion, die diese 
+    drei Eigenschaften besitzt. Wir müssen zeigen, dass überall 
+    $G(x)=\Gamma(x)$ gilt. Da $G$ aufgrund von 
+    \begin{equation}
+      G(x+n)=(x+n-1)\cdots( x+1) x \cdot G(x), \qquad n\in \NN
+      \asttag
+    \end{equation}
+    bereits durch die Werte auf dem Intervall $]0,1]$ eindeutig 
+    bestimmt ist, genügt es, die Übereinstimmung mit $\Gamma$ auf diesem 
+    Intervall zu zeigen.  
+    
+    Für $x\in \lopen{0,1}$ setze man $n+x=(1-x)\cdot n + x\cdot(n+1)$. 
+    Dann folgt aus der logarithmischen Konvexität und 
+    der Funktionalgleichung 
+    \[
+    G(x+n) \le G(n)^{1-x} G(n+1)^x=G(n)^{1-x} G(n)^x n^x = 
+    (n-1)! \cdot  n^x.
+    \]
+    Mit $n+1 = x(n+x)+(1-x)(n+1+x)$ erhält man auf ähnliche Weise
+    \[
+    n! = G(n+1)\le G(n+x)^x G(n+1+x)^{1-x} = 
+    G(n+x)(n+x)^{1-x}.
+    \]
+    Insgesamt folgt $n!(n+x)^{x-1} \le G(n+x) \le (n-1)! n^x$, und 
+    wegen ($\ast$) erhält man damit 
+    \[
+    a_n := 
+    \frac{n!(n+x)^{x-1}}{x(x+1)\cdots (x+n-1)  } 
+    \le G(x) \le 
+    \frac{(n-1)!n^x}{x(x+1)\cdots (x+n-1) } := b_n. \asttag
+    \]
+    Nun muss man nur noch feststellen, 
+    dass $\lim ( a_n/b_n )=1$ und deswegen 
+    $G(x)=\lim b_n$ gilt. 
+    Wegen $\Gamma(x)=\lim b_n$ 
+    folgt $G(x)=\Gamma(x)$. 
+    \AntEnd 
+  \end{antwort}
+
+  %% Question 62
+  \begin{frage}\index{Gammafunktion!Gauß\sch e Produktdarstellung}
+\index{Gauss@\textsc{Gauss}, Carl Friedrich (1777-1855)}
+    Wie lautet die Gauß\sch e Produktdarstellung von $\Gamma$? 
+  \end{frage}
+
+  \begin{antwort}
+    Die Gauß'sche Produktdarstellung der Gammafunktion ist die für alle 
+    $x\in\RR\mengeminus \{ 0, -1, -2, -3 ,\ldots \}$ gültig und 
+    lautet  
+    \begin{equation}
+      \boxed{
+        \Gamma(x) = \lim_{n\to\infty} 
+        \frac{ n!n^x}{x(x+1)\cdots (x+n) }. 
+      }
+      \asttag
+    \end{equation}
+    Die Gauß'sche Produktdarstellung ist in den beiden Folgen 
+    $(a_n)$ und $(b_n)$ aus {\astref} schon beinahe sichtbar und 
+    lässt sich daraus mit ein paar geradlinigen Argumentationsschritten 
+    auch beweisen. 
+
+    Man kann die Produktdarstellung aber auch direkt 
+    aus der Integraldarstellung mit der folgenden Rechnung ableiten. 
+    Die dabei verwendete Vertauschung 
+    von Limesbildung und Integration ist gültig, 
+    kann an dieser Stelle allerdings noch nicht begründet werden. Sie folgt 
+    aus dem Grenzwertsatz von Beppo Levi, der in Kapitel 11 bewiesen wird. 
+    Bezeichnet $\chi_{\open{0,n}}$ die charakteristische Funktion von 
+    $\open{0,n}$ (die $1$ für $x\in\open{0,n}$ und sonst $0$ ist), dann 
+    gilt für $x>0$:
+    \begin{align*}
+      \Gamma(x) &= \int_0^\infty t^{x-1}e^{-t}\dift = 
+      \lim_{n\to\infty} \int_0^\infty t^{x-1} \left(1-\frac{t}{n} \right)^n 
+      \chi_{\open{0,n}} \dift \\  
+      & = 
+      \lim_{n\to\infty} \int_0^n \left( 1-\frac{t}{n} \right)^n t^{x-1} \dift.
+    \end{align*}
+    Das hintere Integral bestimmen wir mittels partieller Integration. In einem 
+    ersten Schritt erhält man
+    \[
+    \int_0^n \left( 1-\frac{t}{n} \right)^n t^{x-1} \dift =  
+    \frac{n}{n\cdot x}
+    \int_0^n \left(1-\frac{1}{n}\right)^{n-1} t^x \dift.  
+    \] 
+    Eine $n$-malige Wiederholung derselben Methode führt schließlich auf 
+    \[
+    \int_0^n\left(1-\frac{t}{n} \right)^n t^{x-1} \dift 
+    = \frac{ n!n^x }{ x(x+1)\cdots (x+n) },  
+    \]
+    und das liefert die Gauß'sche Produktdarstellung. 
+    \AntEnd   
+  \end{antwort}
+
+  %% Question 63
+  \begin{frage}
+    Welchen Vorteil besäße eine Definition 
+    der Gamma-Funktion durch das Gauß-Produkt gegenüber der 
+    Euler\sch en Integraldarstellung?
+  \end{frage}
+
+  \begin{antwort}
+    Im Unterschied zur Euler\sch en Integraldarstellung
+    stellt die Gauß\sch e Produktformel die Gamma-Funktion 
+    auf ihrem gesamten Definitionsbereich dar. Außerdem 
+    gilt die Darstellung für komplexe 
+    $z\in\CC\mengeminus\{ 0, -1, -2, \ldots \}$. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 64
+  \begin{frage}\index{Gammafunktion!Weierstraß\sch e Produktdarstellung}
+    Können Sie eine Produktdarstellung von $\dis \frac{1}{\Gamma(x)}$ angeben, 
+    aus der man die Nullstellen von $\dis \frac{1}{\Gamma}$ 
+    direkt ablesen kann?
+  \end{frage}
+
+
+
+  \begin{antwort}
+    Anhand von
+    $1/\Gamma_n(x) := \frac{1}{n!n^x} x(x+1)\cdots (x+n)$ 
+    erkennt man mit $\lim\limits_{n\to\infty} = \Gamma_n(x)$ 
+    unmittelbar, dass die Nullstellen von $1/\Gamma(x)$ 
+    gerade bei den nicht positiven ganzen Zahlen liegen. 
+
+    \noindent
+    Mittels der Umformung 
+    \[
+    \frac{1}{\Gamma_n (x)} =  
+    x \cdot \prod_{k=1}^n \frac{e^{x/k}}{n^x}\frac{x+k}{k} e^{-x/k} =
+    x \cdot \exp\left( x \left( \sum_{k=0}^n \frac{1}{k} - \log n \right) \right) 
+    \prod_{k=1}^n \frac{x+k}{k} e^{-x/k}.
+    \]
+    erhält man für $\lim n\to \infty$ außerdem die bedeutende 
+    sogenannte \slanted{Weierstraß\sch e Produktdarstellung}
+    \[
+    \boxed{
+      \frac{1}{\Gamma(x)} = x\cdot e^{\gamma x } \cdot \prod_{k=1}^\infty 
+      \left( 1+ \frac{x}{k} \right) e^{-x/k} 
+    }
+    \]
+    mit $\gamma:= 
+    \lim\limits_{n\to\infty} \left( \sum_{k=1}^n - \log n \right)
+    \approx 0,577215664\ldots$ (Euler-Mascheroni\sch e Konstante).
+    \AntEnd
+  \end{antwort} 
+
+
+  %% Question 65
+  \begin{frage}\index{Gammafunktion!Euler\sch er Ergänzungssatz}
+    \index{Sinusprodukt}\index{Euler@\textsc{Euler}, Leonhard (1707-1783)}
+    Wie kann man den sogenannten \bold{Euler\sch en Ergänzungssatz} 
+    \[
+    \Gamma(x) \Gamma(x-1) = \frac{\pi}{\sin \pi x }, 
+    \qquad x\in \RR \mengeminus \ZZ
+    \]
+    zeigen? 
+    Welcher spezielle Wert der Gamma-Funktion lässt sich aus 
+    dieser Gleichung unmittelbar ablesen?\index{Weierstrass}
+  \end{frage}
+
+  \begin{antwort}
+    Aus der Weierstraß\sch en Produktdarstellung folgt
+    \[
+    \frac{1}{\Gamma(x)\Gamma(1-x)} = 
+    \frac{1}{(-x)\Gamma(x)\Gamma(-x)} = 
+    x \cdot \prod_{k=1}^\infty \left( 1-\frac{x^2}{k^2} \right).
+    \]
+    Das unendliche Produkt auf der rechten Seite 
+    konvergiert damit für alle $x\in \RR$ und stellt eine 
+    Funktion dar, die genau an den ganzen Zahlen Nullstellen 
+    erster Ordnung hat. Dieselben Eigenschaften 
+    besitzt offensichtlich die Funktion $\sin \pi x$. 
+    Jetzt wäre es verführerisch, daraus -- in Analogie zu der 
+    Situation bei Polynomen -- einfach den Schluss  
+    \[
+    x \cdot \prod_{k=1}^\infty \left( 1-\frac{x^2}{k^2} \right)
+    = c \cdot \sin \pi x
+    \]
+    mit einem $c\in\RR$ zu ziehen. 
+    Natürlich sind zur Rechtfertigung dieses Schlusses 
+    weitergehende Argumente nötig, er führt aber 
+    \slanted{in diesem speziellen Fall} wirklich zum richtigen Ergebnis.   
+    Dies zeigt man in anderen Zusammenhängen, 
+    wo dann auch die Konstante $c=1/\pi$ bestimmt wird. 
+    Als Ergebnis erhält man dabei das \slanted{Euler\sch e Sinusprodukt}
+    \[
+    \boxed{ 
+      x\cdot \prod_{n=1}^\infty \left(1-\frac{x^2}{k^2} \right) = 
+      \frac{\sin \pi x}{ \pi }.
+    }
+    \]
+    In Kombination mit $(\ast)$ folgt daraus die in der Frage formulierte 
+    Gleichung. Diese impliziert unmittelbar $\Gamma(1/2)=\sqrt{\pi}$.
+    \AntEnd
+  \end{antwort}
+
+
+
+  %% Question 66
+  \begin{frage}
+    Wie erhält man $\Gamma (1/2)= \sqrt{\pi}$ mithilfe des 
+    Wallis\sch en Produkts für $\pi/2$?
+  \end{frage}
+
+  \begin{antwort}
+    Es ist 
+    \begin{eqnarray*}
+      \left( \Gamma_n\left( \frac{1}{2} \right) \right)^2  &=& 
+      \left( 
+        \frac{\sqrt{n} n! }{ 
+          \frac{1}{2}
+          \left( 1+\frac{1}{2} \right)
+          \cdots 
+          \left( 1+\frac{1}{n} \right)
+        } \right)^2
+      =
+      \left( 
+        \frac{ 2^{n+1} n! \cdot\sqrt{n} }{ 
+          1\cdot 3 \cdots (2n+1) } \right)^2 \\
+      &=& 
+      \frac{ 2\cdot 2 \cdot 4 \cdot 4 \cdots 2n\cdot 2n}{
+        1\cdot 3 \cdot 3 \cdot 5 \cdots (2n-1)(2n+1)}
+      \cdot \frac{4n}{2n+1}. 
+    \end{eqnarray*}
+    Der erste Faktor im letzten Gleichungsterm 
+    ist gerade das $n$-te Glied der 
+    Wallisschen Produktfolge und konvergiert   
+    für $n\to \infty$ nach Frage \ref{06_wallis2} gegen 
+    $\pi/2$. Da der hintere Faktor für $n\to\infty$ gegen $2$ 
+    konvergiert, folgt 
+    $\big(\Gamma(1/2)\big)^2 = 
+    \lim \big(\Gamma_n (1/2)\big)^2 = \pi.$
+    \AntEnd 
+  \end{antwort}
+
+  %% Question 67
+  \begin{frage}\index{Betafunktion}
+    Wie ist die Euler\sch e Betafunktion definiert?
+  \end{frage}
+
+  \begin{antwort}
+    Die Euler\sch e Betafunktion ist für alle 
+    $(x,y)\in \RR_+ \times \RR_+$ definiert als das uneigentliche 
+    Integral
+    \[
+    B(x,y) := \int_0^1 t^{x-1} (1-t)^{y-1} \dift. 
+    \]
+    Die Integralgrenzen sind nur in den Fällen $x<1$ bzw. $y<1$ 
+    kritisch (im ersten die untere, im zweiten die obere). 
+    In beiden Fällen folgt die Konvergenz aus 
+    dem Ergebnis von Beispiel \desc{c} aus Frage 
+    \ref{06_typu}. 
+  \end{antwort} 
+
+  %% Question 68
+  \begin{frage}\index{Betafunktion}
+    Welche Haupteigenschaften besitzt 
+    die Betafunktion?
+  \end{frage}
+
+  \begin{antwort}
+    Eine wichtige Eigenschaft 
+    der Betafunktion besteht in der 
+    Symmetrie $B(x,y)=B(y,x)$, 
+    eine andere erhält man auf folgendem Wege: Partielle 
+    Integration liefert zunächst
+    \[
+    B(x,y+1)= \frac{t^x}{x}\cdot(1-t)^{y} \Big|_0^1 + 
+    \frac{y}{x} \int_0^1 t^x (1-t)^{y-1} \dift
+    =\frac{y}{x} \int_0^1 t^x (1-t)^{y-1} \dift.
+    \]
+    Setzt man hier $t^x=t^{x-1}-t^{x-1} ( 1-t )$ ein, 
+    so erhält man
+    \[
+    B(x,y+1) = \frac{y}{x} B(x,y) - \frac{y}{x} B(x,y+1). 
+    \]
+    Unter Ausnutzung der Symmetrie von $B(x,y)$ 
+    folgen daraus die beiden Formeln
+    \[
+    B(x+1,y)=\frac{x}{x+y} B(x,y) \quad\text{und}\quad 
+    B(x,y+1)=\frac{y}{x+y} B(x,y).\EndTag
+    \]
+  \end{antwort}
+
+  %% Question 69
+  \begin{frage}\index{Betafunktion}
+    Welcher Zusammenhang besteht zwischen Beta- und Gammafunktion?
+  \end{frage}
+
+  \begin{antwort}
+    Der Zusammenhang liegt in der Gleichung 
+    \[
+    B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)} 
+    \]
+    begründet, die sich durch eine Anwendung des Satzes 
+    von Bohr-Mollerup beweisen lässt. 
+    Die Funktion $B(x,y)\Gamma(x+y)/\Gamma(y)$ besitzt nämlich bei 
+    festgehaltenem $y$ die drei im Satz von 
+    Bohr-Mollerup genannten Voraussetzungen 
+    (die logarithmische Konvexität von 
+    $B(\,\cdot\,,y)$ kann man wie 
+    bei der Gamma-Funktion mittels der Hölder\sch en Ungleichung zeigen)  
+    und stimmt daher mit $\Gamma(x)$ 
+    überein. \AntEnd
+  \end{antwort}
+
+  \section{Bernoulli'sche Polynome und -Zahlen, Euler'sche Summenformel} 
+
+  Unter geeigneten Voraussetzungen über eine Funktion 
+  $f\fd [1,n]\to\RR$ kann man die Summe 
+  $S := f(1)+f(2)+\cdots +f(n)$ als Näherung an das Integral 
+  $I:= \int_1^n f(x)\difx $ ansehen, etwa wenn man eine 
+  äquidistante Zerlegung des Intervalls $[1,n]$ mit der 
+  Schrittweite $1$ betrachtet und $f$ durch eine Treppenfunktion 
+  $\overline{\varphi}$ mit $\overline{\varphi} \ge f$ oder eine 
+  Treppenfunktion $\underline{\varphi}$ mit $\underline{\varphi} \le f$ 
+  approximiert. Auf diese Weise haben wir 
+  in Frage \ref{06_itsu} schon das Riemann'sche 
+  Integralvergleichskriterium für die Konvergenz einer Reihe 
+  $\sum_{k=1}^\infty f(k)$ erhalten. Für den Fehler 
+  $R := S-I$ wollen wir eine explizite Darstellung angeben. Zur Vorbereitung 
+  benötigt man einige Tatsachen über Bernoulli'sche Zahlen und 
+  Bernoulli'sche Polynome.
+
+
+  %% Question 70
+  \begin{frage}\index{Bernoulli-Polynome}
+    Wie sind die \bold{Bernoulli-Polynome} definiert? 
+  \end{frage}
+
+  \begin{antwort}
+    Die Bernoulli'schen Polynome $B_n(x)$ 
+    \nomenclature{$B_n(x)$}{$n$-tes Bernoulli-Polynom}
+    sind für alle $n\in \NN$ 
+    rekursiv definiert durch die Bedingungen 
+    \begin{equation}
+      B_0(x)=1, \quad B'_{n+1}(x)=(n+1) B_{n}(x),
+      \quad \int_0^1 B_{n+1}(x) \difx =0.
+      \tag{B}
+    \end{equation}
+    $B_n(x)$ ist damit für jedes $n\in \NN$ 
+    ein eindeutig bestimmtes Polynom vom Grad $n$. 
+    Man gewinnt es aus der zweiten Gleichung als 
+    Stammfunktion von $n B_{n-1}(x)$, wobei die Integrationskonstante 
+    durch die dritte Gleichung bestimmt ist. Die ersten vier 
+    Bernoulli-Polynome lauten {\zB}
+    \begin{equation}
+      \begin{array}{rclp{1mm}rcl}
+        B_0 (x) &=& 1, & & B_2(x) &=& x^2-x+\frac{1}{6}, \\
+        B_1 (x) &=& x-\frac{1}{2}, & & B_3(x) &=& x^3-\frac{3}{2} x^2+\frac{1}{2}x. 
+      \end{array}\EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 71
+  \begin{frage}
+    Können Sie zeigen, dass für alle $x\in \RR$ die 
+    Bernoulli'schen Polynome die Gleichung 
+    \[
+    \int_x^{x+1} B_n (t ) \dift = x^n 
+    \]
+    erfüllen?
+  \end{frage}
+
+  \begin{antwort}
+    Beweis mit Induktion über $n$. Für $n=0$ ist die Gleichung richtig. 
+    Sei sie für $n\ge 0$ bereits gezeigt. Dann folgt 
+    wegen $B'_{n+1}(x)=(n+1)B_n(x)$ durch Integration beider Seiten
+    \[
+    B_{n+1}(x+1)-B_{n+1}(x)= (n+1) \int_x^{x+1} B_n (t) \dift = (n+1) x^n,
+    \]
+    also 
+    \[
+    \int_x^{x+1} B_{n+1}(t) \dift = 
+    \int_0^x \big( B_{n+1}(t+1)-B_{n+1}(t) \big)\dift = 
+    (n+1) \int_0^x t^n \dift = x^{n+1}.
+    \]
+    Folglich ist die Gleichung für alle Polynome $B_n(x)$ erfüllt. 
+    \AntEnd    
+  \end{antwort} 
+
+  %% Question 72
+  \begin{frage}\index{Bernoulli'sche-Zahlen}
+    Wie sind die \bold{Bernoulli'schen-Zahlen} definiert?
+  \end{frage}
+
+  \begin{antwort}
+    Die $n$-te Bernoulli-Zahl $B_n$ ist \nomenclature{$B_n(x)$}{$n$-te Bernoulli'sche Zahl}
+    der Koeffizient des konstanten Terms von $B_n(x)$, 
+    folglich definiert durch 
+    \begin{equation}
+      B_n := B_n(0)
+      \notag
+    \end{equation}
+    Aus der zweiten und dritten Definitionsgleichung für die 
+    Bernoulli-Polynome folgt zusammen $B_n(0)=B_n(1)$ 
+    für alle $n\ge 2$. Also gilt in diesem Fall auch $B_n(1)=B_n$. 
+    \[
+    \begin{array}{c|cccccccccccc}
+      n & 0 & 1 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\ \hline
+      B_n & 1 & -\frac{1}{2} & \frac{1}{6} & -\frac{1}{30} & \frac{1}{42} 
+      & -\frac{1}{30} & \frac{5}{66} &  -\frac{691}{2730} & \frac{7}{6} 
+      & -\frac{3617}{510} & \frac{43\,867}{798} & 
+      -\frac{174\,611}{330} 
+    \end{array}
+    \]
+    Die Tabelle zeigt die numerischen Werte der ersten 20 Bernoulli-Zahlen 
+    (über das Verschwinden der ungeraden Bernoulli-Zahlen für $n>1$ siehe 
+    die nächste Frage). Man beachte, dass die Zahlen -- anders als es zu Beginn 
+    der Reihe den Anschein hat -- schon ab der sechzehnten 
+    anfangen groß zu werden. Die Bernoulli-Zahlen 
+    sind unbeschränkt, wachsen in großen Bereichen sogar enorm. 
+    \AntEnd
+  \end{antwort}
+
+  %% Question 73
+  \begin{frage}
+    Warum verschwinden für $n>1$ alle ungeraden Bernoulli-Zahlen?
+  \end{frage}
+
+  \begin{antwort}
+    Die Polynome 
+    \[
+    (-1)^n B_n( 1-t )
+    \]
+    erfüllen für alle $n$ die Rekursionsgleichung (B), sind also 
+    identisch mit $B_n$. Wegen $B_n(0)=B_n(1)$ für $n>1$ folgt daraus 
+    $-B_{2k+1}(0)=B_{2k+1}(0)$, also $B_{2k+1}=0$.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 74
+  \begin{frage}\label{04_berab}
+    Können Sie $B_n(2x)=2^{n-1} \big( B_n(x)+B_n(x+\frac{1}{2}) \big) $
+    zeigen?
+  \end{frage}
+
+  \begin{antwort}
+    Die Identität folgt aus 
+    \begin{align}
+      \int_x^{x+1/2} B_n(2t) \dift &= 
+      \frac{1}{2} \int_{2x}^{2x+1} B_n(u)\difu = 
+      \frac{1}{2}(2x)^n = 2^{n-1} \int_x^{x+1} B_n(t)\dift \notag \\
+      &= 2^{n-1} \int_x^{x+1/2} \left( B_n(t) + B_n(t+\frac{1}{2}) \right) \dift.
+      \EndTag
+    \end{align}
+  \end{antwort}
+
+  %% Question 75
+  \begin{frage}
+    Können Sie die Gleichung 
+    \begin{equation}
+      B_n (x) = \sum_{k=0}^n \binom{n}{k} B_k x^{n-k} 
+      \asttag
+    \end{equation}
+    zeigen und daraus eine Rekursionsgleichung für die Bernoulli-Zahlen 
+    ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Die Formel lässt sich mit vollständiger 
+    Induktion zeigen. Für $n=0$ ist 
+    sie richtig. Gilt sie für $n-1$, so folgt durch Differenziation
+    \begin{align*}
+      \frac{\mathrm{d}}{\difx}
+      \left( \sum_{k=0}^n \binom{n}{k} B_k x^{n-k} \right) &=  
+      \sum_{k=0}^{n-1} \frac{n! (n-k)}{k!(n-k)!} B_k x^{n-k-1} \\
+      &= n \sum_{k=0}^{n-1} \frac{(n-1)!}{k!(n-1-k)!} B_k x^{n-1-k}
+      = nB_{n-1}(x)=B_n'(x).
+    \end{align*}
+    Da $B_n(x)$ und $\sum_{k=0}^n \binom{n}{k} B_k x^{n-k}=C$ beide den 
+    konstanten Term $B_n$ haben, ergibt sich daraus {\astref}.
+
+
+    Aus der Gleichung folgt weiter
+    \[ 
+    B_{n+1}=\sum_{k=0}^{n+1}\binom{n+1}{k} B_k = 
+    \sum_{k=0}^{n}\binom{n+1}{k} B_k + B_{n+1}.
+    \] 
+    Damit hat man für die Bernoulli-Zahlen die Rekursionsformel
+    \begin{equation}
+      B_0=1, \qquad \sum_{k=0}^n \binom{n+1}{k} B_k = 0.
+      \tag{B*}
+    \end{equation}
+    Daraus folgt insbesondere, dass alle 
+    $B_n$ \slanted{rationale} Zahlen sind.  \AntEnd
+  \end{antwort}
+
+
+  %% Question 76
+  \begin{frage}
+    Wie lassen sich die Bernoulli-Zahlen alternativ ohne 
+    Bezug auf die Bernoulli-Polynome definieren?
+  \end{frage}
+
+  \begin{antwort}
+    Die Bernoulli-Zahlen stehen im Zusammenhang mit den 
+    Koeffizienten der Taylorreihe der Funktion 
+    $\frac{x}{e^x-1}$ zum Entwicklungspunkt $0$, und zwar gilt 
+    \[
+    \frac{x}{e^x-1} = \sum_{k=0}^\infty \frac{B_k}{k!} x^k.
+    \]
+    Diese Gleichung wird häufig auch als 
+    \slanted{Definition} der Bernoulli-Zahlen 
+    verwendet. Die Äquivalenz beider Definitionen folgt durch 
+    Cauchy-Multiplikation des Produkts  
+    \[
+    x = \left( \sum_{k=0}^n \frac{a_k}{k!} x^k \right)\cdot 
+    \left( \sum_{k=0}^n \frac{x^k}{k!}-1 \right).
+    \]
+    Ein anschließender Koeffizientenvergleich zeigt dann nämlich, dass 
+    die $a_k$ dieselbe Rekursiongleichung 
+    (B*) wie die Bernoulli-Zahlen erfüllen. 
+    \AntEnd
+
+    \smallskip
+  \end{antwort}
+
+  \smallskip
+  %% Question 77
+  \begin{frage}
+    Wie sind die $1$-periodischen Fortsetzungen $\overline{B}_n (x)$ 
+    der Einschränkungen auf $[0,1]$ definiert?
+  \end{frage}
+
+  \begin{antwort}
+    Man definiert $\overline{B}_n( x ) := B_n(x-[x])$. 
+
+    \begin{center}
+      \includegraphics{mp/06_bernoulli}
+      \captionof{figure}{Periodische Fortsetzungen der Einschränkungen 
+        der Bernoulli-Polynome auf $[0,1]$.}
+      \label{fig:06_bernoulli}
+    \end{center}
+
+    Die Funktionen 
+    $\overline{B}_n( x )$ stimmen auf dem Intervall $[0,1]$ dann mit den 
+    Bernoulli-Polynomen überein und setzen sich ansonsten $1$-periodisch 
+    auf $\RR$ fort, \sieheAbbildung\ref{fig:06_bernoulli}. 
+    Für $n\not=1$ sind die Funktionen wegen $B_n(0)=B_n(1)$ sogar stetig. \AntEnd
+  \end{antwort} 
+
+
+  %% Question 78
+  \begin{frage}\label{06_grundprinzip}\index{Euler'sche Summenformel}
+    Auf welchem Grundprinzip beruht die Euler'sche Summenformel?
+  \end{frage}
+
+  \begin{antwort}
+    Im Sinne von Abbildung \ref{fig:06_stirling} kann man zur Herleitung 
+    der Euler'schen Summenformel mit dem Ansatz  
+    \begin{equation}
+      \sum_{k=M}^N f(k) = \Int_M^N f(t) \dift
+      + \frac{f(M) +  f(N)}{2}  + R_0, 
+      \notag
+    \end{equation} 
+    beginnen. 
+
+    \begin{center}
+      \includegraphics{mp/06_stirling}
+      \captionof{figure}{%
+        In der Euler'schen Summenformel werden Integral und Summe in Beziehung 
+        gesetzt. Die Abweichung ist hier durch die schwarzen Flächen 
+        gekennzeichnet.}
+      \label{fig:06_stirling}
+    \end{center}
+
+    Unter bestimmten Differenzierbarkeitsvoraussetzungen an $f$ ermöglicht 
+    die Euler'sche Summenformel eine Darstellung 
+    des hier auftretenden Fehlerterms $R_0$, der dessen Abschätzung 
+    mit einer in aller Regel sehr großen numerischen Präzision erlaubt. 
+    Insbesondere lassen sich aus dieser Darstellung Aussagen 
+    über das asymptotische Verhalten der Summe für $N\to \infty$ ziehen, 
+    was einem {\zB} bei der Herleitung der Stirling'schen Formel 
+    als wesentlicher Argumentationsschritt begegnet. 
+    
+    Der Weg zur Euler'schen Summenformel führt über wiederholte partielle 
+    Integration des Restterms mithilfe der Bernoulli-Polynome, 
+    deren Bedeutung in diesem Zusammenhang zum ersten Mal erkennbar wird. 
+    Dies wird den folgenden Fragen weiter ausgeführt.  
+    \AntEnd
+  \end{antwort}
+
+  %% Question 79
+  \begin{frage}
+    Wie lässt sich der Fehlerterm $R_0$ in {\astref} 
+    für eine $\calli{C}^1$-Funktion $f$ durch ein Integral 
+    weiter ausdrücken? Können Sie 
+    daraus die Euler'sche Summenformel in ihrer einfachsten Form ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    
+    Es gilt 
+    \[
+    R_0 = \int_M^N \overline{B}_1(x) f'(x) \difx.
+    \]
+    Diese Identität ergibt sich mittels partieller Integration 
+    auf folgende Weise: 
+    \begin{align*}
+      \int_M^N \overline{B}_1(x) f'(x) \difx &=  
+      \sum_{k=M}^{N-1} \int_0^{1} (t-\frac{1}{2} ) f'(k+t) \dift \\ 
+      &=
+      \sum_{k=M}^{N-1} \Big[ (t-\frac{1}{2}) f(k+t) \Big|_0^1 - 
+      \int_0^1 f(k+t) \dift \Big] \\ 
+      &=
+      \sum_{k=M}^{N-1} \Big[ \frac{1}{2} f(k+1)+\frac{1}{2} f(k) 
+      \Big]
+      -
+      \sum_{k=M}^{N-1} \int_0^1 f(k+t) \dift \\
+      &=
+      \sum_{k=M}^{N} f(k) -
+      \frac{1}{2} \big( f(M)+f(N) \big) - \int_N^M f(t) \dift.
+    \end{align*}
+    Der Vergleich mit der Formel in \ref{06_grundprinzip} 
+    zeigt, dass das die korrekte 
+    Darstellung für den Fehlerterm ist.\AntEnd
+  \end{antwort}
+
+  %% Question 80
+  \begin{frage}\index{Euler'sche Summenformel}
+    Können Sie die Darstellung des Integrals 
+    $\int_M^N \overline{B}_1 (x) f'(x) \difx$ 
+    weiterentwickeln und daraus die 
+    \bold{Euler'sche Summenformel} ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Da $\overline{B}_1(x)$ auf $[0,1]$ mit dem 
+    ersten Bernoulli-Polynom übereinstimmt, hat man 
+    im Intervall $[0,1]$ mit $\frac{B_2}{2}$ eine 
+    Stammfunktion zu $\overline{B}_1(x)$ und damit die 
+    Möglichkeit, falls $f$ 
+    zweimal stetig differenzierbar ist, wiederholt partiell zu integrieren. 
+    Das führt im nächsten Schritt auf 
+    \begin{align*}
+      \int_M^N \overline{B}_1 (t) f'(t) \difx &=  
+      \sum_{k=M}^{N-1} \int_0^1 B_1(t) f'(k+t) \dift \\ &=
+      \sum_{k=M}^{N-1} \left[ \frac{B_2(t)}{2} f'(k+t) \Big|_0^1 \right]  - 
+      \frac{1}{2} \sum_{k=M}^{N-1} \int_0^1 B_2(t) f''(k+t)\dift \\
+      &= \sum_{k=M}^{N-1} \frac{B_2(1)}{2} f'(k+1)- \frac{B_2(0)}{2} f'(k)  - 
+      \frac{1}{2} \int_0^1 \overline{B}_2(x) f''(x)\dift \\
+      &= \frac{B_2}{2} f'(x) \Big|_N^M   - 
+      \frac{1}{2} \int_0^1 \overline{B}_2(x) f''(x)\dift
+    \end{align*}
+    Falls $f\in \calli{C}^3$, lässt sich 
+    das hintere Integral nun mit genau derselben Methode partiell integrieren.  
+    Man bekommt damit im zweiten Schritt
+    \[
+    R_0 =  \frac{B_2}{2} f'(x) \Big|_M^N - 
+    \frac{B_3}{2\cdot 3} f''(x) \Big|_M^N +
+    \frac{1}{2}\int_M^N \overline{B}_3 (x) f'''(x) \difx,    
+    \]
+    und die Methode kann auf das hier auftretende Integral wiederum  
+    angewendet werden usw. 
+    Unter Berücksichtigung von $B_{2k+1}=0$ führt das  für 
+    eine $\calli{C}^{2p+1}$-Funktion $f$ schließlich auf die \slanted{Euler'sche 
+      Summenformel}
+    \[\boxed{
+      \begin{array}{c}
+        \dis \sum_{k=M}^N f(k)= \int_M^N f(x) \difx + 
+        \frac{f(M)+f(N)}{2}
+        + 
+        \sum_{\nu=1}^{p} \frac{B_{2\nu}}{(2\nu)!} f^{(2\nu-1)}(x) \Big|_M^N +
+        R_{2p}, \notag \\[2mm]
+        \text{mit}\qquad\dis 
+        R_{2p} = 
+        \frac{1}{(2p+1)!}
+        \int_M^N\overline{B}_{2p+1} (x) f^{(2p+1)}(x) 
+        \difx.
+      \end{array}}\EndTag
+    \]
+  \end{antwort}
+
+  %% Question 81
+  \begin{frage}
+    Wie lässt sich der Fehler $R_{2p}$ in der Euler'schen 
+    Summenformel abschätzen, wenn 
+    $\left| f^{(2p+1)}\right|$ im Intervall $[M,N]$ monoton fällt?
+  \end{frage}
+
+
+  \begin{antwort}
+    Aus $(-1)^n B_n (1-t)=B_n(t)$ folgt, 
+    dass die ungeraden Bernoulli-Polynome alle eine Nullstelle 
+    bei $x=1/2$ besitzen, \sieheAbbildung\ref{fig:06_bernoulli2}.  
+    Ferner gilt $(-1)^n\overline{B}_n (x)=\overline{B}_n (x+\frac{1}{2})$, 
+    also verlaufen die Graphen der Funktionen $\overline{B}_n$ 
+    für ungerade $n$ auf jedem Periodizitätsintervall $[k,k+1]$ 
+    symmetrisch zur Nullstelle im Mittelpunkt. 
+
+    \begin{center}
+      \includegraphics{mp/06_bernoulli2}
+      \captionof{figure}{Die ungeraden Bernoulli-Polynome besitzen eine 
+        Nullstelle bei $x=1/2$}
+      \label{fig:06_bernoulli2}
+    \end{center}
+
+    Hat $f^{p+1}$ auf $[M,N]$ konstantes Vorzeichen, dann 
+    lässt sich der Fehler somit als eine 
+    \slanted{alternierende} Summe schreiben:
+    \[
+    R_{2p} = \int_M^N (\ldots) = 
+    \int_M^{M+1/2} (\ldots) +
+    \int_{M+1/2}^{M+1} (\ldots) + \cdots + 
+    \int_{N-1/2}^N (\ldots).
+    \] 
+    Ist $\left|f^{(2p+1)}\right|$ monoton fallend, so kann man daraus mit dem 
+    Leibnizkriterium schließen, dass die Summe betragsmäßig 
+    kleiner als ihr erstes Glied ist, also
+    \[
+    R_{2p} 
+    \le \frac{1}{(2p+1)!}
+    \left| \int_{M}^{M+1/2} \overline{B}_{2p+1}(x) 
+      f^{(2p+1)}(x) \difx \right| \le \left| \frac{f^{(2p+1)}(M)}{(2p+1)!} 
+      \int_0^{1/2} B_{2v+1}(x) \difx \right|.
+    \]
+    Das hintere Integral lässt sich in jedem speziellen 
+    Fall bequem berechnen (schließlich sind die $B_n$ Polynome). 
+
+    Beispielsweise erhält man $\int_0^{1/2}B_3(x)\difx = \frac{1}{64}$. 
+    Für eine Darstellung von $\sum_{k=M}^N \log k$ durch die Euler'sche 
+    Summenformel mit dem Fehlerterm $R_3$ erhielte man eine Genauigkeit von
+    \[
+    R_3 \le \frac{\log'''(M)}{3!} \cdot \frac{1}{64} = 
+    \frac{2}{3!\cdot M^2} \cdot \frac{1}{64} \cdot \frac{1}{192 \cdot M^2}.
+    \]
+    \AntEnd
+  \end{antwort}
+
+  %% Question 82
+  \begin{frage}
+    Kann man daraus schließen, dass sich jede Summe $\sum_{k=M}^N f(k)$ 
+    beliebig genau durch die Euler'sche Summenformel darstellen lässt?
+  \end{frage}
+
+  \begin{antwort}
+    Man könnte in jedem Fall dann darauf schließen, wenn für $p \to \infty$  
+    \[
+    r_p := \frac{1}{(2p+1)!} 
+    \int_0^{1/2} B_{2p+1}(x) \difx \to 0
+    \]
+    gelten würde. Dies ist aber in Wirklichkeit nicht der Fall. 
+    Es lässt sich zeigen, dass die Folge $r_p$ unbeschränkt ist. 
+
+    Allerdings fällt sie für hinreichend kleine $p$ 
+    zunächst einmal rapide ab und erreicht ziemlich kleine Werte. 
+    Daher rührt die relative 
+    Genauigkeit der Euler'schen Summenformel. Es ist also entscheidend, dass 
+    das Abspalten von Summanden in der Euler'schen Summenformel ein bestimmtes 
+    Maß nicht überschreitet. Unter der Bedingung erhält man eine Präzision, 
+    die für praktische Zwecke meist vollkommen ausreicht. \AntEnd
+  \end{antwort}
+
+  %% Question 83
+  \begin{frage}
+    Können Sie $\sum_{k=1}^{100} \frac{1}{k^2}$ 
+    mit der Euler'schen Summenformel und dem Restterm $R_3$ darstellen? 
+    Welche Größenordnung besitzt der Restterm?
+  \end{frage} 
+
+  \begin{antwort}
+    Die Euler'sche Summenformel liefert hierfür
+    \begin{eqnarray*}
+      \sum_{k=1}^{100} \frac{1}{k^2} &=& 
+      \int_1^{100} \frac{1}{x^2} \difx + \frac{1}{2} 
+      \left( 1+\frac{1}{100} \right) 
+      + \frac{\cdot B_2}{2!}\cdot\frac{(-2)}{x^3}\Big|_1^{100}+ R_3 \\
+      &=&
+      \frac{99}{100} + \frac{101}{200} +
+      \frac{1}{6}\cdot \left( 1- \frac{1}{100\,000} \right)
+      \approx 1.661666 + R_3.
+    \end{eqnarray*}
+    Für den Rest gilt 
+    \[
+    R_3 \le \left| \frac{(-2)(-3)(-4)}{3! \cdot 1^5} \right| 
+    \cdot\int_0^{1/2} B_3(x) \difx = \frac{1}{16}.
+    \]
+    Man könnte die Abschätzung noch wesentlich verbessern, 
+    wenn man die Summe etwa bis zum zehnten Term ausrechnen 
+    würde, um die Euler'sche Formel dann auf die restliche Summe 
+    $\sum_{10}^{100} \frac{1}{k^2}$ anzuwenden. 
+    Damit hätte man für die 
+    Abschätzung dann schon eine Genauigkeit von 
+    $\frac{1}{16\cdot 10^5}=\frac{1}{16\,000}$.
+
+    Eine Besonderheit der Euler'schen Summenformel besteht darin, dass der 
+    Grenzübergang $N\to \infty$ keinen Einfluss auf die Fehlerabschätzung hat. 
+    Mit demselben Argument wie oben kann man also auch 
+    $\sum_{k=1}^\infty k^{-2} \approx 1+\frac{1}{2}+\frac{1}{6} \approx 
+    1.66666 + R_3$ mit $R_3 < \frac{1}{16}$ ableiten. Das Ergebnis 
+    wird durch Vergleich mit dem exakten 
+    Wert $\frac{\pi^2}{6} \approx 1.64493$ bestätigt.  
+    \AntEnd
+  \end{antwort}
+
+  %% Question 84
+  \begin{frage}\index{Stirling'sche Formel}
+    \index{Stirlin@\textsc{Stirling}, James (1692-1770)}
+    Was besagt die Stirling'sche Formel für die Asymptotik von $n!$?
+  \end{frage}
+
+  \begin{antwort}
+    Die Stirling'sche Formel liefert eine Aussage über die 
+    Größenordnung der Fakultät. Rein qualitativ besagt sie, dass 
+    die folgende Asymptotik gilt
+    \[
+    \boxed{
+      n! \sim 
+      \sqrt{2\pi n} \cdot \left( \frac{n}{e} \right)^n, 
+      \quad\text{das heißt}\quad 
+      \lim_{n\to\infty} \frac{ 
+        \sqrt{2\pi n} \cdot \left( \frac{n}{e} \right)^n}{n!} = 1.
+    }
+    \]
+    Eine präzisere Formulierung beinhaltet auch eine Aussage über die 
+    Güte der Asymptotik. 
+    In dem Fall schreibt sich die Stirling'sche Formel 
+    \begin{equation}
+      \boxed{
+        n! =\sqrt{2\pi n} \cdot \left( \frac{n}{e} \right)^n 
+        \cdot e^{R_n}\quad\text{mit}\quad 
+        R_n = \frac{1}{12n} + O\left( \frac{1}{n^2} \right ). 
+      }
+      \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 85
+  \begin{frage}
+    Wie kann man zeigen, dass der Grenzwert von  
+    $n!\Big{/} \sqrt{n} \left( \frac{n}{e} \right)^n$ 
+    für $n\to\infty$ existiert? 
+  \end{frage}
+
+  \begin{antwort}
+    Man kann von der Gleichung  $\log n! = \sum_{k=1}^n \log k$ 
+    ausgehen und für eine weitere Darstellung der hinteren Summe 
+    die Euler'sche Summenformel anwenden. Damit bekommt man
+    \[
+    \log n! = \int_1^{n} \log x \difx  + \frac{1}{2} \log n  + r_n
+    = \left(n+\frac{1}{2} \right) \log n - n +1 + r_n.   
+    \]
+    Für $r_n$ gilt nach der Euler'schen Summenformel
+    \[
+    r_n =  \frac{B_2}{2!} \log'(x) \Big|_1^n + 
+    \frac{2}{3!} \int_1^{n} \frac{\overline{B}_3(x)}{x^3} \difx = 
+    \frac{1}{12n} -\frac{1}{12} + \frac{1}{3} 
+    \int_1^{n} \frac{\overline{B}_3(x)}{x^3} \difx. 
+    \]
+    Der Fehlerterm konvergiert für $n\to \infty$, somit existiert der 
+    Grenzwert  
+    \[
+    \lim_{n\to\infty} r_n + 1 =  
+    \lim_{n\to\infty} \left( 
+      \log n! - \left( n+\frac{1}{2} \right) \log n + n \right). 
+    \]
+    Durch Übergang zur exponenzierten Folge 
+    $c_n := n! \Big{/} \sqrt{n}\left( \frac{n}{e} \right)^n$ 
+    folgt daraus die Behauptung.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 86
+  \begin{frage}
+    Können Sie den Grenzwert von $(c_n)$ berechnen?
+  \end{frage}
+
+  \begin{antwort}
+    Man betrachte  
+    \begin{eqnarray*}
+      \frac{c_n^2}{c_{2n} } &=& 
+      \left( \frac{n!}{\sqrt{n} \left( \frac{n}{e} \right)^n } \right)^2 
+      \cdot 
+      \frac{ \sqrt{2n} \left( \frac{2n}{e} \right)^{2n} }{(2n)!}  =
+      \frac{ (n!)^2 \cdot 2^{2n} }{ (2n)! } \cdot \sqrt{\frac{2}{n} } 
+      =
+      \frac{ 2\cdot 4 \cdots 2n }{ 1\cdot 3 \cdots (2n-1) } 
+      \cdot \sqrt{\frac{2}{n} } \\
+      &=& \left( 
+        \frac{ 
+          2\cdot 2\cdot 4\cdot 4 \cdots (2n-2)\cdot (2n-2) }
+        { 1\cdot 3 \cdot 3 \cdots (2n-3)\cdot (2n-1) }
+        \cdot\frac{2n}{ 2n-1} \cdot 4 
+      \right)^{1/2}.
+    \end{eqnarray*}
+    Die Folge der Quotienten 
+    konvergiert also nach dem Ergebnis über die 
+    Wallis'sche Produktformel gegen $\sqrt{2\pi}$. 
+    Andererseits ist 
+    \[
+    \lim_{n\to\infty} \frac{c_n^2}{c_{2n} } = \lim_{n\to\infty} 
+    \frac{e^{2(r_n+1)}}{e^{r_{2n+1}}} = 
+    \lim_{n\to\infty} e^{r_n+1 + (r_n-r_{2n})} = e^{\lim r_n+1}.
+    \]
+    Daraus folgt $\lim r_n+1 = \log \sqrt{2\pi}$. 
+    Zusammenfassend erhält man damit   
+    \[
+    \lim_{n\to\infty} \log n! = 
+    \lim_{n\to\infty}\left( 
+      \left( n + \frac{1}{2} \right) \log n - n +
+      \log\sqrt{2\pi} \right).
+    \]
+    Daraus folgt durch Exponenzierung die Stirling'sche Formel 
+    in ihrer qualitativen Form.\AntEnd
+  \end{antwort}
+
+  %% Question 87
+  \begin{frage}
+    Können Sie noch den Term $R_n$ in der Stirling'schen 
+    Formel abschätzen?
+  \end{frage}
+
+  \begin{antwort}
+    Es ist $r_n+1=\frac{11}{12} +R_n$ mit
+    \[
+    R_n := 
+    \frac{1}{12n}+ 
+    \frac{1}{3} \int_n^\infty \frac{\overline{B}_3}{x^3} \difx.  
+    \]
+    Wegen 
+    \begin{equation}
+      \frac{1}{3} \int_n^\infty \frac{\overline{B}_3}{x^3} \difx 
+      \le \frac{1}{3n^3} \int_0^{1/2} B_3(x) \difx = 
+      \frac{1}{192\cdot n^3}.
+      \notag
+    \end{equation}
+    folgt die Einschließung 
+    $\frac{1}{12n}- \frac{1}{192n^3} < R_n < \frac{1}{12n} + \frac{1}{192n^3}$.
+    \AntEnd 
+  \end{antwort}
+
+  %% Question 88
+  \begin{frage}
+    Können Sie begründen, warum die Folge 
+    $(\varrho_n) := 
+    \left( n!- \sqrt{2\pi n}\left( \frac{n}{e} \right)^n 
+    \right)$ 
+    für $n\to \infty$ divergiert, aber 
+    der relative Fehler 
+    \[
+    \eps_n := \frac{n!-\sqrt{2\pi n} \left( \frac{n}{e} \right)^n }{
+      \sqrt{2\pi n} \left( \frac{n}{e} \right)^n }
+    \]
+    (recht schnell) gegen $0$ geht?
+  \end{frage}
+
+  \begin{antwort}
+    Die Konvergenz der Folge 
+    $(\eps_n)$ ergibt sich unmittelbar aus der Stirling'schen 
+    Formel wegen 
+    \[
+    \eps_n  = \left| \frac{n!}{ \sqrt{2\pi} \left(\frac{n}{e} \right)^n } 
+      -1 \right| < e^{\frac{1}{12n}+ \frac{1}{n^2}} -1.
+    \]
+    Dass die Folge $(\varrho_n)$ aber nicht gegen null 
+    gehen kann, kann man mit folgendem Argument begründen. Sei  
+    $f_n:= \sqrt{2\pi n} \left( \frac{n}{e} \right)^n$. 
+    Dann folgt aus der Stirling'schen Formel in ihrer quantitativen 
+    Form, dass stets
+    \begin{equation}
+      \log n! - \log f_n =r_n \ge \frac{C}{n}
+      \tag{$\ast$}
+    \end{equation}
+    mit einer positiven Konstanten $C$ gilt.
+    Angenommen, es würde $\lim\, (n! - f_n)=0$ gelten. 
+    Dann ist $f_n+1> n!$ für genügend große $n$. 
+    Daraus erhält man aufgrund des 
+    monotonen Wachstums des Logarithmus mit dem 
+    Mittelwertsatz der Differenzialrechnung für ein 
+    $\xi\in [f_n, f_n+1 ]$
+    \[
+    \log n! - \log f_n \le 
+    \log( f_n+1 )- \log f_n = \log'( \xi ) =   
+    \frac{1}{\xi}  \le \frac{1}{ f_n }. 
+    \]
+    Da die Folge $(f_n)$ aber offensichtlich wesentlich schneller wächst 
+    als $n$, ist der hintere Term für hinreichend große $n$ kleiner 
+    als $\frac{C}{n}$, im Widerspruch zu ($\ast$).\AntEnd   
+  \end{antwort}
+
+  %% Question 89
+  \begin{frage}
+    Können Sie die Ziffernanzahl (in Zehnerpotenzen) der Zahl $1000!$ bestimmen?
+  \end{frage}
+
+  \begin{antwort}
+    Die Anzahl der Zehnerpotenzen wird durch 
+    $\log_{10}( 1000! )= M \cdot \log(1000!)$ 
+    mit $M=1/\log(10)$ angegeben. Die Stirling'sche Formel liefert dafür 
+    \begin{multline}
+      \log_{10} 1000! =  M \left( \frac{1}{2}\log 2\pi + 
+        \frac{1}{2}\log 1000 + 1000\log 1000 - 1000 + R_n \right) \\ 
+      = 
+      \frac{1}{2}\log_{10} (2\pi)+ 1000.5 \cdot \log_{10} 1000 
+      - 1000 \cdot M + R_n \cdot M 
+      \approx 2567.6046+ M\cdot R_n
+      \notag
+    \end{multline}
+    mit $R_n \le 12000^{-1}$. Das Ergebnis besagt, 
+    dass $1000!$ eine $2568$-stellige Zahl ist.
+    \AntEnd 
+  \end{antwort}
+
+  %% Question 90
+  \begin{frage}
+    Welche Größenordnung hat die Zahl 
+    \[
+    \frac{1}{2^{2n}}\binom{ 2n }{ n }, \qquad n\in \NN
+    \text{?}
+    \]
+  \end{frage}
+
+  \begin{antwort}
+    Mit der Stirling'schen Formel folgt 
+    \[
+    \frac{1}{2^{2n}}\binom{ 2n }{ n } = 
+    \frac{1}{2^{2n}} \cdot \frac{ (2n)! }{ (n!)^2 } = 
+    \frac{1}{2^{2n}} \cdot 
+    \frac{ 
+      \sqrt{4\pi n} 
+      \left( \frac{2n}{e} \right)^{2n} }{
+      2\pi n \left( \frac{n}{e} \right)^{2n} } 
+    \cdot \frac{e^{R_{2n}}}{e^{2R_n}} =
+    \frac{1}{\sqrt{n\pi}} \cdot e^{R_{2n}-2R_n}.
+    \]
+    Der Term hat also die Größenordnung $1/\sqrt{n\pi}$. 
+    \AntEnd
+  \end{antwort} 
+
+  \section{Fourierreihen (Einführung in die Theorie)}
+
+  Die Grundidee der \slanted{Theorie der Fourierreihen} 
+  besteht darin, periodische Funktionen 
+  durch Linearkombinationen "`elementarer"' periodischer Funktionen 
+  zu approximieren und im Grenzfall darzustellen.  
+
+  Als die elementaren Basisfunktionen dienen dabei die prototypischen 
+  periodischen Funktionen $\sin nx$ 
+  und $\cos nx$ mit $n\in \NN$ bzw. $\ee_k(x)=e^{\i kx}$ mit $k\in\ZZ$. Dass diese Funktionen die 
+  spezielle Periode $2\pi$ besitzen, bedeutet keine Einschränkung, 
+  da diese sich durch eine geeignete Variablensubstitution stets 
+  auf einen vorgegebenen Wert skalieren lässt.
+
+  Es zeigt sich, dass eine Darstellung durch \emph{Fourierreihen} 
+  für eine sehr große Klasse von Funktionen existiert -- endliche Mengen von 
+  Unstetigkeitsstellen erst einmal außer Acht gelassen. 
+  Beispielsweise gilt das für beinahe alle Funktionen aus dem Raum 
+  $\calli{R}(2\pi)$ \nomenclature{$\calli{R}(2\pi)$}{Raum der $2\pi$-periodischen Regelfunktionen}
+  der $2\pi$-periodischen Regelfunktionen, auf den wir uns 
+  im Folgenden konzentrieren wollen. Der Satz von Dirichlet liefert einer 
+  Aussage über die punktweise Konvergenz einer Fourierreihe. Die gleichmäßige 
+  Konvergenz spielt in diesem Zusammenhang keine so große Rolle, da durch 
+  Fourierreihen auch unstetige Funktionen dargestellt werden. 
+
+  %% Question 91
+  \begin{frage}\index{Funktion!periodische}
+    Was ist eine periodische Funktion 
+    $f\,:\, \RR \to \CC$?  
+    Wieso kann man sich bei der Untersuchung periodischer 
+    Funktionen auf $2\pi$-periodische Funktionen beschränken?
+  \end{frage}
+
+  \begin{antwort}
+    $f$ ist periodisch, wenn eine Zahl $p\in\RR$ 
+    existiert, sodass
+    $f(x+np)=f(x)$ für alle $n\in \ZZ$ gilt. $p$ heißt in diesem 
+    Fall die \slanted{Periode} von $f$.  
+
+    Ist $f\,:\, \RR\to\CC$ eine Funktion mit der Periode 
+    $p\in \RR$, so erhält man durch die Substitution 
+    $x\mapsto px/2\pi$ aus $f$ eine $2\pi$-periodische Funktion 
+    $\tilde{f}\,:\,\RR\to \CC$ mit $\tilde{f}(x)=f(px/2\pi)$ 
+    (für die Umkehrung benötigt man $p\not=0$).
+
+    Alle Aussagen über $\tilde{f}$ gelten dann sinngemäß auch für $f$, weswegen 
+    man sich bei theoretischen Untersuchungen auf $2\pi$-periodische Funktionen 
+    beschränken kann.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 92
+  \begin{frage}\index{trigonometrisches Polynom}\label{07_fourierdef}
+    Was versteht man unter einem trigonometrischen Polynom vom 
+    Grad $\le n$? Was für eine Darstellung besitzt ein solches Polynom 
+    demzufolge?
+  \end{frage}
+
+  \begin{antwort}
+    Ein trigonometrisches Polynom vom Grad $\le n$ ist eine 
+    Linearkombination der $2n$ verschiedenen $2\pi$-periodischen 
+    Funktionen $\sin kx$ und $\cos kx$ mit $0\le k\le n$. Ein 
+    trigonometrisches Polynom besitzt demnach die Darstellung
+    \begin{equation} 
+      T(x)= A_0+\sum_{k=1}^n \left( a_k \cos kx + b_k \sin kx \right), \qquad
+      A_0, a_k, b_k \in \CC. \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 93
+  \begin{frage}\index{trigonometrisches Polynom}
+    Welche Dimension hat der von diesen Polynomen aufgespannte $\CC$-Vektorraum?
+  \end{frage}
+
+  \begin{antwort}
+    Ein trigonometrisches Polynom vom Grad $\le n$ ist durch die insgesamt 
+    $2n+1$ Koeffizienten $A_0, a_k, b_k $ eindeutig bestimmt. Der zugehörige 
+    $\CC$-Vektorraum hat also die Dimension $2n+1$. \AntEnd
+  \end{antwort}
+
+  %% Question 94
+  \begin{frage}\index{trigonometrisches Polynom}
+    Wie kann man aus der reellen Darstellung 
+    in Frage \ref{07_fourierdef} eine Darstellung trigonometrischer 
+    Polynome durch die komplexe Exponentialfunktion ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Setzt man $\cos kx=\frac{1}{2}(e^{\i kx}+e^{-\i kx})$ und 
+    $\sin kx = \frac{1}{2\i} (e^{\i kx}-e^{-\i kx})$ in die Gleichung 
+    ein, so erhält man 
+    \begin{equation} \label{t2}
+      T(x)=A_0+\sum_{k=1}^n \frac{a_k-\i b_k}{2}e^{\i kx}
+      +\sum_{k=1}^n \frac{a_k+\i b_k}{2} e^{-\i kx} =
+      \sum_{k=-n}^n c_k e^{\i kx}\notag
+    \end{equation}
+    mit $c_k=\frac{a_k-\i b_k}{2}$ und 
+    $c_{-k}=\frac{a_k+\i b_k}{2}$ für $k=1,\ldots,n$ und $c_0=A_0$. 
+    Die reelle Darstellung 
+    lässt sich aus der komplexen ebenso rekonstruieren, 
+    wenn man die Formeln $e^{\i kx}=\cos kx +\i \sin kx$ in Letztere einsetzt. 
+    Man erhält dann $a_k=c_k+c_{-k}$ und 
+    $b_k=c_k-c_{-k}$.\AntEnd
+  \end{antwort}
+
+  %% Question 95
+  \begin{frage}\label{07_ortho}\index{Orthogonaltitätsrelationen}
+    Wie lauten die \bold{Orthogonalitätsrelationen} für das System der 
+    Basisfunktionen $\ee_k$, $k\in \ZZ$ mit 
+    $\ee_k(x) := e^{\i kx}$?
+  \end{frage}
+
+  \begin{antwort}
+    Für die Funktionen $e^{\i kx}$, $k\in \ZZ$ lauten die 
+    Orthogonalitätsrelationen
+    \begin{equation}\label{orth}
+      \frac{1}{2\pi} \int_{-\pi}^\pi e^{\i nx} e^{-\i mx} \difx = \delta_{mn}=
+      \left\{
+        \begin{array}{ll}
+          1 & \text{für $n=m$} \\
+          0 & \text{für $n\not=m$.}
+        \end{array}
+      \right. \notag
+    \end{equation}
+    Die Identitäten ergeben sich in beiden Fällen durch einfaches 
+    Auswerten der Integrale.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 96
+  \begin{frage}\label{07_skalar}
+    \index{Skalarprodukt!in $\calli{R}(2\pi)$}
+    Wieso spricht man in diesem Zusammenhang von \emph{Orthogonalität}?
+  \end{frage}
+
+  \begin{antwort}
+    Durch 
+    \begin{equation} 
+      \langle f, g \rangle := \frac{1}{2\pi} \int_{-\pi}^{\pi} 
+      f(x) \overline{g(x)} \difx
+      \asttag
+    \end{equation}
+    ist im Raum $\calli{R}(2\pi)$ der $2\pi$-periodischen Regelfunktionen ein 
+    Semiskalarprodukt definiert. Die Gleichungen aus Frage \ref{07_ortho} 
+    besagen somit, dass die Basisfunktionen $e^{\i kx}$ bezüglich 
+    dieses Skalarprodukts paarweise aufeinander senkrecht stehen. 
+
+    Das Skalarprodukt liefert für die reellen Basisfunktionen im Übrigen 
+    auch die analogen "`reellen"' Orthogonalitätsrelationen 
+    \begin{equation}
+      \langle \cos kx, \sin  mx \rangle =0, \quad 
+      \langle \cos kx, \cos  mx \rangle =\delta_{km}, \quad
+      \langle \sin kx, \sin mx \rangle = \delta_{km}.
+      \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 97
+  \begin{frage}
+    Wie lassen sich die Koeffizienten $c_k$ eines  
+    trigonometrischen Polynoms $T$ durch die Funktion $T$ ausdrücken?
+  \end{frage}
+
+  \begin{antwort}
+    Nach der Antwort zur vorigen Frage bilden die Basisfunktionen 
+    $\ee_k (x):=e^{\i kx}$, $k\in\ZZ$ 
+    ein Orthonormalsystem bezüglich des Semiskalarprodukts {\astref} 
+    im Vektorraum der trigonometrischen Polynome. 
+    Ist $T=(c_{-n},\ldots, c_n)$ nun ein Element dieses Vektorraums, 
+    so folgt aus allgemeinen Zusammenhängen der 
+    linearen Algebra 
+    \begin{equation}
+      c_k=\langle T, \ee_k \rangle, \quad\text{ also }\quad
+      c_k=\frac{1}{2\pi} \int_{-\pi}^\pi T(x) e^{-\i kx} \difx.
+      \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 98
+  \begin{frage}\label{fkoeffi}
+    \index{Fourierpolynom}\index{Fourierkoeffizient}
+    \index{Euler-Fourier'sche Formel}
+    Wie ist das \emph{$n$-te Fourierpolynom $S_n f$}\nomenclature{$S_n F$}{$n$-tes 
+      Fourierpolynom zu $f$}  
+    einer $2\pi$-periodischen Funktion $f\,:\, \RR\to \CC$ definiert? 
+    Was sind in diesem Fall die \emph{Fourierkoeffizienten}?
+  \end{frage}
+
+  \begin{antwort}
+    Das Ergebnis der vorigen Frage legt es nahe, jeder $2\pi$-periodischen 
+    Regelfunktion ein trigonometrisches Polynom vom Grad $n$ zuzuordnen, dessen 
+    Koeffizienten durch $\langle f, \ee_k \rangle$ gegeben sind. 
+    Dieses Polynom heißt \slanted{$n$-tes Fourierpolynom von $f$} 
+    und ist also definiert durch
+    \[
+    \boxed{
+      S_nf := \sum_{k=-n}^n \hat{f}(k)e^{\i kx} \quad\text{mit}\quad
+      \hat{f}(k)=\langle f, \ee_k\rangle=
+      \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-\i kx}\difx.
+    }
+    \]
+    Die Zahl $\hat{f}(k)$, $k\in\ZZ$ heißt 
+    \slanted{$k$-ter Fourierkoeffizient} 
+    von $f$, die Integraldarstellung von $\hat{f}(k)$ ist die sogenannte 
+    \slanted{Euler-Fourier'sche Formel}.
+    \index{Euler@\textsc{Euler}, Leonhard (1707-1783)}
+    \AntEnd
+  \end{antwort}
+
+  %% Question 99
+  \begin{frage}\label{07_fourierkoeff}
+    Können Sie daraus die Darstellung der Koeffizienten $a_k$ und $b_k$ 
+    von $S_n f$ in der Darstellung \ref{07_fourierdef} ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Mit der Antwort zu Frage 3 erhält man 
+    \begin{align*}
+      a_k &= 
+      \hat{f}(k)+\hat{f}(-k) \hspace*{-4mm} &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) 
+      (e^{\i kx}+e^{-\i kx}) \difx=
+      \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos kx \difx   \notag \\
+      b_k &= \i \big( \hat{f}(k)-\hat{f}(-k) \big) \hspace*{-4mm} &= \frac{i}{2\pi}
+      \int_{-\pi}^\pi f(x) 
+      (e^{\i kx}-e^{-\i kx}) \difx=
+      \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin kx \difx. \EndTag
+    \end{align*}
+  \end{antwort}
+
+  %% Question 100
+  \begin{frage}
+    Was lässt sich aus diesen Gleichungen unmittelbar folgern, 
+    wenn $f$ eine gerade bzw. ungerade reelle Funktion ist?
+  \end{frage}
+
+  \begin{antwort}
+    Ist $f$ ungerade, dann ist $f(x)\cos kx$ ebenfalls ungerade, und 
+    somit gilt für alle $k\in\ZZ$ $a_k=\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos kx \difx=0$. Analog folgt $b_k=0$ für alle $k\in\ZZ$, 
+    falls $f$ eine gerade Funktion ist.
+    \AntEnd
+  \end{antwort}
+
+
+  %% Question 101
+  \begin{frage}\index{Fourierkoeffizient}
+    \label{q:565}
+    Berechnen Sie die Fourierkoeffizienten der 
+    reellen $2\pi$-periodischen 
+    Funktion $f\fd  \RR\to \RR$ mit 
+    $f(k\pi)=0$, $k\in \ZZ$ und 
+    $f(x)=\sign x$ für $x\in \open{-\pi,\pi}$ 
+    (\sieheAbbildung\ref{fig:07_fourier1}). 
+    Wie lautet demnach das $n$-te Fourierpolynom von $f$?
+  \end{frage}
+
+  \begin{center}
+    \includegraphics[width=40mm]{mp/07_fourier1}
+    \captionof{figure}{Graph der Funktion $f$ aus Frage \ref{q:565}.}
+    \label{fig:07_fourier1}
+  \end{center}
+
+  \begin{antwort}
+    Da $f$ ungerade ist, sind alle $a_k=0$, und 
+    \[
+    b_k=\frac{1}{\pi} \int_{-\pi}^\pi f(x)\sin kx \difx =
+    \frac{2}{\pi} \int_{0}^\pi \sin kx \difx =
+    \left\{
+      \begin{array}{ll}
+        4/{k\pi} & \text{für $k=1,3,5,\ldots,$} \\
+        0        & \text{für $k=0,2,4,\ldots$.}
+      \end{array}
+    \right.
+    \]
+    Für eine ungerade Zahl $n$ 
+    lautet das $n$-te Fourierpolynom $S_nf=S_{n+1}f$ somit
+    \begin{equation}
+      S_n f= \frac{4}{\pi} \left( \sin x+\frac{\sin 3x}{3}
+        +\frac{\sin 5x}{5}+\cdots+\
+        \frac{\sin nx}{n}
+      \right).\EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 102
+  \begin{frage}\index{Fourierreihe}
+    Was ist die \bold{Fourierreihe} $S_\infty f$ 
+    einer $2\pi$-periodischen 
+    Funktion $f\,:\,\RR\to\CC$?
+  \end{frage}
+
+  \begin{antwort}
+    Die Fourierreihe $S_\infty f$ einer Funktion $f$ ist die Folge 
+    der Fourierpolynome $S_n f$. Formal schreibt man 
+    \begin{equation}
+      \boxed{
+        S_\infty f = \sum_{k=-\infty}^\infty \hat{f}(k) e^{\i kx}.}
+      \EndTag
+    \end{equation} 
+  \end{antwort}
+
+  %% Question 103
+  \begin{frage}\index{Dirichlet-Kern}
+    \index{Dirichlet@\textsc{Dirichlet}, Peter Gustave \textsc{Lejeune} (1805-1859)}
+    Wie ist der \bold{Dirichlet-Kern} $n$-ten Grades definiert? 
+    Welche Grundeigenschaften besitzt er?
+  \end{frage}
+
+  \begin{antwort}
+    Der $n$-te Dirichlet-Kern $D_n$ ist definiert durch 
+    durch
+    \[
+    D_n(x):=\sum_{k=-n}^n e^{\i kx}.
+    \]
+    Der $n$-te Dirichlet-Kern ist damit ein trigonometrisches Polynom, dessen 
+    Koeffizienten $c_{-n},\ldots, c_n$ allesamt $1$ sind, 
+    \sieheAbbildung\ref{fig:07_dirichlet}.
+    \AntEnd
+
+    \begin{center}
+      \includegraphics{mp/07_dirichlet}
+      \captionof{figure}{Die Dirichlet-Kerne $D_1$, $D_3$ und $D_{10}$.}
+      \label{fig:07_dirichlet}
+    \end{center}
+  \end{antwort}
+
+
+  %% Question 104
+  \begin{frage} Können Sie $\dis D_n(x)=\frac{\sin(n+\frac{1}{2})x}{
+      \sin\frac{1}{2}x}$ für $x\not\in 2\pi\ZZ$ zeigen? (Für $k\in \ZZ$ erhält 
+    man $D_n(2\pi k)=2n+1$.)
+  \end{frage}
+
+  \begin{antwort}[]
+    \Ant Die Identität ergibt sich mithilfe der Formel für die geometrische Summe. 
+    Damit erhält man
+    \begin{align*}
+      \sum_{k=-n}^n e^{\i kx} &=
+      e^{-\i nx}\cdot \frac{1-e^{\i (2n+1)x}}{1-e^{\i x}} \\
+      &=
+      \frac{e^{\i (n+1/2)x}-e^{-\i (n+1/2)x}}{e^{\i x/2}-e^{-\i x/2}} \\
+      &=
+      \frac{\sin(n+\frac{1}{2})x}{\sin\frac{1}{2}x}. \EndTag
+    \end{align*}
+  \end{antwort}
+
+  %% Question 105
+  \begin{frage}\label{07_kerndarstellung}
+    Wie lassen sich die Fourierpolynome $S_n f$ einer 
+    $2\pi$-periodischen Regelfunktion mit dem Dirichlet-Kern 
+    $D_n$ ausdrücken?
+  \end{frage}
+
+  \begin{antwort}
+    Es ist 
+    \begin{align*}
+      S_n f (x) &= \sum_{k=-n}^n \hat{f}(k) e^{\i kx} \difx = 
+      \frac{1}{2\pi}\sum_{k=-n}^n \int_{-\pi}^\pi f(t) e^{-\i kt}\dift e^{\i kx} \\
+      &=\frac{1}{2\pi} \int_{-\pi}^\pi f(t) \sum_{k=-n}^n e^{\i (x-t)k} \dift.
+    \end{align*}
+    Die Summe ganz rechts ist gerade der Dirichlet-Kern 
+    $D_n(x-t)$. Also gilt 
+    \begin{equation}
+      \boxed{ 
+        S_n f (x) = \frac{1}{2\pi} \int_{-\pi}^\pi D_n (x-t) f(t) \dift.
+      }
+      \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 106
+  \begin{frage}\index{Fejer-Kern@Fej\'er-Kern}\label{07_fejer}
+    \index{Fejer@\textsc{Fej\'er}, Leopold (1880-1959)}
+    Was besagt der \bold{Satz von Fej\'er}? 
+    Was folgt aus ihm hinsichtlich des Konvergenzverhaltens 
+    von Fourierreihen $2\pi$-periodischer Funktionen?
+  \end{frage}
+
+  \begin{antwort}
+    Der Satz von Fej\'er liefert keine direkte Aussage über die 
+    Konvergenz der Folge $(S_n f)$, sondern über die zugeordnete 
+    Folge der \slanted{arithmetischen Mittel} 
+    \[
+    \sigma_n f := \frac{1}{n} ( S_0 f+ S_1 f + \cdots + S_{n-1} f ).
+    \]
+    Für jedes $n \in\NN$ ist $\sigma_n f$ dann ebenfalls ein 
+    trigonometrisches Polynom. Der Satz von Fej\'er lautet nun:
+    {\setlength{\labelsep}{3mm}
+      \begin{itemize}
+      \item[\desc{i}]\;\satz{Für jede Funktion $f\in \calli{R}(2\pi)$ und 
+          jedes $x\in \RR$ konvergiert die Folge $\bigl( \sigma_n f (x) \bigr)$ 
+          gegen das arithmetische Mittel des links- und rechtsseitigen Grenzwerts 
+          von $f$ in $x$: 
+          \[
+          \lim_{n\to \infty} \sigma_n f(x) = \frac{f(x-)+f(x+)}{2} 
+          \quad\text{für alle $x\in\RR$}. 
+          \]
+          Insbesondere konvergiert $(\sigma_n f)$ an jeder Stetigkeitsstelle 
+          von $f$ punktweise gegen $f$. }
+      \item[\desc{ii}]\;\satz{Für stetiges $f\in \calli{R}(2\pi)$ gilt 
+          $\sigma_n f(x) \to f (x)$ gleichmäßig auf $\RR$. 
+        }
+      \end{itemize}}
+    Was die Folge $(S_n f)$ angeht, so ist dazu Folgendes zu sagen. 
+    Im Allgemeinen bedeutet die Konvergenz der Folge arithmetischer 
+    Mittel $A_n:=\frac{1}{n}(a_0+\cdots + a_{n-1})$ nicht, dass auch 
+    die Folge $(a_n)$ konvergiert (einfaches Gegenbeispiel: $1,-1,1,-1,\ldots$). 
+    Es lässt sich aber problemlos zeigen, dass, \slanted{falls} $(a_n)$ 
+    konvergiert, dann notwendigerweise gegen denselben Grenzwert wie $(A_n)$. 
+
+    Der Satz von Fej\'er hat damit folgendes Korollar: 
+
+    \medskip\noindent
+    \slanted{Konvergiert die Fourierreihe $S_\infty f$ einer $2\pi$-periodischen 
+      Regelfunktion $f$, dann gilt $S_\infty f( x)= \frac{f(x-)+ f(x+)}{2}$, 
+      insbesondere also $S_\infty f(x)=f(x)$ an jeder Stetigkeitsstelle 
+      $x$ von $f$.} \AntEnd  
+  \end{antwort} 
+
+  %% Question 107
+  \begin{frage}\index{Fejer-Kern@Fej\'er-Kern}
+    Können Sie einen Beweis des Satzes von Fej\'er skizzieren?
+  \end{frage} 
+
+  \begin{antwort}
+    Eine tragende Rolle beim Beweis spielt die Folge der sogenannten 
+    \slanted{Fej\'er-Kerne}. Dabei ist der $n$-te Fej\'er Kern $F_n$ definiert als 
+    das arithmetische Mittel der ersten $n$ Dirichlet-Kerne, also 
+    \[
+    F_n := \frac{1}{n} (D_0 + D_1 + \cdots + D_{n-1} ).
+    \]
+    Man zeigt dann, dass die Fej\'er Kerne die folgenden Eigenschaften 
+    besitzen, die $(F_n)$ als eine \slanted{Dirac-Folge} 
+    \index{Dirac-Folge}
+    \index{Dirac@\textsc{Dirac}, Paul Adrien Maurice (1902-1984)}
+    kennzeichnen (vgl. auch \Abb\ref{fig:07_fejer}):
+
+    \noindent
+    {\setlength{\labelsep}{4mm}\slanted{
+        \begin{itemize}
+        \item[\desc{i}] $F_n\ge 0$ für alle $n$. \\[-3mm]
+        \item[\desc{ii}] $F_n$ ist eine gerade Funktion. \\[-3mm]
+        \item[\desc{iii}] $\frac{1}{2\pi} \int_{-\pi}^\pi F_n(x) \difx =1$. \\[-3mm]
+        \item[\desc{iv}] Für jedes $\eps>0$ und jedes 
+          $\delta>0$ gibt es ein $N$, sodass für alle $n\ge N$ gilt: 
+          \begin{equation}
+            \Int_{[-\pi,\pi]\mengeminus ]-\delta,\delta[} F_n (x) \difx < \eps.
+            \asttag
+          \end{equation}
+        \end{itemize}}}
+
+    \begin{center}
+      \includegraphics{mp/07_fejer}
+      \captionof{figure}{Die Folge $(F_n)$ der Fej\'er Kerne bildet 
+        eine Dirac-Folge.}
+      \label{fig:07_fejer}
+    \end{center}
+
+    \medskip
+    \noindent
+    Unter Verwendung dieser Eigenschaften lässt sich der Satz von Fej\'er 
+    nun beweisen: Aus der Gleichung in Antwort \ref{07_kerndarstellung} und 
+    der Tatsache, dass die Funktion $t\mapsto F_n(x-t) f(t)$ die Periode 
+    $2\pi $ besitzt, folgt mit der Substitution $u=t-x$
+    \[
+    \sigma_n f(x) = \frac{1}{2\pi} \int_{-\pi}^\pi F_n(x-t) f(t) \dift 
+    = \frac{1}{2\pi} \int_{-\pi}^\pi F_n(t) f(x-t) \dift.
+    \] 
+    Wegen \desc{ii} folgt aus \desc{iii} auch 
+    $\int_0^\pi F_n(x) \difx = \frac{1}{2}$, und daher gilt:
+    \[
+    \frac{1}{2} 
+    f(x-)-\frac{1}{2\pi} \int _0^\pi F_n(t) f(x-t)\dift 
+    = \frac{1}{2\pi} \int_0^\pi F_n(t) \bigl( f(x-)-f(x-t) \bigr) \dift.
+    \]
+    Man wähle nun $\delta>0$ so, dass $| f(x-)-f(x-t) | < \eps$ für 
+    $0 \le t \le \delta $ gilt, und zu $\eps$ und $\delta$ bestimme man ein 
+    hinreichend großes $n$, für das die Ungleichung {\astref} erfüllt 
+    ist. Damit erhält man 
+    \begin{multline}
+      \left| \frac{1}{2} 
+        f(x-)-\frac{1}{2\pi} \int _0^\pi F_n(t) f(x-t)\dift \right| 
+      = \left| 
+        \frac{1}{2\pi} \int_0^\pi F_n(t) \bigl( f(x-)-f(x-t) \bigr) \dift
+      \right|
+      \\
+      \le \frac{1}{2\pi} \left[ \int_0^\delta F_n(t) \big| f(x-)-f(x-t) \big| \dift
+        + \int_\delta^\pi F_n(t) \big| f(x-)-f(x-t) \big| \dift \right]
+      \notag
+    \end{multline}  
+    Die beiden Integrale lassen sich nun sehr leicht. Das erste 
+    ist kleiner als $\eps$, das hintere kleiner als 
+    $\eps \cdot \n{f}$. Also gilt:
+    \[ 
+    \lim_{n\to\infty} \frac{1}{2\pi} \int_0^\pi F_n(t) f(x-t)\dift =  
+    \frac{1}{2} f(x-).
+    \]
+    Analog zeigt man
+    \[ 
+    \lim_{n\to\infty}  \frac{1}{2\pi} \int_{-\pi}^0 F_n(t) f(x-t)\dift =
+    \frac{1}{2} f(x+).
+    \]
+    Zusammen folgt daraus
+    \[
+    \lim_{n\to \infty}  \sigma_n f(x) = \frac{f(x-)+f(x+)}{2},
+    \]
+    also der Satz von Fej\'er. \AntEnd
+  \end{antwort}
+
+  %% Question 108
+  \begin{frage}\index{Satz!von Dirichlet}
+    Wie lautet der Dirichlet'sche Satz über die punktweise Konvergenz der  
+    Fourierreihe $S_\infty f$ einer $2\pi$-periodischen Regelfunktion 
+    $f$? 
+  \end{frage}
+
+  \begin{antwort}
+    Der Satz lautet: 
+
+    \medskip
+    \noindent\satz{Unter der Voraussetzung, dass die Funktion 
+      $f$ in $x$ sowohl eine links--, als auch rechtsseitige Ableitung 
+      besitzt, konvergiert die Folge der Fourierpolynome 
+      $(S_nf)$ im Punkt $x$ gegen 
+      das arithmetische Mittel des links- und rechtsseitigen Grenzwerts 
+      von $f$ in $x$:
+      \[
+      S_\infty f(x)=\frac{f(x-)+f(x+)}{2}.
+      \]
+      Insbesondere gilt an jeder Stetigkeitsstelle $x$ von 
+      $f$: $S_\infty f(x)=f(x)$.}\AntEnd
+  \end{antwort}
+
+  %% Question 109
+  \begin{frage}\label{07_saeg}
+    Bestimmen Sie die Fourierkoeffizienten der $2\pi$-periodischen 
+    "`Sägezahnfunktion"' 
+    $h\,:\, \RR\to\RR$ 
+    mit $h(2k\pi)=0$, $k\in\ZZ$ und $h(x)=\frac{\pi-x}{2}$ für $x\in (0,2\pi)$.
+  \end{frage}
+
+  \begin{antwort}
+    Da $h$ ungerade ist, ist $a_k=0$ für alle $k\in \ZZ$. Für die $b_k$ 
+    erhält man 
+    \begin{eqnarray*}
+      b_k &=& 
+      \frac{1}{\pi}\int_{-\pi}^{\pi} \frac{\pi-x}{2} \sin kx \difx = 
+      \frac{1}{\pi}\int_{0}^{\pi}(\pi-x)\sin kx \difx \\
+      &=& 
+      \left.\frac{-(\pi-x)\cos kx }{k\pi} \right|_0^\pi -
+      \frac{1}{k\pi} \int_0^\pi \cos kx \difx = \frac{1}{k}.
+    \end{eqnarray*}
+    Somit lautet die Fourierreihe von $h$
+    \begin{equation}
+      S_{\infty} h(x) = \sum_{k=1}^{\infty}= \sin x+ \frac{\sin 2x}{2} +
+      \frac{\sin 3x}{3}+\cdots 
+      \notag
+    \end{equation}
+
+    Abbildung \ref{fig:06_fourier2} zeigt die ersten drei 
+    Partialsummen von $S_{\infty} h$.
+
+    \begin{center}
+      \includegraphics[width=\textwidth]{mp/06_fourier2}
+      \captionof{figure}{Approximation der "`Sägezahnfunktion"' durch 
+        Fourierpolynome.}
+      \label{fig:06_fourier2}
+    \end{center}
+
+    \AntEnd
+  \end{antwort}
+
+  %% Question 110
+  \begin{frage}\index{Gibbs'sches Phänomen}
+    \index{Gibbs@\textsc{Gibbs}, Josiah Willard (1839-1903)}
+    Erläutern Sie an der Funktion aus der vorigen Aufgabe 
+    qualitativ das \bold{Gibbs'sche Phänomen}.
+  \end{frage}
+
+  \begin{antwort}
+    Abbildung \ref{fig:06_fourier3} zeigt das zwanzigste Fourierpolynom zur 
+    Funktion $h$. Man erkennt, dass die approximierende Kurve 
+    an den beiden Extrema links und rechts neben der Unstetigkeitsstelle 
+    von $f$ auffallend weit über die zu approximierende 
+    Funktion $f$ hinausschießt. 
+
+    \begin{center}
+      \includegraphics{mp/06_fourier3}
+      \captionof{figure}{An den Unstetigkeitsstellen von $f$ 
+        weicht das Fourierpolynom überproportional weit von $f$ ab.}
+      \label{fig:06_fourier3}
+    \end{center}
+
+    Dieses verhältnismäßig extreme Abweichen eines Fourierpolynoms  
+    von $f$ an Punkten in der Nähe der Unstetigkeitsstellen von $f$ 
+    tritt bei allen unstetigen Funktionen auf und wird Gibbs'sches 
+    Phänomen genannt. Es lässt sich zeigen, 
+    dass der maximale Betrag, mit dem $S_nf$ an den 
+    entsprechenden Stellen von $f$ abweicht, nicht von $n$ abhängt.   
+
+    Genau bedeutet das Gibbs'sche Phänomen, dass zu jedem approximierenden 
+    Fourierpolynom $S_nf$ einer Funktion $f\in\calli{R}(2\pi)$ 
+    in der Umgebung der Unstetigkeitsstellen 
+    von $f$ ein Punkt $x_n$ existiert, sodass $|S_n f(x_n)-f(x_n)|>C$ gilt,  
+    wobei $C$ eine nicht von $n$ abhängige Konstante ist.   \AntEnd
+  \end{antwort}
+
+  %% Question 111
+  \begin{frage}
+    Können Sie unter Anwendung des Dirichlet'schen Satzes das Integral 
+    \begin{equation}\label{diri_integral}
+      \int_{-\infty}^\infty \frac{\sin t}{t} \dift
+      \asttag
+    \end{equation}
+    berechnen? (Die Existenz lässt sich mit Standardmethoden zur Untersuchung 
+    uneigentlicher Integrale zeigen.)
+  \end{frage}
+
+  \begin{antwort}
+    Die Idee des Beweises besteht darin, das Integral als Limes 
+    von Integralen der Form $\int_{-\pi}^\pi f(a-t)D_n(t)\dift=2\pi S_n f(a)$
+    darzustellen und -- unter Zuhilfenahme des Dirichlet'schen Satzes -- das 
+    Integral dann durch Auswertung der Funktion $f$ an der Stelle 
+    $a$ zu bestimmen. 
+
+    Konkret sieht das dann so aus: Das Integral {\astref} ist der 
+    Grenzwert der Integrale
+    \[
+    I_n := \int\limits_{-(n+1/2)\pi}^{(n+1/2)\pi} \frac{\sin t}{t} \dift 
+    =\int\limits_{-\pi}^\pi \frac{\sin\left( n+\frac{1}{2}\right)}{t} \dift
+    =\frac{1}{2}\int\limits_{-\pi}^\pi
+    \underbrace{\frac{\sin\frac{1}{2} t}{\frac{1}{2} t }}_{=f(t)=f(0-t)}
+    D_n (t)\dift.
+    \]
+    Durch $f(0):=1$ lässt sich $f(t)$ stetig in den Nullpunkt fortsetzen 
+    und ist dort dann auch differenzierbar. Mit dem Satz von Dirichlet folgt 
+    also $I=\pi\cdot f(0)=\pi$.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 112
+  \begin{frage}\index{L2@$L^2$-Norm}
+    Wie ist die \bold{$L^2$-Norm} bzgl. $[0,2\pi]$ für eine Funktion 
+    $f\in\calli{R}(2\pi)$ definiert? 
+  \end{frage}
+
+  \begin{antwort}
+    Die $L^2$-Norm ist die von dem Skalarprodukt aus Frage 
+    \ref{07_skalar} induzierte Norm auf 
+    $\calli{R}(2\pi)$. Diese ist also folgendermaßen definiert
+    \begin{equation}
+      \boxed{\n{ f }_2 := \sqrt{\langle f,f \rangle} = 
+        \sqrt{ \frac{1}{2\pi} \piint |f(t)|^2 \dift}.} 
+      \EndTag
+    \end{equation}  
+  \end{antwort}
+
+  %% Question 113
+  \begin{frage}\index{Konvergenz!im quadratischen Mittel}
+    Was bedeutet \bold{Konvergenz im quadratischen Mittel}?
+  \end{frage}
+
+  \begin{antwort}
+    Eine Folge $(f_n)$ von Regelfunktionen konvergiert auf $[a,b]$ 
+    im quadratischen Mittel gegen $f$, wenn gilt
+    \[
+    \int_a^b |f-f_n|^2 \difx \to 0.
+    \]
+    Speziell für $f\in\calli{R}(2\pi)$ heißt das also 
+    \[
+    \lim_{n\to\infty} \n {f-f_n}_2=0.
+    \EndTag
+    \]
+  \end{antwort}
+
+  %% Question 114
+  \begin{frage}
+    Welche Informationen beinhaltet die Konvergenz im quadratischen 
+    Mittel bezüglich der punktweisen Konvergenz?
+  \end{frage}
+
+  \begin{antwort}
+    Der Ausdruck $\int_a^b |f-f_n|^2 \difx$ gibt einen 
+    in bestimmten Sinn gemittelten Wert der Abweichung von $f$ und $f_n$ auf 
+    dem Intervall $[a,b]$ wieder, und insofern enthält er keine 
+    Informationen darüber, was an den einzelnen 
+    Punkten des Intervalls geschieht. Punktweise Konvergenz lässt sich daraus 
+    also nicht ableiten, und in der Tat ändert sich der Wert des 
+    Integrals ja auch nicht, wenn man die Werte von 
+    $f$ und $f_n$ an endlich vielen  Stellen willkürlich verändert. 
+    Aus der Konvergenz im quadratischen Mittel lässt sich allenfalls 
+    schließen, dass $(f_n)$ zumindest 
+    außerhalb einer Ausnahmemenge vom Maß Null gegen 
+    $f$ konvergiert. 
+
+    Konvergenz im quadratischen Mittel zu untersuchen empfiehlt sich also 
+    in den Fällen, in denen man von etwaigen Ausnahmen an 
+    einigen wenigen Stellen absehen kann. \AntEnd
+  \end{antwort}
+
+  %% Question 115
+  \begin{frage}
+    Können Sie diese Behauptung zeigen:    
+    Die Fourierpolynome $S_nf$ liefern im Raum der trigonometrischen Polynome 
+    mit einem Grad $\le n$ bezüglich der $L^2$-Norm 
+    die beste Annäherung an $f$ in folgendem Sinne: 
+    Ist $T$ ein weiteres trigonometrisches Polynom mit $\deg T \le n$, so gilt
+    \begin{equation}\label{min}
+      \n{ S_nf - f }_2 \le \n{ T-f }_2.
+      \notag
+    \end{equation}     
+  \end{frage}
+
+  \begin{antwort}
+    Sei $T=\sum_{k=-n}^n \gamma_k e^{\i kx}$ ein beliebiges 
+    Polynom aus $\calli{T}_n$, und sei 
+    $S_n f= \sum_{k=-n}^n c_k e^{\i kx}$ das $n$-te Fourierpolynom von $f$. 
+    Für den Abstand $\|f-T\|_2$ gilt dann  
+    \begin{align*}
+      \langle f-T, f-T \rangle &= 
+      \n{ f }_2^2 - \sum\nolimits_k \gamma_k \langle \ee_k, f \rangle - 
+      \sum\nolimits_k \overline{\gamma_k} \langle f, \ee_k \rangle +
+      \sum\nolimits_k \gamma_k \overline{\gamma_k} \\
+      &=
+      \n{ f }_2^2 - \sum\nolimits_k \gamma_k \overline{c_k} -
+      \sum\nolimits_k \overline{\gamma_k} c_k +
+      \sum\nolimits_k \gamma_k \overline{\gamma_k} \\
+      &=
+      \n{ f }_2^2 - \sum\nolimits_k c_k \overline{c_k} + 
+      \sum\nolimits_k | c_k-\gamma_k |^2.
+    \end{align*}
+    Hieraus folgt, dass $\n{ f-T }_2$ minimal wird genau dann, wenn 
+    $\sum_{k=-n}^n | c_k -\gamma_k |^2=0$ ist, also wenn 
+    $\gamma_k =c_k$ gilt.\AntEnd
+  \end{antwort}
+
+  %% Question 116
+  \begin{frage}\label{07_bessel}\index{Bessel'sche Ungleichung}
+    \index{Bessel@\textsc{Bessel}, Friedrich Wilhelm (1748-1846)}
+    Können Sie daraus die \bold{Bessel'sche Ungleichung} ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Für $T=S_n f$ folgt aus der letzten Gleichung
+    \begin{equation}
+      \n{ f-S_n }_2^2 = \n{ f }_2^2 - \sum_{k=-n}^n |c_k|^2. 
+      \notag
+    \end{equation}
+    Da die linke Seite positiv ist, erhält man daraus die Bessel'sche 
+    Ungleichung 
+    \begin{equation}
+      \boxed{
+        \sum_{k=-n}^n |c_k|^2 \le \n{ f }^2_2. 
+      }
+      \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 117
+  \begin{frage}\index{orthogonale Projektion}
+    Können Sie erläutern, inwiefern $S_n f$ die 
+    \slanted{orthogonale Projektion von $f$ in den 
+      Raum $\calli{T}_n$ der trigonometrischen Polynome 
+      vom Grad $\le n$} ist (vgl. auch \Abb\ref{fig:06_projektion})? 
+  \end{frage}
+
+  \begin{antwort}
+    Wegen 
+    \begin{eqnarray*}
+      \langle f-S_n f, \ee_k \rangle &=& 
+      \langle g, \ee_k \rangle -
+      \langle S_nf, \ee_k \rangle \\ &=& 
+      \hat{f}(k)-\hat{f}(k)=0, \quad\text{ für $|k|\le n$}
+    \end{eqnarray*}
+    steht $f-S_n$ senkrecht auf allen Elementen von $\calli{T}_n$. \AntEnd
+
+    \begin{center}
+      \includegraphics{mp/06_projektion}
+      \captionof{figure}{$S_n f$ ist die orthogonale Projektion von $f$ in den 
+        Raum der trigonometrischen Polynome vom Grad $\le n$.}
+      \label{fig:06_projektion}
+    \end{center}
+  \end{antwort}
+
+  %% Question 118
+  \begin{frage}\label{07_quadmittel}\index{Satz!uber die Konvergenz@über die 
+      Konvergenz im quadratischen Mittel}
+    Wie lautet der 
+    \bold{Satz über die Konvergenz im quadratischen Mittel} einer 
+    Fourierreihe? 
+  \end{frage}
+
+  \begin{antwort}
+    Der Satz lautet: 
+
+    \medskip
+    \noindent\satz{Für jede Funktion $f\in\calli{R}(2\pi)$ 
+      konvergiert die 
+      Folge $(S_nf)$ im quadratischen Mittel gegen $f$:}
+    \begin{equation}\label{quadmittel}
+      \n{f-S_nf}_2 \to 0\qquad\text{für $n\to\infty$}.\EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 119
+  \begin{frage}\label{07_parseval}\index{Parseval'sche Gleichung}
+    \index{Parseval@\textsc{Parseval Des Ch\^{e}nes}, Marc-Antoine (1755-1836)} 
+    Können Sie daraus die \bold{Parseval'sche 
+      Gleichung} ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Aus dem Ergebnis von Frage \ref{07_bessel} und 
+    \ref{07_quadmittel} folgt durch Grenzübergang 
+    $n\to\infty$ die \slanted{Parseval'sche Gleichung}
+    \begin{equation}\label{parseval}
+      \boxed{
+        \|f\|_2^2 = \sum_{k=-\infty}^{+\infty} |\hat{f}(k)|^2.
+      } \EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 120
+  \begin{frage}\label{07_parseval2}
+    Wie lautet die Parseval'sche Gleichung bzgl. der Koeffizienten 
+    $a_k$, $b_k$ der Sinus-Cosinus-Darstellung von $S_\infty f$?
+  \end{frage}
+
+  \begin{antwort}
+    Mit $c_k=(a_k-\i b_k)/2$ und $c_{-k}=(a_k+\i b_k)/2$ folgt aus Frage 
+    \ref{07_parseval}
+    \begin{equation}
+      \frac{1}{\pi}\piint |f(x)|^2 \difx 
+      =\frac{1}{2}|a_0|^2+\sum_{k=1}^{\infty}(|a_k|^2+|b_k|^2).\EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 121
+  \begin{frage}\index{Zetafunktion}
+    Können Sie aus der Antwort zu Frage \ref{07_saeg}
+    und der Parseval'schen Gleichung die 
+    Formel $\zeta(2)=\sum_{k=1}^{\infty}\frac{1}{k^2}=\frac{\pi^2}{6}$. 
+    ableiten?
+  \end{frage}
+
+  \begin{antwort}
+    Nach Frage \ref{07_saeg} gilt 
+    $\dis \frac{\pi -x }{2} = \sum_{k=1}^{\infty} \frac{\sin kx}{k}$ 
+    für $x\in(0,2\pi)$. 
+    Mit der Parseval'schen Gleichung aus Frage \ref{07_parseval2}
+    folgt daraus 
+    \begin{equation}
+      \sum_{k=1}^{\infty}\frac{1}{k^2} =
+      \frac{1}{\pi}\int_0^{2\pi} \left( \frac{\pi-x}{2} \right)^2 \difx
+      =\frac{\pi^2}{6}.\EndTag
+    \end{equation}
+  \end{antwort}
+
+  %% Question 122
+  \begin{frage}\index{Parseval'sche Gleichung}
+    Wie lautet die \bold{allgemeine Parseval'sche Gleichung}?
+  \end{frage}
+
+  \begin{antwort}
+    Die allgemeine Parseval'sche 
+    Gleichung lautet: 
+
+    \medskip
+    \noindent\satz{Für $f,g\in \calli{R}(2\pi)$ 
+      gilt
+      \[
+      \langle f,g \rangle = \frac{1}{2\pi} \int_{-\pi}^\pi 
+      f(t)\overline{g(t)}\dift
+      =
+      \sum_{k=-\infty}^\infty \hat{f}(k)\overline{\hat{g}(k)}.
+      \]}
+    \noindent
+    Die Gleichung folgt aus der Parseval'schen Gleichung 
+    unter Benutzung der Identität 
+    $z\overline{w}=\frac{1}{4}\left( |z+w|^2-|z-w|^2+i|z+iw|^2 - i|z-iw|^2\right)$.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 123
+  \begin{frage}\index{Differenziation!einer Fourierreihe}
+    Sei $f\in\calli{R}(2\pi)$ eine Stammfunktion von 
+    $\varphi\in\calli{R}(2\pi)$. 
+    Wieso erhält man die Fourierreihe von $\varphi$ durch gliedweises 
+    Differenzieren der Fourierreihe von $f$?
+  \end{frage}
+
+  \begin{antwort}
+    Die Behauptung folgt unmittelbar aus der Ableitungsregel
+    \[
+    \hat{\varphi}(k)=\i k\cdot \hat{f}(k),
+    \]
+    diese wiederum erhält man durch partielle Integration von $\varphi$:
+    \begin{align}
+      \hat{\varphi}(x) &=
+      \frac{1}{2\pi}\piint \varphi(x)e^{-\i kx}\difx \notag \\
+      &=
+      \left.f(x)e^{-\i kx}\right|_{-\pi}^\pi +
+      \i k\cdot \frac{1}{2\pi}\piint f(x)e^{-\i kx}\difx 
+      = \i k\cdot \hat{f}(k). \EndTag
+    \end{align}
+  \end{antwort}
+
+  %% Question 124
+  \begin{frage}
+    Ist $f\in\calli{R}(2\pi)$ Stammfunktion 
+    einer Funktion $\varphi\in\calli{R}(2\pi)$,
+    so konvergiert $(S_nf)$ normal auf $\RR$ gegen $f$. Können Sie 
+    das beweisen?
+  \end{frage}
+
+  \begin{antwort}
+    Zu zeigen ist $
+    \sum_{k=-\infty}^{+\infty} \| \hat{f}(k)e^{\i kx} \|_\RR\le \infty$. 
+    Wegen $\|e^{\i kx}\|_\RR=1$ ist das gleichbedeutend mit 
+    $\sum_{k=-\infty}^{+\infty} |\hat{f}(k)|  \le \infty$.
+
+    Nach der Ableitungsregel gilt $\hat{\varphi}(x)=\i k\cdot \hat{f}(x)$ für 
+    $k\in\ZZ$. Mit der Ungleichung zwischen arithmetischem und geometrischem  
+    Mittel ergibt sich
+    \[
+    |\hat{f}(k)|=\sqrt{1\cdot\left(\frac{|\hat{\varphi}(k)|}{|k|}\right)^2}
+    \le \frac{1}{2}\left( \frac{1}{k^2}+ |\hat{\varphi}|^2 \right).
+    \]
+    Nach \ref{07_bessel} ist aber 
+    $\sum_{k=-\infty}^{+\infty}|\hat{\varphi}|^2\le\infty$. 
+    Insgesamt folgt die Behauptung. \AntEnd
+  \end{antwort}
+
+  %% Question 125
+  \begin{frage}\index{Konvergenz!einer Fourierreihe}
+    Wie lautet die Verschärfung des Satzes von Dirichlet bezüglich 
+    gleichmäßiger Konvergenz?
+  \end{frage}
+
+  \begin{antwort}
+    Bezüglich gleichmäßiger Konvergenz lässt sich 
+    über die Fourierreihen folgendes beweisen:
+
+    \medskip
+    \noindent\slanted{Die Fourierreihe einer stückweise 
+      stetig differenzierbaren Funktion 
+      $f\in\calli{R}(2\pi)$ konvergiert auf jedem Intervall $[a,b]$, das keine 
+      Unstetigkeitsstelle von $f$ enthält, gleichmäßig gegen $f$. \AntEnd}
+  \end{antwort}
+
+  %% Question 126
+  \begin{frage}\index{Approximationssatz von Weierstraß}
+    \index{Weierstrass@\textsc{Weierstrass}, Karl Theodor Wilhelm (1815-1897)}
+    Haben Sie eine Idee, wie man aus dem Satz von Fej\'er den 
+    \bold{Weierstraß'schen 
+      Approximationssatz} bekommen könnte: \slanted{Zu jeder stetigen 
+      Funktion $f \fd M\to\CC$ auf einem kompakten Intervall $M:= [a,b] \subset\RR$ 
+      und jedem $\eps>0$ gibt es ein Polynom $P$ mit }
+    \[
+    \nnb{ f - P }_M  < \eps .
+    \]
+  \end{frage} 
+
+  \begin{antwort}
+    Nach einer eventuellen linearen Variablensubstitution kann 
+    man $M\subset ]-\pi,\pi[$ annehmen. 
+    $f$ lässt sich dann zu einer $2\pi$-periodischen Funktion $\tilde{f}$ 
+    auf $\RR$ fortsetzen, die innerhalb von $ ]-\pi,\pi[$ stetig 
+    ist. Nach dem Satz von Fej\'er gibt es also ein trigonometrisches Polynom 
+    $\sum_{k=-{n_0}}^{n_0} c_k e^{\i kx}=\sigma_{n_0} \tilde{f}(x)$ mit 
+    \[
+    \sup_{x\in M}\left| \tilde{f}-\sum_{k=-{n_0}}^{n_0} 
+      c_k e^{\i kx} \right|< \eps.
+    \]
+    Die Funktionen $c_k e^{\i kx}$ lassen sich aufgrund der gleichmäßigen 
+    Konvergenz der Exponentialreihe auf $M$ für alle $k\in M$ 
+    durch ein Polynom approximieren. Genauer existiert für jedes 
+    $k$ ein $N_k \in \NN$, sodass gilt: 
+    \[
+    \sup_{x\in M} 
+    \left| c_k e^{\i kx} - c_k \sum_{\ell=0}^{N_k} \frac{(\i k)^\ell}{\ell!} 
+      x^\ell  \right| 
+    < \frac{\eps}{2(2{n_0}+1)}. 
+    \]
+    Man setze $N:=\max\{ N_{-k}, \ldots, N_k \}$. Mit  
+    \[
+    \dis P(x): = \sum_{\ell=0}^{N} 
+    \left( \sum_{k=-{n_0}}^{n_0} c_k \frac{(\i k)^\ell}{\ell!} \right) x^\ell
+    \]
+    folgt dann die Behauptung. \AntEnd
+  \end{antwort}
+
+
+
+
+  \section{Differenzierbare Kurven und ihre Geometrie}
+
+  Bevor wir uns im nächsten Kapitel wieder mit abstrakteren Objekten  
+  befassen, stellen wir in diesem Kapitel einige Fragen zu konkreten 
+  geometrischen Gebilden, nämlich Kurven im $\RR^n$. Man sollte sich 
+  dabei von kinematischen Vorstellungen, etwa der 
+  Bewegung eines Punktes im Raum leiten lassen.
+
+  Mit der Norm $\n{\,\;}$ ist in diesem ganzen Abschnitt 
+  immer die Euklidische Norm $\n{\,\;}_2$ gemeint. 
+
+  %% Question 127
+  \begin{frage}\index{Kurve!parametrisierte}
+    Was versteht man unter einer \bold{parametrisierten Kurve im 
+      $\mathbf{\RR^n}$}? 
+    Wann heißt eine Kurve $s$-mal stetig differenzierbar?
+  \end{frage}
+
+  \begin{antwort}
+    Sei $I\subset\RR$ 
+    ein Intervall. Eine \slanted{parametrisierte Kurve} 
+    im $\RR^n$ ist eine Abbildung 
+    \[
+    \gamma\fd I \to\RR^n,\qquad t\mapsto 
+    \big( \gamma_1(t), \ldots, \gamma_n(t) \big),
+    \]
+    deren Komponentenfunktionen $\gamma_1,\ldots,\gamma_n$ 
+    alle stetig sind. $\gamma$ heißt  
+    \slanted{$s$-mal stetig differenzierbar}, wenn alle Komponentenfunktionen 
+    dies sind. \AntEnd
+  \end{antwort}
+
+  %% Question 128
+  \begin{frage}\index{Kurve!differenzierbare}
+    Können Sie einige Beispiele für differenzierbare Kurven nennen?
+  \end{frage} 
+
+  \begin{antwort}
+    Einfachste Beispiele für Kurven sind Geraden, Kreislinien, Ellipsen, 
+    auch Funktionsgraphen. Abbildung \ref{fig:diff_kurven} 
+    zeigt weitere Beispiele. 
+    \index{Kartesisches Blatt}
+    \index{Neilsche Parabel@Neil'sche Parabel}
+    \index{Schmetterling}
+    \index{Kleeblattkurve}
+    \index{Lemniskate}
+    \index{Spiralkurve}
+
+    \begin{center}
+      \begin{minipage}{\textwidth}
+        \includegraphics{mp/kartesisches_blatt}
+        \includegraphics{mp/kurven}
+      \end{minipage}
+      \captionof{figure}{Beispiele differenzierbarer Kurven.}
+      \label{fig:diff_kurven}
+    \end{center}
+
+    \AntEnd
+  \end{antwort} 
+
+  %% Question 129
+  \begin{frage}\index{Spur einer Kurve}
+    Was ist der Unterschied zwischen einer Kurve und ihrer Spur?
+  \end{frage}
+
+  \begin{antwort}
+    Die \slanted{Spur}, also das Bild von $I$ unter $\gamma$, ist 
+    eine bloße Punktmenge im $\RR^n$. Im Unterschied dazu enthält eine 
+    Kurve Informationen über den "`Zeitplan"', mit dem die Spur durchlaufen 
+    wird. Damit hängt zusammen, dass eine $\calli{C}^1$-Kurve in jedem Punkt ihrer 
+    Spur eine eindeutige \slanted{Richtung} und "`\slanted{Geschwindigkeit}"' 
+    besitzt.  
+  \end{antwort}
+
+  %% Question 130
+  \begin{frage}\index{Tangentialvektor}\index{Tangentialeinheitsvektor}
+    Was versteht man unter dem \bold{Tangentialvektor} einer differenzierbaren 
+    Kurve zu einem Parameter? Wie ist 
+    der \bold{Tangentialeinheitsvektor} definiert?
+  \end{frage}
+
+
+  \begin{antwort}
+    Für eine differenzierbare Kurve $\gamma\fd I\to \RR^n$ heißt
+    \[
+    \dot{\gamma}(t) := \big( \dot{\gamma}_1 (t), \ldots, \dot{\gamma}_n (t) \big)
+    \]
+    der \slanted{Tangentialvektor} zum Parameter $t$ (\sieheAbbildung\ref{fig:kurven_tangentialvektor}). Ferner heißt 
+    \[
+    \nb{\dot{\gamma}}_2 := \sqrt{ \dot{\gamma}_1^2(t)+ \cdots 
+      + \dot{\gamma}_n^2 (t) } 
+    \]
+    die \slanted{Geschwindigkeit} im Punkt $t$. 
+
+    \begin{center}
+      \includegraphics{mp/kurven_tangentialvektor}
+      \captionof{figure}{Der Tangentialvektor an eine Kurve $\gamma$ 
+        im Punkt $\gamma(t)$.}
+      \label{fig:kurven_tangentialvektor}
+    \end{center}
+
+    Der \slanted{Tangentialeinheitsvektor} in $t$ ist der normierte 
+    Geschwindigkeitsvektor in $t$, also der Vektor 
+    \[
+    \dot{\gamma}(t)/\n{\dot\gamma}(t). \EndTag
+    \]
+  \end{antwort} 
+
+
+
+  %% Question 131
+  \begin{frage}\index{Kurve!reguläre}
+    Wann heißt eine Kurve \bold{regulär}? 
+  \end{frage}
+
+  \begin{antwort}
+    Eine Kurve $\gamma\fd I\to\RR^n$ heißt \slanted{regulär} im 
+    Punkt $t_0\in I$, wenn $\dot{\gamma}(t_0)\not=0$ gilt. Sie heißt 
+    regulär, wenn sie in jedem Punkt $t\in I$ regulär ist. 
+
+    Regularität an der Stelle $t_0$ bedeutet anschaulich, dass die 
+    Kurve dort eine eindeutige Richtung und keine 
+    "`Spitze"' hat.
+    \AntEnd
+  \end{antwort} 
+
+  %% Question 132
+  \begin{frage}\index{Schnittwinkel regulärer Kurven} 
+    Wie ist der \bold{Schnittwinkel} zweier regulärer Kurven definiert?
+  \end{frage}
+
+  \begin{antwort}
+    Sind $\gamma$ und $\alpha$ zwei im Parameter $t_0$ bzw. 
+    $s_0$ reguläre Kurven und gilt $\gamma(t_0)=\alpha(s_0)$, dann 
+    ist der Schnittwinkel $\varphi$ von $\gamma$ und $\alpha$ 
+    im Schnittpunkt der Winkel zwischen den Tangentialeinheitsvektoren 
+    $T_\gamma(t_0)$ und $T_\alpha(s_0)$, \sieheAbbildung\ref{fig:kurve_schnittwinkel}. Der Cosinus des Winkels ist damit gegeben durch das Skalarprodukt
+    \[
+    \boxed{ \cos \varphi = \langle T_\gamma( t_0 ), T_\alpha( s_0 ) \rangle. }
+    \EndTag
+    \]   
+    \begin{center}
+      \includegraphics{mp/kurve_schnittwinkel}
+      \captionof{figure}{Der Schnittwinkel zweier differenzierbarer Kurven 
+        ist der Winkel zwischen ihren Einheitsvektoren.}
+      \label{fig:kurve_schnittwinkel}
+    \end{center}
+  \end{antwort} 
+
+  \picskip{0}
+  %% Question 133
+  \begin{frage}\label{kurve_parametertrans}\index{Paramatertransformation}
+    \index{Umparametrisierung!von Kurven}
+    Wann gehen zwei $\calli{C}^k$-Kurven ($k=1,2,3,\cdots$) 
+    durch eine Parametertransformation 
+    auseinander hervor?
+  \end{frage}
+
+  \begin{antwort}
+    Eine $\calli{C}^k$-Abbildung   
+    $s\fd I \to J$ zwischen zwei Intervallen $I$ und 
+    $J$ heißt \slanted{Parametertransformation}, wenn sie bijektiv ist und 
+    die Umkehrabbildung $s^{-1}$ ebenfalls zu $\calli{C}^k$ gehört. $s$ 
+    heißt \slanted{orientierungstreu}, wenn $s'$ monoton wächst, und 
+    \slanted{orientierungsumkehrend}, wenn $s'$ monoton fällt. 
+
+    Ist $\gamma\fd I\to \RR^n$ eine 
+    $\calli{C}^k$-Kurve und $s\fd I\to J$ 
+    eine $\calli{C}^k$-Parametertransformation, dann ist durch 
+    \[
+    \alpha := \gamma \circ s^{-1} \fd J \to I \to \RR^n
+    \]
+    eine weitere $\calli{C}^k$-Kurve gegeben, die dieselbe Spur 
+    wie $\gamma$ durchläuft, nun aber auf dem Intervall $J$ definiert ist. 
+
+    Man sagt dann, $\alpha$ gehe durch \slanted{Umparametrisierung} aus 
+    $\gamma$ hervor. Für die Tangentialvektoren ergibt sich mit der 
+    Kettenregel dann der Zusammenhang
+    \[
+    \dot{\alpha}\big(s(t)\big)=\frac{\dot{\gamma}(t)}{s'(t)}.
+    \EndTag
+    \]
+  \end{antwort} 
+
+  %% Question 134
+  \begin{frage}\label{kurve_bogenlaenge}\index{Bogenlaenge@Bogenlänge}
+    Wie ist für eine stetig differenzierbare Kurve $\gamma$ auf einem 
+    kompakten Intervall $[a,b]$ die \slanted{Kurvenlänge} $\ell(\alpha)$ 
+    definiert? 
+    Wieso wird durch diesen Ausdruck auch wirklich die "`Länge"' 
+    der Kurve erfasst?  
+  \end{frage}
+
+  \begin{antwort}
+    Sei $\gamma$ stetig differenzierbar. 
+    Für den Fall, dass das Integral in der unten stehenden Formel 
+    existiert, wird die \slanted{Kurvenlänge} $s(\gamma)$ definiert durch  
+    \[
+    \boxed{
+      \ell(\gamma) := \int_a^b \nb{ \dot{\gamma}(t) } \dift = 
+      \int_a^b \sqrt{ \dot{\gamma}_1^2(t) + \cdots + \dot{\gamma}_n^2 (t)} \dift. }
+    \]
+    Im Fall der Existenz dieses Integrals heißt 
+    $\gamma$ \slanted{rektifizierbar}.\index{rektifizierbar}
+    \nomenclature{$\ell(\gamma)$}{Länge der Kurve $\gamma$}  
+
+    Ein Indiz dafür, dass obige Formel die "`richtige"' ist, ist die Tatsache, 
+    dass sie für die Länge der Strecke zwischen $a$ und $b$ das Ergebnis $\n{a-b}$ 
+    und für die Länge der Kreislinie mit Radius $r$ das Ergebnis $2\pi r$ liefert.  
+
+    Man kommt auf die Formel, indem man die Kurve wie in Abbildung 
+    \ref{fig:kurvenlaenge} durch \slanted{Sehnenpolygone} 
+    approximiert. \index{Sehnenpolygon}
+
+    \begin{center}
+      \includegraphics{mp/kurvenlaenge}
+      \captionof{figure}{Approximation einer Kurve durch Sehnenpolygone.}
+      \label{fig:kurvenlaenge}
+    \end{center}
+
+    Ist $t_0:=a < t_1 < \cdots < t_k = b$ 
+    eine Zerlegung $Z$ von $[a,b]$, dann setzt sich das 
+    Sehnenpolygon $P_\gamma(Z)$ aus den Strecken von 
+    $\gamma(t_{\nu-1})$ nach $\gamma( t_\nu )$ zusammen, und die 
+    Kurvenlänge von $P_\gamma(Z)$ ist elementargeometrisch gegeben durch 
+    \[
+    \ell\big( P_\gamma(Z) \big) = 
+    \sum_{\nu=1}^k \nb{ \gamma( t_{\nu} )- \gamma(t_{\nu-1}) }. 
+    \]
+    Anschaulich ist klar, dass man $\ell\big( P_\gamma(Z) \big)$ als 
+    Annäherung an $\ell(\gamma)$ auffassen kann, dass die Annäherung besser 
+    wird, je feiner die Zerlegung $Z$ ist und dass beim Grenzübergang 
+    $|Z|\to 0$ (unter "`normalen"' Bedingungen) die Kurvenlänge von 
+    $\gamma$ erfasst wird.   
+
+    Den Zusammenhang zwischen beiden Formeln erhält man etwa 
+    mit dem Mittelwertsatz der Integralrechnung. 
+    Ist die Zerlegung $Z$ so gewählt, dass $\gamma$ auf den 
+    Intervallen $\ropen{ t_{\nu-1}, t_\nu }$ stetig ist, dann gibt es 
+    Zahlen $\tau_\nu \in \open{ t_{\nu-1}, t_\nu }$ mit 
+    \[
+    \ell( \gamma ) = \sum_{\nu=1}^k \int_{t_{\nu-1}}^{t_\nu} 
+    \nb{ \dot{\gamma}(t) } \dift = 
+    \sum_{\nu=1}^k \nb{ \dot{\gamma} (\tau_\nu) } \cdot (t_{\nu}-t_{\nu-1} ).
+    \]
+    Andererseits ist 
+    \[
+    \nb{ \dot{\gamma}(t_\nu) } = 
+    \lim_{t_{\nu-1}\to t_{\nu}}  
+    \frac{\nb{ \gamma(t_\nu)-\gamma(t_{\nu-1})}}{t_\nu-t_{\nu-1}}.
+    \]
+    Für $|Z|\to 0$ (soll heißen, dass die maximale Länge der Zerlegungsintervalle 
+    gegen $0$ geht) gilt $t_{\nu}\to \tau_\nu$ für alle 
+    $\nu$, und damit kann man schon erkennen, dass am Ende  
+    $\lim\limits_{|Z|\to 0} \ell\big( P_\gamma (Z) \big)=\ell(\gamma)$ 
+    herauskommen sollte. 
+
+    Für einen sauberen Beweis sind noch etwas sorgfältigere 
+    Untersuchungen des Konvergenzverhaltens notwendig, insbesondere 
+    muss die Unabhängigkeit des Grenzwerts von der Wahl der 
+    Folge der Zerlegungen gezeigt werden. Mit den bewährten  
+    Standardmethoden der Infinitesimalrechnung (Mittelwertsätze etc.) 
+    sollte das aber kein Problem mehr sein.
+    \AntEnd
+  \end{antwort}
+
+  %% Question 135
+  \begin{frage}
+    Wie lautet die Formel für die Kurvenlänge speziell für die 
+    durch eine $\calli{C}^1$-Funktion $f\fd [a,b]\to\RR$ beschriebene 
+    Kurve $\gamma_f$? 
+  \end{frage}
+
+  \begin{antwort}
+    
+    Wegen 
+    $\n{ \dot{\gamma_f}(t) }_2 = \sqrt{1+f'^2(t)}$ gilt in diesem Fall 
+    \[
+    \boxed{ \ell( \gamma_f ) = \int_a^b \sqrt{1+f'^2 (t ) }\dift. }\EndTag
+    \]
+  \end{antwort} 
+
+
+  %% Question 136
+  \begin{frage}\index{Umparametrisierung!auf Bogenlänge}
+    Was versteht man bei einer regulären Kurve 
+    $\gamma \fd I \to \RR^n$ unter der \bold{Umparametrisierung auf 
+      Bogenlänge}?
+  \end{frage}
+
+  \begin{antwort}
+    Ist $\gamma\fd [a,b]\to \RR^n$ eine reguläre Kurve, so ist durch 
+    \[
+    s( t ) := \int_a^t \gamma(\tau) \dd \tau, \qquad t\in I \asttag
+    \]
+    eine Parametertransformation $[a,b]\to[0,c]$ mit $c=\nb{\dot{\gamma}(b)}$ 
+    definiert, die 
+    wegen $s'(t)=\nb{\dot{\gamma}(t)} \ge 0$ orientierungstreu ist.   
+
+    Für die Umparametrisierung 
+    $\alpha := \gamma\circ s^{-1}$ von $\gamma$ gilt also 
+    nach der Antwort zu Frage \ref{kurve_parametertrans}:
+    \[
+    \dot{\alpha}(s) = \frac{\dot{\gamma}(t)}{ \n{\dot{\gamma}(t)} }, \qquad
+    \text{mit $s := s(t)$}. 
+    \] 
+    Durch die Parametertransformation {\astref} erhält man eine 
+    Umparametrisierung von $\gamma$, die 
+    die die konstante Geschwindigkeit $1$ hat: $\n{\dot{\alpha}(t)}\equiv 1$. 
+
+    Die Kurve $\alpha$ nennt man   
+    \slanted{Umparametrisierung von $\gamma$ auf Bogenlänge}. 
+    \AntEnd
+  \end{antwort} 
+
+  %% Question 137
+  \begin{frage}\index{Zykloidenbogen}
+    Welche Länge hat der \bold{Standardzykloidenbogen} 
+    \[
+    \varrho\fd t \mapsto 
+    \big( t-\sin t,  1-\cos t \big), \qquad t\in[0,2\pi]\;
+    \text{?} 
+    \]
+  \end{frage}
+
+  \begin{antwort}
+    Nach der Antwort zu Frage \ref{kurve_bogenlaenge} gilt für die Bogenlänge
+    \[
+    \ell(\varrho)=
+    \int_0^{2\pi} \nb{\dot{\varrho}(t) }\, \dift = 
+    \int_0^{2\pi} \sqrt{(1- \cos t)^2 + \sin^2 t}\, \dift = 
+    \int_0^{2\pi} \sqrt{2-2\cos t} \dift. \asttag
+    \]
+    Der Integrand lässt sich mit den Additionstheoremen umformen: 
+    \[
+    \cos t = \cos \left( \frac{t}{2} + \frac{t}{2} \right) = 
+    \cos^2 \left( \frac{t}{2} \right) - 
+    \sin^2 \left( \frac{t}{2} \right) = 
+    1-2 \sin^2 \left( \frac{t}{2} \right). 
+    \]
+    Eingesetzt in {\astref} liefert das 
+    \[
+    \ell(\varrho) = 2 \int_0^{2\pi} \sin \left(\frac{t}{2}\right)\dift = 
+    4\int_0^{\pi} \sin u \difu =8. \EndTag
+    \]
+  \end{antwort} 
+
+  %% Question 138
+  \begin{frage}\index{Krümmung!einer ebenen Kurve}
+    \nomenclature{$\kappa_\gamma (s)$}{Krümmung der Kurve $\gamma$ in $s$}
+    Wie ist die \bold{Krümmung} einer $2$-mal stetig differenzierbaren 
+    ebenen Kurve definiert?
+  \end{frage}
+
+  \begin{antwort}
+    Insofern die Krümmung ein Maß der \slanted{Abweichung} 
+    vom geradlinigen Verlauf einer Kurve ist, 
+    hängt sie mit der Änderung des Tangentialvektors $T$ 
+    im Punkt $s$ zusammen, also mit der "`Größe"' 
+    der Ableitung $T'$ (die im Unterschied zur Norm auch negativ sein darf).   
+
+    Um hier eine Normierung zu bekommen, betrachten wir zunächst  
+    $\calli{C}^2$-Kurven $\gamma$ mit der konstanten Geschwindigkeit $1$. 
+    Wegen $\n{T} \equiv 1$ gilt dann
+    \[
+    0=\big(\n{ T(s) }^2\big) ' = \frac{\dd}{\dd s}\big( T_1^2(s) + T_2^2 (s) \big) = 
+    2 \big( T_1(s) T_1'(s) + T_2(s) T_2'(s) \big)
+    = 2 \langle T(s), T'(s) \rangle. 
+    \]
+    Somit stehen $T$ und $T'$ aufeinander senkrecht. Bezeichnet 
+    $N(s)$ den Einheitsnormalenvektor an $\gamma$ im Punkt $s$, der 
+    so orientiert ist, dass $N(s)$ mit dem im positiven Sinn um den Winkel 
+    $\frac{\pi}{2}$ gedrehten Einheitstangentialvektor übereinstimmt 
+    ({\dasheisst} $N=(-T'_1, T'_2)^T$), dann ist 
+    $T'(s)$ damit ein skalares Vielfaches von $N(s)$, es ist also  
+    \[
+    T'(s) = \kappa(s) N(s)  
+    \]
+    mit einer Zahl $\kappa(s) \in \RR$. Für diese gilt 
+    \[
+    \boxed{ \kappa(s) = \langle T'(s) , N(s) \rangle }
+    \]
+    Die Zahl $\kappa(s)$ ist ein Maß für die gesuchte Änderungsgröße 
+    des Tangentialvektors in $s$. Daher definiert 
+    man $\kappa(s)$ als die \slanted{Krümmung} von $\gamma$ an der 
+    Stelle $s$.
+    
+    Für jede reguläre Kurve ist somit via Umparametrisierung auf Bogenlänge 
+    die Krümmung definiert. Ist $\alpha$ eine Umparametrisierung von $\beta$ auf 
+    Bogenlänge $s=s(t)$, so setzt man 
+    $\kappa_\beta(t)=\kappa_\alpha \big( s(t) \big)$. \AntEnd
+  \end{antwort} 
+
+  %% Question 139
+  \begin{frage}
+    Können Sie zeigen, dass an jeder Regularitätsstelle einer 
+    $\calli{C}^2$-Kurve $\gamma:=(x,y)$ gilt: 
+    \[
+    \boxed{ \kappa(t)=\frac{\dot{x}\ddot{y} - \dot{y}\ddot{x} }{ 
+        \sqrt{\dot{x}^2 + \dot{y}^2 }^3 } (t). }
+    \] 
+  \end{frage}
+
+  \begin{antwort}
+    Sei $\alpha$ eine Umparametrisierung von $\gamma$ 
+    auf Bogenlänge $s=s(t)$. Dann ist 
+    $\frac{\dot{\gamma}(t) }{ s'(t) } = \dot{\alpha}( s(t) )$ 
+    mit $s'(t)=\n{ \dot{\gamma}(t) }$. Ferner 
+    gilt 
+    \[
+    \ddot{\alpha} \big(  s(t) \big) = 
+    \frac{
+      \ddot{\gamma}(t) s'(t) - s''(t) \dot{\gamma}(t)}{s'(t)^2} 
+    = \ddot{\gamma}(t) \frac{1}{s'(t)^2} - 
+    \dot{\gamma} \frac{s''(t)}{s'(t)^2}. 
+    \]
+    Die Krümmung von $\gamma$ in $t$ lässt sich damit 
+    einfach berechnen: 
+    \begin{align*}
+      k_\gamma(t) &= 
+      \kappa_\alpha \big( s \big) = 
+      \big\langle T'(s ) , N(s) \big\rangle = 
+      \big\langle \ddot{\alpha}, 
+      \big( -\dot{\alpha}_2, \dot{\alpha}_1 \big)^T 
+      \big\rangle \\
+      &=\left\langle 
+        \ddot{\gamma}\frac{1}{{s'}^2} - 
+        \dot{\gamma} \frac{s''}{{s'}^2}, 
+        \begin{pmatrix}
+          -\dot{y}/s' \\  \dot{x}/s' 
+        \end{pmatrix} \right\rangle 
+      = \frac{1}{ {s'}^3 } \big(  
+      -\ddot{x} \dot{y} + \ddot{y} \dot{x} - 
+      \big( - \dot{x} \dot{y} + \dot{y} \dot{x} 
+      \big) \big)
+      \\
+      &= \frac{\dot{x}\ddot{y} - \dot{y}\ddot{x} }{ 
+        \sqrt{\dot{x}^2 + \dot{y}^2 }^3 }. 
+      \EndTag 
+    \end{align*}
+    Speziell für eine $\calli{C}^1$-Funktion 
+    $f\fd I\to\RR$ erhält man als Krümmung die Formel 
+    \[
+    \kappa_(x) = \frac{f''(x)}{\sqrt{1+f'^2 (x) }^3 }. \EndTag
+    \]
+  \end{antwort} 
+
+  %% Question 140
+  \begin{frage}\index{Krümmung!der Kreislinie}
+    Welche Krümmung hat die positiv orientierte Kreislinie mit Radius $r$? 
+  \end{frage}
+
+  \begin{antwort}
+    Für die Parametrisierung 
+    $\gamma(t):= ( r\cdot \cos t, r\cdot \sin t )$ mit $t\in [0,2\pi]$ 
+    folgt für die Krümmung 
+    \[
+    \kappa_\gamma( t ) = \frac{ r^2 \cdot \sin^2 t - 
+      (- r^2 \cdot \cos^2 t)}{r^3} = \frac{1}{r}.
+    \]
+    Bei negativer Orientierung bekommt man entsprechend die Krümmung $-1/r$. 
+    \AntEnd
+  \end{antwort} 
+
+
+
+
+  %%% Local Variables: 
+  %%% mode: latex
+  %%% TeX-master: "master"
+  %%% End: 

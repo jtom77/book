@@ -1,0 +1,1363 @@
+\chapter{Elementare (transzendente) Funktionen}
+
+Wie schon in früheren Kapiteln angedeutet wurde, sind 
+\slanted{Potenzreihen} ein äußerst wichtiges und leistungsfähiges 
+Konstruktionsprinzip der Analysis. Eine besonders wichtige Rolle 
+spielt dabei die \slanted{komplexe Exponentialfunktion} 
+$\exp\fd \CC\to\CC$. Erst durch den Übergang zum Komplexen wird eine 
+enge Verwandtschaft dieser Funktion 
+mit den \slanted{trigonometrischen Funktionen} 
+(\slanted{Winkelfunktionen}) oder den  
+\slanted{hyperbolischen Funktionen} sichtbar, die im Reellen 
+überhaupt nicht erkennbar ist, und mit deren Hilfe sich zahlreiche 
+wichtige Eigenschaften dieser Funktionen auf sehr einfache Weise ergeben. 
+Wir betrachten die Funktionen daher gleich im Komplexen, bei ihren 
+Umkehrungen konzentrieren wir uns allerdings auf den reellen Fall.
+
+\section{Die komplexe Exponentialfunktion}
+
+%% Question 1
+\begin{frage}\label{05_exei}\label{05_exko}\index{Exponentialreihe}
+  \index{Exponentialfunktion}
+  Durch welche Reihendarstellung ist die Exponentialfunkion 
+  $\exp \fd \CC\to\CC$ definiert? Wieso konvergiert diese Reihe 
+  für alle $z\in\CC$ absolut?
+\end{frage}
+
+\begin{antwort}
+  Für alle $z\in\CC$ ist $\exp (z)$ definiert durch die Reihe  
+  \[
+  \boxed{
+    \exp z  := \sum_{k=0}^\infty \frac{z^k}{k!} = 
+    1 + z + \frac{z^2}{2!} + \frac{z^3}{3!}+ \cdots . 
+  }
+  \]
+  Die absolute Konvergenz für alle 
+  $z\in\CC$ erhält man am schnellsten 
+  mit dem Quotientenkriterium. Das wurde in der Antwort zu Frage 
+  \ref{02_expd} schon vorgeführt.
+
+  Da die Reihendarstellung 
+  damit für alle $z\in\CC$ existiert, ist durch sie
+  eine stetige Funktion $\exp\fd\CC\to\CC$ gegeben.
+  \AntEnd
+\end{antwort} 
+
+%% Question 2
+\begin{frage}\label{05_exp_funktionalgleichung}
+  \index{Additionstheorem!der Exponentialfunktion}
+  \index{Funktionalgleichung!der Exponentialfunktion}
+  Wie lautet die \bold{Funktionalgleichung} bzw. 
+  das \bold{Additionstheorem} der Exponentialfunktion und 
+  woraus folgt es?
+\end{frage} 
+
+\begin{antwort}
+  Für alle $z,w\in\CC$ gilt die \slanted{Funktionalgleichung}
+  \[
+  \boxed{\exp( z+w )=\exp(z)\exp(w).}
+  \]
+  Man erhält die Gleichung durch Auswerten des 
+  Reihenprodukts
+  \[
+  \left( \sum_{k=0}^\infty \frac{z^k}{k!} \right)\cdot 
+  \left( \sum_{k=0}^\infty \frac{w^k}{k!} \right)
+  \]
+  mittels
+  Cauchy-Multiplikation. Das wurde in der 
+  Antwort zu Frage \ref{02_expfunk} bereits gezeigt. \AntEnd 
+\end{antwort}
+
+%% Question 3
+\begin{frage}
+  Wieso ist $\exp(z)\not=0$ für alle $z\in\CC$?
+\end{frage}
+
+\begin{antwort}
+  
+  Aus $\exp(z)=0$ würde mit der 
+  Funktionalgleichung $\exp(z-z)=0$ folgen. Es gilt 
+  aber $\exp(z-z)=\exp(0)=1$. \AntEnd
+\end{antwort} 
+
+%% Question 4
+\begin{frage}
+  Wieso gilt $\exp(kz)=( \exp(z) )^k$ für alle $k\in \ZZ$ und alle 
+  $z\in\CC$?
+\end{frage}
+
+\begin{antwort}
+  Für positive $k$ ergibt sich die Formel induktiv mithilfe 
+  der Funktionalgleichung. Die Erweiterung auf negative Zahlen folgt 
+  daraus dann im Zusammenhang mit $\exp(-z)=\exp(z)^{-1}$, was 
+  sich wiederum aus $1=\exp(z-z)=\exp(z)\exp(-z)$ ergibt.\AntEnd
+\end{antwort}  
+
+%% Question 5
+\begin{frage}
+  Woraus folgt $\overline{\exp(z)} = \exp(\overline{z})$?
+\end{frage}
+
+\begin{antwort}
+  Für alle $n\in\NN$ und alle $z\in\CC$ gilt 
+  $\overline{z}^n = \overline{z^n}$. Da die Konjugation konvergenter 
+  Folgen mit der Limesbildung verträglich ist 
+  (vgl. Frage \ref{02_freg}), folgt die Gleichung 
+  damit aus der Reihendarstellung von $\exp$. \AntEnd
+\end{antwort} 
+
+%% Question 6
+\begin{frage}
+  Wie kann man zeigen, dass für alle $t\in \RR$ gilt: 
+  $\big| \exp(\i t) \big|=1$?
+\end{frage}
+
+\begin{antwort}
+  Wegen $\overline{\i t}=-\i t$ und $\exp(-z)=1/\exp(z)$ 
+  folgt zusammen mit dem vorhergehenden Ergebnis 
+  \[
+  \left|\exp(\i t)\right| = \exp(\i t)\overline{\exp(\i t)} = 
+  \exp(\i t)\exp(\overline{\i t}) = 
+  \exp(\i t)\exp(-\i t) = 1. \EndTag
+  \]
+\end{antwort} 
+
+%% Question 7
+\begin{frage}\index{Exponentialfunktion}
+  Wieso gilt $\exp'(z)=\exp(z)$ für alle $z\in\CC$?
+\end{frage}
+
+\begin{antwort}
+  Gliedweises Differenzieren der Exponentialreihe liefert
+  \begin{equation}
+    \exp'(z)=\sum_{k=1}^\infty \frac{kz^{k-1}}{k!} =
+    \sum_{k=1}^\infty \frac{z^{k-1}}{(k-1)!}  =
+    \sum_{k=0}^\infty \frac{z^k}{k!} = \exp(z).\EndTag
+  \end{equation} 
+\end{antwort}
+
+%% Question 8
+\begin{frage}\label{05_exid} 
+  Können Sie $\lim\limits_{n\to\infty}\dis\left( 1+\frac{z}{n}\right)^n = \exp z$ 
+  für alle $z\in\CC$ zeigen?
+\end{frage}
+
+\begin{antwort}
+  Im Wesentlichen ergibt sich der Zusammenhang, 
+  indem man die binomische Formel auf den Ausdruck 
+  $\left( 1+\frac{z}{n} \right)^n$ anwendet. Damit erhält man
+  \[
+  \left( 1+\frac{z}{n} \right )^n = 
+  \sum_{k=0}^n \binom{n}{k} \frac{z^k}{n^k} = 
+  \sum_{k=0}^n 
+  \left(1-\frac{1}{n}\right) \left(1-\frac{2}{n}\right) \cdots
+  \left(1-\frac{k-1}{n}\right) \frac{z^k}{k!}.
+  \]
+  Die Summanden in der rechten Summe 
+  konvergieren für $n\to\infty$ gegen $\frac{z^k}{k!}$, 
+  und das macht es zumindest plausibel, dass dann auch 
+  $\lim\limits_{n\to\infty} \left( 1+\frac{z}{n} \right)^n= 
+  \lim\limits_{n\to\infty}\sum_{k=0}^n\frac{1}{k!}$ gilt.  
+  
+  Für einen sauberen Beweis schreibe man 
+  \begin{equation}
+    \left| \left( 1+\frac{z}{n} \right)^n 
+      -\sum_{k=0}^n \frac{z^k}{k!} \right| 
+    \le 
+    \sum_{k=0}^N \left| \binom{n}{k} \frac{z^k}{n^k} - \frac{z^k}{k!} \right|
+    + 
+    \sum_{k=N+1}^n \left| \frac{z^k}{k!} \right| +
+    \sum_{k=N+1}^n \left|\binom{n}{k} \frac{z^k}{n^k} \right|
+    \tag{$\ast$}
+  \end{equation}
+  und wähle $N$ so groß, dass 
+  $\sum_{k=N+1}^m \left| \frac{z^k}{k!} \right| < \eps$ für alle $m>N$ 
+  gilt. Wegen $\binom{n}{k} \frac{1}{n^k} < \frac{1}{k!}$   
+  ist dann auch die hintere Summe in $(\ast)$ für alle 
+  $n>N$ kleiner als $\eps$. Ferner gilt 
+  $\lim\limits_{n\to\infty}\binom{n}{k} \frac{1}{n^k} = \frac{1}{k!}$, 
+  und daher gibt es ein $M\in \NN$, sodass die erste Summe 
+  für alle $n>M$ ebenfalls kleiner als $\eps$ ist. Es gilt also 
+  \[
+  \left| \left( 1+\frac{z}{n} \right)^n 
+    -\sum_{k=0}^n \frac{z^k}{k!} \right| 
+  \le 3\eps,\qquad\text{für alle $n>\max\{M,N\}$},
+  \] 
+  womit die Identität der beiden Grenzwerte gezeigt ist. \AntEnd
+\end{antwort}
+
+%% Question 9
+\begin{frage}\label{05_verallg}
+  Kennen Sie eine Verallgemeinerung des 
+  in der vorhergehenden Antwort gezeigten Zusammenhangs?
+\end{frage}
+
+\begin{antwort}
+  Es gilt sogar 
+  \[ \exp z = \lim_{n\to\infty} \left( 1+\frac{z_n}{n} \right)^n \]
+  für eine beliebige gegen $z$ konvergierende Folge $z_n$,   
+  was man mit einem ähnlichen Argument wie oben zeigen kann. \AntEnd
+\end{antwort}
+
+%% Question 10
+\begin{frage}\label{05_exwa}
+  \index{Wachstumsgeschwindigkeit der Exponentialfunktion}
+  Was lässt sich für reelle Argumente $x$ über die 
+  \slanted{Wachstumsgeschwindigkeit} der Exponentialfunktion 
+  aussagen?
+\end{frage}
+
+\begin{antwort}
+  \satz{Die Exponentialfunktion $\exp x$ 
+    wächst schneller als jede natürliche Potenz von $x$, formal:
+    \[
+    \lim_{x\to\infty}\frac{e^x}{x^n} = \infty, \quad\text{bzw}\quad
+    \lim_{x\to\infty}\frac{x^n}{e^x} = 0\quad
+    \text{für alle $x>0$ und alle $n\in\NN$}.
+    \]}
+  \noindent   
+  Den Zusammenhang erkennt man an der 
+  Potenzreihenentwicklung der Exponentialfunktion. 
+  Für $x>0$ gilt:
+  \[
+  e^x > \frac{x^{n+1}}{(n+1)!} \Ra 
+  \frac{e^x}{x^n} > \frac{x}{(n+1)!}.
+  \]
+  Für $x\to\infty$ folgt daraus die Grenzwertaussage. 
+
+  \begin{center}
+    \includegraphics{mp/05_exp}
+    \captionof{figure}{Graph der reellen Exponentialfunktion.}
+    \label{fig:05_exp}
+  \end{center}
+
+  Abbildung \ref{fig:05_exp} gibt einen visuellen Eindruck von der rasanten 
+  Wachstumsgeschwindigkeit der reellen Exponentialfunktion.
+  \AntEnd
+\end{antwort}
+
+%% Question 11
+\begin{frage}\index{Exponentialfunktion}
+  Worin besteht der Hauptunterschied zwischen der 
+  komplexen Exponentialfunktion 
+  und ihrer Einschränkung auf die reelle Achse?
+\end{frage}
+
+\begin{antwort}
+  Die reelle Exponentialfunktion ist eine streng monoton 
+  wachsende Funktion, die $\RR$ bijektiv auf $\RR^*_+$ abbildet. 
+  Die komplexe Exponentialfunktion dagegen ist eine 
+  \slanted{periodische} Funktion mit der Periode $2\pi \i$. 
+  Da die Periode rein imaginär ist, deutet im Reellen nichts auf 
+  diese versteckte Eigenschaft der Exponentialfunktion hin, die 
+  erst im Komplexen ans Tageslicht tritt. 
+
+  Die Abbildungen \ref{fig:06_exp1} und \ref{fig:06_exp2} 
+  zeigen den Graphen des 
+  Realteils bzw. Imaginärteils von $\exp\fd \CC\to\CC$. 
+  Die deutlich zu erkennende Wellenbewegung in Richtung der imaginären 
+  Achse ist ein Ausdruck der Periodizität der komplexen Exponentialfunktion. 
+  \AntEnd
+
+  \begin{minipage}{60mm}
+    \includegraphics[width=60mm]{povray/06_exp1}
+    \captionof{figure}{Realteil der komplexen Exponentialfunktion. 
+      Die entlang der Gerade $\Re z=a$ verlaufende Kurve ist der Graph der 
+      Funktion $y\mapsto \exp(a)\cos(y)$ mit $y=\Im z$.}
+    \label{fig:06_exp1}
+  \end{minipage}
+  \qquad
+  \begin{minipage}{60mm}
+    \includegraphics[width=60mm]{povray/06_exp2}
+    \captionof{figure}{Imaginärteil der komplexen Exponentialfunktion. 
+      Die entlang der Gerade $\Re z=a$ verlaufende Kurve ist der Graph der 
+      Funktion $y\mapsto \exp(a)\sin(y)$ mit $y=\Im z$.}
+    \label{fig:06_exp2}
+  \end{minipage}
+\end{antwort}
+
+%% Question 12
+\begin{frage}\index{p@$\pi$}
+  Wie ist die Zahl $\pi$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die Exponentialfunktion besitzt eine
+  rein imaginäre Periode $\i p$ mit $p\in\RR_+$. 
+  Die Zahl $\pi\in\RR$ lässt sich nun einfach als 
+  \slanted{halbe Länge dieser Periode} definieren, 
+  also als $ \pi := p/2$. Die die Zahl 
+  $\pi$ charakterisierende Gleichung lautet somit 
+  \[
+  \exp( z+2\pi \i)=\exp(z) \quad\text{und\quad $\exp(z+\i t)\not=\exp(z)$ 
+    für alle $t\in\RR_+$ mit $t\le 2\pi$.}
+  \]
+  Es ist vielleicht etwas praktischer -- und in aller Regel wird es auch 
+  so gehandhabt --, sich der Periodizitätseigenschaften der Exponentialfunktion 
+  durch die Untersuchung der reellen Funktionen $\cos t$ und $\sin t$ als 
+  Real- bzw. Imaginärteil der Funktion $t\mapsto \exp(\i t)$ anzunähern. 
+  In diesem Zusammenhang kann man $\pi/2$ dann auch als erste 
+  positive Nullstelle des Cosinus definieren. Wegen des fundamentalen 
+  Zusammenhangs mit der Exponentialfunktion läuft das am Ende aber auf genau  
+  dasselbe hinaus. \AntEnd
+\end{antwort}
+
+%% Question 13
+\begin{frage}\label{05_exho}
+  \index{komplexe Exponentialfunktion}
+  Wie kann man zeigen, dass die Abbildung 
+  $\exp\fd\CC\to\CC^{\ast} := \CC \mengeminus \{ 0\}$
+  surjektiv ist? 
+\end{frage}
+
+\begin{antwort}
+  Wegen $\exp(x+\i y)=\exp(x)\exp (\i y)$ folgt die 
+  Surjektivität der Exponentialfunktion zusammen aus
+  \satz{\setlength{\labelsep}{4mm}
+    \begin{enumerate}
+    \item[\desc{i}] Die reelle Exponentialfunktion 
+      bildet $\RR$ surjektiv auf $\RR_+^*$ ab. \\[-3.5mm]
+    \item[\desc{ii}] Die Funktion $\RR \to S^1 := \{ z\in\CC;\; |z|=1 \}$ mit  
+      $t\mapsto \exp(it)$ ist surjektiv (\sieheAbbildung\ref{fig:05_exp2}). 
+    \end{enumerate}}
+  Für jedes $w\in\CC^*$ gibt es unter diesen Voraussetzungen
+  nämlich $x,y\in\RR$ mit $\exp(x)=|w|$ und $\exp(\i y)=w/|w|$. 
+  Mit $z:=x+\i y$ folgt dann $\exp z=w$, also die Surjektivität der 
+  Exponentialfunktion. 
+
+  \begin{center}
+    \includegraphics{mp/05_exp2}
+    \captionof{figure}{Die komplexe Exponentialfunktion bildet 
+      die imaginäre Achse surjektiv auf $S^1$ ab.}
+    \label{fig:05_exp2}
+  \end{center}
+
+  Die Eigenschaft \desc{i} ist relativ klar und 
+  wird in Frage \ref{05_exsu} beantwortet. 
+  Die Eigenschaft \desc{ii} erhält man leichter nach einer 
+  eingängigeren Untersuchung der Real- und Imaginärteile der Funktion 
+  $t \mapsto \exp(\i t)$, was im nächsten Abschnitt \ref{sincos}  
+  geschehen wird (Der endgültige Beweis wird in Frage \ref{05_trei}\,\desc{12} 
+  erbracht). Prinzipiell lässt sich die Surjektivität der 
+  Exponentialfunktion auch aus den Eigenschaften herleiten, 
+  die bisher zur Verfügung stehen. Allerdings erfordert das 
+  einige Tricks und gehört wohl 
+  nicht unbedingt zum Standardwissen (für einen Beweis siehe 
+  \citep{Ebbinghaus}).
+\end{antwort}
+
+%% Question 14
+\begin{frage}\label{05_exin}
+  \index{komplexe Exponentialfunktion}
+  Wieso kann die Abbildung $\exp\fd\CC\to\CC^{\ast}$ nicht 
+  injektiv sein?
+\end{frage} 
+
+\begin{antwort}
+  Die Abbildung $\exp \fd \CC \to \CC^*$ ist -- 
+  algebraisch beschrieben -- 
+  ein Homomorphismus von der additiven Gruppe $(\CC, +)$ in die 
+  multiplikative Gruppe $( \CC^*, \cdot)$. 
+  Diese Gruppen sind nicht isomorph, da die multiplikative 
+  Gruppe im Gegensatz zur additiven endliche Untergruppen enthält 
+  (etwa $\{-1,1\}$). Somit kann die 
+  die Abbildung kein Isomorphismus, also nicht bijektiv sein. 
+  Ihre Surjektivität impliziert damit, dass sie 
+  nicht injektiv ist. 
+  \AntEnd
+\end{antwort}
+
+%% Question 15
+\begin{frage}\label{05_kern}\index{Exponentialhomomorphismus}
+  Was ist der Kern des Homomorphismus $\exp\fd(\CC,+)\to(\CC^*,\cdot)$?
+\end{frage}
+
+\begin{antwort}
+  Der Kern des Exponentialhomomorphismus 
+  ist die durch $2\pi \i$ erzeugte 
+  zyklische additive Untergruppe von $\i \RR$, also 
+  \[
+  \boxed{
+    \ker(\exp)=\big\{ 2 \pi \i k \sets k\in \ZZ \big\}.
+  }
+  \]
+  Dies liefert ebenfalls eine Definition der Zahl $\pi$ 
+  \AntEnd  
+\end{antwort} 
+
+%% Question 16
+\begin{frage}\index{Stetigkeit!der Exponentialfunktion}
+  Können Sie direkt begründen, warum aus der Stetigkeit von $\exp$ an der 
+  Stelle $a=0$ die Stetigkeit an einer beliebigen Stelle $z\in\CC$ folgt?
+\end{frage}
+
+\begin{antwort}
+  Zu $\eps>0$ sei ein $\delta$ entsprechend der Stetigkeit der 
+  Exponentialfunktion im Nullpunkt gewählt. Für beliebiges 
+  $z\in \CC$ und $w\in U_\delta( z )$ ist dann 
+  $w-z \in U_{\delta}(0)$, und damit gilt  
+  \[
+  |\exp( w-z ) - \exp(0) | = 
+  \left| \frac{\exp w}{\exp z} -1 \right| = 
+  \left| \frac{\exp w - \exp z}{\exp z} \right| < \eps,
+  \]
+  also $|\exp w - \exp z | <  |\exp z| \cdot \eps$. 
+  Daraus folgt die Stetigkeit der Exponentialfunktion im Punkt $z$.
+  \AntEnd
+\end{antwort}
+
+%% Question 17
+\begin{frage}\index{Differenzialgleichung!der Exponentialfunktion}
+  Ist $f\fd \CC\to\CC$ eine Funktion mit
+  \[
+  \begin{array}{lp{1mm}lp{4mm}lp{1mm}l}
+    \text{\desc{i}} & & f(z+w)=f(z)f(w)\quad\text{für alle $z,w\in\CC$,} & &
+    \text{\desc{ii}} & & \dis \lim_{z\to 0} \frac{f(z)-1}{z}=1,
+  \end{array}
+  \]
+  warum gilt dann $f(z)=\exp(z)$ für alle $z\in\CC$?
+\end{frage}
+
+\begin{antwort}
+  Wegen \desc{i} gilt $f(z)=\left(f\left(\frac{z}{n}\right)\right)^n$ für alle $n\in\NN$ 
+  und damit insbesondere 
+  $\lim\limits_{n\to\infty}\left(f\left(\frac{z}{n}\right)\right)^n = f(z)$. 
+  Durch $f\left( \frac{z}{n} \right) =: 1+\frac{z_n}{n}$ 
+  sei nun eine Folge $(z_n)$ komplexer Zahlen definiert. 
+  Für diese gilt mit \desc{ii} 
+  \[
+  \lim_{n\to\infty} z_n 
+  = \lim_{n\to\infty} \frac{f(z/n)-1}{1/n} = z. 
+  \]
+  Die Folge $(z_n)$ konvergiert also gegen $z$, und damit gilt 
+  nach der Antwort zu Frage \ref{05_verallg}
+  \begin{equation}
+    f(z)=\lim_{n\to\infty} \left(1+\frac{z_n}{n} \right)^n = \exp z
+    \EndTag
+  \end{equation} 
+\end{antwort}
+
+
+\section{Die trigonometrischen Funktionen und die Hyperbelfunktionen}
+\label{sincos}
+
+
+
+%% Question 18
+\begin{frage}\index{Cosinus}\index{Sinus}\label{05_sinus}
+  Definiert man für alle $z\in\CC$
+  \begin{equation}
+    \cos z := \frac{\exp(\i z) + \exp(-\i z)}{2} \qquad\text{und}\qquad
+    \sin z := \frac{\exp(\i z) - \exp(-\i z)}{2\i}, \tag{$\ast$}
+  \end{equation}
+  warum gilt dann für alle $z\in\CC$:
+  \begin{equation}
+    \cos z := \sum_{k=0}^\infty (-1)^k \frac{z^{2k}}{(2k)!}
+    \qquad\text{und}\qquad
+    \sin z := \sum_{k=0}^\infty (-1)^k \frac{z^{2k+1}}{(2k+1)!}.
+    \tag{$\ast\ast$}
+  \end{equation}
+\end{frage}
+
+\begin{antwort}
+  Die beiden Reihendarstellungen ergeben sich rein formal aus der 
+  Potenzreihenentwicklung der Exponentialfunktion, konkret aus den 
+  beiden Formeln
+
+  \begin{align}
+    \exp(\i z) &= 
+    \sum_{k=0}^\infty \frac{(\i z)^{2k}}{(2k)!} + 
+    \sum_{k=0}^\infty \frac{(\i z)^{2k+1}}{(2k+1)!} 
+    = \sum_{k=0}^\infty (-1)^k \frac{z^{2k}}{(2k)!} + 
+    \i \sum_{k=0}^\infty (-1)^k \frac{z^{2k+1}}{(2k+1)!}, \notag \\[1mm]
+    \exp(-\i z) &= 
+    \sum_{k=0}^\infty \frac{(-\i z)^{2k}}{(2k)!} + 
+    \sum_{k=0}^\infty \frac{(-\i z)^{2k+1}}{(2k+1)!} 
+    = 
+    \sum_{k=0}^\infty (-1)^k \frac{z^{2k}}{(2k)!} - 
+    \i \sum_{k=0}^\infty (-1)^k \frac{z^{2k+1}}{(2k+1)!}. \notag  
+  \end{align}
+
+  \medskip\noindent
+  Für \slanted{reelle} Argumente $x$ sind $\cos x$ und $\sin x$ die 
+  Real- bzw. Imaginärteile der Funktion $x\mapsto \exp(\i t)$, 
+  was sich an der Definition ($\ast$) ebenso wie an der Reihenentwicklung 
+  von $\exp(\i t)$ unmittelbar ablesen lässt. Für komplexe Argumente 
+  gilt dieser Zusammenhang allerdings nicht mehr. \AntEnd
+\end{antwort}
+
+%% Question 19
+\begin{frage}\label{05_trei}
+  \index{Cosinus!Haupteigenschaften}\index{Sinus!Haupteigenschaften}
+  Welche Haupteigenschaften von $\cos$ und $\sin$ sind Ihnen bekannt?
+\end{frage}
+
+\begin{antwort}
+  \desc{1} Aus ($\ast$) folgt genauso wie aus ($\ast\ast$) unmittelbar, dass 
+  $\cos$ eine \slanted{gerade} und $\sin$ eine \slanted{ungerade} 
+  Funktion ist.
+
+  \medskip\noindent
+  \desc{2} Ebenso direkt folgt aus der 
+  Definition ($\ast$) die \slanted{Euler'sche Formel}
+  \index{Eulersche Formel@Euler'sche Formel}
+  \[
+  \boxed{
+    \exp( \i z ) = \cos z + \i \sin z \qquad\text{für alle $z\in\CC$.}
+  }
+  \]
+  Speziell gilt die Euler'sche Formel für $z\in\RR$. 
+  In diesem Fall liefert sie eine einfache geometrische 
+  Veranschaulichung der komplexen Exponentialfunktion (\sieheAbbildung\ref{fig:05_exp3}). Die Zahl 
+  $w=\exp( x+\i y)$ liegt auf dem Kreis um den Nullpunkt mit Radius 
+  $\exp x$, und $y \mod 2\pi$ gibt den Winkel an, den die Gerade 
+  durch $0$ und $w$ mit der $x$-Achse einschließt, es ist also  
+  $y=\arg w$ (vgl. dazu Frage \ref{polar} und speziell zum tieferen 
+  Verständnis der Funktionalgleichung auch \ref{polarmult}). 
+
+  \begin{center}
+    \includegraphics{mp/05_exp3}
+    \captionof{figure}{Geometrische Veranschaulichung der Euler'schen Formel.}
+    \label{fig:05_exp3}
+  \end{center}
+
+  \medskip\noindent
+  \desc{3} Durch Einsetzen der Euler'schen Formel in die 
+  Gleichung $\exp(\i z)\exp(-\i z)=1$ erhält man die Identität 
+  \[
+  \boxed{
+    \cos ^2 z + \sin^2 z = 1 \qquad\text{für alle $z\in\CC$.}
+  }
+  \]
+
+  \medskip\noindent
+  \desc{4} Die Euler'sche Formel liefert zusammen mit 
+  $\exp(\i nz)=\exp(\i z)^n$ die \slanted{Moivre'sche Formel}
+  \index{Moivresche Formel@Moivre'sche Formel}
+  \[
+  \boxed{
+    ( \cos z +\i\sin z)^n = \cos nz +\i \sin nz.
+  }
+  \]
+
+  \index{Additionstheorem!von Sinus und Cosinus}
+  \medskip\noindent
+  \desc{5} Für alle $z,w\in \CC$ gelten die \slanted{Additionstheoreme} 
+  \[
+  \boxed{
+    \begin{array}{rcl}
+      \cos( z+w ) &=& \cos z\cos w - \sin z\sin w, \\
+      \sin( z+w ) &=& \sin z\cos w + \cos z\sin w.
+    \end{array}
+  }
+  \]
+  Diese folgen jeweils durch Addition bzw. Subtraktion der beiden 
+  Gleichungen
+  \begin{align}
+    e^{\i(z+w)} &= e^{\i z}\cdot e^{\i w} \hspace*{-2mm} &=
+    \cos z\cos w-\sin z\sin w +\i (\sin z\cos w + \cos z\sin w ) \notag \\
+    e^{-\i (z+w)} &= e^{-\i z}\cdot e^{-\i w} \hspace*{-2mm} &=
+    \cos z\cos w-\sin z\sin w - \i (\sin z\cos w + \cos z\sin w ), \notag
+  \end{align}
+  bei deren Herleitung von $\cos (-z)=\cos z$ und $\sin(-z)=-\sin z$ 
+  Gebrauch gemacht wird.
+
+  \medskip
+  \noindent
+  \desc{6} Eine Folge der Additionstheoreme sind die beiden Formeln
+  \[
+  \boxed{
+    \begin{array}{rcl}
+      \cos z - \cos w &=& -2\sin \frac{z+w}{2} \sin\frac{z-w}{2} \\
+      \sin z - \sin w &=& 2\cos \frac{z+w}{2} \sin\frac{z-w}{2}.
+    \end{array}
+  }
+  \]
+  Um die beiden Formeln herzuleiten, schreibe man 
+  $z=\frac{z+w}{2}+\frac{z-w}{2}$ bzw. 
+  $w=\frac{w+z}{2}+\frac{w-z}{2}$ und wende darauf die 
+  Additionstheoreme an. Das ergibt im ersten Fall
+  \[
+  \begin{array}{rcl}
+    \cos z &=& \cos( \frac{z+w}{2}+\frac{z-w}{2} ) =
+    \cos \frac{z+w}{2} \cos \frac{z-w}{2} - \sin \frac{z+w}{2}\sin \frac{z-w}{2} \\
+    \cos w &=& \cos( \frac{z+w}{2}+\frac{w-z}{2} ) =
+    \cos \frac{z+w}{2} \cos\frac{z-w}{2} + \sin\frac{z+w}{2}\sin\frac{z-w}{2},
+  \end{array}
+  \]
+  wobei bei der Umformung der zweiten Gleichung wieder die Tatsache 
+  verwendet wurde, dass $\cos$ eine gerade und $\sin$ eine ungerade Funktion 
+  ist. Durch Subtraktion der beiden Gleichungen erhält man daraus 
+  schließlich die Formel für $\cos z-\cos w$. 
+  Die Darstellung für $\sin z-\sin w$ folgt nach demselben Schema.
+
+  \medskip\noindent
+  \desc{7} Um eine erste Informationen über die 
+  \slanted{Nullstellen} der Cosinusfunktion zu gewinnen, 
+  lässt sich die Eigenschaft ausnutzen, dass es sich bei deren 
+  Reihenentwicklung für positive reelle Argumente 
+  um eine \slanted{alternierende} Reihen handelt, 
+  deren Summandenbeträge für alle $x\in\open{0,2}$ streng monoton fallende 
+  Nullfolgen bilden. Man kann also das Leibniz-Kriterium aus Frage \ref{02_leib} 
+  anwenden, und damit erhält man für alle $x\in \open{0,2}$ die Abschätzung
+  \[
+  1-\frac{x^2}{2} < \cos x < 1-\frac{x^2}{2}+\frac{x^4}{24} .
+  \]
+  Daraus folgt $\cos (2)<-1/4$. Wegen $\cos (0)=1$ besitzt 
+  die Cosinusfunktion im Intervall $\open{0,2}$ also 
+  \slanted{mindestens} eine Nullstelle. 
+
+  Wir zeigen weiter, dass $\cos$ auf diesem Intervall streng monoton 
+  fällt, woraus dann insgesamt folgt, dass es \slanted{genau eine} 
+  Nullstelle in $\open{0,2}$ gibt. Sei dazu $x,y \in \open{0,2}$ mit $x>y$.   
+  Die Differenzendarstellung aus Teilantwort \desc{6} liefert 
+  für alle $x,y\in\RR$ 
+  \begin{equation}
+    \cos x -\cos y =  -2\sin \frac{x-y}{2} \sin\frac{x-y}{2}. \tag{$\dagger$}  
+  \end{equation}
+  Durch eine nochmalige Anwendung des Leibnizkriteriums --  
+  diesmal auf die Sinus-Reihe -- erhält man für alle $x\in\open{0,2}$ 
+  die Abschätzung 
+  \[
+  x-\frac{x^3}{6} < \sin x  < x, 
+  \]
+  also insbesondere $\sin x>0$ für alle $x\in\open{0,2}$. Eingesetzt 
+  in die Gleichung ($\dagger$) liefert das $\cos x-\cos y<0$ für 
+  alle $x,y\in\open{0,2}$ mit $x>y$. Der Cosinus fällt also streng monoton 
+  auf dem Intervall $\ropen{0,2}$ und besitzt dort somit genau eine 
+  Nullstelle $p$. Die Zahl $\pi$ lässt sich über diese Nullstelle definieren, 
+  indem man $\pi/2 := p$ festlegt.
+
+  \medskip
+  \noindent
+  \desc{8} Aus der Formel 
+  \[
+  e^{\i\pi/2} = \cos \frac{\pi}{2}+\i\sin\frac{\pi}{2} = \i 
+  \]
+  gewinnt man durch Potenzieren die Werte 
+  \[
+  \boxed{
+    e^{\i\pi/2}=\i,\quad e^{\i\pi}=-1, \quad e^{3\pi/2} = -\i,\quad e^{2\pi \i}=1.
+  }
+  \]
+  Mithilfe der Euler'schen Formel erhält man daraus die 
+  Sinus- und Cosinuswerte an den entsprechenden Stellen 
+  \[
+  \boxed{
+    \begin{array}{lp{2mm}lp{2mm}lp{2mm}l}
+      \dis \cos \frac{\pi}{2}=0, & &  
+      \cos \pi=-1,  & &  
+      \dis \cos \frac{3\pi}{2}=0, & & 
+      \cos 2\pi = 1, \\[3mm]
+      \dis \sin \frac{\pi}{2}=1, & &  
+      \sin \pi=0,  &  &
+      \dis \sin \frac{3\pi}{2}=-1, & & 
+      \sin 2\pi =0.
+    \end{array}
+  }
+  \]
+
+  \medskip
+  \noindent
+  \desc{9} Aus den Formeln
+  \[
+  e^{\i z+\i\pi/2} = ie^{\i z}, \qquad 
+  e^{\i z+\i\pi} = -e^{\i z}, \qquad
+  e^{\i z+2\i \pi} = e^{\i z}
+  \]
+  erhält man die Zusammenhänge
+  \[
+  \boxed{
+    \begin{array}{ccc}
+      \cos \left( z+\frac{\pi}{2} \right) = \sin z, & 
+      \cos \left( z+\pi \right) = -\cos z, & 
+      \cos \left( z+ 2\pi \right) = \cos z, \\
+      \sin \left( z+\frac{\pi}{2} \right) = \cos z, & 
+      \sin \left( z+\pi \right) = -\sin z, & 
+      \sin \left( z+ 2\pi \right) = \sin z,
+    \end{array}
+  }
+  \]
+  aus denen insbesondere folgt, dass Sinus und Cosinus beide die reelle 
+  Periode $2\pi$ haben. \index{Sinus!Periodizität}\index{Cosinus!Periodizität}
+  \index{p@$\pi$!als Nullstelle von $\cos$}
+  
+  \medskip\noindent
+  \desc{10} Aus der vorhergehenden Teilantwort erhält man nun auch sofort 
+  \slanted{sämtliche} Nullstellen von Sinus und Cosinus. 
+  Nach Teilfrage (7) 
+  ist $\frac{\pi}{2}$ die kleinste positive Nullstelle von $\cos$.
+  Wegen $\cos(x+\pi)=-\cos x$ sind damit 
+  $\frac{\pi}{2}$ und $\frac{3\pi}{2}$ die beiden 
+  einzigen Nullstellen von $\cos$ im Intervall 
+  $\blopen{ -\frac{\pi}{2}, \frac{3\pi}{2}}$. Da dieses Intervall die 
+  Länge $2\pi$ hat, erhält man aus diesen Nullstellen alle weiteren 
+  durch Addition eines ganzzahligen Vielfachen von $2\pi$. 
+  Schließlich bekommt man aus den Nullstellen des Cosinus diejenigen 
+  von Sinus durch Anwendung der Formel 
+  $\sin( z+\frac{\pi}{2} )=\cos z$. 
+  Zusammenfassend gilt also
+  \[
+  \boxed{
+    \cos z=0 \LLa z = \frac{\pi}{2} + k\pi, \quad
+    \sin z=0 \LLa z = k\pi. \quad{ k\in\ZZ }.  
+  }
+  \]
+
+  \medskip
+  \noindent
+  \desc{11} Jetzt kann noch gezeigt werden, dass $2\pi$ 
+  auch tatsächlich die \slanted{kleinste} Periode von Sinus und Cosinus 
+  ist. Aufgrund der Nullstellenverteilung käme als kleinere Periode 
+  nur die Zahl $\pi$ infrage, die aber wegen $\cos(z+\pi) = -\cos z$ 
+  keine Periode sein kann. 
+
+  \medskip
+  \noindent
+  \desc{12} Die Funktionen $\cos$ und $\sin$ 
+  bilden die reellen Zahlen surjektiv auf das Intervall $[-1,1]$ ab. 
+  Damit folgt zu guter Letzt, dass die Funktion
+  \[
+  \RR \to S^1 := \{ z\in\CC;\; |z|=1 \}, \qquad t\mapsto \exp(\i t)
+  \]
+  tatsächlich surjektiv ist, wie es in Frage \ref{05_exho} 
+  bereits vorweggenommen wurde. 
+  Sei $w\in S^1$. Dann gilt $\Re w \le 1$, $\Im w \le 1$ und 
+  $(\Re w)^2+ (\Im w)^2=1$. Es gibt also ein $ t\in \RR$ mit 
+  $\cos t=\Re w$. Wegen $\cos^2 t+\sin^2 t=1$ folgt $\sin t=\Im w$ oder 
+  $-\sin t=\Im w$. Im ersten Fall gilt dann bereits 
+  $\exp(\i t)=\cos t+ \i\sin t=w$, 
+  im zweiten hat man $\exp(-\i t)=\cos t - \i\sin t=w$. 
+  Die Funktion $\exp(\i t)$ bildet $\RR$ also tatsächlich surjektiv auf $S^1$ ab.
+  \AntEnd 
+\end{antwort} 
+
+%% Question 20
+\begin{frage}
+  Können Sie im reellen Fall die Graphen von $\cos$ und $\sin$ 
+  im Intervall $[-4\pi,4\pi]$ skizzieren?
+\end{frage}
+
+\begin{antwort}
+  Die durchgezogene Kurve in Abbildung \ref{fig:05_sincos} zeigt den Graphen 
+  von $\cos$, die gestrichelte den von $\sin$.\AntEnd
+  \begin{center}
+    \includegraphics{mp/05_sincos}
+    \captionof{figure}{Graphen der reellen Sinus- und Cosinusfunktion.}
+    \label{fig:05_sincos}
+  \end{center}
+\end{antwort}
+
+%% Question 21
+\begin{frage}\label{05_tangens}\index{Tangens}\index{Cotangens}
+  Wie sind die Funktionen Tangens ($\tan$) und Cotangens ($\cot$) im Komplexen 
+  definiert? Skizzieren Sie für reelle Argumente die Graphen dieser Funktionen 
+  im Intervall $\left[-\frac{3\pi}{2}, \frac{3\pi}{2} \right]$. 
+\end{frage}
+
+\begin{antwort}
+  Seien $N_{\cos} := \{ (k+1/2)\pi\sets k\in\ZZ \}$ und 
+  $N_{\sin} := \{ k\pi\sets k\in\ZZ \}$ die Nullstellenmengen von $\cos$ 
+  bzw. $\sin$. Tangens und Cotangens sind außerhalb dieser Mengen  
+  definiert durch
+  \[
+  \boxed{
+    \tan z := \frac{\sin z}{\cos z},\quad z\in 
+    \CC\mengeminus N_{\cos},
+    \qquad
+    \cot z := \frac{\cos z}{\sin z},\quad z\in 
+    \CC\mengeminus N_{\sin}. }
+  \]
+  Durch Einsetzen der Formeln $\cos z=\frac{1}{2}( e^{\i z}+e^{-\i z} )$ 
+  und $\sin z=\frac{1}{2\i} ( e^{\i z}-e^{-\i z} )$ erhält man daraus auch die 
+  Darstellungen 
+  \[
+  \tan z := \frac{1}{\i} \frac{e^{\i z}-e^{-\i z}}{e^{\i z}+e^{-\i z}}, \quad
+  \cot z := \i \frac{e^{\i z}+e^{-\i z}}{e^{\i z}-e^{-\i z}}.
+  \]
+  Die Eigenschaften des Tangens folgen aus denen von Sinus und 
+  Cosinus. Demnach ist $\tan$ eine ungerade, $\pi$-periodische Funktion. 
+  Im Intervall $\bropen{ 0,\frac{\pi}{2} }$ ist Sinus streng monoton 
+  wachsend und Cosinus streng monoton fallend. 
+  Deswegen und aufgrund seiner Symmetrie- 
+  und Periodizitätseigenschaften 
+  ist der Tangens auf den Intervallen 
+  $\open{ (k-1/2)\pi, (k+1/2)\pi }$ jeweils 
+  streng monoton wachsend, und es gilt:
+  \[
+  \lim\limits_{x\uparrow (k+1/2)\pi }=\infty \quad\text{ und }\quad
+  \lim\limits_{x\downarrow (k+1/2)\pi }=-\infty.
+  \] 
+  Der Tangens bildet somit jedes der Intervalle 
+  $\open{ (k-1/2)\pi, (k+1/2)\pi }$ bijektiv auf $\RR$ ab.  
+
+  \begin{center}
+    \includegraphics{mp/05_tan}
+    \captionof{figure}{Graphen von $\tan$ und $\cot$.} 
+    \label{fig:05_tan}
+  \end{center}
+
+  Die Eigenschaften von $\cot$ ergeben sich aus denen von $\tan$ 
+  über den Zusammenhang $\cot x=\frac{1}{\tan x}$ bzw. 
+  $\cot x=-\tan(x+\pi/2)$, \sieheAbbildung\ref{fig:05_tan}.
+  \AntEnd
+\end{antwort}
+
+%% Question 22
+\begin{frage}\label{05_sinh}\index{Sinus Hyperbolicus}
+  Wie sind die \bold{hyperbolischen Funktionen} $\sinh$ und $\cosh$ 
+  definiert? Welche Haupteigenschaften haben sie? Können Sie im reellen 
+  Fall ihren Graphen skizzieren? 
+\end{frage}
+
+\begin{antwort}
+  Die Funktionen $\cosh$ bzw. $\sinh$ sind für alle $z\in\CC$ definiert durch
+  \[
+  \boxed{
+    \cosh z= \frac{e^z + e^{-z}}{2}, \quad\qquad \sinh z= \frac{e^{z}-e^{-z}}{2}.
+  }
+  \]
+  Damit gilt offensichtlich
+  \[
+  \cosh(\i z)=\cos z, \quad 
+  \cos (\i z)=\cosh z, \quad
+  \sinh(\i z)=\i\sin z, \quad
+  \sin(\i z)= -\i\sinh z.
+  \]
+  Mit $\cos^2 z+\sin^2 z=1$ folgt hieraus
+  \[
+  \boxed{\cosh^2 z - \sinh^2 z = 1.}
+  \]
+  Weiter sieht man anhand der Definition sofort, dass
+  $\cosh$ eine gerade und $\sinh$ eine ungerade Funktion ist. 
+  Aus den Additionstheoremen für Cosinus und Sinus folgt ferner
+  \begin{align*}
+    \cosh( z+w ) &= \cosh z\cosh w+\sinh z\sinh w \\
+    \sinh( z+w ) &= \sinh z\cosh w+\cosh z\sinh w,
+  \end{align*}
+  Aus der Potenzreihenentwicklung der Exponentialfunktion 
+  erhält man außerdem 
+  \[
+  \cosh z = \sum_{k=0}^n \frac{z^{2k}}{(2k)!}, \qquad
+  \sinh z = \sum_{k=0}^n \frac{z^{2k+1}}{(2k+1)!}.
+  \]
+  Aus der Potenzreihenentwicklung folgt, dass und $\cosh x$ 
+  und $\sinh x$ beide auf $\ropen{0,\infty}$ streng monoton wachsen. 
+  Da $\sinh x$ ungerade und $\cosh x$ gerade ist, 
+  ist $\sinh x$ sogar streng monton wachsend 
+  auf ganz $\RR$, 
+  $\cosh x$ dagegen ist auf $\lopen{-\infty,0}$ streng monoton fallend, 
+  \sieheAbbildung\ref{fig:05_sinh}.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/05_sinh}
+    \captionof{figure}{Graphen $\sinh$ und $\cosh$.} 
+    \label{fig:05_sinh}
+  \end{center}
+
+\end{antwort}
+
+%% Question 23
+\begin{frage}\index{Tangens Hyperbolicus}\index{Cotangens Hyperbolicus}
+  Wie sind die Funktionen $\tanh$ und $\coth$ definiert und welche 
+  Haupteigenschaften haben sie? Können Sie im reellen Fall ihren 
+  Graphen skizzieren?
+\end{frage}
+
+
+\begin{antwort}
+  Die Funktionen $\tanh$ und $\coth$ sind definiert durch: 
+  \[\boxed{
+    \begin{array}{cp{2mm}l}
+      \dis \tanh z := \dis \frac{\sinh z}{\cosh z}, & & \dis {z\in\CC},\\[3mm]
+      \dis \coth z := \dis \frac{\cosh z}{\sinh z}, & & \dis {z\in\CC}\mengeminus\{0\}.
+    \end{array}}
+  \]
+  \noindent
+  Aus den Eigenschaften von $\cosh$ und $\sinh$ folgt unmittelbar, dass 
+  es sich bei $\tanh$ und $\coth$ um ungerade Funktionen handelt. Während 
+  $\coth$ nullstellenfrei ist, besitzt $\tanh$ eine einzige Nullstelle bei 
+  $z=0$. Weiter kann man die Darstellungen 
+  \[
+  \tanh z = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 1-\frac{2}{e^{2z}+1},
+  \qquad
+  \coth z = \frac{e^z+e^{-z}}{e^z-e^{-z}} = 1+\frac{2}{e^{2z}-1}
+  \]
+  \picskip{0}\noindent
+  nutzen, um zu sehen, dass $\tanh x$ auf ganz $\RR$ streng 
+  monoton steigt und $\coth x$ auf $\open{-\infty,0}$ 
+  und $\open{0,\infty}$ jeweils streng monoton fällt, \sieheAbbildung\ref{fig:05_coth}. In beiden Fällen 
+  folgt das aus dem streng monotonen Wachstum der Exponentialfunktion. 
+
+  \begin{center}
+    \includegraphics{mp/05_coth}
+    \captionof{figure}{Graphen von $\tanh$ und $\coth$.}
+    \label{fig:05_coth}
+  \end{center}
+
+  Aus den Darstellungen folgt außerdem
+  \[
+  \lim_{x\to\infty} \tanh x=1,\quad
+  \lim_{x\to-\infty} \tanh x=-1\quad
+  \]
+  sowie
+  \begin{equation}
+    \lim_{x\to\infty} \coth x=1,\quad
+    \lim_{x\to-\infty} \coth x=-1,\quad
+    \lim_{x\uparrow 0} =-\infty\quad
+    \lim_{x\downarrow 0} = \infty.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% Question 24
+\begin{frage}\index{hyperbolische Funktionen}
+  Woher kommt die Namensgebung bei den hyperbolischen Funktionen.
+\end{frage}
+
+\begin{antwort}
+  Der jeweilige "`Vorname"' der hyperbolischen Funktionen erklärt sich 
+  durch die offensichtlichen Analogien zu den Winkelfunktionen. 
+  Der Hyperbel-Aspekt kommt daher, dass die Punkte 
+  $(x,y)=(\cosh t, \sinh t)$ wegen $\cosh^2 t-\sinh^2 t=1$ alle auf der Hyperbel 
+  $x^2-y^2=1$ liegen. Mittels $t \mapsto (a\cosh t, b\sinh t)$ lässt sich 
+  also die durch die Gleichung $x^2/a^2-y^2/b^2=1$ definierte 
+  Hyperbel parametrisieren.  
+  \AntEnd
+\end{antwort}
+
+
+\section{Natürlicher Logarithmus und allgemeine Potenzen}
+
+%% Question 25
+\begin{frage}\label{05_exsu}\index{Exponentialfunktion!Umkehrfunktion der}
+  \index{Logarithmus}
+  Warum besitzt die reelle Exponentialfunktion $\exp\fd\RR\to\RR$ eine 
+  Umkehrfunktion
+  \[
+  \log\fd \RR_+^{\ast} \to \RR \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Für alle $x>0$ ist $\exp x>1$, was man an der 
+  Potenzreihenentwicklung der Exponentialfunktion unmittelbar erkennen 
+  kann. Für alle $x,y\in\RR$ mit $x>y$ folgt daraus mit der Funktionalgleichung 
+  $\exp (x)/\exp (y)=\exp(x-y) > 1,$
+  also $\exp x>\exp y$ und damit das streng monotone 
+  Wachstum der reellen Exponentialfunktion.
+
+  Ferner gilt $\lim\limits_{x\to \infty} \exp x=\infty$, 
+  da die Summanden in der 
+  Potenzreihenentwicklung von $\exp$ für $x\to\infty$ alle 
+  positiv und unbeschränkt sind. 
+  Wegen $\exp( -x )= 1/\exp x$ folgt daraus 
+  $\lim\limits_{x\to-\infty}=0$. 
+  Die Exponentialfunktion bildet $\RR$ damit surjektiv auf 
+  $\RR_+^{\ast}$ 
+  ab. Aufgrund ihres streng monotonen Wachstums ist die 
+  Funktion $\exp\fd \RR\to\RR^*_+$ 
+  aber auch injektiv und damit insgesamt bijektiv. 
+  Es existiert also eine Umkehrfunktion 
+  $\log \fd \RR_+^*\to \RR$.\AntEnd
+\end{antwort} 
+
+%% Question 26
+\begin{frage}\index{Logarithmus}
+  Wieso ist $\log\fd\RR_+^* \to\RR$ stetig und streng monoton wachsend?
+\end{frage} 
+
+\begin{antwort}
+  Die Stetigkeit und das streng monotone Wachstum von $\log$ ergibt sich 
+  aus dem in Frage \ref{03_umke} gezeigten allgemeinen Zusammenhang, demzufolge 
+  die Umkehrfunktion einer streng monoton wachsenden stetigen Funktion 
+  ebenfalls stetig und streng monoton wachsend ist, 
+  \sieheAbbildung\ref{fig:05_log}. \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/05_log}
+    \captionof{figure}{Graph der reellen Logarithmus-Funktion.}
+    \label{fig:05_log}
+  \end{center}
+
+\end{antwort}
+
+%% Question 27
+\begin{frage}\index{Funktionalgleichung!des Logarithmus}
+  Wie lautet die \bold{Funktionalgleichung} für den Logarithmus?
+\end{frage}
+
+\begin{antwort}
+  Aus $\exp( \log x+\log y )= 
+  \exp(\log x)\exp( \log y)=xy= \exp( \log(xy) )$ folgt die 
+  \slanted{Funktionalgleichung des Logarithmus}
+  \[
+  \boxed{
+    \log(xy) = \log x+ \log y, \qquad x,y\in\RR_+^*.
+  }\EndTag
+  \]
+\end{antwort}
+
+%% Question 28
+\begin{frage}\label{05_lnwa}\index{Logarithmus}
+  Warum gilt $\lim\limits_{x\to\infty} \dis \frac{\log x}{\sqrt[n]{x}}=0$ 
+  für alle $n\in\NN$?
+\end{frage}
+
+\begin{antwort}
+  Durch die Substitution $x\mapsto e^{nt}$ reduziert sich 
+  die Behauptung auf den in Frage \ref{05_exwa} 
+  gezeigten Zusammenhang über die Wachstumsgeschwindigkeit der 
+  Exponentialfunktion. Aufgeschrieben sieht das so aus:
+  \begin{equation}
+    \lim_{x\to\infty} \frac{\log x}{\sqrt[n]{x}} =
+    \lim_{t\to\infty} \frac{\log e^{nt}}{\sqrt[n]{e^{nt}}} = 
+    \lim_{t\to\infty} \frac{nt}{e^t} = 0. \notag
+  \end{equation}
+  Der Grenzwert charakterisiert $\log$ als eine in großen Bereichen 
+  extrem langsam wachsende Funktion. \AntEnd
+\end{antwort}
+
+%% Question 29
+\begin{frage}\index{Potenz!allgemeine}
+  Wenn man für $a>0$ und $x\in\RR$ $a^x := \exp( x\log a )$, 
+  definiert, warum gelten dann für $a,b\in\RR_+^*$ und $x,y\in\RR$ die 
+  Rechenregeln
+  \[
+  a^xa^y = a^{x+y},\qquad
+  (a^x)^y = a^{xy},\qquad
+  a^x b^x = (ab)^x,\qquad
+  \left( \frac{1}{a} \right)^x =a^{-x}\, \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Alle vier Identitäten erhält man leicht aus den Funktionalgleichungen 
+  von $\exp$ und $\log$: 
+  \begin{align*}
+    a^xa^y &= e^{ x\log a } e^{ x\log b } = e^{(x+y)\log a} = a^{x+y}, \\ 
+    (a^x)^y &= (e^{x\log a})^y = e^{ y \log( e^{x\log a} )} = 
+    e^{xy \log a} =a^{xy}, \\
+    a^x b^y &= e^{x\log a}e^{x\log b} = 
+    e^{x\log a + x\log b}=e^{x\log(ab)}=(ab)^x,\\ 
+    \left(\frac{1}{a}\right)^x &= 
+    e^{x( \log(1)-\log a )} = e^{-x\log a} = a^{-x}.\EndTag
+  \end{align*}
+\end{antwort}
+
+%% Question 30
+\begin{frage}
+  Können Sie begründen, warum für eine stetige Funktion 
+  $F\fd \RR\to\RR$ mit der Eigenschaft $F(x+y)=F(x)F(y)$ für 
+  alle $x,y\in\RR$ notwendig $F(x)=0$ für alle $x\in\RR$ oder 
+  $F(x)=a^x$ mit $a:=F(1)>0$ für alle $x\in\RR$ gilt?
+\end{frage}
+
+\begin{antwort}
+  Sei $F$ nicht die Nullfunktion. 
+  Dann sind die Werte $F(n)$ für alle natürlichen Zahlen $n$ wegen 
+  $F(n)=F(1+\cdots+1)=F(1)^n = a^n$ 
+  bereits festgelegt und stimmen an diesen Stellen mit 
+  der Funktion $a^x$ überein. 
+  Wegen $F(-n)=F(n)^{-1}$ überträgt sich diese Übereinstimmung 
+  auch noch auf die ganzen Zahlen. Für eine 
+  rationale Zahl $\frac{p}{q}$ mit $p,q\in\ZZ$ 
+  gilt damit aber wegen 
+  $F( 1 )= F\left( q \cdot \frac{p}{q} \right ) = 
+  F\left( \frac{p}{q} \right)^q$ auch
+  \[ 
+  F\left(  \frac{p}{q} \right) = \sqrt[q]{ F(p) } =  \sqrt[q]{ a^p }= a^{p/q}
+  \]
+  und somit $F(x)=a^x$ für alle $x\in\QQ$. 
+  Daraus folgt nun aus Stetigkeitsgründen 
+  auch die Übereinstimmung von $F(x)$ und $a^x$ für alle $x\in\RR$.  
+  \AntEnd 
+\end{antwort}
+
+%% Question 31
+\begin{frage}\index{Potenzfunktion}
+  Definiert man für $a\in\RR, a\not=0$ und $x\in\RR_+$ als 
+  \slanted{allgemeine Potenzfunktion}
+  \[
+  \boxed{ x^a := \exp( a\log x),}
+  \]
+  warum gilt dann
+  \[
+  \begin{array}{llp{4mm}ll}
+    \desc{1} & 
+    \lim\limits_{x\to\infty} x^a \left\{ 
+      \begin{array}{ll} 
+        \infty & \text{falls $a>0$,} \\
+        0 & \text{falls $a<0$,} 
+      \end{array} \right.
+    & &
+    \desc{2} & 
+    \lim\limits_{x\downarrow 0} x^a \left\{ 
+      \begin{array}{ll} 
+        0 & \text{falls $a>0$,} \\
+        \infty, & \text{falls $a<0$,} 
+      \end{array} \right.
+    \\[5mm]
+    \desc{3} & 
+    \lim\limits_{x\to\infty} \dis\frac{\log x}{x^a} = 0\quad \text{für $a>0$,} 
+    & &
+    \desc{4} &
+    \lim\limits_{x\downarrow 0} x^a \log x =0 \quad\text{für $a>0$?}
+  \end{array}
+  \] 
+\end{frage}
+
+\begin{antwort}
+  \desc{1} Die Gleichungen 
+  $\lim\limits_{x\to\infty} e^x=\infty$, 
+  $\lim\limits_{x\to\infty} e^x=-0$ und 
+  $\lim\limits_{x\to\infty} \log x=\infty$ zusammen legen dieses 
+  Grenzwertverhalten fest.
+
+  \medskip
+  \noindent
+  \desc{2} Das folgt aus $\dis 
+  \lim_{x\downarrow 0} \log x =-\infty,\quad
+  \lim_{x\to -\infty} \exp x = 0, \quad
+  \lim_{x\to\infty} \exp x = \infty.$
+
+  \medskip
+  \noindent
+  \desc{3} Man wähle ein $n\in \NN$ mit $a > \frac{1}{n}$. Dann folgt 
+  die Grenzwertbeziehung aus der Antwort zu Frage \ref{05_lnwa}. 
+
+  \medskip
+  \noindent
+  \desc{4} Mit dem Ergebnis \desc{3} erhält man  
+  \begin{equation}
+    \lim_{x\downarrow 0} x^a \log x = 
+    \lim_{x\to\infty} \frac{\log(1/x)}{x^a} 
+    = - \lim_{x\to\infty} \frac{\log x}{x^a} = 0.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+\section{Die Umkehrfunktionen der trigonometrischen und 
+  hyperbolischen Funktionen}
+
+%% Question 32
+\begin{frage}
+  \index{Arcus-Cosinus}\index{Arcus-Funktionen}
+  \index{Arcus-Tangens}
+  \index{Arcus-Sinus}
+  \index{Arcus-Cotangens}
+  Auf welchen Intervallen verlaufen die Winkelfunktionen 
+  $\cos$, $\sin$, $\tan$ und $\cot$ jeweils streng monoton, 
+  sodass für die Einschränkungen dieser 
+  Funktionen auf die entsprechenden Intervalle die 
+  Umkehrfunktionen Arcus-Cosinus, Arcus-Sinus, Arcus-Tangens 
+  und Arcus-Cotangens existieren?
+\end{frage}
+
+\begin{antwort}
+  Der Cosinus verläuft für alle $k\in\ZZ$ 
+  auf den Intervallen $[k\pi, (k+1)\pi]$ streng monoton, 
+  der Sinus entsprechend auf den Intervallen 
+  $\left[\left( k-\frac{1}{2} \right)\pi,\left(k+\frac{1}{2}\right)\pi\right]$. 
+  Die Einschränkungen von Cosinus bzw. Sinus auf diese Intervalle 
+  besitzen für alle $k\in\ZZ$ also jeweils eine Umkehrfunktion
+  \[
+  \arccos_k\fd [-1,1] \to [k\pi, (k+1)\pi],\qquad
+  \arcsin_k\fd [-1,1] \to [(k-1/)\pi, (k+1/2)\pi].
+  \]
+  Der Tangens verläuft auf den Intervallen 
+  $\bopen{\left( k-\frac{1}{2} \right)\pi,\left(k+\frac{1}{2}\right)\pi}$
+  streng monoton, der Cotangens auf den Intervallen 
+  $\open{ k\pi,(k+1)\pi }$. Somit existieren für 
+  alle $k\in \ZZ$ Umkehrfunktionen
+  \[
+  \arctan_k\fd 
+  \text{$\left(\left( k-\frac{1}{2} \right)\pi,
+      \left(k+\frac{1}{2}\right)\pi\right)$} \to \RR,\qquad
+  \arccot_k\fd (k\pi, (k+1)\pi) \to \RR.\EndTag
+  \]
+\end{antwort}
+
+
+
+%% Question 33
+\begin{frage}\index{Hauptzweig der Arcus-Funktionen}
+  Wie sind die Hauptzweige dieser Funktionen definiert, und was versteht 
+  man allgemein für $n\in\ZZ$ mit $n\not=0$ 
+  unter dem $n$-ten Nebenzweig dieser Funktionen? 
+\end{frage}
+
+\begin{antwort}
+  Der Hauptzweig der Arcus-Funktionen ist jeweils die für $k=0$ gegebene 
+  Funktion aus der obigen Definition, entsprechend der $n$-te Nebenzweig 
+  die für $k=n$ gegebene Funktion. 
+
+  \begin{center}
+    \includegraphics{mp/05_arccos}
+    \captionof{figure}{Hauptzweige der Arcus-Funktionen 
+      (durchgezogene Linien) und 
+      benachbarte Nebenzweige (gestrichelt).} 
+    \label{fig:05_arccos}
+  \end{center}
+
+  Abbildung \ref{fig:05_arccos} zeigt die Graphen der Hauptzweige 
+  der Arcus-Funktionen als durchgezogene Linien. Die gestrichelten Graphen 
+  deuten benachbarte Nebenzweige an. 
+  \AntEnd
+\end{antwort}
+
+%% Question 34
+\begin{frage}
+  \index{Arcus-Sinus-Hyperbolicus}
+  Warum besitzt $\sinh\fd \RR\to \RR$ eine Umkehrfunktion $\asinh$, 
+  und warum gilt für diese 
+  \[
+  \asinh x = \log(x+\sqrt{x^2+1}) \text{?}
+  \] 
+  Können Sie den Graphen von $\asinh$ skizzieren?
+\end{frage}
+
+
+\begin{antwort}
+  Die Funktion $\sinh x$ wächst streng monoton auf ganz $\RR$, 
+  woraus die Existenz der Umkehrfunktion folgt. 
+  \begin{center}
+    \includegraphics{mp/05_arsinh}
+    \captionof{figure}{Graph von $\asinh$}
+    \label{fig:05_arsinh}
+  \end{center}
+  Wegen $\sinh y+\cosh y=e^y$ und $\cosh^2 y- \sinh^2 y=1$ gilt
+  \[
+  \log ( \sinh y + \sqrt{ \sinh^2 y+ 1} )= y.
+  \]
+  \picskip{2}\noindent
+  Mit $\sinh y=x$ bzw. $\asinh(x)=y$ folgt daraus die Formel 
+  für die Umkehrfunktion. Der Graph ist in \Abb\ref{fig:05_arsinh} dargestellt.
+  \AntEnd
+\end{antwort}
+
+%% Question 35
+\begin{frage}
+  \index{Arcus-Cosinus-Hyperbolicus}
+  Die Funktion $\cosh \fd \RR_+ \to \RR$ ist nach Frage 
+  \ref{05_sinh} ebenfalls streng 
+  monton und damit umkehrbar. Können Sie die Umkehrfunktion $\acosh$ mithilfe 
+  des natürlichen Logarithmus ausdrücken?
+\end{frage}
+
+\begin{antwort}
+  Die Identitäten $\cosh y+\sinh y=e^y$ und 
+  $\cosh^2 y-\sinh^2 y=1$ liefern 
+  \[
+  y=\log( e^y )= \log( \cosh y + \sqrt{ \cosh^2 -1 } ),
+  \]
+  und mit $x=\cosh y$ für $x\in\ropen{1,\infty}$ erhält man damit
+  \begin{equation}
+    \acosh x = \log( x + \sqrt{ x^2 -1 } ).\EndTag
+  \end{equation}
+
+  \begin{center}
+    \includegraphics{mp/05_arcosh}
+    \captionof{figure}{Graph von $\acosh$.}
+    \label{fig:05_arcosh}
+  \end{center}
+
+  Abbildung \ref{fig:05_arcosh} zeigt den Graphen von $\acosh$.
+\end{antwort}
+
+%% Question 36
+\begin{frage}
+  \index{Arcus-Tangens-Hyperbolicus}
+  Die Funktion $\tanh \fd \RR\to \RR$ ist ebenfalls streng monoton 
+  wachsend und damit umkehrbar. Warum gilt für die Umkehrfunktion 
+  \[
+  \atanh (x)= \frac{1}{2} \log \frac{1+x}{1-x}, \qquad\text{für $-1<x<1$?}
+  \]
+  Wie sieht der Graph dieser Funktion aus?
+\end{frage}
+
+\begin{antwort}
+  Aus 
+  \[
+  \atanh y = \frac{e^{y}-e^{-y}}{e^y+e^{-y}} = 1-\frac{2}{e^{2y}+1} =x 
+  \]
+  folgt 
+  \[
+  e^{2y} = \frac{2}{1-x} -1 \Ra 
+  e^{2y} = \frac{1+x}{1-x} \Ra
+  y = \frac{1}{2} \log\frac{1+x}{1-x}, 
+  \]
+  \picskip{1}\noindent
+  und damit die gesuchte 
+  Funktionsgleichung.\AntEnd
+
+  \begin{center}
+    \includegraphics{mp/05_artanh}
+    \captionof{figure}{Graph von $\atanh$.}
+    \label{fig:05_atanh}
+  \end{center}
+
+  Abbildung \ref{fig:05_atanh} zeigt den Graphen von $\atanh$.
+
+\end{antwort}
+
+%% Question 37
+\begin{frage}
+  \index{Arcus-Cotangens-Hyperbolicus}
+  Die Funktion $\coth\fd \RR_+ \to \RR$ ist streng monton 
+  fallend und damit umkehrbar. Warum gilt für die Umkehrfunktion
+  \[
+  \acoth = \frac{1}{2}\log \frac{x+1}{x-1} \qquad\text{für $|x|>1$?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Der Schlüssel für die Herleitung der Umkehrfunktion liegt in der 
+  Darstellung 
+  \[
+  \coth y = \frac{e^y+e^{-y}}{e^y-e^{-y}} = 1+\frac{2}{e^{2y}-1}.
+  \]
+  Durch Umformung der Gleichung und anschließendes Logarithmieren 
+  erhält man wie im Fall von $\artanh$ die gewünschte Funktionsgleichung. 
+
+  \begin{center}
+    \includegraphics{mp/05_arcoth}
+    \captionof{figure}{Graph von $\acoth$.}
+    \label{fig:05_arcoth}
+  \end{center}
+
+  Abbildung \ref{fig:05_arcoth} zeigt den Graphen von $\acoth$.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "\""
+%%% End: 

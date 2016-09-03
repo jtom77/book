@@ -1,0 +1,2142 @@
+\chapter{Stetigkeit, Grenzwerte von Funktionen}
+
+Der \slanted{Funktions-} bzw. \slanted{Abbildungsbegriff} 
+ist für die Mathematik und ihre Anwendungen zentral. 
+Wir beschäftigen uns daher zunächst etwas systematischer mit diesem 
+Begriff, den wir an verschiedenen Stellen schon benutzt und dabei 
+eine gewisse Vertrautheit mit ihm bereits vorausgesetzt haben.
+
+\index{Fermat@\textsc{Fermat}, Pierre de (1607-1655)}
+\index{Descartes@\textsc{Descartes}, Ren\'e (1596-1650)}
+\index{Leibniz@\textsc{Leibniz}, Gottfried Wilhelm (1646-1716)}
+\index{Bolzano@\textsc{Bolzano}, Bernard (1781-1848)}
+\index{Euler@\textsc{Euler}, Leonhard (1707-1783)}
+\index{Fourier@\textsc{Fourier}, Jean-Baptiste Joseph (1768-1830)}
+\index{Bernoulli D@\textsc{Bernoulli}, Daniel (1700-1781)}
+\index{Bernoulli J@\textsc{Bernoulli}, Johann (1667-1748)}
+\index{Cauchy@\textsc{Cauchy}, Augustin Louis (1789-1857)}
+ \index{Weierstrass@\textsc{Weierstrass}, Karl Theodor Wilhelm (1815-1897)}
+Nach Anfängen bei Fermat (1636) und 
+Descartes (1637) und weiteren 
+Präzisierungen des Begriffs \slanted{Funktion} (\slanted{functio}) 
+durch Leibniz und Johann Bernoulli gegen Ende 
+des 17. Jahrhunderts haben Euler 
+(1748 bzw. 1755), Daniel Bernoulli (1755), Fourier (1822), 
+Bolzano (1817) und Cauchy (1821) wichtige Beiträge 
+zur Entwicklung dieses Begriffs geliefert. 
+Der "`moderne"' Funktionsbegriff wird häufig mit dem Namen Dirichlet belegt. 
+Aus der Namensgebung lässt sich aber --- wie so oft in der Mathematik --- 
+nicht ohne Weiteres auf die Urheberschaft schließen. 
+Man vergleiche dazu den informativen Artikel von Youschkevitch \citep{Yousch}.
+
+Mithilfe des Abbildungsbegriffs lässt sich auch der Begriff der 
+\slanted{abzählbaren Menge} definieren, 
+der die Grundlage dafür liefert, unendliche 
+Mengen bezüglich ihrer Mächtigkeit miteinander zu vergleichen.
+
+\slanted{Natura non facit saltus} --- "`die Natur macht keine Sprünge"'. 
+Diese Raoul Fournier (1627) zugeschriebene Äußerung spiegelt 
+jene Einstellung wider, 
+wegen der bei der mathematischen Behandlung naturwissenschaftlicher 
+Vorgänge lange Zeit nur \slanted{stetige} Funktionen betrachtet wurden. 
+Die noch etwas vagen Stetigkeitsvorstellungen der Analytiker des 18. 
+Jahrhunderts wurden im 19. Jahrhundert durch Bolzano, Cauchy und vor allem 
+Weierstraß präzisiert. Mit der anschaulichen Vorstellung, dass bei stetigen 
+Funktionen bei einer "`kleinen"' Änderung der Argumente sich auch die 
+Funktionswerte nur wenig ändern (genauer: dass die Funktionswerte sich 
+beliebig wenig ändern, wenn nur die Argumente sich hinreichend wenig ändern), 
+ist man dem exakten Stetigkeitsbegriff schon recht nahe, der mithilfe 
+des Umgebungs- oder Folgenbegriffs definiert wird. Wir beschränken uns im 
+Bezug auf die Stetigkeit hier auf \slanted{metrische} Räume, in denen 
+man die "`Nähe"' mithilfe eines Abstandsbegriffs messen kann.
+
+Stetige reellwertige Funktionen auf Intervallen und vor allem auf  
+kompakten Mengen haben bemerkenswerte Eigenschaften ({\zB} 
+Zwischenwerteigenschaft, Satz vom Maximum und Minimum, 
+gleichmäßige Stetigkeit). Wir beschränken uns hier bei der Kompaktheit 
+auf den Begriff "`folgenkompakt"' --- metrischen Räumen und ihrer Topologie 
+ist ein späterer Abschnitt gewidmet. Den Grenzwertbegriff bei Funktionen 
+führt man am besten auf den Stetigkeitsbegriff zurück (und nicht umgekehrt!).  
+
+
+\section{Grundbegriffe}
+
+%% Question 1
+\begin{frage}
+  \label{03_abdf}
+  \index{Abbildung!allgemeine}
+  \index{Funktion!allgemeine}
+  Was versteht man unter einer Abbildung (Funktion) $f$ von einer Menge 
+  $X$ in eine Menge $Y$? Welche Notationen sind Ihnen hierfür bekannt?
+\end{frage}
+
+\begin{antwort}
+  Unter einer Abbildung $f$ von $X$ nach $Y$ versteht man 
+  eine Vorschrift 
+  (die zum Beispiel durch ein Naturgesetz, 
+  eine Tabelle oder eine Formel gegeben sein kann), die 
+  \slanted{jedem} Element $x\in X$ \slanted{genau ein} Element 
+  $f(x) \in Y$ zuordnet. 
+
+  Der Begriff "`Abbildung"' ist sehr allgemein und beinhaltet 
+  keinerlei Einschränkung bezüglich der Objekte, die einander 
+  zugeordnet werden. Den Begriff "`Funktion"' 
+  gebraucht man in einem engeren Sinn, und zwar dann, wenn 
+  es sich bei der Abbildung um die Zuordnung eines 
+  reellen oder komplexen Zahlenwerts handelt, wenn also $Y=\RR$ 
+  oder $Y=\CC$ gilt. Man spricht in diesem Fall von reell- oder 
+  komplexwertigen Funktionen. 
+
+  Zur Beschreibung einer Funktion $f$ von 
+  $X$ nach $Y$ benutzt man die Schreibweise 
+  \[
+  f\fd X\to Y, \qquad x\mapsto f(x).
+  \] 
+  Der erste Ausdruck charakterisiert $f$ als eine Abbildung von $X$ nach $Y$, 
+  der zweite spezifiziert die Zuordnungsvorschrift, derzufolge 
+  $x\in X$ auf das Element $f(x)\in Y$ abgebildet wird. 
+  \AntEnd
+\end{antwort}
+
+%% Question 2
+\begin{frage}
+  \label{03_graf}
+  \index{Graph}
+  Was versteht man unter dem \bold{Graphen} einer Abbildung $f\fd X\to Y$? 
+\end{frage}
+
+\begin{antwort}
+  Eine Abbildung $f\fd X\to Y$ stellt jedes Element $x\in X$ mit 
+  einem bestimmten Element $f(x)\in Y$ zu einem Paar $\big(x,f(x)\big)$ 
+  zusammen. Diese Paare bilden eine Teilmenge 
+  $G_f$ \nomenclature{$G_f$}{Graph von $f$}
+  des kartesischen Produkts $X\times Y$, 
+  das die folgenden beiden Eigenschaften besitzt 
+  \satz{\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] Jedes $x\in X$ tritt als erste Komponente 
+      eines Paares $\big(x,f(x)\big)$ auf.\\[-3.5mm]
+    \item[\desc{ii}] Die Zuordnung der zweiten 
+      Komponente ist eindeutig, {\dasheisst} aus 
+      $(x_1,y_1)\in G_f$ und $(x_2,y_2)\in G_f$ 
+      und $x_1=x_2$ folgt $y_1=y_2$.
+    \end{itemize}}
+  \noindent
+  Die Menge $G_f:=\{ (x,f(x));\, x\in X \}\subset X\times Y$ 
+  nennt man den \slanted{Graphen von $f$}. \AntEnd
+\end{antwort} 
+
+%% Question 3
+\begin{frage}
+  Welcher Zusammenhang besteht zwischen den Begriffen 
+  "`Graph einer Abbildung"' und "`Abbildung"'?
+\end{frage}
+
+\begin{antwort}
+  Eine Abbildung ist durch ihren Graphen eindeutig festgelegt. 
+  Zu jeder Teilmenge $X\times Y$, die 
+  die Eigenschaften $(a)$ und $(b)$ besitzt, gibt es genau eine Abbildung, 
+  die die Teilmenge als Graphen besitzt. 
+
+  Aufgrund dieser eineindeutigen Beziehung lässt sich der Abbildungsbegriff 
+  auch rein mengentheoretisch definieren, ohne den vagen Begriff 
+  der "`Vorschrift"' 
+  benutzen zu müssen. Eine Abbildung von $X\to Y$ ist demnach einfach ein 
+  Graph, das heißt eine Teilmenge von $X\times Y$ mit den 
+  Eigenschaften \desc{a} und \desc{b}.
+  \AntEnd
+\end{antwort}
+
+%% Question 4
+\begin{frage}
+  Welche Visualisierungsmöglichkeiten für Funktionen $f\fd D \to \RR$ 
+  mit $D\subset\RR$ bzw. $D\subset\RR\times\RR$ sind Ihnen bekannt?
+\end{frage}
+
+\begin{antwort}
+  Der Graph einer Funktion $f\fd D\to \RR$ 
+  als Teilmenge von $D\times \RR$ lässt sich 
+  in aller Regel als Punktmenge 
+  in einem zweidimensionalen Koordinatensystem visualisieren. Handelt es 
+  sich bei $D$ um ein Intervall, und genügt die Funktion $f$ bestimmten 
+  Stetigkeitsanforderungen, so besitzt der Graph der Funktion die Gestalt 
+  einer "`Kurve"' wie in \Abb\ref{fig:03_funktion2d}. 
+
+  \begin{center}
+    \begin{minipage}{60mm}
+      \includegraphics{mp/03_funktion2d}
+      \captionof{figure}{Graph einer stetigen Funktion auf 
+        einem reellen Intervall.}
+      \label{fig:03_funktion2d}
+    \end{minipage}
+    \qquad
+    \begin{minipage}{60mm}
+      \includegraphics{mp/03_funktion2da}
+      \captionof{figure}{Graph einer Funktion auf einer diskreten Menge.}
+      \label{fig:03_funktion2da}
+    \end{minipage}
+  \end{center}
+
+  Handelt es sich bei $D$ um eine diskrete Menge, etwa 
+  $\NN$, so kann der Graph unter Umständen 
+  durch einzelne unzusammenhängende Punkte 
+  wie in \Abb\ref{fig:03_funktion2da} visualisiert werden, 
+  
+  Der Graph einer Abbildung $g\fd D\to \RR$ mit 
+  $D\subset \RR \times \RR$ ist eine Teilmenge des 
+  $\RR^3$. Dieser lässt sich 
+  unter bestimmten Voraussetzungen als Punktmenge in einem 
+  dreidimensionalen kartesischen Koordinatensystem visualisieren. 
+  Bei einer stetigen Abbildung hat der Graph etwa die Gestalt einer 
+  Fläche im Raum (\sieheAbbildung\ref{fig:04_graph}).
+
+  \begin{center}
+    \includegraphics{povray/04_graph.pdf}
+    \captionof{figure}{Der Graph einer stetigen Abbildung 
+      $D \to \RR$ mit $D\subset\RR^2$ bildet 
+      eine Fläche im Raum.}
+    \label{fig:04_graph}
+  \end{center}
+
+  Allgemein kann man zur Visualisierung von Abbildungen den Bild- und 
+  Wertebereich auch getrennt einzeichnen wie in \Abb\ref{fig:03_exp}. Bestimmte   
+  Abbildungseigenschaften 
+  lassen sich damit häufig sehr gut veranschaulichen, {\zB} welche 
+  Teilmengen des Definitionsbereichs auf welche Teilmengen des Bildbereichs 
+  abgebildet werden.  
+
+  \begin{center}
+    \includegraphics{mp/03_exp}
+    \captionof{figure}{Darstellung von Bild- und Wertebereich einer Abbildung.}
+    \label{fig:03_exp}
+  \end{center}
+
+  Die Möglichkeit der Visualisierung einer Funktion ist nicht 
+  grundsätzlich gegeben, sondern hängt von bestimmten Eigenschaften der 
+  Funktion ab. Man hat zum Beispiel keine Chance, die Funktion 
+  $\RR \to \RR$, die für rationale Argumente den Wert $0$ und für irrationale 
+  den Wert $1$ annimmt, nach diesem Muster zu visualisieren.
+  \AntEnd
+\end{antwort}
+
+%% Question 5
+\begin{frage}
+  \label{03_abid}
+  Wann sind zwei Abbildungen gleich?
+\end{frage}
+
+\begin{antwort}
+  Zwei Abbildungen $f_1\fd X_1\to Y_1$ und $f_2\fd  X_2 \to Y_2$ sind 
+  genau dann gleich, wenn $X_1=X_2$ und $Y_1=Y_2$ gilt und für jedes 
+  $x\in X_1=X_2$ die Werte $f_1(x)$ und $f_2(x)$ identisch sind. 
+  \AntEnd
+\end{antwort}
+
+%% Question 6
+\begin{frage}\label{03_meng}
+  \index{Wertemenge}\index{Zielbereich}\index{Definitionsbereich}
+  \index{Bildmenge}
+  Erläutern Sie die Begriffe 
+  \bold{Definitionsbereich}, \bold{Wertemenge}, \bold{Zielbereich}, 
+  \bold{Bildmenge} einer Abbildung $f\fd X\to Y$.
+\end{frage}
+
+\begin{antwort}
+  Der \slanted{Definitionsbereich} einer Abbildung $f\fd X\to Y$ 
+  ist die Menge $X$, der \slanted{Zielbereich}  
+  die Menge $Y$. Der \slanted{Wertebereich bzw. die Bildmenge} der 
+  Abbildung ist die Menge aller 
+  derjenigen Elemente des Zielbereichs, die als Funktionswerte eines 
+  Elements des Wertebereichs auftreten, also die Menge 
+  $ f(X):=\{ f(x)\sets x\in X\}$. 
+  \AntEnd
+\end{antwort}
+
+%% Question 7
+\begin{frage}\label{03_jek}
+  \index{injektiv}\index{surjektiv}\index{bijektiv}
+  Wann nennt man eine Abbildung 
+  \bold{injektiv},
+  \bold{surjektiv},
+  \bold{bijektiv}? 
+  Geben Sie einfache Beispiele. 
+\end{frage}
+
+\begin{antwort}
+  Eine Abbildung $f\fd X\to Y$ heißt \slanted{injektiv}, wenn 
+  verschiedene Elemente aus $X$ stets auf verschiedene 
+  Elemente aus $Y$ abgebildet werden, wenn also aus 
+  $x_1\not=x_2$ stets $f(x_1)\not= f(x_2)$ folgt. 
+  Beispielsweise ist die Abbildung $\RR\to\RR,\; x\mapsto \exp(x)$ 
+  injektiv, die Abbildung $\RR\to[0,1],\; x\mapsto\sin x$ 
+  hingegen nicht.  
+
+  Die Abbildung heißt \slanted{surjektiv}, wenn der Wertebereich gleich 
+  dem Zielbereich ist, wenn also für jedes $y\in Y$ ein $x\in X$
+  mit $f(x)=y$ existiert. So ist beispielsweise die Abbildung 
+  $\RR\to \ropen{0,\infty},\; x\mapsto x^2$ surjektiv, die Abbildung 
+  $\RR\to\RR,\; x\mapsto x^2$ hingegen nicht.
+
+  Die Abbildung heißt \slanted{bijektiv}, wenn sie injektiv und 
+  surjektiv ist. Einfache Beispiele bijektiver 
+  Abbildungen sind die linearen Funktionen 
+  $\RR\to\RR,\; x\mapsto ax$ mit $a\in\RR$.
+  \begin{center}
+    \includegraphics{mp/03_inj}
+    \captionof{figure}{Veranschaulichung der Begriffe 
+      "`surjektiv"', "`injektiv"' und "`bijektiv"'.}
+    \label{fig:03_inj}
+  \end{center}
+  Die \Abb\ref{fig:03_inj} illustriert die Begriffe am Beispiel einer Abbildung 
+  zwischen zwei endlichen Mengen.
+  \AntEnd
+\end{antwort}
+
+%% Question 8
+\begin{frage}
+  \label{03_urb}
+  \index{Bild einer Abbildung}
+  \index{Urbild}
+  Sind $A\subset X$ und $B\subset Y$ Teilmengen und $f\fd X\to Y$ eine 
+  Abbildung. Was versteht man unter dem \bold{Bild} von $A$ unter $f$, 
+  was unter dem \bold{Urbild} von $B$ unter $f$?
+\end{frage}
+
+\begin{antwort}
+  Unter dem Bild $f(A)$ von $A$ unter $f$ bzw. dem Urbild $f^{-1}(B)$ 
+  von $B$ unter $f$ versteht man die Mengen 
+  \begin{align*}
+    f(A) &:= \{ f(x) \in Y\sets x\in A \} \subset Y  \\
+    f^{-1}(B) &:= \{ x\in X\sets f(x)\in B \} \subset X, 
+  \end{align*}
+  vgl. auch \Abb\ref{fig:03_urbild}.
+  Man beachte, dass das Urbild $f^{-1}(B)$ einer Teilmenge $B\subset Y$ 
+  im Gegensatz zur Umkehr\slanted{abbildung} immer existiert. 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/03_urbild}
+    \captionof{figure}{Bilder $f(A)$, 
+      $B$ einer Abbildung und deren Urbilder $A$ und $f^{-1}(B)$.}
+    \label{fig:03_urbild}
+  \end{center}
+\end{antwort}
+
+%% Question 9
+\begin{frage}\label{03_umk}\index{Umkehrabbildung}
+  Wie ist die \bold{Umkehrabbildung} einer bijektiven Abbildung 
+  $f\fd X\to Y$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die \slanted{Umkehrabbildung} $f^{-1}$ 
+  \nomenclature{$f^{-1}$}{Umkehrabbildung} 
+  einer bijektiven Abbildung $f\fd X\to Y$ ist definiert durch 
+  \begin{equation}
+    f^{-1}\fd Y \to X, \qquad f(x) \mapsto x. \tag{$\ast$}
+  \end{equation}
+
+  Dass diese Definition sinnvoll ist, wird durch die Bijektivität 
+  von $f$ gewährleistet. Aus der Surjektivität von $f$ folgt, dass zu 
+  jedem $y\in Y$ mindestens ein $x\in X$ mit $y=f(x)$ exis\-tiert, und  
+  aus der Injektivität, dass es höchstens ein $x\in X$ mit dieser Eigenschaft 
+  gibt. Also ist durch ($\ast$) eine Vorschrift gegeben, die 
+  \slanted{jedem} $y\in Y$ \slanted{genau ein} $x\in X$ zuordnet, also eine 
+  Abbildung $Y\to X$, siehe auch \Abb\ref{fig:03_umkehrabbildung}.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/03_umkehrabbildung}
+    \captionof{figure}{Graph einer bijektiven Abbildung $f$ und deren Umkehrabbildung.}
+    \label{fig:03_umkehrabbildung}
+  \end{center}
+
+\end{antwort}
+
+%% Question 10
+\begin{frage}\label{03_abz}\index{abzählbar}
+  \index{hochstens@höchstens abzählbar}
+  Was versteht man unter einer (höchstens) \bold{abzählbaren} Menge?
+\end{frage}
+
+\begin{antwort}
+  "`Abzählbarkeit"' ist ein Maß für die Mächtigkeit einer 
+  unendlichen Menge. Anschaulich steht hinter diesem Begriff die 
+  Vorstellung, die Elemente einer unendlichen Menge derart 
+  "`durchzunummerieren"' bzw. in einer  Reihenfolge anzuordnen, 
+  dass man sinnvollerweise vom "`ersten"' Element, vom "`zweiten"', 
+  vom "`dritten"' usw. sprechen kann. Existiert eine solche Anordnung, dann 
+  gelangt man beim Durchgang durch die unendliche Reihe zu jedem Element nach 
+  endlich vielen Schritten.
+
+  Präziser: 
+  Bei einer derartigen Anordnung handelt es sich darum, 
+  jedem Element der Menge \slanted{eineindeutig} 
+  eine natürliche Zahl zuzuordnen. 
+  Das führt auf die folgende Definition der Abzählbarkeit: 
+  \slanted{eine Menge $M$ ist abzählbar genau dann, wenn 
+    eine bijektive Abbildung $\NN \to M$ existiert.} 
+  Zum Beispiel ist die Menge $A$ aller natürlichen 
+  Quadratzahlen abzählbar, und zwar vermöge der Abbildung
+  \[
+  \NN \to A, \qquad n \mapsto n^2.
+  \]  
+  Eine abzählbare Menge ist definitionsgemäß immer unendlich. 
+  \slanted{Höchstens} abzählbar ist sie dann, 
+  wenn sie endlich oder abzählbar ist.
+  \AntEnd
+\end{antwort}
+
+%% Question 11
+\begin{frage}\label{03_abca}
+  Warum ist für (höchstens) abzählbare Mengen auch das kartesische Produkt 
+  $X\times Y$ (höchstens) abzählbar?
+\end{frage}
+
+\begin{antwort}
+  Sind $X$ und $Y$ abzählbar, dann lassen sich die Elemente 
+  aus $X\times Y$ wie in \Abb\ref{fig:03_abz1} in einer Tabelle eintragen. 
+  Die Paare $(x_i,y_j)$ kann man nun durchnummerieren, indem man  
+  bei $(x_1,y_1)$ beginnend den Pfeilen folgt. Man erkennt dann, 
+  dass man mit diesem "`Diagonalverfahren"' jedes Paar $(x_i,y_j)$  
+  nach endlich vielen Schritten erreicht. 
+  Das zeigt die Abzählbarkeit von $X\times Y$ im Fall abzählbarer Mengen 
+  $X$ und $Y$. 
+  \index{Cantor@\textsc{Cantor}, Georg (1845-1918)}
+  \index{Cantor'sches Diagonalverfahren}
+
+  Ist eine der beiden Mengen, etwa $Y=\{ y_1 , \ldots, y_n \}$ endlich, 
+  dann erhält man eine Abzählung durch 
+  \[
+  (x_1, y_1),\ldots, (x_1,y_n), (x_2,y1), \ldots, (x_2,y_n), (x_3,y_1), \ldots
+  \]
+  Der Fall, dass beide Mengen endlich sind, ist trivial, da in diesem 
+  Fall auch das kartesische Produkt endlich ist.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/03_abz1}
+    \captionof{figure}{Abzählstrategie des kartesischen Produkts abzählbarer 
+      Mengen.}
+    \label{fig:03_abz1}
+  \end{center}
+  
+\end{antwort}
+
+%% Question 12
+\begin{frage}\label{03_abv}
+  Begründen Sie, warum für höchstens abzählbare Mengen $X_n$, $n\in\NN$ auch 
+  $X := \bigcup_{n=1}^\infty X_n$ (höchstens) abzählbar ist.
+\end{frage}
+
+\begin{antwort}
+  Seien zunächst alle Mengen $X_n$ unendlich. 
+  Nach Voraussetzung gibt es für jedes $n\in \NN$ eine Bijektion 
+  $\NN \to X_n$ mit $k \mapsto x_{n,k}\in X_n$. Das liefert eine Bijektion   
+  \[
+  \NN \times \NN \leftrightarrow \bigcup_{n=1}^\infty X_n; 
+  \qquad (i,j) \mapsto x_{i,j} \in X_i.
+  \]
+  Da $\NN\times\NN$ nach Frage \ref{03_abca} abzählbar ist, gilt dies 
+  auch für $\bigcup_{n=1}^\infty X_n$. 
+
+  Sind mehrere oder alle der Mengen $X_n$ endlich, dann ist die durch 
+  $x_{n,k}\mapsto (n,k)$ definierte Abbildung $X\to \NN\times\NN$ injektiv, 
+  aber nicht mehr surjektiv. Aufgrund der Abzählbarkeit von $\NN\times\NN$ 
+  erhält man damit zunächst eine injektive Abbildung 
+  $X\to \NN$. Deren Bild ist eine unendliche Teilmenge 
+  von $M\subset \NN$ (da $X$ unendlich ist), 
+  und eine solche lässt sich immer bijektiv auf $\NN$ abbilden, indem 
+  man die Elemente von $M$ gemäß der Ordnungsstruktur von 
+  $\NN$ durchnummeriert. Die Bijektionen $X\leftrightarrow M$ und 
+  $M \leftrightarrow \NN$ stiften dann eine Bijektion zwischen 
+  $X$ und $\NN$.     
+  \AntEnd
+\end{antwort}
+
+%% Question 13
+\begin{frage}\label{03_abzz}\index{Q@$\QQ$!Abzählbarkeit}
+  Warum sind $\ZZ$, $\ZZ\times \ZZ$ und $\QQ$ abzählbar?
+\end{frage}
+
+\begin{antwort}
+  Die Menge der ganzen Zahlen ist abzählbar, etwa durch 
+  \[
+  \begin{array}{lrrrrrrrr}
+    \NN\quad & 1 & 2 & 3 & 4 & 5 & 6 & 7 & \ldots \\
+    &\downarrow&\downarrow&\downarrow&\downarrow&\downarrow&
+    \downarrow&\downarrow & \\
+    \ZZ\quad & 0 & 1 & -1 & 2 & -2 & 3 & -3 & \ldots 
+  \end{array}
+  \]
+  Zusammen mit der Antwort zu Frage \ref{03_abca} 
+  folgt daraus die Abzählbarkeit des 
+  kartesischen Produktes $\ZZ \times \ZZ$. 
+  Bezüglich $\QQ$ genügt es zu bemerken, dass eine injektive Abbildung  
+  \[
+  \QQ \to \ZZ\times \ZZ, \qquad 
+  \frac{m}{n} \mapsto (m,n), \qquad m\in\ZZ, n\in\NN
+  \]
+  existiert. Da $\ZZ\times \ZZ$ abzählbar ist, gibt es eine 
+  injektive Abbildung $f\fd\QQ\to\NN$. Das Bild $f(\QQ)$ schließlich 
+  ist eine unendliche Teilmenge von $\NN$, also existiert nach der 
+  Bemerkung in der vorigen Frage eine Bijektion 
+  $f(\QQ) \leftrightarrow \NN$, die zusammen 
+  mit $\QQ \leftrightarrow f(\QQ)$ eine Bijektion 
+  $\QQ \leftrightarrow \NN$ vermittelt. Das heißt, $\QQ$ ist abzählbar. 
+  \AntEnd
+\end{antwort}
+
+%% Question 14
+\begin{frage}\label{03_ueba}\index{uberabzahlbar@überabzählbar}
+  Kennen Sie ein Beispiel einer überabzählbaren Menge?
+\end{frage}
+
+\begin{antwort}
+  Beispiele überabzählbarer Mengen sind die 
+  echten reellen Intervalle $[a,b]$ oder $\open{a,b}$ 
+  mit $a<b$ (vgl. Frage \ref{03_uint}). 
+  Aus deren Überabzählbarkeit folgt unmittelbar, dass auch die Mengen 
+  $\RR$, $\CC$ und $\RR^n$ für $n\in\NN$ überabzählbar sind.
+
+  Für eine unendliche abzählbare Menge $M$ ist die Potenzmenge 
+  $\mathfrak{P}(M)$ \nomenclature{$\mathfrak{P}(M)$}{Potenzmenge}
+  ebenfalls überabzählbar (vgl. Frage \ref{03_upot}). 
+  So ist beispielsweise die Menge aller Teilmengen der natürlichen Zahlen 
+  überabzählbar.
+  \AntEnd
+\end{antwort}
+
+
+%% Question 15
+\begin{frage}\label{03_uint}
+  Begründen Sie, warum das Intervall $[0,1]$ überabzählbar ist.
+\end{frage}
+
+\begin{antwort}
+  Für den Beweis stellen wir die reellen Zahlen 
+  aus dem Intervall $[0,1]$ in ihrer $2$-adischen Entwicklung dar (vgl. 
+  Frage \ref{02_gal}). Jede reelle Zahl $x\in [0,1]$ besitzt nach 
+  dem Satz über die $g$-adische Entwicklung eine eindeutige nicht abbrechende 
+  Darstellung $x=0,r_1r_2r_3\ldots$ mit $r_i\in\{0,1\}$.  
+
+  Angenommen, es gäbe eine Abzählung $x_1,x_2,x_3,\ldots$ des Intervalls 
+  $[0,1]$. Wir schreiben die Zahlen in ihrer $2$-adischen Entwicklung 
+  untereinander
+  \begin{equation}
+    \begin{array}{rcl}
+      x_1 &=& 0,r_{11}r_{12}r_{13}r_{14}\ldots \\
+      x_2 &=& 0,r_{21}r_{22}r_{23}r_{24}\ldots \\
+      x_3 &=& 0,r_{31}r_{32}r_{33}r_{34}\ldots \\
+      \cdots &=& \cdots 
+    \end{array}\tag{$\ast$}
+  \end{equation}
+  und betrachten die durch "`Diagonalisierung"' dieser 
+  \index{Diagonalisierung} Tabelle erhaltene reelle Zahl 
+  $x:=0,r_{11}r_{22}r_{33}\ldots \in[0,1]$.
+  In deren $2$-adischer Entwicklung vertauschen wir jedes Vorkommen 
+  der Ziffer $0$ durch die Ziffer $1$ und jedes Vorkommen 
+  der Ziffer $1$ durch die Ziffer $0$. 
+  Die auf diese Weise konstruierte reelle Zahl 
+  $\widetilde{x}\in[0,1]$ kommt in der Abzählung ($\ast$) 
+  aber nicht vor, denn sie unterscheidet sich von $x_1$ in der ersten 
+  Dualstelle, von $x_2$ in der zweiten, von $x_3$ in der dritten usw. 
+  Es folgt, dass die  hypothetische Abzählung 
+  $x_1,x_2,x_3\ldots$ nicht alle Zahlen des 
+  Intervalls $[0,1]$ erfassen kann. Das Intervall $[0,1]$ kann  
+  damit nicht abzählbar sein. 
+  \index{Cantor@\textsc{Cantor}, Georg (1845-1918)}
+  \index{Cantor'sches Diagonalverfahren}
+
+  Der hier vorgeführte Beweisprinzip ist 
+  als "`Zweites Cantor'sches Diagonalverfahren"' bekannt. Eine Variante 
+  davon wird in Frage \ref{03_upot} vorgeführt.
+  \AntEnd  
+\end{antwort}
+
+%% Question 16
+\begin{frage}\label{03_ueb}\index{R@$\RR$!Überabzählbarkeit von}
+  Warum ist jedes kompakte Intervall $[a,b]\subset \RR$, 
+  jedes halboffene Intervall $\ropen{a,b}\subset \RR$ und jedes 
+  offene Intervall $\open{a,b}\subset \RR$ 
+  $(a<b)$ überabzählbar? Warum ist $\RR$ überabzählbar? 
+\end{frage}
+
+\begin{antwort}
+  Jedes kompakte Intervall $[a,b]\subset \RR$ lässt sich durch 
+  \[
+  [a,b] \to [0,1], \qquad x \mapsto \frac{x-a}{b-a}
+  \]
+  bijektiv auf das Intervall $[0,1]$ abbilden. Würde eine Bijektion 
+  $[a,b] \to\NN$ existieren, dann gäbe es damit auch eine Bijektion 
+  $[0,1] \to \NN$, im Widerspruch zur Überabzählbarkeit von $[0,1]$.
+
+  Weiter lässt sich jedes halboffene oder offene Intervall $M$ 
+  durch eine lineare Skalierung und Translation bijektiv auf 
+  ein halboffenes bzw. offenes Intervall $M'$ abbilden, für das 
+  $[0,1]\subset M'$ gilt. Gäbe es eine injektive Abbildung $M\to \NN$, 
+  dann gäbe es damit auch eine von $[0,1]$ nach $\NN$, im Widerspruch 
+  zur Überabzählbarkeit von $[0,1]$. 
+
+  Die Überabzählbarkeit von $\RR$ folgt ebenfalls 
+  unmittelbar aus derjenigen des Intervalls $[0,1]$. 
+  Da es keine surjektive Abbildung $\NN \to [0,1]$ 
+  gibt, kann es wegen $[0,1]\subset \RR$ erst recht keine surjektive 
+  Abbildung von $\NN$ nach $\RR$ geben.
+  \AntEnd
+\end{antwort}
+
+%% Question 17
+\begin{frage}\label{03_alg}\index{algebraische Zahl}\index{transzendente Zahl}
+  Wann heißt eine reelle oder komplexe Zahl 
+  \bold{algebraisch}, wann heißt sie 
+  \bold{trans\-zen\-dent}?
+\end{frage}
+
+\begin{antwort}
+  Die algebraischen Zahlen sind definiert als diejenigen 
+  komplexen Zahlen, die Lösung einer polynomialen Gleichung mit 
+  rationalen Koeffizienten
+  \[
+  a_n x^n + a_{n-1}x^{n-1}+\cdots + a_1x+a_0 =0, \quad a_i \in \QQ
+  \]
+  sind. 
+  \slanted{Transzendent} heißt eine komplexe Zahl dann, wenn sie nicht 
+  algebraisch ist.
+
+  Die algebraischen Zahlen bilden eine echte Obermenge von $\QQ$,  
+  denn jedes $r\in \QQ$ ist Lösung der Gleichung $x-r=0$, 
+  aber nicht jede algebraische Zahl ist rational. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 18
+\begin{frage}
+  Ist $\sqrt{2}+\sqrt{3}$ eine algebraische Zahl?
+\end{frage}
+
+\begin{antwort}
+  In der Algebra zeigt man, dass die algebraischen Zahlen einen 
+  Körper bilden (s. {\zB} \citep{Karpfinger}). 
+  Aus diesem allgemeinen Zusammenhang folgt, 
+  dass $\sqrt{2}+\sqrt{3}$ algebraisch ist, da dies offensichtlich 
+  auf $\sqrt{2}$ und auf $\sqrt{3}$ zutrifft.
+
+  \medskip
+  \noindent
+  Man kann auch einfach so schließen: $\sqrt{2}+\sqrt{3}$ ist Nullstelle 
+  des Polynoms $X^4-10X^2+1\in\ZZ[X]$, wie man durch 
+  zweimaliges Quadrieren feststellt, und  damit algebraisch.
+  \AntEnd
+\end{antwort}
+
+%% Question 19
+\begin{frage}\label{03_trz}\index{Transzendenz}
+  Kennen Sie (ohne Beweis) Beispiele für transzendente Zahlen?
+\end{frage}
+
+\begin{antwort}
+  Die prominentesten transzendenten Zahlen sind die Kreiszahl 
+  $\pi$ und die Euler'sche Zahl $e$. Die Transzendenz von $e$ wurde 
+  im Jahr 1873 von Hermite \index{Hermite@\textsc{Hermite}, Charles (1822-1901)}
+  bewiesen, diejenige von $\pi$ im Jahr 
+  1882 von Lindemann. \index{Lindemann@\textsc{Lindemann}, Ferdinand (1852-1939)}
+  Lindemanns Beweis beantwortete damit auch 
+  die klassische Frage der griechischen Mathematik nach der 
+  Möglichkeit einer 
+  "`Quadratur des Kreises"' \index{Quadratur des Kreises}
+  (also die Aufgabe, zu einem gegebenen Kreis 
+  nur mithilfe von Zirkel und Lineal ein 
+  flächengleiches Quadrat zu konstruieren), und zwar im negativen Sinne. 
+  \AntEnd
+\end{antwort}
+
+%% Question 20
+\begin{frage}\label{03_trex}
+  Wie kann man die Existenz transzendenter Zahlen einfach beweisen 
+  (ohne eine zu kennen)?
+\end{frage}
+
+\begin{antwort}
+  Die Existenz transzendenter Zahlen lässt sich durch ein 
+  Abzählbarkeitsargument beweisen, bei dem man die Abzählbarkeit 
+  der Menge aller \slanted{algebraischen} Zahlen zeigt. 
+  Da $\CC$ überabzählbar und die Vereinigung der algebraischen und 
+  transzendenten Zahlen ist, folgt daraus, dass die Menge der transzendenten 
+  Zahlen ebenfalls überabzählbar (und damit erst recht nicht leer) sein muss. 
+
+  Zum Beweis der Abzählbarkeit der algebraischen Zahlen
+  genügt es natürlich, die Abzählbarkeit aller \slanted{ganzzahligen} Polynome
+  zu zeigen.  
+  Dazu definiere man die "`Höhe"' $h( p )$ 
+  eines ganzzahligen Polynoms durch $
+  h( p ) := |a_n| + |a_{n-1}| + \cdots + |a_1| + |a_0|$. 
+  Für jede natürliche Zahl $N$ gibt es nur endliche viele Polynome 
+  mit einer kleineren Höhe als $N$. Wegen $
+  \ZZ [X]   = \bigcup_{n=1}^\infty \{ p\in \ZZ[X]\sets h(p) < N \}$
+  ist die Menge der ganzzahligen Polynome somit die Vereinigung 
+  abzählbar vieler endlicher Mengen und damit nach Frage 
+  \ref{03_abv} ebenfalls abzählbar. 
+  \AntEnd
+\end{antwort}
+
+%% Question 21
+\begin{frage}\label{03_upot}\index{Potenzmenge}
+  Warum kann es für eine beliebige nichtleere Menge $X$ keine Bijektion 
+  von $X$ auf ihre Potenzmenge $\mathfrak{P}(X)$ geben?
+\end{frage}
+
+\begin{antwort}
+  Für \slanted{endliche} Mengen $X$ mit $m$ Elementen 
+  kann es wegen $| \mathfrak{P}(X) | =2^m > m$ keine solche Bijektion geben.  
+
+  Sei also $X$ unendlich. Angenommen, 
+  es existiert eine Bijektion $X\to \mathfrak{P}(X)$, die 
+  jedes Element $x\in X$ auf eine Teilmenge 
+  $M_x \in \mathfrak{P}(X)$ abbildet. 
+  Für jede Teilmenge $M_x$ gibt es 
+  nun genau zwei Möglichkeiten: entweder $x \in M_x$ oder 
+  $x\not\in M_x$. Man betrachte die Menge $M\subset X$, 
+  die durch 
+  \[
+  x \in  M \LLa x\not\in M_x
+  \]
+  definiert ist. Die Menge $M$ ist dann mit keiner der Teilmengen 
+  $M_x$ identisch, denn jedes $x\in X$ liegt \slanted{entweder} in $M$ 
+  \slanted{oder} in $M_x$, aber nicht in beiden. 
+  Damit existiert auch kein $x\in X$, das in der angenommenen Bijektion auf 
+  $M$ abgebildet wird. Die Abbildung 
+  $X\to \mathfrak{P}(X)$ ist also im Widerspruch zur Annahme nicht surjektiv.
+  \AntEnd
+\end{antwort} 
+
+\section{Stetigkeit}
+
+%% Question 22
+\begin{frage}\label{03_epde}\index{Stetigkeit}
+  Sind $(X,d_X)$ und $(Y,d_Y)$ metrische Räume und ist 
+  $f\fd X\to Y$ eine Abbildung. Wann heißt $f$ im Punkt 
+  (an der Stelle) $a\in X$ 
+  \bold{stetig}? Wann heißt $f$ (schlechthin) stetig?
+\end{frage}
+
+\begin{antwort}
+  Die Idee, die dem Stetigkeitsbegriff zugrunde liegt, ist die,
+  dass eine "`kleine"' Änderung des Arguments an einer Stelle  
+  auch nur eine entsprechend "`kleine"' Änderung des Funktionswerts 
+  in einer Umgebung dieser Stelle zur Folge hat. 
+  Und mehr noch: Die Änderung des Funktionswerts 
+  kann \slanted{beliebig klein} gehalten werden, solange die Veränderung 
+  des Argumentes innerhalb bestimmter Grenzen bleibt.    
+  
+  Dies führt auf die folgende Definition der Stetigkeit in einem Punkt:
+
+  \medskip
+  \noindent\slanted{
+    Eine Funktion $f\fd X\to Y$ heißt stetig im Punkt $a\in X$, 
+    wenn zu jedem $\eps>0$ ein 
+    $\delta(\eps):=\delta >0$ existiert, so dass für alle $x\in X$ gilt: 
+    \[
+    d_X( x,a ) < \delta \Ra d_Y\big( f(x),f(a) \big) < \eps. 
+    \]}
+  \medskip
+  Äquivalent dazu ist die Formulierung:
+
+  \medskip
+  \noindent\slanted{Eine Funktion $f$ ist 
+    stetig im Punkt $a$, wenn zu jeder $\eps$-Umgebung von $f(a)$ 
+    eine $\delta$-Umgebung von $a$ existiert, sodass gilt:  
+    \[
+    f( U_\delta(a) ) \subset U_\eps\big( f(a) \big).
+    \]}
+  \noindent
+  Die $\eps\delta$-Eigenschaft kennzeichnet die Stetigkeit 
+  einer Funktion in \slanted{einem} Punkt ihres Definitionsbereichs. 
+  Der Begriff wird insofern also als eine lokale Eigenschaft 
+  einer Funktion eingeführt. Stetigkeit \slanted{schlechthin} ist dagegen eine 
+  globale Eigenschaft einer Funktion. Eine Funktion heißt (schlechthin) stetig, 
+  wenn sie in jedem Punkt ihres Definitionsbereichs stetig ist. 
+  \AntEnd
+\end{antwort}
+
+%% Question 23
+\begin{frage}\label{03_svis}\index{epsdelta@$\eps\delta$-Stetigkeit}
+  Wie kann man sich die $\eps\delta$-Definition der Stetigkeit 
+  für Funktionen $f\fd X\to Y$ veranschaulichen, wenn 
+  $X\subset \RR$ und $Y\subset \RR$ bzw. $X\subset \RR^2$ und $Y\subset \RR^2$ gilt?
+\end{frage}
+
+\begin{antwort}[]
+  \Ant Die \Abb\ref{fig:03_stetig1} veranschaulicht die Stetigkeit 
+  im Punkt $a$ für eine Abbildung, 
+  bei der Definitions- und Zielbereich reelle Intervalle sind. 
+  Der Graph der Funktion verläuft im Intervall $\open{a-\delta,a+\delta}$ 
+  innerhalb des $\eps$-Streifens um $f(a)$. Bei der 
+  Funktion in \Abb\ref{fig:03_stetig2} sind Definitions- und Zielbereich 
+  Teilmengen des $\RR^2$. Die Abbildung illustriert hier auf eine andere 
+  Weise die Stetigkeitseigenschaft $f\big(U_\delta(a)\big)
+  \subset U_\eps\big( f(a) \big)$ 
+  von $f$ im Punkt $a$. \AntEnd
+
+  \begin{center}
+    \begin{minipage}{60mm}
+      \includegraphics{mp/03_stetig1}
+      \captionof{figure}{Stetigkeit einer Funktion $f\fd\RR\to\RR$.}
+      \label{fig:03_stetig1}
+    \end{minipage}
+    \qquad
+    \begin{minipage}{60mm}
+      \includegraphics{mp/03_stetig2}
+      \captionof{figure}{Stetigkeit einer Funktion $f\fd\RR^2\to\RR^2$.}
+      \label{fig:03_stetig2}
+    \end{minipage}
+  \end{center}
+\end{antwort}
+
+%% Question 24
+\begin{frage}\label{03_lips}\index{Lipschitz-stetig}
+  \index{Lipschitz@\textsc{Lipschitz}, Rudolf (1832-1903)}
+  Sind $(X,d_X)$ und $(Y,d_Y)$ metrische Räume. Wann heißt eine Abbildung 
+  $f\fd X\to Y$ \bold{Lipschitz-stetig}? 
+\end{frage}
+
+\begin{antwort}
+  Eine Funktion $f\fd X\to Y$ heißt 
+  \slanted{Lipschitz-stetig}, wenn eine Konstante 
+  $L\in \RR_+$ existiert, sodass für alle $a,b\in X$ die Ungleichung 
+  \begin{equation}
+    d_Y \big( f(a), f(b) \big) \le L \cdot d_X (a,b) \tag{$\ast$}
+  \end{equation}
+  gilt. Anschaulich bedeutet dies, dass die Verzerrung des Abstands zweier 
+  Punkte $a, b \in X$ unter der Abbildung beschränkt bleibt, was bei einer 
+  Abbildung $X\to Y$ mit $X\subset \RR$ und $Y\subset \RR$ 
+  darauf hinausläuft, dass die Steigung des Graphen beschränkt bleibt.   
+\end{antwort}
+
+%% Question 25
+\begin{frage}\index{Lipschitz-stetig}
+  Ist die Funktion $\RR\to\RR_+$ mit $x\mapsto x^2$ Lipschitz-stetig?
+\end{frage}
+
+\begin{antwort}
+  Die Funktion ist nicht Lipschitz-stetig. 
+  Für jede Konstante $L\in\RR$ ist nämlich 
+  $
+  \left| a^2-b^2 \right| = \big| (a+b)(a-b) \big| > L \cdot |a-b|$, 
+  sofern nur $|a+b|>L$ gilt. \AntEnd
+\end{antwort}
+
+%% Question 26
+\begin{frage}\index{Lipschitz-stetig}
+  Warum ist eine Lipschitz-stetige Abbildung stetig? 
+\end{frage} 
+
+\begin{antwort}
+  Die normale Stetigkeit einer Lipschitz-stetigen Funktion ist eine  
+  unmittelbare Konsequenz aus der Ungleichung ($\ast$). 
+  Aus $|a-b|<\eps/L+1$ (wir wählen $L+1$ statt $L$, denn $L$ könnte Null sein) folgt für Lipschitz-stetiges $f$ nämlich  
+  \[
+  |f(a)-f(b)| < \eps.
+  \]
+  Mit $\delta:=\eps/L+1$ entspricht das genau der 
+  $\eps\delta$-Definition der Stetigkeit.
+  \AntEnd
+\end{antwort}
+
+%% Question 27
+\begin{frage}\label{03_lipn}\index{Norm!Lipschitz-Stetigkeit}
+  Sei $(X, \n{ \,\; })$ ein normierter $\KK$-Vektorraum 
+  ($\KK=\RR$ oder $\KK=\CC$). Warum ist die durch 
+  $x\mapsto \| x \|$ definierte \slanted{Normabbildung} 
+  $N \fd X\to \RR$ Lipschitz-stetig?
+\end{frage}
+
+\begin{antwort}
+  Es muss gezeigt werden, dass eine Konstante $L\in\RR_+$ existiert mit 
+  \[
+  \big|\, \n{a} - \n{b} \, \big| 
+  \le L  \cdot \n{ a-b }  \quad\text{für alle $a,b\in X$}.
+  \]
+  Für $L=1$ ist diese Ungleichung aber gerade die Dreiecksungleichung 
+  für Abschätzungen nach unten (vgl. Frage \ref{01_dru}), 
+  die in jedem normierten Raum gilt. 
+  \AntEnd
+\end{antwort}
+
+%% Question 28
+\begin{frage}\label{03_lipd}\index{Metrik!Lipschitz-Stetigkeit}
+  Sei $(X,d)$ ein metrischer Raum, $x_0\in X$ ein fester Punkt. 
+  Warum ist die Abbildung $d \fd X\times X \to \RR$ mit  
+  $x\mapsto d(x,x_0)$ Lipschitz-stetig?
+\end{frage}
+
+\begin{antwort}
+  Wegen der Dreiecksungleichung gilt für alle $x,y\in X$:
+  \[
+  d(x,x_0) \le d(x,y) + d(y,x_0), \qquad 
+  d(y,x_0) \le d(x,y) + d(x,x_0).
+  \]
+  Die beiden Ungleichungen implizieren zusammen 
+  \[
+  \big| d(x,x_0) -d(y,x_0) \big| \le 
+  d( x,y ) \quad\text{für alle $x,y\in X$}.
+  \]
+  Mit $L=1$ entspricht das der Definition der Lipschitz-Stetigkeit.
+  \AntEnd
+\end{antwort}
+
+%% Question 29
+\begin{frage}\label{03_kont}\index{kontrahierende Selbstabbildung}
+  Was versteht man unter einer \bold{kontrahierenden Selbstabbildung} 
+  eines metrischen Raumes? 
+  Warum ist eine solche Abbildung immer Lipschitz-stetig?
+\end{frage}
+
+\begin{antwort}
+  Sei $(X,d)$ ein metrischer Raum. Eine 
+  \slanted{kontrahierende Selbstabbildung} oder 
+  \slanted{Kontraktion} 
+  ist eine Abbildung $f\fd X\to X$, für die ein $\lambda < 1$ 
+  existiert, sodass gilt:
+  \[
+  d\big( f(x), f(y) \big) \le \lambda \cdot d(x,y)\quad \text{für alle $x,y\in X$}.
+  \]
+  Die Lipschitz-Stetigkeit einer kontrahierenden Selbstabbildung 
+  ergibt sich unmittelbar aus der Definition, 
+  indem man $L = \lambda$ wählt. 
+  \AntEnd
+\end{antwort}
+
+%% Question 30
+\begin{frage}\index{folgenstetig}
+  Wann heißt eine Abbildung $f\fd X\to Y$ \bold{folgenstetig} in $a\in X$?
+\end{frage}
+
+\begin{antwort}
+  Eine Funktion $f\fd X\to Y$ heißt \slanted{folgenstetig im Punkt $a\in X$} 
+  genau dann, wenn für \slanted{jede Folge} $(x_n)\subset X$ gilt: 
+  \[
+  \lim\limits_{n\to\infty} x_n=a \Ra \lim\limits_{n\to\infty} f(x_n) = f(a),
+  \]
+  vgl. \Abb\ref{fig:03_folgenstetig}.
+  \begin{center}
+    \includegraphics{mp/03_folgenstetig}
+    \captionof{figure}{Die Funktion $f$ ist folgenstetig: Konvergiert die Folge 
+      $(a_n)$ gegen $a$, so konvergiert die Folge der Funktionswerte 
+      $\big(f(a_n)\big)$ gegen $f(a)$.}
+    \label{fig:03_folgenstetig}
+  \end{center}
+  Frage~\ref{03_aquv} behandelt die Beziehung  dieses Stetigkeitsbegriffs mit 
+  der $\eps\delta$-Stetigkeit. 
+  \AntEnd
+\end{antwort}
+
+%% Question 31
+\begin{frage} 
+  \label{03_aquv}
+  \index{Aquivalenzsatz@Äquivalenzsatz für Stetigkeit}
+  (\bold{Äquivalenzsatz für Stetigkeit}) 
+  Sind $(X,d_X)$ und $(Y,d_Y)$ metrische Räume und $f\fd X\to Y$ eine 
+  Abbildung. Warum sind die Folgenstetigkeit von $f$ und die 
+  $\eps\delta$-Stetigkeit von $f$ äquivalent?
+\end{frage}
+
+\begin{antwort}
+  Sei zunächst $f\fd X\to Y$ stetig 
+  im Sinne der $\eps\delta$-Definition, 
+  ein $\eps>0$ sei beliebig gegeben,  und $(x_n) \subset X$ sei eine Folge, 
+  die gegen $a\in X$ konvergiert. 
+  Für jedes $\delta>0$ liegen dann ab einem bestimmten Index $N$ 
+  alle Folgenglieder in $U_\delta( a )$, und daraus folgt -- da $f$ die 
+  $\eps\delta$-Eigenschaft besitzt -- $f(x_n) \in U_\eps\big( f(a) \big)$. Das 
+  aber bedeutet $\lim f(x_n) = f(a)$.
+
+  Sei $f$ nun umgekehrt folgenstetig in $a\in X$. 
+  Angenommen, $f$ besäße nicht die 
+  $\eps\delta$-Eigenschaft. Dann gäbe es ein $\eps>0$, sodass für alle 
+  $n\in \NN$ gilt:
+  \[
+  f\big( U_{1/n}(a) \big)\not\subset U_\eps \big( f(a) \big).
+  \]  
+  Das heißt, es gibt zu jedem $n\in \NN$ mindestens ein "`Ausnahmeelement"'
+  $x_n\in U_{1/n}$ mit $f(x_n)\not\in U_\eps \big( f(a) \big)$. 
+  Die Folge $(x_n)\subset X$ konvergiert dann gegen $a$, 
+  die Folge $f(x_n)\subset Y$ der Funktionswerte aber nicht gegen $f(a)$,
+  im Widerspruch zur Voraussetzung.
+  \AntEnd   
+\end{antwort}
+
+%% Question 32
+\begin{frage}
+  \label{03_zuss}
+  \index{Stetigkeit!zusammengesetzter Funktionen}
+  Was bedeutet die Aussage "`Die Zusammensetzung stetiger Funktionen 
+  ist stetig"'?
+\end{frage}
+
+\begin{antwort}
+  Seien $f \fd X\to Y$ und $g\fd D \to Z$ zwei stetige Abbildungen mit 
+  $f(X)\subset D$. Die Aussage bedeutet, dass unter diesen Voraussetzungen 
+  auch die zusammengesetzte Abbildung $g\circ f \fd X \to Z$ stetig ist.
+
+  Das sieht man {\zB} mithilfe des Folgenkriteriums. 
+  \AntEnd
+\end{antwort}
+
+%% Question 33
+\begin{frage}\label{03_perm}\index{Stetigkeit!Permanenzeigenschaften}
+  Ist $(X,d_X)$ ein metrischer Raum und sind 
+  $f,g\fd X\to \RR$ im Punkt $a\in X$ 
+  stetige Funktionen. Warum gelten die \bold{Permanenzeigenschaften} 
+  \begin{itemize}[2mm]
+  \item[\desc{a}] $f\pm g$ ist stetig in $a$,\\[-3.5mm]   
+  \item[\desc{b}] $fg$ ist stetig in $a$, \\[-3.5mm]
+  \item[\desc{c}] $f/g$ ist stetig in $a$, 
+    falls $g(a)\not =0$ ist?
+  \end{itemize}
+\end{frage}
+
+\begin{antwort}
+  Unter Zuhilfenahme des Folgenkriteriums ergeben sich die Aussagen als 
+  direkte Konsequenzen der Permanenzeigenschaften für reelle Zahlenfolgen 
+  (vgl. Frage \ref{02_freg}). 
+  Sei $(x_n)$ eine gegen $a$ konvergente Folge aus $X$. 
+  Aufgrund der Stetigkeit von $f$ und $g$ folgt
+  $\lim f(x_n)=f(a)$ und $\lim g(x_n)=g(a)$, und mit den    
+  Permanenzeigenschaften für reelle Zahlenfolgen folgert man daraus 
+  \[
+  \begin{array}{llp{3mm}ll}
+    \text{\desc{a}} & \dis\lim\limits_{n\to\infty}\big( f(x_n)+g(x_n) \big)=
+    f(a)+g(a), & &
+    \text{\desc{b}} & \dis\lim\limits_{n\to\infty}\big( f(x_n)g(x_n) \big)=
+    f(a)g(a) \\[2mm]
+    \text{\desc{c}} & \dis\lim\limits_{n\to\infty}
+    \frac{f(x_n)}{g(x_n)} = \frac{f(a)}{g(a)}, 
+    \quad\text{falls $g(a)\not=0$.} & & & 
+  \end{array}
+  \]
+  Gemäß dem Folgenkriterium ergibt sich daraus 
+  die Stetigkeit der Funktionen $f\pm g$ und $fg$ im Punkt $a$
+  sowie die Stetigkeit von 
+  $f/g$ in $a$, falls $g(a)\not=0$ ist.
+  \AntEnd
+\end{antwort}
+
+%% Question 34
+\begin{frage}\label{03_pols}\index{Stetigkeit!von Polynomen}
+  Warum ist jedes reelle oder komplexe Polynom in ganz $\RR$ bzw. 
+  ganz $\CC$ stetig? 
+  Warum ist jede \bold{rationale Funktion} $P/Q$ ($P,Q$ Polynome, 
+  $Q$ nicht das Nullpolynom) in ihrem jeweiligen Definitionsbereich stetig?
+\end{frage}
+
+\begin{antwort}
+  Es genügt zu bemerken, dass die identische Abbildung 
+  $\KK \to \KK, \; z\mapsto z$ mit $\KK=\RR$ oder $\KK=\CC$ und die 
+  konstanten Abbildungen $\KK\to \KK,\; z\mapsto a$ 
+  mit $a\in \KK$ offensichtlich stetig (die erste mit jedem $\delta$, die 
+  zweite mit $\delta=\eps$) sind. 
+  Die Stetigkeit der Polynome und rationalen Funktionen 
+  ergibt sich hieraus durch wiederholte Anwendungen 
+  der Permanenzeigenschaften stetiger Funktionen aus Frage \ref{03_perm}.  
+  \AntEnd
+\end{antwort} 
+
+%% Question 35
+\begin{frage}
+  \label{03_bolz}
+  \index{Nullstellensatz von Bolzano}
+  Was besagt der \bold{Nullstellensatz von Bolzano} für eine stetige 
+  reellwertige Funktion $f$ auf einem echten Intervall $I\subset \RR$?
+\end{frage}
+
+\begin{antwort}
+  Der Nullstellensatz von Bolzano lautet:
+
+  \medskip\noindent 
+  \slanted{Ist die Funktion $f\fd X\to \RR$ mit $X\subset \RR$ 
+    auf dem Intervall $[a,b]\subset X$ 
+    stetig und haben $f(a)$ und $f(b)$ unterschiedliche Vorzeichen 
+    ($f(a)<0$ und $f(b)>0$ oder $f(a)>0$ und $f(b)<0$), so besitzt die Funktion
+    mindestens eine Nullstelle in $(a,b)$.} 
+
+  \medskip\noindent
+  Der Satz beschreibt die anschauliche Tatsache, dass 
+  ein zusammenhängender Funktionsgraph, der Punkte über- und unterhalb der 
+  $x$-Achse durchläuft, diese in mindestens einem Punkt schneiden muss, \sieheAbbildung\ref{fig:03_bolzano} 
+
+  \begin{center}
+    \includegraphics{mp/03_bolzano}
+    \captionof{figure}{Zum Nullstellensatz von Bolzano.}
+    \label{fig:03_bolzano}
+  \end{center}
+  Wie immer bei solchen Aussagen, die derart eng mit unserem intuitiven 
+  Verständnis von "`Kontinuität"' zusammenhängen, muss man zum 
+  Beweis auf die axiomatische Beschreibung 
+  (in diesem Fall die Supremumseigenschaft)
+  der reellen Zahlen zurückgreifen. 
+  Dazu nehme man {\oBdA} 
+  $f(a)<0$ und $f(b)>0$ an und betrachte die Menge 
+  \[
+  A:=\big\{ x\in[a,b]\sets \quad f(x) \le 0 \big\}.
+  \]
+  Diese ist nicht leer und nach oben beschränkt, 
+  besitzt somit ein Supremum $\xi$. 
+  Wir wollen zeigen, dass $\xi$ eine Nullstelle von $f$ ist. 
+  Dazu wähle man eine Folge $(x_n)\subset A$, 
+  die gegen $\xi$ konvergiert. Wegen der Stetigkeit von $f$ folgt 
+  $\lim f(x_n)=f(\xi)$. 
+  Für alle $n\in\NN$ ist $f(x_n)\le 0$, und daher ist auch $f(\xi)\le 0$ 
+  (vgl. Frage \ref{02_gmon}). 
+  Es bleibt also nur noch zu zeigen, dass $f(\xi)$ nicht $<0$ sein kann. 
+
+  Wäre $f(\xi)<0$, etwa $f(\xi)=-\eps$ mit $\eps>0$, dann gäbe es wegen 
+  der Stetigkeit von $f$ in $\xi$ ein $\delta>0$, sodass 
+  $|f(\xi+\delta)-f(\xi)|<\eps/2$ ist. $f(\xi+\delta)$ wäre dann 
+  ebenfalls negativ, woraus $(\xi+\delta) \in A$ folgen würde, 
+  im Widerspruch zu $\xi=\sup A$.
+  \AntEnd
+\end{antwort}
+
+%% Question 36
+\begin{frage}\label{03_zwi}\index{Zwischenwertsatz}
+  Was besagt der \bold{Zwischenwertsatz} für stetige Funktionen? 
+  Welcher Zusammenhang besteht mit dem Nullstellensatz?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet: 
+
+  \medskip\noindent
+  \slanted{Ist die Funktion $f\fd X \to \RR$ mit $X\subset \RR$ 
+    stetig auf dem Intervall $[a,b]\subset X$, so nimmt $f$ 
+    jeden Wert zwischen $f(a)$ und $f(b)$ an.} 
+
+  \begin{center}
+    \includegraphics{mp/03_zwi}
+    \captionof{figure}{Eine stetige reellwertige Funktion auf dem 
+      Intervall $[a,b]$ nimmt jeden Wert $\eta$ zwischen $f(a)$ und $f(b)$ an.}
+    \label{fig:03_zwi}
+  \end{center}
+  Im Fall $f(a)=f(b)$ ist nichts zu beweisen. Sei daher $f(a)<f(b)$ und  
+  $\eta$ ein beliebiger Punkt aus $\open{ f(a), f(b) }$ (\sieheAbbildung\ref{fig:03_zwi}). Dann ist $f(a)-\eta < 0$ und 
+  $f(b)-\eta > 0$. Nach dem Nullstellensatz hat die Funktion $f(x)-\eta$ eine 
+  Nullstelle $\xi$ in $[a,b]$. Für diese gilt $f(\xi)=\eta$, der Wert $\eta$ 
+  wird also tatsächlich mindestens einmal angenommen.
+  \AntEnd
+\end{antwort}
+
+%% Question 37
+\begin{frage}\label{03_zwia}
+  Warum ist der Zwischenwertsatz äquivalent zur Aussage: "`Das Bild eines 
+  Intervalls unter einer stetigen reellwertigen Funktion ist wieder ein 
+  Intervall?"'
+\end{frage}
+
+\begin{antwort}
+  In den Fällen, in denen der Bild- bzw. Definitionsbereich aus nur einem 
+  einzigen Punkt besteht, ist nichts zu zeigen. Im Folgenden sei daher stets 
+  von \slanted{echten} Intervallen die Rede.   
+
+  Sei $f\fd X\to \RR$ mit $X\subset \RR$ eine stetige Funktion und 
+  $[a,b]\subset X$ ein beliebiges kompaktes Intervall. Ist dann 
+  $M:=f([a,b])$ ebenfalls ein Intervall, so enthält $M$ 
+  mit $f(a)$ und $f(b)$ auch jeden Punkt dazwischen. Da dies für alle 
+  Punkte $a,b\in X$ mit $a<b$ gilt, hat $f$ die Zwischenwerteigenschaft. 
+
+  Die Funktion $f$ besitze nun umgekehrt die Zwischenwerteigenschaft und 
+  $I\subset X$ sei ein Intervall. Angenommen, die Bildmenge $M=f(I)$ ist  
+  kein Intervall, dann gibt es Punkte $x,y\in I$ 
+  mit $f(x)< f(y)$ und ein 
+  $\eta \in\RR$ zwischen $f(x)$ und $f(y)$, das nicht in der 
+  Bildmenge $M$ enthalten ist. 
+  Das steht im Widerspruch zu der Annahme, dass die 
+  Funktion $f$ die Zwischenwerteigenschaft besitzt.
+  \AntEnd  
+\end{antwort} 
+
+%% Question 38
+\begin{frage}\label{03_fix}\index{Fixpunktsatz}
+  Warum hat jede stetige Abbildung $f\fd [a,b]\to \RR$ mit 
+  $f([a,b])\subset [a,b]$ min\-des\-tens einen 
+  Fixpunkt ({\dasheisst} einen 
+  Punkt $\xi \in [a,b]$ mit $f(\xi)=\xi$)? 
+\end{frage}
+
+\begin{antwort}
+  Diesen einfachen Fixpunktsatz erhält man, wenn man 
+  den Nullstellensatz auf die Funktion 
+  $\varphi(x):=f(x)-x$ anwendet.
+  Es ist $\varphi(b)\le 0$ und $\varphi(a)\ge 0$, und damit gibt es laut 
+  Nullstellensatz ein $\xi$ aus $[a,b]$ mit $\varphi(\xi)=0$. Daraus folgt 
+  $f(\xi)=\xi$, und die Zahl $\xi$ 
+  ist dann bereits der gesuchte Fixpunkt von $f$. 
+  \AntEnd  
+\end{antwort}
+
+
+%% Question 39
+\begin{frage}\index{folgenkompakt}
+  Wann heißt ein metrischer Raum \bold{folgenkompakt}?
+\end{frage}
+
+\begin{antwort}
+  Ein metrischer Raum $(X,d)$ heißt \slanted{folgenkompakt}, wenn jede 
+  in $X$ verlaufende Folge $(x_n)$ eine Teilfolge besitzt, die gegen ein 
+  Element $x\in X$ konvergiert.
+  \AntEnd
+\end{antwort}
+
+%% Question 40
+\begin{frage}\label{03_komp}
+  Ist $(X,d_X)$ ein folgenkompakter metrischer Raum 
+  und ist $f\fd X\to Y$ eine surjektive stetige Abbildung, 
+  dann ist auch $Y$ folgenkompakt. Können Sie diese Aussage begründen?
+\end{frage}
+
+\begin{antwort}
+  Sei $(y_n) \subset Y$ eine beliebige Folge aus $Y$. Es muss gezeigt werden, 
+  dass es unter den gegebenen Voraussetzungen eine Teilfolge von $(y_n)$ gibt, 
+  die gegen einen Grenzwert aus $Y$ konvergiert.
+  
+  Da die Abbildung $f\fd X\to Y$ surjektiv ist, 
+  existiert zu jedem Glied $y_n \in Y$ ein Urbild $x_n\in X$ (im Allgemeinen  
+  existieren mehrere, in welchem Fall man ein bestimmtes auswählen kann). 
+  Wegen der Folgenkompaktheit von $X$ gibt es eine Teilfolge 
+  $(x_{n_k})$ von $(x_n)$, die gegen ein $x\in X$ konvergiert. 
+  Die Folge $\big(f(x_{n_k})\big)$ ist dann nach Konstruktion eine Teilfolge von 
+  $(y_n)$, die aufgrund der Stetigkeit von $f$ gegen den Wert $f(x)\in Y$ 
+  konvergiert. Damit ist die Behauptung bewiesen. \AntEnd
+\end{antwort}
+
+%% Question 41
+\begin{frage}\label{mima}\index{Satz!vom Maximum und Minimum}
+  (\bold{Existenz von Minimum und Maximum})
+  Ist $X$ ein folgenkompakter metrischer Raum und $f\fd X\to\RR$ stetig. 
+  Warum gibt es dann Punkte $x_{\ast}\in X$ und $x^{\ast} \in X$ mit 
+  $f(x_{\ast}) \le f(x) \le f(x^{\ast})$ für alle $x\in X$?
+\end{frage}
+
+\begin{antwort}
+  Aus der Antwort zu Frage~\ref{03_komp} folgt, dass das Bild 
+  $f(X) \subset \RR$ folgenkompakt ist. 
+  Eine folgenkompakte Teilmenge von $\RR$ muss aber 
+  beschränkt sein (denn andernfalls ließe sich leicht eine Folge bestimmen, 
+  die keine konvergente Teilfolge besitzt). 
+  $f(X)$ besitzt somit ein Supremum $s$ und ein Infimum $t$. Wiederum aufgrund 
+  der Folgenkompaktheit von $f(X)$ muss $s\in f(X)$ und $t\in f(X)$ gelten, da 
+  sonst die Folgen $\left(s-\frac1n\right)$ bzw. $\left(t+\frac1n\right)$ keine gegen ein Element aus $f(X)$ 
+  konvergente Teilfolge besitzen würden.
+
+  Das Bild von $X$ unter $f$ besitzt somit ein Maximum 
+  $s$ und ein Minimum $t$. Die Urbilder $x^{\ast}\in X$ von $s$ und 
+  $x_{\ast}\in X$ von $t$ besitzen dann die gesuchte Eigenschaft.
+  \AntEnd
+\end{antwort}
+
+%% Question 42
+\begin{frage}\label{03_umke}\index{Umkehrfunktion}
+  Ist $D\subset \RR$ ein \bold{echtes Intervall} und $f\fd D\to\RR$ 
+  streng monoton wachsend. Warum existiert dann die Umkehrfunktion 
+  $g\fd f(D) \to D\subset \RR$ und warum ist diese streng monoton 
+  wachsend und automatisch stetig?
+  (Beachten Sie, dass nicht vorausgesetzt wurde, dass $f$ selbst stetig ist.)
+\end{frage}
+
+\begin{antwort}
+  Wegen der strengen Monotonie der Funktion $f$ ist diese injektiv und 
+  bildet $D$ somit bijektiv auf $f(D)$ ab. 
+  Daraus folgt mit Frage \ref{03_umk} die Existenz 
+  der Umkehrabbildung $g\fd f(D) \to D$. 
+  Aus dem streng monotonen Wachstum von $f$ 
+  ($a<b \Ra f(a) <f(b)$) und $g\cdot f=\mathrm{id}$ folgt zusammen     
+  \[
+  f(a) < f(b) \Ra  g\big(f(a)\big) < g\big(f(b)\big).
+  \]
+  Also ist $g$ streng monoton wachsend.
+
+  Schließlich muss noch die Stetigkeit von $g$ gezeigt werden. 
+  Sei dazu $\xi$ zunächst ein innerer Punkt aus $D$ und sei $\eta:=f(\xi)$. 
+  Für alle hinreichend kleinen $\eps >0$ liegen 
+  dann die Punkte $\xi-\eps$ und $\xi+\eps$ auch noch in $D$, 
+  und wegen des streng 
+  monotonen Wachstums von $f$ gilt $f(\xi-\eps)<\eta<f(\xi+\eps)$. 
+  Also gibt es ein $\delta>0$ mit 
+  \[
+  f(\xi-\eps) < \eta -\delta < \eta +\delta < f(\xi+\eps).
+  \]
+  Für alle $y\in \open{ \eta-\delta, \eta+\delta }$ liegt dann wegen 
+  des streng monotonen Wachstums von $g$ der Wert $g(y)$ innerhalb des 
+  Intervalls $\open{\xi-\eps, \xi+\eps}$. Das heißt, 
+  die Funktion $g$ ist stetig an der Stelle $\eta=f(\xi)$.
+
+  Ist $\xi$ ein linker Randpunkt von $D$, dann betrachte man 
+  zu hinreichend kleinem $\eps>0$ das in $D$ liegende Intervall 
+  $\ropen{\xi, \xi+\eps}$. Wie oben folgt daraus die Existenz 
+  eines $\delta>0$ mit 
+  \[
+  f(\xi)=\eta < \eta +\delta \le f(\xi+\eps).
+  \]
+  An dieser Stelle ist jetzt nur noch zu bemerken, dass wegen des streng 
+  monotonen Wachstums von $f$ der Punkt $\eta=f(\xi)$ gleich dem Minimum 
+  von $f(D)$ ist. Aus $y\in f(D)$ und $|y-\eta|<\delta$ 
+  folgt also bereits $y\in \ropen{\eta,\eta+\delta}$, und somit
+  gilt $g(y) \in \ropen{\xi,\xi+\eps}$, also 
+  $|g(y)-g(\eta)|\le \eps$. Das entspricht der 
+  $\eps\delta$-Definition der Stetigkeit von $g$ im Punkt $\eta$. 
+  Für einen rechten Randpunkt $\xi$ von $D$ ist der Nachweis der Stetigkeit 
+  von $g$ im Punkt $f(\xi)$ nach genau demselben Muster zu führen.
+  \AntEnd
+\end{antwort}
+
+%% Question 43
+\begin{frage}\label{03_unsb}
+  Kennen Sie ein einfaches Beispiel einer Funktion $f\fd [0,1]\to \RR$, 
+  die jeden Wert zwischen $f(0)$ und $f(1)$ annimmt, die aber nur an einer  
+  Stelle $a\in [0,1]$ stetig ist?
+\end{frage}
+
+\begin{antwort}
+  Ein Beispiel wäre die Funktion $f\fd [0,1] \to \RR$ mit
+  \[
+  f \mapsto \left\{ 
+    \begin{array}{ll}
+      x   & \text{für $x\in [0,1] \cap \QQ$},\\
+      1-x & \text{für $x\in [0,1] \cap\RR \mengeminus \QQ$.}
+    \end{array}
+  \right.
+  \]
+  Die Funktion nimmt jeden Wert zwischen $f(0)=0$ und $f(1)=1$ an, 
+  \sieheAbbildung\ref{fig:03_unstetig}. 
+  Da $\RR$ dicht in $\QQ$ und $\QQ$ dicht in $\RR$ ist, 
+  gibt es zu jeder $\delta$-Umgebung eines Punktes $x\in [0,1]$ 
+  einen Punkt $y$ mit $|f(x)-f(y)| \ge | x-(1-x) | = |2x-1|$. 
+  Für $x\in [0,1]$ und $x\not=\frac{1}{2}$ ist dieser Wert größer 
+  als ein positives $\eps$. Die Funktion kann also nicht stetig sein.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/03_unstetig}
+    \captionof{figure}{Die Funktion $f$ nimmt jeden Wert in $[0,1]$, 
+      ist aber nur in einem Punkt stetig.}
+    \label{fig:03_unstetig}
+  \end{center}
+
+\end{antwort}
+
+%% Question 44
+\begin{frage}\label{03_injm}
+  Warum ist eine injektive stetige Funktion auf einem echten Intervall 
+  stets streng monoton? 
+  Warum wird die Aussage falsch, wenn $f$ nicht stetig oder der 
+  Definitionsbereich von $f$ kein Intervall ist?
+\end{frage}
+
+\begin{antwort}
+  Seien $a,b$ mit $b>a$ zwei beliebige Punkte des Definitionsintervalls. 
+  Wegen der Injektivität von $f$ ist $f(a)\not=f(b)$, 
+  etwa $f(a)<f(b)$. Für einen weiteren Punkt $c\in D(f)$ mit $a<c<b$ 
+  folgt dann $f(a)<f(c)<f(b)$, denn aus $f(c)<f(a)$ würde mit dem 
+  Zwischenwertsatz folgen, 
+  dass der Wert $f(a)$ an einer Stelle $\xi\in \open{c,b}$ nochmals 
+  angenommen werden würde, sodass also 
+  $f(a)=f(\xi)$ und $a\not=\xi$ gelten würde, im 
+  Widerspruch zur Injektivität der Funktion. Ebenso würde aus der Annahme 
+  $f(c)>f(b)$ folgen, dass der Wert $f(b)$ schon im Intervall $\open{a,c}$ 
+  einmal angenommen wird, ebenfalls im Widerspruch zur Injektivität. 
+  Hieraus folgt das streng monotone Wachstum von $f$. 
+
+  Dass derselbe Zusammenhang für eine nichtstetige Funktion nicht 
+  zu gelten braucht, zeigt das Beispiel der Funktion 
+  \[
+  f\fd [0,1] \to [0,1], \qquad
+  f\mapsto \left\{ \begin{array}{ll}
+      x & \text{für $x < \frac{1}{2}$}\\
+      -x+1 &\text{für $x \ge \frac{1}{2}$.}
+    \end{array}\right.
+  \] 
+  Diese im Punkt $\frac{1}{2}$ unstetige Funktion ist injektiv auf $[0,1]$, 
+  aber nicht streng monoton. 
+
+
+  Um die Notwendigkeit der Voraussetzung, dass $D$ ein echtes 
+  Intervall ist, einzusehen, mache man sich klar, dass eine 
+  Funktion von der Art, 
+  deren Graph in \Abb\ref{fig:03_stetig_int} gezeigt wird, die 
+  Definition der Stetigkeit erfüllt.  
+
+  \begin{center}
+    \includegraphics{mp/03_stetig_int}
+    \captionof{figure}{Die Funktion $f$ ist stetig!}
+    \label{fig:03_stetig_int}
+  \end{center}
+
+  Mit diesem Bild vor Augen lässt sich leicht eine stetige injektive Funktion 
+  angeben, die nicht streng monoton ist, etwa
+  \[
+  f\fd [0,1]\cup[2,3] \to \RR, \qquad
+  f\mapsto \left\{ \begin{array}{ll}
+      x  & \text{für $x\in[0,1]$},\\
+      -x+5 & \text{für $x\in[2,3]$.}
+    \end{array}\right.
+  \EndTag
+  \] 
+\end{antwort}
+
+%% Question 45
+\begin{frage}\label{03_stum}\index{Stetigkeit!der Umkehrfunktion}
+  Sind $(X,d_X)$ und $(Y,d_Y)$ metrische Räume, $X$ folgenkompakt und 
+  $f\fd X\to Y$ stetig und bijektiv. Warum ist dann die Umkehrabbildung 
+  $g\fd Y\to X$ stetig?
+
+  $X$ und $Y$ sind in diesem Fall also \bold{topologisch äquivalent} 
+  bzw. \bold{homöomorph}.\index{homöomorph}
+\end{frage}
+
+\begin{antwort}
+  Sei $y\in Y$ und $(y_n)\subset Y$ eine gegen $y$ konvergierende Folge. 
+  Es muss gezeigt werden, dass die Folge $(x_n)$ mit $x_n:=g(y_n)$ gegen 
+  $x:=g(y)$ konvergiert. 
+
+  Angenommen, das wäre nicht der Fall. Dann liegen für ein hinreichend 
+  kleines $\eps>0$ unendlich viele Glieder 
+  von $(x_n)$ außerhalb von $U_\eps( x )$, {\dasheisst}, $(x_n)$ besitzt 
+  eine Teilfolge, die außerhalb von $U_\eps(x)$ verläuft. Diese Teilfolge 
+  wiederum besitzt wegen der Folgenkompaktheit von $X$ eine konvergente 
+  Teilfolge $(x_{n_k})$, es gibt also ein Element $\widetilde{x}\in X$ mit
+  \[
+  \lim_{k\to\infty} x_{n_k} = \widetilde{x}.
+  \]
+  Andererseits gilt
+  \[
+  \lim_{k\to\infty} f(x_{n_k}) = \lim_{k\to\infty} y_{n_k} = y = f(x). 
+  \]
+  Wegen $\widetilde{x}\not\in U_\eps(x)$, also 
+  $\widetilde{x}\not=x$ widerspricht das der Stetigkeit von $f$. Es gilt also 
+  \[
+  \lim\limits_{n\to\infty} y_n = y
+  \Ra \lim_{n\to\infty} g(y_n)= g(y).
+  \]
+  Damit ist  gezeigt, dass die Umkehrfunktion $g$ stetig ist.   
+  \AntEnd   
+\end{antwort}
+
+%% Question 46
+\begin{frage}\label{03_kbld}\index{Intervall!kompaktes}
+  Sei $[a,b]\in\RR$ ein kompaktes Intervall und 
+  $f\fd [a,b]\to\RR$ stetig. Warum ist auch das Bild 
+  $f([a,b])$ ein kompaktes Intervall?  
+\end{frage}
+
+\begin{antwort}
+  Sei $(y_n)$ eine Folge in $f([a,b])$. Für den Nachweis 
+  der Kompaktheit von $f([a,b])$ muss gezeigt werden, dass sie eine 
+  Teilfolge besitzt, die gegen einen Wert aus $f([a,b])$ 
+  konvergiert. Dazu wähle man zu jedem $n\in\NN$ 
+  ein $x_n\in [a,b]$ mit $f(x_n)=y_n$. Wegen der Kompaktheit 
+  von $[a,b]$ gibt es eine Teilfolge $(x_{n_k})$ von $(x_n)$, 
+  die gegen ein Element $x \in [a,b]$ konvergiert. 
+  Wegen der Stetigkeit von $f$ folgt daraus 
+  \[
+  \lim_{k\to\infty} f(x_{n_k})= \lim_{k\to\infty} y_{n_k}=f(x) \in f([a,b]).
+  \]
+  Die Folge $(y_{n_k})$ besitzt also einen 
+  Grenzwert in $f([a,b])$, somit ist $f([a,b])$ kompakt. 
+  \AntEnd 
+\end{antwort}
+
+%% Question 47
+\begin{frage} \label{03_ityp}
+  Kann sich bei einer stetigen Abbildung $f\fd M\to\RR$ der Intervalltyp 
+  ändern?
+\end{frage}
+
+\begin{antwort}
+  In der Antwort zur vorigen Frage wurde bereits gezeigt, dass 
+  das Bild kompakter Intervalle unter stetigen Abbildungen immer kompakt 
+  ist. 
+
+  Für offene Mengen $\open{a,b}$ gibt es keinen analogen Zusammenhang. 
+  Diese können auf offene, kompakte oder halboffene Intervalle 
+  abgebildet werden. Den ersten Fall zeigt das Beispiel  
+  der identischen Funktion $\id\fd \open{a,b} \to \RR,\; x\mapsto x$, den 
+  zweiten illustriert zum Beispiel die Sinusfunktion, die das 
+  offene Intervall $\open{-10,10}$ auf das kompakte Intervall $[-1,1]$  
+  und das offene Intervall $\open{0,\frac{3\pi}{4}}$ auf das halboffene 
+  Intervall $\lopen{0,1}$ abbildet.
+
+  Es bleibt noch zu klären, was mit \slanted{halboffenen} Intervallen unter 
+  stetigen Abbildungen passiert. Diese können halboffen oder kompakt sein, 
+  wie die Beispiele $f\fd \lopen{a,b}\to\RR,\; x\mapsto x$ und 
+  $f\fd \ropen{0,\frac{3\pi}{4} } \to\RR, \; x\mapsto \sin x $ zeigen. 
+  Die Bilder von halboffenen Intervallen unter stetigen Abbildungen 
+  können allerdings nicht offen sein. 
+  \AntEnd 
+\end{antwort}
+
+%% Question 48
+\begin{frage}\label{03_sqrt}\index{Wurzelfunktion}
+  Können Sie mit einem $\eps\delta$-Beweis nachweisen, dass die 
+  Quadratwurzelfunktion $\sqrt{\;\,} \fd \RR_+ \to \RR, \; 
+  x\mapsto \sqrt{x}$ stetig ist?
+\end{frage}
+
+\begin{antwort}
+  Für $x\in \RR_+$ gilt für beliebiges $a>0$ die Abschätzung
+  \begin{align*}
+    \big| \sqrt{x}-\sqrt{x+a} \big|^2 &= ( \sqrt{x}-\sqrt{x+a} )^2 \\
+    &=x-2\sqrt{(x)(x+a)}+x+a < x-2\sqrt{x^2} + x+ a = a.
+  \end{align*}
+  Hieraus folgt für $x,y \in \RR_+$, $y>x$ und $\eps>0$
+  \[
+  |x-y| \le \eps^2  \Ra
+  | \sqrt{x}-\sqrt{x+\eps^2} | < \eps.
+  \]
+  Da die Rollen von $x$ und $y$ in den Betragsstrichen vertauscht 
+  werden dürfen, gilt dasselbe Ergebnis auch für $y<x$. Mit 
+  $\delta:=\eps^2$ entspricht das der 
+  $\eps\delta$-Charakterisierung der Stetigkeit.
+
+  Die Stetigkeit der Wurzelfunktion lässt sich mit Frage \ref{03_umke}
+  auch zeigen, indem 
+  man sie als Umkehrfunktion von $f\,:\, \RR_+ \to \RR_+, \; 
+  x\mapsto x^2$ betrachtet. Die Funktion $f$ ist stetig, streng monoton 
+  wachsend und auf einem echten Intervall definiert. Nach Frage 236 ist die 
+  Umkehrfunktion ebenfalls stetig.
+  \AntEnd
+\end{antwort}
+
+%% Question 49
+\begin{frage}\label{03_ponu}
+  Warum hat jedes Polynom ungeraden Grades 
+  \[
+  p\fd \RR \to \RR,\qquad x\mapsto a_0+a_1x+\cdots + a_{2n+1} x^{2n+1}
+  \]
+  mindestens eine reelle Nullstelle?
+\end{frage}
+
+\begin{antwort}
+  Wir wissen bereits aus Frage \ref{03_pols}, dass jedes reelle 
+  Polynom auf ganz $\RR$ stetig ist. Die Frage kann damit durch eine 
+  Anwendung des Zwischenwertsatzes beantwortet werden, wenn man zeigen 
+  kann, dass ein ungerades Polynom auf $\RR$ mindestens je einen negativen 
+  und einen positiven Wert annimmt. Das erkennt man, wenn man $p$ in der 
+  Form 
+  \[ p(x)=x^{2n+1} \left( a_{2n+1}+
+    \frac{a_{2n}}{x}+\cdots+\frac{a_1}{x^{2n}} + \frac{a_0}{x^{2n+1}} 
+  \right)
+  \]
+  schreibt. Der rechte Faktor konvergiert für $x \to \pm \infty $ gegen 
+  $a_{2n+1}$. Es gibt also eine Schranke $C$, sodass der rechte 
+  Faktor für $x>C$ oder $x<-C$ insgesamt dasselbe Vorzeichen wie $a_{2n+1}$ 
+  besitzt. Ferner ist $x^{2n+1}=x\cdot (x^n)^2$ eine ungerade Funktion. 
+  Zusammen folgt, dass der Wert von $p$ an der Stelle $x$ 
+  dasselbe Vorzeichen hat wie $a_{2n+1}$, falls $x>C$ ist, 
+  und verschiedenes Vorzeichen, falls $x<-C$ ist. Das Polynom wechselt 
+  also in seinem Definitionsbereich mindestens einmal das Vorzeichen, was 
+  zu zeigen war. 
+  \AntEnd
+\end{antwort}
+
+
+%% Question 50
+\begin{frage}\label{03_anw}
+  Sei $K$ eine (folgen-)kompakte Teilmenge von $\KK$ ($\KK=\RR$ oder 
+  $\KK=\CC$). Warum gibt es dann zu jedem Punkt $p\not\in K$ einen Punkt 
+  $k\in K$, sodass für \bold{jeden} Punkt $z\in K$ gilt 
+  \[ |k-p| \le |z-p|. \]
+\end{frage}
+
+\begin{antwort}
+  Die Funktion 
+  $f\fd K \to \RR, \; z \mapsto |z-p|$ 
+  ist eine stetige Funktion auf einer kompakten Menge und besitzt somit 
+  ein Minimum $k\in K$. Dieses Minimum ist das
+  Element mit den gesuchten Eigenschaften (\sieheAbbildung\ref{fig:03_mind}).
+
+  \begin{center}
+    \includegraphics{mp/03_mind}
+    \captionof{figure}{Der Punkt $k$ liegt von allen Punkten aus $K$ am nächsten 
+      bei $p$.}
+    \label{fig:03_mind}
+  \end{center}
+\end{antwort}
+
+%% Question 51
+\begin{frage}\label{03_stbj}
+  Jedes kompakte (echte) Intervall $K\subset \RR$ lässt sich 
+  \bold{bijektiv} auf jedes offene (echte) Intervall von $\RR$ abbilden. 
+  Gibt es auch eine bijektive Abbildung, die zusätzlich stetig ist?
+\end{frage}
+
+\begin{antwort}
+  Es kann keine stetige bijektive Abbildung 
+  zwischen einem kompakten und einem offenen Intervall 
+  geben, da nach Frage \ref{03_kbld} 
+  stetige Abbildungen kompakte Mengen stets auf 
+  kompakte Mengen abbilden.  \AntEnd
+\end{antwort} 
+
+\section{Grenzwerte bei Funktionen}
+
+Wir legen auch hier zunächst die allgemeine Situation zugrunde, dass 
+$(X,d_X)$ und $(Y,d_Y)$ metrische Räume sind, $D\subset X$ eine nichtleere 
+Teilmenge und $f\fd D\to Y$ eine Abbildung. 
+Ferner sei $a\in X$ ein Punkt, der zu $M$ gehören kann, aber nicht gehören 
+muss, der aber ein \slanted{Häufungspunkt} von $M$ sein soll, {\dasheisst},   
+für \slanted{jede} punktierte $\eps$-Umgebung 
+$\dot{U}_\eps (a) := U_\eps\mengeminus\{a\}$ gilt 
+$\dot{U}_\eps(a) \cap M \not= \emptyset$. 
+Wichtige Spezialfälle erhält man mit $X=\RR$ und $Y=\RR$ oder $Y=\CC$ 
+(jeweils mit der natürlichen Metrik)
+
+%% Question 52
+\begin{frage}\label{03_fkon}\index{stetige Fortsetzung}
+  \index{Grenzwert!für Funktionen}
+  Was besagt in der vorausgesetzten Ausgangssituation 
+  die Ausdrucksweise: "`$f$ hat bei Annäherung an 
+  $a$ den Grenzwert $l$"' (oder: "`$f$ konvergiert bei 
+  Annäherung an $a$ gegen $l$"')? 
+\end{frage}
+
+\begin{antwort}
+  Die Formulierung bedeutet, dass die Funktion 
+  $F \fd D \cup \{ a \} \to Y$, die definiert ist durch 
+  \begin{equation}
+    F \fd 
+    x \mapsto \left\{ \begin{array}{ll} 
+        f(x) & \text{für $x\in D$, $x\not=a$} \\
+        l  & \text{für $x=a$}
+        j\end{array}\right.
+    \tag{$\ast$}
+  \end{equation}
+  die Eigenschaft besitzt, im Punkt $a$ stetig zu sein (\sieheAbbildung\ref{fig:03_fortsetzung}). 
+  Die Funktion $F$ nennt man dann eine \slanted{stetige Fortsetzung von $F$}.
+
+  Um auszudrücken, dass $f$ bei Annäherung an $a$ gegen 
+  $l$ konvergiert, schreibt man
+  \begin{equation}
+    \lim_{x\to a} f(x) = l,\qquad\text{oder auch}\qquad 
+    f(x) \to l\quad\text{für}\quad x\to a. \EndTag
+  \end{equation}
+
+  \begin{center}
+    \includegraphics{mp/03_fortsetzung}
+    \captionof{figure}{Die Funktion $f$ konvergiert bei 
+      Annäherung an $a$ gegen $l$.}
+    \label{fig:03_fortsetzung}
+  \end{center}
+\end{antwort} 
+
+%% Question 53
+\begin{frage}
+  Warum ist der Grenzwert $l$ im Fall der Existenz eindeutig bestimmt?
+\end{frage}
+
+\begin{antwort}
+  Ist $F^*$ eine weitere 
+  stetige Fortsetzung von $f$ in $a$, dann stimmen $F^*$ und $F$ auf 
+  $D$ überein. Für jede in $D$ verlaufende Folge $(x_n)$ mit 
+  $x_n\to a$ gilt dann $F^*(x_n)=F(x_n)$ und wegen der 
+  Stetigkeit von $F^*$ somit 
+  \[
+  F^*(a)=\lim_{n\to\infty} F^*(x_n)=F(x_n)=l
+  . \EndTag\] 
+\end{antwort}
+
+%% Question 54
+\begin{frage}\label{03_epsd}\index{eps@$\eps\delta$-Charakterisierung des Grenzwerts}
+  Wie lautet die $\eps\delta$-Charakterisierung des Grenzwerts?
+\end{frage}
+
+\begin{antwort}
+  Die Charakterisierung lautet genauso wie bei der Stetigkeit: 
+
+  \medskip\noindent%
+  \slanted{Für eine Funktion $f\fd D\to Y$ gilt 
+    $f(x)\to l$ für $x\to a$ genau dann, wenn zu jedem $\eps>0$ 
+    ein $\delta>0$ existiert, sodass 
+    \[
+    f(x)\in U_\eps(l) \quad\text{ für alle $x\in U_\delta(a)\mengeminus\{a\}\cap D$} 
+    \]
+    gilt.}
+
+  \medskip\noindent%
+  Dieses Kriterium folgt unmittelbar, wenn man die Stetigkeit 
+  der fortgesetzten Funktion $F$ mit $F(a)=l$ im Punkt $a$ mithilfe 
+  der $\eps\delta$-Definition beschreibt. Andersherum erhält man 
+  aus dem Kriterium auch die Stetigkeit der in den 
+  Punkt $a$ hinein fortgesetzten Funktion $F$ mit $F(a)=l$. 
+  Die $\eps\delta$-Charakterisierung ist also äquivalent zu der in Frage 
+  \ref{03_fkon} gegebenen Definition.
+  \AntEnd
+\end{antwort}
+
+
+%% Question 55
+\begin{frage}\label{03_aind}
+  Was bedeutet im Fall $a\in D$ die Aussage 
+  $\lim\limits_{x\to a} f(x) = f(a)$?
+\end{frage}
+
+\begin{antwort}
+  Für $a\in D$ ist die Aussage gleichbedeutend mit der Stetigkeit 
+  von $f$ in $a$. Die "`fortgesetzte"' Funktion 
+  $F$ der Definition ($\ast$) aus der vorigen Frage ist unter dieser 
+  Voraussetzung nämlich identisch mit 
+  der Ausgangsfunktion $f$.    
+  \AntEnd
+\end{antwort}
+
+%% Question 56
+\begin{frage}\label{03_perf}
+  Welche \bold{Permanenzeigenschaften} des Grenzwertbegriffs 
+  kennen Sie im Fall $Y=\RR$ oder $Y=\CC$?
+\end{frage}
+
+\begin{antwort}
+  Gelten für zwei Funktionen $f\fd D\to Y$ und $g\fd D\to Y$ 
+  in einem Häufungspunkt $a$ von $D$ die Beziehungen 
+  $\lim\limits_{x\to a} f(x)= l$ und 
+  $\lim\limits_{x\to a} g(x)=s$ mit $l,s\in Y$, so gilt auch
+  \[
+  \lim_{x\to a} f(x)+g(x)=l+s, \qquad 
+  \lim_{x\to a} f(x)g(x)=l\cdot s \qquad 
+  \lim_{x\to a}\frac{ f(x) }{ g(x)}=\frac{l}{s},\quad\text{für $s\not=0$}.
+  \]   
+  Diese Permanenzeigenschaften sind eine unmittelbare Folge derjenigen 
+  für stetige Funktionen (s. Frage \ref{03_perm}). Sind nämlich $F$ 
+  und $G$ die stetigen Fortsetzungen von $f$ und $g$ im Punkt $a$, so folgt 
+  hieraus, dass $F+G$, $F\cdot G$ und $F/G$ ebenfalls stetig in $a$ sind. 
+  Die Werte dieser Funktionen in $a$ sind aber gerade $s+t$ bzw. $s\cdot t$ 
+  bzw. $s/t$.
+  \AntEnd 
+\end{antwort}
+
+
+%% Question 57
+\begin{frage}\label{03_flgk}\index{Folgenkriterium}
+  Wie lautet das \bold{Folgenkriterium} für die Existenz des Grenzwerts?
+\end{frage}
+
+\begin{antwort}
+  Das Folgenkriterium besagt: 
+
+  \medskip
+  \noindent\satz{Für eine Funktion $f\fd D\to Y$ 
+    und einen Häufungswert $a$ von $D$ existiert der Grenzwert 
+    $\lim\limits_{x\to a} f(x)$ genau dann, wenn 
+    für jede Folge $(x_n)\subset D \mengeminus \{ a \}$ mit 
+    $\lim\limits_{n\to\infty} x_n = a$ die Folge $f(x_n)$ in $Y$ konvergiert.}  
+
+  \medskip\noindent
+  Ist die Funktion $F$ die stetige Fortsetzung 
+  von $f$ in den Punkt $a$, so folgt der Zusammenhang sofort aus  
+  \[
+  \text{
+    Folgenkriterium $\LLa$ 
+    $F$ stetig in $a$ 
+    $\LLa$
+    $\lim_{x\to a} f(x)$ existiert.} \EndTag
+  \]
+\end{antwort}
+
+%% Question 58
+\begin{frage}
+  Wie folgt im Fall der Existenz 
+  die Eindeutigkeit des Grenzwerts aus dem Folgenkriterium?
+\end{frage}
+
+\begin{antwort}
+  Seien $(a_n)$ und $(b_n)$ Folgen 
+  in $D\mengeminus\{ a\}$ mit $\lim a_n = \lim b_n$. Angenommen, es gilt 
+  $\lim f(a_n) \not= \lim f(b_n)$, dann konvergiert
+  die nach dem "`Reißverschlussprinzip"' 
+  gebildete Folge $a_0,b_0,a_1,b_1,\ldots$ aus $D\mengeminus\{ a \}$ ebenfalls 
+  gegen $a$, die Folge der Funktionswerte 
+  ist aber wegen $\lim f(a_n) \not= \lim f(b_n)$ divergent. Die Funktion 
+  $f$ erfüllt in diesem Fall also im Widerspruch zur Voraussetzung 
+  nicht das Folgenkriterium. Hieraus ergibt sich 
+  -- im Fall der Existenz -- die Eindeutigkeit des Grenzwerts.
+  \AntEnd
+\end{antwort} 
+
+%% Question 59
+\begin{frage}\index{Cauchy-Kriterium!für stetige Fortsetzbarkeit}
+  Wie lautet das Cauchy-Kriterium für die Existenz des Grenzwerts?
+\end{frage}
+
+\begin{antwort}
+  Sei $a$ ein Häufungspunkt des Definitionsbereichs einer Funktion 
+  $f\fd D\to Y$ mit $Y=\CC$ oder $Y=\RR$. 
+  Das Cauchy-Kriterium lautet: 
+
+  \medskip
+  \noindent\satz{Der Grenzwert 
+    $\lim\limits_{x\to a} f(x)$ existiert genau dann, 
+    wenn es zu jedem $\eps>0$ ein 
+    $\delta>0$ gibt, sodass gilt
+    \begin{equation}
+      x,y \in U_\delta (a) \mengeminus\{a\}\cap D \Ra 
+      d_Y ( f(x),f(y) )< \eps. \EndTag
+    \end{equation}}
+\end{antwort}
+
+%% Question 60
+\begin{frage}
+  Warum gilt für $x,a\in\RR$ und $k\in \NN$: $
+  \dis\lim_{x\to a} \frac{x^k-a^k}{x-a} = ka^{k-1}$?
+\end{frage}  
+
+\begin{antwort}
+  Für $x\not=a$ gilt
+  \[
+  \frac{x^k-a^k}{x-a} = x^{k-1}+ax^{k-2} + \ldots + a^{k-2}x+a^{k-1} :=p(x).
+  \]
+  Das Polynom auf der rechten Seite der Gleichung ist eine auf ganz $\RR$ 
+  stetige Funktion, und es gilt $\lim\limits_{x\to a} p(x)=p(a)=ka^{k-1}$.
+  \AntEnd
+\end{antwort}
+
+%% Question 61
+\begin{frage}\index{links-, rechtsseitiger Grenzwert}
+  \index{links-, rechtsseitig stetig}
+  Ist $D \subset \RR$ und $f\fd  D\to \CC$ eine Funktion, wie sind dann in 
+  einem Häufungspunkt $x_0 \in D_- :=  D\cap \open{-\infty, x_0}$ bzw. 
+  $x_0 \in D_+ := D\cap \open{x_0,\infty}$ der 
+  \bold{linksseitige bzw. rechtsseitige Grenzwert} in $x_0$ erklärt?
+\end{frage}
+
+\begin{antwort}
+  Man sagt, die Funktion $f$ habe in $x_0$ den linksseitigen 
+  bzw. rechtsseitigen Grenzwert $l$, wenn die Einschränkung von 
+  $f$ auf $D_-$ bzw. $D_+$ bei Annäherung an $a$ gegen $l$ konvergiert. Man 
+  schreibt in diesem Fall
+  \[
+  l = \lim_{x\uparrow x_0} f(x)  = f(x_0 - )\qquad\text{bzw.}\qquad 
+  l = \lim_{x\downarrow x_0} f(x)  = f(x_0 + ).
+  \] 
+  Gehört $x_0$ zu $D$ und ist $f(x_0-)=f(x_0)$ bzw. 
+  $f(x_0+)=f(x_0)$, so sagt man, $f$ sei in $x_0$ 
+  \slanted{links- bzw. rechtsseitig stetig.}
+  \AntEnd
+\end{antwort}
+
+%% Question 62
+\begin{frage}\index{einseitiger Grenzwert}
+  Warum hat eine beschränkte monotone Funktion $f\fd\open{a,b}\to\RR$ 
+  an jeder Stelle $x_0\in [a,b]$ einseitige Grenzwerte?
+\end{frage}
+
+\begin{antwort}
+  Wir zeigen den Zusammenhang für monoton wachsende Funktionen 
+  (für monoton fallende Funktionen argumentiert man analog).  
+  Wie beinahe immer bei derartigen Fragen, 
+  die auf die spezifischen Kontinuitätseigenschaften 
+  der reellen Zahlen abzielen, 
+  führt eine Supremumskonstruktion zum Ziel. In diesem Fall läuft es 
+  darauf hinaus, zu zeigen, dass für ein beliebiges $x_0\in \open{a,b}$ 
+  die Funktion 
+  \[
+  F \fd \lopen{a,x_0} \to \RR, \qquad
+  x \mapsto \left\{ \begin{array}{ll}
+      f(x) & \text{für $x\in \open{a,x_0}$} \\
+      s:=\sup \{ f(x); \, x\in \open{a,x_0} \}  & \text{für $x=x_0$}.
+    \end{array} \right.
+  \]
+  in $x_0$ stetig ist und $f$ an dieser Stelle somit einen linksseitigen 
+  Grenzwert besitzt. 
+
+  Die Stetigkeit von $F$ in $x_0$ ist schnell gezeigt.  
+  Aufgrund der Supremumseigenschaft von $s$ gibt es zu jedem $\eps>0$ 
+  ein $\xi \in \open{a,x_0}$ mit $s-\eps <f(\xi) \le s$. Wegen der 
+  Monotonie von $f$ gilt dann auch für alle $x\in \open{\xi,x_0}$ 
+  die Ungleichung $s-\eps < f(x)=F(x) \le s$, 
+  also $F(x)\in U_\eps( s )$, und das heißt nichts anderes, 
+  als dass $F$ in $x_0$ (linksseitig) stetig ist. 
+
+  Die Existenz des rechtsseitigen Grenzwerts 
+  zeigt man nun mit einer entsprechenden Infimumskonstruktion. 
+  Damit ist der Satz bewiesen.   
+  \AntEnd
+\end{antwort}
+
+%% Question 63
+\begin{frage}\index{Gauss-Klammer@Gau{\ss}-Klammer}
+  Welche Grenzwerte besitzt die Gauß-Klammer 
+  \[
+  [ \;\, ] \fd \RR \to \RR, \qquad 
+  x \mapsto \{ g\in\ZZ; \; g\le x \} \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Die Funktion ist für jedes $k\in \ZZ$ unstetig im Punkt $k$. Ferner ist sie   
+  konstant auf den Intervallen $\ropen{k,k+1}$. 
+  Für eine gegen $k\in\ZZ$ konvergente Folge aus $\ropen{k,\infty}$ konvergiert 
+  daher trivialerweise auch die Folge der Funktionswerte gegen 
+  $[ k ]$, die 
+  Gauß-Klammer hat also in jeder Unstetigkeitsstelle einen rechtsseitigen 
+  Grenzwert. Wegen $\big| [k-\eps]  - [ k ] \big|=1$ für alle 
+  $\eps\in \open{0,1}$ existieren aber keine linksseitigen Grenzwerte in 
+  den Unstetigkeitsstellen.
+  \AntEnd
+\end{antwort}
+
+%% Question 64
+\begin{frage}
+  Warum hat eine \slanted{monotone} Funktion $f\fd [a,b]\to \RR$ 
+  höchstens abzählbar viele Unstetigkeitsstellen?
+\end{frage}
+
+\begin{antwort}
+  Für jede Unstetigkeitsstelle $x\in [a,b]$ existieren nach der vorhergehenden 
+  Antwort die Grenzwerte $f(x-)$ und $f(x+)$. 
+  Durch Auswahl je einer rationalen Zahl aus den Intervallen 
+  $\big( f(x-),f(x+) \big)$ erhält man eine Abbildung der Menge der 
+  Unstetigkeitsstellen auf $\QQ$. Da $f$ streng monoton ist, sind 
+  die Intervalle paarweise disjunkt, und die Abbildung ist somit injektiv. 
+  Das zeigt die Behauptung. \AntEnd
+\end{antwort}
+
+%% Question 65
+\begin{frage}
+  Ist $D\subset \RR$ eine nicht nach oben beschränkte Teilmenge,  
+  $f\fd D\to \RR$ eine Funktion und 
+  $l\in\RR$. 
+  Was bedeutet die Schreibweise $\lim_{x\to\infty} f(x)=l$?
+\end{frage}
+
+\begin{antwort}
+  Anschaulich bedeutet die Ausdrucksweise, dass die Funktionswerte $f(x)$ 
+  beliebig nahe bei $l$ liegen, wenn $x$ nur genügend groß 
+  ist. Präziser: 
+  Es gilt $\lim_{x\to\infty} f(x)=l$ genau dann, wenn 
+  zu jedem $\eps>0$ eine reelle Zahl $K > 0$ existiert mit der Eigenschaft
+  \begin{equation}
+    | f(x)-l | < \eps \quad\text{ für alle $x>K$.} \EndTag
+  \end{equation}
+  
+\end{antwort}
+
+%% Question 66
+\begin{frage}\label{03_gbsp}
+  Warum gilt 
+  $\lim\limits_{x\to\infty} ( \sqrt{x+1} - \sqrt{x})=0 $, und warum 
+  $\lim\limits_{x\to\infty}  \frac{3x-1}{4x+5}=\frac{3}{4}$?
+\end{frage}
+
+\begin{antwort}
+  Es gilt
+  \[
+  0<\sqrt{x+1}-\sqrt{x} = 
+  \frac{(\sqrt{x+1}+\sqrt{x})(\sqrt{x+1}-\sqrt{x})}{\sqrt{x+1}+\sqrt{x}}
+  < \frac{1}{2\sqrt{x}} < \eps \quad\text{ für alle $x>\frac{1}{4\eps^2}$}, 
+  \]
+  das beweist die erste Formel. Die zweite folgt aus 
+  \begin{equation}
+    \left| \frac{3x-1}{4x+5}-\frac{3}{4} \right| = 
+    \left| \frac{ 19 }{4(4x+5)} \right| < \left| \frac{2}{x} \right| < \eps 
+    \quad\text{ für alle $x>\frac{2}{\eps}$.}
+    \EndTag
+  \end{equation}
+\end{antwort} 
+
+%% Question 67
+\begin{frage}\index{Reduktionslemma}
+  Was besagt das sogenannte \bold{Reduktionslemma}?
+\end{frage}
+
+\begin{antwort}
+  Mithilfe des Reduktionslemmas lässt sich das Konvergenzverhalten 
+  einer Funktion $f(x)$ "`im Unendlichen"' durch dasjenige der Funktion 
+  $f \left( \frac{1}{x} \right)$ 
+  (die für jedes $x$ mit $\frac{1}{x} \in D(f)$ definiert ist)  
+  in der Nähe des Nullpunktes beschreiben. 
+  Genau besagt das Reduktionslemma: 
+
+  \medskip\noindent
+  \slanted{Der Grenzwert  
+    $\lim\limits_{x\to\infty} f(x)$ existiert genau dann, 
+    wenn $f\left(\frac{1}{x} \right)$ 
+    in $0$ einen rechtsseitigen Grenzwert besitzt, und dass in diesem Fall 
+    gilt
+    \[\boxed{
+      \lim_{x\to\infty} f(x) = \lim_{x\downarrow 0}   
+      f\left(\frac{1}{x} \right).}
+    \]}
+  \noindent
+  Das Lemma folgt aus
+  \[
+  | f(x) - l | \le \eps \quad\text{für $x>C$} 
+  \quad \LLa \quad
+  \left| f\left(\frac{1}{x}\right) - l \right| 
+  \le \eps \quad\text{für $x< \delta := \frac{1}{C}$} 
+  . \]
+  Zum Beispiel erhält man mit einer 
+  Anwendung des Reduktionslemmas den zweiten Grenzwert 
+  aus Frage \ref{03_gbsp} auch folgendermaßen: 
+  \begin{equation}
+    \lim_{x\to\infty} \frac{3x-1}{4x+5} =
+    \lim_{x\downarrow 0} \frac{3/x-1}{4/x+5} = 
+    \lim_{x\downarrow 0} \frac{3-1x}{4+5x} = \frac{3}{4}.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% Question 68
+\begin{frage}
+  Was bedeuten Schreibweisen wie 
+  \begin{eqnarray*}
+    \lim_{x\to x_0}f(x) = \infty &\quad\text{bzw.}\quad&
+    \lim_{x\to x_0}f(x) = -\infty \quad\text{bzw.}\quad \\
+    \lim_{x\to\infty}f(x) = \infty &\quad\text{bzw.}\quad&
+    \lim_{x\to\infty}f(x) = -\infty\text{?}
+  \end{eqnarray*}
+\end{frage}
+
+\begin{antwort}
+  Die Schreibweisen $\lim\limits_{x\to x_0} = \infty$ bzw. 
+  $\lim\limits_{x\to x_0} = -\infty$ bedeuten, dass $f(x)$ bei 
+  Annäherung an $x_0$ jede beliebige positive bzw. negative 
+  Schranke über- bzw. unterschreitet, genauer: Zu jedem $K\in \RR_+$ gibt es 
+  eine Umgebung $\dot{U}_\delta( x_0 )$, sodass 
+  $f(x)>K$ bzw. $f(x)<-K$ für alle $x\in \dot{U}_\delta (x_0)$ ist. 
+
+  Die Ausdrücke $\lim\limits_{x\to\infty} = \infty$ bzw. 
+  $\lim\limits_{x\to\infty} = -\infty$ bedeuten entsprechend
+  dass zu jeder Zahl $K\in\RR$ eine Zahl $C\in\RR$ existiert, sodass 
+  $f(x)>K$ für alle $x>C$ gilt. 
+  \AntEnd
+\end{antwort}
+
+%% Question 69
+\begin{frage}
+  Ist $p\fd \RR\to \RR$ ein Polynom,
+  \[
+  p\mapsto p(x) := a_n x^n + a_{n-1}x^{n-1} + \cdots + a_0, 
+  \qquad a_n\not=0, n\in\NN.
+  \]
+  Warum gilt dann $\lim\limits_{x\to\infty}\frac{p(x)}{a_nx^n}=1$?
+\end{frage}
+
+\begin{antwort}
+  Für $x\not=0$ gilt $
+  \frac{p(x)}{a_nx^n} = 1+ \frac{a_{n-1}}{a_nx} + \cdots + 
+  \frac{a_0}{a_nx^n}.$
+  Mit $A:=\max\{ |a_1|, \ldots, |a_n| \}$ und $x\ge 1$ ist folglich
+  \[
+  \left| 
+    \frac{p(x)}{a_nx^n} -1 
+  \right| \le
+  \left| \frac{a_{n-1}}{a_nx} \right| + \cdots + 
+  \left| \frac{a_0}{a_nx^n} \right| \le n\left| \frac{A}{a_n x }\right|.  
+  \]
+  Beide Seiten der Ungleichung sind kleiner als 
+  $\eps$ für alle $x>nA/(|a_n|\eps)$, womit die Behauptung gezeigt ist.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

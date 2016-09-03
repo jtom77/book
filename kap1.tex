@@ -1,0 +1,4060 @@
+
+
+\chapter{Die Systeme der reellen und komplexen Zahlen}  
+
+Die zentralen Begriffe der Analysis wie \slanted{Konvergenz}, 
+\slanted{Stetigkeit}, \slanted{Integrierbarkeit}, 
+\slanted{Differenzierbarkeit} etc. basieren alle auf einem exakt 
+definierten \slanted{Zahlbegriff}, dessen endgültige, befriedigende 
+Präzisierung nach einer fast viertausendjährigen Entwicklung 
+erst gegen Ende des 19. Jahrhunderts gelang. 
+
+Bei den folgenden Fragen gehen wir
+von einer \slanted{axiomatischen Beschreibung} der Menge der 
+reellen Zahlen aus, {\dasheisst} wir betrachten die reellen Zahlen als 
+gegeben durch\index{Axiome der reellen Zahlen}
+\begin{itemize}[2mm]
+\item[\desc{i}] die Körperaxiome 
+\item[\desc{ii}] die Anordnungsaxiome
+\item[\desc{iii}] ein Vollständigkeitsaxiom.
+\end{itemize}
+Als Vollständigkeitsaxiom
+\index{R@$\RR$}
+\index{Vollständigkeitsaxiom}
+\index{Supremumsaxiom@Supremumsaxiom}
+wählen wir das \slanted{Supremumsaxiom}. 
+Durch diese drei Serien von Axiomen sind die reellen Zahlen bis auf 
+Isomorphie eindeutig bestimmt (vgl. etwa \citep{Ebbinghaus}). 
+Einen derartigen axiomatischen Zugang findet man in 
+vielen Lehrbüchern der Analysis 
+wieder (z.B. \citep{Barner}, \citep{Forster} oder \citep{Koenig}). 
+
+Daneben gibt es die Möglichkeit, die reellen Zahlen ausgehend 
+von den natürlichen Zahlen, wie sie in den \slanted{Peano-Axiomen}
+\index{Peano-Axiome}
+\index{Peano@\textsc{Peano}, Guiseppe (1858-1932)} 
+fixiert sind, über die ganzen und rationalen Zahlen zu konstruieren. 
+Dieser Weg ist etwas mühselig und zeitaufwendig, 
+insbesondere die Konstruktion der reellen 
+Zahlen aus den rationalen Zahlen erfordert Schlussweisen und Techniken, die 
+für Studierende am Anfang ihres Studiums nur schwer verdaulich sind. 
+Eine klassische Darstellung für diesen Weg findet man in dem Klassiker 
+von E.~Landau (vgl. \citep{Landau}), eine moderne etwa bei J.~Kramer und 
+A.-M.~Pippich (vgl. \citep{Kramer}).
+
+Bei der axiomatischen Beschreibung der reellen Zahlen findet man die 
+natürlichen, die ganzen und die rationalen Zahlen als spezielle 
+Teilmengen der reellen Zahlen wieder. 
+Hat man die reellen Zahlen zur Verfügung, dann ist das Standardmodell 
+für die \textit{komplexen Zahlen} relativ einfach zu konstruieren. 
+Auch wenn die komplexen Zahlen für den Aufbau der reellen Analysis im Prinzip 
+entbehrlich sind, erweisen sie sich doch als ausgesprochen nützliche 
+Hilfsmittel, etwa bei Behandlung der \textit{Schwingungsdifferenzialgleichung}, und in diesem Zusammenhang der Einführung der trigonometrischen Funktionen, 
+ferner bei der \slanted{Partialbruchzerlegung} und 
+\slanted{Integration der rationalen 
+  Funktionen} oder der Behandlung von \slanted{Fourier-Reihen}. 
+Ferner sei auch an den \slanted{Fundamentalsatz der Algebra} erinnert, der 
+besagt, dass jedes nicht konstante reelle oder komplexe Polynom vom Grad $n$ 
+($\ge 1$) auch $n$ (im Allgemeinen komplexe) Nullstellen hat.
+
+\section{Axiomatische Einführung der reellen Zahlen}
+
+%: Question 1
+\begin{frage}
+  \label{q:koerperaxiome}
+  \nomenclature{$\RR$}{Menge der reellen Zahlen}
+  \nomenclature{$\KK$}{allgemeiner Körper, in der Regel $\RR$ oder $\CC$}
+  Was bedeutet die Aussage "`Die Menge der reellen Zahlen 
+  bildet einen \textbf{Körper}\index{Koerper@Körper}"'?
+\end{frage}
+
+\begin{antwort}
+  Die Eigenschaft der reellen Zahlen, einen 
+  Körper\index{Koerper@Körper} zu bilden, bedeutet, 
+  dass sich innerhalb von $\RR$ (fast) 
+  ohne Einschränkung addieren, subtrahieren, multiplizieren 
+  und dividieren lässt. Als Ergebnis dieser Operationen erhält man jedes Mal 
+  wieder eine reelle Zahl. 
+  (Die einzige Ausnahme hiervon ist die Division durch Null.)
+
+  Genauer heißt das, dass die reellen Zahlen die folgende allgemeine Definition 
+  eines Körpers\index{Koerper@Körper!Axiome} erfüllen.
+
+  \medskip
+  \index{Koerper@Körper}
+  \index{Kommutativgesetze}
+  \index{Assoziativgesetze}
+  \index{Distributivgesetze}
+  \index{neutrales Element}
+  \index{inverses Element}
+
+  \noindent
+  Es sei $\KK$ eine Menge mit zwei inneren Verknüpfungen, d.\,h. Abbildungen
+  \begin{alignat*}{4}
+    + &: \KK\times\KK \to \KK,\qquad &(a,b) &\mapsto a+b \quad &&\text{(Addition)}, \\
+    \cdot &:\KK\times\KK \to \KK,\qquad &(a,b) &\mapsto a\cdot b 
+    \quad &&\text{(Multiplikation)}.
+  \end{alignat*}
+  Dann heißt $\KK$ (genauer: das Tripel $(\KK, + , \cdot)$ ein Körper, 
+  wenn folgende Axiome erfüllt sind.
+
+  \medskip
+  \noindent
+  {\renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l|p{60mm}|p{50mm}} \hline
+      (K1)&
+      Für alle $a,b \in \KK$ gilt $a+b=b+a$ & Kommutativgesetz bezüglich "`$+$"' \\\hline
+      (K2)&
+      Für alle $a,b,c \in \KK$ gilt $(a+b)+c=a+(b+c)$ & Assoziativgesetz bezüglich 
+      "`$+$"' \\\hline
+      (K3)&
+      Es gibt eine Zahl $0\in\KK$, sodass $a+0=a$ für alle $a\in\KK$ gilt. & 
+      Existenz eines neutralen Elements bezüglich "`$+$"' \\\hline 
+      (K4)&
+      Zu jedem $a\in\KK$ gibt es eine Zahl $(-a)\in\KK$ mit $a+(-a)=0$ & 
+      Existenz eines inversen Elements bezüglich "`$+$"' \\\hline
+      (K5)&
+      Für alle $a,b \in K$ gilt $a\cdot b=b\cdot a$ & 
+      Kommutativgesetz bezüglich "`$\cdot$"' \\\hline
+      (K6)&
+      Für alle $a,b,c \in K$ gilt $(a\cdot b)\cdot c=a\cdot (b\cdot c)$ & 
+      Assoziativgesetz bezüglich "`$\cdot$"' \\\hline
+      (K7)&
+      Es gibt eine Zahl $1\in\KK$ ($1\not=0$), sodass $a\cdot 1=a$ für alle $a\in\KK$ gilt. & 
+      Existenz eines neutralen Elements bezüglich "`$\cdot $"' \\\hline 
+      (K8)&
+      Zu jedem $a\in\KK\mengeminus\{0\}$ 
+      gibt es eine Zahl $a^{-1}\in\KK$ mit $a\cdot a^{-1}=1$ & 
+      Existenz eines inversen Elements bezüglich "`$\cdot$"' \\\hline
+      (K9)&
+      Für alle $a,b,c\in\KK$ gilt $a\cdot (b+c) = (a\cdot b)+ (a\cdot c$) & 
+      Distributivgesetz \\\hline
+    \end{tabular}
+  }
+  
+  \medskip
+  \noindent
+  Die neutralen Elemente 0 und 1 sind dabei eindeutig bestimmt, ebenso 
+  wie die inversen Elemente $-a$ und $a^{-1}$ (für $a\not=0$).
+
+  \medskip
+  Wir benutzen außerdem die "`Vorfahrtsregel"'\index{Vorfahrtsregel} 
+  ("`Punktrechnung geht vor Strichrechnung"') sowie 
+  die Abkürzung $ab$ für $a\cdot b$. Damit schreibt sich das Distributivgesetz 
+  einfach in der Form $a(b+c) = ab+ac$.\AntEnd
+\end{antwort}
+
+
+%: Question 2
+\begin{frage}\index{Gruppe}
+  Wie lässt sich der Körperbegriff in der Sprache der Gruppentheorie ausdrücken?
+\end{frage}
+
+\begin{antwort}
+  Ein Körper $\KK$ ist bezüglich der Verknüpfung "`Addition"' 
+  eine additive Abel'sche Gruppe mit dem neutralen Element $0$,  
+  die von $0$ verschiedenen Elemente aus $\KK$ bilden eine Abel'sche 
+  Gruppe bezüglich der Multiplikation mit neutralem Element $1\not=0$, 
+  und Addition und Multiplikation sind über das Distributivgesetz  
+  miteinander verbunden.\AntEnd
+\end{antwort}
+
+
+%: Question 3
+\begin{frage} 
+  Kennen Sie außer dem Körper der reellen Zahlen noch andere Körper? 
+\end{frage}
+
+\begin{antwort}
+  \index{Restklassenkörper}
+  Weitere Körper sind beispielsweise die rationalen Zahlen $\QQ$ und 
+  die komplexen Zahlen $\CC$. 
+  Beispiele für Körper mit endlich vielen Elementen 
+  sind für jede Primzahl $p$ die Restklassenkörper $\ZZ/p\ZZ$. 
+  Zwischen $\QQ$ und $\RR$ bzw. $\CC$ liegen unendlich viele  
+  \slanted{Zwischenkörper}, {\zB} die Körper
+  \index{Zwischenkoerper@Zwischenkörper} 
+  $\QQ(\sqrt{2}):=\{ a+b\sqrt{2};\; a,b\in\QQ \}$ oder 
+  $\QQ(i) := \{ a+b\i;\; a,b\in \QQ \}$.
+  
+  Die natürlichen oder ganzen Zahlen sind dagegen keine Körper, 
+weil sie beide \desc{K8} nicht erfüllen (die natürlichen Zahlen erfüllen 
+zudem auch \desc{K4} nicht).
+
+  Die Elemente eines Körpers müssen 
+  nicht unbedingt Zahlen sein. So ist etwa die Menge der (gebrochen) 
+  rationalen Funktionen\index{Koerper@Körper!der rationalen Funktionen} 
+  ebenfalls ein Körper.  
+  Die Elemente dieser Menge sind alle Funktionen des Typs $p(x)/q(x)$, 
+  wobei $p$ und $q$ Polynome in einem Grundkörper $\KK$ sind und $q$ 
+  nicht konstant null ist.
+  \AntEnd
+\end{antwort}
+
+%: Question 4
+\begin{frage} 
+  \label{q:koerper-rechenregeln}
+  Warum gelten in einem beliebigen Körper $\KK$ die folgenden 
+  Rechenregeln? Dabei seien $a,b$ beliebige Elemente aus $\KK$. 
+  \index{Koerper@Körper!Rechenregeln}
+  \[
+  \text{\desc{i}}\quad 0\cdot a=0, \hspace{0.8cm}
+  \text{\desc{ii}}\quad  (-1)(-1)=1, \hspace{0.8cm}
+  \text{\desc{iii}}\quad ab=0 \LLa (a=0 \text{ \rm{oder} } b=0)\,?
+  \]
+\end{frage}
+
+\begin{antwort}
+  \desc{i} Mit den Bezeichnungen für die Körperaxiome aus Frage~\ref{q:koerperaxiome} gilt
+  \[
+  0\cdot a = (0+0)\cdot a 
+  \stackrel{K9}{=}0\cdot a+0\cdot a \stackrel{K4}{\Ra} 
+  0\cdot a-0\cdot a = 0\cdot a 
+  \stackrel{K4}{\Ra} 0=0\cdot a.
+  \]
+  Hieraus folgt auch der fundamentale Zusammenhang $(-1)a=-a$.
+
+  \medskip
+  \noindent
+  \desc{ii} Zunächst gilt mit \desc{i}
+  \[
+  0 \stackrel{\text{\desc{i}}}{=}-1\cdot 0 \stackrel{K4}{=} -1(1-1)
+  \stackrel{K9}{=} -1\cdot 1 +(-1)\cdot (-1) \stackrel{K7}{=} -1 +(-1)(-1).
+  \]
+  Die Addition von $1$ auf beiden Seiten der Gleichung liefert dann
+  \[
+  0+1 = -1+(-1)(-1)+1 \stackrel{K1,\,K4}{\Longrightarrow} 
+  0+1 = 0+(-1)(-1)\stackrel{K3}{\Longrightarrow} 1=(-1)(-1).
+  \]
+ 
+  \medskip\noindent
+  \desc{iii} Die Richtung "`$\La$"' folgt aus \desc{i}. 
+  Für den Beweis der anderen Richtung nehmen wir {\oBdA} 
+  $a\not=0$ an. Dann gibt es 
+  ein Element $a^{-1}\in K$ mit $a^{-1}a=1$. Zusammen mit \desc{ii} folgt 
+  dann
+  \begin{equation}
+    ab=0 \Ra a^{-1}a b = a^{-1} \cdot 0  
+    \Ra 1\cdot b=0 \Ra b=0. \EndTag
+  \end{equation}
+\end{antwort}
+
+%: Question 5
+\begin{frage}
+  Gilt die Eigenschaft \desc{iii} 
+  ("`Nullteilerfreiheit"')\index{Nullteilerfreiheit} aus 
+  Frage~\ref{q:koerper-rechenregeln} auch für reelle $2\times2$-Matrizen?
+\end{frage}
+
+\begin{antwort}
+  Die Eigenschaft ist nicht erfüllt. Als Gegenbeispiel betrachte man etwa 
+  \[
+  \left(\begin{array}{rr} 0 & 0 \\ 0 & 1 \end{array}\right) \cdot 
+  \left(\begin{array}{cc} 0 & 1 \\ 0 & 0 \end{array}\right) = 
+  \left(\begin{array}{cc} 0 & 0 \\ 0 & 0  \end{array}\right),
+  \]
+wobei folgende Definition der 
+Matrizenmultiplikation\index{Matrizenmultiplikation} 
+verwendet wurde:
+\[
+\left(\begin{array}{rr} 
+a_{11} & a_{12} \\ a_{21} & a_{22} 
+\end{array}\right)
+\cdot 
+\left(\begin{array}{rr} 
+b_{11} & b_{12} \\ b_{21} & b_{22} 
+\end{array}\right)
+=
+\left(
+\begin{array}{rr}
+a_{11}b_{11} + a_{12}b_{21} \\
+a_{21}b_{12} + a_{22}b_{22} 
+\end{array}
+\right).
+\]
+  Die reellen $2\times 2$-Matrizen bilden somit keinen Körper. 
+  Das Beispiel zeigt die Anwendung eines sehr nützlichen Prinzips: 
+  \slanted{Eine Menge, die nicht nullteilerfrei ist, kann kein Körper sein.} 
+  \AntEnd
+\end{antwort} 
+
+%: Question 6
+\begin{frage} 
+  Was wissen Sie über die Elementanzahl eines 
+  \textbf{endlichen Körpers}?
+  \index{Koerper@Körper!endlicher}
+\end{frage}
+
+\begin{antwort}
+  Die Anzahl der Elemente eines endlichen Körpers ist eine Primzahl 
+  $p$ oder allgemeiner 
+  eine Primzahlpotenz $q=p^n$ für eine natürliche Zahl $n\in\NN, n\ge 2$. 
+
+  Im ersten Fall ist der Körper isomorph zum Restklassenkörper\index{Restklassenkörper}  
+  $\FF_p:=\ZZ/p\ZZ$. 
+  Die Körper mit $p^n$ Elementen sind dann allesamt  
+  Erweiterungskörper\index{Erweiterungskörper} vom Grad 
+  $n$ über $\FF_p$. 
+  Das bedeutet, dass man sie aus $\FF_p$ 
+  durch die "`Adjunktion"' der Nullstelle 
+  $\alpha$ eines 
+  irreduziblen Polynoms $f(X)\in\FF_p[X]$ vom Grad $n$ erhält. 
+  Die Elemente des so erhaltenen Körpers besitzen dann alle 
+  eine eindeutige Darstellung 
+  \[
+  a_{n-1} \alpha^{n-1} + a_{n-2}\alpha^{n-2}+\ldots + a_{1}\alpha + a_{0}, 
+  \quad a_j \in \FF_p,
+  \]
+  wobei die algebraischen Beziehungen zwischen diesen durch die
+  Gleichung $f(\alpha) = 0$ genau bestimmt sind. 
+  Man beachte, dass für $n\ge2$ ein Körper mit $p^n$ Elementen grundverschieden ist vom  
+  Restklassenring $\ZZ/p^n\ZZ$. Letzterer ist überhaupt kein Körper, da er 
+  nicht nullteilerfrei ist. 
+  \AntEnd
+\end{antwort}
+
+%: Question 7
+\begin{frage} 
+  Gibt es Körper mit $4$, $9$, $1\,024$, $65\,537$ bzw. $999\,997$ Elementen?
+\end{frage}
+
+\begin{antwort}
+  Die Zahlen $4=2^2$, $9=3^2$ und $1\,024=2^{10}$ sind Primzahlpotenzen, 
+  die Zahl $65\,537$ ist sogar selbst eine Primzahl 
+  (nebenbei gesagt: Es ist die größte bekannte 
+  \textit{Fermat'sche Primzahl} $F_4 := 2^{2^4}+1$).
+  Also existiert nach 
+  Frage 5 für diese Zahlen jeweils ein Körper mit der entsprechenden Anzahl 
+  an Elementen. 
+  Wegen $999\,997=757\cdot 1\,321$ gibt es 
+  aber keinen Körper mit $999\,997$ Elementen.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 8
+\begin{frage}
+  \index{Koerper@Körper!mit zwei Elementen}
+  Der "`kleinste"' Körper hat zwei Elemente, 
+  nennen wir sie 
+  $\overline{0}$ und $\overline{1}$. Wie addiert und multipliziert man 
+  in diesem Körper?
+\end{frage}
+
+\begin{antwort}
+  Da die Körperaxiome $\ov{1}+\ov{0}=\ov{1}$ festschreiben, bleibt als 
+  additiv inverses Element der $\ov{1}$ nur $\ov{1}$ selbst übrig, es 
+  muss also $\ov{1}+\ov{1}=\ov{0}$ gelten. 
+
+  Die Wirkung der Multiplikation mit $\ov{0}$ und diejenige 
+  der Multiplikation mit $\ov{1}$ ist durch die Körperaxiome 
+  \textit{a priori} festgelegt. 
+  Damit sind die Ergebnisse aller möglichen Operationen 
+  bestimmt. Diese führen auf die in Abbildung~\ref{fig:01_koerper} 
+  stehenden Verknüpfungstafeln.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/01_koerper}
+    \captionof{figure}{Verknüpfungstafeln für den Körper mit zwei Elementen}
+    \label{fig:01_koerper}
+  \end{center}
+
+  Dieser Körper wird in der Literatur mehrheitlich mit $\ZZ/2\ZZ$ oder $\FF_2$ bezeichnet.
+\end{antwort}
+
+
+%: Question 9
+\begin{frage} 
+  Wie lassen sich in einem beliebigen Körper $\KK$ die folgenden 
+  \bold{Regeln der Bruchrechnung}\index{Bruchrechnung, Regeln}
+  möglichst einfach beweisen? 
+  ($a,b,c,d \in \KK, \, b\not=0, \, d\not=0$)
+  \[
+  \begin{array}{lcl}
+    \displaystyle \text{\desc{i}}\quad
+    \frac{a}{b} = \frac{c}{d} \LLa ad = bc & \rule{20mm}{0mm} &
+    \displaystyle \text{\desc{ii}}\quad
+    \frac{a}{b} \pm \frac{c}{d} = \frac{ad \pm bc}{bd} \\[3mm]
+    \displaystyle \text{\desc{iii}}\quad
+    \frac{a}{b}\cdot \frac{c}{d} = \frac{ac}{bd}  & \rule{20mm}{0mm} &
+    \displaystyle \text{\desc{iv}}\quad
+    \frac{  \frac{a}{b} }{ \frac{c}{d} } = \frac{ad}{bc} 
+    \quad (\text{falls auch $c\not=0$})
+  \end{array}
+  \] 
+\end{frage}
+
+
+\begin{antwort}
+  \desc{i} "`$\Ra$"': Multiplikation der ersten 
+  Gleichung mit $bd \not=0$ ergibt 
+  \[
+  \frac{a}{b} = \frac{c}{d} \Ra 
+  (ab^{-1})bd=(cd^{-1})bd \Ra 
+  a(b^{-1}b)d=bc(dd^{-1}) \Ra ad = bc.
+  \]
+  "`$\La$"': Multiplikation der zweiten Gleichung mit $(bd)^{-1}$ ($bd\not=0$) 
+  liefert
+  \[
+  ad=bc \Ra 
+  ad(bd)^{-1} = bc (bd)^{-1} \Ra
+  a(dd^{-1})b^{-1} = (bb^{-1}) c d^{-1} \Ra 
+  \frac{a}{b} = \frac{c}{d}. 
+  \]
+  Folgerung: Mit $c=ax$ und $d=bx$ ($x\not=0$) folgt hieraus 
+  die "`Kürzungsregel"': 
+  $\frac{a}{b}=\frac{ax}{bx}$.
+
+  \medskip\noindent
+  \desc{ii}\quad Aus der Kürzungsregel und dem Distributivgesetz folgt
+  \[
+  \frac{a}{b}\pm \frac{c}{d} = 
+  \frac{ad}{bd} \pm \frac{cb}{db} = 
+  \frac{ad}{bd} \pm \frac{cb}{bd} = 
+  \frac{ad+cb}{bd}.
+  \]
+
+  \medskip\noindent
+  \desc{iii}\quad
+  $\displaystyle 
+  \frac{a}{b}\cdot\frac{c}{d} = 
+  d^{-1}b^{-1}( ac ) =  
+  (bd)^{-1} ac = \frac{ac}{bd}$.
+
+  \medskip\noindent
+  \desc{iv}\quad
+  $\displaystyle 
+  \frac{a/b}{c/d} = (d^{-1}c)^{-1} b^{-1} a = 
+  c^{-1} db^{-1} a = (bc)^{-1} ad = \frac{ad}{bc}$ \quad mit $c\not=0$.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 10
+\begin{frage} 
+  Wie kann man für zwei Elemente $a,b$ eines Körpers $\KK$
+  mithilfe der Axiome die 
+  \textbf{Binomische Formel}\index{Binomische Formel}
+  \[
+  (a+b)^2 =a^2+2ab +b^2 
+  \]
+  beweisen? Dabei sei $2:=1+1$ und $x^2 := x\cdot x$ f\"ur jedes 
+  $x\in\KK$.  
+\end{frage} 
+
+\begin{antwort}
+  Die Formel ergibt sich im Wesentlichen 
+  durch zweimaliges Anwenden des Distributivgesetzes 
+  und einer Anwendung des Kommutativgesetzes:
+  \nobelowskip
+  \begin{align}
+    (a+b)\cdot (a+b) &= a(a+b)+b(a+b)= (aa +ab) +(ba+bb) = 
+    aa +( ab+ab ) +bb \notag \\
+    &= a^2 + ( (1+1)ab )+b^2 = a^2+2ab +b^2. \EndTag
+  \end{align}
+\end{antwort}
+
+
+
+
+
+
+\begin{frage}
+  \label{01_anax} 
+  Was bedeutet die Aussage "`Der Körper $\RR$ der reellen Zahlen ist ein 
+  \textbf{angeordneter Körper}\index{Koerper@Körper!angeordneter}"'?
+  
+  \medskip
+  Was versteht man allgemein unter einem angeordneten Körper?
+\end{frage}
+
+\begin{antwort}
+  Das bedeutet, dass in $\RR$ gewisse Zahlen als \textit{positiv} ausgezeichnet 
+  sind. Genauer: Auf $\RR$ ist eine Relation "`$>$"' gegeben, die die 
+  folgenden beiden Eigenschaften besitzt\index{Anordnungsaxiome}
+  \begin{itemize}[3mm]
+  \item[(A1)] \slanted{Für jede reelle Zahl $a$ gilt entweder 
+      $a>0$, $-a>0$ oder $a=0$.}
+  \item[(A2)] \slanted{Aus $a>0$ und $b>0$ folgt $a+b>0$ und $ab>0$.}
+  \end{itemize}
+  Diese Eigenschaft von $\RR$ ist die Grundlage dafür, 
+  dass Größenverhältnisse durch die Angabe einer reellen 
+  Zahl angegeben werden können. 
+
+  \medskip
+  Allgemein heißt ein Körper $\KK$ angeordnet, 
+  wenn eine Menge $P\subset \KK$ (ein 
+  \textbf{Positivitätsbereich}\index{Positivitätsbereich}) mit den folgenden 
+  Eigenschaften ausgezeichnet ist:
+  \begin{itemize}
+  \item[\desc{1}] Für jedes $x\in\KK$ gilt genau eine der beiden Beziehungen $x\in P$, $x\not=0$ oder $-x\in P$ (Trichotomie)
+  \item[\desc{2}] $x,y \in P \Ra x+y \in P$ (Abgeschlossenheit gegenüber Addition)
+  \item[\desc{3}] $x,y \in P \Ra x\cdot y \in P$ (Abgeschlossenheit gegenüber Multiplikation)
+  \end{itemize}
+  Im Fall $K=\RR$ ist $P=\{x\in\RR;\; x>0\}$.\AntEnd
+
+\end{antwort}
+
+
+
+
+
+%: Question 12
+\begin{frage} 
+  \label{rationalefunktionen}
+  Gibt es außer dem Körper der reellen Zahlen noch 
+  andere angeordnete Körper? Zählen Sie einige auf.
+  \index{Koerper@Körper!angeordneter}
+\end{frage}
+
+\begin{antwort}
+  Beispielsweise ist $\QQ$ als Teilkörper der reellen Zahlen mit der 
+  Ordnungsstruktur von $\RR$ automatisch ebenfalls 
+  ein angeordneter Körper. 
+
+  Der Körper der rationalen reellen 
+  Funktionen\index{Koerper@Körper!der rationalen Funktionen}
+  lässt sich ebenfalls anordnen. 
+  Dazu schreibe man $p(x)/q(x)$ in der (eindeutig bestimmten) Form 
+  \[
+  \frac{p(x)}{q(x)} = g(x)+ \frac{r(x)}{q(x)} , \qquad \deg r < \deg q.
+  \]
+  Eine Anordnung auf dem Körper der rationalen Funktionen erhält man 
+  damit folgendermaßen: Die Funktion von $\frac{p(x)}{q(x)}$ 
+  ist positiv genau dann, wenn gilt
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[(i)] \slanted{$g(x)\not=0$ und der Koeffizient der höchsten Potenz 
+        von $g(x)$ ist $>0$ oder} \\[-3.5mm]
+    \item[(ii)]\slanted{$g(x)=0$ und der Koeffizient der höchsten 
+        Potenz von $r(x)$ ist $>0$.}
+    \end{itemize}}
+  Man zeigt leicht, dass die Definition die beiden Axiome 
+  \desc{A1} und 
+  \desc{A2} erfüllt und damit tatsächlich eine Ordung auf dem Körper der 
+  rationalen Funktionen gegeben ist.
+
+  Diejenigen Körper, für die \textit{keine} Anordung existiert,  
+  sind weit häufiger. Zum Beispiel lässt sich $\CC$ wegen 
+  $\i^2=-1$ nicht anordnen, ebensowenig die endlichen Körper. 
+  \AntEnd
+\end{antwort}
+
+%: Question 13
+\begin{frage} 
+  Warum lässt sich ein endlicher Körper\index{Koerper@Körper!endlicher} 
+  nicht anordnen? 
+\end{frage}
+
+\begin{antwort}
+  In einem angeordneten Körper ist stets $1>0$. Damit 
+  gilt aufgrund von \desc{A2} auch für alle endlichen Summen $
+  1+1+\cdots+1 > 0$.
+  In einem endlichen Körper mit $q=p^n$, $n\in\NN$ 
+  Elementen ist aber stets 
+  $\underbrace{1+1+\cdots + 1}_{p\text{-mal}} =0.$\AntEnd
+\end{antwort}
+
+%: Question 14
+\begin{frage} 
+  Wie ist der \textbf{(Absolut-) Betrag}\index{Betrag!einer reellen Zahl}
+  einer reellen Zahl definiert und welche Haupteigenschaften hat er?
+\end{frage}
+
+\begin{antwort}
+  Der Betrag $|a|$ einer reellen Zahl ist definiert durch
+  \[
+  |a| := \left\{ \begin{array}{rl} a \quad & \text{für $a\ge 0$}, \\
+      -a \quad & \text{für $a<0$}. 
+    \end{array} \right. \EndTag
+  \]
+\end{antwort} 
+
+
+%: Question 15
+\begin{frage}\label{01_betrag_eigensch}\index{Betrag!einer reellen Zahl}
+  Welche Haupteigenschaften besitzt der Betrag?
+\end{frage}
+
+\begin{antwort}
+  Die wesentlichen Eigenschaften sind
+  \[
+  \begin{array}{ll@{\qquad}ll}
+    \text{\desc{1}} & |a| \ge 0  \text{ und } |a|=0\Leftrightarrow a=0& 
+    \text{\desc{2}} & -|a| \le a \le |a| \\
+    \text{\desc{3}} & |ab| = |a|\cdot |b| & 
+\text{\desc{4}} & \left|\frac{a}{b}\right| = \frac{|a|}{|b|} \quad\text{für $b\not=0$}\\
+    \text{\desc{5}} & |a+b| \le |a|+|b|  &  
+    \text{\desc{6}} & \big||a| - |b|\big| \le |a-b|. \\
+  \end{array}
+  \]
+  Die Eigenschaften \desc{1} und \desc{2} folgen 
+  unmittelbar aus der Definition des 
+  Absolutbetrages, 
+  \desc{3} ergibt sich mithilfe einer Fallunterscheidung, 
+  \desc{4} und \desc{5} werden 
+  in den nächsten beiden Fragen beantwortet. \AntEnd
+\end{antwort}
+
+
+%: Dreiecksungleichung
+\begin{frage}
+  \label{dreiecksungleichung}
+  Was besagt die \textbf{Dreiecksungleichung}
+  \index{Dreiecksungleichung!fuer reelle Zahlen@für reelle Zahlen}
+  für reelle Zahlen?
+\end{frage}
+
+\begin{antwort}
+  Die Dreiecksungleichung lautet: \satz{Für zwei reelle Zahlen $a,b$ 
+    gilt stets}
+    \[
+    \boxed{
+      |a+b| \le |a|+|b| .
+    }
+    \]
+\noindent%
+Die Dreiecksungleichung folgt mit Eigenschaft \desc{2} 
+  des Absolutbetrages aus den beiden  
+  \[
+  a+b\le |a|+|b|, \qquad -(a+b)\le |a|+|b|. 
+  \] 
+  Wendet man darauf die Definition des Absolutbetrages an, 
+  so erhält man die Dreiecksungleichung. \AntEnd
+\end{antwort}
+
+%: Question 17
+\begin{frage}
+  \label{01_dru}
+  Wie lautet die Dreiecksungleichung für Abschätzungen
+  \index{Dreiecksungleichung!fuer Abschaetzungen@für Abschätzungen nach unten}
+  nach unten?
+\end{frage}
+
+\begin{antwort}
+  Das ist die Ungleichung \desc{5} aus Antwort \ref{01_betrag_eigensch}:
+  \[
+  \boxed{
+    \big| |a|-|b| \big| \le |a-b|. 
+  }
+  \]
+  Man erhält sie aus der Dreiecksungleichung. Mit dieser gilt zunächst
+  \[
+  |a| = |a-b+b| \le |a-b|+|b| \quad\text{ und } \quad
+  |b| = |b-a+a| \le |a-b|+|a|.
+  \]
+  Daraus folgt $(|a|-|b|)\le |a-b|$ und $-(|a|-|b|)\le |a-b|$ und die 
+  Dreiecksungleichung für Abschätzungen nach unten.  Den Beweistrick einer 
+  Addition mit $0$ sollte man sich übrigens merken. 
+  Er ermöglicht es einem, die Dreiecksungleichung anzuwenden und damit 
+  die Struktur metrischer Räume in Beweisen auch wirklich auszunutzen.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 18
+\begin{frage}\label{q:metrischer-raum}
+  Wieso hat die Zuordnung (Abbildung) 
+  \[
+  d\,:\, \RR \times \RR \to \RR, \quad (x,y) \mapsto d(x,y)=|x-y| 
+  \]
+  für $x,y,z\in\RR$ die folgenden Eigenschaften:
+  \begin{itemize}[14mm]
+  \item[(M1)] $d(x,y)=0 \Leftrightarrow x=y$,\\[-3.5mm]
+  \item[(M2)] $d(x,y)=d(y,x)$,\\[-3.5mm]
+  \item[(M3)] $d(x,z) \le d(x,y)+d(y,z)$.
+  \end{itemize}
+  \noindent
+  $d(x,y) := |x-y|$ heißt der Abstand von $x$ und $y$.\index{Abstand}
+  \index{Metrik!der reellen Zahlen}
+\end{frage}
+
+\begin{antwort}
+  Eigenschaft \desc{M1} folgt aus $|x-y|=0 \LLa x-y=0$, 
+  \desc{M2} ergibt sich wegen 
+  $(x-y)=-(y-x)$ aus der Definition des Absolutbetrages, \desc{M3} 
+  erhält man mit der Dreiecksungleichung: 
+  $|x-z| = |x-y+y-z| \le |x-y|+|y-z|$. 
+
+  Die Eigenschaften \desc{M1}, \desc{M2} und \desc{M3} besagen zusammen,
+  dass durch $d$ eine \textit{Metrik} auf $\RR$ gegeben ist.   
+  \AntEnd
+  
+\end{antwort}
+
+%: Question 19
+\begin{frage}
+  Was versteht man unter einem 
+  \textbf{metrischen Raum}?\index{Metrischer Raum}
+\end{frage}
+
+\begin{antwort}
+  Ein metrischer Raum ist eine nichtleere Menge $X$ zusammen mit einer 
+  Abbildung $d\fd X \times X\to \RR$ (einer \textit{Metrik}), 
+  die die Eigenschaften \desc{M1}, \desc{M2}
+  und \desc{M3} aus Frage~\ref{q:metrischer-raum} erfüllt. 
+
+  Anschaulich ist ein metrischer Raum eine Menge, 
+  für die ein Begriff des \slanted{Abstands} je zweier Elemente existiert. 
+  Die Axiome \desc{M1}, \desc{M2} und \desc{M3} fordern, 
+  dass dieser Abstandsbegriff geometrisch sinnvoll ist. 
+  \AntEnd
+\end{antwort} 
+
+%: Question 20
+\begin{frage}
+  Warum folgt aus \desc{M1}, \desc{M2} und 
+  \desc{M3} stets $d(x,y)\ge 0$ für alle 
+  $x,y \in\RR$?
+\end{frage}
+
+\begin{antwort}
+  Für alle $x,y \in \RR$ gilt 
+  $0 = d(x,x) \le d(x,y)+d(y,x) = 2d(x,y)$,
+  also $d(x,y)\ge 0$. 
+  \AntEnd
+\end{antwort}
+
+%: Question 21
+\begin{frage} 
+  Kennen Sie außer $\RR$ weitere metrische Räume?
+  \index{metrischer Raum}
+\end{frage}
+
+\begin{antwort}
+  Die metrischen Räume sind breit gefächert und tauchen speziell in der 
+  Analysis in den verschiedensten Formen auf. 
+  $\NN$, $\ZZ$ und $\QQ$, versehen mit durch den Absolutbetrag 
+  induzierten Metrik, sind Beispiele metrischer Räume.
+  Die komplexen Zahlen $\CC$ mit $d(z,w):=|z-w|$  
+  sowie die endlichdimensionalen euklidischen 
+  Vektorräume $\RR^n$ sind mit 
+  $d(x,y):=\sqrt{(x_1-y_1)^2+\ldots+(x_n-y_n)^2}$ ebenfalls metrische Räume. 
+
+  Wichtige Untersuchungsgegenstände der Analysis sind 
+  \slanted{Funktionenräume}. Diese lassen sich ebenfalls mit einer 
+  (dem jeweiligen Problemkreis angemessenen) Metrik versehen. Im Raum der 
+  stetigen Funktionen $\calli{C}([a,b])$ auf einem kompakten 
+  Intervall $[a,b]$ ist etwa durch 
+  \[
+  d(f,g) := \sup\,\big\{ |f(x)-g(x) | \sets x\in [a,b] \big\}
+  \]
+  eine Metrik gegeben. Eine andere Metrik erhielte man auf demselben Raum 
+  {\zB} durch 
+  \[
+  d(f,g) := \int_a^b \big|f(x)-g(x) \big| \difx. \EndTag
+  \]
+\end{antwort}
+
+%: Question 22
+\begin{frage}
+  Wie lässt sich eine beliebige Menge $X$ mit mindestens zwei Elementen 
+  zu einem metrischen Raum machen?
+\end{frage}
+
+\begin{antwort}
+  Durch die Abbildung 
+  \[
+  d(x,y) := \left\{ \begin{array}{ll} 
+      1\quad & \text{für $x\not=y$,} \\
+      0\quad & \text{für $x=y$} \end{array} \right.
+  \]
+  ist auf $X$ eine Metrik (die sogenannte \slanted{diskrete Metrik})
+  \index{diskrete Metrik} definiert.
+
+  Wir beschränken uns auf den Nachweise der Dreiecksungleichung. Dabei können 
+  wir annehmen, dass $x$, $y$ und $z$ paarweise verschieden sind. Dann ist
+  \[
+  d(x,z) = 1 \le d(x,y) + d(y,z) = 2. 
+  \]
+  \AntEnd
+\end{antwort}
+
+%: Question 23
+\begin{frage}\index{Schranke}
+  Was versteht man unter einer oberen bzw. unteren \bold{Schranke} 
+  einer nichtleeren Teilmenge $M\subset\RR$?
+\end{frage}
+
+\begin{antwort}  
+  Eine Zahl $C\in \RR$ heißt 
+  \textit{obere bzw. untere Schranke}\index{Schranke}
+  von $M\subset \RR$, 
+  wenn für jedes $a\in M$ gilt: $a\le C$ bzw. $a\ge C$.\AntEnd
+\end{antwort} 
+
+%: Question 24
+\begin{frage}
+  Wie sind $\sup M$ \index{Supremum} und 
+  $\inf M$\index{Infimum} \nomenclature{$\inf M$}{Infimum von der Menge $M$}
+  \nomenclature{$\sup M$}{Supremum der Menge $M$}
+  für eine nichtleere, nach oben 
+  bzw. nach unten beschränkte Teilmenge $M$ von $\RR$ definiert?
+\end{frage}
+
+\begin{antwort}
+  $\sup M$ bzw. $\inf M$ sind definiert als \textit{kleinste 
+    obere bzw. größte untere Schranke} von $M$. Das bedeutet
+  \begin{eqnarray*}
+    s = \sup M &\LLa & \left\{ \begin{array}{ll}
+        \text{\desc{i}} &  \text{$s$ ist obere Schranke von $M$ und} \\[-1mm]
+        \text{\desc{ii}} & \text{für alle oberen Schranken $a$ von $M$ gilt $s\le a$},
+      \end{array} \right. 
+    \\
+    t = \inf M &\LLa& \left\{ \begin{array}{ll}
+        \text{\desc{i}} & \text{$t$ ist untere Schranke von $M$ und} \\[-1mm]
+        \text{\desc{ii}} & \text{für alle unteren Schranken $b$ von $M$ gilt $t\ge b$}.
+      \end{array} \right. 
+  \end{eqnarray*}
+  Man nennt $\sup M$ das \textit{Supremum} und 
+  $\inf M$ das \textit{Infimum} von M.
+  \AntEnd
+\end{antwort}
+
+%: Question 25
+\begin{frage}
+  Was besagt das 
+  \bold{Vollständigkeitsaxiom}\index{Vollständigkeitsaxiom} 
+  in Form des Supremumsaxioms
+  für die reellen Zahlen?
+\end{frage}
+
+\begin{antwort}
+  Das Vollständigkeitsaxiom lautet in dieser Form: 
+
+  \medskip\noindent\satz{\noindent
+    Jede nichtleere, nach oben beschränkte Teilmenge reeller Zahlen 
+    besitzt ein Supremum}.\AntEnd
+\end{antwort}
+
+
+%: Question 26
+\begin{frage}
+  Können Sie zeigen, dass 
+  $\inf M=-\sup(-M)$ für jede nichtleere nach unten beschränkte 
+  Teilmenge $M$ von $\RR$ gilt? 
+\end{frage}
+
+\begin{antwort}
+  Die Identität ergibt sich jeweils aus einer 
+  der beiden "`Spiegelungsformeln"'   
+  \[
+  -\sup M =\inf (-M), \qquad
+  -\inf M = \sup (-M),  
+  \]
+  die in der Abbildung~\ref{fig:01_supinf} veranschaulicht sind. 
+
+  \begin{center}
+    \includegraphics{mp/01_supinf}
+    \captionof{figure}{Spiegelung von $M\subset\RR$ am Nullpunkt}
+    \label{fig:01_supinf}
+  \end{center}
+
+  \noindent
+  Wir zeigen die erste der beiden Formeln, die 
+  zweite erhält man auf analoge Weise. 
+
+  Aus $\sup M \ge a$ für alle $a\in M$ folgt zunächst 
+  $-\sup M \le -a$ für alle $a \in M$ oder, was dasselbe ist,  
+  $-\sup M \le b$ für alle $b\in -M$. 
+  Folglich ist $-\sup M$ eine untere Schranke von $-M$, und wir 
+  brauchen nur noch zu zeigen, dass es die größte untere Schranke ist. 
+  
+  Sei dazu $S$ eine weitere untere Schranke von $-M$.  
+  Dann gilt $S\le b$ für alle $b\in -M$ und somit
+  $-S \ge a$ für alle $a\in M$, also ist $-S$ eine obere Schranke von $M$ und 
+  damit $-S \ge \sup M$. Es folgt $S \le -\sup M$. Somit ist  
+  $-\sup M$ tatsächlich die größte untere Schranke von $-M$, {\dasheisst}    
+  $-\sup(M)=\inf (-M)$, was zu zeigen war.
+  \AntEnd
+\end{antwort}
+
+%: Question 27
+\begin{frage}
+  \index{Supremum}
+  \index{Infimum}
+  \index{Maximum}
+  Was ist der Unterschied zwischen $\sup M$ und $\max M$? 
+\end{frage}
+
+\begin{antwort}
+  Im Allgemeinen ist $\sup M$ kein Element von $M$, 
+  beispielsweise ist bei einem offenen Intervalle $]a,b[$ das Supremum 
+  $b$ zwar die kleinste obere Schranke des 
+  Intervalls, jedoch nicht darin enthalten. 
+  Im Gegensatz dazu ist das Maximum einer Menge stets auch ein Element dieser 
+  Menge. \AntEnd
+\end{antwort} 
+
+%: Question 28
+\begin{frage}
+  Wann gilt $\sup M=\max M$ für eine nach oben 
+  beschränkte Menge $M\subset\RR$?
+\end{frage}
+
+\begin{antwort}
+  Es ist $\sup M =\max M$ genau dann, wenn 
+  $\sup M \in M$ gilt. In diesem \textit{und nur in diesem} Fall existiert 
+  $\max M$.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 29
+\begin{frage}
+  \label{q:sup-eps-charak}
+  \index{Supremum!epsilon@$\eps$-Charakterisierung}
+  \index{Infimum!epsilon@$\eps$-Charakterisierung}
+  Wie lauten die $\eps$-Charakterisierungen von $\sup M$ bzw. $\inf M$?
+\end{frage}
+
+\begin{antwort}
+  Die Eigenschaft 
+  von $\sup M$, unter allen oberen Schranken die 
+  \textit{kleinste} zu sein, ist offenbar gleichbedeutend 
+  damit, dass für jedes $\eps>0$ 
+  die Zahl $\sup M-\eps$ keine obere 
+  Schranke von $M$ mehr sein kann, denn 
+  andernfalls wäre $\sup M$ nicht die kleinste obere Schranke. 
+  Genauso ist $\inf M$ unter allen unteren Schranken von $M$ dadurch 
+  ausgezeichnet, dass $\inf M+\eps$ für jedes $\eps >0$ 
+  keine untere Schranke von $M$ mehr sein kann. Infimum und Supremum lassen 
+  sich somit folgendermaßen charakterisieren 
+  \begin{align}
+    s = \sup M &\LLa \left\{ \begin{array}{ll}
+        \text{\desc{i}} &  \text{$s$ ist obere Schranke von $M$ und} \\
+        \text{\desc{ii}} & \text{für alle $\eps>0$ gibt es ein $a\in M$ mit $s-\eps<a$},
+      \end{array} \right. \notag 
+    \\
+    t = \inf M &\LLa \left\{ \begin{array}{ll}
+        \text{\desc{i}} & \text{$t$ ist untere Schranke von $M$ und} \\
+        \text{\desc{ii}} & \text{für alle $\eps>0$ gibt es ein $b\in M$ mit $b<t+\eps$}.
+      \end{array} \right. \EndTag
+  \end{align}
+\end{antwort}
+
+%: Archimedische Eigenschaft
+%: Question 30
+\begin{frage}
+  Können Sie zeigen, dass das Infimum der Menge 
+  $M:=\left\{ 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots \right\}$ 
+  gleich null ist?  Wieso gilt $\max M=\sup M=1$?
+\end{frage}
+
+\begin{antwort}
+  Für alle $n \in \NN$ ist $\frac{1}{n}>0$, 
+  und somit ist $0$ eine untere Schranke von $M$. 
+  Sei nun $\varepsilon > 0$ gegeben. Gemäß der  
+  \textit{Archimedischen Eigenschaft} (vgl. Frage \ref{01_archimedes}) 
+  gibt es eine natürliche Zahl $m$ mit $m>\frac{1}{\varepsilon}$, woraus 
+  $\frac{1}{m} < \varepsilon = 0+\varepsilon $ folgt. Wegen $\frac{1}{m}\in M$ 
+  erfüllt die Null also auch die Bedingung (ii) aus der Antwort zur vorigen 
+  Frage, woraus $\inf M=0$ folgt.
+
+  Zum Nachweis von $\sup M=1$ genügt es zu bemerken, dass wegen $n \ge 1$ 
+  für alle natürlichen Zahlen $\frac{1}{n}\le 1$ gilt. 
+  Damit ist $1$ eine obere Schranke von $M$,  
+  wegen $1\in M$ gilt dann aber schon $1=\max M=\sup M$.
+  \AntEnd
+\end{antwort}
+
+%: Question 31
+\begin{frage}
+  Seien $A$ und $B$ nichtleere Teilmengen von $\RR$, und es gelte 
+  $a\le b$ für alle $a\in A$ und alle $b\in B$. 
+  Zeigen Sie das sogenannte \textbf{Riemann-Kriterium}: 
+  \index{Riemann-Kriterium}
+  Es gilt 
+  $\sup A=\inf B$ genau dann, wenn es zu jedem $\eps > 0$ ein $a\in A$ 
+  und ein $b\in B$ mit $b-a < \eps$ gibt. 
+\end{frage}
+
+\begin{antwort}
+  "`$\Ra$"':\quad Sei $\sup A = \inf B$ und $\eps>0$ gegeben. 
+  Dann gibt es Zahlen $a\in A$ und $b\in B$, {\sd} die folgenden 
+  beiden Ungleichungen erfüllt sind: 
+  \[
+  \inf B+\frac{\eps}{2} > b, \quad{\text{ und }}\quad 
+  \sup A-\frac{\eps}{2} = \inf B - \frac{\eps}{2} < a.
+  \]
+  Beide Ungleichungen zusammen ergeben $b-a<\eps$.
+
+  "`$\La$"':\quad Sei $\eps>0$ gegeben und es gelte $b-a<\eps$ 
+  für ein $a\in A$ und ein $b\in B$. Damit erhält man zunächst 
+  \begin{equation}
+    b-a<\eps \Ra
+    a-b > -\eps \Ra
+    \sup A-b > - \eps \Ra
+    \sup A+\eps > b. \tag{$\ast$}
+  \end{equation}
+  Andererseits ist $\sup A$ auch eine untere Schranke von $B$.
+  Denn andernfalls 
+  gäbe es ein $b'\in B$, das -- wie jedes Element aus $B$ -- eine 
+  obere Schranke von $A$ ist, für das aber $b'<\sup A$ gelten würde. 
+  Zusammen mit ($\ast$) folgt dann, dass $\sup A$ sogar die 
+  \textit{größte} untere Schranke 
+  von $B$ ist, also gleich dem Infimum von $B$.     
+  \AntEnd
+\end{antwort}
+
+
+%: Question 32
+\begin{frage}
+  \index{Quadratwurzel!Existenz}
+  Wie kann man mithilfe des Supremumsaxioms die Existenz von Quadratwurzeln 
+  nichtnegativer reeller Zahlen zeigen?
+\end{frage}
+
+\begin{antwort}
+  Es genügt, die Behauptung für reelle Zahlen $a \ge 1$ zu zeigen, 
+  der Fall $a<1$ folgt daraus durch Übergang zu $\frac{1}{a}$. Der  
+  Fall $a=0$ ist einzeln zu behandeln, aber offensichtlich 
+  trivial. 
+
+  Sei also $a\ge 1$ gegeben. Die Beweisstrategie 
+  besteht darin zu zeigen, dass das Supremum der Menge  
+  \[
+  M:=\{ x \in \RR\sets x^2<a \}
+  \] 
+  gerade die gesuchte Quadratwurzel von $a$ ist. 
+  Die Existenz von $s:=\sup M$ ist dabei 
+  aufgrund des Supremumsaxioms gewährleistet, 
+  denn $M$ ist nicht leer (wegen $0\in M$) und durch $a$ 
+  nach oben beschränkt. Um $s^2=a$ zu zeigen, führt man die Annahmen 
+  $s^2<a$ und $s^2>a$ nun jeweils gesondert zum Widerspruch. 
+
+  Im ersten Fall ist $a-s^2$ positiv, und man kann daher ein 
+  $n\in\NN$ so wählen, dass $n(a-s^2) > 2s+1$ gilt. Für dieses 
+  $n$ erhält man mit der Binomischen Formel die Ungleichung 
+  \[
+  \left( s+\frac{1}{n} \right)^2 = s^2 + \frac{2s}{n} + \frac{1}{n^2} 
+  < s^2 + \frac{2s+1}{n} < a.
+  \] 
+  Aus dieser folgt $(s+1/n) \in M$, was aber der Supremumseigenschaft von 
+  $s$ widerspricht.   
+
+  Wäre auf der anderen Seite 
+  $s^2>a$, dann könnte man ein $n\in\NN$ so wählen, dass 
+  $n(s^2-a)>2s$ ist, und damit erhielte man 
+  \[
+  \left( s-\frac{1}{n}\right)^2  > s^2 -\frac{2s}{n} >a,
+  \] 
+  womit $s-1/n$ eine obere Schranke von $M$ wäre, ebenfalls im 
+  Widerspruch zu $s=\sup M$. 
+
+  Daraus folgt insgesamt $s^2=(\sup M)^2=a$, die 
+  nichtnegative Zahl $a$ besitzt also 
+  eine Quadratwurzel in $\RR$. 
+  \AntEnd
+\end{antwort}
+
+
+%: Question 33
+\begin{frage} 
+  \index{irrationale Zahl}
+  Warum gibt es keine rationale Zahl $r$ mit $r^2=3$?
+\end{frage}
+
+\begin{antwort}
+  Angenommen, es existieren Zahlen $p,q \in \ZZ$, $q\not=0$  mit 
+  $\left(\frac{p}{q}\right)^2 =3$. 
+  Man kann davon ausgehen, dass die Zahlen $p$ und $q$ keinen gemeinsamen 
+  Teiler besitzen, andernfalls betrachte man den gekürzten Bruch, der ja 
+  dieselbe rationale Zahl darstellt. 
+
+  Die Identität $p^2=3q^2$ impliziert, 
+  dass $3$ ein Teiler von $p$ ist. Denn $3$ ist eine Primzahl und 
+  in der Primfaktorzerlegung von $p^2$ enthalten, folglich also auch in 
+  derjenigen 
+  von $p$. Es gibt daher eine natürliche Zahl $m$ mit $p=3m$. 
+
+  Dieses Ergebnis lässt sich nun wieder in die Gleichung 
+  $p^2=3q^2$ einsetzen und liefert $9m^2=3q^2$, also $3m^2=q^2$. 
+  Mit demselben Argument wie oben schließt man daraus, dass $q$ 
+  ebenfalls durch $3$ teilbar sein muss.
+  Die Zahlen $p$ und $q$ besitzen damit den gemeinsamen Teiler 
+  $3$, im Widerspruch zur Voraussetzung ihrer Teilerfremdheit. Die 
+  Quadratwurzel aus $3$ kann also keine rationale Zahl sein.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 34
+\begin{frage}\index{Intervall}
+  \nomenclature{$\open{a,b},[a,b],\ropen{a,b},\lopen{a,b}$}{Intervalle}
+  Welche Typen von Intervallen sind Ihnen bekannt?
+\end{frage}
+
+\begin{antwort}
+  Sei $a,b\in\RR$ mit $a<b$. Es gibt die folgenden vier Typen 
+  \slanted{beschränkter Intervalle}
+  \begin{align*}
+    [a,b] &:= \{ x\in\RR \sets a\le x\le b \} 
+    & &\text{abgeschlossenes Intervall}, \\
+    ] a,b [ &:= \{ x\in\RR \sets a < x < b \} 
+    & &\text{offenes Intervall}, \\
+    \ropen{ a,b } &:= \{ x\in\RR \sets a \le x < b \} 
+    & &\text{(nach rechts) halboffenes Intervall}, \\
+    \lopen{ a,b } &:= \{ x\in\RR \sets a < x \le b \} 
+    & &\text{(nach links) halboffenes Intervall} 
+  \end{align*}
+  und die folgenden fünf Typen 
+  \slanted{(einseitig) unbeschränkter Intervalle} 
+  \begin{align*}
+    \ropen{a,\infty} &:= \{ x\in\RR\sets x\ge a \}, 
+    &\open{a,\infty} &:= \{ x\in\RR\sets x > a \}, 
+    &                & 
+    \\
+    \lopen{\infty, a} &:= \{ x\in\RR\sets x\le a \}, 
+    &\open{\infty, a} &:= \{ x\in\RR\sets x < a \}, 
+    &\open{\infty, \infty} &:= \RR. 
+  \end{align*}
+  Als Spezialfälle \slanted{entarteter Intervalle} gibt es noch 
+  \[
+  [a,a] := \{ a \}, \qquad
+  \open{a,a} := \emptyset \EndTag
+  \]
+\end{antwort} 
+
+
+%: Question 35
+\begin{frage}
+  Welche Intervalltypen haben eine endliche Länge, und wie ist diese 
+  definiert?
+\end{frage}
+
+\begin{antwort}
+  Eine endliche Länge besitzen die beidseitig beschränkten  
+  Intervalle und nur diese. Die \textit{Länge} 
+  eines beschränkten Intervalls ist mit den Bezeichnungen aus der 
+  vorigen Antwort die Zahl $b-a$. 
+  \AntEnd
+\end{antwort}
+
+\section{Natürliche Zahlen und vollständige Induktion}
+
+Durch unsere Herangehensweise, die reellen Zahlen axiomatisch 
+einzuführen, sind wir nun in der Lage, die natürlichen Zahlen 
+als spezielle Teilmenge der reellen Zahlen zu definieren 
+(s.~Frage~\ref{q:nat-numbers-def}).
+
+%: Question 36
+\begin{frage}
+  Was versteht man unter einer \textbf{induktiven Teilmenge}
+  \index{induktive Teilmenge} 
+  (auch Zählmenge oder Nachfolgermenge genannt) von $\RR$?
+\end{frage}
+
+\begin{antwort}
+  Eine Menge $M \subset \RR$ heißt \slanted{induktiv}, wenn sie die folgenden 
+  beiden Eigenschaften besitzt
+  \begin{itemize}[2mm]
+  \item[\desc{i}] $1\in M, $
+  \item[\desc{ii}] $m \in M \Ra m+1\in M.$
+  \end{itemize}
+  Man beachte, dass nach dieser Definition die reellen Zahlen selbst 
+  eine induktive Teilmenge von $\RR$ sind, 
+  die Klasse der induktiven Teilmengen 
+  also nicht leer ist.
+  \AntEnd
+\end{antwort}
+
+
+
+%: Question 37
+\begin{frage}
+  \label{q:nat-numbers-def}
+  \index{naturliche Zahl@natürliche Zahlen}
+  \nomenclature{$\NN$}{Menge der natürlichen Zahlen: $\{1,2,3,\ldots\}$}
+  \nomenclature{$\NN_0$}{$=\NN \cup \{0\}$}
+  Wie ist die Menge $\NN$ der natürlichen Zahlen als Teilmenge von $\RR$ 
+  definiert?
+\end{frage}
+
+\begin{antwort}
+  Bei dieser Herangehensweise ({\dasheisst} im Unterschied zur axiomatischen 
+  Festlegung der natürlichen Zahlen etwa durch die Peano-Axiome)
+  definiert man die natürlichen Zahlen als 
+  den \textit{Durchschnitt aller induktiven Teilmengen von $\RR$}, man setzt 
+  also
+  \begin{equation}
+    \boxed{
+      \dis \NN := \bigcap_{\substack{M \subset \RR \\ \text{$M$ induktiv}}} M.
+    }
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+%: Question 38
+\begin{frage} 
+  Was besagt die Aussage 
+  "`$\NN$ ist die kleinste induktive Teilmenge von $\RR$"'?
+\end{frage}
+
+\begin{antwort}
+  Die Definition der natürlichen Zahlen als Durchschnitt aller 
+  induktiven Teilmengen beinhaltet zunächst, dass $\NN$ selbst eine induktive 
+  Teilmenge von $\RR$ ist. Denn aus dieser Definition folgt erstens
+  $1\in\NN$. Ferner gilt: Ist $a\in \NN$, dann ist $a$ nach Definition in 
+  jeder induktiven Teilmenge von $\RR$ enthalten. 
+  Damit ist aber auch $a+1$ in jeder dieser Mengen enthalten und 
+  folglich auch in $\NN$. 
+  Also ist $\NN$ eine induktive Teilmenge von $\RR$.
+
+  Aus der Definition folgt ferner, 
+  dass jede induktive Teilmenge von $\RR$ 
+  die natürlichen Zahlen als Teilmenge enthält. 
+  In diesem Sinne ("`$\NN$ ist in jeder induktiven Teilmenge der reellen 
+  Zahlen enthalten"') ist $\NN$ die \textit{kleinste} induktive Teilmenge von $\RR$ (bezüglich des Enthaltenseins).
+  \AntEnd
+\end{antwort}
+
+
+\begin{frage}%
+  \label{q:archimedische-eigenschaft}
+  Warum ist die Menge $\NN$ der natürlichen Zahlen nicht nach oben beschränkt?
+\end{frage}
+
+\begin{antwort}
+  Wäre $\NN$ nach oben beschränkt, so besäße $\NN$ nach 
+  dem Vollständigkeitsaxiom eine kleinste obere Schranke $s$, so dass 
+  $n\le s$ für jedes $n\in\NN$ gelten würde.
+  
+  Nach der $\eps$-Charakterisierung des Supremums (vgl. Frage~\ref{q:sup-eps-charak}) 
+  ist $s-1$ nicht mehr obere Schranke von $\NN$, es gibt also eine natürliche Zahl 
+  $n_0$ mit $n_0>s-1$. Hieraus folgt aber $n_0+1 > s$, im Widerspruch zur Annahme, dass 
+  $s$ obere Schranke von $\NN$ ist. Es kann also nicht $n\le s$ für alle $n\in\NN$ gelten.
+
+  \medskip
+  \noindent
+  Bemerkung: Diese Eigenschaft, die schon Eudoxos und Archimedes 
+  geläufig war, nennt man die 
+  \slanted{Archimedische Eigenschaft}\index{Archimedische Eigenschaft} 
+  der reellen Zahlen, vgl. dazu auch die Frage~\ref{01_archimedes}. \AntEnd
+  \end{antwort}
+
+%: Question 39
+\begin{frage}
+  Warum ist eine Teilmenge $W\subset \NN$, die die 
+  $1$ und mit jedem $w$ auch $w+1$ enthält,  
+  mit $\NN$ identisch?
+\end{frage}
+
+\begin{antwort}
+  $W$ ist nach Definition eine induktive Teilmenge von $\RR$. 
+  Damit gilt $
+  \NN\subset W$, 
+  denn $\NN$ ist die kleinste induktive Teilmenge. 
+  Zusammen mit $
+  W\subset\NN$ 
+  folgt daraus $W=\NN$.
+  \AntEnd
+\end{antwort}
+
+%: Question 40
+\begin{frage} 
+  \label{dazwischen}
+  Warum gibt es keine natürliche Zahl $n$ mit $1 < n< 2 $ ?
+\end{frage}
+
+\begin{antwort}
+  Man betrachte die Menge 
+  \[
+  M : = \{1\} \cup \{ x\in \RR; \, x \ge 2 \}.
+  \]
+  $M$ ist offensichtlich eine induktive Teilmenge von $\RR$. 
+  Folglich ist $\NN \subset M$. 
+  Da $M$ aber keine Zahl mit den gesuchten Eigenschaften 
+  enthält, kann es eine solche auch in $\NN$ nicht geben.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 41
+\begin{frage}\index{vollstaendige Induktion@vollst\"andige Induktion} 
+  Was besagt das \bold{Beweisprinzip der vollständigen Induktion}?
+\end{frage}
+
+\begin{antwort}
+  Zu jeder natürlichen Zahl $n$ sei eine Aussage $A(n)$ gegeben. 
+  Das Beweisprinzip der vollständigen Induktion besagt: 
+
+  \medskip\noindent
+  \satz{\noindent
+    Die Aussage $A(n)$ gilt für alle $n\in\NN$, sofern folgende 
+    beide Bedingungen erfüllt sind:
+    {\setlength{\labelsep}{4mm}
+      \begin{enumerate}
+      \item[\desc{i}] $A(1)$ ist wahr.\hspace*{55mm}(Induktionsanfang) 
+        \\[-3.5mm]
+      \item[\desc{ii}] Für jedes $n\in\NN$ gilt: aus $A(n)$ folgt $A(n+1)$.
+        \qquad(Induktionsschritt)
+      \end{enumerate}}}
+  \noindent
+  Die Bedingungen \desc{i} und \desc{ii} implizieren zusammen nämlich, 
+  dass $A(2)$ richtig ist. Daraus folgt mit \desc{ii}, dass 
+  auch $A(3)$ gilt, und hieraus folgt $A(4)$ usw. \slanted{ad infinitum}. 
+  \AntEnd
+\end{antwort}
+
+
+
+%: Question 42
+\begin{frage} 
+  Welche Varianten des Beweisprinzips der vollständigen Induktion 
+  sind Ihnen bekannt? 
+  Wie lassen sich diese auf das ursprüngliche Prinzip zurückführen?
+\end{frage}
+
+\begin{antwort}
+  Hier sind nur drei Beispiele für Varianten induktiver Beweise aufgeführt, 
+  die recht häufig anzutreffen sind. Die Liste ist jedoch 
+  keineswegs vollständig.   
+
+  \medskip\noindent
+  (i) Der Induktionsanfang liegt nicht bei $1$, sondern bei irgendeiner 
+  anderen konkreten natürlichen Zahl $N$. In diesem Fall wird die Aussage 
+  $A(n)$ nur für alle natürlichen Zahlen $n$ mit $n\ge N$ bewiesen. 
+  Offensichtlich ist das gleichbedeutend damit, die Aussagen $A(N-1+n)$ 
+  für \textit{alle} natürlichen Zahlen $n$ zu beweisen. 
+
+  \medskip\noindent
+  (ii) Im Induktionsschritt wird die Richtigkeit mehrerer Vorgängeraussagen 
+  vorausgesetzt, {\zB} "`aus $A(n)$ und $A(n+1)$ folgt $A(n+2)$"'. 
+  In diesen Fällen muss die Aussage am Anfang auch für die zwei 
+  Zahlen $1$ und $2$ konkret bewiesen werden. Die Übereinstimmung mit dem
+  Induktionsprinzip ergibt sich aus der Tatsache, 
+  dass das Vorgehen in diesen Fällen äquivalent dazu ist, die Aussage 
+  $A'(n)=A(n) \wedge A(n+1)$ mit einem "`normalen"' Induktionsargument 
+  zu beweisen.
+  
+  \medskip\noindent
+  (iii) Im Induktionsschritt wird die Richtigkeit der Aussage $A(n+1)$ 
+  aus der Richtigkeit aller Aussagen $A(m)$ mit $m\le n$ hergeleitet. 
+  Zusammen mit der Richtigkeit von $A(1)$ beinhaltet das dann 
+  aber auch die Beziehung $A(n) \Ra A(n+1)$. 
+  Denn andernfalls gäbe es (nach dem Wohlordnungsprinzip, vgl. Frage 
+  \ref{wohlordnungssatz}) 
+  eine \textit{kleinste} natürliche Zahl $n'>1$, {\sd} $A(n') \Ra A(n'+1)$ 
+  \textit{nicht} gilt. Da die 
+  Folgerung für alle kleineren Zahlen aber zutrifft, erlaubt das 
+  Induktionsprinzip die Herleitung der Aussagen 
+  $A(1),A(2),\ldots,A(n')$, und 
+  aus diesen folgt aufgrund der Voraussetzung $A(n'+1)$. Also trifft die 
+  Implikation $A(n') \Ra A(n'+1)$ doch zu, und die beiden Induktionsvarianten 
+  sind äquivalent.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 43
+\begin{frage}
+  Für welche $n\in\NN$ gilt
+  \[
+  2^n > n^2\,? 
+  \]
+\end{frage}
+
+\begin{antwort}
+  Die Ungleichung gilt nicht für $n=2, 3, 4$; für $n=5$ ist sie wiederum richtig. Wir zeigen, dass sie für alle natürlichen Zahlen $n\ge 5$ gilt. 
+  {\setlength{\labelsep}{4mm}
+    \begin{enumerate}
+    \item[\desc{i}] $32=2^5 > 25 = 5^2$ (Induktionsanfang) \\[-3.5mm]
+    \item[\desc{ii}] Sei $n\ge 5$ und es gelte $2^n > n^2$. 
+      Wegen $n^2\ge n\cdot 3> n\left(2+\frac 1n\right) = 2n+1$ folgt
+      \[
+      2^{n+1} = 2\cdot 2^n > 2\cdot n^2 = n^2+n^2 > n^2+2n+1 = (n+1)^2.
+      \] 
+    \end{enumerate}}
+  Damit ist $2^n > n^2$ für alle $n \ge 5$ gezeigt.
+  \AntEnd
+\end{antwort}
+
+%: Question 44
+\begin{frage}\index{Pascalzahlen}\index{Pascalsches@Pascal'sches Dreieck}
+  \index{Pascal@\textsc{Pascal}, Blaise (1623-1662)}
+  Wie sind die Zahlen $C_k^n$ des \bold{Pascal\sch en Dreiecks} definiert? 
+\end{frage}
+
+\begin{antwort}[]
+  \Ant 
+  Die Pascalzahlen sind rekursiv definiert durch  
+  $C_0^0=C_0^n=C_n^n=1$ für alle $n\in\NN$ und 
+  \[
+  C_k^n = C_{k-1}^{n-1} + C_k^{n-1}, \qquad{k\le n}.
+  \]
+  \picskip{5}\noindent
+  Die Zahlen sind die Einträge des  
+  \textit{Pascal\sch en Dreiecks}, 
+  dessen Ränder alle aus Einsen bestehen 
+  und dessen übrige Zahlen in der 
+  $(n+1)$-ten Zeile die Summe der beiden schräg darüberstehenden 
+  Zahlen der $n$-ten Zeile sind, \sieheAbbildung\ref{fig:01_pascal}. 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/01_pascal}
+    \captionof{figure}{Ein Ausschnitt des Pascal'schen Dreiecks 
+      für $n\le 6$. In den Reihen stehen die Zahlen $C_k^n$.}
+    \label{fig:01_pascal}
+  \end{center}
+\end{antwort}
+
+
+%: Question 45
+\begin{frage}
+  Warum gilt die Beziehung $C_k^n=C_{n-k}^n$?
+\end{frage}
+
+\begin{antwort}
+  Die Richtigkeit der Formel erkennt man anschaulich 
+  an der Symmetrie des Pascal'schen Dreiecks, formal beweisen  
+  lässt sie sich mittels vollständiger Induktion über $n$. 
+  Für $n=1$ ist die Formel wegen $C_1^1=C_0^1=1$ richtig. Ist sie 
+  für $n\in\NN$ bereits gezeigt, so folgt im Induktionsschritt
+  \[
+  C_k^{n+1} =
+  C_{k-1}^n + C_k^n = 
+  C_{n-(k-1)}^n+C_{n-k}^n =
+  C^{n+1}_{n-k+1} =
+  C^{n+1}_{(n+1)-k},
+  \]
+  und das ist die gesuchte Identität für $n+1$.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 46
+\begin{frage}\index{Binomialkoeffizient}
+  \nomenclature{$\binom{n}{k}$}{Binomialkoeffizient}
+  Wie sind die \bold{Binomialkoeffizienten} $\binom{n}{k}$ definiert? 
+\end{frage}
+
+\begin{antwort}
+  Man setzt $\binom{n}{0}:=1$ und für $k,n\in\NN$, $k\le n$ 
+  durch 
+  \[
+  \boxed{
+    \binom{n}{k} := \frac{n (n-1)(n-2)\cdots(n-k+1)}
+    { 1\cdot 2\cdots k }.
+  }
+  \EndTag
+  \]
+\end{antwort}
+
+
+
+
+
+
+%: Question 47
+\begin{frage}
+  Wieso sind die Binomialkoeffizienten $\binom{n}{k}$ 
+  gleich den Pascalzahlen $C_k^n$?
+\end{frage}
+
+\begin{antwort}
+  Die Übereinstimmung ergibt sich durch  vollständige 
+  Induktion über $k$. 
+  Für $k=0$ ist die Formel $\binom{n}{k}=C^n_k$ aufgrund der 
+  Definition richtig, und für $k>0$ erhält man 
+  \begin{align*}
+    \binom{n}{k}+\binom{n}{k+1} &=
+    \frac{n(n-1)\cdots(n-k+1)}{k!}+
+    \frac{n(n-1)\cdots(n-k)}{k!\cdot (k+1)} \\
+    &=
+    \frac{n(n-1)\cdots(n-k+1) \cdot \big( (k+1) + (n-k) \big)}{(k+1)!} \\
+    &= 
+    \frac{(n+1)n\cdots (n+1-k)}{(k+1)!} = 
+    \binom{n+1}{k+1}.
+  \end{align*}
+  Die Binomialkoeffizienten erfüllen also dieselbe Rekursionsgleichung wie die 
+  Pascalzahlen. Daraus folgt zusammen mit $\binom{n}{0}=C^n_0$ die Behauptung.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+
+%: Question 48
+\begin{frage}\label{01_permutationen}\index{Permutation}\index{Fakultät}
+  Warum gibt es für eine endliche Menge mit $n$ Elementen genau $n!$ 
+  bijektive Selbstabbildungen (Permutationen)?
+\end{frage}
+
+\begin{antwort}
+  Der Zusammenhang lässt sich mit vollständiger Induktion 
+  über die Mächtigkeit der Menge begründen.  
+  Für Mengen mit nur einem Element gibt es offensichtlich nur eine ($=1!$) 
+  bijektive Selbstabbildung, die Behauptung ist in diesem Fall also richtig. 
+
+  Sei die Behauptung für $n\in \NN$ bereits gezeigt und sei 
+  \[
+  M := \{ m_1, \ldots, m_n, m_{n+1} \}
+  \] 
+  eine Menge mit $n+1$ Elementen. 
+  Diejenigen Selbstabbildungen von $M$, die das Element $m_1$ 
+  auf ein bestimmtes $m_k$ mit $k=1,\ldots,n+1$ abbilden, bilden 
+  zusammen eine Menge $\calli{B}_k$ von Bijektionen $M\to M$. 
+
+  Jede der $(k+1)$ Mengen $\calli{B}_k$ enthält genauso viele Elemente, 
+  wie es Bijektionen 
+  $M \mengeminus \{m_1\} \leftrightarrow M \mengeminus \{ m_k \}$ gibt,  
+  und nach der Induktionsvoraussetzung sind das genau $n!$ Stück. 
+  Da die Mengen $\calli{B}_k$ paarweise disjunkt sind, folgt aus
+  \[
+  \calli{B}:=\{ \text{ Bijektionen $ M\to M$ } \} = 
+  \calli{B}_1 \cup \ldots \cup \calli{B}_{n+1}
+  \]  
+  die behauptete Formel $|\calli{B}|=(n+1)\cdot n!=(n+1)!$.
+  \nomenclature{$|\mathfrak{M}|$}{M\"achtigkeit der Menge $\mathfrak{M}$}
+  \AntEnd
+\end{antwort}
+
+%: Question 49
+\begin{frage}\index{Binomialkoeffizient}
+  Welche kombinatorische Bedeutung haben die Zahlen $\binom{n}{k}$?
+\end{frage}
+
+\begin{antwort}
+  Die Zahl $\binom{n}{k}$ entspricht der Anzahl der Möglichkeiten, aus einer 
+  Menge mit $n$ Elementen eine Teilmenge mit $k$ Elementen auszuwählen, oder 
+  anders gesagt:    
+  \textit{$\binom{n}{k}$ ist die Anzahl der $k$-elementigen 
+    Teilmengen einer $n$-elementigen Menge.}
+
+  Das lässt sich folgendermaßen begründen. 
+  Bei Auswahl einer $k$-elementigen Teilmenge einer 
+  $n$-elementigen Menge lässt sich das erste Element auf $n$ Arten bestimmen, 
+  das zweite auf $(n-1)$ Arten usw. bis zum $k$-ten Element, für 
+  das dann noch $(n-k+1)$ Möglichkeiten übrig bleiben. Das führt auf  
+  $n(n-1) \cdots (n-k+1)$ verschiedene Serien aus $k$ Elementen, 
+  von denen jedoch jeweils $k!$ (vgl. die 
+  Antwort zur nächsten Aufgabe) dieselbe Menge bestimmen. Somit ergibt sich als 
+  Anzahl der $k$-elementigen Teilmengen 
+  \begin{equation}
+    \frac{ n(n-1)\cdots (n-k+1)}{k!} = \binom{n}{k}. \EndTag
+  \end{equation}
+\end{antwort}
+
+
+%: Question 50
+\begin{frage}
+  Warum ist die Anzahl der injektiven Abbildungen der Menge 
+  $A:=\{ 1,2,\ldots,k\}$ 
+  in die Menge $B:=\{ 1,2,\ldots,n \}$ 
+  gegeben durch 
+  \[
+  P(n,k):=n(n-1)\cdots (n-k+1) = k! \binom{n}{k}\,\text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Es gibt genau $\binom{n}{k}$ Teilmengen $B_k$ von $B$ mit 
+  $k$ Elementen. 
+  Jede injektive Abbildung $A \to B$ ist eine Bijektion 
+  zwischen $A$ und einer dieser Teilmengen $B_k$. Davon gibt es nach der 
+  Antwort zur vorigen Frage für jedes gegebene $B_k$ genau $k!$ Stück.  
+  Insgesamt gibt es also $P(n,k)=k! \cdot \binom{n}{k}$ injektive 
+  Abbildungen $A\to B$.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 51
+\begin{frage}
+  Warum ist $P(n,k)$ die Anzahl der geordneten Stichproben aus der  
+  Menge $\{ 1, \ldots, n \}$ vom Umfang $k$ ohne Wiederholung?
+\end{frage}
+
+\begin{antwort}
+  Die $k$ Elemente jeder Stichprobe bilden zusammen eine 
+  $k$-elementige Teilmenge von $\{ 1,\ldots, n\}$. Es gibt 
+  $\binom{n}{k}$ solcher Teilmengen, in der allerdings die Reihenfolge der 
+  Elemente nicht mitberücksichtigt ist. 
+  Die $k$-Elemente jeder Teilmenge lassen sich auf $k!$ Arten anordnen. 
+  Daraus folgt die Behauptung.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 52
+\begin{frage}\index{Stichprobe!geordnete}
+  Warum ist die Anzahl der geordneten Stichproben aus der Menge 
+  $\{ 1,\ldots, n \} $ vom Umfang $k$ mit Wiederholungen durch 
+  $W(n,k)=n^k$ gegeben?
+\end{frage}
+
+\begin{antwort}
+  Für das erste Element der Stichprobe gibt es $n$ Kandidaten,  
+  ebenso für das zweite, das dritte usw. bis zum $k$-ten Element. 
+  Die Anzahl der möglichen Stichproben beträgt daher
+  \[
+  \underbrace{ n\cdot n \cdots n }_{\text{$k$ Faktoren}} = n^k.\EndTag
+  \]
+\end{antwort}
+
+
+
+
+
+
+%: Question 53
+\begin{frage}\index{Stichprobe!ungeordnete}
+  Warum ist die Anzahl der ungeordneten Stichproben aus der Menge 
+  $\{1,\ldots,n\}$ vom Umfang $k$ gegeben durch den Binomialkoeffizienten 
+  $\binom{n}{k}$?
+\end{frage}
+
+\begin{antwort}
+  Ohne Wiederholung und ohne Berücksichtigung der Reihenfolge ist die Bestimmung 
+  einer Stichprobe gleichwertig damit, eine $k$-elementige Teilmenge aus 
+  $\{ 1,\ldots, n \}$ auszuwählen. 
+  Dafür gibt es nach Frage 40 genau $\binom{n}{k}$ Möglichkeiten.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 54
+\begin{frage}
+  Wie kann man die Formel $\sum_{k=0}^n \binom{n}{k} = 2^n$
+  als Anzahlformel interpretieren?
+\end{frage}
+
+\begin{antwort}
+  Die Summe auf der linken Seite ist die Anzahl aller Teilmengen einer 
+  Menge mit $n$ Elementen (also die Anzahl aller Teilmengen mit null Elementen 
+  \textit{plus} die Anzahl aller 
+  Teilmengen mit einem Element \textit{plus} ... usw.). 
+
+  Für jedes Element einer $n$-elementigen Menge $M$ und jede Teilmenge 
+  von $M'\subset M$ gibt es genau zwei Möglichkeiten: entweder $m\in M'$ oder 
+  $m\not\in M'$. Daraus erklärt sich der Wert $2^n$ als Anzahl der 
+  Teilmengen von $M$.
+  \AntEnd  
+\end{antwort}
+
+
+
+
+
+
+%: Question 55
+\begin{frage}
+  \label{wohlordnungssatz}\index{Wohlordnungssatz für $\NN$}
+  Was besagt der \textbf{Wohlordnungssatz} für die natürlichen Zahlen? 
+\end{frage}
+
+\begin{antwort}
+  Der Wohlordnungssatz besagt: \textit{Jede nichtleere Teilmenge 
+    der natürlichen 
+    Zahlen besitzt ein kleinstes Element.}
+
+  Der Wohlordnungssatz kann wie das Beweisprinzip der vollständigen Induktion 
+  zum Nachweis dafür benutzt werden, dass eine Aussage $A$ auf 
+  alle natürlichen Zahlen zutrifft. Dazu genügt es, Folgendes 
+  zu zeigen
+  \slanted{\setlength{\labelsep}{4mm}
+    \begin{enumerate}
+    \item[\desc{i}] $A(1)$ ist richtig.\\[-3.5mm]  
+    \item[\desc{ii}] Für alle $n\in \NN$ gilt: 
+      aus $\neg A(n)$ folgt $\neg A(m)$ für eine 
+      natürliche Zahl $m<n$.
+    \end{enumerate}}
+
+  Gilt nämlich \desc{i}, dann folgt mit dem Wohlordnungsprinzip 
+  aus der Annahme, dass eine Aussage $A$ \textit{nicht} auf 
+  alle natürlichen Zahlen zutrifft, dass es eine 
+  kleinste natürliche Zahl $n'$ 
+  geben muss, {\sd} $A(n')$ \textit{falsch} ist. Mit 
+  \desc{ii} folgt daraus aber der Widerspruch, dass 
+  es noch eine kleinere Zahl als $n$ gibt, für die die Aussage falsch ist. 
+  Folglich gilt $A(n)$ für alle $n\in\NN$.
+\end{antwort} 
+
+
+
+
+
+
+%: Question 56
+\begin{frage}
+  Können Sie zeigen, dass aus dem Wohlordnungssatz die Gültigkeit des 
+  Beweisprinzips vollständiger Induktion folgt?
+\end{frage}
+
+\begin{antwort}
+  Sei die Eigenschaft 
+  \desc{i} aus der vorigen Frage gegeben und gelte außerdem 
+  {\setlength{\labelsep}{5mm}
+    \begin{enumerate}
+    \item[\desc{ii'}] $A(n)\Ra A(n+1)$.   
+    \end{enumerate}}
+  Es gilt zu zeigen, dass zusammen 
+  mit dem Wohlordnungsprinzip daraus die Richtigkeit von $A$ für alle 
+  natürlichen Zahlen folgt. 
+  Angenommen, das trifft nicht zu. Dann gibt es nach dem 
+  Wohlordnungsprinzip eine 
+  kleinste natürliche Zahl $n'$, 
+  {\sd} $A(n')$ falsch ist. Dann ist aber $A(n'-1)$ 
+  richtig und wegen \desc{ii'} auch $A(n')$, im Widerspruch 
+  zur Annahme. \AntEnd
+\end{antwort} 
+
+
+
+
+
+
+%: Question 57
+\begin{frage}
+  Können Sie umgekehrt den Wohlordnungssatz mittels  
+  vollständiger Induktion herleiten?
+\end{frage}
+
+\begin{antwort}
+  Angenommen, die nichtleere Menge $M\subset \NN$ 
+  besitzt kein kleinstes Element. Dann 
+  ist $1\not\in M$, denn andernfalls wäre $1$ das kleinste Element. 
+  Mit $n$ kann aber auch $n+1$ nicht in der Menge enthalten sein, denn 
+  andernfalls gäbe es ein Element $m\in M$ mit der Eigenschaft $n<m<n+1$, 
+  die aber keine natürliche Zahl besitzt (vgl. Frage \ref{dazwischen}). 
+  Aus dem Induktionsprinzip folgt daraus $n \not\in M$ für alle $n\in \NN$, 
+  also $M=\emptyset$, im Widerspruch zur Voraussetzung, dass $M$ nicht leer ist.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 58
+\begin{frage}
+  Kennen Sie eine Anwendung des Wohlordnungssatzes?
+\end{frage}
+
+\begin{antwort}
+  Ein typisches Beispiel 
+  wäre ein Beweis der Existenzbehauptung im 
+  Fundamentalsatz der Arithmetik:  
+  \textit{Jede natürliche Zahl $>1$ lässt sich 
+    in Primfaktoren zerlegen.} (Die Eindeutigkeit bekommt man allerdings 
+  nicht so leicht.) 
+
+  Die Aussage ist sicherlich richtig für $n=2$. 
+  Angenommen, $n'\in \NN$ sei die kleinste Zahl, für die das nicht gilt. 
+  Dann kann $n'$ keine Primzahl sein, also gibt es Zahlen $m,n \in \NN$ mit 
+  $m,n < n'$ und $mn=n'$. Zumindest eine der 
+  Zahlen $n$ oder $m$ kann sich dann ebenfalls nicht in 
+  Primfaktoren zerlegen lassen -- Widerspruch. 
+  \AntEnd
+\end{antwort}
+
+%: Question 59
+\begin{frage}\label{01_archimedes}
+  \index{archimedisch angeordnet}\index{Archimedische Eigenschaft}
+  \index{Archimedes@\textsc{Archimedes} von Syrakus (ca. 287-212 v.Chr.)}
+  Was bedeutet die Aussage: "`Der Körper der reellen Zahlen ist 
+  \bold{archimedisch angeordnet}"'?
+\end{frage}
+
+\begin{antwort}
+  Das heißt, dass in $\RR$ die  
+  \slanted{Archimedische Eigenschaft} gilt:
+
+  \medskip\noindent 
+  \slanted{Zu je zwei Zahlen $x,y$ mit $x>0$ existiert eine 
+    natürliche Zahl $n$, {\sd} $nx>y$}. 
+
+  \medskip
+  \noindent
+  Denn wäre $nx\le y$ für alle $n\in\NN$, dann wäre auch $n\le\frac yx$ für alle 
+  $n\in\NN$, d.\,h. $\frac yx$ wäre obere Schranke für $\NN$, im Widerspruch zur 
+  Antwort auf Frage~\ref{q:archimedische-eigenschaft}.
+
+  \medskip
+  \noindent
+  Die Unbeschränktheit von $\NN$ nach oben und die in der Antwort zu Frage \ref{01_archimedes} 
+  genannte Eigenschaft sind äquivalent.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 60
+\begin{frage}
+  Warum gibt es zu jeder reellen Zahl $y$ eine natürliche Zahl $n$ mit $n>y$?
+\end{frage}
+
+\begin{antwort}
+  Die Aussage ist ein Spezialfall der Archimedischen Eigenschaft  
+  (Frage~\ref{q:archimedische-eigenschaft}) für $x=1$.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 61
+\begin{frage}
+  Kennen Sie ein Beispiel für einen Körper, 
+  der zwar angeordnet, aber nicht 
+  archimedisch angeordnet ist?
+\end{frage}
+
+\begin{antwort}
+  Der Körper der rationalen Funktionen ist mit der in Frage 
+  \ref{rationalefunktionen} definierten 
+  Ordnung kein archimedisch angeordneter Körper. Zum Beispiel sind in diesem 
+  Körper alle natürlichen Zahlen (aufgefasst als konstante Funktionen) durch $x$ 
+  nach oben beschränkt: Es gilt $n<x$ für alle $n\in\NN$.
+  \AntEnd
+\end{antwort}
+
+
+\section{Die ganzen und rationalen Zahlen}
+
+
+
+
+
+
+%: Question 62
+\begin{frage}\index{Z@$\ZZ$}\index{ganze Zahlen}
+  \nomenclature{$\ZZ$}{Menge der ganzen Zahlen}
+  Wie ist die Menge $\ZZ$ der \bold{ganzen Zahlen} 
+  als Teilmenge von $\RR$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Ausgehend von $\RR$ definiert man die Menge der ganzen Zahlen einfach 
+  durch $\ZZ := \NN \cup \{ 0 \} \cup \{ -n; \; n\in\NN \}$. Damit 
+  ist $\ZZ$ der kleinste \textit{Unterring} von $\RR$.  
+
+  Man beachte, dass wir die Menge $\RR$ als gegeben voraussetzen und damit auch 
+  die ganzen Zahlen mit ihrer Ringstruktur automatisch "`schon haben"'. 
+  Baut man im Unterschied dazu das Zahlsystem ausgehend von den natürlichen 
+  Zahlen auf, dann muss man die ganzen Zahlen aus den natürlichen 
+  durch algebraische Erweiterungsprozesse erst konstruieren, siehe dazu \zB\ 
+  \citep{Kramer}.
+  \AntEnd
+\end{antwort} 
+
+
+
+
+
+
+%: Question 63
+\begin{frage}\index{Q@$\QQ$}
+  \nomenclature{$\QQ$}{Menge der rationalen Zahlen}
+  Wie ist die Menge $\QQ$ der \bold{rationalen Zahlen} 
+  als Teilmenge von $\RR$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Der Körper der rationalen Zahlen 
+  ist der \textit{Quotientenkörper}\index{Quotientenkörper} der 
+  ganzen Zahlen, {\dasheisst}  
+  $\QQ := \{ ab^{-1}; \; a,b \in \ZZ, \, b\not=0 \}$. 
+  Die Regeln der Bruchrechnung in $\RR$ implizieren dann bereits, dass zwei 
+  "`Brüche"' $ab^{-1}$ und $cd^{-1}$ ($a,b,c,d \in \ZZ,\, b,d\not=0$)
+  dieselbe rationale Zahl darstellen, 
+  wenn $ad=bc$ gilt. 
+  Mit dieser Definition ist $\QQ$ der kleinste 
+  \textit{Unterkörper} der reellen Zahlen.   
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 64
+\begin{frage}
+  Welche \bold{algebraische Struktur} besitzen $\ZZ$ bzw. $\QQ$?
+\end{frage}
+
+\begin{antwort}
+  Die ganzen Zahlen bilden einen \textit{kommutativen Ring mit Eins}, 
+  {\dasheisst} eine additive Abel'sche 
+  Gruppe, auf der eine Multiplikation definiert ist, {\sd} die Kommutativ-, 
+  Assoziativ- und Distributivgesetze gelten, 
+  und die das Einselement bezüglich der Multiplikation enthält. 
+  Die rationalen Zahlen $\QQ$ bilden einen Körper.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 65
+\begin{frage}
+  Was besagt die Aussage "`$\QQ$ ist dicht in $\RR$"'?
+\end{frage}
+
+\begin{antwort}
+  Die Aussage bedeutet, dass in jedem Intervall 
+  $\open{x-\eps,x+\eps}=U_\eps(x)$ 
+  mit $x,\eps \in \RR$ und $\eps >0$ 
+  der reellen Zahlen eine rationale Zahl liegt: $U_\eps(x) \cap \QQ \not= 
+  \emptyset$.  
+
+  Man kann das beweisen, indem man für reelle Zahlen $y>1$ 
+  zunächst zeigt, dass das Intervall $\open{y-1,y+1}$ 
+  mindestens eine natürliche Zahl enthält, 
+  etwa die Zahl $\min \{ n\in\NN;\; n>y-1 \}$. 
+
+  Ausgehend von einem gegebenen Intervall $\open{x-\eps,x+\eps}$ mit $x>1$ 
+  wähle man dann $n$ so groß, dass $1/n < \eps$ ist, und bestimme 
+  die natürliche Zahl $m$, für die $nx-1 < m \le nx+1$ gilt. Dann liegt 
+  $\frac{m}{n}$ im Intervall $\open{x-\eps,x+\eps}$.
+  
+  Aus diesem Ergebnis für reelle Zahlen $x>1$ folgt nun leicht 
+  die allgemeine Behauptung.   
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 66
+\begin{frage}\index{irrationale Zahl}
+  Wieso ist auch die Menge $\RR\mengeminus\QQ$ der irrationalen Zahlen 
+  dicht in $\RR$?
+\end{frage}
+
+\begin{antwort}
+  Sei $\open{x-\eps,x+\eps}\subset \RR$ ein reelles Intervall. Um zu zeigen, dass 
+  darin eine irrationale Zahl liegt, unterscheiden wir folgende 
+  Fälle:
+
+  \desc{1} 
+  $x\in\RR \setminus \QQ$. In diesem Fall wähle man ein $n\in \NN$ mit 
+  $n>\frac{1}{\eps}$. Die Zahl $x+\frac{1}{n}$ ist dann irrational 
+  (denn aus $x+\frac{1}{n} = \frac{p}{q}$ 
+  mit ganzen Zahlen $p$ und $q$ würde $x=\frac{p}{q}-\frac{1}{n}\in\QQ$ folgen) 
+  und im Intervall $\open{x,x+\eps}$ enthalten. 
+
+  \desc{2} $x\in\QQ$. In diesem Fall wähle man eine bestimmte 
+  irrationale Zahl $\varrho$ (etwa $\varrho=\sqrt{3}$, die wir schon kennen) 
+  und $n$ so groß, dass $\varrho < n\eps$ gilt. 
+  Dann ist $x + \frac{\varrho}{n} \in \open{x-\eps,x+\eps}$, und mit demselben 
+  Argument wie in (1) zeigt man, dass $x+\frac{\varrho}{n}$ irrational ist.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 67
+\begin{frage}\label{01_gkl}
+  \index{Gauss-Klammer@Gauß-Klammer}
+  \nomenclature{$[ \,\; ]$}{Gauß-Klammer}
+  Wie ist $[ x ]$ 
+  (Gauß-Klammer von $x$) für $x\in \RR$ definiert? (Speziell in der 
+  Computerliteratur verwendet man hierfür oft die Bezeichnung 
+  "`$\mathrm{floor}(x)$"' oder "`$\lfloor x \rfloor$"'.)
+\end{frage}
+
+\begin{antwort}
+  Der Wert von $[x]$ 
+  ist definiert als die eindeutig bestimmte ganze Zahl $k$ 
+  mit $k\le x <k+1$, also
+  \begin{equation}
+    [ x ] := \max \big\{ k\in\ZZ;\; k\le x \big\}. \notag
+  \end{equation}
+  \noindent
+  Beispiel: Für die Kreiszahl $\pi=3,14159265\ldots$ ist 
+  $[ \pi ]=3$ und $[ -\pi ]=-4$. \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 68
+\begin{frage}\index{Division mit Rest}
+  Was besagt der Satz über die \bold{Division mit Rest} in $\ZZ$?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt, dass zu je zwei ganzen Zahlen $a,b \in \ZZ$ 
+  mit $b>0$ 
+  eine Zahl $q\in \ZZ$ sowie ein Rest 
+  $r \in \{ 0, 1, \ldots ,b-1 \}$ 
+  existieren, {\sd} gilt 
+  \[
+  a=bq+r.  
+  \]
+  Dabei sind $q$ und $r$ eindeutig bestimmt. 
+  Man kann das beweisen, indem man für $q$ den ganzzahligen Anteil 
+  $\lfloor a/b \rfloor$ von $a/b$ nimmt und dann zeigt, 
+  dass mit $r:=a-bq$ notwendig $0 \le r < b$ gilt.
+
+  Beispiel: $16=7\cdot 2 + 2$.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 69
+\begin{frage}\index{Euklidischer Algorithmus}
+  \index{Euklid@\textsc{Euklid} (ca. 235-265 v.\,Chr.)}
+  Was besagt der Satz über den 
+  \bold{Euklidischen Algorithmus} in $\ZZ$?
+\end{frage}  
+
+\begin{antwort}
+  Zu zwei Zahlen $a,b\in\ZZ$ mit $b>0$ 
+  lässt sich durch sukzessive 
+  Division mit Rest  
+  auf eindeutige Weise folgendes Schema konstruieren
+  \[
+  \begin{array}{rclp{12mm}rcl}
+    a &=& bq_1+r_1,       & &    0 &\le& r_1 < b\\[-1mm]
+    b &=& r_1 q_2 + r_2,  & &    0 &\le& r_2 < r_1 \\[-1mm]
+    &\vdots &           & &      &\vdots&        \\[-1mm]
+    r_{n-2} &=& r_{n-1}q_n+ r_n, & &  0&\le& r_n < r_{n-1} \\[-1mm]
+    r_{n-1} &=& r_n q_{n+1} + 0. & &   &   &             
+  \end{array}
+  \]
+  Die Folge $r_1, r_2, \ldots$ der Reste ist streng monoton 
+  fallend, und jeder Term ist nichtnegativ, folglich muss sie 
+  an einer Stelle abbrechen. 
+
+  Die Methode der Konstruktion dieser Folge heißt 
+  \textit{Euklidischer Algorithmus}, die
+  Aussage des zugehörigen Satzes lautet, dass der  
+  letzte nicht verschwindende Term $r_n$ der Folge 
+  der \textit{größte gemeinsame Teiler} der Zahlen 
+  $a$ und $b$ ist. Dabei heißt $d\in\ZZ$ größter gemeinsamer 
+  Teiler von $a$ und $b$, wenn
+  {\setlength{\labelsep}{4mm}
+    \begin{enumerate}\index{groster gemeinsamer@größter gemeinsamer Teiler}
+    \item[\desc{i}] $d$ ein Teiler von $a$ und ein Teiler von $b$ ist und\\[-3.5mm]
+    \item[\desc{ii}] für alle $e\in\ZZ$ gilt: aus $e \,|\, a$ und $e\,|\,b$ 
+      folgt $e\,|\,d$.
+    \end{enumerate}}
+  Der in dem Satz ausgesprochene 
+  Zusammenhang ergibt sich im Wesentlichen aus der einfachen 
+  Beobachtung, dass aus einer Beziehung der Form 
+  \[
+  a = bq+r
+  \]
+  stets folgt, dass ein gemeinsamer Teiler von $r$ und $b$ auch 
+  ein Teiler von $a$ sein muss. 
+  Liest man das Schema von unten nach oben, so erkennt man damit,  
+  dass tatsächlich $r_n=\ggT(a,b)$ gilt.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 70
+\begin{frage}\index{Potenz!natürliche}
+  Wie definiert man rekursiv für $n\in\NN_0 := N\cup \{ 0 \}$ 
+  die Potenzen $x^n$ einer reellen Zahl $x$? 
+  Wie definiert man rekursiv die Summe bzw. das Produkt von $n$ reellen 
+  Zahlen $x_1,\ldots, x_n$?
+\end{frage}
+
+\begin{antwort}
+  Die Potenzen sind durch 
+  $x^0 := 1$ und die Rekursionsvorschrift
+  $x^{n} := x^{n-1} \cdot x$ definiert.
+
+  Ausgehend von Summe und Produkt zweier reeller Zahlen 
+  definiert man rekursiv die Summe und das Produkt endlich vieler 
+  reeller Zahlen durch 
+  \[
+  x_1 \ast \ldots \ast x_{n-1} \ast x_n = (x_1 \ast \ldots \ast x_{n-1}) 
+  \ast x_n. 
+  \]
+  Dabei ist "`$\ast$"' entweder als Additions- oder Multiplikationszeichen 
+  zu lesen.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 71
+\begin{frage}\index{Potenz!ganzzahlige}
+  Wie verallgemeinert man die Definition von $x^n$ für negative 
+  Potenzen, falls $x\not=0$ gilt?
+\end{frage}
+
+\begin{antwort}
+  Man setzt $x^{-n} := (x^{-1})^n.$ 
+  Diese Definition ist die einzige Möglichkeit, die 
+  für natürliche Zahlen $n,m$ gültige Gleichung  
+  $x^{n+m}=x^n\cdot x^m$ zusammen mit $x^0=1$ auf die ganzen 
+  Zahlen fortzusetzen.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 72
+\begin{frage}\index{Potenz!Rechenregeln}
+  Welche Rechenregeln für Potenzen sind Ihnen geläufig?
+\end{frage}
+
+\begin{antwort}
+  Wesentlich sind die folgenden drei Regeln. 
+  \[
+  x^n \cdot y^n = (xy)^n, \quad x^{n+m} =x^n\cdot x^m, 
+  \quad (x^n)^m= x^{nm} = (x^m)^n, 
+  \qquad (x,y\in\RR,\, m,n \in \ZZ).
+  \]
+  Falls negative Potenzen auftreten, ist $x\not=0$ bzw. $y\not=0$ 
+  vorauszusetzen.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 73
+\begin{frage}
+  \label{01_reks}\index{Rekursionssatz, allgemeiner}
+  Was besagt der \bold{allgemeine Rekursionssatz}? 
+  Kennen Sie eine Anwendung?
+\end{frage} 
+
+\begin{antwort} Der allgemeine Rekursionssatz besagt:
+
+  \medskip\noindent
+  \slanted{Sei $\mathfrak{M}$ eine Menge, und für jedes $n\in \NN$ sei eine  
+    Abbildung $g_n\,:\, \mathfrak{M} \to \mathfrak{M}$ gegeben. Sei ferner $m\in \mathfrak{M}$ gegeben. 
+    Dann gibt es genau eine Abbildung $f\,:\,\NN\to \mathfrak{M}$ mit }
+  \begin{align*}
+    \text{\desc{i}} &\qquad  f(1)=m \\
+    \text{\desc{ii}} &\qquad  f(n+1)= g_n(f(n)).
+  \end{align*} 
+  Der Rekursionssatz ist ein sehr fundamentaler 
+  "`metatheoretischer"' Satz, der die theoretische 
+  Begründung dafür liefert, dass Abbildungen  
+  $\NN \to \mathfrak{M}$ (d.h. Folgen) durch die Angabe eines Startwertes und 
+  einer Rekursionsvorschrift (mit der ja, streng genommen, zunächst nur ein 
+  unendlicher Prozess gegeben ist und kein mathematisches Objekt)
+  eindeutig definiert werden können. 
+
+  Mithilfe des Rekursionssatzes lässt sich beispielsweise \textit{beweisen},
+  dass durch die Vorschrift $
+  f(1) = 1$ und $f(n+1)=(n+1) f(n)$ 
+  tatsächlich eine Abbildung $\NN \to \NN, \, n\mapsto f(n)=n!$ definiert ist.
+  \AntEnd
+\end{antwort}
+
+
+
+
+\section{Der Körper der komplexen Zahlen}
+
+
+
+Für die Konstruktion der komplexen Zahlen existieren verschiedene Modelle. 
+Wir konzentrieren uns hier auf die drei gängigsten. 
+
+1. Beim \slanted{Standardmodell} geht man aus von der Menge 
+\[
+\calli{C} := \RR^2 = \RR \times \RR = \{(a,b) ; a,b \in \RR\}.
+\]
+Man weiß aus der linearen Algebra, dass $\calli{C}$ bezüglich der 
+komponentenweisen Addition 
+\[
+(A) : (a,b) \oplus (a',b') = (a+a', b+ b') 
+\]
+eine abelsche Gruppe ist mit dem neutralen Element $0 = (0,0)$. 
+
+Ferner ist $\calli{C} = \RR^2$ ein 
+2-dimensionaler Vektorraum mit der skalaren Multiplikation 
+\[
+r(a,b) = (ra,rb),\qquad r\in\RR.
+\]
+Eine Multiplikation von Zahlenpaaren liegt zunächst allerdings nicht auf 
+der Hand. Die naheliegende Definition $(a,b) \cdot (a',b') = (aa',bb')$ 
+führt zu keiner Körperstruktur auf $\calli{C}$, denn wegen 
+$(1,0)\cdot(0,1)=(0,0)$ ist $\calli{C}$ mit 
+\slanted{dieser} Multiplikation nicht nullteilerfrei und 
+nach Eigenschaft $\desc{iii}$ aus Frage \ref{q:koerper-rechenregeln}  
+$\calli{C}$ damit kein Körper sein. Die Multiplikation auf $\calli{C}$ muss 
+also anders definiert sein.
+
+2. Das zweite Modell ist an der Geometrie des $\RR^2$ orientiert. 
+Man betrachtet die Menge 
+\[
+\calli{C} := \left\{\begin{pmatrix} a &-b \\ b & a \end{pmatrix} ; a,b \in \RR\right\}
+\]
+von speziellen $2\times 2$-Matrizen mit der Addition und 
+Multiplikation von $2\times 2$-Matrizen und weist nach, dass $\calli{C}$ 
+bezüglich dieser Verknüpfungen ein Körper ist. 
+
+3. Das dritte Modell ist algebraisch orientiert. Man betrachtet den Polynomring 
+$\RR[X]$ und das von dem irreduziblen Polynom $P=X^2+1$ erzeugte Ideal 
+und den Restklassenring 
+\[
+\RR[X] / (X^2+1).
+\]
+Diese Methode geht auf Cauchy (1847) zurück und ist vor allem wegen ihrer 
+Verallgemeinerungsfähigkeit (Satz von Kronecker, vgl.~\citep{Karpfinger}) von Bedeutung.
+
+Es stellt sich heraus, dass die verschiedenen Modelle isomorph sind. 
+
+\begin{frage}
+Können sie folgende Aussagen beweisen?
+
+\begin{enumerate}
+\item Definiert man auf der Menge 
+\[
+\CC := \RR^2 = \RR\times \RR = \left\{ (a,b) ; a,b \in \RR \right\}
+\]
+aller reellen Zahlenpaare eine Addition 
+\[
+(A)\quad  (a,b) \oplus (a',b') = (a+a',b+b')
+\]
+sowie eine Multiplikation
+\[
+(M)\quad (a,b) \otimes (a',b') = (aa'-bb', ab'+a'b),
+\]
+dann ist $(\CC,\oplus, \otimes)$ ein Körper.   
+
+\item Die Menge 
+\[
+\CC_{\RR} = \left\{ (a,0) | a\in\RR \right\}
+\]
+ist ein zu $\RR$ isomorpher Unterkörper von $\CC$. 
+Durch $a\mapsto (a,0)$ wird $\RR$ mit $\CC_{\RR}$ identifiziert.
+
+Schreibt man eine reelle Zahl $a\in\RR$ als $(a,0)$, dann erkennt man, dass 
+$\RR$ ein Unterkörper von $\CC$ ist. 
+
+Speziell schreibt man $0=(0,0)$ und $(1,0)=1$. Für das Element 
+$\i:=(0,1)\in\CC$ gilt $\i^2 = (-1,0) = -1$.
+
+In $\CC$ hat die Gleichung $z^2 +1=0$ die beiden einzigen Lösungen $\i$ und $-\i$. 
+
+Jedes $z\in\CC$ besitzt eine eindeutige Normaldarstellung 
+\[
+z = a+b\i \quad\text{mit}\quad a,b\in\RR.
+\]
+Dabei heißt $a$ der Realteil und $b$ der Imaginärteil von $z$.
+\end{enumerate}
+\end{frage}
+
+\begin{antwort}
+Um nachzuweisen, dass $\CC$ ein Körper ist, muss man die 9 Körperaxiome einzeln nachprüfen. 
+
+$(\CC,\oplus)$ ist eine abelsche Gruppe mit dem neutralen Element $0=(0,0)$ und das 
+additive Inverse zu $z=(a,b)$ ist $z':=(-a,-b)$. 
+
+$(\CC\mengeminus\{0\},\otimes)$ ist eine abelsche Gruppe mit dem neutralen Element $(1,0)$. Das multiplikativ Inverse $(x,y)$ zu $(a,b) \not= (0,0)$ ergibt sich 
+aus dem eindeutig lösbaren linearen Gleichungssystem 
+\[
+ax-by = 1, \qquad bx+ay = 0.
+\]
+Es ist 
+\[
+x=\frac{a}{a^2+b^2}\quad\text{und}\quad
+y=\frac{-b}{a^2+b^2}.
+\]
+Die Gültigkeit des Distributivegesetzes ist unmittelbar zu sehen, 
+und das Assoziativgesetz für die Multiplikation ergibt sich einfach 
+durch Nachrechnen aus dem Assoziativgesetz in $\RR$.
+
+Ebenfalls durch elementares Nachrechnen bestätigt man, dass die Menge 
+\[
+\CC_{\RR} := \left\{ (a,0) | a\in\RR \right\}
+\]
+mit der auf $\CC_{\RR}$ eingeschränkten Addition und Multiplikation ein Körper ist 
+und die Abbildung 
+\[
+j: \RR\to\RR, a \mapsto (a,0)
+\]
+ein Körperisomorphismus ist.
+
+Identifiziert man die komplexe Zahl $(a,0)$ mit der reellen Zahl $a$, 
+so wird $\RR$ zu einem Unterkörper von $\CC$.
+
+Für das spezielle Element $\i=(0,1) \in \CC$ gilt 
+\[
+\i^2 = (0,1) \cdot (0,1) = (-1,0) = -1.
+\]
+Da ein Polynom vom Grad 2 höchstens 2 Nullstellen hat, sind also $\i$ und 
+$-\i$ die einzigen Nullstellen der Gleichung $z^2 +1=0$. 
+
+Die Normaldarstellung einer komplexen Zahl $z=(a,b)$ erhält man aus 
+\[
+z=(a,b) = (a,0) + (0,b) = a + (b,0) (0,1) = a+b\i.
+\]
+
+Die Eindeutigkeit ist evident, denn aus 
+\[
+a+b\i = a'+b'\i, \quad a\not=a', a,a',b,b' \in\RR
+\]
+folgt 
+\[
+a-a' = (b'-b) \i.
+\]
+Wäre $b'\not b$, dann folgte der Widerspruch $\frac{a-a'}{b-b'} = \i \in\RR$.
+
+Also ist $b=b'$ und damit auch $a=a'$.   
+\end{antwort}
+
+\bigskip
+
+Die zunächst als ziemlich willkürlich erscheinende Multiplikation 
+(M) komplexer Zahlen wird also nachträglich dadurch gerechtfertigt, dass 
+$(\CC, \oplus, \otimes)$ ein Körper ist. 
+
+Da die Einschränkung der Addition und Multiplikation komplexer Zahlen 
+auf reelle Zahlen gerade die dort schon existierende Addition und Multiplikation 
+ist, verwendet man für die Addition und Multiplikation komplexer Zahlen 
+auch einfach die Bezeichnungen
+\begin{align*}
+(a,b) + (a',b') &= (a+a', b+b')\quad \text{bzw.}\\
+(a,b) \cdot (a',b') &= (a,b) (a',b').
+\end{align*}
+Ferner stimmt das Produkt 
+\[
+(r,0) (a,b) = (ra,rb)
+\]
+mit dem Ergebnis der skalaren Multiplikation $r(a,b) = (ra,rb)$ in $\RR^2$ überein.
+
+
+\begin{frage}
+Können Sie die Multiplikation (M) für die komplexen Zahlen motivieren?
+
+Tipp: Nehmen Sie an, dass es einen Körper $\KK$ gibt, der die reellen Zahlen 
+als Unterkörper enthält und in welchem es ein Element $\i$ mit $\i^2=-1$ 
+gibt. Wie rechnet man dann in diesem Körper?
+\end{frage}
+
+\begin{antwort}
+Bereits die Teilmenge $\CC:=\{a+b\i; a,b\in\RR\}$ ist ein Körper, denn für 
+$z=a+b\i$ und $z'=a'+b'\i$ ($z,z'\in\CC$) gilt
+\begin{align*}
+z+z' &= (a+a') + (b+b') \i \in \CC\quad\text{und}\\
+zz' &= (aa' + bb' i^2) + (ab'+ a'b) \i \\
+&= (aa'-bb') + (ab'+a'b)\in \in \CC
+\end{align*}
+und, falls $a+b\i\not=0$ ist
+\[
+(a+b\i)^{-1} = \frac{a-b\i}{(a+b)(a-b\i)} = 
+\frac{a}{a^2+b^2} + \frac{-b}{a^2+b^2}\in\CC.
+\]
+Die Definition der Multiplikation in $\CC$ ist also zwangsläufig. 
+
+Anmerkung: Hat man die Formel für die Multiplikation komplexer Zahlen 
+vergessen, so schreibe man $z=a+b\i$ und $z'=a'+b'\i$ und rechne 
+distributiv unter Verwendung von $\i^2 = -1$.
+
+Beispiel: $z=2-6\i, z'=1+\i$.
+\[
+zz' = aa' - bb' + (ab'+a'b) \i = 2\cdot 1 - 6\i^2 + (2-6\i) = 8-4\i.
+\]
+\end{antwort}
+
+
+
+\begin{frage}
+Durch welche Eigenschaften ist der Körper der komplexen Zahlen bis auf 
+Isomorphie eindeutig bestimmt?
+\end{frage}
+
+\begin{antwort}
+Der Körper $\CC$ der komplexen Zahlen ist bis auf Isomorphie durch folgende 
+Eigenschaften eindeutig bestimmt. 
+\begin{enumerate}
+\item $\CC$ enthält $\RR$ als Unterkörper.
+\item In $\CC$ gibt es ein Element $\i$ mit $\i^2=-1$.
+\item Jedes $z\in\CC$ lässt sich eindeutig in der Gestalt 
+$z=a+b\i$ mit $a,b\in\RR$ darstellen. 
+\end{enumerate}
+
+Dass $\CC$ die drei Eigenschaften hat, ist aufgrund der Konstruktion 
+klar. Um $\RR$ als Unterkörper von $\CC$ aufzufassen, muss man allerdings 
+$\CC_{\RR}$ und $\RR$ identifizieren, was aufgrund des Isomorphismus
+\[
+j : \RR\to \CC_{\RR}, \quad a\mapsto (a,0)
+\]
+gerechtfertigt ist.
+
+Durch Betrachung von $\tilde{\CC}:=(\CC \mengeminus \CC_{\RR} ) \cup \RR$ 
+kann man jedoch auch einen Körper konstruieren, der $\RR$ von vorne herein 
+als Unterkörper enthält. Wir haben oben auf diese algebraische Konstruktion 
+verzichtet und haben $\CC_{\RR}$ mit $\RR$ identifiziert. 
+Ist nun $\CC'$ ein weiterer Körper, der $\RR$ als Unterkörper enthält und 
+in dem es ein Element $\i'$ mit $\i'^2 = -1$ gibt und für den 
+$\CC' = \RR + \RR\i'$ gilt, so betrachte man die Abbildung 
+\[
+\Psi : \CC' \to \CC, a'+b'\i \mapsto a+b\i\quad(a,b\in\RR).
+\]
+Diese ist offensichtlich ein Isomorphismus.
+\end{antwort}
+
+\begin{frage}
+Können Sie nachweisen, dass die Menge 
+\[
+\calli{C} := \left\{ \begin{pmatrix} a & -b \\ b & a \end{pmatrix} ; 
+a,b \in \RR \right\}
+\]
+der speziellen reellen $2\times 2$-Matrizen zusammen mit der Matrizenaddition 
+und -multiplikation ein Körper ist, der zum Körper $\CC$ isomorph ist?
+\end{frage}
+
+\begin{antwort}
+Die Menge $\calli C$ ist abgeschlossen gegenüber der Addition von Matrizen, 
+das Nullelement ist die Nullmatrix $\begin{pmatrix} 0 &0 \\ 0 &0\end{pmatrix}$. 
+
+$\calli C$ ist auch gegenüber der Multiplikation abgeschlossen und die Multiplikation 
+ist für diese speziellen Matrizen kommutativ, wie man sofort nachprüft.
+
+Die inverse Matrix zu 
+$A=\begin{pmatrix} a & b \\ -b & a \end{pmatrix}$ ist 
+\[
+A^{-1} = \frac{1}{\det A} A^T = \frac{1}{a^2+b^2} 
+\begin{pmatrix} a & b \\ -b & a \end{pmatrix}.
+\]
+Für die spezielle Matrix $I:=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ 
+gilt $I^2 = - \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -E_2$.
+
+Durch die Abbildung 
+\[
+\Psi: \calli{C} \to \CC, 
+\quad
+\begin{pmatrix} 
+a &-b \\ b & a
+\end{pmatrix}
+= 
+a \begin{pmatrix} 
+1&0 \\ 0&1
+\end{pmatrix}
++ b \begin{pmatrix} 
+0 & -1 \\ 1 & 0 
+\end{pmatrix}
+\mapsto a+b\i
+\]
+erhält man einen Isomorphismus.\AntEnd
+\end{antwort}
+
+
+\begin{frage}
+Können Sie erläutern, wie man $\CC$ als \slanted{algebraische Körpererweiterung} 
+von $\RR$ erhält?
+\end{frage}
+
+\begin{antwort}
+Im Polynomring $\RR[X]$ bildet man die Restklassen $\RR[X]/(X^2 +1)$.
+
+Zwei Polynome $f$ und $g$ aus $\RR[X]$ sind also genau dann äquivalent, 
+wenn sie bei Division durch $X^2+1$ denselben Rest lassen. 
+Die Reste haben hier die Gestalt $a+bX$ mit $a,b\in\RR$ und bilden 
+ein Repräsentantensystem für $R[X]/(X^2+1)$. 
+
+Für die Repräsentanten rechnet man wie folgt
+\begin{align*}
+[a+bX] \oplus [c+dX] &= \left[(a+c)+(b+d) X \right] \\
+[a+bX] \otimes [c+dX] &= \left[ac+bdX^2 + (ad+bc)X \right] \\
+&= \left[ (ac-bd) + (ad+bc) X \right].
+\end{align*}
+
+Die zu $[a+bX]$ inverse Äquivalenzklasse ist .
+\[
+\left[\frac{a}{a^2+b^2}-\frac{b}{a^2+b^2} X\right]\quad
+(a,b) \not= (0,0).
+\]
+Durch 
+\[
+\RR \to \RR[X] / (X^2+1), \quad 
+a \mapsto [a]
+\]
+wird $\RR$ in $\RR[X]/(X^2+1)$ eingebettet. 
+
+Setzt man $j:= [X]$, dann ist $j$ Nullstelle des Polynoms 
+$X^2+1$, \dasheisst\ $j^2=-1$, und es ergibt sich
+\[
+[a+bX] = a+b[X] = a+bj\quad \text{mit} j^2=-1.
+\]
+Die Abbildung 
+\[
+\Psi: \RR[X] / (X^2+1) \to \CC, \quad 
+[a+bX] \mapsto a+b\i
+\]
+ist ein Isomorphismus.
+
+\medskip
+\noindent
+Hintergrund: Die Konstruktion der komplexen Zahlen als 
+Restklassenring nach dem von $X^2+1$ erzeugten Ideal geht auf Cauchy 
+(1847) zurück. Der von Cauchy beobachtete Fall ist ein Spezialfall 
+eines allgemeinen Satzes von C.~Kronecker~(1882) (vgl. \citep{Karpfinger}).
+
+\satz{%
+Für jedes irreduzible Polynom $P\in K[X]$ existiert ein 
+Erweiterungskörper $L$ von $K$ mit $\deg (L|K) = \deg P$ und ein 
+Element $a\in L$ mit $P(a)=0$. }
+
+In unserem Sepzialfall ist $K=\RR$, $P=X^2+1\in \RR[X]$ und 
+$a=j=[X]$.
+\AntEnd
+\end{antwort}
+
+
+\begin{frage}
+Warum lässt sich der Körper der komplexen Zahlen nicht 
+(wie die reellen Zahlen) anordnen?
+\end{frage}
+
+\begin{antwort}
+In einem angeordneten Körper gilt für ein Element $a\not=0$ stets 
+$a^2 >0$. Wegen $\i^2 = -1< 0$ und $\i\not=0$ gilt dies in $\CC$ nicht, 
+und daher kann $\CC$ nicht angeordnet sein. 
+
+Beachte: Komplexe Zahlen lassen sich nicht der Größe nach vergleichen! 
+Jedoch ist der Betrag einer komplexen Zahl eine nicht negative reelle 
+Zahl und die Beträge komplexer Zahlen lassen sich der Größe 
+nach vergleichen. 
+\end{antwort}
+
+
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 
+
+
+
+
+%: Question 74
+\begin{frage}
+  Warum besitzt die Gleichung $x^2+1=0$ keine Lösung in $\RR$?
+\end{frage}
+
+\begin{antwort}
+  Die Gleichung impliziert $x^2 =-1 <0$, das Quadrat einer reellen Zahl 
+  ist aber stets positiv oder Null.  
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 75
+\begin{frage}\index{C@$\CC$}
+  \nomenclature{$\CC$}{Körper der komplexen Zahlen}
+  Welche Gründe gibt es, den Körper $\RR$ der reellen Zahlen zum  
+  Körper $\CC$ der komplexen Zahlen zu erweitern?
+\end{frage}
+
+\begin{antwort}
+  Ein Grund dafür liegt in der negativen Antwort zur vorigen Frage. 
+  Nicht jede Gleichung, die sich im Körper der reellen Zahlen 
+  formulieren lässt, besitzt innerhalb von $\RR$ auch eine 
+  Lösung. 
+
+  Um zu erreichen, dass jede polynomiale Gleichung eine Lösung besitzt, 
+  gibt es nur die Möglichkeit, zu einem Erweiterungskörper von $\RR$ 
+  überzugehen, der diese Eigenschaft hat. 
+  Für jeden Körper gibt es einen solchen  
+  \satz{algebraisch abgeschlossenen} Oberkörper. 
+  Dass $\CC$ als Oberkörper der reellen Zahlen algebraisch abgeschlossen 
+  ist, ist die Aussage des \satz{Fundamentalsatzes der Algebra: Jedes 
+    nichtkonstante komplexe Polynom besitzt mindestens eine Nullstelle in $\CC$}.
+
+  Das ganze Ausmaß der Bedeutung und Nützlichkeit der komplexen Zahlen 
+  ist durch diese theoretische Motivation allerdings noch nicht annäherungsweise 
+  erschöpft. Selbst in der reellen Analysis spielen sie an vielen Stellen  
+  eine große Rolle. Stichworte sind \slanted{Fourierreihen}, 
+  \slanted{Partialbruchzerlegung rationaler Funktionen}, 
+  \slanted{Schwingungsdifferenzialgleichungen} u.v.m. 
+
+  Für die komplexe Analysis (Funktionentheorie) sind die komplexen Zahlen 
+  die unverzichtbare Grundlage.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 76
+\begin{frage}\index{Addition komplexer Zahlen}
+  \index{Multiplikation komplexer Zahlen}
+  \index{i (imaginäre Einheit)}
+  \nomenclature{$\i$}{imaginäre Einheit}
+  Wie addiert bzw. multipliziert man zwei komplexe Zahlen $z$, 
+  $z'$, wenn diese gegeben sind durch 
+  $z=a+\i b$ bzw. $z'=a'+\i b'$, ($a,a',b,b' \in \RR,\; \i ^2=-1$)?
+\end{frage}
+
+
+
+\begin{antwort}[]
+  \Ant Als Summe zweier komplexer Zahlen erhält man
+  \begin{equation*}
+    z+z' = (a+\i b)+(a+\i b')=(a+a')+\i (b+b').
+  \end{equation*}
+  Geometrisch entspricht das der Addition zweier Vektoren im $\RR^2$, 
+  \sieheAbbildung\ref{fig:01_add_komplex}.
+
+  \noindent
+  Für das Produkt $zz'$ gilt
+  \begin{align*}
+    z z' &= (a+\i b)(a'+ \i b')=aa'+iab'+\i a'b +\i ^2 bb' \\ 
+    &= (aa'-bb')+\i (ab'+a'b).
+  \end{align*}
+  Eine geometrische Interpretation der Multiplikation 
+  erhält man leicht mittels Polarkoordinaten, vergleiche dazu die Fragen 
+  \ref{polar} und \ref{polarmult}. \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/01_add_komplex}
+    \captionof{figure}{Die Addition zweier Zahlen in $\CC$ entspricht der 
+      Vektoraddition in $\RR^2$.}
+    \label{fig:01_add_komplex}
+  \end{center}
+
+\end{antwort}
+
+
+
+
+
+
+%: Question 77
+\begin{frage}
+  Wie berechnet man zu einer komplexen Zahl $z=a+\i b$ 
+  mit $(a,b)\not=(0,0)$ das \bold{multiplikativ inverse} 
+  Element?
+\end{frage}
+
+\begin{antwort}
+  Sei $z^{-1}:=x+\i y$ das gesuchte Inverse. Der Ansatz 
+  $z\cdot z^{-1} = (a+\i b)(x+\i y) = 1 = 1+ \i\cdot 0$ 
+  führt auf die beiden Gleichungen $ax-by=1$ und $ay+bx=0$, und mit 
+  einer direkten Rechnung erhält man daraus die Lösungen 
+  \begin{equation}
+    x=\frac{a}{a^2+b^2}, \qquad\qquad y=-\frac{b}{a^2+b^2}. 
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+
+
+
+%: Question 78
+\begin{frage}\index{konjugiert komplexe Zahl}
+  \nomenclature{$\overline{z}$}{konjugiert komplexe Zahl}
+  Was versteht man unter der zu einer komplexen Zahl $z=a+b\i$ 
+  \bold{konjugiert komplexen Zahl}?
+\end{frage}
+
+\begin{antwort}
+  Die komplexe Zahl $\ov{z}:=a-\i b$. 
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 79
+\begin{frage}
+  Welche Haupteigenschaften hat die Abbildung 
+  $\ov{\rule{3mm}{0mm} \rule{0mm}{1.5mm}}:\,\CC \to \CC, \; 
+  z=a+\i b \mapsto \ov{z}=a-\i b$.
+\end{frage}
+
+
+\begin{antwort}
+  Es gelten die folgenden Eigenschaften:
+  \[
+  \ov{\ov{z}}=z, \qquad \ov{z\pm z'} = \ov{z} \pm \ov{z'}, \qquad  
+  \ov{zz'}=\ov{z}\cdot \ov{z'}, \qquad 
+  a=\frac{z+\ov{z}}{2},\;b=\frac{z-\ov{z}}{2\i},
+  \]
+  sowie ferner
+  \[
+  z \in \RR \LLa z=\ov{z}, z\in \i\RR \LLa \ov{z}=-z,
+  \qquad\qquad z\ov{z}=a^2+b^2 \in \RR_{\ge 0},
+  \]
+  \sieheAbbildung\ref{fig:01_kompl_konj}.
+  \begin{center}
+    \includegraphics{mp/01_kompl_konj}
+    \captionof{figure}{Zum Verhältnis von Negativem und konjugiert Komplexem einer komplexen Zahl.} 
+    \label{fig:01_kompl_konj}
+  \end{center}
+  Alle Eigenschaften lassen sich mit direkten Rechnungen verifizieren. 
+
+  Anmerkung: Die Abbildung $\CC\to\overline{\CC}$ ist ein 
+  \textbf{involutorischer Automorphismus}\index{Automorphismus} mit dem 
+  Fixkörper $\RR$. 
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 80
+\begin{frage}
+  \index{Betrag!einer komplexen Zahl}
+  Wie ist der \bold{Betrag einer komplexen Zahl} 
+  $z=a+\i b$ ($a,b\in\RR$)? 
+\end{frage}
+
+\begin{antwort}
+  Der Absolutbetrag ist für $z,w\in\CC$ definiert durch 
+  \[
+  \boxed{
+    |z|:= \sqrt{z\ov{z}} = \sqrt{a^2+b^2}.}
+  \]
+  Interpretiert man die komplexe Zahlenebene als den $\RR^2$ und die 
+  komplexe Zahl $z=a+\i b$ als den Vektor $(a,b)$, 
+  so entspricht der komplexe Betrag also gerade der Euklidischen 
+  des assoziierten Vektors. \AntEnd 
+\end{antwort} 
+
+
+
+%: Question 81
+\begin{frage}\label{01_komplexbetrag}
+  Welche Haupteigenschaften gelten für den Betrag einer komplexen Zahl?
+\end{frage}
+
+\begin{antwort}
+  Für $z,w\in\CC$ gilt
+
+  \medskip
+  \begin{tabular}{llp{3mm}ll}
+    \desc{1} & $|z|\ge0$ und $|z|=0\Leftrightarrow z=0$, & &  
+    \desc{4} & $|z\cdot w| = |z|\cdot |w|,$ \\ 
+    \desc{2} & $|z+w| \le |z|+|w|$, & &
+    \desc{5} & $|\Re z | \le |z|, \quad |\Im z | \le |z|,$ \\
+    \desc{3} & $|z-w| \ge \big| |z|-|w| \big|.$
+  \end{tabular}
+
+  \medskip
+  \noindent
+  Diese Eigenschaften werden in den folgenden Fragen nachgewiesen.
+  \AntEnd
+  
+\end{antwort}
+
+
+
+
+
+
+%: Question 82
+\begin{frage}\index{Realteil}\index{Imaginärteil}
+  \nomenclature{$\Re z$}{Realteil von $z$}
+  \nomenclature{$\Im z$}{Imaginärteil von $z$}
+  Warum gilt für den Realteil bzw. Imaginärteil einer komplexen Zahl $z$ 
+  stets $|\Re(z)| \le |z|$ bzw. $|\Im(z)| \le |z|$?
+\end{frage}
+
+\begin{antwort}
+  Es gilt 
+  $\dis |z|=\sqrt{ (\Re z)^2 + (\Im z)^2 } \ge \sqrt{(\Re z)^2} = |\Re z|$, 
+  und auf demselben Weg erhält man die 
+  Abschätzung für den Imaginärteil.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 83
+\begin{frage}\index{Dreiecksungleichung!in $\CC$}
+  Wie lauten die Dreiecksungleichungen im Komplexen 
+  für Abschätzungen nach oben bzw. nach 
+  unten?
+\end{frage}
+
+\begin{antwort}
+  Es handelt sich um die Eigenschaften \desc{3} bzw. \desc{4} aus 
+  Frage \ref{01_komplexbetrag}. Für $z:=x+\i y$ und $w := u+\i v$ 
+  folgt \desc{3} aus 
+  \begin{gather}
+    \left(\sqrt{x^2+y^2} + \sqrt{u^2+v^2} \right)^2 =
+    x^2+y^2 + 2\sqrt{x^2+y^2}\sqrt{u^2+v^2} + u^2 + v^2 \notag \\
+    \le  x^2+2xu+u^2 + y^2+2yv +v^2 
+    = \sqrt{ (x+u)^2+(y+v)^2 }^2. \notag
+  \end{gather}
+  Mit der Dreiecksungleichung erhält man \desc{4} auf dieselbe Weise, wie 
+  die entsprechende reelle Ungleichung in \ref{01_dru} hergeleitet 
+  wurde.  
+  \AntEnd
+\end{antwort} 
+
+
+
+
+
+
+%: Question 84
+\begin{frage}
+  Warum wird durch $d(z,w):=|z-w|$ für $z,w\in\CC$ eine Metrik auf 
+  $\CC$ definiert?
+\end{frage} 
+
+\begin{antwort}
+  Die Abbildung $d\fd\CC\times \CC\to \RR$ erfüllt alle Eigenschaften einer 
+  Metrik, das heißt
+  {\setlength{\labelsep}{8mm}
+    \begin{enumerate}
+    \item[\desc{M1}] $|z-w|=0 \Longleftrightarrow z=w,$ \\[-3,5mm]
+    \item[\desc{M2}] $|z-w|=|w-z|,$\\[-3.5mm]
+    \item[\desc{M3}] \slanted{$|z-w| \le |z-\zeta| + |\zeta -w|$ für alle $\zeta\in\CC$ 
+        (Dreiecksungleichung).}
+    \end{enumerate}
+  }
+  \noindent
+  Eigenschaft \desc{M1} folgt aus $|z|=0 \LLa z=0$, 
+  \desc{M2} ist eine Folge von $|z|=|-z|$, und \desc{M3} ergibt sich 
+  mit der Dreiecksungleichung für den komplexen Betrag:
+  \begin{equation}
+    |z-w| = |z - \zeta +\zeta - w| \le |z-\zeta|+|\zeta-w|. \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+
+
+
+%: Question 85
+\begin{frage}\index{Standardskalarprodukt}
+  Wieso ist für $z=x+\i y$ ($x,y\in\RR$) und $w=u+\i v$ ($u,v\in\RR$)
+  $\Re(z\ov{w})=\Re(\ov{z}w)$ gleich dem Standardskalarprodukt 
+  von $z=(x,y)\in\RR^2$ und $w=(u,v)\in\RR^2$?
+\end{frage}
+
+\begin{antwort}
+  Es gilt 
+  \[
+  \Re (z\ov{w})= \Re(\ov{z}w)= 
+  \Re ( (x-iy)(u+iv)) = xu +yv=\langle z, w \rangle.
+  \]
+  Dabei sind die komplexen Zahlen $z$ und $w$ als Vektoren 
+  des $\RR^2$ zu interpretieren. 
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 86
+\begin{frage}\index{Cauchy-Schwarz'sche Ungleichung}
+  Warum ist die Ungleichung 
+  $|\Re(z\ov{w})|=|\Re(\ov{z}w)|\le |z| \cdot |w|$ mit der 
+  Cauchy-Schwarz'schen 
+  Ungleichung im $\RR^2$ identisch?
+\end{frage}
+
+\begin{antwort}
+  Im Sinne der Antwort zur vorigen Frage \slanted{ist} die 
+  Ungleichung nichts anderes als die 
+  Cauchy-Schwarz'sche Ungleichung                                                
+  \[
+  | \langle z,w \rangle | \le |z|\cdot|w|, \quad z,w \in\CC \simeq \RR^2.
+  \]
+  Dabei bezeichnet $|(x,y)|:=\sqrt{x^2+y^2}$ die euklidische Norm 
+  im $\RR^2$.
+  \AntEnd
+  
+\end{antwort}
+
+
+
+
+
+
+%: Question 87
+\begin{frage}\index{offene Kreisscheibe}
+  \index{eps@$\eps$-Umgebung}
+  \nomenclature{$U_\eps(a)$}{$\eps$-Umgebung von $a$}
+  \label{01_ueps}
+  Wie ist die \bold{offene Kreisscheibe} 
+  $U_\eps(a)$ mit Mittelpunkt $a\in\CC$ und Radius 
+  $\eps > 0$ in $\CC$ definiert?
+\end{frage}
+
+
+\begin{antwort}[]
+  \Ant $U_\eps (a)$ ist die Menge aller $z\in \CC$, die von $a$ einen 
+  kleineren Abstand als $\eps$ haben,
+  \begin{equation}
+    U_\eps (a) := \{ z\in\CC; \; |z-a| < \eps \}. 
+  \end{equation}
+
+  Geometrisch entspricht $U_\eps(a)$ einer offenen Kreisscheibe um $a$ mit Radius $\eps$, 
+  \sieheAbbildung\ref{fig:01_ueps}.
+
+  \begin{center}
+    \includegraphics{mp/01_ueps}
+    \captionof{figure}{Die offene Kreisscheibe $U_\eps(a)$}
+    \label{fig:01_ueps}
+  \end{center}
+\end{antwort}
+
+
+
+%: Question 88
+\begin{frage}\index{Einheitskreislinie}
+  \nomenclature{$S^1$}{Einheitskreislinie}
+  Wie ist die \slanted{Einheitskreislinie}\index{Einheitskreislinie} 
+  $S^1$ in $\CC$ definiert?
+
+  Warum ist $S^1$ eine Gruppe bezüglich der Multiplikation in $\CC$ und warum 
+  gilt $z^{-1}=\overline{z}$?
+\end{frage}
+
+\begin{antwort}
+  $S^1$ ist die Menge aller komplexen Zahlen, die den Betrag $1$ haben,
+  \[
+  S^1 := \{ z\in\CC; \; |z|=1 \}.
+  \]
+  Geometrisch handelt es sich dabei um einen Kreis 
+  mit Radius $1$ um den Nullpunkt.
+
+  \medskip
+  Mit $z,w\in S^1$ gilt wegen $|z|=|w|=1$ auch $|zw|=|z||w|=1$. 
+  Also ist mit $z$ und $w$ auch das Produkt $zw$ ein Element von $S^1$. 
+  Ferner ist $1\in S^1$. Wegen $|z|=|\overline z|$ für alle 
+  $z\in \CC$ folgt aus $z\in S^1$ auch $\overline z \in S^1$, und 
+  es gilt $z\overline z = |z|^2=1$. Also hat jedes $z\in S^1$ mit 
+  $\overline z$ ein multiplikativ Inverses in $S^1$. Insgesamt folgt, 
+  dass $S^1$ eine Gruppe ist.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 89
+\begin{frage}\label{01_spiegelpunkt}
+  \index{Spiegelung an der Einheitskreislinie}
+  Was versteht man unter der \bold{Spiegelung an der Einheitskreislinie} 
+  (häufig auch Spiegelung am Einheitskreis genannt)?
+\end{frage}
+
+\begin{antwort}[]
+  \Ant Die Spiegelung an der Einheitskreislinie ist die Lösung 
+  zu dem geometrischen Problem, zu zwei gegebenen Punkten 
+  $O$ und $P$ der euklidischen Ebene  
+  einen Punkt $P'$ zu konstruieren, für den $\ov{OP} \cdot \ov{OP'}=1$ gilt. 
+  Der Punkt $P'$ heißt Spiegelpunkt zu $P$, wenn er auf der Halbgeraden 
+  $OP$ liegt.
+
+  Abbildung~\ref{fig:01_inversion1} zeigt die Konstruktion des Spiegelpunktes. 
+  Je nachdem, ob $P$ oder $P'$ gegeben ist, 
+  erhält man den Punkt $R$ als Schnittpunkt 
+  von $S^1$ mit dem Thaleskreis über $OP$ bzw. der auf 
+  $OP'$ senkrecht stehenden Geraden durch $P'$. 
+  Die Konstruktion der rechtwinkligen Dreiecke $OP'R$ bzw. $ORP$ 
+  liefert den gesuchten Spiegelpunkt.
+
+  Die Gleichung $\ov{OP}\cdot \ov{OP'}$ folgt aus der Ähnlichkeit der 
+  beiden Dreiecke $OP'R$ und $ORP$. 
+  Mit dieser gilt nämlich $1:\ov{OP'}=\ov{OP}:1$.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/01_inversion1}
+    \captionof{figure}{Konstruktion des Spiegelpunkts $P'$ mit $\ov{OP}\cdot \ov{OP'}=1$.}
+    \label{fig:01_inversion1}
+  \end{center}
+
+\end{antwort}
+
+
+
+
+
+
+%: Question 90
+\begin{frage}
+  Wie erhält man durch eine einfache geometrische Konstruktion 
+  für einen Punkt $z\in\CC$, $z\not=0$, den Punkt $z^{-1}$?
+\end{frage}
+
+
+\begin{antwort}[]
+  \Ant Wegen $z=|z|/\ov{z}$ liegt $1/ \ov{z}$ auf der Geraden durch $z$ und 
+  dem Nullpunkt der komplexen Ebene. Da ferner $|z|\cdot|1/\ov{z}|=1$ gilt, 
+  ist $1/\ov{z}$ gerade der Spiegelpunkt von $z$ bezüglich 
+  der Einheitskreislinie, man erhält ihn aus $z$ mit der 
+  geometrischen Konstruktion aus Frage \ref{01_spiegelpunkt}. 
+  Aus $1/\ov{z}$ erhält man nun $1/z$ durch Spiegelung an der reellen 
+  Achse, denn $1/z$ ist die zu $1/\ov{z}$ konjugiert komplexe Zahl, 
+  \sieheAbbildung\ref{fig:01_inverse}
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/01_inverse}
+    \captionof{figure}{Geometrische Konstruktion von $z^{-1}$ 
+      im Komplexen durch Spiegelung am Einheitskreis.}
+    \label{fig:01_inverse}
+  \end{center}
+
+\end{antwort}
+
+
+
+
+
+
+%: Question 91
+\begin{frage}\label{polar}
+  \index{Polarkoordinaten}
+  Was versteht man unter einer \bold{Polarkoordinatendarstellung} einer komplexen Zahl? 
+\end{frage}
+
+\begin{antwort}[]
+  \Ant Jede komplexe Zahl $\not=0$ lässt sich durch die Angabe 
+  ihres Betrages $r$ und des (im Bogenmaß gemessenen) Winkels  
+  $\varphi$, den die Gerade durch $z$ und den Nullpunkt mit der 
+  positiven reellen Achse einschließt, eindeutig identifizieren. 
+  Mit den trigonometrischen Funktionen Sinus und Cosinus, wie man sie etwa 
+  aus der Schule her kennt, gilt dann $\Re z=r\cos \varphi$ 
+  und $\Im z=r\sin\varphi$. 
+
+  Daraus kann man schließen, 
+  dass jede komplexe Zahl $z$ eine Darstellung der Form 
+  \begin{equation*} 
+    \boxed{z = r ( \cos \varphi + \i \sin \varphi ).} \tag{$\ast$}
+  \end{equation*}
+  besitzt. Man nennt ($\ast$) eine 
+  \textit{Polarkoordinatendarstellung} von $z$, 
+  $\varphi$ heißt ein \textit{Argument von $z$}, 
+  \sieheAbbildung\ref{fig:01_polar}. Für $z=0$ ist $r=0$ und $\varphi\in\RR$ beliebig. \AntEnd
+
+  \medskip
+  \noindent
+  Zur Abkürzung setzen wir 
+  \[
+  E(\varphi) = \cos\varphi + \i\sin\varphi.
+  \]
+  Wie wir später sehen werden gilt die \slanted{Euler'sche Formel} 
+  $E(\varphi) = \exp(\i\varphi)$ und damit $z=r\exp(\i\varphi)$.
+  \begin{center}
+    \includegraphics{mp/01_polar}
+    \captionof{figure}{In einer Polarkoordinatendarstellung wird $z\in \CC$ durch $r$ 
+      und $\varphi$ ausgedrückt.}
+    \label{fig:01_polar}
+  \end{center}
+\end{antwort}
+
+
+
+%: Question 92
+\begin{frage}
+  Inwiefern ist die Polarkoordinatendarstellung einer 
+  komplexen Zahl eindeutig?
+\end{frage}
+
+\begin{antwort}
+  Die Zahl $\varphi$ ist in der Polarkoordinatendarstellung 
+  {\astref} nicht eindeutig bestimmt, denn für alle $k\in\ZZ$ 
+  ist mit {\astref} auch 
+  \[
+  r \big( \cos (\varphi +2k\pi)+\i\sin( \varphi + 2k\pi ) \big)
+  \]
+  eine Darstellung der Zahl $z$. Das ist ein Ausdruck der 
+  anschaulichen Tatsache, dass man zum Ausgangspunkt zurückkommt, 
+  wenn man in der komplexen Ebene den Ursprung $k$-mal umrundet. 
+  Das Argument von $z$ ist also nur bis auf die Addition 
+  eines ganzzahligen Vielfachen von $2\pi$ bestimmt. Streng 
+  genommen sollte man $\arg z$ deswegen auch nicht als reelle 
+  Zahl auffassen, sondern als \textit{\"Aquivalenzklasse reeller Zahlen}, die 
+  durch die Relation $\varphi \sim \psi \LLa \varphi-\psi \in 2\pi\ZZ$ 
+  bestimmt ist. 
+  In der Regel wählt man $\varphi\in \ropen{0,2\pi}$ 
+  oder $\varphi \in \lopen{-\pi,\pi}$. Für $\varphi \in \lopen{-\pi,\pi}$ 
+  spricht man vom \slanted{Hauptwert des Arguments}\index{Hauptwert des Arguments einer komplexen Zahl}. 
+  Die Abbildung von $\CC$ auf den Hauptwert des Arguments wird 
+  mit $\mathrm{Arg}$ bezeichnet. 
+  So gilt zum Beispiel $\mathrm{Arg}\,\i = \frac\pi2$, 
+  $\mathrm{Arg}(-\i)=-\frac\pi2$ und $\mathrm{Arg}\,(-1)=-\pi$.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 93
+\begin{frage}\index{Multiplikation komplexer Zahlen}\label{polarmult}
+  Wie multipliziert man zwei komplexe Zahlen $z$ und $w$, wenn diese 
+  durch eine Polarkoordinatendarstellung gegeben sind?
+\end{frage}
+
+\begin{antwort}
+  Mit der Polarkoordinatendarstellung zweier komplexer Zahlen $z_1$ und 
+  $z_2$ erhält man
+  \begin{align*}
+    z_1\cdot z_2 &= r_1( \cos \varphi_1 + \i \sin  \varphi_1 )\cdot 
+    r_2 ( \cos \varphi_2 + \i\sin \varphi_2 ) \\
+    &=  r_1 r_2 \left( \cos\varphi_1\cos\varphi_2 - 
+      \sin\varphi_1 \sin\varphi_2 + \i
+      ( \cos\varphi_1\sin\varphi_2 - \sin\varphi_1 \cos\varphi_2 ) \right) \\
+    &= r_1 r_2 \left( \cos( \varphi_1 + \varphi_2) + 
+      \i\sin( \varphi_1 + \varphi_2 ) \right).\asttag
+  \end{align*}
+  Im letzten Schritt wurden dabei die \textit{Additionstheoreme} des 
+  Sinus und Cosinus angewendet (vgl. Frage \ref{05_trei}\,\desc{5}). 
+  \AntEnd
+\end{antwort} 
+
+
+
+
+
+
+%: Question 94
+\begin{frage}\index{Drehstreckung}
+  Ist $w=a+\i b$ eine komplexe Zahl $\not=0$, dann wird durch die  
+  Abbildung $\mu_w(z):=z\mapsto wz$ 
+  eine \bold{Drehstreckung} $\mu_w\fd\CC \to \CC$   
+  definiert. Können Sie das zeigen?
+\end{frage}
+
+\begin{antwort}
+  Als Abbildung $\RR^2 \to \RR^2$ betrachtet ist $\mu_w$ $\RR$-linear und wird 
+  durch die Matrix $
+  A =  \left( \begin{smallmatrix} a &  -b \\ b & a \end{smallmatrix} \right)$ 
+  beschrieben. Diese besitzt die Zerlegung 
+  \[
+  \begin{pmatrix} 
+    \sqrt{\det A}  &  0 \\
+    0 & \sqrt{\det A} 
+  \end{pmatrix}
+  \cdot 
+  \begin{pmatrix}
+    \alpha & -\beta \\
+    \beta &  \alpha
+  \end{pmatrix}
+  \]
+  mit $\alpha:=a/\sqrt{\det A}$ und $\beta:= b/\sqrt{\det A}$. 
+  Die vordere Matrix beschreibt offensichtlich eine Streckung. 
+  Für die Einträge der hinteren gilt 
+  \[
+  \alpha^2 + \beta^2 = 
+  \left(\frac{a}{\sqrt{\det A}}\right)^2 + 
+  \left(\frac{b}{\sqrt{\det A}}\right)^2 = \frac{a^2+b^2}{\det A} = 
+  \frac{\det A}{\det A} =1.
+  \]
+  Die Punkte $(\alpha,\beta)$ liegen also auf dem Einheitskreis, 
+  damit gibt es eine Zahl $\vartheta\in\ropen{0,2\pi}$, sodass 
+  \[
+  \begin{pmatrix}
+    \alpha & -\beta \\
+    \beta & \alpha 
+  \end{pmatrix} = 
+  \begin{pmatrix} 
+    \cos \vartheta & -\sin\vartheta \\
+    \sin\vartheta & \cos \vartheta
+  \end{pmatrix}.
+  \]
+  Eine Matrix dieser Form beschreibt bekanntlich eine Drehung im $\RR^2$. 
+  $\mu_w$ setzt sich also zusammen aus einer Drehung, gefolgt von einer 
+  Streckung. 
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 95
+\begin{frage}\index{Multiplikation!komplexer Zahlen}
+  Wie lässt sich die Multiplikation komplexer Zahlen geometrisch deuten?
+\end{frage}
+
+
+\begin{antwort}[]%
+  \Ant Mit {\astref} bekommt man folgende geometrische Deutung:  
+  \slanted{Zwei komplexe Zahlen werden nach miteinander multipliziert, 
+    indem man ihre Beträge multipliziert und ihre Argumente addiert.} 
+  Das entspricht einer Drehstreckung im $\RR^2$, 
+  \sieheAbbildung\ref{fig:01_mult_kompl}
+
+  Mit der \slanted{Euler'schen Formel} $E(\varphi) E(\psi) = E(\varphi+\psi)$
+  lässt sich der Sachverhalt auch in der Form 
+  \[
+  z\cdot w = |z| e^{\i\arg z} \cdot |w| e^{\i\arg w} = 
+  |zw| e^{\i( \arg z+\arg w)}
+  \]
+  ausdrücken, wodurch der Zusammenhang mit der 
+  \slanted{Funktionalgleichung} (s. Frage \ref{05_exp_funktionalgleichung}) 
+  der komplexen Exponentialfunktion sichtbar wird.  
+
+  Dabei gelte 
+  \[
+  \arg(z)+\arg(w) := \{ \varphi + \psi \sets \varphi\in\arg(z), \psi \in\arg(w) \}.
+  \]
+  \AntEnd 
+
+  \begin{center}
+    \includegraphics{mp/01_mult_kompl}
+    \captionof{figure}{
+      Für $zw$ gilt $\mathrm{Arg}\,(zw)=\mathrm{Arg}\,(z)+\mathrm{Arg}\,(w) \pmod {2\pi}$ 
+      und $|zw| = |z|\cdot |w|$
+    }
+    \label{fig:01_mult_kompl}
+  \end{center}
+\end{antwort}
+
+
+
+
+
+
+
+%: Question 96
+\begin{frage}\index{Einheitswurzeln, $n$-te}
+  Was versteht man unter der 
+  \bold{$\mathbf{n}$-ten Einheitswurzel} in $\CC$ ($n\in\NN$)? 
+  Wie viele $n$-te Einheitswurzeln gibt es?
+\end{frage}
+
+\begin{antwort}
+  Eine $n$-te Einheitswurzel ist definitionsgemäß eine Lösung der 
+  Gleichung $z^n-1=0$ in $\CC$, also eine komplexe Zahl $\zeta$, für 
+  die $\zeta^n=1$ gilt. 
+
+  Für eine $n$-te Einheitswurzel 
+  $\zeta := r(\cos \varphi + \i\sin\varphi)$ 
+  hat man aufgrund einer leicht zu beweisenden Verallgemeinerung der Antwort 
+  zu vorigen Frage die Darstellung
+  \[
+  \zeta^n = r^n (\cos n\varphi + \i \sin n \varphi)=1.
+  \]
+  Wegen $\sin n \varphi=0$ folgt hieraus 
+  $r=1$ und $n\varphi=2k\pi$ mit $k\in \ZZ$. 
+  Andersherum sind mit $\varphi_k := 2k\pi/n$ auch alle Zahlen
+  \[
+  \zeta_k := ( \cos \varphi_k + \i \sin  \varphi_k), \qquad k\in\ZZ
+  \]
+  $n$-te Einheitswurzeln, aber nicht alle davon sind verschieden. 
+  Für $\ell,j \in \ZZ$ gilt
+  \[
+  \zeta_\ell = \zeta_j \LLa \frac{2\ell\pi}{n} - 
+  \frac{2j\pi}{n} \in 2\pi\ZZ 
+  \LLa \ell - j \in n\ZZ.
+  \]
+  Es gibt also genau $n$ verschiedene $n$-te Einheitswurzeln, 
+  nämlich 
+  $\zeta_0, \zeta_1, \ldots, \zeta_{n-1}$. 
+  Für diese hat man auch eine 
+  explizite Darstellung
+  \begin{equation*}
+    \zeta_\ell = \cos \frac{2\ell\pi}{n} + \i \sin  
+    \frac{2 \ell \pi }{n},\qquad 
+    \ell=0,\ldots,n-1.
+  \end{equation*}
+
+  \begin{center}
+    \includegraphics{mp/01_einheitswurzeln}
+    \captionof{figure}{Dritte, vierte und fünfte Einheitswurzeln in $\CC$.}
+    \label{fig:01_einheitswurzeln}
+  \end{center}
+
+  Die $n$-ten Einheitswurzeln liegen auf der Einheitskreislinie und 
+  bilden die Eckpunkte eines regulären $n$-Ecks (vgl. \Abb\ref{fig:01_einheitswurzeln}). 
+  Mit $\zeta_\nu$ und $\zeta_\mu$ ist 
+  auch $\zeta_\nu \zeta_\mu$ eine $n$-te Einheitswurzel. 
+  Aus den Eigenschaften der komplexen Multiplikation 
+  ergibt sich leicht, dass die $n$-ten Einheitswurzeln bezüglich 
+  der Multiplikation eine Gruppe bilden, die isomorph 
+  zur Restklassengruppe $\ZZ/n\ZZ$ ist. \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 97
+\begin{frage}\index{nte Wurzeln@$n$-te Wurzeln komplexer Zahlen}
+  Warum gibt es zu jeder komplexen Zahl $w\not=0$ genau $n$ Lösungen 
+  der Gleichung 
+  \[
+  z^n=w, \quad( n\in\NN),
+  \]
+  und wie kann man die Lösungen explizit beschreiben?
+\end{frage}
+
+\begin{antwort}
+  Mit 
+  $z = |z| (\cos \varphi + i \sin \varphi)$ und 
+  $w=  |w| (\cos \psi + i \sin \psi)$ folgt aus der Gleichung  
+  $|z|^n = |w|$ und $n\varphi = \psi + 2k\pi$ für ein 
+  $k\in \ZZ$.
+
+  Andersherum ist für jedes $k\in\ZZ$ 
+  \[
+  z_k := \left|w\right|^{1/n}  ( \cos \varphi_k + i\sin \varphi_k ) 
+  \quad\text{ mit }\quad
+  \varphi_k := \frac{\psi + 2k\pi}{n}
+  \]
+  eine Lösung der Gleichung. Zwei dieser Lösungen $z_l$ und 
+  $z_j$ sind identisch genau dann, wenn $\varphi_j - \varphi_k$ 
+  ein ganzzahliges Vielfaches von $2\pi$ ist. 
+  Das ist genau dann der Fall, wenn 
+  $j$ und $l$ sich durch ein ganzzahliges Vielfaches 
+  von $n$ unterscheiden. Es folgt, dass es genau $n$ Lösungen 
+  der Gleichung gibt, nämlich $z_0,\ldots,z_{n-1}$. 
+  Für diese gilt:
+  \begin{equation}
+    z_l = \left| w \right|^{1/n} \left( \cos\frac{\psi + 2l\pi}{n} + 
+      i\sin \frac{\psi + 2l\pi}{n} \right), \qquad l = 1,\ldots, n-1. 
+    \notag
+  \end{equation}
+  Im Übrigen hat man damit 
+  einen Spezialfall des 
+  \slanted{Fundamentalsatzes der Algebra} bewiesen. \AntEnd
+\end{antwort} 
+
+
+
+
+\section{Die Standardvektorräume $\RR^n$ und $\CC^n$}
+
+
+Für das Studium geometrischer Probleme, bei denen auch Längen und Winkel 
+eine Rolle spielen , ist die Vekrorraumstruktur nicht ausreichend. Man benötigt 
+eine zusätzliche Struktur, die es z.\,B. ermöglicht, auch Längen von Vektoren 
+und Winkel zwischen Vektoren zu definieren, insbesondere möchte man ausdrücken 
+können, dass zwei Vektoren "`aufeinander senkrecht stehen"'. 
+
+Eine solche Zusatzstruktur erhält man durch Einführung eines geigneten 
+\slanted{Skalarprodukts}. Wir orientieren uns bei deren Einführung 
+zunächst an den Standardvekorräumen, aber auch für allgemeinere Räume, etwa 
+Funktionenräume, lassen sich Skalarprodukte definieren.
+
+
+
+
+%: Question 98
+\begin{frage}\index{Standardskalarprodukt!in $\RR^n$}
+  \label{skalarRR}
+  Wie ist im Standardvektorraum $\RR^n$ das 
+  \bold{Standardskalarprodukt} definiert? 
+  Welche Haupteigenschaften hat es?
+  \nomenclature{$\langle \,\; \rangle$}{Skalarprodukt}
+\end{frage}
+
+\begin{antwort}
+  Das Standardskalarprodukt im $\RR^n$ ist eine Abbildung $\RR^n\times \RR^n\to\RR$. 
+  Für zwei Vektoren $x=(x_1,\ldots, x_n)$ und 
+  $y=(y_1,\ldots,y_n)$ aus $\in \RR^n$ ist es definiert 
+  durch
+  \[
+  \langle x,y \rangle = x_1y_1 + \cdots + x_n y_n.
+  \]
+  Die Haupteigenschaften des Standardskalarprodukts sind
+  {\setlength{\labelsep}{5mm}
+    \begin{itemize}[3mm]
+    \item[\desc{i}] \textit{Bilinearität:}
+      \[
+      \langle \lambda(x+x'), y \rangle 
+      = \lambda \langle x,y \rangle 
+      + \lambda \langle x',y \rangle, \qquad
+      \langle x, \lambda(y+y') \rangle 
+      = \lambda \langle x,y \rangle 
+      + \lambda \langle x,y' \rangle, 
+      \]
+    \item[\desc{ii}] \textit{Symmetrie:}\quad 
+      $\langle x,y \rangle = \langle y,x \rangle$,\\[-3.5mm]
+    \item[\desc{iii}] \textit{Positive Definitheit:}\quad 
+      $\langle x,x \rangle \ge 0$, \quad 
+      $\langle x,x \rangle =0 \Longleftrightarrow x=0$.
+      \AntEnd
+    \end{itemize}}
+\end{antwort}
+
+
+
+
+
+
+%: Question 99
+\begin{frage}\index{Standardskalarprodukt!in $\CC^n$}
+  \label{skalarCC}
+  Wie ist im $\CC$-Vektorraum $\CC^n$ das Standardskalarprodukt definiert 
+  und welche Haupteigenschaften hat es?
+\end{frage}
+
+\begin{antwort}
+  Für zwei Vektoren $z=(z_1,\ldots,z_n)$ und $w=(w_1,\ldots,w_n)$ aus 
+  $\CC^n$ ist das kanonische Skalarprodukt 
+  $\langle\;,\;\rangle_c\, : \, \CC^n \times \CC^n \to \CC$ definiert durch 
+  \[
+  \langle z,w \rangle_c := z_1\ov{w}_1 + \cdots + z_n \ov{w}_n.
+  \]
+  Die Eigenschaften \desc{i} und \desc{iii} des reellen Skalarprodukts gelten 
+  genauso im komplexen 
+  Fall, wie man leicht nachrechnet. Statt der Eigenschaft \desc{ii} gilt 
+  aber jetzt
+  \[
+  \text{\desc{ii}$_c$} \quad \quad\langle z, w 
+  \rangle_c = \ov{\langle w,z \rangle_c}.
+  \]
+  Für $z,w \in \RR^n$ ist $\langle z, w \rangle_c = \langle z, w \rangle$. 
+  Das Standardskalarprodukt im $\CC^n$ kann also als Fortsetzung des 
+  reellen Standardskalarprodukts verstanden werden. 
+  Man beachte allerdings, dass bezüglich der Abbildung
+  \[
+  \CC^n \to \RR^{2n}, \quad z=(x_1+iy_1,\ldots, x_n+iy_n) 
+  \mapsto (x_1,y_1,\ldots,x_n,y_n) = v
+  \]
+  die beiden Werte $\langle z, z'\rangle_c$ und $\langle v, v' \rangle$ 
+  im Allgemeinen verschieden sind.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 100
+\begin{frage}\index{Skalarprodukt}
+  Was versteht man in einem $\KK$-Vektorraum 
+  ($\KK=\RR$ oder $\KK=\CC$) allgemein unter einem \bold{Skalarprodukt}?
+\end{frage}
+
+\begin{antwort}
+  Für $\KK=\RR$ ist ein Skalarprodukt eine \textit{positiv definite, symmetrische 
+    Bilinearform}, das heißt eine Abbildung $\RR\times \RR^n \to \RR^n$, die  
+  die drei Eigenschaften \desc{i}, \desc{ii} und \desc{iii} 
+  aus Frage \ref{skalarRR} erfüllt.
+
+  Für $K=\CC$ ist ein Skalarprodukt eine Abbildung $\CC\times\CC\to\CC$, 
+  die die Eigenschaften \desc{i} und \desc{iii} aus Aufgabe \ref{skalarRR} 
+  sowie Eigenschaft 
+  \desc{ii}$_c$ aus Aufgabe \ref{skalarCC} erfüllt. 
+  Man spricht dann von einer 
+  \textit{positiv definiten hermiteschen} Form. \index{hermitesche Form (positiv definite)}
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+
+%: Question 101
+\begin{frage}\index{euklidische Norm}
+  Wie ist die \bold{euklidische Norm} im $\RR^n$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die euklidische Norm ist eine Abbildung $\|\;\;\|\,:\, \RR^n \to \RR^n$, 
+  die für $x=(x_1,\ldots,x_n)\in \RR^n$ definiert ist durch
+  \[
+  \| x \| = \sqrt{ x_1^2 +\cdots x_n^2 } = 
+  \sqrt{ \langle x,x \rangle } .
+  \]
+  Der Zusammenhang mit dem Standardskalarprodukt im $\RR^n$ liegt 
+  in der zweiten Gleichung begründet.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 102
+\begin{frage}\index{Cauchy-Schwarz'sche Ungleichung}
+  \index{Cauchy@\textsc{Cauchy}, Augustin Louis (1789-1857)}
+  \index{Schwarz@\textsc{Schwarz}, Hermann Amandus (1843-1921)}
+  Wie lautet die 
+  \bold{Cauchy-Schwarz'sche Ungleichung} in einem 
+  $K$-Vektorraum mit Skalarprodukt ($K=\RR$ bzw. $K=\CC$)?
+\end{frage}
+
+\begin{antwort}
+  Für Vektoren $x,y\in K^n$ lautet die Cauchy-Schwarz'sche Ungleichung 
+  \begin{equation}
+    | \langle x,y \rangle | \le \| x\|\cdot  \|y\|,  \tag{$\ast$}
+  \end{equation}
+  dabei bezeichnet $\langle \;,\; \rangle$ das Standardskalarprodukt 
+  im $\RR^n$ bzw. $\CC^n$, je nachdem, ob $\KK=\RR$ oder $\KK=\CC$ gilt.
+  \AntEnd
+\end{antwort}
+
+
+%: Question 103
+\begin{frage}
+  Wie lautet die Cauchy-Schwarz'sche Ungleichung speziell für 
+  $\RR^n$ bzw. $\CC^n$ und das jeweilige Standardskalarprodukt?
+\end{frage}
+
+\begin{antwort}
+  Für $x,y\in \RR^n$ bzw. $z,w\in\CC^n$ besitzt die Cauchy-Schwarz'sche 
+  Ungleichung bezüglich des jeweiligen Standardskalarprodukts die Form
+  \[
+  |x_1y_1+\ldots + x_ny_n|  \le  
+  \sqrt{ x_1^2 + \ldots + x_n^2 } \cdot 
+  \sqrt{ y_1^2+ \ldots + y_n^2 } 
+  \]
+  bzw.
+  \begin{equation}
+    |z_1 \ov{w}_1 + \ldots z_n \ov{w_n}|  \le  
+    \sqrt{ \left|z_1\right|^2 + \ldots + \left|z_n\right|^2 } \cdot 
+    \sqrt{ \left|w_1\right|^2 + \ldots + \left|w_n\right|^2 }. \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+
+
+
+%: Question 104
+\begin{frage}\label{01_pnorm}\index{Norm}
+  Welche \bold{Normen} im 
+  $\KK^n$ ($\KK=\RR$ oder $\KK=\CC$) sind Ihnen geläufig und kennen 
+  Sie Beziehungen (Ungleichungen) zwischen ihnen?
+\end{frage}
+
+\begin{antwort}
+  Die für $\RR^n$ und $\CC^n$ geläufigsten Normen sind die 
+  sogenannten $p$-Normen, die eine Verallgemeinerung der euklidischen 
+  Norm darstellen. Für jedes $p\ge 1$ ($p$ kann natürlich, rational 
+  oder reell sein) ist die \textit{$p$-Norm} $\|\;\;\|_p$ 
+  eines Vektors $z\in \KK^n$ 
+  definiert durch
+  \[
+  \| z \|_p := \left( \sum_{\nu=1}^n \left|z_{\nu}\right|^p \right)^{1/p}.
+  \]
+  Für $p=2$ ist das gerade die euklidische Norm, für $p=1$ erhält man die 
+  \textit{$1$-Norm} $\| z \|_1 := |z_1|+\ldots + |z_n|$. 
+
+  Aus $p>q$ folgt stets 
+  \begin{equation}
+    \| z \|_p \le \| z \|_q. \tag{$\ast$}
+  \end{equation}  
+  Das erkennt man, wenn man mit 
+  $ |z_M| := \max \{ |z_1|,\ldots, |z_n| \}$ die 
+  Normen in der Form
+  \begin{equation}
+    \| z \|_p = |z_M| \left( 1+ \sum_{\substack{i=1 \\ i\not=M}}^n 
+      \left( \frac{|z_i|}{|z_M|} \right)^p \right)^{1/p}, \quad 
+    \| z \|_q = |z_M|\left( 1+ \sum_{\substack{i=1 \\ i\not=M}}^n 
+      \left( \frac{|z_i|}{|z_M|} \right)^q \right)^{1/q} \tag{$\ast\ast$}
+  \end{equation}
+  schreibt und sich überlegt, welche Zahlen hier größer und welche 
+  kleiner als $1$ sind und wie die 
+  Exponenten $p,\,q, \,\frac{1}{p}$ und $\frac{1}{q}$ auf diese Zahlen wirken.
+
+  \noindent
+  Der Darstellung ($\ast\ast$) kann man außerdem die Beziehung 
+  $\lim_{p\to\infty} \| z \|_p = |z_M|$
+  entnehmen. Aus diesem Grund definiert man als \textit{Maximumsnorm} 
+  \[
+  \| z \|_{\infty} := \max \{|z_1|, \ldots ,|z_n| \}.
+  \]
+  Abbildung~\ref{fig:01_normen2} zeigt die Einheitskreisscheibe 
+  im $\RR^2$ bezüglich unterschiedlicher Normen.
+  
+  \begin{center}
+    \includegraphics{mp/01_normen2}
+    \captionof{figure}{Einheitskreisscheiben einiger $p$-Normen und der 
+      Maximumsnorm im $\RR^2$}  
+    \label{fig:01_normen2}
+  \end{center}
+  
+  Für jedes $p\ge 1$ lässt sich der Wert $\|z\|_p$ durch die 
+  Maximumsnorm auch nach oben abschätzen. Es gilt nämlich
+  \[ 
+  \|z\|_p  \le \left( n \cdot \left|z_M\right|^p \right)^{1/p} 
+  \le \sqrt[p]{n} \|z\|_\infty. 
+  \]
+
+  \noindent
+  Zusammen mit den ersten Ungleichungen folgt daraus, dass zu 
+  je zwei Zahlen $p,q$ mit $p>q$ eine Konstante $C$ existiert mit 
+  \[
+  \| z \|_p \le \| z \|_q  \le C \|z\|_p.
+  \]
+  Konkret kann man $C:=\sqrt[p]{n}$ wählen. Die 
+  Ungleichungskette besagt, dass alle $p$-Normen in $\RR^n$ 
+  \textit{äquivalent} sind. Abbildung \ref{fig:01_normaq} veranschaulicht 
+  das für die Normen $\|\;\,\|_2$ und $\|\;\,\|_\infty$.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/01_normaq}
+    \captionof{figure}{Zur Äquivalenz der $p$-Normen.}
+    \label{fig:01_normaq}
+  \end{center}
+
+\end{antwort}
+
+
+
+
+
+
+%: Question 105
+\begin{frage}\label{01_parallelogramm}
+  Warum muss für eine Norm 
+  $\|\;\; \|$ auf einem $ \KK$-Vektorraum $V$
+  ($\KK=\RR$ oder $\KK=\CC$), 
+  die aus einem Skalarprodukt auf $V$ abgeleitet ist, 
+  die sogenannte \bold{Parallelo\-gramm\-identität}
+  \[
+  \| v+w \|^2 + \| v-w \|^2 = 2 \left( \|v\|^2 + \|w\|^2 \right)
+  \]
+  gelten?
+\end{frage}
+
+\begin{antwort}
+  Die Norm ist in diesem Fall gegeben durch 
+  $\| v \|=\sqrt{\langle v,v \rangle }$. Die Parallelogrammidentität 
+  ergibt sich aufgrund der Bilinearität des Skalarprodukts
+  \begin{align}
+    \| v+w \|^2 &+ \| v-w \|^2 = 
+    \langle v+w,v+w \rangle + \langle v-w, v-w \rangle \notag \\
+    &=
+    \langle v,v \rangle + \langle v,w \rangle + \langle w,v \rangle
+    +\langle w,w \rangle + \langle v,v \rangle - \langle v,w \rangle
+    - \langle w,v \rangle + \langle w,w  \rangle \notag \\
+    &= 2 \langle v,v \rangle + 2\langle w,w \rangle
+    = 2( \|v \|^2 + \|w\|^2 ). \EndTag
+  \end{align}
+  \noindent
+  Bemerkung: Nicht jede Norm auf $\RR^n$ stammt von einem Skalarprodukt, 
+  das gilt \zB für die Maximumsnorm auf $\RR^n$. Gilt jedoch in einem 
+  normierten $\KK$-Vektorraum ($\KK=\RR$ oder $\KK=\CC$) die 
+  Parallelogrammidentität, so kann man zeigen, dass die Norm von einem 
+  Skalarprodukt induziert wird 
+  (Satz von J.~von~Neumann\index{Satz!von J.~von~Neumann}). 
+  Einen Beweis dieses Satzes findet man bei \citep{Huppert}.
+  \AntEnd
+\end{antwort}
+
+\section{Einige wichtige Ungleichungen}
+
+Die folgenden Ungleichungen sind für die Analysis unverzichtbar.
+
+
+%: Question 106
+\begin{frage}\label{01_ungleichungen}
+  \index{Ungleichung!zwischen arithmetischem und geometrischem Mittel}
+  \index{Ungleichung!zwischen harmonischem und geometrischem Mittel}
+  \index{Ungleichung!zwischen arithmetischem und quadratischem Mittel}
+  
+  Warum gilt für positive reelle Zahlen $a$ und $b$ die Ungleichungskette 
+  \[
+  \min \{ a,b \} \le \frac{2ab}{a+b} 
+  \le \sqrt{ab} \le \frac{a+b}{2} 
+  \le \sqrt{\frac{a^2+b^2}{2}}
+  \le \max\{ a,b \}.
+  \]
+  Man bezeichnet 
+  $\frac{2ab}{a+b}$ als \bold{harmonisches}, 
+  $\sqrt{ab}$ als \bold{geometrisches},
+  $\frac{a+b}{2}$ als \bold{arithmetisches} und 
+  $\sqrt{\frac{a^2+b^2}{2}}$ als \bold{quadratisches Mittel 
+    von $a$ und $b$.}
+\end{frage}
+
+\begin{antwort}
+  Wir zeigen die Ungleichungen der Reihe nach
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{1}] Sei \oBdA\ $\min \{ a,b \}=a$. Dann folgt 
+      $\frac{2ab}{a+b} \ge \frac{2ab}{b+b} = a.$ \\[-2mm]
+    \item[\desc{2}] Wegen 
+      \[
+      \frac{2ab}{a+b} \le \sqrt{ab} \LLa 
+      \frac{2ab}{\sqrt{ab}} \le a+b \LLa 
+      \sqrt{ab} \le \frac{a+b}{2} 
+      \]
+      folgt diese Ungleichung aus der folgenden.\\[-2mm] 
+    \item[\desc{3}] Es ist 
+      $0 \le \left(\sqrt{a} -\sqrt{b} \right)^2=a-2\sqrt{ab} +b \ge 0$ 
+      und damit, also $a+b \ge \sqrt{ab}$. \\[-2mm] 
+    \item[\desc{4}] Aus $(a-b)^2 \ge 0$ folgt 
+      $2a^2-2ab +2b^2 \ge a^2+b^2$ und damit 
+      $2a^2+2b^2 \ge(a+b)^2$, also 
+      $\sqrt{a^2+b^2} \ge \frac{a+b}{\sqrt{2}}$. Multiplikation mit 
+      $\frac{1}{\sqrt{2}}$ auf beiden Seiten liefert die behauptete 
+      Ungleichung. \\[-2mm]
+    \item[\desc{5}] \OBdA\ sei $b = \max \{ a,b \}$, dann ist 
+      $\sqrt{\frac{a^2+b^2}{2}}\le \sqrt{ \frac{2b^2}{2} } = b = \max\{a,b\}$. 
+      \AntEnd
+    \end{itemize}}
+\end{antwort}
+
+
+
+
+
+
+%: Question 107
+\begin{frage}
+  \label{q:bernoulli-ungleichung}
+  \index{Bernouillische Ungleichung@Bernoulli'sche Ungleichung}
+  Was besagt die \bold{Bernoulli'sche Ungleichung}?
+\end{frage}
+
+\begin{antwort}
+  Für alle $n\in \NN_0$ und 
+  alle reelle Zahlen $x\ge -1$ gilt
+  \[
+  (1+x)^n \ge 1+nx.
+  \]
+  Das ist die Bernoulli'sche Ungleichung. 
+  Beweisen lässt sie sich mit vollständiger Induktion. 
+  Für $n=0$ ist sie wegen 
+  $(1+x)^0 = 1 \ge 1$ richtig. Ist sie für ein $n\in\NN$ bereits gezeigt, 
+  dann folgt daraus
+  \[
+  (1+x)^{n+1}=(1+x)^n(1+x) \ge (1+nx)(1+x) = 1+nx+x+nx^2 \ge 1+(n+1)x,
+  \]
+  also ihre Gültigkeit für $n+1$.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 108
+\begin{frage}\index{Youngsche Ungleichung@Young'sche Ungleichung}
+  Was besagt die 
+  \textbf{Young'sche Ungleichung} und wie kann man sie beweisen?
+\end{frage}
+
+\begin{antwort}
+  Die Young'sche Ungleichung lautet (in ihrer nicht allgemeinsten, 
+  aber gebräuchlichsten Formulierung, in der sie eine fundamentale Rolle 
+  beim Beweis der Hölder'schen Ungleichung spielt): 
+  Seien $a,b \ge 0$ und $p,q\in\RR$ mit $p,q>1$ 
+  und $\frac{1}{p}+\frac{1}{q}=1$. Dann gilt
+  \[
+  a b \le \frac{a^p}{p}+ \frac{b^p}{q}.
+  \]
+  Man kann diese Ungleichung nur mit analytischen Methoden beweisen.  
+  Eine Möglichkeit besteht darin, die Konvexität der Exponentialfunktion 
+  auszunutzen (\sieheAbbildung\ref{fig:01_exp}), 
+  also die Tatsache, dass für alle $x,y \in \RR$ und alle $t\in [0,1]$ gilt 
+  \[
+  \exp\big( x+ t(y-x) \big) \le \exp(x) + t\big(\exp(y)-\exp(x)\big).
+  \]
+  Daraus folgt dann nämlich mit $x=\log a$ und $y=\log b$ für 
+  $a,b \not=0$  
+  \begin{align}
+    a\cdot b &= \exp( x+ y ) = \exp \left(\frac{1}{p} px+\frac{1}{q}qy\right)
+    = 
+    \exp \left( px + \frac{1}{q} ( qy-px ) \right) \notag \\
+    &\le
+    e^{px} + \frac{1}{q} ( e^{qy} - e^{px} ) = 
+    \frac{1}{p} e^{px} + \frac{1}{q} e^{qy} = \frac{a^p}{p}+\frac{b^q}{q}.\EndTag
+  \end{align}
+
+  \begin{center}
+    \includegraphics{mp/01_exp}
+    \captionof{figure}{Beim Beweis der Young'sche Ungleichung 
+      wird die Konvexität der Exponentialfunktion ausgenutzt: 
+      Die Verbindungsstrecke zweier Punkte auf dem Graphen verläuft oberhalb des 
+      Graphen.}
+    \label{fig:01_exp}
+  \end{center}
+
+\end{antwort}
+
+%: Question 109
+\begin{frage}
+  \label{01_youngspecial}
+  Ein Spezialfall der Young'schen Ungleichung lautet
+  \[
+  |a| |b| = |ab| \le \frac{1}{2} (|a|^2+|b|^2), \quad (a,b \in\CC).
+  \]
+  Wie kann man diese Ungleichung elementar beweisen?
+\end{frage}
+
+\begin{antwort}
+  Die Ungleichung ist nichts anderes als die in der Antwort zu Frage \ref{01_ungleichungen} 
+  gezeigte Ungleichung 
+  \[
+  \sqrt{ab} \le \sqrt{\frac{a^2+b^2}{2}} 
+  \]
+  Sie folgt sofort aus 
+  $(|a|-|b|)^2 = |a|^2-2|ab|+|b|^2 \ge0$.
+  \AntEnd
+  
+\end{antwort}
+
+
+
+
+
+
+%: Question 110
+\begin{frage}\index{Cauchy-Schwarz'sche Ungleichung}
+  \index{Cauchy@\textsc{Cauchy}, Augustin Louis (1789-1857)}
+  \index{Schwarz@\textsc{Schwarz}, Hermann Amandus (1843-1921)}
+  Wie kann man mit der Ungleichung aus Frage \ref{01_youngspecial} 
+  die Cauchy-Schwarz'sche 
+  Ungleichung in $\CC^n$ oder $\RR^n$ beweisen?
+\end{frage}
+
+\begin{antwort}
+  Man kann gleich den allgemeineren Fall $z,w \in \CC^n$ angehen.      
+  Wegen der Dreiecksungleichung 
+  gilt $|\langle z,w \rangle | \le \sum_{k=1}^n |z_k w_k|$, und deshalb 
+  genügt es, die Ungleichung 
+  \[
+  \sum_{k=1}^n |z_k| |w_k| \le  
+  \underbrace{ \left(\sum_{k=1}^n |z_k|^2 \right)}_{ := A } \cdot 
+  \underbrace{ \left(\sum_{k=1}^n |w_k|^2 \right)}_{ := B }
+  \]
+  zu zeigen. 
+  Mit $\zeta_k := z_k /A$ und $\omega_k := w_k/B$ für $k=1,\ldots,n$ lautet 
+  diese
+  \[
+  \sum_{k=1}^n  |\zeta_k \omega_k | \le 1,
+  \]
+  und in dieser Form erhält man sie nun leicht aus der Ungleichung 
+  aus Frage \ref{01_youngspecial}
+  \[
+  \sum_{k=1}^n  |\zeta_k \omega_k | \le 
+  \frac{1}{2}\sum_{k=1}^n (|\zeta_k|^2 + |\omega_k|^2) = 
+  \frac{1}{2}\left( \sum_{k=1}^n |\zeta_k|^2 + \sum_{k=1}^n |\omega_k|^2 \right)
+  = \frac{1}{2}(1+1)=1.
+  \]
+  Insgesamt beweist das die Cauchy-Schwarz'sche Ungleichung.
+  \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 111
+\begin{frage}
+  \label{minkowski}
+  \index{Minkowskische Ungleichung@Minkowski'sche Ungleichung}
+  \index{Minkowski@\textsc{Minkowski}, Hermann (1864-1909)}
+  Wie lautet die \bold{Minkowski'sche Ungleichung} in $\RR^n$ bzw. $\CC^n$?
+\end{frage}
+
+\begin{antwort}
+  Die Minkowski'sche Ungleichung ist die Verallgemeinerung der 
+  Dreiecksungleichung für $p$-Normen. Sie lautet: Für $p\ge 1$ gilt 
+  \[
+  \|z + w \|_p \le \| z \|_p + \| w \|_p, 
+  \qquad z,w \in \CC^n.
+  \]
+  Im speziellen Fall der euklidischen Norm ($p=2$) besitzt sie die 
+  Darstellung
+  \[
+  \left( \sumkn |z_k +w_k |^2 \right)^{1/2} \le 
+  \left( \sumkn |z_k|^2 \right)^{1/2} +
+  \left( \sumkn |w_k|^2 \right)^{1/2},
+  \]
+  die man mithilfe der Cauchy-Schwarz'schen Ungleichung beweisen 
+  kann. Dazu betrachte man
+  \begin{eqnarray*}
+    \sumkn |z_k+w_k|^2 &\le& 
+    \sumkn |z_k+w_k| |z_k| + \sumkn |z_k+w_k||w_k| \\
+    &\le& \left( \sumkn |z_k+w_k|^2 \right)^{1/2} \cdot  
+    \left[ \left( \sumkn |z_k|^2 \right)^{1/2} + 
+      \left( \sumkn |w_k|^2 \right)^{1/2} \right].
+  \end{eqnarray*}
+  Die letzte Ungleichung folgt aus der Cauchy-Schwarz'schen Ungleichung. 
+  Die Minkowski'sche Ungleichung für $p=2$ erhält man jetzt, indem man 
+  beide Seiten durch $(\sumkn |z_k+w_k|^2)^{1/2}$ dividiert.
+
+  Den allgemeinen Fall der Minkowski'schen Ungleichung beweist man 
+  mit der Hölder'schen Ungleichung. \AntEnd
+\end{antwort}
+
+
+
+
+
+
+%: Question 112
+\begin{frage}
+  \label{hoelder}\index{Hoeldersche@Hölder'sche Ungleichung}
+  \index{Hoelder@\textsc{Hölder}, Otto (1859-1937)} 
+  Wie lautet die \bold{Hölder'sche Ungleichung} in $\RR^n$ bzw. $\CC^n$?
+\end{frage}
+
+\begin{antwort}
+  Die Hölder'sche Ungleichung lautet: 
+  Seien $p,q>1$ (natürliche, rationale 
+  oder reelle) Zahlen mit $\frac{1}{p}+\frac{1}{q}=1$. Dann gilt 
+  für alle $z,w\in\CC^n$:
+  \[
+  \sumkn |z_k w_k | \le \| z \|_p \cdot \| w\|_q. 
+  \]
+  Die Hölder'sche Ungleichung erhält man aus der Young'schen Ungleichung. 
+  Nach dieser gilt nämlich 
+  \[
+  \frac{|z_k|}{\|z\|_p} \frac{|w_k|}{\|w\|_q} \le 
+  \frac{1}{p} \frac{ |z_k|^p }{ \| z \|_p^p } + 
+  \frac{1}{q} \frac{ |w_k|^q }{ \| w \|_q^q },
+  \]
+  und die Hölder'sche Ungleichung folgt nun durch Summation 
+  beider Seiten
+  \begin{equation}
+    \frac{1}{ \| z\|_p\, \| w \|_q } \sumkn |z_k| |w_k| \le 
+    \frac{1}{p}+\frac{1}{q} =1. \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+
+
+
+%: Question 113
+\begin{frage}\label{01_hldi}
+  Kennen Sie eine Verallgemeinerung der Hölder'schen Ungleichung 
+  aus Frage \ref{hoelder} für Integrale?
+\end{frage}
+
+\begin{antwort}
+  Sei $A\subset \RR$ ein Intervall und $f$ und $g$ Funktionen 
+  $\RR \to \CC$, {\sd} -- relativ zu dem benutzten Integralbegriff --   
+  $f$ und $g$ über $A$ integrierbar sind. (Je nachdem, welchen 
+  Integralbegriff man benutzt, steht auch fest, ob $A$ kompakt ist oder 
+  auch offen und unbegrenzt sein darf.) Weiter 
+  seien $p,q \ge 1$ Zahlen, für die $\frac{1}{p}+\frac{1}{q}=1$ gilt. 
+
+  Unter diesen Voraussetzungen lautet die Integralversion der 
+  Hölder'schen Ungleichung. 
+  \begin{equation}
+    \int_A |f(x)g(x)| \difx \le 
+    \left( \int_A \left|f(x)\right|^p \difx \right)^{1/p} \cdot 
+    \left( \int_A \left|g(x)\right|^q \difx \right)^{1/q}.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+
+
+
+%: Question 114
+\begin{frage}
+  Wie erhält man aus der Hölder'schen Ungleichung die Cauchy-Schwarz'sche 
+  Ungleichung?
+\end{frage}
+
+\begin{antwort}
+  Die Cauchy-Schwarz'sche Ungleichung ist ein Spezialfall der Hölder'schen 
+  Ungleichung für $p=q=2$.
+  \AntEnd
+\end{antwort}   
+
+
+%: Question 115
+\begin{frage}
+  Wie kann man die Ungleichung 
+  \[
+  \| z_1+z_2+\ldots+z_n\| \le \|z_1\|+\|z_2\|+\ldots + \|z_n\| 
+  \]
+  für $(z_1, \ldots, z_n) \in K^n$ ($K=\RR$ oder $K=\CC$) und beliebige 
+  Normen $\|\quad \|\,:\,K^n \to \CC$ beweisen?
+\end{frage}
+
+
+\begin{antwort}
+  Für $n=2$ ist die Ungleichung gerade die Dreiecksungleichung, 
+  die definitionsgemäß von jeder Norm erfüllt ist. 
+  Der Rest folgt dann durch vollständige 
+  Induktion. Aus der Gültigkeit der Ungleichung für $n$ Vektoren 
+  folgt nämlich mit der Dreiecksungleichung
+  \begin{equation}
+    \| z_1+\ldots + z_n + z_{n+1} \| \le 
+    \| z_1+\ldots +z_n \|+\| z_{n+1} \| \le 
+    \| z_1 \|+\ldots +\|z_{n}\|+\|z_{n+1}\|.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 

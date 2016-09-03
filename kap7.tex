@@ -1,0 +1,2881 @@
+\chapter{Grundlagen der Integral- und Differenzialrechnung}
+
+Sowohl die Differenzial- als auch die Integralrechnung 
+gehören zum Kernbestand der Analysis, sie bilden den Inhalt des 
+sogenannten "`Calculus"'. Beide gehen ursprünglich von geometrischen 
+Fragestellungen aus. Bei der Differenzialrechnung etwa das 
+\slanted{Tangentenproblem} für Kurven oder die Bestimmung von 
+\slanted{Extremwerten}. In physikalischer 
+Hinsicht entspricht das Problemen wie der Bestimmung von 
+Momentangeschwindigkeiten oder Momentanbeschleunigungen, allgemeiner 
+der Bestimmung der \slanted{momentanen Änderungsrate} einer Größe.
+
+Bei der Integralrechnung steht dagegen geometrisch die 
+Ermittlung von \slanted{Kurvenlängen}, \slanted{Flächeninhalten} 
+oder \slanted{Rauminhalten} am Ausgangspunkt. Damit verwandte 
+Probleme sind etwa die Bestimmung von \slanted{Dichten}, 
+\slanted{Schwerpunkten} und \slanted{Mittelwerten} oder in 
+physikalischen Anwendungen die Berechnung der Arbeit in einem 
+nichtkonstanten Kraftfeld. Ferner führt die Aufgabe, aus der
+Änderungsrate einer Größe die Größe selbst zu rekonstruieren, 
+auf die Methoden der Integralrechnung.  
+
+Der von Leibniz und Newton um 1670 entdeckte Zusammenhang von 
+Differenzial- und Integralrechnung, der als \slanted{Hauptsatz der 
+Differenzial- und Integralrechnung} bezeichnet wird, macht 
+diese Kalküle zu einem schlagkräftigen Werkzeug. 
+
+Als Integralbegriff wählen wir in diesem Kapitel das 
+Integral für \slanted{Regelfunktionen}. Das Riemann-Integral spielt nur 
+eine untergeordnete Rolle. Das Lesbesgue-Integral führen wir erst
+bei der  mehrdimensionalen Integrationstheorie in 
+Kapitel 11 ein. 
+
+\section{Das Integral für Treppenfunktionen und Regelfunktionen}
+
+Zunächst wird für eine einfache Klasse von Funktionen 
+-- die Treppenfunktionen -- ein Integral definiert. Dieses wird anschließend 
+auf die umfassendere Klasse der \slanted{Regelfunktionen} erweitert. 
+Zu den Regelfunktionen (auf einem kompakten Intervall) gehören insbesondere 
+die \slanted{stetigen} und \slanted{monotonen} Funktionen. 
+
+%% --- 1 --- %%
+\begin{frage}\label{06_step}\index{Treppenfunktion}
+Was versteht man unter einer Treppenfunktion 
+$t \fd [a,b]\to \RR$?
+\end{frage}
+
+\begin{antwort}
+$t\fd [a,b]\to\RR$ heißt Treppenfunktion genau dann, wenn es 
+Punkte $x_0,\ldots,x_n$ mit $a=x_0 < x_1 < \ldots < x_n =b $ gibt, 
+sodass $t$ in jedem offenen Intervall $]x_{k-1},x_k[$ konstant ist, 
+\sieheAbbildung\ref{fig:05_treppenfunktion}.
+
+\begin{center}
+  \includegraphics{mp/05_treppenfunktion}
+  \captionof{figure}{Graph einer Treppenfunktion}
+  \label{fig:05_treppenfunktion}
+\end{center}
+
+Die Werte der Funktion in den Zerlegungspunkten unterliegen dabei 
+keiner Einschränkung.
+\AntEnd
+\end{antwort}
+
+
+%% --- 2 --- %%
+\begin{frage}\label{06_stpi}\index{Integral!einer Treppenfunktion}
+Wie ist das \bold{Integral einer Treppenfunktion} $t\fd [a,b]\to\RR$ erklärt? 
+\end{frage}
+
+\begin{antwort}
+Ist $c_k$ der konstante 
+Wert der Funktion $t$ im Intervall $]x_{k-1}, x_k[$ und  
+$\Delta x_k := x_k - x_{k-1}$ die Länge dieses Intervalls, so 
+ist das Integral von $t$ definiert durch
+\begin{equation}\boxed{
+\int_a^b t(x)\difx := \sum_{k=1}^n c_k \Delta x_k.}\notag
+\end{equation}
+
+Der Wert des Integrals entspricht geometrisch dem orientierten 
+Flächeninhalt, den der Graph der Treppenfunktion 
+mit der $x$-Achse einschließt. 
+Das Integral ist also eine endliche Summe von Rechtecksinhalten, 
+wobei diese mit positiver Bilanz eingehen, wenn der Funktionswert 
+in dem betreffenden Intervall positiv ist, und mit negativer Bilanz, 
+falls der Funktionswert negativ ist, \sieheAbbildung\ref{fig:06_stepf1}. 
+\AntEnd
+
+\begin{center}
+  \includegraphics[width=7cm]{mp/06_stepf1}
+  \captionof{figure}{Das Integral einer Treppenfunktion ist die Summe orientierter 
+    Rechtecksinhalte.}
+  \label{fig:06_stepf1}
+\end{center}
+
+\end{antwort}
+
+
+%% --- 3 --- %%
+\begin{frage}\index{Zerlegung!eines Intervalls}
+Warum ist die Definition des Integrals einer Treppenfunktion 
+unabhängig von der zugrunde gelegten Partition (Zerlegung) von $M$? 
+\end{frage}
+
+
+\begin{antwort}
+Man betrachte zwei Zerlegungen
+$Z_1$ und $Z_2$ von $[a,b]$ mit der Eigenschaft, 
+dass $t$ auf den offenen Teilintervallen dieser Zerlegungen jeweils 
+konstant ist. Ferner sei $Z$ diejenige feinere Zerlegung, die man durch 
+Zusammenfassung der Zerlegungspunkte von $Z_1$ und $Z_2$ erhält. 
+$I(Z_1)$, $I(Z_2)$ und $I(Z)$ 
+bezeichne den Wert des Integrals von $t$ bezüglich 
+der jeweiligen Zerlegung. Da die Einfügung eines zusätzlichen   
+Teilungspunktes $\overline{x}$ 
+offensichtlich (vgl. die Abbildung in der vorigen Frage) nichts am Wert 
+der Summe in der Integraldefinition ändert, gilt also $I(Z)=I(Z_1)$ 
+genauso wie $I(Z)=I(Z_2)$, und damit $I(Z_1)=I(Z_2)$.      
+\AntEnd
+\end{antwort}
+
+
+%% --- 4 --- %%
+\begin{frage}\index{Treppenfunktion}
+\nomenclature{$\calli{T}(M)$}{Raum der Treppenfunkionen auf $M=[a,b]$}
+Welche algebraische Struktur besitzt 
+die Menge $\calli{T}(M)$ der Treppenfunktionen auf $M:=[a,b]$?
+\end{frage}
+
+
+\begin{antwort}
+ 
+Die Menge der Treppenfunktionen auf $[a,b]$ 
+bildet einen $\RR$-Vektorraum. 
+
+Zu Treppenfunktionen $\varphi$ und $\psi$ wähle man eine Zerlegung derart, 
+dass sowohl $\varphi$ als auch $\psi$ auf den offenen Teilintervallen 
+konstant sind. Dann ist mit beliebigen 
+reellen Zahlen $\alpha$ und $\beta$ 
+auch $\alpha\varphi+\beta\psi$ auf diesen Teilintervallen 
+konstant und somit eine Treppenfunktion. 
+Dies kennzeichnet $\calli{T}(M)$ als einen $\RR$-Vektorraum. 
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 5 --- %%
+\begin{frage}\label{06_trve}\index{Integral!einer Treppenfunktion}
+Welche Haupteigenschaften hat die Abbildung
+\[
+I \fd \calli{T}(M)\to \RR; \qquad 
+\varphi \mapsto I(\varphi) := \int_a^b \varphi(x)\difx \text{?}
+\]
+\end{frage}
+
+\begin{antwort}
+Seien $\varphi,\psi$ Treppenfunktionen auf $M$ und $a,b\in \RR$. 
+Die Abbildung $I$ besitzt die folgenden Eigenschaften: \satz{
+\[
+\begin{array}{rp{2mm}lp{15mm}r}
+\text{\desc{a}} & &
+I(a\varphi+b\psi)= a \cdot I( \varphi)+b\cdot I(\psi),  & &
+\text{(Linearität)} \\[1mm]
+\text{\desc{c}} & &
+\varphi \le \psi \Ra I(\varphi) \le I( \psi ). & &
+\text{(Montonie)}\\[1mm]
+\text{\desc{b}} & &
+\left| I(\varphi) \right| \le I( |\varphi| ) \le (b-a)\cdot \| \varphi \|, & &
+\text{(Beschränktheit)} 
+\end{array}
+\]}
+Die Abbildung $I\fd T\to \RR$ ist somit ein 
+\slanted{lineares, monotones, beschränktes Funktional}
+\index{Funktional}
+
+Zum Beweis zerlege man $[a,b]$ derart, dass sowohl $\varphi$ 
+als auch $\psi$ auf den offenen Teilintervallen konstant sind. 
+Mit der Integraldefinition aus Frage \ref{06_stpi} sind die drei 
+Sachverhalte dann nichts anderes als einfache Feststellungen über 
+endliche Summen.
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 6 --- %%
+\begin{frage}
+Wie erweitert man die Integraldefinition, wenn $a=b$ bzw. $b<a$ ist?
+\end{frage}
+
+\begin{antwort}
+Für $a=b$ setzt man $\int_a^b \varphi(x)\difx =0,$ und für 
+$b<a$ definiert man 
+\[
+\int_b^a \varphi(x)\difx = - \int_a^b \varphi(x)\difx.
+\] 
+Damit gelten die Eigenschaften $a$ und $b$ aus Frage $\ref{06_trve}$ auch in 
+diesen Fällen. Eigenschaft \desc{c} bleibt für $a=b$ erhalten 
+und gilt für $b<a$ sinngemäß mit verändertem Vorzeichen. 
+\AntEnd
+
+\smallskip
+\end{antwort}
+
+\smallskip
+%% --- 7 --- %%
+\begin{frage}\index{Regelfunktion}
+Was versteht man unter einer \bold{Regelfunktion} $f\fd [a,b]\to\RR$?
+\end{frage}
+
+\begin{antwort}
+Eine Regelfunktion lässt sich als 
+\slanted{gleichmäßiger Limes von Treppenfunktionen} definieren. 
+Das heißt:
+
+\medskip
+\noindent
+Eine Funktion 
+$f\fd [a,b]\to\RR$ ist eine Regelfunktion genau dann, wenn 
+es eine Folge von Treppenfunktionen $\varphi_n \fd [a,b]\to\RR$ 
+gibt, die gleichmäßig auf $[a,b]$ gegen $f$ konvergiert, wenn 
+also gilt
+\begin{equation}
+\lim_{n\to\infty}\| f-\varphi_n \| = 0, \notag
+\end{equation}
+wobei $\n{\;\,}$ (hier und im Folgenden) 
+die Supremumsnorm auf $[a,b]$ bezeichnet.
+\AntEnd
+
+\smallskip
+\end{antwort}
+
+\smallskip
+%% --- 8 --- %%
+\begin{frage}\index{Regelfunktion}
+Wieso ist jede Regelfunktion beschränkt?
+\end{frage}
+
+\begin{antwort}
+Wegen 
+\[
+\n{f} \le \n{f-\varphi_n}+\n{\varphi_n},
+\] 
+und weil jede Treppenfunktion beschränkt ist.
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 9 --- %%
+\begin{frage}\index{Regelfunktion}
+Wie lässt sich die Eigenschaft, eine Regelfunktion zu sein, 
+geometrisch veranschaulichen?
+\end{frage}
+
+
+\begin{antwort}
+Anschaulich sind Regelfunktionen dadurch gekennzeichnet, 
+dass zu jedem $\eps>0$ eine Treppenfunktion existiert, deren Graph 
+vollständig im $\eps$-Schlauch von $f$ verläuft, 
+\sieheAbbildung\ref{fig:06_regel}. 
+
+\begin{center}
+  \includegraphics{mp/06_regel}
+  \captionof{figure}{Bei einer Regelfunktion gibt es zu jedem 
+    $\eps>0$ eine Treppenfunktion, die vollständig im $\eps$-Schlauch von 
+    $f$ verläuft.}
+  \label{fig:06_regel}
+\end{center}
+
+Man beachte, dass in dieser Definition die Forderung 
+der \slanted{gleichmäßigen} Konvergenz entscheidend ist. 
+Die nur punktweise 
+Approximierbarkeit durch eine Folge von Treppenfunktion 
+reicht im Allgemeinen nicht dafür aus, eine Regelfunktion zu sein. 
+Ein Beispiel dafür wird in Frage \ref{06_pkon} gegeben. 
+\AntEnd
+\end{antwort}
+
+%% --- 10 --- %%
+\begin{frage}\index{Integral!einer Regelfunktion}
+\nomenclature{$\int_a^b f(x) \difx$}{Regelintegral}
+Wie ist das \bold{Integral einer Regelfunktion} definiert?  
+\end{frage}
+  
+\begin{antwort}
+Sei $f \fd [a,b] \to\RR$ 
+eine Regelfunktion und $(t_n)$ eine Folge von Treppenfunktionen 
+auf $[a,b]$, die gleichmäßig gegen $f$ konvergiert. Das Integral von $f$ 
+ist dann definiert als der Grenzwert 
+\begin{equation}
+\boxed{
+\int_a^b f(x) \difx = \lim_{n\to\infty} \int_a^b t_n (x) \difx.
+}
+\tag{$\ast$} 
+\end{equation}
+Um sicherzustellen, dass diese Definition auch sinnvoll ist, muss 
+zweierlei gezeigt werden:
+\satz{\setlength{\labelsep}{4mm}
+\begin{enumerate}
+\item[\desc{i}] Für jede gleichmäßig konvergente Folge von Treppenfunktionen 
+$t_n\fd [a,b]\to\RR$ existiert der Grenzwert 
+$\lim_{n\to\infty} \int_a^b t_n (x) \difx$.
+\item[\desc{ii}] Für zwei gleichmäßig gegen $f$ konvergente Folgen 
+$(t_n)$ und $(\psi_n)$ von Treppenfunktionen gilt 
+\[
+\lim_{n\to\infty} \int_a^b t_n (x) \difx = 
+\lim_{n\to\infty} \int_a^b  \psi_n (x) \difx.
+\]
+Mit anderen Worten, das Integral von $f$ in der Definition ($\ast$) ist 
+unabhängig von der approximierenden Folge von Treppenfunktionen.
+\end{enumerate}}
+
+\noindent
+Die Eigenschaft \desc{i} erhält man als eine Folge 
+der Beschränktheit des Integrals für Treppenfunktionen. 
+Wegen
+\[
+\left| \int_a^b t_k(x) \difx - \int_a^b t_m(x) \difx \right| \le 
+(b-a) \cdot \| t_k -t_m \| \le 
+(b-a) \cdot ( \|t_k-f\| + \|f-t_m \| )
+\]
+und $\| f-t_n \| \to 0$ ist die Folge der Integrale 
+$\int_a^b t_n(x) \difx$ eine Cauchy-Folge und damit konvergent. 
+
+Um \desc{ii} zu zeigen, betrachte man die nach dem 
+"`Reißverschlussprinzip"'  
+gebildete Folge $t_1,\psi_1,\ldots,t_k,\psi_k,\ldots$. 
+Diese Folge konvergiert gleichmäßig gegen $f$, 
+und somit ist nach $\desc{i}$ auch 
+die zugehörige Folge der Integrale konvergent. 
+Deren Teilfolgen 
+$\left( \int_a^b t_n(x)\difx \right)$ und 
+$\left( \int_a^b \psi_n(x)\difx \right)$ besitzen somit denselben 
+Grenzwert. 
+\AntEnd
+\end{antwort}
+
+%% --- 11 --- %%
+\begin{frage}\index{Regelfunktion}
+\nomenclature{$\calli{R}(M)$}{Raum der Regelfunktionen auf $M=[a,b]$} 
+Warum ist die Menge
+$\calli{R}(M) := \{ f\fd M \to \RR\sets \text{$f$ Regelfunktion} \}$
+ein $\RR$-Vektorraum?
+\end{frage}
+
+
+\begin{antwort}
+Sind $f$ und $g$ Regelfunktionen,  
+$(\varphi_n)$ und $(\psi_n)$ Folgen von Treppenfunktionen mit 
+$\varphi_n \stackrel{glm}{\to}f$ und 
+$\psi_n \stackrel{glm}{\to} g$, so ist mit $\alpha,\beta\in \RR$ auch 
+auch $(\alpha\varphi_n + \beta\psi_n)$ eine Folge von Treppenfunktionen, und diese 
+konvergiert gleichmäßig 
+gegen die Funktion $\alpha f+\beta g$, die somit ebenfalls eine 
+Regelfunktion ist.
+\AntEnd
+\end{antwort}
+
+
+%% --- 12 --- %%
+\begin{frage}\label{06_rgei}\index{Integral!einer Regelfunktion}
+Welche Haupteigenschaften besitzt die Abbildung 
+\[
+I\fd \calli{R}(M) \to \RR; 
+\qquad f\mapsto I(f) := \int_a^b f(x) \difx \text{?}
+\]
+\end{frage}
+
+\begin{antwort}
+Die Abbildung ist -- wie im Fall der Treppenfunktionen -- ein 
+\slanted{lineares, monotones und beschränktes Funktional}. 
+Mit $f,g\in \calli{R}(M)$ und $\alpha,\beta\in\RR$ gilt also
+\begin{equation}
+\boxed{
+\begin{array}{rp{2mm}lp{15mm}r}
+\text{\desc{i}} & &  
+I(\alpha f+ \beta g)= \alpha I(f)+\beta I(g), & &
+\text{(Linearität)} \\[2mm] 
+\text{\desc{ii}} & &  
+\left| I(f) \right| \le I( |f| ) \le (b-a) \cdot \| f \|, & &
+\text{(Beschränktheit)} \\[2mm]
+\text{\desc{iii}} & &  
+f \le g \Ra I(f) \le I( g ). & &
+\text{(Montonie)}
+\end{array}}
+\notag
+\end{equation}
+Seien $(\varphi_n)$ und $(\psi_n)$ Folgen von Treppenfunktionen 
+mit $\varphi_n \stackrel{glm}{\to} f$ 
+und $\psi_n \stackrel{glm}{\to} g$. 
+
+\medskip
+\noindent
+\desc{i} Es gilt 
+$(\alpha\varphi_n + \beta
+\psi_n) \stackrel{glm}{\to} (\alpha f +\beta g)$ und damit 
+\[
+I(\alpha f + \beta g)  =  
+\lim_{n\to\infty} \left( \int_a^b \alpha \varphi_n (x) \difx + 
+\int_a^b \alpha \psi_n (x) \difx \right)= 
+\alpha I(f)+\beta I(g).
+\]
+
+\medskip\noindent
+\desc{ii} Aus $\| f-\varphi_n \| \to 0$ folgt 
+$\| \, |f| - | \varphi_n| \, \| \to 0$ und damit
+$\int_a^b |f(x)| \difx = \lim\limits_{n\to\infty} \int_a^b |\varphi_n(x)|\difx$. 
+Also ist
+\[
+\left| \int_a^b f(x) \difx \right| = 
+\lim_{n\to\infty} \left|  \int_a^b \varphi_n(x) \difx \right| \le
+\lim_{n\to\infty} \| \varphi_n \| \cdot (b-a) = \| f \| \cdot (b-a).
+\]
+
+\medskip\noindent
+\desc{iii} Man setze ${\varphi_*}_n := \varphi_n -\| f-\varphi_n \|$ und 
+$\psi_n^* := \psi_n +\| g-\psi_n \|$. Dann sind ${\varphi_*}_n$ und 
+$\psi^*_n$ Treppenfunktionen mit ${\varphi_*}_n \stackrel{glm}{\to} f$,  
+$\psi_n^* \stackrel{glm}{\to} g$ 
+und ${\varphi_*}_n \le f \le g \le \psi_n^*$ für alle 
+$n\in \NN$. Hieraus folgt mit den Monotonieeigenschaften des Integrals 
+für Treppenfunktionen  
+\begin{equation}
+\int_a^b f(x) \difx = \lim_{n\to\infty} \int_a^b{\varphi_*}_n (x) \difx 
+\le  \lim_{n\to\infty} \int_a^b \psi_n^* (x)\difx = \int_a^b g (x)\difx.
+\EndTag
+\end{equation}
+\end{antwort}
+
+
+%% --- 13 --- %%
+\begin{frage}\index{Intervalladditivität des Integrals}
+Was versteht man unter der \bold{Intervalladditiviät} des Integrals?
+\end{frage}
+
+\begin{antwort}
+Für eine Regelfunktion $f\fd [a,b] \to \RR$ und $c\in [a,b]$ gilt
+\[
+\int_a^b f (x)\difx = \int_a^c f(x)\difx + \int_c^b f(x)\difx.
+\]
+Dies ist für Treppenfunktionen eine einfache Aussage über endliche Summen. 
+Daraus folgt der allgemeine Zusammenhang durch Übergang zum Grenzwert einer 
+gleichmäßig konvergenten Folge von Treppenfunktionen.  
+\AntEnd 
+\end{antwort}
+
+
+
+%% --- 14 --- %%
+\begin{frage}\index{Stabilitätssatz für das Regelintegral}
+\index{Vertauschbarkeit von Limesbildung und Integration}
+Was besagt der \bold{Stabilitätssatz für das Regelintegral}? 
+\end{frage}
+
+\begin{antwort}
+Der Satz liefert eine Aussage über die Vertauschbarkeit 
+von Limesbildung und Integration für gleichmäßig konvergente 
+Folgen von Regelfunktionen. Er besagt: 
+
+\medskip\noindent
+\satz{Für eine \slanted{gleichmäßig} konvergente Folge 
+von Regelfunktionen $f_n \fd [a,b]\to\RR$ ist auch die Grenzfunktion eine 
+Regelfunktion, und es gilt  
+\[
+\boxed{\int_a^b \lim_{n\to\infty} f_n \difx 
+= \lim_{n\to\infty} \int_a^b f_n \difx.}
+\]  }
+
+\noindent
+Für den Beweis des ersten Teils sei $f$ die Grenzfunktion der $f_n$ und 
+$n$ so groß, dass $\| f-f_n \| < \frac{\eps}{2}$ gilt. 
+Da $f_n$ eine Regelfunktion ist, gibt es ein 
+$\varphi\in\calli{T}([a,b])$ mit $\| f_n - \varphi \| < \frac{\eps}{2}$. 
+Daraus folgt
+\[
+\| f- \varphi \| \le \| f-f_n \| + \| f_n - \varphi \| < \eps. 
+\] 
+Die Funktion $f$ lässt sich also beliebig genau durch eine 
+Treppenfunktion approximieren und gehört damit zu $\calli{R}([a,b])$.
+
+Die Übereinstimmung der Integrale schließlich folgt aus
+\begin{align*}
+\left| \int_a^b f \difx - \int_a^b f_n \difx \right| 
+&=
+\left| \int_a^b (f - f_n) \difx \right| \le  
+\int_a^b | f-f_n| \difx \\
+ &\le (b-a) \cdot \| f-f_n \|  \le (b-a)\cdot \eps. \EndTag
+\end{align*}
+\end{antwort}
+
+%% --- 15 --- %%
+\begin{frage}\index{Banachraum}
+Warum ist $\calli{R}(M)$ bezüglich der Supremumsnorm ein 
+Banachraum (s.~Frage~\ref{q:banachraum})? 
+Wieso ist $\calli{T}(M)$ kein Banachraum?
+\end{frage}
+
+\begin{antwort}
+Ist $(f_n)$ eine Cauchy-Folge in 
+$\calli{R}(M)$ bezüglich der Supremumsnorm, dann 
+konvergiert sie gleichmäßig auf $M$, und nach dem Stabilitätssatz ist 
+die Grenzfunktion ebenfalls eine Regelfunktion. Jede Cauchy-Folge in 
+$\calli{R}(M)$ besitzt also einen Grenzwert in 
+$\calli{R}(M)$, folglich ist $\calli{R}(M)$ ein Banachraum. 
+
+Der Raum $\calli{T}(M)$ kann freilich 
+kein Banachraum sein, da die Grenzfunktion einer gleichmäßig 
+konvergenten Folge von Treppenfunktionen im Allgemeinen
+keine Treppenfunktion ist. 
+\AntEnd
+\end{antwort}
+
+
+%% --- 16 --- %%
+\begin{frage}
+Können Sie mit dem 
+Stabilitätssatz das Integral $\int_a^b \exp(x) \difx $ 
+berechnen?
+\end{frage}
+
+\begin{antwort}
+Die Folge $(f_n)$ von Regelfunktionen 
+mit $f_n =\sum_{k=0}^n \frac{x^k}{k!}$  
+konvergiert auf jedem kompakten Intervall gleichmäßig gegen $\exp$. 
+Mit dem Stabilitätssatz gilt also
+\begin{align}
+\int_a^b \exp(x) \difx &=
+\int_a^b \lim_{n\to\infty} \sum_{k=0}^n \frac{x^k}{k!}\difx = 
+\lim_{n\to\infty} \int_a^b \sum_{k=0}^n \frac{x^k}{k!}\difx =
+\lim_{n\to\infty} \sum_{k=0}^n \int_a^b \frac{x^k}{k!}\difx 
+\notag
+\\
+&=
+\lim_{n\to\infty} \sum_{k=0}^n 
+\frac{1}{k!} 
+\left( \frac{b^{k+1}}{k+1} 
+-  \frac{a^{k+1}}{k+1} \right) 
+\notag
+\\
+&=
+\lim_{n\to\infty} 
+\sum_{k=1}^{n+1} 
+\left( \frac{b^k}{k!} -  \frac{a^k}{k!}  \right)
+=
+\lim_{n\to\infty}
+\sum_{k=0}^n 
+\left( \frac{b^k}{k!} - \frac{a^k}{k!} \right) 
+= \exp(b)-\exp(a). 
+\EndTag
+\end{align}
+\end{antwort}
+
+
+%% --- 17 --- %%
+\begin{frage}\label{06_regf}\index{Regelfunktion}
+Wieso sind \slanted{stetige Funktionen} Regelfunktionen?
+\end{frage}
+
+\begin{antwort}
+ Eine stetige Funktion auf der kompakten Menge $M$ ist dort sogar 
+gleichmäßig stetig. Es gibt also ein $\delta>0$, sodass 
+$|f(x)-f(y)| < \eps$ für alle $x\in M$ und alle $y\in U_\delta(x)\cap M$ 
+gilt. Man zerlege $M$ in endlich viele Intervalle $[x_{k-1},x_k]$ 
+($1\le k \le n$ für ein geeignetes $n\in\NN$), 
+die alle eine kleinere Länge als $\delta$ besitzen. Für die durch 
+\[
+\varphi( x ) = f(x_k) \text{ für $x\in \ropen{ x_{k-1},x_k }$}
+\quad\text{ und }\quad
+\varphi( x ) = f(b) \text{ für $x=b$}  
+\]
+gegebene Treppenfunktion 
+$\varphi\fd M\to\RR$ gilt dann 
+\[
+\| \varphi-f \| < \eps. \EndTag
+\]
+\end{antwort}
+
+%% --- 18 --- %%
+\begin{frage}\label{06_regfm}\index{Regelfunktion}
+Welche weitere wichtige Funktionenklasse 
+gehört zu den Regelfunktionen?
+\end{frage}
+
+\begin{antwort}
+ Die \slanted{monotonen Funktionen} sind ebenfalls Regelfunktionen.  
+Für die Konstruktion einer 
+approximierenden Treppenfunktion gehe man hier vom 
+Intervall $[f(a),f(b)]$ auf der $y$-Achse aus und  
+unterteile dieses in eine endliche Anzahl 
+von Intervallen $[y_{k-1},y_k]$ mit einer kleineren Länge 
+als $\eps$. Als entsprechende Zerlegungspunkte   
+auf der $x$-Achse wähle man 
+$x_k := \sup \{ x\in[a,b]; \, f(x)< y_k \}$. Die Funktion 
+\[
+\varphi( x ) = f(x_k)  \quad\text{für $x\in \open{x_k,x_{k+1}}$},  
+\]
+ist dann eine $\eps$-approximierende Treppenfunktion zu $f$.
+\AntEnd
+\end{antwort} 
+
+%% --- 19 --- %%
+\begin{frage}\index{stuckweise stetig@stückweise stetig (monoton)}
+Die Ergebnisse aus Frage \ref{06_regf} und \ref{06_regfm} lassen 
+sich unmittelbar auf eine größere Klasse von Funktionen verallgemeinern.  
+Auf welche? 
+\end{frage}
+
+\begin{antwort}
+ 
+Aus den Antworten folgt sofort, dass auch die 
+\slanted{stückweise stetigen} bzw. 
+\slanted{stückweise monotonen} Funktionen 
+Regelfunktionen sind. Dabei heißt eine Funktion auf $[a,b]$ 
+stückweise stetig bzw. monoton, wenn eine Zerlegung 
+$a=x_0 < x_1 < \ldots < x_n=b$ des Intervalls 
+$[a,b]$ existiert, sodass 
+$f$ auf den offenen Intervallen $\open{x_k,x_{k+1}}$ 
+stetig bzw. monoton ist. 
+\AntEnd 
+\end{antwort}
+
+
+%% --- 20 --- %%
+\begin{frage}\label{06_pkon}
+\index{Vertauschbarkeit!von Limesbildung und Integration}
+Können Sie ein Beispiel dafür angeben, dass der 
+Stabilitätssatz (Vertauschungssatz) bei nur punktweiser Konvergenz im 
+Allgemeinen nicht gilt?
+\end{frage}
+
+\begin{antwort}
+Ein Beispiel für das Versagen der Vertauschbarkeit von Limesbildung 
+und Integration bei 
+nicht gleichmäßiger Konvergenz wurde schon in Frage 
+\ref{04_glmint} gegeben. 
+
+Auch für Folgen von Treppenfunktionen lässt sich ein sehr ähnlich 
+geartetes Beispiel konstruieren. Die in der Abbildung~\ref{fig:06_stabil} 
+angedeutete Folge $(\varphi_n)$ von Treppenfunktionen auf $[0,1]$ 
+konvergiert gegen die Nullfunktion -- nur eben nicht gleichmäßig. 
+
+\begin{center}
+  \includegraphics{mp/06_stabil}
+  \captionof{figure}{Eine nicht-gleichmäßig konvergente Folge von 
+    Treppenfunktionen. 
+    Vertauschung von Limesbildung und Integration ist hier nicht möglich.}
+  \label{fig:06_stabil}
+\end{center}
+
+Die Folge der Integrale der $\varphi_n$ ist konstant $\frac{1}{4}$, 
+konvergiert also nicht gegen das Integral der Grenzfunktion.
+\AntEnd
+\end{antwort}
+
+%% --- 21 --- %%
+\begin{frage}
+Nach \ref{06_regfm} sind alle monotonen Funktionen auf kompakten Intervallen 
+Regelfunktionen. 
+Können Sie das für $f(x)=x^2$ das Integral 
+$\int_0^b f(x) \difx$
+mittels einer direkten Approximation durch eine Treppenfunktion berechnen? 
+\end{frage}
+
+\begin{antwort}
+Für $n\in \NN$ zerlege man das Intervall $[0,b]$ in $n$ gleichlange 
+Intervalle der Länge $ \frac{b}{n}$. Der $k$-te Zerlegungspunkt 
+liegt dann an der Stelle $x_k:=\frac{kb}{n}$. Für $n\to\infty$ konvergieren  
+die Längen der Teilintervalle gegen $0$, und da $f$ eine Regelfunktion 
+ist folgt $\n{ f-\varphi_n }\to 0$.  
+
+Für das Integral $I_n$ von $\varphi_n$ erhält man 
+\[
+I_n := \sum_{k=0}^{n-1} \left( \frac{kb}{n} \right)^2 \cdot \frac{b}{n} =
+\left(\frac{b}{n}\right)^3 \sum_{k=1}^n k^2.
+%\tag{$\ast$}   
+\]
+Die Summe lässt sich mit der Formel 
+$\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}$ auswerten. Dies liefert
+\[
+\int_0^b x^2 \difx = 
+\lim_{n\to\infty}\frac{ n(n+1)(2n+1) }{ 6 } \cdot \frac{b^3}{n^3} = 
+\lim_{n\to\infty}
+\frac{b^3}{6} \left( 1+\frac{1}{n} \right) \left( 2+\frac{1}{n} \right)
+=\frac{b^3}{3}.
+\]
+Mit der Intervalladditivität des Regelintegrals erhält man hieraus auch 
+noch den allgemeineren Zusammenhang
+$
+\int_a^b x^2 \difx = \frac{b^3-a^3}{3}.
+$\AntEnd
+\end{antwort}
+
+%% --- 22 --- %%
+\begin{frage}\index{Mittelwertsatz!der Integralrechnung}
+Was besagt der 
+\bold{Erste Mittelwertsatz der Integralrechnung}? Kennen Sie eine 
+Anwendung?
+\end{frage}
+
+\begin{antwort}
+Aus der Beschränktheitseigenschaft (Frage \ref{06_rgei}\desc{b}) 
+des Regelintegrals folgt unmittelbar die Existenz einer Zahl 
+$\mu\in\RR$ mit $\mu \le \| f \|$ und 
+$\int_a^b f \difx = \mu \cdot (a-b)$.
+
+Für \slanted{stetige reellwertige} Funktionen $f$ gibt es aufgrund des 
+Zwischenwertsatzes eine Zahl $\xi\in [a,b]$ mit $\mu=f(\xi)$. In diesem 
+Fall gilt dann 
+\[
+\boxed{ \int_a^b f \difx = f(\xi) \cdot (a-b). }
+\]
+\picskip{0}\noindent
+
+Dieser Sachverhalt 
+(also die Existenz eines $\xi\in ]a,b[$ mit dieser Eigenschaft) ist ein 
+Spezialfall des Mittelwertsatzes und wird auch oft 
+\slanted{Erster Mittelwertsatz} genannt. Er besagt anschaulich, dass 
+der Flächeninhalt unter dem Graphen mit dem Flächeninhalt eines 
+Rechtecks der Seitenlänge $(b-a)$ und der Höhe $f(\xi)$ übereinstimmt, 
+\sieheAbbildung\ref{fig:06_zwischenwertsatz}. \AntEnd
+
+\begin{center}
+  \includegraphics{mp/06_zwischenwertsatz}
+  \captionof{figure}{Zur Veranschaulichung des Mittelwertsatzes: Die Fläche 
+    des grauen Rechtecks ist gleich dem Integral von $f$ über dem Intervall 
+    $[a,b]$}
+  \label{fig:06_zwischenwertsatz}
+\end{center} 
+\end{antwort}
+
+%% --- 23 --- %%
+\begin{frage}\label{06_allgmittelwertsatz}
+Was besagt der \index{Mittelwertsatz!der Integralrechnung}
+\bold{Verallgemeinerte Mittelwertsatz} oder 
+einfach \slanted{Mittelwertsatz der Integralrechnung}? 
+\end{frage}
+
+\begin{antwort}
+ Der \slanted{Verallgemeinerte Mittelwertsatz} besagt: 
+
+\medskip
+\noindent\satz{Sei $f\fd [a,b]\to \RR$ stetig und 
+sei $g\fd [a,b]\to \RR$ eine Regelfunktion mit $g\ge 0$. Dann gibt es ein 
+$\xi\in [a,b]$ mit
+\begin{equation}
+\boxed{
+\int_a^b f(x) g(x) \difx = f(\xi) \cdot \int_a^b g(x)\difx.
+}
+\asttag
+\end{equation}
+}
+
+\medskip\noindent
+Der Satz ergibt sich als 
+Folge der Monotonieeigenschaften des Regelintegrals sowie  
+des Zwischenwertsatzes für stetige reelle Funktionen. Bezeichnet man mit 
+$m$ das Minimum und mit $M$ das Maximum von $f$ auf $[a,b]$, so gilt 
+\[
+m \int_a^b g(x) \difx \le \int_a^b f(x)g(x)\difx \le 
+M \int_a^b g(x) \difx.
+\]
+Es gibt also eine Zahl $\mu$ zwischen $m$ und $M$ mit 
+$\int_a^b f(x)g(x)\difx = \mu$, und da $f$ stetig ist, existiert 
+ein $\xi\in [a,b]$ mit $\mu=f(\xi)$. Damit erhält man {\astref}. 
+\AntEnd 
+\end{antwort} 
+
+%% --- 24 --- %%
+\begin{frage}\index{Mittelwertsatz!der Integralrechnung}
+Kennen Sie eine Anwendung des Mittelwertsatzes?
+\end{frage}
+
+\begin{antwort}
+ 
+Eine wichtige Anwendung des Ersten Mittelwertsatzes kommt beim Beweis 
+des Hauptsatzes der Differenzial- und Integralrechnung 
+(s. Frage \ref{06_fa} und \ref{06_hpts}) vor.
+\AntEnd
+\end{antwort}
+
+%% --- 25 --- %%
+\begin{frage}\label{06_lips}
+Ist $f\fd[a,b]\to\RR$ eine Regelfunktion. 
+Warum ist dann die "`Integralfunktion"' 
+\[
+F_a \fd [a,b] \to \RR; \qquad x\mapsto \int_a^x f(t) \dift
+\]
+Lipschitz-stetig, also insbesondere stetig?
+\end{frage}
+
+\begin{antwort}
+Aufgrund der Beschränktheitseigenschaft des Regelintegrals gilt
+\[
+\left| F_a(x) - F_a(y) \right| = 
+\left| \int_y^x f(t) \dift \right| \le 
+\nnb{ f }_{[a,b]} \cdot |x-y|.  
+\] 
+Damit ist die Integralfunktion Lipschitz-stetig im Sinne der Definition 
+\ref{03_lips} (und zwar mit $\nnb{ f }_{[a,b]} =L$). \AntEnd
+\end{antwort}
+
+%% --- 26 --- %%
+\begin{frage}\label{06_fa}
+\index{Hauptsatz der Differenzial- und Integralrechnung}
+Wenn $f$ in Frage \ref{06_lips} zudem stetig ist, 
+warum ist dann die \index{Integralfunktion} $F_a$ sogar differenzierbar, wobei 
+für alle $x\in[a,b]$ gilt: 
+$F_a'(x)=f(x)$.
+\end{frage}
+
+\begin{antwort}
+Sei $x_0 \in [a,b[$ beliebig. Nach dem Mittelwertsatz gibt es 
+zu jedem $h>0$ mit $x_0+h\le b$ 
+ein $\xi_h \in [x_0,x_0+h]$ mit 
+$\int_{x_0}^{x_0+h} f(t)\dift  = h \cdot f(\xi_h)$. 
+Dann gilt $\lim\limits_{h\to 0} \xi_h=x_0$, und daraus folgt 
+zusammen mit der Stetigkeit von $f$
+\[  
+F_a' (x_0) = 
+\lim_{h\to 0} \frac{F_a(x_0+h )-F_a(x_0)}{h} = 
+\lim_{h\to 0} \frac{1}{h}  \int_{x_0}^{x_0+h} f(t)\dift = 
+\lim_{h\to 0} f(\xi_h) = f(x_0 ).
+\]
+Auf dieselbe Weise zeigt man den Zusammenhang für $h<0$ und 
+$x_0 \in ]a,b]$. Danach ist die Behauptung bewiesen, die uns auf 
+direktem Weg zum \slanted{Hauptsatz der Differenzial- und Integralrechnung} 
+führt, dem das Kapitel \ref{hauptsatz} gewidmet ist. 
+\AntEnd
+\end{antwort}
+
+
+\section{Grundlagen der Differenzialrechnung}
+
+%% --- 27 --- %%
+\begin{frage} 
+\index{Newton@\textsc{Newton}, Isaac (1643-1727)}
+\index{Leibniz@\textsc{Leibniz}, Gottfried Wilhelm (1646-1716)}
+Die Differenzialrechnung wurde unabhängig von I. Newton und 
+G.\,W. Leibniz im 17. Jahrhundert entwickelt. Was war für Newton bzw. 
+Leibniz ein wesentliches Motiv, das schließlich zur Differenzialrechnung 
+führte?
+\end{frage}
+
+\begin{antwort}
+Newtons hauptsächliche Motivation war \slanted{physikalischer} Natur,  
+ihm ging es um die Berechnung von 
+Momentangeschwindigkeiten, Momentanbeschleunigungen und dergleichen. 
+Bei Leibniz stand mehr die Geometrie im Vordergrund, speziell
+das \slanted{Tangentenproblem} 
+für Kurven. 
+
+Das Gemeinsame beider Ansätze liegt darin, aus 
+\slanted{mittleren Änderungsraten}  
+(Durchschnittsgeschwindigkeit, Sekantensteigung) durch Grenzübergang 
+\slanted{momentane Änderungsraten}  
+(Momentangeschwindigkeit, Tangentensteigung) zu ermitteln. 
+
+Newton und Leibniz beschäftigten sich auch schon mit dem umgekehrten 
+Problem, nämlich aus der momentanen Änderungsrate einer Größe 
+die Größe selbst zu rekonstruieren. 
+\AntEnd       
+\end{antwort}
+
+%% --- 28 --- %%
+\begin{frage}\index{Differenzierbarkeit!einer Funktion einer Variablen}
+\index{Differenzialquotient}
+\index{Ableitung!einer Funktion einer Variablen}\label{06_diffdef}
+\nomenclature{$f'(x)$}{Ableitung von $f$ in $x$}
+Wann heißt eine Funktion $f\fd M\to \RR$ 
+($M$ ein echtes Intervall) im Punkt $x_0\in M$ 
+differenzierbar? Wann heißt sie auf $M$ differenzierbar?
+\end{frage}
+
+\begin{antwort}
+$f$ heißt differenzierbar in $x_0 \in M$, wenn der Grenzwert 
+\begin{equation}
+\lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} 
+\tag{D$_1$}
+\end{equation}
+existiert. Gegebenenfalls bezeichnet man den Grenzwert mit $f'(x_0)$ und 
+nennt ihn die \slanted{Ableitung von $f$ in $x_0$}.
+
+Die Funktion heißt differenzierbar auf $M$, wenn der Grenzwert 
+für jedes $x\in M$ existiert. Die durch $x\mapsto f'(x)$ gegebene 
+Funktion $f'\fd M\to \RR$ heißt dann die \slanted{Ableitung von $f$}. 
+\end{antwort}
+
+%% --- 29 --- %%
+\begin{frage}\index{Differenzierbarkeit!einer Funktion einer Variablen}
+Was bedeutet in der Definition der Differenzierbarkeit die Formulierung 
+"`der Grenzwert existiert"'?
+\end{frage}
+
+\begin{antwort}
+Die Redewendung lässt sich auf drei äquivalente Weisen präzise 
+ausdrücken (vgl. dazu die Fragen aus Kapitel 4). Der Grenzwert (D$_1$) existiert 
+genau dann und hat den Wert $l$, 
+wenn einer der folgenden (äquivalenten) Sachverhalte zutrifft:
+{\setlength{\labelsep}{4mm}
+\begin{itemize}
+\item[\desc{i}] \slanted{$\eps\delta$-Definition}: 
+Zu jedem $\eps > 0$ gibt es ein $\delta>0$, sodass 
+gilt: \index{Differenzierbarkeit!eps@$\eps\delta$-Kriterium}
+\[ \left| \frac{f(x)-f(x_0)}{x-x_0} - l \right| < \eps
+\quad\text{für alle $x$ mit $0<|x-x_0|<\delta$}.
+ \]
+\item[\desc{ii}] \slanted{Folgenkriterium}: Für jede Folge 
+$(x_n) \subset M$ mit \index{Differenzierbarkeit!eps@Folgenkriterium}
+$\lim x_n = x_0$ und $x_n\not=x_0$ konvergiert die Folge der Quotienten 
+$\left( \frac{ f(x_n)-f(x_0) }{ x_n - x_0 } \right)$ gegen $l$, 
+{\dasheisst}, es gibt ein $N\in \NN$, sodass gilt:
+\[ 
+\left| \frac{f(x_n)-f(x_0)}{x_n-x_0} -a  \right| < \eps 
+\quad\text{für alle $n>N$}.
+\]
+\item[\desc{iii}] \slanted{Stetige Fortsetzbarkeit}: Die Funktion 
+$\varphi \fd  M\mengeminus \{x_0\} \to \RR$ mit  
+$\varphi( x ) := \frac{f(x)-f(x_0)}{x-x_0}$ besitzt eine 
+stetige Fortsetzung in $x_0$, und konvergiert bei Annäherung an 
+$x_0$ gegen $l$, {\dasheisst}, die Funktion $\tilde{\varphi} \fd M \to \RR$ 
+mit \index{Differenzierbarkeit!eps@im Sinne stetiger Fortsetzbarkeit}
+\[
+\tilde{\varphi}(x) := \left\{ \begin{array}{ll} 
+\dis \frac{f(x)-f(x_0)}{x-x_0} & \text{für $x\not=x_0$} \\
+l & \text{für $x=x_0$} \end{array}\right.
+\]
+ist stetig in $x_0$. \AntEnd 
+\end{itemize}}
+\end{antwort}
+
+
+%% --- 30 --- %%
+\begin{frage}\index{Differenzierbarkeit!geometrische Interpretation}
+\index{Sekante}\index{Tangente}
+Wie kann man die Differenzierbarkeit geometrisch interpretieren?
+\end{frage}
+
+\begin{antwort}
+Der Quotient $\dis \frac{f(x)-f(x_0)}{x-x_0}$ beschreibt 
+geometrisch die Steigung der 
+Sekante an den Graphen von $f$ durch die 
+Punkte $\big(x,f(x)\big)$ und $\big(x_0,f(x_0)\big)$. 
+
+\begin{center}
+  \includegraphics{mp/06_steigung}
+  \captionof{figure}{%
+    Die Differenzenquotienten beschreiben die Steigung von 
+    Sekanten an den Graphen, die Ableitung als Grenzwert 
+    einer Folge von Differenzenquotienten beschreibt die Steigung der 
+    Tangente.}
+  \label{fig:06_steigung}
+\end{center}
+
+Bei Annäherung des Punktes $x$ an den Punkt $x_0$  nähert sich die 
+Sekante einer Geraden mit der Steigung $f'(x_0)$ an, 
+\sieheAbbildung\ref{fig:06_steigung}. Diese Gerade 
+durch $\big( x_0, f(x_0) \big)$ ist die Tangente $T$ an den Graphen 
+von $f$ im Punkt $\big( x_0, f(x_0) \big)$. $T$ ist eine affin-lineare 
+Funktion mit der Gleichung 
+\[
+T( x ) = f(x_0) + f'(x_0) \cdot (x-x_0 ).
+\]
+Es gilt $T(x_0)=f(x_0)$ und $T$ approximiert $f$ in $x_0$ bis auf einen 
+kleinen Fehler (vgl. auch Frage \ref{06_linapprox}).
+\AntEnd
+\end{antwort}
+
+
+%% --- 31 --- %%
+\begin{frage}\index{Stetigkeit!einer differenzierbaren Funktion}
+Warum ist eine in $x_0$ differenzierbare Funktion dort auch stetig?
+\end{frage}
+
+\begin{antwort}
+Aus der Existenz des Grenzwerts in Frage \ref{06_diffdef} 
+folgt insbesondere für jede gegen $x_0$ konvergente Folge $(x_n)$: 
+$\lim\limits_{n\to\infty} f(x_n)-f(x_0)=0$, also 
+$\lim\limits_{n\to\infty } f(x_n) = f(x_0)$. Damit ist $f$ gemäß 
+des Folgenkriteriums stetig.
+\AntEnd
+\end{antwort} 
+
+
+%% --- 32 --- %%
+\begin{frage}\label{06_linapprox}
+\index{linear approximierbar}
+\index{Differenzial!einer Funktion einer reellen Veränderlichen}
+\nomenclature{$\dd f$}{Differenzial von $f$}
+Differenzial einer Funktion.  
+Wann heißt eine Funktion $f\fd M\to\RR$ in $x_0\in M$ 
+\bold{linear approximierbar}? Warum sind Differenzierbarkeit 
+und lineare Approximierbarkeit von $f$ in $x_0$ äquivalente Aussagen. 
+\end{frage}
+
+\begin{antwort}
+Eine Funktion $f$ heißt \index{linear approximierbar}, wenn eine 
+lineare Abbildung $L\fd \RR \to \RR$ existiert, für die gilt
+\begin{equation}
+\lim_{h\to 0} \frac{f(x_0+h)-f(x_0)-L(h)}{h} = 0.
+\tag{D2}
+\end{equation}
+Ist $f$ in $x_0$ differenzierbar, 
+dann ist die Abbildung durch $L(h) = f'(x_0)\cdot h$ gegebene 
+Abbildung eine lineare Approximation in diesem Sinne.
+
+Gilt andersherum ($\ast$) für eine lineare Abbildung $L$, 
+dann ist $L(h)=l\cdot h$ für ein $l\in\RR$,  und es folgt
+$0 = \lim\limits_{h\to 0} \frac{1}{h}
+\big(f(x_0+h)-f(x_0)-lh\big)$, also 
+$\lim\limits_{h\to 0} \frac{1}{h} \big(f(x_0+h)-f(x_0)\big)=l.$
+Das heißt, $f$ in $x_0$ differenzierbar mit $f'(x_0)=l$.
+
+Die lineare Abbildung $L\fd \RR\to\RR$ heißt, die $(\ast)$
+erfüllt, heißt \slanted{Differenzial von $f$ in $x_0$} und wird mit 
+$\diff (x_0)$ bezeichnet, \sieheAbbildung\ref{fig:06_differential} Es gilt 
+\[
+\diff (x_0) h = f'(x_0)\cdot h.
+\]
+\begin{center}
+  \includegraphics{mp/06_differential}
+  \captionof{figure}
+  {%
+    Das Differenzial $\diff (x_0)$ ist eine lineare Funktion, die $f$ 
+    im Punkt $x_0$ approximiert.
+  }
+  \label{fig:06_differential}
+\end{center}
+
+Die Charakterisierung der Differenzierbarkeit durch lineare 
+Approximierbarkeit wird erst im Höherdimensionalen wirklich fruchtbar. 
+In $\RR$ bleibt die Unterscheidung zwischen Differenzial und Ableitung 
+ohne größere praktische Konsequenzen. Man sollte sich aber trotzdem 
+jetzt schon einprägen, dass für eine differenzierbare Abbildung 
+$f\fd U \to V$ zwischen beliebigen normierten Räumen $\diff (x_0)$ 
+stets eine \slanted{lineare Abbildung} $U\to V$ bezeichnet. \AntEnd
+\end{antwort}
+
+
+%% --- 33 --- %%
+\begin{frage}\label{06_tang}\index{Tangentenfunktion}
+Warum ist die Tangentenfunktion
+\[
+T\fd M\to\RR, \qquad x\mapsto f(x_0)+f'(x_0)(x-x_0)
+\]
+unter allen linear-affinen Funktionen 
+$x\mapsto f(x_0)+ m (x-x_0)$ die \bold{beste lineare Approximation} 
+von $f$ im Punkt $(x_0,f(x_0))$?
+\end{frage}
+
+\begin{antwort}
+Der Existenz des Grenzwerts (D$_2$) in Frage \ref{06_linapprox} 
+impliziert, dass der Unterschied $f(x_0+h)-f(x_0)-L(h)$ 
+für $h\to 0$ schneller gegen $0$ geht als $h$ selbst. 
+Für jede andere lineare Funktion $L^*$ mit $L^*(h)=bh$ und 
+$b\not= f'(x_0)$ gilt dies wegen 
+\[
+\lim_{h\to 0} \frac{f(x_0+h)-f(x_0)-L^*(h)}{h} = f'(x_0)-b \not=0
+\]
+nicht. In genau diesem Sinne ist die Tangentenfunktion die 
+\slanted{beste} lineare Approximation. 
+\AntEnd
+\end{antwort}
+
+%% --- 34 --- %%
+\begin{frage}\index{stetig differenzierbar}
+Können Sie Beispiele angeben für Funktionen $f\fd M\to \RR$ mit 
+$0\in M$, die 
+\begin{itemize}[4mm]
+\item[\desc{a}] stetig, im Nullpunkt aber nicht differenzierbar sind?\\[-3.5mm]
+\item[\desc{b}] differenzierbar sind, aber deren Ableitung im Nullpunkt 
+nicht stetig ist? \\[-3.5mm]
+\item[\desc{c}] stetig differenzierbar, aber nicht 2-mal differenzierbar 
+sind?.
+\end{itemize}
+\end{frage}
+
+\begin{antwort}
+\desc{a} Die Betragsfunktion $x\mapsto |x|$ ist stetig, aber im 
+Nullpunkt nicht differenzierbar.
+
+\medskip
+
+\noindent
+\desc{b} Die Funktion $x\mapsto x^2 \cdot \sin\frac{1}{x}$ 
+besitzt die gesuchte Eigenschaft.
+
+\medskip
+\noindent
+\desc{c} Die durch 
+\[
+f(x) := \left\{ \begin{array}{rl} 
+\frac{x^2}{2} & \text{für $x\ge 0$}, \\ 
+-\frac{x^2}{2} & \text{für $x < 0$} 
+\end{array} \right.
+\]
+definierte Funktion $\RR\to\RR$ ist auf $\RR$ differenzierbar und 
+hat die Ableitung $f'(x)=|x|$. Wegen \desc{a} 
+ist $f$ nicht 2-mal differenzierbar.
+\AntEnd
+\end{antwort}
+
+%% --- 35 --- %%
+\begin{frage}\label{06_algd}\index{Differenziationsregeln}
+Was besagen die \bold{algebraischen Differenziationsregeln}? 
+Können Sie diese beweisen?
+\end{frage}
+
+\begin{antwort}
+\satz{Seien $f$ und $g$ in $x$ differenzierbar. Dann sind auch 
+$f+g$, $f\cdot g$ und für $g(x)\not=0$ auch $\frac{1}{g(x)}$ in 
+$x$ differenzierbar, und es gilt
+\[\boxed{
+\begin{array}{lp{3mm}lp{3mm}l}
+\text{\desc{a}} & & \dis (f+g)'(x)=f'(x)+g'(x) &  &  
+\text{(Summenregel)}, \\[2mm]
+\text{\desc{b}} & &  \dis (fg)'(x)=f'(x)g(x)+f(x)g'(x) &  &  
+\text{(Produktregel)}
+\\[2mm]
+\text{\desc{c}} &  & \dis \left(\frac{f}{g}\right)' (x) = 
+\frac{f'(x)g(x)-f(x) g(x) }{g(x)^2}  & & \text{(Quotientenregel)}
+\end{array}}
+\]
+Speziell folgt aus \desc{b} für eine konstante Funktion $f(x)=c$ 
+($c\in \RR$) für alle $x$ wegen $f'(x)=0$ auch die Regel 
+\[
+(c\cdot g)'(x)
+= c \cdot g'(x). \]
+}
+
+\medskip\noindent
+Die Regeln zeigt man durch die folgenden Umformungen des 
+Differenzenquotienten für $f+g$, $fg$ und $f/g$
+\[
+\begin{array}{lp{3mm}l}
+\text{\desc{a}} & & 
+\dis \frac{f(x+h)-f(x)}{h}+\frac{g(x+h)-g(x)}{h}, \\[2mm]
+\text{\desc{b}} & &
+\dis \frac{f(x+h)-f(x)}{h}g(x+h)+
+\frac{g(x+h)-g(x)}{h}f(x), \\[2mm]
+\text{\desc{c}} & &
+\dis \frac{1}{g(x+h)g(x)} 
+\left( \frac{f(x+h)-f(x)}{h} g(x) -  \frac{g(x+h)-g(x)}{h} f(x) \right),
+\end{array}
+\]
+Aus diesen Darstellungen folgen die Regeln dann für $h\to 0$.
+Bei \desc{c} muss man nur beachten, dass es eine Umgebung $U_h(x)$ 
+gibt mit $g(y) \not= 0$ für alle 
+$y\in U_h(x)$.  
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 36 --- %%
+\begin{frage}\index{Differenzierbarkeit!Kriterium}\label{06_dif3}
+Wie lässt sich die Differenzierbarkeit durch die  
+Existenz einer stetigen Funktion mit bestimmten Eigenschaften 
+charakterisieren?
+\end{frage}
+
+\begin{antwort}
+\satz{Eine Funktion $f\fd M\to\RR$ 
+ist genau dann differenzierbar in $x_0$, wenn es eine 
+in $x_0$ stetige Funktion $\varphi\fd M\to\RR$ gibt, 
+für die gilt:
+\[
+f(x)-f(x_0)= \varphi(x)\cdot (x-x_0).
+\tag{D3}
+\]}
+Ist nämlich $f$ in $x_0$ differenzierbar, dann besitzt die Funktion 
+\[
+\varphi^*( x ) := \frac{f(x)-f(x_0)}{x-x_0}\qquad 
+\text{für $x\in M \mengeminus\{ x_0 \}$}
+\]
+eine in $x_0$ stetige Fortsetzung $\varphi$. 
+In diesem Fall gilt $\varphi(x_0)=f'(x_0)$. 
+
+Diese Formulierung liefert neben \desc{D1} und \desc{D2} eine weitere 
+Charakterisierung der Differenzierbarkeit, die in Beweisen häufig 
+leichter anzuwenden ist. In Frage \ref{06_kettenregelbeweis} und bzw. 
+\ref{06_diffumkehr} wird sie zum Beweis der Kettenregel 
+bzw. des Satzes von der Differenziation der Umkehrfunktion
+herangezogen.
+\AntEnd 
+\end{antwort}
+
+
+%% --- 37 --- %%
+\begin{frage}\index{Kettenregel!für Funktionen einer Veränderlichen}
+Was besagt die Kettenregel? 
+\end{frage}
+
+\begin{antwort}
+Die Kettenregel besagt: 
+
+\medskip
+\noindent\satz{Sind $f\fd  M\to I \subset \RR$ und 
+$g\fd I\to \RR$ Funktionen so, dass $f$ in $x_0$ und 
+$g$ in $y_0=f(x_0)$ differenzierbar sind. 
+Dann ist auch $g\circ f$ in $x_0$ differenzierbar, und es gilt
+\[
+\boxed{ ( g\circ f )' (x_0) = g'\big(f(x_0)\big) \cdot f'(x_0). }
+\EndTag\]}
+\end{antwort}
+
+%% --- 38 --- %%
+\begin{frage}\label{06_kettenregelbeweis}
+Können Sie die Kettenregel beweisen?
+\end{frage}
+
+\begin{antwort}
+ Für den Beweis benutzt man am besten die Formulierung 
+der Differenzierbarkeit aus Frage \ref{06_dif3}. 
+Demnach gibt es in $x_0\in M$ bzw. $y_0\in I$ stetige Funktionen 
+$\varphi$ und $\gamma$ mit 
+\[
+f(x)-f(x_0) = \varphi(x)\cdot (x-x_0), \qquad
+g(y)-g(y_0) = \gamma(y) \cdot (y-y_0).
+\]
+Einsetzen der ersten Gleichung in die zweite liefert
+\[
+g\big( f(x) \big)-g \big(f(x_0)\big) = 
+\gamma\big( f(x) \big) \cdot \big[ f(x)-f(x_0) \big] 
+=\gamma \big( f(x) \big) \cdot \varphi(x) \cdot (x-x_0),
+\]
+Die Funktion $\gamma\left( f(x) \right)\cdot \varphi(x)$ 
+ist stetig in $x_0$, nach Frage \ref{06_dif3}  
+ist $f$ dort also differenzierbar. 
+Wegen $\varphi(x_0)=f'(x_0)$ und $\gamma\big( f(x_0) \big)= 
+g'\big( f(x_0) \big)$ folgt die Kettenregel. \AntEnd
+\end{antwort} 
+
+%% --- 39 --- %%
+\begin{frage}
+Wie lautet die Ableitung der Funktion $f(x)=(x^2+1)^{2014}$?
+\end{frage}
+
+\begin{antwort}
+Mit der Kettenregel folgt $f'(x)=2014\cdot (x^2+1)^{2013} \cdot 2x$.
+\AntEnd 
+\end{antwort}
+
+%% --- 40 --- %%
+\begin{frage}\index{Differenzierbarkeit!der Umkehrfunktion}
+Was besagt der \bold{Satz über die Differenzierbarkeit der Umkehrfunktion}? 
+\end{frage}
+
+\begin{antwort}
+Der Satz besagt: 
+
+\medskip
+\noindent\slanted{Ist $M$ ein Intervall und 
+$f\fd M \to \RR$ eine streng monotone, 
+in $y_0 \in M$ differenzierbare Funktion mit $f'(y_0) \not=0$,   
+dann ist die Umkehrfunktion $f^{-1}$ in 
+$x_0 = f(y_0)$ differenzierbar und es gilt
+\[
+\boxed{(f^{-1})'(x_0) = \frac{1}{f'(y_0)} = \frac{1}{f'( f^{-1}( x_0 ) ) }.}
+\EndTag
+\]}
+\end{antwort} 
+
+%% --- 41 --- %%
+\begin{frage}\label{06_diffumkehr}
+\index{Differenzierbarkeit!der Umkehrfunktion}
+Wie lässt sich der Satz über die Differenzierbarkeit der 
+Umkehrfunktion beweisen?
+\end{frage}
+
+\begin{antwort}
+ Zum Beweis benutzt man wieder die Charakterisierung 
+der Differenzierbarkeit 
+aus Frage \ref{06_dif3}. Es gibt eine in $y_0\in M$ stetige Funktion 
+$\varphi \fd M \to \RR$ mit 
+\[
+f(y)-f(y_0)=\varphi( y ) \cdot( y-y_0 ). 
+\]
+Wegen der strengen Monotonie von $f$ und 
+wegen $\varphi(y_0)=f'(y_0) \not=0$ folgt aus dieser Gleichung  
+$\varphi( y ) \not=0$ für alle $y\in M$. 
+
+Die Substitution $y = f(x)$, $y = f^{-1}(x)$ liefert 
+\[
+x - x_0 = \varphi \big( f^{-1} ( x ) \big) \cdot 
+\big[ f^{-1}(x)-f^{-1}(x_0) \big]. 
+\]
+Die Funktion $\frac{1}{\varphi \circ f^{-1}}$ 
+ist stetig  in $x_0$ und hat 
+dort den Wert $\frac{1}{f'(y_0)}$. 
+Nach Frage \ref{06_dif3} folgt also 
+$(f^{-1})'(x_0) = \frac{1}{f'(y_0)}$.
+
+(Man beachte: Man benötigt die Stetigkeit der Umkehrfunktion 
+an der Stelle $x_0$! Das folgt aber aus den Voraussetzungen, 
+da die Umkehrfunktion einer streng monotonen Funktion auf einem Intervall 
+als Definitionsbereich automatisch stetig ist.)
+\AntEnd
+\end{antwort}
+
+%% --- 42 --- %%
+\begin{frage}\index{Logarithmus!Ableitung}\index{Arcus-Tangens!Ableitung}
+Können Sie den Satz aus der vorigen Frage 
+anwenden, um die Ableitung des natürlichen 
+Logarithmus und des Arcustangens zu berechnen.
+\end{frage}
+
+\begin{antwort}
+Wegen $\exp'(x)=\exp(x)$ und $\exp(x) \not =0$ für alle 
+$x\in\RR$ folgt mit dem Satz 
+\[
+\log'(x) = (\exp^{-1})'(x) = \frac{1}{\exp'( \log(x) )} = \frac{1}{x}, 
+\quad\text{für alle $x\in\RR_+$}.
+\]
+Für die Ableitung des Arcus-Tangens berechnet man zunächst mit 
+der Regel \ref{06_algd}\,\desc{c}
+\[
+\tan'(x)= \frac{\sin'(x)\cos(x)-\sin(x)\cos'(x)}{\cos^2 (x)} = 
+\frac{\cos^2(x)+\sin^2(x)}{\cos^2(x)} = 
+1+\tan^2 (x). 
+\] 
+Damit erhält man $
+\arctan'(x)= \frac{1}{1+ \tan^2 ( \arctan x ) } = \frac{1}{1+x^2}.$\AntEnd
+\end{antwort}
+
+
+%% --- 43 --- %%
+\begin{frage}\label{06_ferm}
+\index{Fermatsches Kriterium@Fermat\sch es Kriterium}
+\index{Extremum!Existenzkriterium}
+Was besagt das \bold{Fermat\sch e Kriterium} bezüglich der  
+\bold{Existenz eines Extremums} (Maximum oder Minimum) für eine 
+differenzierbare Funktion $f\fd M\to \RR$ in einem 
+inneren Punkt $x_0 \in M$? 
+\end{frage}
+
+\begin{antwort}
+Das Kriterium besagt: \satz{Ist $f$ in $x_0$ differenzierbar und 
+besitzt dort ein Extremum, so gilt $f'(x_0)=0$.} 
+
+Der Beweis der Aussage ist sehr einfach. Liegt in $x_0$ ein lokales 
+Extremum, etwa ein Maximum vor, dann gilt $f(x)-f(x_0)\le 0$ 
+innerhalb einer Umgebung von $x_0$. Es folgt
+\[
+\lim_{x\uparrow x_0}\frac{f(x)-f(x_0)}{x-x_0} \le 0  \quad\text{und}\quad
+\lim_{x\downarrow x_0}\frac{f(x)-f(x_0)}{x-x_0} \ge 0, 
+\]
+also $f'(x_0)=0$. 
+Mit dem gleichen Argument beweist man den Zusammenhang für den 
+Fall, dass bei $x_0$ ein Minimum vorliegt. \AntEnd
+\end{antwort} 
+
+\smallskip
+%% --- 44 --- %%
+\begin{frage}\index{Fermatsches Kriterium@Fermat'sches Kriterium}
+Warum gilt die Aussage des Fermat\sch en Kriteriums nicht 
+in den Randpunkten?
+\end{frage}
+
+\begin{antwort}
+Das in der letzten Antwort gegebene Argument lässt sich nicht 
+auf die Randpunkte von $M$ übertragen, 
+da hier entweder nur ein links- \slanted{oder} rechtsseitiger Grenzwert 
+existiert. Dass der Satz in den Randpunkten so nicht gelten kann, wird 
+durch das einfache Beispiel der Funktion $x\mapsto x$ auf dem 
+kompakten Intervall $[0,1]$ deutlich. 
+\AntEnd
+\end{antwort}
+
+%% --- 45 --- %%
+\begin{frage}
+Ist das Fermat\sch e Kriterium \slanted{hinreichend} 
+für die Existenz eines lokalen Extremums?
+\end{frage}
+
+\begin{antwort}
+ 
+Das Kriterium formuliert eine \slanted{notwendige} Bedingung 
+für das Vorliegen eines (lokalen) Extremums. 
+Dass es nicht hinreichend ist, zeigt das Beispiel  
+$f(x)=x^3$ und $x_0=0$.
+\AntEnd
+\end{antwort}
+
+%% --- 46 --- %%
+\begin{frage}\index{Extremum!Existenzkriterium}
+Kennen Sie  \bold{hinreichende Kriterien} für das Vorliegen eines 
+lokalen Extremums?
+\end{frage}
+
+\begin{antwort}
+Eine differenzierbare Funktion $f \fd M\to \RR$ besitzt in einem  
+inneren Punkt $x_0 \in M$ ein \slanted{Maximum}, wenn ein 
+$\delta > 0$ existiert mit 
+\[
+\text{
+$f'(x) \ge 0$ für $x\in \open{x_0-\delta,x_0}$\qquad und\qquad
+$f'(x) \le 0$ für $x\in \open{x_0,x_0+\delta}.$ }
+\]
+Beim Vorliegen eines \slanted{Minimums} existiert analog ein 
+$\delta$ mit 
+\[
+\text{
+$f'(x) \le 0$ für $x\in \open{x_0-\delta,x_0}$\qquad und\qquad
+$f'(x) \ge 0$ für $x\in \open{x_0,x_0+\delta}.$ }
+\]
+Ein hinreichendes Kriterium für das Vorliegen eines lokalen 
+Extremums ist also, dass die 
+Ableitung von $f$ beim Durchgang durch $x_0$ das Vorzeichen wechselt. 
+
+\begin{center}
+  \includegraphics{mp/06_maximum}
+  \captionof{figure}{Jeder linksseitige 
+    Differenzenquotient ist größer oder gleich null, 
+    jeder rechtsseitige kleiner oder gleich null.}
+  \label{fig:06_maximum}
+\end{center}
+
+Der Beweis ist hier wiederum nicht schwierig. 
+Zum Beispiel bedeutet das Vorliegen eines lokalen Maximums 
+von $f$ in $x_0$, dass in einer Umgebung $U$ von $x_0$ 
+stets $f(x_0)-f(x) \ge 0$ gilt. Damit ist der 
+linksseitige Grenzwert des Differenzenquotienten in $x_0$ 
+größer oder gleich $0$, 
+der rechtsseitige kleiner 
+oder gleich $0$, \sieheAbbildung\ref{fig:06_maximum}. 
+Zusammen ergibt dies $f'(x_0)=0$.   
+\AntEnd
+\end{antwort}
+
+
+%% --- 47 --- %%
+\begin{frage}\label{06_rolle}\index{Satz!von Rolle}
+\index{Rolle@\textsc{Rolle}, Michel (1652-1719)} 
+\index{Mittelwertsatz!der Differenzialrechnung}
+Was besagt der \bold{Satz von Rolle}, was der 
+\bold{Mittelwertsatz der Differenzialrechnung}? Warum sind 
+beide Aussagen äquivalent?
+\end{frage} 
+
+\begin{antwort}
+Sei $f\fd [a,b] \to \RR$ stetig und auf $(a,b)$ differenzierbar.  
+Dann gilt
+
+\begin{itemize}
+\item \slanted{Satz von Rolle}: 
+Ist $f(a)=f(b)$, so gibt es ein $\xi\in [a,b]$ mit $f'(\xi)=0$.
+
+\medskip
+\item \slanted{Mittelwertsatz}: Es gibt ein $\xi \in (a,b)$ mit 
+$\dis \frac{ f(b)-f(a) }{b-a} = f' (\xi ).$
+\end{itemize}
+
+Zunächst zum Satz von Rolle. 
+Die stetige Funktion $f$ besitzt auf dem kompakten Intervall 
+$[a,b]$ ein 
+Minimum und ein Maximum. Ist $f$ konstant, dann ist $f'(x)=0$
+für alle $x\in [a,b]$, im anderen Fall ist mindestens 
+einer der beiden Extremwerte von $a$ und von $b$ verschieden, 
+und nach Frage \ref{06_ferm} verschwindet die Ableitung an dieser 
+Stelle, \sieheAbbildung\ref{fig:06_rolle}.
+
+\begin{center}
+  \begin{minipage}{60mm}
+  \includegraphics{mp/06_rolle}
+  \captionof{figure}{Satz von Rolle}
+  \label{fig:06_rolle}
+\end{minipage}
+\qquad
+\begin{minipage}{60mm}
+  \includegraphics{mp/06_mws}
+  \captionof{figure}{Mittelwertsatz}
+  \label{fig:06_mws}
+\end{minipage}
+\end{center}
+
+Zum Beweis der Mittelwertsatzes wende man den Satz von Rolle 
+auf die Funktion 
+\[
+\varphi(x) := f(x)-\frac{f(b)-f(a)}{b-a} (x-a).  
+\]
+an. Wegen $\varphi(a)=\varphi(b)$ gibt es ein $\xi \in (a,b)$ mit 
+$\varphi'(\xi)=0$, also  
+\[
+f'(\xi)=\frac{f(b)-f(a)}{b-a},
+\]
+\sieheAbbildung\ref{fig:06_mws}. 
+
+Der Mittelwertsatz wurde hier ohne weitere Voraussetzungen aus dem 
+Satz von Rolle abgeleitet. Da umgekehrt der Satz von Rolle 
+offensichtlich ein Spezialfalls des Mittelwertsatzes ist, 
+sind beide Aussagen äquivalent.  
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 48 --- %%
+\begin{frage}\label{q:mittelwertsatz-der-differenzialrechnung}\index{Mittelwertsatz!der Differenzialrechnung}
+Wie lautet der \bold{verallgemeinerte Mittelwertsatz der 
+Differenzialrechnung}?
+\end{frage}
+
+\begin{antwort}
+Dieser Satz besagt: 
+
+\medskip
+\noindent\satz{Sind die Funktionen 
+$f$ und $g$ auf dem kompakten Intervall $[a,b]$ stetig und auf 
+$\open{a,b}$ differenzierbar, so gibt es mindestens eine Stelle 
+$\xi \in \open{a,b}$ mit 
+\[
+\big( f(b)-f(a) \big) \cdot g'(\xi) = 
+\big( g(b)-g(a) \big) \cdot f'(\xi). 
+\]}
+Zum Beweis wende man den Satz von Rolle auf die 
+Funktion
+\[
+\varphi( x ) := \big( f(b)-f(a) \big)\cdot g(x) - 
+\big( g(b)-g(a) \big)\cdot f(x), \quad  x\in [a,b] 
+\]
+an. Wegen $\varphi(a)=\varphi(b)$ gibt es ein $\xi\in (a,b)$ 
+mit $\varphi'(\xi)=0$. Damit ist der Satz bewiesen. 
+
+Gilt zudem $g'(x) \not=0$ für alle $x\in [a,b]$, so 
+ist nach dem Mittelwertsatz 
+$g(b)-g(a) \not=0$. 
+In diesem Fall lässt sich die Gleichung 
+des verallgemeinerten Mittelwertsatzes auch in folgender Form schreiben:
+\begin{equation}
+\frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(\xi)}{g'(\xi)} . \EndTag  
+\end{equation}
+\end{antwort}
+
+
+%% --- 49 --- %%
+\begin{frage}\label{06_schr}\index{Schrankensatz}
+Was besagt der \bold{Schrankensatz}?
+\end{frage}
+
+\begin{antwort}
+Der Schrankensatz lautet: 
+
+\medskip
+\noindent\satz{Für eine differenzierbare Funktion 
+$f\fd M\to \RR$ mit beschränkter Ableitung gilt für beliebige 
+Punkte $x_1,x_2 \in M$:
+\[
+\boxed{ | f(x_1)-f(x_2) | \le \|f'\| \cdot |x_1-x_2|. }
+\]
+Mit anderen Worten, die Funktion ist unter den angegebenen
+Bedingungen Lipschitz-stetig.}
+
+\medskip\noindent
+Ohne Beschränkung der Allgemeinheit können wir $x_2>x_1$ annehmen. 
+Nach dem Mittelwertsatz gibt es ein $\xi \in (x_1,x_2)$ mit $
+\left| \frac{ f(x_2)-f(x_1) }{ x_2-x_1 } \right| = |f'( \xi )| \le \|f'\|.$
+Damit ist der Satz schon bewiesen. 
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 50 --- %%
+\begin{frage}\index{Regel von de L'Hospital}
+Wie lauten die \bold{Regeln von de L'Hospital}?
+\end{frage}
+\begin{antwort}
+ \satz{Seien $f$ und $g$ auf $M$ definierte reelle Funktionen. 
+Gilt dann für ein $a\in M$ 
+\[
+\text{\desc{a}} \quad \lim_{x\uparrow a} f(x) = \lim_{x\uparrow a} g(x)=0 \quad\text{oder}\quad
+\text{\desc{b}}\quad \lim_{x\uparrow a} f(x) = \lim_{x\uparrow a} g(x)=\infty, 
+\]
+so gilt unter der Voraussetzung, dass $g'(x) \not=0$ in einer 
+Umgebung von $a$ nicht verschwindet
+\[
+\lim_{x\uparrow a} \frac{f(x)}{g(x)} = 
+\lim_{x\uparrow a} \frac{f'(x)}{g'(x)}.
+\]
+Analoge Zusammenhänge gelten für $x\downarrow a$ sowie für $x\to\pm \infty$.} 
+\AntEnd
+\end{antwort}
+
+%% --- 51 --- %%
+\begin{frage}\index{Regel von de L'Hospital}
+Wie kann man die Regeln von de L'Hospital beweisen?
+\end{frage}
+
+\begin{antwort}
+ Der Beweis muss für jeden der Fälle \desc{a} und 
+\desc{b} extra geführt werden. Beide Male beruht er wesentlich 
+auf einer Anwendung des verallgemeinerten Mittelwertsatzes. 
+
+\medskip
+\noindent
+\desc{a} Nach dem verallgemeinerten Mittelwertsatz gibt es ein 
+$\xi \in (a-\delta,a)$ mit
+\[
+\frac{f(a)-f(a-\delta)}{g(a)-g(a-\delta)} = \frac{f'(\xi)}{g'(\xi)}.
+\]
+Für $\delta \to 0$ folgt hieraus die Aussage. 
+
+\medskip
+\noindent
+\desc{b} Zunächst schreibe man den Quotienten $f(x)/g(x)$ in der Form  
+\begin{equation}
+\frac{f(x)}{g(x)} = \frac{f(x)-f(y)}{g(x)-g(y)} \cdot 
+\frac{1-g(y)/g(x)}{1-f(y)/f(x)}. 
+\asttag
+\end{equation}
+Zu $A:= \lim\limits_{x\uparrow a}f'(x)/g'(x)$ wähle man $\delta>0$ so, 
+dass $\left|  \frac{f'(x)}{g'(x)} - A \right| <\eps$ 
+für alle $x\in (a-\delta, a )$ gilt. Mit 
+dem verallgemeinerten Mittelwertsatz folgt dann
+\[
+A-\eps <   
+\frac{f(x)-f(y)}{g(x)-g(y)} < A+\eps  
+\quad\text{für alle $x,y \in (a-\delta, a)$.}
+\]
+Einsetzen dieses Ergebnisses in ($\ast$) liefert
+\[
+(A-\eps) \left| \frac{1-g(y)/g(x)}{1-f(y)/f(x)} \right|  < 
+\frac{f(x)}{g(x)} < 
+(A+\eps) \left| \frac{1-g(y)/g(x)}{1-f(y)/f(x)} \right|
+\]
+Der Faktor in den Betragsstrichen konvergiert bei 
+festgehaltenem $y$ für $x\!\uparrow \!a$ gegen $1$. 
+Da $\eps$ beliebig klein gewählt werden kann, folgt die Behauptung.
+\AntEnd
+\end{antwort}
+
+%% --- 52 --- %%
+\begin{frage}
+Können Sie $\lim\limits_{x\downarrow 0} x\log x$ bestimmen?
+\end{frage}
+
+\begin{antwort}
+Die Regel von de L'Hospital liefert hierfür 
+\begin{equation}
+\dis \lim_{x\downarrow 0} x \log x = 
+\lim_{x\downarrow 0} \frac{\log x}{1/x} = \lim_{x\downarrow 0}
+\frac{1/x}{-1/x^2} = \lim_{x\downarrow 0} -x = 0.
+\EndTag
+\end{equation}
+\end{antwort}
+
+%% --- 53 --- %%
+\begin{frage}\index{Monotoniekriterium}
+Wie lautet das  \bold{Monotoniekriterium}?
+\end{frage}
+
+\begin{antwort}
+Das Kriterium lautet: 
+
+\medskip\noindent\satz{Ist $f\fd [a,b] \to \RR$ differenzierbar, 
+dann ist $f$ auf $[a,b]$ 
+\begin{itemize}[2mm]
+\item[\desc{i}] monoton steigend genau dann, wenn 
+$f'(x) \ge 0$ für alle $x\in[a,b]$ und \\[-3.5mm]
+\item[\desc{ii}] monoton fallend genau dann, wenn 
+$f'(x) \le 0$ für alle $x\in[a,b]$ gilt. 
+\end{itemize}}
+\noindent
+Beide Aussagen folgen bei Betrachtung der 
+Differenzenquotienten von $f$ leicht aus dem Mittelwertsatz. 
+\AntEnd
+\end{antwort}
+
+%% --- 54 --- %%
+\begin{frage}\label{06_konst}\index{Charakterisierung!konstanter Funktionen}
+Wie lassen sich \bold{konstante Funktionen} über ihre Ableitung 
+charakterisieren?
+\end{frage}
+
+\begin{antwort}
+\satz{Eine Funktion $f\fd M \to \RR$ auf einem Intervall 
+$M$ ist konstant genau dann, wenn ihre 
+Ableitung verschwindet.}
+
+\medskip\noindent
+Die Richtung "`$\La$"' offensichtlich. Die andere Richtung 
+ergibt sich wiederum aus einer Anwendung des Mittelwertsatzes. 
+Für zwei Punkte $x_1,x_2 \in [a,b]$ existiert ein $\xi$ 
+zwischen $x_1$ und $x_2$ mit 
+$f(x_1)-f(x_2)=(x_1-x_2)f'(\xi)$. Aus $f'(\xi)=0$ folgt dann 
+$f(x_1)=f(x_2)$.
+\AntEnd
+\end{antwort}
+
+%% --- 55 --- %%
+\begin{frage}\index{konvex}\label{06_konvex}
+Wann heißt eine Funktion $f\fd [a,b] \to \RR$ \bold{konvex}?
+\end{frage}
+
+\begin{antwort}
+Eine Funktion $f$ ist konvex, wenn die 
+Sekante durch je zwei Punkte 
+$P_1:=\big(x_1,f(x_1)\big)$ und $P_2:=\big(x_2,f(x_2)\big)$ 
+des Graphen stets oberhalb des Graphen verläuft 
+(\sieheAbbildung\ref{fig:06_konvex}), wenn also für alle 
+$x\in (x_1,x_2)$ gilt
+\[
+f(x) \le f(x_1)+\frac{f(x_2)-f(x_1)}{x_2-x_1}  x. 
+\]
+
+\begin{center}
+  \includegraphics{mp/06_konvex}
+  \captionof{figure}{Bei einer konvexen Funktion verläuft die 
+    Sekante durch zwei Punkte des Graphen stets oberhalb des 
+    Graphen.}
+  \label{fig:06_konvex}
+\end{center}
+
+Parametrisiert man die Punkte des Intervalls $(x_1,x_2)$ durch  
+$x=\lambda x_1 + (1-\lambda) x_2$ für 
+$\lambda \in \open{0,1}$, so erhält man 
+daraus die äquivalente Bedingung 
+\[
+f(  \lambda x_1 + (1-\lambda) x_2 ) \le 
+\lambda f(x_1) + (1-\lambda) f(x_2), 
+\quad\text{für $\lambda \in\open{0,1}$}. 
+\]
+\end{antwort}
+
+%% --- 56 --- %%
+\begin{frage}\index{Charakterisierung!konvexer Funktionen}
+Wie lässt sich die Konvexität für eine 
+differenzierbare Funktion 
+$f\fd [a,b]\to \RR$ mittels der zweiten Ableitung charakterisieren?
+\end{frage}
+
+\begin{antwort}
+ 
+Ist $f$ differenzierbar, so ist die Konvexität gleichbedeutend 
+damit, dass die Ableitung $f'$ auf $[a,b]$ monoton wächst. 
+Ist $f$ sogar zweimal differenzierbar, so ist das nach dem 
+Monotoniekriterium äquivalent zu $f''(x)\ge 0$ für alle 
+$x\in [a,b]$. 
+\AntEnd
+\end{antwort}   
+
+%% --- 57 --- %%
+\begin{frage}\index{Stammfunktion}
+Ist $M\subset \RR$ ein echtes Intervall und $f\fd M \to \RR$ eine 
+Funktion, die eine Stammfunktion $F_0$ besitzt. Warum ist  
+$F\fd M\to \RR$ genau dann eine Stammfunktion von $f$, wenn 
+$F=F_0+C$ mit einer Konstanten $C$ gilt?
+\end{frage}
+
+\begin{antwort}
+Sind $F$ und $F_0$ Stammfunktionen von $f$, so gilt
+\[
+(F-F_0)'= f-f=0,\]
+also ist nach Frage \ref{06_konst} $F-F_0$ konstant. Die Umkehrung ist 
+trivial. 
+\AntEnd  
+ 
+\end{antwort}
+
+%% --- 58 --- %%
+\begin{frage}\index{Differenzialgleichung!der Exponentialfunktion}
+\index{Exponentialfunktion!Charakterisierung über ihre Ableitung}
+Können Sie begründen, warum die Exponentialfunktion die 
+einzige differenzierbare Funktion $f\fd \RR \to \RR$ mit 
+$f'=f$ und $f(0)=1$ ist?
+\end{frage}
+
+\begin{antwort}
+Man betrachte die Funktion $g(x) :=f(x)\cdot \exp(-x)$. Für diese gilt 
+\[
+g'(x)= 
+\big(f'(x)-f(x)\big)\cdot \exp(-x)= 0. 
+\]
+Es folgt $f(x)=C\cdot\exp(x)$, und wegen $f(0)=\exp(0)$ ist $C=1$.
+\AntEnd
+\end{antwort}
+
+%% --- 59 --- %%
+\begin{frage}\index{Differenzialgleichung}
+\index{Schwingungsdifferenzialgleichung}
+Können Sie begründen, warum \slanted{jede} Lösung der Differenzialgleichung 
+$f''+f=0$ die Form $f=a\cos +b\sin $ hat?
+\end{frage}
+
+\begin{antwort}
+Ist $f$ konstant null, dann gilt die Behauptung trivialerweise. 
+Wir wollen also $f\not\equiv 0$ annehmen. Dann muss $f$ mindestens eine 
+Nullstelle besitzen. Denn wäre $f$ zum Beispiel überall negativ, dann 
+wäre $f''$ auf ganz $\RR$ positiv, also konkav, und daraus 
+würde mit einem einfachen geometrischen Argument folgen, dass der 
+Graph von $f$ die $x$-Achse an einem Punkt schneiden muss (vgl. dazu 
+die Abbildung in Frage \ref{06_konvex}). $f$ besitzt also eine 
+Nullstelle $x_0$.       
+
+Weiter folgt aus $f+f''=0$  
+\[
+( f'^2 + f^2 )' = 2f''\cdot f' + 2f\cdot f'= 2f'\cdot (f''+f )= 0
+\]
+und damit $f^2+f'^2 = C$ mit einer Konstanten $C\in \RR$. 
+Die Funktion $f$ besitzt zusammenfassend also die drei Eigenschaften
+\[
+f( x_0 ) = 0, \qquad f'(x_0) = c, \qquad  
+f'' + f=0,
+\]  
+wobei $c=\sqrt{C}$ oder $c=-\sqrt{C}$ ist. Sei $g$ eine weitere Funktion 
+mit diesen Eigenschaften. Für die Funktion $ h := f-g$ gilt dann
+\[
+h(x_0)=h'(x_0)=0, \qquad h+h''=0.
+\]
+Daraus folgt wie oben $h'^2 + h^2 = K$ und wegen der ersten Eigenschaft 
+dann $K=0$, also $h=0$. Damit sind $f$ und $g$ identisch. Es kann also nur 
+eine Funktion geben, die die drei Eigenschaften in ($\ast$) besitzt. 
+
+Da die Funktion $a \cos( x+ t)+b \sin(x+t)$ für geeignete 
+Parameter $a,b,t$ die Eigenschaften besitzt, ist sie 
+die einzige. 
+\AntEnd  
+\end{antwort}  
+
+%% --- 60 --- %%
+\begin{frage}\index{Differenzierbarkeit!komplexwertiger Funktionen}
+\index{Ableitung!einer komplexwertigen Funktion}
+Wie kann man den Begriff der Differenzierbarkeit von reellwertigen 
+Funktionen auf komplexwertige Funktionen verallgemeinern?
+\end{frage}
+
+\begin{antwort}
+ Zunächst einmal lässt sich der Differenzierbarkeitsbegriff 
+für komplexwertige Funktionen auf reellen 
+Intervallen natürlich genauso \slanted{definieren} 
+wie für reellwertige. Eine Funktion $f\fd D\to \CC$ auf einer 
+Teilmenge $D\subset \CC$ heißt demnach \slanted{differenzierbar} in 
+$x_0\in D$, wenn der Grenzwert
+\[
+\lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0}
+\]
+existiert. Gegebenenfalls heißt dann der Grenzwert $f'(x_0)$ die 
+\slanted{Ableitung von $f$ in $x_0$}. 
+
+Da jede komplexwertige Funktion 
+$f\fd D\to \CC$ eine Zerlegung 
+\[
+f(x) := u(x) + \i  v(x),\qquad u,v \fd D\to \RR 
+\] 
+in Real- und Imaginärteil besitzt und weil der 
+Konvergenzbegriff in $\CC$ komponentenweise erklärt ist, folgt daraus 
+unmittelbar:
+
+\medskip
+\noindent\satz{Eine komplexwertige Funktion 
+$f=u+\i v$ auf einem 
+reellen Intervall $D$ ist genau dann differenzierbar in $x_0\in D$, 
+wenn die reellen Funktionen $u$ und $v$ in $x_0$ differenzierbar sind. 
+Gebegenenfalls ist die Ableitung von $f$ in $x_0$ gegeben durch
+\[
+\boxed{f'(x_0) = u'(x_0) + \i v'(x_0).} \asttag
+\]}
+Aufgrund der Übereinstimmung der Definition von 
+"`Differenzierbarkeit"'  und wegen {\astref} gelten 
+sämtliche Permanenzeigenschaften für die Ableitung reellwertiger 
+Funktionen auch für komplexwertige.   
+Sind die Funktionen $f,g \fd D\to \CC$ in $x_0\in D$ 
+also differenzierbar, dann auch die Funktionen 
+\[
+\lambda f\quad \text{(mit $\lambda\in \CC$)} 
+\qquad f+g, \qquad f\cdot g,\qquad 
+\frac{f}{g}\quad \text{(falls $g(x_0) \not=0$)},
+\]   
+und es gelten dieselben algebraischen Ableitungsregeln wie in Frage 
+\ref{06_algd}. 
+Ferner lassen sich die Charakterisierung \desc{D1} und \desc{D2} und 
+\desc{D3} mittels linearer bzw. stetiger Funktionen unmittelbar ins  
+Komplexe übertragen. 
+
+In Abschnitt \ref{total} werden wir untersuchen, welche Konsequenzen
+sich ergeben, wenn 
+man den Differenzierbarkeitsbegriff auf Funktionen 
+$f\fd D\to\CC$ anwendet, die auf einer Menge $D\subset \CC$ 
+definiert sind. Dort werden sich weiter reichende Besonderheiten zeigen.  
+\AntEnd
+\end{antwort} 
+
+%% --- 61 --- %%
+\begin{frage}
+Was ist die Ableitung der Funktion 
+$\cis \fd \RR\to\CC$ mit 
+$\cis(x):= \cos x +\i \sin x $?
+\end{frage}
+
+\begin{antwort}
+ Es ist $\cis'(x) = \cos'x+\i \sin' x=-\sin x+\i\cos x = 
+\i \cdot \cis(x)$. 
+\end{antwort}
+  
+\section{Der Hauptsatz der Differenzial- und Integralrechnung}\label{hauptsatz}
+
+Der Hauptsatz der Differenzial- und Integralrechnung stellt den fundamentalen 
+Zusammenhang zwischen den beiden Säulen des \slanted{Calculus} \index{Calculus}
+ her. 
+Er besagt, dass Differenziation und Integration zueinander inverse Operationen 
+sind. Er garantiert die 
+\slanted{Existenz von Stammfunktionen} für alle stetigen Funktionen auf 
+kompakten Intervallen (bei Zugrundelegung eines allgemeineren 
+Stammfunktionsbegriffs sogar für alle Regelfunktionen). Mithilfe von 
+Stammfunktionen lassen sich Integrale bequem und elegant berechnen. 
+
+
+%% --- 62 --- %%
+\begin{frage}\label{06_hpts}\index{Hauptsatz der Differenzial- und 
+Integralrechnung}
+Was besagt der Hauptsatz der Differenzial- und Integralrechnung?
+\end{frage}
+
+\begin{antwort}
+Die Aussage des Hauptsatzes gliedert sich in drei Teile. Er besagt 
+\satz{\setlength{\labelsep}{5mm}
+\begin{enumerate}
+\item[\desc{i}] Jede stetige Funktion $f\fd [a,b]\to\RR$ besitzt eine 
+Stammfunktion, {\dasheisst} eine Funktion $F\fd [a,b]\to\RR$ mit 
+$F'(x)=f(x)$.\\[-3.5mm] 
+\item[\desc{ii}] Je zwei Stammfunktionen von $f$ unterscheiden 
+sich nur durch eine additive Konstante.\\[-3.5mm]
+\item[\desc{iii}] Für eine \slanted{beliebige} Stammfunktion $\Phi$ von $f$ 
+gilt 
+\[
+\boxed{\int_a^b f(t) \dift = \Phi(b)-\Phi(a).}
+\]
+\end{enumerate}}
+\noindent
+Der Beweis von Teil \desc{i} wurde schon in Frage \ref{06_fa} erbracht. 
+Wie dort gezeigt wurde, ist die "`Integralfunktion"' 
+\[
+F_a (x) = \int_a^x f(t) \dift 
+\]
+eine Stammfunktion zu $f$. 
+
+Sind $F$ und $G$ Stammfunktionen von $f$, so gilt 
+$F'-G'=(G-F)'=0$ und damit $F=G+C$ mit einer Konstanten $C\in \RR$. 
+Daraus folgt \desc{ii} 
+
+Behauptung \desc{iii} ist für die Stammfunktion $F_a$ offensichtlich. 
+Die allgemeine Aussage ergibt sich daraus 
+zusammen mit \desc{ii}. 
+\AntEnd
+\end{antwort}
+
+%% --- 63 --- %%
+\begin{frage}\index{Hauptsatz der Differenzial- und 
+Integralrechnung}
+Wie kann man den Hauptsatz in der Sprache der linearen Algebra formulieren?
+\end{frage}
+
+\begin{antwort}
+Ist $V:= \{ f\fd [a,b]\to\RR;\,\text{$f$ stetig} \}$ der Vektorraum der 
+stetigen Funktionen auf $[a,b]$ und 
+$W_0:= \{ g\in {\cal C}^1([a,b]);\,  g(a)=0 \}$, dann ist die Abbildung 
+\[
+I \fd V\to W_0; \qquad 
+f \mapsto I(f) = :g  \quad\text{mit } g(x):= \int_a^x f(t)\dift 
+\]
+ein Isomorphismus mit der Umkehrung 
+\begin{equation}
+D\fd W_0 \to V; \qquad g \mapsto Dg=g'.
+\end{equation}
+Somit gelten die Beziehungen 
+\begin{equation}
+f = D(I(f))\quad\text{ und }\quad g = I(Dg).\EndTag
+\end{equation} 
+\end{antwort}
+
+%% --- 64 --- %%
+\begin{frage}
+Wie kann man mithilfe des Hauptsatzes für eine 
+differenzierbare Funktion 
+$f\fd M\to \RR$ die Funktion selbst und ihre erste Ableitung in Beziehung 
+setzen.
+\end{frage}
+
+\begin{antwort}
+Aus dem Hauptsatz folgt die Beziehung 
+\[
+f(x)=\int_{x_0}^x f'(t)\dift + f(x_0).
+\]
+Der Hauptsatz ermöglicht also, bei gegebener Ableitung $f'$ die 
+Ausgangsfunktion $f$ bis auf eine Konstante zu rekonstruieren. 
+Speziell gilt für $[a,b]\subset M$
+\begin{equation}
+f(b)-f(a)=\int_a^b f'(t) \dift.
+\EndTag
+\end{equation}
+\end{antwort}
+
+%% --- 65 --- %%
+\begin{frage}\index{Integration!glattet@glättet}
+Was besagt die Redeweise "`Integration glättet"'?
+\end{frage}
+
+\begin{antwort}
+Die durch Integration erhaltene Stammfunktion ist genau einmal öfter 
+differenzierbar als der Integrand 
+(sofern dieser nicht ohnehin schon aus $\calli{C}^\infty$ ist) 
+und in diesem Sinne "`glatter"'. Insbesondere ist 
+die Stammfunktion jeder \slanted{stetigen}, also nicht 
+notwendig differenzierbaren, Funktion differenzierbar.
+
+
+Abbildung~\ref{fig:06_stammfunktion} veranschaulicht den Zusammenhang für eine 
+Treppenfunktion. Es gilt $F(x_0) = \int_0^{x_0} f(t) \dift$, und die 
+Funktion $F(x)$ ist im Gegensatz zu $f(x)$ stetig. Sie macht auch 
+deutlich, wie die \slanted{Steigung} des Graphen von $F$ an der Stelle, 
+mit dem Integral von $f$ zusammenhängt. 
+Insofern illustriert sie in gewisser Weise die Aussage des 
+Hauptsatzes der Differenzial- und Integralrechnung. 
+Streng genommen ist $F$ allerdings keine Stammfunktion von $f$ 
+im Sinne der Definition, da $F$ an einigen Stellen nicht 
+differenzierbar ist.    
+
+\begin{center}
+  \includegraphics{mp/06_stammfunktion}
+  \captionof{figure}{Die Stammfunktion $F$ stellt den 
+    (grauen) orientierten Flächeninhalt in Abhängigkeit von $x_0$ dar.} 
+  \label{fig:06_stammfunktion}
+\end{center}
+
+Legt man jedoch einen etwas allgemeineren Stammfunktionsbegriff 
+zugrunde (etwa wie in \citep{Koenig}, demzufolge eine 
+Stammfunktion nur bis auf eine abzählbare 
+Ausnahmemenge differenzierbar sein muss), so ist $F$ in diesem allgemeineren 
+Sinn eine Stammfunktion von $f$. 
+\AntEnd
+\end{antwort} 
+
+%% --- 66 --- %%
+\begin{frage}\label{06_reig}\index{Regelfunktion!Charakterisierung}
+Durch welche inneren Eigenschaften lassen sich Regelfunktionen 
+$f\fd [a,b]\to \RR$ charakterisieren?
+\end{frage}
+
+\begin{antwort}
+\satz{Eine Funktion $f\fd [a,b]\to\RR$ ist eine Regelfunktion genau dann, wenn 
+sie an jeder Stelle $ \xi \in ]a,b[$ sowohl einen rechts- als auch einen 
+linksseitigen Grenzwert hat und in den Randpunkten jeweils einseitige 
+Grenzwerte.}
+
+\medskip\noindent
+Die Richtung "`$\Ra$"' gilt, da Treppenfunktionen an jeder Stelle einen 
+links- und rechtsseitigen Grenzwert besitzen, und weil sich diese 
+Eigenschaft bei gleichmäßiger Konvergenz auf die Grenzfunktion überträgt.
+
+Die andere Richtung zeigt man mit einem Intervallschachtelungsargumemt. 
+Angenommen, $f$ besitzt in jedem Punkt $x_0\in [a,b]$ einen links- und 
+rechtsseitigen Grenzwert, ist aber keine Regelfunktion. Dann gibt es 
+ein $\eps>0$, sodass $\| f-\varphi \|>\eps$ für alle Treppenfunktionen 
+$\varphi$ gilt. Besitzt $f$ nun auf einem Intervall $I\subset[a,b]$ 
+keine approximierende Folge von Treppenfunktionen, so gilt dies auch 
+für mindestens eine der Hälften von $I$. 
+Ausgehend vom Intervall $[a,b]$ lässt sich durch sukzessive Halbierung 
+also eine Intervallschachtelung $(I_n)$ mit der Eigenschaft 
+\begin{equation}
+\| f-\varphi \|_{I_n}  > \eps \qquad\text{für alle $n\in \NN$ und alle 
+$\varphi\in \calli{T}$} \notag
+\end{equation}
+konstruieren. An dieser Stelle 
+mus man mit einem $\eps\delta$-Standardargument nur noch zeigen, 
+dass das im Widerspruch zur Voraussetzung steht. \AntEnd   
+\end{antwort}
+
+%% --- 67 --- %%
+\begin{frage}\index{Stammfunktion!einer Regelfunktion}
+Warum besitzt eine Regelfunktion $f\fd [a,b]\to \RR$ genau dann eine 
+Stammfunktion (im klassischen Sinne), wenn $f$ stetig ist?
+\end{frage}
+
+\begin{antwort}
+Sei zunächst $x_0$ ein beliebiger innerer Punkt aus $\lopen{a,b}$. 
+Eine Regelfunktion $f$ besitzt nach Frage \ref{06_reig} dann 
+in $x_0$ einen linksseitigen Grenzwert $f({x_0}_-)$. 
+Die Funktion $f_{{x_0}_-}$, die an der Stelle $x_0$ den Wert 
+$f({x_0}_-)$ hat und ansonsten mit $f$ übereinstimmt, ist damit 
+für ein $\delta>0$ stetig auf dem Intervall $[x_0-\delta, x_0]$,  
+hat dort also eine Stammfunktion, und es gilt
+\[
+\lim_{x\uparrow x_0} \frac{1}{x_0-x} \int_{x}^{x_0} f_{{x_0}_-} (t) \dift 
+= f( {x_0}_- )
+\] 
+Da sich die Werte von $f$ und $f_{{x_0}_-}$ nur in höchstens einem 
+Punkt unterscheiden, sind deren Integrale gleich, es folgt also 
+\begin{equation}
+\lim_{x\uparrow x_0} \frac{1}{x_0-x} \int_{x}^{x_0} f (t) \dift 
+= f( {x_0}_- ).
+\asttag
+\end{equation}
+Analog erhält man für $x_0 \in \ropen{a,b}$
+\begin{equation}
+\lim_{x\downarrow x_0} \frac{1}{x_0-x} \int_{x}^{x_0} f (t) \dift 
+= f( {x_0}_+ )
+\tag{$\ast\ast$}. 
+\end{equation} 
+Besitzt $f$ nun eine Stammfunktion, so sind die beiden Grenzwerte 
+($\ast$) und ($\ast\ast$) gleich, weil die Approximationen 
+$x\uparrow x_0$ und $x\downarrow x_0$ dann durch beliebige 
+gegen $x_0$ konvergente Folgen ersetzt werden können. 
+Es folgt  
+$f({x_0}_-)=f({x_0}_+)$, also die Stetigkeit von $f$ in $x_0$. 
+\AntEnd    
+\end{antwort}  
+
+%% --- 68 --- %%
+\begin{frage}\index{Stammfunktion!unstetiger Funktionen}
+Gibt es auch unstetige Funktionen, die eine Stammfunktion besitzen?
+\end{frage}  
+ 
+\begin{antwort}
+Ja. Als Beispiel betrachte man die Funktion 
+$F\fd \RR \to \RR$ mit $F(0)=0$ 
+und $F(x)=x^2\sin \frac{1}{x}$. Deren Ableitung 
+$f(x):=F'(x)=2x\sin \frac{1}{x}+\cos(\frac{1}{x})$ 
+besitzt im Nullpunkt weder einen links- noch einen rechtsseitigen Grenzwert.
+\AntEnd 
+\end{antwort}
+
+
+%% --- 69 --- %%
+\begin{frage}\index{Riemann'sche Summe}
+\index{Riemann@\textsc{Riemann}, Bernhard (1826-1866)}
+Was versteht man unter einer \bold{Riemann'schen Summe}?
+\end{frage}
+
+\begin{antwort}
+Sei $f\fd [a,b]\to\RR$ eine beliebige Funktion und 
+sei $Z$ eine Zerlegung von $[a,b]$ mit den Teilungspunkten 
+$x_0, \ldots , x_n$. 
+Weiter sei $\xi_k$ für $1\le k \le n$ ein beliebiger Punkt aus dem 
+Intervall $[x_{k-1},x_k]$. 
+Dann ist ist die \slanted{Riemann'sche Summe} zur Funktion 
+$f$ bezüglich der Zerlegung $Z$ und dem Zwischenvektor 
+$\xi:= (\xi_1,\ldots,\xi_n)$ definiert als die Summe 
+\begin{equation}
+S(Z,\xi,f):=\sum_{k=1}^n f(\xi_k) \Delta x_k, \qquad 
+\Delta x_k := x_k-x_{k-1}.
+\notag
+\end{equation}
+
+\begin{center}
+  \includegraphics[width=40mm]{mp/06_riemann}
+  \captionof{figure}{Riemann'sche Summe mit Zwischenvektor 
+    $(\xi_1,\ldots,\xi_n)$.}
+  \label{fig:06_riemann}
+\end{center}
+
+Der Wert der Riemann'schen Summe entspricht somit dem Flächeninhalt, den 
+der Graph der durch $\varphi(x)=f(\xi_k)$ für $x\in[x_{k-1},x_k]$ gegebenen  
+Treppenfunktion mit der $x$-Achse einschließt, \sieheAbbildung\ref{fig:06_riemann}. 
+\AntEnd
+\end{antwort}
+
+%% --- 70 --- %%
+\begin{frage}\label{riemannsumme}\index{Riemann'sche Summe}
+Können Sie folgende Aussage begründen: Ist $f\fd [a,b]\to \RR$ eine 
+Regelfunktion und $(Z_j)$ mit 
+$Z_j := \{ x_0^{(j)}, \ldots, x_{n_j}^{(j)} \}$ eine Folge 
+von Zerlegungen mit 
+\[
+\lim_{j\to \infty} |Z_j| = 0, \qquad 
+|Z_j| := \max\{ x_k^{(j)} - x_{k-1}^{(j)};\, 1\le k \le n_j \},
+\]
+dann gilt für beliebige Zwischenvektoren $\xi^{(j)}$ von $Z_j$ 
+\[
+\lim_{j\to\infty} S( Z_j, \xi_j, f ) = \int_a^b f(x) \difx.
+\]
+In Worten: Das Integral einer Regelfunktion auf einer 
+kompakten Menge $[a,b]$ wird durch eine Riemann'sche Summe 
+beliebig genau approximiert, solange die Zerlegung nur 
+fein genug ist.
+\end{frage}
+
+\begin{antwort}
+Wir zeigen, dass zu jedem $\eps>0$ 
+ein $\delta>0$ existiert, sodass für jede Zerlegung 
+$Z$ von $[a,b]$ mit $|Z| \le \delta$ die Abschätzung 
+\[
+\left| S( Z, \xi, f ) - \int_a^b f \difx \right| < \eps
+\]
+gilt, wobei $\xi$ ein beliebiger Zwischenvektor zur 
+Zerlegung $Z$ ist. Daraus folgt die Behauptung.   
+
+Diese Aussage lässt sich zunächst für \slanted{Treppenfunktionen} 
+$\varphi$ unschwer mittels vollständiger Induktion zeigen. 
+
+Sei $f$ daher eine Regelfunktion und $\varphi$ eine Treppenfunktion mit 
+$\| f-\varphi \| < \frac{\eps}{3(b-a)}$. Ferner sei $\delta>0$ so gewählt, 
+dass für jede Zerlegung $Z$ mit $|Z| < \delta$ die Ungleichung  
+$\left| S( Z, \xi, \varphi ) - \int_a^b \varphi \difx\right| < \eps/3$ gilt. 
+Für jede Zerlegung $Z=\{ x_0, \ldots, x_n \}$ mit $|Z| < \delta$ und 
+beliebigem Zwischenvektor $\xi$ folgt hieraus
+
+\begin{eqnarray*}  
+\left| S(Z,\xi,f)  - \int_a^b f \difx \right| 
+&\le& 
+\bigg| S(Z,\xi,f) - S( Z,\xi,\varphi)  \bigg| 
+ + \left| S(Z,\xi,\varphi) - \int_a^b \varphi \difx\right| \\
+& & + \left| \int_a^b \varphi \difx - \int_a^b f\difx \right| \\
+&\le& 
+\sum_{k=1}^n \| f-\varphi_n \| \Delta x_k + \frac{\eps}{3} + 
+\int_a^b \| f-\varphi_n \| \difx \le \eps.
+\end{eqnarray*}
+Damit ist die Behauptung bewiesen. \AntEnd
+\end{antwort}
+
+%% --- 71 --- %%
+\begin{frage}\index{Obersumme}\index{Untersumme}
+Sei $f\fd [a,b]\to\RR$ eine \bold{beschränkte} Funktion. 
+Für jedes 
+$\underline{\varphi} \in \underline{\calli{T}}(f) := 
+\{ \varphi \in \calli{T}; \, \varphi \le f \}$ 
+und jedes 
+$\overline{\varphi} \in \overline{\calli{T}}(f) := 
+\{ \varphi \in \calli{T}; \, \varphi \ge f \}$ 
+heißt 
+\[
+\begin{array}{lp{3mm}l}
+I( \underline{\varphi} ):=\int_a^b \underline{\varphi} \difx 
+& & \text{\bold{Untersumme} von $f$ und} \\[2mm]
+I( \overline{\varphi} ): =\int_a^b \overline{\varphi} \difx
+& & \text{\bold{Obersumme} von $f$},
+\end{array}
+\]
+\sieheAbbildung\ref{fig:06_riemann3}. Bezeichnet 
+man mit $U_f$ die Menge aller Untersummen und 
+mit $O_f$ die Menge aller Obersummen von $f$, 
+warum existiert dann stets 
+\[
+I_* (f) := \sup U_f \quad\text{und}\quad I^*(f) := \inf O_f,
+\]
+und warum gilt immer $I_* (f) \le I^* (f) \text{?}$
+\end{frage} 
+
+
+\begin{antwort}
+Die Mengen $O_f$ und $U_f$ sind nicht leer, 
+da sie die Inhalte der konstanten 
+Funktionen $x\mapsto \sup f$ bzw. $x\mapsto \inf f$ enthalten. Ferner 
+gilt für alle $\underline{\varphi}\in \underline{\calli{T}}(f)$ 
+und alle $\overline{\varphi}\in \overline{\calli{T}}(f)$
+\[
+I(\underline{\varphi}) \le (b-a)\cdot \sup f 
+\qquad\text{und}\qquad 
+I(\overline{\varphi}) \ge (b-a)\cdot \inf f. 
+\]
+Die nicht leeren Mengen $U_f$ und $O_f$ sind also nach 
+oben bzw. unten beschränkt, und damit existieren $\sup U_f$ und $\inf O_f$. 
+
+\begin{center}
+  \includegraphics{mp/06_riemann3}
+  \captionof{figure}{Unter- und Obersumme einer Funktion}
+  \label{fig:06_riemann3}
+\end{center}
+
+Angenommen, es würde $I_* (f) > I^* (f)$ gelten. Dann gäbe es eine 
+Treppenfunktion $\underline{\psi} \in \underline{\calli{T}}(f)$ mit 
+\begin{equation}
+I(\underline{\psi}) > I(\overline{\varphi}) \qquad\text {für alle 
+$\overline{\varphi}\in \overline{\calli{T}}(f)$.} \tag{$\ast$}
+\end{equation} 
+Die Funktion 
+$\overline{\psi} := \underline{\psi} + \| f-\underline{\psi} \| +1$ 
+liegt dann in $\overline{\calli{T}}(f)$ und es gilt 
+$I ( \overline{\psi} ) > I ( \underline{\psi} ),$
+im Widerspruch zu ($\ast$).\AntEnd
+\end{antwort}
+
+%% --- 72 --- %%
+\begin{frage}\label{regelrie}
+\nomenclature{$I^*(f)$}{Oberintegral von $f$}
+\nomenclature{$I_*(f)$}{Unterintegral von $f$}
+Warum gilt für Regelfunktionen $f\fd[a,b]\to\RR$ 
+stets $I_*(f) = I^*(f)$?
+\end{frage}
+
+\begin{antwort}
+Sei $\varphi$ eine Treppenfunktion mit $\| f-\varphi \| < \eps$. 
+Dann ist $\varphi-\eps \in \underline{\calli{T}}(f)$ und 
+$\varphi+\eps \in \overline{\calli{T}}(f)$. Hieraus folgt
+\[
+0 \le I^* (f) - I_* (f) < I(\varphi+\eps) - I(\varphi-\eps) = 2\eps\cdot (b-a).
+\]
+Da $\eps$ beliebig klein gehalten werden kann, ergibt sich 
+hieraus die Behauptung.
+\AntEnd
+\end{antwort}
+
+%% --- 73 --- %%
+\begin{frage}\index{Riemann-Integral}\index{Integral!Riemann-Integral}
+\index{Riemann@\textsc{Riemann}, Bernhard (1826-1866)}
+Wann heißt eine Funktion $f\fd [a,b] \to \RR$ \bold{Riemann-integrierbar}?
+\end{frage}
+
+\begin{antwort}
+\satz{Eine beschränkte 
+Funktion $f\fd [a,b]\to\RR$ 
+heißt Riemann-integrierbar, wenn $I_*(f)=I^*(f)$ gilt.} 
+
+\medskip\noindent
+Der Unterschied zum Regelintegral besteht also darin, dass beim 
+Riemann-Integral \slanted{direkt} versucht wird, den Flächeninhalt unter 
+dem Graphen von $f$ durch Einschließung von Ober- und Untersummen zu 
+bestimmen, ohne sich weiter darum zu kümmern, ob $f$ selbst durch Funktionen 
+einer bestimmten Klasse approximiert werden kann. 
+\AntEnd
+\end{antwort}
+
+%% --- 74 --- %%
+\begin{frage}\label{06_riem}\index{Riemann-Integral}
+\nomenclature{$\Rie(M)$}{Raum der Riemann-integrierbaren Funktionen 
+auf $M=[a,b]$}
+Begründen Sie, warum 
+\[
+\Rie(M) := \{ f \fd M\to\RR, \quad\text{$f$ Riemann-integrierbar} \} 
+\]
+mit $M=[a,b]$ ein $\RR$-Vektorrraum ist und warum die Abbildung 
+\[
+\Rie(M) \to \RR; \qquad f \mapsto \int_a^b f(x) \difx 
+\]
+ein lineares Funktional ist, dessen Einschränkung auf die Menge der 
+Regelfunktionen mit dem Integral für Regelfunktionen übereinstimmt.
+\end{frage}
+
+\begin{antwort}
+Seien $f$ und $g$ Riemann-integrierbar. 
+Für $\alpha,\beta\in\RR$ sowie Treppenfunktionen 
+$\underline{\varphi} \in \underline{\calli{T}}(f)$ und  
+$\underline{\psi} \in \underline{\calli{T}}(g)$  
+gilt 
+$I( \alpha \underline{\varphi} + \beta \underline{\psi} ) = 
+\alpha \cdot I(  \underline{\varphi} ) + 
+\beta \cdot  I ( \underline{ \psi } )$. 
+Daraus folgt 
+\begin{equation}
+I^* (\alpha f + \beta g ) = 
+\alpha\cdot I^*( f ) + 
+\beta\cdot I^*( g ).
+\tag{$\ast$}
+\end{equation}
+Analog erhält man   
+\begin{equation}
+I_*  (\alpha f + \beta g ) = 
+\alpha\cdot I_*(  f ) + 
+\beta\cdot I_*( g ).
+\tag{$\ast\ast$}
+\end{equation}
+Wegen $I^*( f )=I_*(f)$ und $I^*( g )=I_*(g)$ folgt daraus 
+$I^*( \alpha f+ \beta g )=I_*(\alpha f+\beta g)$. Die Funktion 
+$\alpha f+\beta g$ ist also Riemann-integrierbar. 
+Damit ist gezeigt, dass $\Rie(M)$ ein $\RR$-Vektorraum ist.  
+
+Die Gleichungen ($\ast$) und ($\ast\ast$) zeigen auch, 
+dass es sich bei der Abbildung 
+$\Rie(M) \to \RR$ um ein lineares Funktional handelt. 
+
+Der letzte Teil der Behauptung ergibt sich im Wesentlichen als 
+Spezialfall aus Frage \ref{riemannsumme}. Zu einer Zerlegung 
+$Z=\{x_0,\ldots,x_n\}$ betrachte man die beiden in 
+\Abb~\ref{fig:06_riemann1} skizzierten speziellen Riemann'schen Summen 
+\[
+\begin{array}{lp{3mm}l}
+\overline{S}(Z)  := \sum_{k=1}^n f(\overline{\xi}_k) \Delta x_k,  & &
+\overline{\xi}_k := \max\{ f(x); \; x\in [x_{k-1},x_k] \}, \\
+\underline{S}(Z) := \sum_{k=1}^n f(\underline{\xi}_k) \Delta x_k,  
+& &
+\underline{\xi}_k := \min\{ f(x); \; x\in [x_{k-1},x_k] \}.
+\end{array}
+\]
+
+\begin{center}
+  \includegraphics{mp/06_riemann1}
+  \captionof{figure}{Spezielle Riemann'sche Summen. Die 
+    Komponenten des Zwischenvektors liegen am Maximum 
+    bzw. Minimum des entsprechenden Teilintervalls.}
+  \label{fig:06_riemann1}
+\end{center}
+
+Für alle Zerlegungen $Z$ ist  
+$\overline{S}(Z)$ eine Ober- und $\underline{S}(Z)$ eine 
+Untersumme von $f$. Nach Frage \ref{riemannsumme} gilt 
+$\lim_{|Z|\to 0} \overline{S}(Z)=\lim_{|Z|\to 0 }\underline{S}(Z) 
+= \int_a^b f \difx$, und hieraus folgt 
+$\lim_{|Z|\to 0} \overline{S}(Z)=I^*(f)=I_*(f)=\int_a^b f \difx$. 
+\AntEnd
+\end{antwort}
+
+%% --- 75 --- %%
+\begin{frage}\label{06_rire}
+\index{Riemann-Integral!Vergleich mit Regelintegral}
+Können Sie eine Riemann-integrierbare Funktion 
+$f\fd [a,b]\to\RR$ angeben, die keine Regelfunktion ist?
+\end{frage}
+
+\begin{antwort}
+Ein Standardbeispiel liefert die
+Funktion $f\fd x\mapsto \sin \frac{1}{x}$ auf $[0,1]$. 
+Diese besitzt in $0$ keinen rechtsseitigen Grenzwert, kann also 
+keine Regelfunktion sein.
+
+\begin{center}
+  \includegraphics{mp/06_sineinsdurchx}
+  \captionof{figure}{Die Funktion $x\mapsto \sin\frac1x$ ist auf $[0,1]$ 
+    riemann-, aber nicht regelintegrierbar.}
+  \label{fig:06_sineinsdurchx}
+\end{center}
+
+Ihre Riemann-Integrierbarkeit folgt daraus, dass sie auf jedem 
+kompakten Intervall $[\eps,1]$ stetig und damit nach Frage \ref{regelrie} 
+erst recht Riemann-integrierbar ist. 
+Das Infimum ${I_\eps}_*$ der Obersummen über das 
+restliche Intervall ist kleiner als $\eps\cdot 1=\eps$, 
+das Supremum $I^*_\eps$ 
+der Untersummen größer als $\eps\cdot (-1)=-\eps$, \sieheAbbildung 
+\ref{fig:06_sineinsdurchx}. Also gilt auch hier 
+${I_\eps}_* = I_\eps^*$. \AntEnd
+\end{antwort}
+
+
+\section{Integrationstechniken}
+
+Weit verbreitet ist die Meinung \slanted{"`Differenziation ist Technik, Integration ist Kunst."'}.
+
+Auch im Zeitalter von Computeralgebrasystemen sollte jede(r) 
+Studierende einige elementare Integrationstechniken beherrschen. 
+
+%% --- 76 --- %%
+\begin{frage}\index{Substitutionsregel}
+Wie lautet die \bold{Substitutionsregel}?
+\end{frage}
+
+\begin{antwort}
+Die Substitutionsregel erhält man 
+über den Hauptsatz der Differenzial- und Integralrechnung 
+als Pendant zur Kettenregel. Sie lautet: 
+
+\medskip
+\noindent\satz{Sei $f\fd M\to \RR$ eine stetige Funktion und 
+$F$ eine Stammfunktion zu $f$. 
+Sei weiter $\varphi \fd [a,b] \to M$ 
+stetig differenzierbar. Dann ist $F\circ \varphi$ eine 
+Stammfunktion zu $(f\circ \varphi)\cdot \varphi'$,  
+und es gilt
+\[
+\boxed{\int_a^b f \big( \varphi(x) \big) \cdot \varphi'(x)  \difx =
+\int_{\varphi(a)}^{\varphi(b)} f(t)    \dift.}
+\]}
+\noindent
+Die erste Behauptung folgt unmittelbar aus der Kettenregel, 
+die zweite durch Auswerten der Integrale auf beiden Seiten der 
+Gleichung. Diese haben nämlich beide 
+den Wert $F\big(\varphi(b)\big)-F\big( \varphi(a) \big)$. 
+\AntEnd
+\end{antwort}
+
+%% --- 77 --- %%
+\begin{frage}\label{06_sbsp}\index{Substitutionsregel}
+Können Sie mithilfe der Substitutionsregel das Integral 
+$\int_{-1}^1 \sqrt{1-x^2} \difx$ berechnen?
+\end{frage}
+
+\begin{antwort}
+Die Substitution $x = \sin t$, $\difx =\cos t \dift$ liefert  
+\[
+\int_{-1}^1 \sqrt{1-x^2}\difx = 
+\Int_{\arcsin(-1)}^{\arcsin (1)} 
+\sqrt{1-\sin^2}\cos t \dift 
+= \int_{-\pi/2}^{\pi/2} \cos^2 t \dift 
+\]
+Nun ist
+\[
+\int_{-\pi/2}^{\pi/2}\cos^2 t  \dift = 
+\int_{-\pi/2}^{\pi/2} 1 \dift - 
+\int_{-\pi/2}^{\pi/2} \sin^2 t \dift = 
+\pi - \int_{-\pi/2}^{\pi/2} \cos^2 t \dift.
+\]
+Einsetzen in die oberen Gleichung führt zu dem Ergebnis 
+$\int_{-1}^1 \sqrt{1-x^2}\difx = \pi/2$. \AntEnd
+\end{antwort}
+
+
+
+%% --- 78 --- %%
+\begin{frage}\index{partielle Integration}
+Wie lautet die \bold{Regel der partiellen Integration}?
+\end{frage}   
+
+
+
+\begin{antwort}
+Die Regel lautet: \satz{
+Sind $f,g \fd M \to \RR$ stetig differenzierbar, so ist 
+\[
+\boxed{\int fg' \difx = fg - \int f'g \difx \qquad
+\int_a^b fg' \difx = fg \Big|_a^b - \int_a^b f'g \difx.}
+\]}
+
+\medskip\noindent
+Der Zusammenhang folgt sofort aus der Produktregel 
+für die Differenziation. 
+Demnach ist nämlich $fg$ eine Stammfunktion zu 
+$fg'+f'g$. 
+\AntEnd
+\end{antwort}
+
+%% --- 79 --- %%
+\begin{frage}\label{06_inberechnung}
+Können Sie mit dieser Regel begründen, warum 
+\[
+x\mapsto \frac{1}{2} ( x\sqrt{1-x^2} + \arcsin x )
+\]
+eine Stammfunktion von $\sqrt{1-x^2}$ auf dem Intervall 
+$[-1,1]$ ist? 
+\end{frage}
+
+\begin{antwort}
+Bei der folgenden Rechnung beachte man vor allem den Trick 
+einer Multiplikation mit $1$, der bei Problemlösungen 
+mittels partieller Integration recht häufig zum Einsatz kommt. 
+\begin{eqnarray*}
+\int 1\cdot \sqrt{1-x^2}\difx &=& 
+x \sqrt{1-x^2} - \int \frac{x(-2x)}{2\sqrt{1-x^2}} \difx \\
+&=& x\sqrt{1-x^2} + \int \frac{\difx}{\sqrt{1-x^2}} - 
+\int \frac{1-x^2}{\sqrt{1-x^2}}\difx \\
+&=& 
+x\sqrt{1-x^2} + \arcsin x - \int \sqrt{1-x^2}\difx.
+\end{eqnarray*}
+Addition von $\int \sqrt{1-x^2}\difx$ auf beiden Seiten 
+der Gleichung und anschließende Division durch $2$ 
+liefert das gesuchte Ergebnis. \AntEnd
+\end{antwort}
+
+%% --- 80 --- %%
+\begin{frage}
+Können Sie das Ergebnis aus Frage \ref{06_inberechnung} 
+durch ein geometrisches Argument anschaulich verifizieren?
+\end{frage}
+
+\begin{antwort}
+ Das Integral 
+$\int_{-1}^x \sqrt{1-x^2} \difx$ gibt den in 
+Abbildung~\ref{fig:06_kreis} dunkelgrau eingefärbten Flächeninhalt an.
+Dieser ist gleich dem Flächeninhalt des 
+Kreissektors mit Winkel $\varphi$ 
+\slanted{minus} bzw. \slanted{plus} dem Inhalt des 
+hellgrau eingefärbten Dreiecks, je nachdem, ob $x$ negativ 
+oder positiv ist. In beiden Fällen führt das auf
+\[
+\int_{-1}^x \sqrt{1-x^2} \difx = \frac{1}{2} ( \varphi + x\sqrt{1-x^2} ).
+\]
+
+\begin{center}
+  \includegraphics{mp/06_kreis}
+  \captionof{figure}{Elementargeometrische "`Berechnung"' von 
+    $\int_{-1}^x \sqrt{1-x^2} \difx$.}
+  \label{fig:06_kreis}
+\end{center}
+
+Nun ist aber $\varphi=\psi+\frac{\pi}{2}=\arcsin(x)+\frac{\pi}{2}$. 
+Setzt man das in die Gleichung ein, erhält man eine 
+Stammfunktion von $\sqrt{1-x^2}$, die sich von der formal 
+hergeleiteten nur um die Konstante $\pi/4$ unterscheidet.
+\AntEnd
+\end{antwort}
+
+%% --- 81 --- %%
+\begin{frage}\label{06_wallis1}\index{Wallis'sche Produktformel}
+Können Sie für $
+I_n := \int\limits_0^{\pi/2} \sin^n x \difx $
+eine Rekursionsformel angeben?
+\end{frage}
+
+\begin{antwort}
+Mit partieller Integration erhält man zunächst
+\begin{eqnarray*}
+I_n &=& \int_0^{\pi/2} \sin x \sin^{n-1} x \difx = 
+-\cos x \sin^{n-1} x \Bigg{|}_0^{\pi/2} + 
+(n-1) \int_0^{\pi/2} \cos^2 x \sin^{n-2} x \difx \\
+&=& (n-1) \int_0^{\pi/2} (1-\sin^2 x) \sin^{n-2} x \difx 
+= (n-1)\cdot I_{n-2} - (n-1)  \cdot I_n.
+\end{eqnarray*}
+Damit lautet die gesuchte Rekursionsformel 
+$\dis I_n = \frac{n-1}{n} \cdot I_{n-2}$.  
+Wegen $I_0 =\pi/2$ und $I_1=1$ folgt aus dieser 
+\[
+I_{2n} = \frac{2n-1}{2n}\cdots\frac{3}{4}\cdot\frac{1}{2}\cdot\frac{\pi}{2}, 
+\qquad 
+I_{2n+1} = \frac{2n}{2n+1}\cdots\frac{4}{5}\cdot\frac{2}{3}.\EndTag
+\]
+\end{antwort}
+
+
+%% --- 82 --- %%
+\begin{frage}\label{06_wallis2}\index{Wallis'sche Produktformel}
+\index{Wallis@\textsc{Wallis}, John (1616-1703)}
+Können Sie aus dem Ergebnis von Frage \ref{06_wallis1} 
+die \bold{Wallis'sche Produktformel}
+\[
+\dis \frac{\pi}{2} = \lim_{n\to\infty} 
+\frac{2\cdot2}{1\cdot 3}\cdot
+\frac{4\cdot4}{3\cdot 5}\cdots \frac{2n\cdot2n}{(2n-1)\cdot (2n+1)}
+\] 
+ableiten?
+\end{frage}
+
+\begin{antwort}
+Die Wallis\sch e Produktformel entspricht gerade der Aussage 
+\begin{equation}
+\lim_{n\to\infty} \frac{I_{2n+1}}{I_{2n}}=1,\asttag 
+\end{equation}
+die es jetzt noch zu zeigen gilt. Der Sinus ist im Intervall $[0,\pi/2]$ 
+positiv und $\le 1$. Daher ist $\sin^{2n} x \ge \sin^{2n+1}x \ge \sin^{2n+2}x$. 
+Es folgt also $I_{2n} \ge I_{2n+1} \ge I_{2n+2}$ und damit
+\[
+1 \ge \frac{I_{2n+1}}{I_{2n}} \ge \frac{I_{2n+2}}{I_{2n}} = 
+\frac{2n+1}{2n+2}.
+\]
+Wegen $\lim_{n\to \infty} (2n+1)/(2n+2)=1$ 
+folgt daraus der Grenzwert ($\ast$) und somit 
+die Wallis'sche Produktformel.
+\AntEnd
+\end{antwort}
+
+\smallskip
+%% --- 83 --- %%
+\begin{frage}\label{06_pbz}
+\index{Partialbruchzerlegung}
+Was besagt der Satz über die \bold{Partialbruchzerlegung} einer 
+rationalen Funktion?
+\end{frage}
+
+\begin{antwort}
+ Der Satz besagt: 
+
+\medskip
+\noindent\satz{Sei $R=\frac{P(x)}{Q(x)}$ 
+eine rationale Funktion. $Q$ besitze die komplexen Nullstellen 
+$\alpha_1,\ldots,\alpha_k$ mit den jeweiligen Vielfachheiten 
+$n_1,\ldots,n_k$. Dann gibt es genau eine Darstellung 
+\[
+R = H_1 + \cdots H_k + q,
+\]
+wobei $q$ ein Polynom ist, 
+und die $H_k$ rationale Funktionen der Gestalt 
+\[
+H_k (x) = \frac{c_{n_k}}{ (x-\alpha_k)^{n_k}} + 
+\frac{c_{n_{k-1}}}{ (x-\alpha_{k-1})^{n_{k-1}}} + \cdots + 
+\frac{c_1}{ (x-\alpha_k) }, \quad c_{n_j} \in \CC, \; c_{n_k} \not=0. 
+\EndTag
+\] }
+
+\smallskip
+\end{antwort}
+
+\smallskip
+%% --- 84 --- %%
+\begin{frage}
+Können Sie ein konkretes Beispiel einer Partialbruchzerlegung angeben?
+\end{frage}
+
+\begin{antwort}
+ Ein Beispiel einer Partialbruchzerlegung wäre etwa
+\[
+\frac{3x^2-5x+4}{x^3-3x^2+6x-4} = 
+\frac{3x^2-5x+4}{(x-2)^2(x-1)} = 
+\frac{2}{(x-2)^2} + \frac{1}{x-2} + \frac{2}{x-1}.\EndTag
+\]
+\end{antwort}
+
+\smallskip
+%% --- 85 --- %%
+\begin{frage}
+Wie kann man den Satz über die Partialbruchzerlegung beweisen?
+\end{frage}
+
+\begin{antwort}
+Für den Beweis des Satzes sei die rationale Funktion durch 
+Polynomdivision mit Rest auf die Form 
+$R(x)=f(x)/g(x)+q(x)$ mit $\deg f \le \deg q$ gebracht. 
+Sei $g(x)=(x-\alpha)^n h(x)$ mit einem Polynom $h$, das 
+in $\alpha$ keine Nullstelle besitzt. 
+Es genügt dann zu zeigen, dass eine eindeutige Darstellung
+\begin{equation}
+R(x)= \frac{f(x)}{h(x)(x-\alpha)^n} + R_0(x) + q 
+\asttag
+\end{equation}
+existiert, wobei $R_0(x)$ eine rationale Funktion ist, 
+die in $\alpha$ einen Pol höchstens $(n-1)$-ter Ordnung hat. 
+
+Da das Polynom 
+$\frac{1}{h(\alpha)}\big( f(x)h(\alpha)-f(\alpha)h(x) \big)$ 
+die Nullstelle $\alpha$ besitzt, gibt es ein Polynom $p$, 
+sodass gilt: 
+\[   
+\frac{f(x)}{h(x)} - \frac{f(\alpha)}{h(\alpha)} 
+= \frac{f(x)h(\alpha)-f(\alpha)h(x)}{h(x)h(\alpha)} 
+= 
+\frac{(x-\alpha)p(x)}{h(x)}. 
+\]  
+Einsetzen der aus dieser Gleichung 
+ermittelten Darstellung für $f(x)/h(x)$ in ($\ast$) liefert 
+\[
+R(x)= \frac{a_n}{ (x-\alpha)^n }+
+\underbrace{\frac{p(x)}{h(x)(x-\alpha)^{n-1}}}_{R_0(x)} + q(x)
+\quad\text{mit $a_n := f(\alpha)/h(\alpha)$.} 
+\]
+Die rationale Funktion $R_0(x)$ 
+hat einen höchstens $(n-1)$-fachen Pol an der Stelle $\alpha$. 
+Ferner gilt $\deg p = \deg f -1$. Nach spätestens $\deg f$ 
+Schritten führt das Verfahren also auf "`Restfunktionen"' der 
+Form $\frac{c}{\tilde{g(x)}}$. Das schließt den Fall aus, dass 
+am Ende der Konstruktion eine nicht weiter zerlegbare Funktion 
+übrigbleibt. Insgesamt zeigt das die Existenz der 
+Partialbruchzerlegung. Die Eindeutigkeit folgt daraus, 
+dass in der Konstruktion die Polynome $h(x)$ und $p(x)$ 
+eindeutig bestimmt sind. Damit ist aber 
+auch $a_n$ eindeutig. 
+\AntEnd
+\end{antwort}
+
+%% --- 86 --- %%
+\begin{frage}\label{06_elfk}\index{Integration!der rationalen Funktionen}
+Mithilfe welcher elementaren Funktionen kann man eine rationale 
+Funktion mit reellen Koeffizienten integrieren?
+\end{frage}
+
+\begin{antwort}
+Die Integration einer rationalen Funktion kann in jedem Fall mittels 
+\slanted{rationaler Funktionen}, des 
+\slanted{Logarithmus} sowie des \slanted{Arcus-Tangens}
+geleistet werden. 
+
+Nach dem Satz über die Partialbruchzerlegung genügt es, 
+Stammfunktionen von Funktionen der Form
+\[
+\frac{A}{(x-a)^m}, \qquad\text{$a,A\in \CC,\, m \in \NN$}
+\]
+zu finden. Je nachdem, ob $a$ und $A$ reell oder komplex sind 
+und $m>1$ oder $m=1$ gilt, führt das zu verschiedenen Ergebnissen.
+
+\medskip
+\noindent
+\desc{a} $m>1:$ In diesem Fall ist eine Stammfunktion gegeben durch 
+\[
+\frac{-1}{(m-1)}\cdot \frac{1}{(x-a)^{m-1}},
+\]
+und zwar unabhängig davon, ob $a$ reell oder komplex ist. 
+(Die Gleichung $(x^{n})'=nx^{n-1}$ für alle $n\not=1$) lässt sich 
+unmittelbar aufs Komplexe übertragen).  
+
+\medskip
+\noindent
+\desc{b} $m=1$ und $a\in \RR$: Eine Stammfunktion ist hier durch den 
+Logarithmus gegeben
+\[
+ \int \frac{\difx}{(x-a)}= \log(x-a).
+\]
+
+\medskip
+\noindent
+\desc{c} $m=1$ und $a\in \RR\mengeminus\CC$. 
+Das ist der mit Abstand problematischste Fall. Aufgrund der  
+Eigenheiten des komplexen Logarithmus ist hier eine Stammfunktion 
+nicht so leicht wie für $a\in \RR$ anzugeben. Eine Auswertung 
+des Integrals $\int \frac{1}{x-z} \difx$ für nicht reelle $z$ 
+ist eigentlich Sache der Funktionentheorie. Da die Terme 
+$\frac{A}{x-z}$ und $\frac{\overline{A}}{x-\overline{z}}$ 
+aber in der Partialbruchzerlegung einer rationalen Form immer 
+gemeinsam vorkommen, versucht man in der reellen Analysis 
+Stammfunktionen zu Funktionen des Typs  
+\[
+\frac{A}{x-z} + \frac{\overline{A}}{x-\overline{z}} = 
+\frac{Bb-C}{x^2+2bx+c} 
+\]
+allgemein anzugeben. Das ist mit einigem Aufwand und trickreichen 
+Substitutionen auf ausschließlich reellem Wege 
+auch möglich (vgl. etwa \citep{Koenig}) und führt schließlich auf die 
+Formel 
+\begin{equation}
+\int \frac{Bx+C}{x^2+2bx+c}\difx = 
+\frac{B}{2}\cdot\log\big| x^2+2bx+c \big| + 
+\frac{C-Bb}{\sqrt{c-b^2}}\cdot \arctan \frac{x+b}{\sqrt{c-b^2}}.
+\asttag
+\end{equation}
+Diese komplizierte Formel wird im Komplexen wesentlich verständlicher. 
+Letztendlich steht sie mit dem komplexen Logarithmus in Beziehung, und der 
+setzt sich zusammen aus Arcustangens und reellem Logarithmus. 
+
+Jedenfalls sind damit zu allen Typen der in einer 
+Partialbruchzerlegung auftretenden 
+rationalen Summanden Stammfunktionen angegeben. In diesen 
+kommen außer 
+rationalen Funktionen, Logarithmus und Arcus-Tangens keine weiteren 
+Funktionen vor. 
+\AntEnd
+\end{antwort}
+
+%% --- 87 --- %%
+\begin{frage}
+Können Sie begründen, warum die Funktion 
+$F\fd \RR\to\RR$ mit 
+\[
+F(x) = \frac{1}{4\sqrt{2}} \log 
+\frac{x^2-\sqrt{2} x +1}{ x^2+\sqrt{2} x +1 } + 
+\frac{1}{2\sqrt{2}} \left\{ 
+\arctan( \sqrt{2} x-1 )+\arctan( \sqrt{2} x+1 ) \right\}
+\]
+auf jedem Intervall $[a,b]$ eine Stammfunktion von 
+$f(x)=\frac{x^2}{x^4+1}$ ist?
+\end{frage}
+
+\begin{antwort}
+Diese Stammfunktion erhält man aus der reellen Partialbruchzerlegung 
+\[
+\frac{x^2}{x^4+1} = 
+\frac{ \frac{1}{2\sqrt{2}}\cdot x }{ x^2-\sqrt{2}x+1} - 
+\frac{ \frac{1}{2\sqrt{2}}\cdot x }{ x^2+\sqrt{2}x+1}
+\]
+unter Benutzung der Formel ($\ast$) aus Frage \ref{06_elfk}.
+\AntEnd 
+\end{antwort} 
+
+
+
+
+ 
+                                                                                                                                                                                                                      
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+  
+  
+ 
+   
+ 
+
+ 
+
+
+
+  
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 

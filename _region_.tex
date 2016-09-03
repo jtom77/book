@@ -1,0 +1,75 @@
+\message{ !name(master.tex)}\documentclass[a4paper,10pt,openany,bibtotoc,indextotoc,liststotoc]
+{lehrbuch17x24}
+\usepackage{mymacros}
+
+\includeonly{kompl}
+
+\def\incl#1{\setcounter{Frage}{0}\include{#1}}
+
+\begin{document}
+
+\message{ !name(kompl.tex) !offset(67) }
+\begin{antwort}
+Um nachzuweisen, dass $\CC$ ein Körper ist, muss man die 9 Körperaxiome einzeln nachprüfen. 
+
+$(\CC,\oplus)$ ist eine abelsche Gruppe mit dem neutralen Element $0=(0,0)$ und das 
+additive Inverse zu $z=(a,b)$ ist $z':=(-a,-b)$. 
+
+$(\CC\mengeminus \cdot)$ ist eine abelsche Gruppe mit dem neutralen Element $(1,0)$. 
+
+Das multiplikativ Inverse $(x,y)$ zu $(a,b) \not= (0,0)$ ergibt sich 
+aus dem eindeutig lösbaren linearen Gleichungssystem 
+\[
+ax-by = 1, \qquad bx+ay = 0.
+\]
+Es ist 
+\[
+x=\frac{a}{a^2+b^2}\quad\text{und}\quad
+y=\frac{-b}{a^2+b^2}.
+\]
+Die Gültigkeit des Distributivegesetzes ist unmittelbar zu sehen, 
+und das Assoziativgesetz für die Multiplikation ergibt sich einfach 
+durch Nachrechnen aus dem Assoziativgesetz in $\RR$.
+
+Ebenfalls durch elementares Nachrechnen bestätigt man, dass die Menge 
+\[
+\CC_{\RR} := \left\{ (a,0) | a\in\RR \right\}
+\]
+mit der auf $\CC_{\RR}$ eingeschränkten Addition und Multiplikation ein Körper ist 
+und die Abbildung 
+\[
+j: \RR\to\RR, a \mapsto (a,0)
+\]
+ein Körperisomorphismus ist.
+
+Identifiziert man die komplexe Zahl $(a,0)$ mit der reellen Zahl $a$, 
+so wird $\RR$ zu einem Unterkörper von $\CC$.
+
+Für das spezielle Element $\i=(0,1) \in \CC$ gilt 
+\[
+\i^2 = (0,1) \cdot (0,1) = (-1,0) = -1.
+\]
+Da ein Polynom vom Grad 2 höchstens 2 Nullstellen hat, sind also $\i$ und 
+$-\i$ die einzigen Nullstellen der Gleichung $z^2 +1=0$. 
+
+Die Normaldarstellung einer komplexen Zahl $z=(a,b)$ erhält man aus 
+\[
+z=(a,b) = (a,0) + (0,b) = a + (b,0) (0,1) = a+b\i.
+\]
+
+Die Eindeutigkeit ist evident, denn aus 
+\[
+a+b\i = a'+b'\i, \quad a\not=a', a,a',b,b' \in\RR
+\]
+folgt 
+\[
+a-a' = (b'-b) \i.
+\]
+Wäre $b'\not b$, dann folgte der Widerspruch $\frac{a-a'}{b-b'} = \i \in\RR$.
+
+Also ist $b=b'$ und damit auch $a=a'$.   
+
+\end{antwort}
+\message{ !name(master.tex) !offset(-21) }
+
+\end{document}

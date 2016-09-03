@@ -1,0 +1,2072 @@
+\chapter{(Unendliche) Reihen}
+
+Die Fragen zu diesem Kapitel beschäftigen sich mit dem 
+\slanted{Reihenbegriff}, speziell mit solchen Reihen, 
+deren Summanden reelle oder komplexe Zahlen sind. Da Reihen nach 
+Definition Folgen einer speziellen Bauart sind, gelten für sie dieselben 
+Konvergenzkriterien wie für Folgen, darüber hinaus gibt es für Reihen  
+aber noch eine Fülle spezifischer Konvergenzkriterien. Eine besonders 
+wichtige Klasse von Reihen sind die \slanted{absolut konvergenten} Reihen, 
+deren Summandenfolgen beliebig umgeordnet werden dürfen, ohne dass sich 
+dadurch das Konvergenzverhalten der Reihe ändert. Diese 
+Eigenschaft spielt eine große Rolle bei der Multiplikation konvergenter Reihen. 
+
+\slanted{Potenzreihen} als spezielle \slanted{Funktionenreihen} werden 
+in diesem Kapitel nur vorgestellt und erst in Kapitel 5 
+systematischer behandelt. 
+
+
+\section{Definitionen und erste Beispiele}
+
+
+%% --- 1 --- %%
+\begin{frage}\label{02_rdef}
+  Was versteht man unter der einer reellen oder komplexen Zahlenfolge 
+  $\sans{(a_k)}$ zu\-ge\-ord\-ne\-ten \bold{Reihe}\index{Reihe}?
+\end{frage}
+
+\begin{antwort}
+  \index{Partialsumme}
+  Unter der einer Folge $(a_k)$ zugeordneten Reihe versteht man die Folge 
+  $(s_n)$ der (Partial-)Summen
+  \[
+  s_n := a_0+ a_1+a_2+\cdots + a_n.
+  \]
+  Eine Reihe ist damit einfach eine Folge spezieller Bauart und kann mit 
+  denselben begrifflichen Mitteln beschrieben werden. 
+
+  Man sollte nicht auf die Idee kommen, eine Reihe als eine 
+  "`Summe mit unendlich vielen Summanden"' zu definieren. 
+  Das ist kein sauberes mathematisches Konzept und wird, 
+  sobald es ernst wird, auch nur Verwirrung stiften. 
+  \AntEnd
+\end{antwort}
+
+%% --- 2 --- %%
+\begin{frage}\label{02_rsymb}
+  Welche Symbolik (Schreibweisen) verwendet man im Zusammenhang mit Reihen?
+\end{frage}
+
+\begin{antwort}
+  Die einer Folge $(a_k)$ zugeordnete Reihe bezeichnet man 
+  üblicherweise mit  
+  \[
+  \sum_{k=0}^\infty a_k.
+  \]
+  Dieser Ausdruck ist als Abkürzung des präzisen Ausdrucks 
+  $\left( \sum_{k=0}^n a_k \right )_{n\in\NN_0}$ zu verstehen. 
+
+  Je nachdem, mit welchem Index die Folge $(a_k)$ beginnt, kann die Reihe 
+  auch bei einem anderen Wert als $k=0$ anfangen, 
+  etwa bei $k=1$ oder $k=2$ etc. 
+  
+  Bei allgemeinen Konvergenzuntersuchungen, bei denen es nicht 
+  auf den Startwert einer Reihe ankommt, schreibt man abkürzend 
+  auch oft $\sum_k a_k$ und lässt 
+  dabei offen, bei welchem Index die Reihe beginnt. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 3 --- %%
+\begin{frage}\label{02_partial}
+  Was versteht man unter der $\sans{n}$-ten \bold{Partialsumme} einer Reihe?
+  \index{Partialsumme}
+\end{frage}
+
+\begin{antwort}
+  Die $n$-te \slanted{Partialsumme} der einer Folge $(a_k)$ zugeordneten 
+  Reihe ist die Zahl
+  \[
+  s_n := \sum_{k=0}^n a_k = a_0+ a_1+ \cdots + a_n.
+  \]
+  Eine Reihe ist somit \slanted{die Folge $(s_n)$ ihrer Partialsummen}.
+  \AntEnd
+\end{antwort}
+
+%% --- 4 --- %%
+\begin{frage}\label{02_rkonv}
+  Wann heißt eine Reihe \bold{konvergent}?
+  \index{Konvergenz!einer Reihe}
+  \index{Reihe!Konvergenz}
+\end{frage}
+
+\begin{antwort}
+  Eine Reihe ist konvergent genau dann, wenn die Folge $(s_n)$ 
+  ihrer Partialsummen im Sinne des für Folgen eingeführten 
+  Konvergenzbegriffs (vgl. Frage \ref{02_fkon}) 
+  konvergiert. Speziell im Bezug auf Reihen lautet die Definition dann:
+
+  \medskip\noindent\slanted{Eine Reihe $S=\sum_k a_k$ konvergiert 
+    genau dann gegen 
+    den Grenzwert $a$, wenn für jedes $\eps>0$ ein $N\in\NN$ 
+    mit der Eigenschaft existiert, dass für alle $n>\NN$ gilt}: 
+  \[
+  \left| \sum_{k=0}^n a_k -a \right| < \eps \EndTag
+  \] 
+\end{antwort}
+
+%% --- 5 --- %%
+\begin{frage}\label{02_rwert}
+  Was ist der Unterschied zwischen einer Reihe und ihrem Wert (ihrer Summe)?
+\end{frage}
+
+\begin{antwort}
+  Da eine Reihe nichts anderes als 
+  eine Folge ist, entspricht der Unterschied 
+  dem zwischen einer Folge und ihrem Grenzwert.
+
+  Der Wert einer Reihe wird allerdings häufig ebenfalls mit dem Symbol 
+  $\sum_{k=0}^\infty a_k$ bezeichnet, der in \slanted{diesem} Zusammenhang 
+  gleichbedeutend ist mit $\limm \sum_{k=0}^n a_k$. 
+  Das Symbol besitzt somit eine gewisse Zweideutigkeit. 
+  So bedeutet die Gleichung $\sum_{k=1}^\infty \frac{1}{k^2} = \frac{\pi^2}{6}$, 
+  dass die Reihe $\sum_{k=1}^\infty \frac{1}{k^2}$ konvergiert und die 
+  Summe $\frac{\pi^2}{6}$ hat.  
+  \AntEnd
+\end{antwort}
+
+
+%% --- 6 --- %%
+\begin{frage}\label{02_regeln}
+  \index{Reihe!Rechenregeln}
+  Welche Rechenregeln für (konvergente) Folgen lassen sich unmittelbar 
+  auf (konvergente) Reihen übertragen (Permanenzeigenschaften)?
+\end{frage}
+
+\begin{antwort}
+  Seien $\sum_{k=0}^\infty a_k$ und $\sum_{k=0}^{\infty} b_k$ zwei 
+  (konvergente) Reihen ($a_k,b_k$ aus $\RR$ oder $\CC$). 
+  Dann gelten die folgenden beiden Rechenregeln
+  \[
+  \dis \sum_{k=0}^\infty (a_k + b_k) = \sum_{k=0}^\infty a_k 
+  + \sum_{k=0}^\infty b_k, \qquad\qquad
+  \dis \sum_{k=0}^\infty \alpha a_k = 
+  \alpha 
+  \sum_{k=0}^\infty a_k \quad( \alpha\in\KK), 
+  \]
+  die sich unmittelbar aus den entsprechenden Regeln für Folgen reeller 
+  oder komplexer Zahlen ergeben (vgl. Frage \ref{02_freg}). 
+
+  Bezüglich der Produktbildung zweier Reihen lassen sich nicht ohne Weiteres 
+  ähnliche Regeln formulieren, da eine Produktreihe nach verschiedenen 
+  Prinzipien gebildet werden kann, die auf eine unterschiedliche 
+  Anordnung der hinauslaufen. Daher muss zunächst geklärt werden, 
+  unter welchen Bedingungen das Konvergenzverhalten einer  
+  Produktreihe unabhängig von der Anordnung ihrer Summanden ist 
+  (s. Abschnitt \ref{umordnung}).\AntEnd
+\end{antwort}
+
+%% --- 7 --- %%
+\begin{frage}\label{02_cauchy}\index{Cauchy-Kriterium!fuer Reihen@für Reihen}
+  Wie lautet das \bold{Cauchy-Kriterium} für die Konvergenz einer Reihe? 
+\end{frage}
+
+\begin{antwort}
+  Es handelt sich dabei um Cauchy-Kriterium für Folgen aus 
+  Frage~\ref{02_cf}, bezogen auf die Folge der Partialsummen 
+  einer Reihe. Es lautet demnach: 
+
+  \medskip\noindent
+  \slanted{Eine Reihe $\sum_{k=0}^\infty a_k$ konvergiert genau dann, 
+    wenn sie eine Cauchy-Reihe ist, {\dasheisst} wenn 
+    zu jedem $\eps>0$ ein $N\in\NN$ existiert, sodass für alle $m,n>N$, $n>m$  
+    die Ungleichung 
+    \[
+    \left| \sum_{k=0}^n a_k - \sum_{k=0}^m b_k \right| = 
+    \left|\sum_{k=m+1}^n a_k \right| < \eps 
+    \]
+    erfüllt ist.}\AntEnd
+\end{antwort}
+
+\begin{frage}
+  Können Sie mit dem Cauchy-Kriterium zeigen, dass die 
+  in Frage \ref{02_edef} eingeführte Exponentialreihe 
+  \[
+  \sum_{k=0}^\infty \frac{1}{k!}
+  \]
+  konvergiert?
+\end{frage}
+
+\begin{antwort}
+  Wegen $k!\ge 2^{k-1}$ für alle $k\in \NN$ gilt für natürliche Zahlen 
+  $n,m$ mit $n>m$
+  \[
+  \sum_{k=m}^n \frac{1}{k!}  \le 
+  \sum_{k=m}^n \frac{1}{2^{k-1}} = 
+  \frac{1}{2^{m-1}} \sum_{k=0}^{n-m} \frac{1}{2^k} =
+  \frac{1}{2^{m-1}} \cdot \frac{ 1-1/2^{n-m+1} }{ 1-1/2 } 
+  \le \frac{1}{2^{m-2}}.
+  \]
+  Wegen $2^{m-2} > m-2$ für alle $m>4$ wird der Wert jeder derartigen 
+  Teilsumme kleiner als $\eps$, sofern $n>1/\eps+2$ ist. 
+\AntEnd
+\end{antwort}
+
+\begin{frage}
+  Wie ist die \bold{harmonische Reihe} definiert?
+\end{frage}
+
+\begin{antwort}
+  \index{harmonische Reihe}
+  Die harmonische Reihe summiert die Kehrwerte der natürlichen Zahlen.
+  \[
+  \sum_{n=1}^\infty \frac1n. \EndTag
+  \]
+\end{antwort}
+
+\begin{frage}
+  Divergiert oder konvergiert die harmonische Reihe? 
+  Können Sie ihre Behauptung beweisen?
+\end{frage}
+
+\begin{antwort}
+  Die harmonische Reihe divergiert. 
+  Das lässt sich mit dem Cauchy-Kriterium nachweisen. 
+  Für ein beliebiges $N\in\NN$ wähle man $n$ so groß, 
+  dass $2^n \ge N$ ist. Dann gilt 
+  \[
+  \sum_{k=2^n+1}^{2^{n+1}} = 
+  \underbrace{\frac{1}{2^n+1}+\cdots + \frac{1}{2^{n+1}}}_
+  {\text{$2^n$ Summanden}} > 2^n\cdot \frac{1}{2^{n+1}} 
+  =\frac{1}{2}
+  \]
+  Zu jedem $N$ gibt es also Teilstücke $a_{N+p}+\cdots+a_{N+q}$ 
+  mit $q>p$, deren Summe größer als $\frac{1}{2}$ ist. Daher kann die 
+  harmonische Reihe nicht konvergieren. 
+  \AntEnd
+\end{antwort}
+
+%% --- 9 --- %%
+\begin{frage}\label{02_abb}
+  Sei $\KK=\RR$ oder $\KK=\CC$. Warum ist die 
+  folgende Abbildung bijektiv:
+  \[
+  \mathrm{Abb}\,(\NN_0,\KK) \to \mathrm{Abb}\,(\NN_0,\KK),\quad 
+  (a_k)_{k\in\NN}  \mapsto (A_n)_{n\in\NN} = 
+  \left( \sum_{k=0}^n a_k \right)_{n\in\NN}.
+  \]
+\end{frage}
+
+\begin{antwort}
+  Die Abbildung ist surjektiv. Ist nämlich $(A_n)$ 
+  gegeben, dann ist die Folge $(a_k)$ mit $a_0 := A_0$ und 
+  $a_n:=A_n-A_{n-1}$ ein Urbild von $(A_n)$.  
+
+  Sie ist ferner injektiv, denn aus 
+  $(a_k)\not= (b_k)$ folgt $a_{k_0} \not= b_{k_0}$ 
+  für einen kleinsten Index $k_0$ ({\dasheisst} $a_k = b_k$ für alle $k<k_0$), 
+  und daraus 
+  folgt für die entsprechende Partialsumme 
+  $A_{k_0} \not= B_{k_0}$, also $(A_n) \not= (B_n)$. 
+  Damit ist insgesamt die Bijektivität der Abbildung gezeigt.
+  \AntEnd
+\end{antwort}
+
+\begin{frage}
+  Was versteht man unter einer 
+  \bold{geometrischen Reihe} in $\RR$ oder $\CC$? 
+\end{frage}
+
+\begin{antwort}
+  \label{geom_reihe_def}
+  Für eine reelle oder komplexe Zahl $q$ heißt 
+  \[ 
+  \sum_{k=0}^\infty q^k \asttag
+  \]
+  geometrische Reihe von $q$.
+  \AntEnd
+\end{antwort}
+
+%% --- 10 --- %%
+\begin{frage}
+  \label{02_rgeom}\index{geometrische Reihe}
+  Für welche reellen oder komplexen Zahlen $q$ konvergiert die 
+  geometrische Reihe~{\astref} aus Frage~\ref{geom_reihe_def}? 
+  
+  Was ist gegebenenfalls ihr Grenzwert?
+  Warum ist die geometrische Reihe für alle $\sans{q\in\KK}$ 
+  mit $\sans{|q|\ge 1}$ divergent? 
+\end{frage}
+
+\begin{antwort}
+  Die Werte der Partialsummen $s_n = \sum_{k=0}^n q^k$ lassen sich mit dem 
+  folgenden einfachen Trick leicht berechnen. Es ist 
+  \[
+  s_n - qs_n  = 
+  (1+q+q^2+\cdots+q^n)-(q+q^2+\cdots + q^n + q^{n+1}) = 1-q^{n+1}.
+  \] 
+  Hieraus folgt für $q\not=1$
+  \[
+  s_n=\frac{ 1-q^{n+1} }{ 1-q }.
+  \]
+  Die Folge $(q^{n+1})_{n\in\NN}$ konvergiert 
+  für $|q| < 1$ gegen $0$ und ist divergent für $|q|\ge 1$ und $q\not=1$ 
+  (vgl. Frage \ref{q:folge-geom-absch}). 
+  Im letzteren Fall ist somit auch die geometrische Reihe divergent.  
+  Für $|q| < 1$ konvergiert sie, und es gilt
+  \[
+  \boxed{\sum_{k=0}^\infty q^k = \frac{1}{1-q}.}
+  \]
+  Allein der Fall $q=1$ ist damit noch unentschieden. In diesem Fall ist aber 
+  $s_n =n+1$ für alle $n\in\NN$, und somit divergiert die Reihe. \AntEnd
+\end{antwort}
+
+%% --- 11 --- %%
+\begin{frage}\label{02_nullf}
+  Warum ist für eine konvergente Reihe $\sans{\sum_n a_n}$ die 
+  (Summanden-)Folge $\sans{(a_n)}$ stets eine Nullfolge? 
+\end{frage}
+
+\begin{antwort}
+  \label{q:190}
+  Ist die Folge $(a_n)$ der Summanden keine Nullfolge, 
+  dann gibt es ein $\eps_0>0$, sodass $|a_n|>\eps_0$ für unendlich viele 
+  $n\in \NN$ gilt. Also gibt es zu jedem $N\in\NN$ ein $n>N+1$ mit der 
+  Eigenschaft
+  \[
+  \left| \sum_{k=0}^n a_k -\sum_{k=0}^{n-1} a_k \right| = |a_n| > \eps_0. 
+  \]
+  Die Reihe erfüllt damit nicht das Cauchy-Kriterium, ist also nicht 
+  konvergent.
+  \AntEnd    
+\end{antwort}
+
+%% --- 12 --- %%
+\begin{frage}
+  Gilt für den Zusammenhang aus der Frage \ref{q:190} auch die Umkehrung?
+\end{frage}
+
+\begin{antwort}
+  Die Umkehrung gilt nicht, wie das Beispiel der harmonischen 
+  Reihe zeigt. Deren Summanden bilden zwar eine Nullfolge, die Reihe 
+  selbst divergiert aber trotzdem.
+  \AntEnd
+\end{antwort}
+
+%% --- 13 --- %%
+\begin{frage}\label{02_trivial}\index{Reihe!Trivialkriterium für Konvergenz}
+  Welches "`Trivialkriterium"' für die Divergenz einer Reihe erhält man aus 
+  den Ergebnissen der Frage \ref{02_nullf}?
+\end{frage}
+
+\begin{antwort}
+  Eine Reihe divergiert auf jeden Fall dann, wenn ihre Summandenfolge 
+  keine Nullfolge ist.
+  \AntEnd
+\end{antwort}
+
+%% --- 14 --- %%
+\begin{frage}\label{02_reste}\index{Reihenrest}
+  Was versteht man bei einer konvergenten Reihe $\sans{\sum_k a_k}$ 
+  unter der Folge der \bold{Reihenreste} und warum ist diese Folge stets 
+  eine Nullfolge?
+\end{frage}
+
+\begin{antwort}
+  Unter der Folge der Reihenreste versteht man die Folge $(R_n)$ mit 
+  \[
+  R_n := \sum_{k=n+1}^{\infty} a_k.
+  \]
+  Wegen der Konvergenz der Reihe gilt für alle $\eps>0$ und genügend große 
+  $n$ die Abschätzung $
+  |R_n| =  \left |\sum_{k=0}^\infty a_k-\sum_{k=0}^{n} a_k \right| < \eps$, 
+  also ist $(R_n)$ eine Nullfolge.
+  \AntEnd
+\end{antwort}
+
+%% --- 15 --- %%
+\begin{frage}\label{02_tele}\index{Teleskopreihe}
+  Was versteht man unter einer \bold{teleskopischen Reihe}?
+  Was lässt sich über die Partialsummen einer teleskopischen Reihe 
+  aussagen?
+\end{frage}
+
+\begin{antwort}
+  \label{q:193}
+  Eine \slanted{teleskopische Reihe} oder \slanted{Teleskopreihe} 
+  ist eine Reihe der Bauart
+  \[
+  \sum_{k=0}^\infty a_k = \sum_{k=0}^\infty (x_{k}-x_{k+1}). 
+  \]
+  Die spezielle Eigenschaft einer Teleskopreihe 
+  besteht darin, dass die Terme zweier 
+  aufeinander folgender Summanden sich durch geeignete Zusammenfassung 
+  gegenseitig "`neutralisieren"'. 
+  
+  Für die Partialsummen einer teleskopischen Reihe gilt:
+  \begin{align*}
+    \sum_{k=0}^n a_k &= (x_0 - x_1)+(x_1-x_2)+\ldots + (x_n-x_{n+1}) \\
+    &=
+    x_0 - (x_1-x_1) -\cdots - (x_n - x_n ) -x_{n+1}= x_0-x_{n+1}.  
+  \end{align*} 
+  Die Partialsumme $s_n$ hängt also nur von $x_0$ und $x_{n+1}$ ab.
+\end{antwort}
+
+%% --- 16 --- %%
+\begin{frage}
+  \label{02_tkonv}\index{Teleskopreihe}
+  Was wissen Sie über die \slanted{Konvergenz teleskopischer Reihen}?
+\end{frage}
+
+\begin{antwort}
+  Die Partialsummen $s_n$ der Teleskopreihen besitzen nach 
+  der Antwort zu Frage~\ref{q:193} die Gestalt $s_n = x_0 - x_{n+1}$. 
+  Daraus folgt (mit den Bezeichnungen aus der Frage \ref{q:193}): 
+
+  \medskip\noindent
+  \slanted{Eine Teleskopreihe konvergiert genau dann, wenn 
+    die Folge $(x_n)$ konvergiert. In diesem Fall gilt} 
+  \begin{equation}
+    \sum_{k=0}^\infty (x_{k}-x_{k+1}) 
+    = x_0 - \limm x_n. \EndTag
+  \end{equation}
+\end{antwort}
+
+%% --- 17 --- %%
+\begin{frage}\label{02_telea}\index{Teleskopreihe}
+  Können Sie 
+  $\sans{\dis \sum_{k=1}^\infty \frac{1}{k(k+1)} =1}$ beweisen?
+\end{frage}
+
+\begin{antwort}
+  Man kann die Summanden in den 
+  Partialsummen so aufspalten, dass man eine Teleskopreihe erhält 
+  \[
+  \sum_{k=1}^n \frac{1}{k(k+1)} = 
+  \sum_{k=1}^n \frac{k+1-k}{k(k+1)}=
+  \sum_{k=1}^n \left( \frac{1}{k}-\frac{1}{k+1} \right)=1-\frac{1}{n+1}.
+  \]
+  Nach der Antwort zu Frage~\ref{02_tkonv} ist der Grenzwert 
+  dieser Reihe gleich $1-\lim_{k\to\infty} \frac{1}{k+1}=1$. \AntEnd
+\end{antwort}
+
+
+\section{Konvergenzkriterien für reelle Reihen}
+
+\begin{frage}
+  \label{02_besc}
+  \index{Beschränktheitskriterium!für Reihen}
+  Wie lautet das \bold{Beschränkt\-heits\-kri\-te\-rium} 
+  für die Konvergenz einer Reihe?
+\end{frage}
+
+\begin{antwort}
+  Die Reihe $\sans{\sum_{k=0}^\infty a_k}$ mit $a_k \in \RR_+$  
+  ist genau dann konvergent, wenn 
+  die Folge $(s_n):=\left(  \sum_{k=0}^n a_k \right )$ 
+  der Partialsummen nach oben beschränkt ist.
+\end{antwort}
+
+\begin{frage}
+   Können Sie das 
+   \bold{Beschränkt\-heits\-kri\-te\-rium} beweisen?
+\end{frage}
+
+\begin{antwort}
+  \Ant Das Beschränktheitskriterium ist eine unmittelbare Folge 
+  des Monotoniekriteriums für reelle Folgen 
+  (vgl. Frage \ref{02_mokr}), 
+  da die Partialsummen $s_n$ wegen $a_k\ge 0$ monoton wachsen.
+  \AntEnd  
+\end{antwort}
+
+
+%% --- 19 --- %%
+\begin{frage}\label{02_rexp}\index{Beschränktheitskriterium}
+  Können Sie mit dem Beschränktheitskriterium beweisen, dass die Reihe 
+  $\sans{\sum_{k=0}^\infty \frac{1}{k!}}$ konvergiert?
+\end{frage}
+
+\begin{antwort}
+  Die Summanden $1/k!$ sind alle positiv, 
+  also ist nur noch die Beschränktheit der Folge der Partialsummen zu zeigen. 
+  
+  Diese erhält man zusammen mit der für alle $k\in\NN$ gültigen 
+  Abschätzung $k!\ge 2^{k-1}$ aus der Konvergenz der geometrischen Reihe 
+  $\sum_{k=0}^\infty 2^{-k}$. Damit gilt: 
+  \begin{equation}
+    \sum_{k=0}^\infty \frac{1}{k!} \le 
+    1 + \sum_{k=1}^\infty \frac{1}{2^{k-1}} = 
+    1 + \sum_{k=0}^\infty 2^{-k} = 3.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+%% --- 20 --- %%
+\begin{frage}
+  \label{02_verd}
+  \index{Verdichtungskriterium}
+  Wie lautet das \bold{Verdichtungskriterium}? Können Sie dieses 
+  Kriterium beweisen?
+\end{frage}
+
+\begin{antwort}
+  Das Verdichtungskriterium lautet: 
+  Ist $(a_k)$ eine monoton fallende Folge positiver reeller Zahlen, 
+  dann ist die Reihe $\sum_k a_k$ genau dann 
+  konvergent, wenn die "`verdichtete"' Reihe 
+  $\sum_k 2^k a_{2^k}$ konvergiert.
+
+  Zum Beweis: Wenn man die Reihe $\sum_k a_k$ in 
+  endliche Teilsummen $T_0, T_1, T_2,\ldots$ 
+  mit jeweils $2^0, 2^1, 2^2, \ldots$ 
+  Summanden aufspaltet, erhält man die Darstellung
+  \[
+  \sum_{k=0}^\infty a_k = 
+  a_0 + 
+  \sum_{k=1}^{2-1} a_k +  
+  \sum_{k=2}^{2^2-1} a_k + \cdots + 
+  \sum_{k=2^n}^{2^{n+1}-1} a_k + \cdots. 
+  \]     
+  Die Werte der Teilsummen lassen sich leicht abschätzen. Diese 
+  besitzen jeweils $2^n$ Summanden, die 
+  (weil $(a_k)$ monoton fällt) alle kleiner oder gleich 
+  dem ersten und größer oder gleich 
+  dem letzten sind. Also gilt 
+  \[
+  \sum_{k=0}^\infty a_k \le \sum_{n=0}^\infty 2^n a_{2^n},
+  \qquad\qquad 
+  \sum_{k=0}^\infty a_k 
+  \ge \sum_{n=0}^\infty 2^n a_{2^{n+1}} = \frac{1}{2}\label{02_besc}
+  \sum_{n=1}^\infty a_{2^n}.
+  \]
+  Die Reihe $\sum_k a_k$ ist also genau dann beschränkt, 
+  wenn die Reihe $\sum_k 2^k a_{2^k}$ beschränkt ist. 
+  Daraus folgt das Verdichtungskriterium.
+
+  Das Verdichtungskriterium ist im Übrigen nicht an die Zahl $2$ gebunden, 
+  sondern gilt sinngemäß für alle anderen natürlichen Zahlen $>1$.
+  \AntEnd
+\end{antwort}
+
+%% --- 21 --- %%
+\begin{frage}\label{03_harm}\index{harmonische Reihe}
+  Können Sie zeigen, 
+  dass die \bold{allgemeine harmonische Reihe}
+  \[
+  \sum_{n=1}^\infty \frac{1}{n^s}\qquad  \text{mit $s \in \RR$ und 
+    $\dis n^s := \exp( s\log n )$}  
+  \]
+  für $s>1$ konvergiert und für $s\le 1$ divergiert?
+\end{frage}
+
+\begin{antwort}
+  Die Divergenz der Reihe für $s=1$ wurde bereits 
+  in Frage \ref{02_cauchy} gezeigt. Daraus folgt sofort die 
+  Divergenz für $s\le 1$. 
+
+  Für $s>1$ kann die Konvergenz mit dem \slanted{Verdichtungskriterium} aus 
+  Frage \ref{02_verd} gezeigt werden. Mit $a_k := \frac{1}{k^s}$ gilt
+  für die "`verdichtete Reihe"' 
+  \[
+  \sum_{k=0}^\infty 2^k a_{2^k} = \sum_{k=0}^\infty \frac{2^k}{{(2^k)}^s}
+  =\sum_{k=0}^\infty 2^{(1-s)k}. \asttag
+  \]
+  Für $s>1$ ist $2^{1-s}<1$. Die Konvergenz 
+  der rechten Reihe in {\astref} folgt daraus durch Vergleich mit 
+  der geometrischen Reihe. \AntEnd
+\end{antwort}
+
+
+%% --- 22 --- %%
+\begin{frage}\label{02_verda}\index{Verdichtungskriterium}
+  Können Sie mit dem Verdichtungskriterium zeigen, dass 
+  für $N\in \NN$, $N>1$ die Reihen der Art
+  \begin{equation}
+    \sum_{k=2}^\infty \frac{1}{k\log_N(k)}, \quad 
+    \sum_{k=3}^\infty \frac{1}{k\log_N(\log_N(k))}, \quad 
+    \sum_{k=4}^\infty \frac{1}{k\log_N(\log_N(\log_N(k)))}. \ldots
+    \tag{$\ast$}
+  \end{equation} 
+  alle divergieren?
+\end{frage}
+
+\begin{antwort}
+  Mit dem Verdichtungskriterium lässt sich direkt zeigen, 
+  dass die erste dieser Reihen divergiert, da die Reihe 
+  \[
+  \sum_{k=2}^\infty \frac{ N^k }{ N^k \log_N( N^k ) } = 
+  \sum_{k=2}^\infty \frac{1}{k}.
+  \]
+  divergent ist. (Hier wurde die allgemeine Version des Kriteriums 
+  mit einer beliebigen Zahl $N\ge2$ benutzt.) 
+  Weiter lässt sich mit dem Verdichtungskriterium 
+  die Divergenz einer beliebigen Reihe der Serie ($\ast$) 
+  auf die Divergenz der jeweils vorhergehenden zurückführen, 
+  wie etwa im nächsten Schritt 
+  \[
+  \sum_{k=3}^\infty \frac{1}{ k \log_N (\log_N (k) ) } \to\infty
+  \LLa 
+  \sum_{k=3}^\infty \frac{N^k}{ N^k \log_N (\log_N (N^k) ) } =
+  \sum_{k=3}^\infty \frac{1}{ \log_N (k) }\to\infty.
+  \]
+  Die Divergenz der hinteren Reihe ergibt sich mit dem Minorantenkriterium 
+  nun unmittelbar aus dem bereits bewiesenen. Induktiv folgt daraus  
+  die Divergenz sämtlicher Reihen der Form $(\ast)$. 
+  \AntEnd  
+\end{antwort}
+
+%% --- 23 --- %%
+\begin{frage}\label{02_gal}
+  \index{g-adischer Bruch@$g$-adischer Bruch}
+  \index{Ziffer}
+  Ist $\sans{g}$ eine natürliche Zahl $\sans{\ge 2}$. 
+  Was versteht man unter dem 
+  $\sans{g}$-adischen Bruch mit den Ziffern 
+  $\sans{z_1, z_2, z_3, \ldots, z_n}$? 
+\end{frage}
+
+\begin{antwort}
+  Eine Ziffer ist in diesem Fall eine Zahl aus $\{ 1, 2, \ldots, g-1 \}$. 
+  Der den Ziffern $z_1, z_2, z_3 , \ldots, z_n $ 
+  zugeordnete $g$-adische Bruch ist die Zahl  
+  \[
+  a := \frac{z_1}{g}+\frac{z_2}{g^2}+ \cdots + \frac{z_n}{g^n} + 
+  \ 
+  \]
+  Für einen solchen $g$-adischen Bruch benutzt man 
+  auch die abkürzende Schreibweise $0,z_1z_2z_3\ldots$. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 24 --- %%
+\begin{frage}
+  Wieso konvergiert jeder $g$-adische Bruch?
+\end{frage}
+
+\begin{antwort}
+  Die Folge $(a_n)$ ist monoton wachsend und nach oben beschränkt wegen
+  \[
+  \sum_{k=1}^n \frac{z_k}{g^k}
+  \le \frac{g-1}{g} \left(1+\frac{1}{g}+\frac{1}{g^2}+\cdots +
+    \frac{1}{g^{n-1}} \right) = \frac{g-1}{g}\cdot 
+  \frac{1-1/g^n}{1-1/g}=1-\frac{1}{g^{n}} \le 1. 
+  \]
+  Ein $g$-adischer Bruch konvergiert also in jedem Fall und repräsentiert 
+  damit stets eine reelle Zahl $x$.\AntEnd 
+\end{antwort}
+
+%% --- 25 --- %%
+\begin{frage}\label{02_gala}
+  Warum lässt sich jede reelle Zahl mit 
+  $\sans{0<x\le 1}$ stets in einen $\sans{g}$-adischen 
+  Bruch entwickeln. 
+\end{frage}
+
+\begin{antwort}
+  Um die Existenz einer $g$-adischen Entwicklung zu zeigen, kann man ein 
+  Intervallschachtelungsverfahren anwenden. Dazu unterteile 
+  man in einem ersten Schritt das Intervall 
+  $\lopen{0,1}$ in die $g$ gleichlangen 
+  halboffenen Intervalle 
+  \[
+  I^k_1 := \blopen{ \tfrac{k}{g}, \tfrac{k+1}{g}  }, 
+  \quad k \in \{ 0,\ldots, g-1 \}. 
+  \]
+  Die Zahl $x$ liegt dann in genau einem dieser Intervalle 
+  $I^{z_1}_1$ mit $z_1\in\{1,\ldots,g-1\}$. 
+  Man unterteile nun dieses Intervall 
+  in einem zweiten Schritt 
+  wiederum in $g$ gleichlange halboffene Intervalle  
+  \[
+  I^k_2:=\blopen{\tfrac{z_1}{g}+\tfrac{k}{g^2}, 
+    \tfrac{z_1}{g}+\tfrac{k+1}{g^2} },
+  \quad k \in \{ 0,\ldots, g-1 \}. 
+  \]
+  Die Zahl $x$ liegt jetzt wieder in genau einem Intervall 
+  $I^{z_2}_2$ mit $z_2\in\{1,\ldots,g-1\}$.  
+  
+  Auf diese Weise fortfahrend erhält man eine Intervallschachtelung 
+  $\lopen{0,1}\supset I^{z_1}_1\supset I^{z_2}_2 \supset \ldots$, 
+  die genau die Zahl $x$ erfasst. 
+  Die Folge $(a_n)$ der unteren Intervallgrenzen mit 
+  \[
+  a_n=\frac{z_1}{g}+\frac{z_2}{g^2}+\cdots+\frac{z_n}{g^n}\asttag
+  \]
+  konvergiert damit gegen $x$ und liefert eine $g$-adische Bruchdarstellung 
+  für $x$. Damit ist die Existenz gezeigt. \AntEnd
+\end{antwort}
+
+%% --- 26 --- %%
+\begin{frage}
+  Inwiefern ist die Darstellung durch $g$-adische Brüche eindeutig?
+\end{frage}
+
+\begin{antwort}
+  Die $g$-adische Entwicklung {\astref} kann 
+  nicht abbrechen, da stets $a_n<x$ gilt. 
+  Ist die Zahl $x$ für ein $k\in\NN$  
+  identisch mit der oberen Grenze des Intervalls 
+  $I^{z_k}_k$, 
+  so führt dies auf die $g$-adische Darstellung 
+  $x=0,z_1z_2 \ldots$ mit $z_\nu=g-1$ für alle $\nu>k$. 
+  Andererseits repräsentiert in 
+  diesem Fall auch die \textit{abbrechende} $g$-adische 
+  Entwicklung $0,z_1\ldots z_{k-1}(z_k+1)$ 
+  die Zahl $x$. Es gilt dann also  
+  \[
+  0,z_1\ldots z_{n-1}z_k (g-1)(g-1)(g-1)\ldots = 0,z_1\ldots 
+  z_{k-1}(z_k+1).
+  \]
+  Beispielsweise sind $0,4999\ldots$ und $0,5$ beides 
+  Dezimalbruchdarstellungen der Zahl $\frac{1}{2}$. 
+  Unter der Voraussetzung, dass $x$ mit der oberen Grenze 
+  eines der Intervalle $I_n$ zusammenfällt, 
+  ist die Darstellung durch einen $g$-adischen Bruch also 
+  nicht eindeutig, in diesem Fall existieren zwei mögliche 
+  Darstellungen.   
+
+  Benutzt man jedoch die Konvention, dass die Folge der Ziffern 
+  in der $g$-adischen Entwicklung einer reellen 
+  Zahl stets durch die Folge der \slanted{unteren} 
+  Intervallgrenzen gegeben ist, dann ist die Darstellung eindeutig. 
+
+  Denn angenommen $0,z_1z_2\ldots $ und $0,\zeta_1\zeta_2\ldots $ 
+  wären zwei verschiedene $g$-adische Darstellungen von $x$. Dann gibt es eine 
+  kleinste Zahl $m\in\NN$ mit $z_m \not= \zeta_m$. 
+  {\OBdA} kann man $z_m < \zeta_m$ annehmen. Daraus folgt dann 
+  (mit einer ähnlichen Berechnung wie in ($\ast$)) der 
+  Widerspruch
+  \begin{eqnarray*}
+    x &=& 0,z_1z_2\ldots z_mz_{m+1} \ldots \le 
+    0,z_1z_2\ldots z_m(g-1)(g-1)(g-1) \ldots \\
+    &=&
+    0,z_1z_2\ldots z_{m-1}+\frac{z_m}{g^m}+
+    \sum_{k=m+1}^\infty \frac{g-1}{g^k}
+    = 
+    0,z_1z_2\ldots z_{m-1}+\frac{z_m+1}{g^m}
+    \\
+    &\le& 
+    0,\zeta_1\zeta_2\ldots \zeta_{m-1}\zeta_m 
+    <0,\zeta_1\zeta_2\ldots \zeta_{m-1}\zeta_m\zeta_{m+1}\ldots = x.
+  \end{eqnarray*}
+  Die letzte Ungleichung gilt, weil aufgrund der Voraussetzung 
+  nicht alle $z_k$ mit $k>m$ gleich null sein können. 
+  \AntEnd  
+\end{antwort}
+
+%% --- 27 --- %%
+\begin{frage}\index{alternierende Reihe}
+  \index{Reihe!alternierende}
+  Was ist eine \bold{alternierende Reihe}?
+\end{frage}
+
+\begin{antwort}
+  Eine alternierende Reihe ist eine Reihe der Gestalt
+  \[
+  \sum_{n=0}^\infty c_n = \sum_{n=0}^\infty (-1)^n a_n=a_0-a_1+a_2 - a_3+\cdots, 
+  \]
+  wobei für alle $n\in\NN$ entweder $a_n\ge0$ oder $a_n\le0$ gilt.\AntEnd
+\end{antwort}
+
+%% --- 28 --- %%
+\begin{frage}\label{02_leib}\index{Leibnizkriterium}
+  \index{Leibniz@\textsc{Leibniz}, Gottfried Wilhelm (1646-1716)}
+  Was besagt das \bold{Leibniz-Kriterium} für die Konvergenz einer 
+  \bold{alternierenden Reihe}?
+\end{frage}
+
+\begin{antwort}
+  Das Leibniz-Kriterium besagt: 
+
+  \medskip\noindent
+  \satz{Ist $(a_n)$ eine monoton 
+    fallende Nullfolge (und damit $a_n\ge 0$ für alle $n\in\NN$), 
+    dann konvergiert die Reihe $\sum_n (-1)^n a_n$.  }
+\end{antwort}
+
+\begin{frage}
+  Können Sie das Leibniz-Kriterium (Frage \ref{02_leib}) beweisen?
+\end{frage}
+
+\begin{antwort}
+  Für eine monoton fallende Nullfolge $(a_n)$ liegt 
+  für jedes $n>2$ die Partialsumme $s_n= \sum_{k=0}^n (-1)^k a_k$
+  zwischen $s_{n-2}$ und $s_{n-1}$. Um das einzusehen, betrachte man
+  \begin{eqnarray*}
+    s_n - s_{n-1} &=& (-1)^n a_n,  \\
+    s_n - s_{n-2} &=& (-1)^{n-1} a_{n-1} +(-1)^n a_n 
+    = (-1)^{n-1} ( a_{n-1}-a_n ).
+  \end{eqnarray*} 
+  Ist $n$ gerade, dann ist die erste Differenz positiv und die zweite 
+  wegen $a_{n-1} > a_n$ negativ, während sich für ungerade $n$ genau das 
+  Gegenteil ergibt. Für jedes $n>k$ ist $s_n$ also in dem Intervall mit den 
+  Endpunkten $s_{k-2}$ und $s_{k-1}$ enthalten, und dessen Länge 
+  $|s_{n-1}-s_{n-2}|=a_{n-1}$ wird 
+  für genügend große $n$ beliebig klein. Daraus folgt, 
+  dass $(s_n)$ eine Cauchy-Folge ist und somit konvergiert.
+  \AntEnd
+\end{antwort}
+
+%% --- 29 --- %%
+\begin{frage}\label{02_leiba}\index{Leibnizkriterium}
+  Welche Fehlerabschätzung erhält man beim Leibniz-Kriterium?
+\end{frage}
+
+\begin{antwort} Der Grenzwert $s$ einer alternierenden Reihe $\sum_k (-1)^ka_k$ 
+  mit $a_k\ge 0$ liegt für jedes $n\in\NN$ zwischen $s_n$ und $s_{n+1}$. 
+  Wegen  $|s_{n+1}-s_n| = a_{n+1}$ folgt damit für den Fehler 
+  \begin{equation}
+    R_n := \left| s- s_n \right| \le a_{n+1}. \EndTag
+  \end{equation}
+  
+\end{antwort}
+
+
+
+
+\section{Reihen mit beliebigen Gliedern, absolute Konvergenz}
+
+%% --- 30 --- %%
+\begin{frage}\label{02_abs}\index{absolute Konvergenz}
+  Wann heißt eine Reihe \bold{absolut konvergent}?
+\end{frage}
+
+\begin{antwort}
+  Eine Reihe $\sum_n a_n$ heißt \bold{absolut konvergent}, 
+  wenn die Reihe $\sum_n |a_n|$ konvergiert. \AntEnd
+\end{antwort}
+
+%% --- 31 --- %%
+\begin{frage}\label{02_gew}
+  Warum folgt aus der absoluten Konvergenz einer Reihe die gewöhnliche 
+  Konvergenz? 
+\end{frage}
+
+\begin{antwort}
+  Aus $\sum_{k=n}^m |a_k| < \eps$ für $n,m>N$ folgt mit 
+  der Dreiecksungleichung $\left| \sum_{k=n}^m a_k \right| < \eps$ für $n,m>N$.   
+  Somit ist die Folge der Partialsummen $\sum_{k=n}^m a_k$ 
+  eine Cauchy-Folge und folglich konvergent. 
+  \AntEnd
+\end{antwort}
+
+%% --- 32 --- %%
+\begin{frage}
+  Gilt für den Zusammenhang aus Frage \ref{02_gew} auch die Umkehrung?
+\end{frage}
+
+\begin{antwort}
+  Die Umkehrung hiervon ("`alle konvergenten Reihen sind auch absolut 
+  konvergent"') gilt nicht, 
+  wie das Beispiel der alternierenden harmonischen 
+  Reihe zeigt (vgl. Frage \ref{02_cauchy} und 
+  \ref{02_leib}).  \AntEnd
+\end{antwort}
+
+%% --- 33 --- %%
+\begin{frage}\index{Dreiecksungleichung!fuer absolut@für absolut 
+    konvergente Reihen}
+  Wie lautet die 
+  \bold{Dreiecksungleichung für absolut konvergente Reihen}?
+\end{frage}
+
+\begin{antwort}
+  Für eine absolut konvergente Reihe $\sum_k a_k$ lautet die 
+  Dreiecksungleichung 
+  \[
+  \left| \sum_k a_k \right| \le \sum_k |a_k|.
+  \]
+  Diese ergibt sich aus der 
+  Gültigkeit der entsprechenden Ungleichung für alle endlichen Summen 
+  aufgrund der Monotonie des Grenzwerts.
+  \AntEnd
+\end{antwort}
+
+%% --- 34 --- %%
+\begin{frage}\label{02_maj}
+  \index{Majorantenkriterium!fuer Reihen@für Reihen}
+  Wie lautet das \bold{Majorantenkriterium} 
+  für die Konvergenz einer Reihe?
+\end{frage}
+
+\begin{antwort}
+  Das Majorantenkriterium besagt: 
+
+  \medskip
+  \noindent
+  \slanted{Sind $\sum_k a_k$ und $\sum_k b_k$ Reihen mit der Eigenschaft, 
+    dass ab einem bestimmten Index $p$ die Abschätzung $|a_k| \le |b_k|$ gilt, 
+    so folgt aus der Konvergenz von $\sum_k |b_k|$ diejenige 
+    von $\sum_k |a_k|$ und damit erst recht die Konvergenz von $\sum_k a_k$. 
+    Ferner gilt 
+    $\left| \sum_{k=p}^\infty a_k \right|  \le \sum_{k=p}^\infty |b_k|$.}
+
+  \medskip\noindent
+  Aus $\sum_{k=m}^n |b_k| < \eps$ für alle $n>m>N$ 
+  und $n,m>p$ folgt nämlich $\sum_{k=m}^n |a_k| < \eps$. Die Reihe 
+  $\sum_k a_k$ konvergiert nach dem Cauchy'schen Konvergenzkriterium damit 
+  absolut und folglich auch im gewöhnlichen Sinne. Ferner folgt 
+  aus der Dreiecksungleichung 
+  $\left| \sum_{k=p}^n a_k \right|  \le \sum_{k=p}^n |b_k|$ für alle 
+  $n>p$, und diese Ungleichung bleibt auch noch dann gültig, wenn man 
+  den Grenzübergang $n\to \infty$ durchführt. Das ist eine Konsequenz
+  der Monotonie des Grenzwerts reeller Zahlenfolgen, angewandt auf die 
+  Folge der Partialsummen $s_n:=\sum_{k=p}^n$.  
+  \AntEnd 
+\end{antwort}
+
+%% --- 35 --- %%
+\begin{frage}\index{Minorantenkriterium!fuer die Divergenz@für die 
+    Divergenz einer Reihe}
+  Wie lautet das \bold{Minorantenkriterium} für die Divergenz einer 
+  Reihe?
+\end{frage}
+
+\begin{antwort}
+  Das \slanted{Minorantenkriterium} 
+  ist die logische Kontraposition des Majorantenkriteriums. 
+  Es lautet demzufolge:  
+
+  \medskip\noindent
+  \slanted{Divergiert $\sum |a_n|$ unter den 
+    Voraussetzungen aus Frage \ref{02_maj}, so auch 
+    $\sum_n |b_n|$.}
+  \AntEnd  
+\end{antwort} 
+
+%% --- 36 --- %%
+\begin{frage}\label{02_bsp1}
+  Warum ist die Reihe 
+  $\sans{\sum_{k=1}^\infty \frac{k!}{k^k}}$ konvergent und die 
+  Reihe $\sans{\sum_{k=1}^\infty \frac{1}{2k}}$ divergent?
+\end{frage}
+
+\begin{antwort}
+  Wegen 
+  \[
+  \frac{k!}{k^k} = \frac{1\cdot 2 \cdots k }{k\cdot k\cdots k} \le 
+  \frac{2}{k^2}\qquad\text{für $k\ge 2$}
+  \]
+  besitzt die Reihe $\sum_{k=1}^\infty \frac{k!}{k^k}$ mit 
+  $\sum_k \frac{2}{k^2}$ eine konvergente Majorante und ist damit aufgrund 
+  des Majorantenkriteriums konvergent.
+
+  Die Divergenz von 
+  \[
+  \sum_{k=1}^N \frac{1}{2k} 
+  = \frac{1}{2} \sum_{k=1}^N \frac{1}{k} \nodpagebreak
+  \]
+  für $N\to\infty$ ergibt sich aus der Divergenz 
+  der harmonischen Reihe. 
+  \AntEnd
+\end{antwort}
+
+%% --- 37 --- %%
+\begin{frage}\label{02_quot}\index{Quotientenkriterium}
+  Was besagt das \bold{Quotientenkriterium}? 
+\end{frage}
+
+\begin{antwort}
+  Das Quotientenkriterium ermöglicht eine Aussage über die 
+  Konvergenz einer Reihe $\sum_n a_n$ durch die Untersuchung der 
+  Folge der Quotienten $|a_{n+1}|/|a_n|$. Es lässt sich auf mehrere Weisen 
+  formulieren. Die erste Version lautet:
+
+  \medskip
+  \noindent
+  \desc{Q1} 
+  \slanted{Sei $q<1$ eine reelle Zahl. Gilt dann für fast alle $n$}
+  \[
+  \left| \frac{a_{n+1}}{a_n} \right|\le q \qquad\text{bzw.}\qquad
+  \left| \frac{a_{n+1}}{a_n}\right| \ge 1,
+  \]
+  \slanted{so konvergiert bzw. divergiert die Reihe $\sum_n a_n$. 
+    Im Falle der Konvergenz konvergiert sie sogar absolut. }
+
+  \medskip\noindent 
+  Den Zusammenhang erhält man mit dem Majorantenkriterium. 
+  Gilt $|a_{k+1}|/|a_k| \le q$ für alle $k>N$, dann folgt für $n>m>N$
+  \[
+  \frac{ |a_n| }{ |a_m| } = 
+  \frac{ |a_{m+1}| }{ |a_m| } \cdot \frac{ |a_{m+2}| }{ |a_{m+1}| }
+  \cdots \frac{ |a_{n}| }{ |a_{n-1}| } \le q^{n-m} \Ra 
+  |a_n| \le \frac{|a_m|}{q^m} q^n.
+  \]
+  Die Reihe $\sum_n |a_n|$ besitzt in der Reihe 
+  $\frac{|a_m|}{ q^m} \sum _n q^{-n}$ wegen $q<1$ 
+  also eine konvergente Majorante und ist somit selbst konvergent. 
+  Gilt auf der anderen Seite $|a_{n+1}|/|a_n| \ge 1$ für fast alle $n$, 
+  dann ist die Folge $(|a_n|)$ monoton wachsend und kann keine Nullfolge 
+  sein. In diesem Fall divergiert die Reihe.
+\end{antwort}
+
+
+\begin{frage}
+  Für die harmonische Reihe gilt $|a_{n+1}|/|a_n|=n/(n+1)<1$ für alle $n$, 
+  dennoch divergiert sie. Wie passt das mit dem Quotientenkriterium 
+  zusammen?
+\end{frage}
+
+\begin{antwort}
+  Das Quotientenkriterium fordert die 
+  Bestimmung einer \slanted{festen} Zahl $q<1$. 
+  Für die harmonische Reihe gilt zwar $|a_{n+1}|/|a_n|<1$ für alle 
+  $n$, aber die Quotienten werden  
+  mit wachsendem $n$ größer als jede vorgegebene Zahl $q<1$. \AntEnd
+\end{antwort}
+
+%% --- 38 --- %%
+\begin{frage}\index{Quotientenkriterium}
+  Wie lautet die \bold{Limesform} des Quotientenkriteriums?
+\end{frage}
+
+\begin{antwort}
+  Eine \slanted{Limesform} des Quotientenkriteriums lässt sich auf 
+  zwei Arten formulieren. Die erste ist auf eine stärkere Voraussetzung 
+  angewiesen und lautet: 
+
+  \medskip
+  \noindent
+  \desc{Q2} 
+  \slanted{Konvergiert die Folge $\left(|a_{n+1}|/|a_n|\right)$, so 
+    konvergiert die Reihe $\sum_n a_n$ absolut bzw. divergiert sie, 
+    je nachdem, ob gilt:} 
+  \[ 
+  \limm \left| \frac{a_{n+1}}{a_n} \right| < 1 \qquad\text{bzw.}\qquad
+  \limm \left| \frac{a_{n+1}}{a_n}\right| > 1.
+  \]
+  \slanted{
+    Im Fall $\limm |a_{n+1}|/|a_n|=1$ bleibt die Konvergenz unentschieden.
+  }
+
+  \medskip
+  Dass das Kriterium unter den gegebenen Voraussetzungen dasselbe leistet 
+  wie $(Q1)$, ist unschwer zu erkennen. Man beachte allerdings, 
+  dass die Limesform in diesem Fall auf einer stärkeren Voraussetzung, 
+  nämlich der Existenz des Grenzwerts $\limm |a_{n+1}|/|a_n|$, beruht.
+
+  Um diese Voraussetzung zu umgehen, lässt sich eine 
+  Limesform des Quotientenkriterium auch 
+  mit den Begriffen $\lim\sup$ und $\lim\inf$ formulieren. 
+  Alles, was man dazu braucht, ist die \slanted{Beschränktheit} der 
+  Folge $( |a_{n+1}|/|a_n |)$, die aber trivialerweise erfüllt sein muss, 
+  wenn $\sum_n a_n$ überhaupt ein Kandidat für Konvergenz sein soll. In 
+  diesem Fall lautet das Kriterium
+
+  \medskip
+  \noindent
+  \desc{Q3} 
+  \slanted{Die Reihe $\sum_n a_n$ konvergiert bzw. divergiert, 
+    je nachdem ob gilt:}
+  \[
+  \lim \sup \left| \frac{a_{n+1}}{a_n} \right | < 1 \qquad\text{bzw.}\qquad
+  \lim \inf \left| \frac{a_{n+1}}{a_n} \right | > 1. 
+  \]
+  \slanted{Im Falle der Konvergenz konvergiert die Reihe dann sogar absolut.}
+
+  \medskip\noindent
+  Man beachte, dass durch die beiden Alternativen in dieser Formulierung 
+  des Kriteriums, selbst wenn die Voraussetzungen 
+  erfüllt sind, noch lange nicht alle möglichen Fälle ({\zB} 
+  $\lim\sup>1$ und $\lim\inf <1$) abgedeckt sind. Das Quotientenkriterium 
+  liefert in diesen Fällen keine Entscheidung (für ein Beispiel dazu siehe 
+  Frage \ref{02_wurzb}). 
+\end{antwort}
+
+%% --- 39 --- %%
+\begin{frage}\label{02_quota}\index{Quotientenkriterium}
+  Können Sie mithilfe des Quotientenkriteriums zeigen, dass die 
+  Reihe 
+  \[
+  \sans{
+    B_\alpha ( z ) : = \sum_{k=0}^\infty \binom{\alpha}{k} z^k, \quad 
+    z \in \CC, \, \alpha\in \RR \mengeminus \NN_0
+  }
+  \]
+  für $\sans{|z|<1}$ (absolut) konvergiert?
+  Dabei sind die verallgemeinerten Binomialkoeffizienten 
+  $\sans{\binom{\alpha}{k}}$ 
+  für $\sans{\alpha\in\RR}$ und $\sans{k\in\NN_0}$ definiert 
+  durch $\sans{\binom{\alpha}{0} := 1}$ und 
+  $\sans{\binom{\alpha }{k}:= \frac{\alpha(\alpha-1)\cdots (\alpha-k+1)}{k!}}$.
+\end{frage}
+
+\begin{antwort}
+  Für den Quotienten zweier aufeinanderfolgender Summanden gilt
+  \[
+  \left| \binom{\alpha}{k+1}z^{k+1} \Bigg{/} \binom{\alpha}{k} z^{k} \right| 
+  =\left| \frac{\alpha-k}{k+1} \right| |z| 
+  \le \left( 1+ \left| \frac{\alpha+1}{k+1} \right| \right) 
+  |z|.
+  \]
+  Der erste Faktor im letzten Ausdruck konvergiert 
+  für $k\to\infty$ gegen $1$, während der 
+  hintere konstant kleiner als $1$ ist. 
+  Hieraus folgt: es gibt ein $q<1$, sodass  
+  $\left| \binom{\alpha}{k+1}z^{k+1} \big{/} \binom{\alpha}{k} z^k \right|\le q$ 
+  für fast alle $k$ gilt. Mit dem Quotientenkriterium 
+  schließt man auf die Konvergenz der Reihe.
+  \AntEnd 
+\end{antwort}
+
+%% --- 40 --- %%
+\begin{frage}\label{02_wurz}
+  \index{Wurzelkriterium}
+  Was besagt das Wurzelkriterium? 
+\end{frage}
+
+\begin{antwort}
+  Ähnlich wie bei Quotientenkriterium gibt es 
+  auch mehrere Formulierungen des 
+  Wurzelkriteriums. Die erste Version lautet
+
+  \medskip
+  \noindent
+  \desc{W1}  
+  \slanted{
+    Sei $q<1$ eine feste positive Zahl. Gilt dann}
+  \[ 
+  \sqrt[n]{|a_n|}\le q \quad \text{für fast alle $n$} \qquad\text{bzw.}\qquad
+  \sqrt[n]{|a_n|} \ge 1 \quad\text{für unendlich viele $n$},
+  \]
+  \slanted{so konvergiert bzw. divergiert die Reihe $\sum_n a_n$. 
+    Im Falle der Konvergenz konvergiert sie sogar absolut.}
+
+  \medskip
+  Gilt nämlich die erste Aussage, dann ist $|a_n| \le q^n$ für fast alle
+  $n$, und durch Vergleich mit der geometrischen Reihe $\sum_n q^n$ ergibt 
+  sich die Konvergenz von $\sum_n a_n$ aus dem Majorantenkriterium. 
+  Aus der zweiten Aussage folgt hingegen, 
+  dass $|a_n|$ für unendlich oft größer als $1$ ist 
+  und $(a_n)$ damit keine Nullfolge sein kann.
+
+  Im Vergleich zum Quotientenkriterium gibt es einen kleinen Unterschied in 
+  den Voraussetzungen. Mit dem Quotientenkriterium kann man die Divergenz 
+  der Reihe $\sum_n a_n$ nur dann folgern, wenn $|a_{n+1}|/|a_n|\ge1$ 
+  für \slanted{fast alle} $n$ gilt, während die äquivalente 
+  Divergenzbedingung beim Wurzelkriterium nur verlangt, dass 
+  $\sqrt[n]{|a_n|}\ge 1$ für \slanted{unendlich} 
+  viele $n$ gilt. Das ist eine schwächere 
+  Bedingung. Die beiden im Wurzelkriterium unterschiedenen Fälle decken 
+  somit einen größeren Bereich aller möglichen Fälle ab als die entsprechenden 
+  Formulierungen im Quotientenkriterium.  \AntEnd
+\end{antwort}
+
+%% --- 41 --- %%
+\begin{frage}\index{Wurzelkriterium}
+  Wie lautet die Limesform des Wurzelkriteriums?
+\end{frage}
+
+\begin{antwort}
+  \medskip
+  Wie das Quotientenkriterium lässt sich das Wurzelkriteriums auch 
+  auf zwei Arten in eine Limesformen "`übersetzen"'. 
+  In der ersten Version wird dabei die Existenz des 
+  Grenzwerts der Folge $(\sqrt[n]{|a_n|}$ vorausgesetzt. 
+  Das führt auf die etwas schwächere Formulierung 
+
+  \medskip\noindent
+  \desc{W2} 
+  \slanted{Falls $\limm \sqrt[n]{|a_n|}$ existiert, so 
+    konvergiert die Reihe $\sum_n a_n$ absolut bzw. divergiert sie, 
+    je nachdem, ob gilt:}
+  \[
+  \limm \sqrt[n]{|a_n|} < 1 \qquad\text{bzw.} \qquad \limm\sqrt[n]{|a_n|} >1.
+  \]
+  Die Gleichwertigkeit beider Formulierungen des Wurzelkriteriums unter den 
+  angegebenen Bedingungen ist wiederum leicht einzusehen. 
+
+  Ohne die Existenz des Grenzwerts $(\sqrt[n]{|a_n|})$ vorauszusetzen, kann man 
+  auch nur von der Beschränktheit dieser Folge ausgehen und mit den Konzepten 
+  $\lim\sup$ und $\lim\inf$ das Wurzelkriterium folgendermaßen formulieren.
+
+  \medskip\noindent
+  \desc{W3} 
+  \slanted{Ist $(\sqrt[n]{|a_n|})$ beschränkt, so 
+    konvergiert die Reihe $\sum_n a_n$ absolut bzw. divergiert sie, 
+    je nachdem, ob gilt:} 
+  \[
+  \lim \sup \sqrt[n]{|a_n|} < 1 \qquad\text{bzw.} 
+  \qquad \lim\sup \sqrt[n]{|a_n|} >1.
+  \]
+  Man beachte auch in dieser Formulierung wieder  
+  den Unterschied zur entsprechenden Version des Quotientenkriteriums. 
+  Beim Quotientenkriterium kann man nur dann auf die Divergenz der Reihe 
+  schließen, wenn der Limes \slanted{Inferior} der Folge $(|a_{n+1}|/|a_n|)$ 
+  größer als $1$ ist.   
+  \AntEnd
+\end{antwort} 
+
+%% --- 42 --- %%
+\begin{frage}\label{02_wurza}
+  \index{Wurzelkriterium}
+  \index{Quotientenkriterium}
+  Welches Kriterium ist leistungsfähiger: Quotienten- oder Wurzelkriterium?
+\end{frage}
+
+\begin{antwort}
+  Das Wurzelkriterium ist leistungsfähiger insofern, als 
+  die im Quotientenkriterium auftretenden Annahmen diejenigen 
+  des Wurzelkriteriums implizieren. Gilt nämlich $|a_{n+1}|/|a_n| \le q$ 
+  für ein $q<1$, dann folgt daraus ähnlich wie im Beweis des 
+  Quotientenkriteriums  
+  \[
+  |a_n| \le \frac{|a_m|}{q^m} q^n, \qquad\text{also}\qquad 
+  \sqrt[n]{|a_n|} \le q \sqrt[n]{ \frac{|a_m|}{q^m} }.
+  \]
+  Wegen $\sqrt[n]{ |a_m| / q^m } \to 1$ für $n\to\infty$ folgt hieraus 
+  $\sqrt[n]{|a_n|} \le q'$ für fast alle $n$ und ein geeignetes $q'<1$. 
+  Wenn sich die Konvergenz einer Reihe mit dem 
+  Quotientenkriterium zeigen lässt, dann also auch mit dem Wurzelkriterium. 
+  Die Umkehrung davon gilt im Allgemeinen nicht, wie die Antwort zur 
+  nächsten Frage zeigt. 
+  \AntEnd
+\end{antwort}
+
+%% --- 43 --- %%
+\begin{frage}\label{02_wurzb}
+  \index{Wurzelkriterium}
+  \index{Quotientenkriterium}
+  Kennen Sie ein Beispiel einer Reihe, für die das Wurzelkriterium Konvergenz 
+  anzeigt, während das Quotientenkriterium keine Entscheidung über die 
+  Konvergenz liefert?
+\end{frage}
+
+\begin{antwort}
+  Die Reihe 
+  \[
+  \sum_{n=0}^\infty a_n = \sum_{n=0}^\infty \frac{2+(-1)^{n+1}}{2^n} 
+  = 1+\frac{3}{2} +\frac{1}{2^2} +\frac{3}{2^3} +\frac{1}{2^4} + \cdots  
+  \]
+  liefert ein solches Beispiel. Aus 
+  $\limm \sqrt[n]{|a_n|}=\frac{1}{2}$ 
+  kann man mit dem Wurzelkriterium (W2)
+  auf die Konvergenz der Reihe schließen. Wegen 
+  \[
+  \frac{|a_{n+1}|}{|a_n|} = \left\{ \begin{array}{ll}
+      \frac{1}{2} & \text{für ungerade $n$,} \\
+      \frac{3}{2} & \text{für gerade $n$}
+    \end{array} \right.
+  \]
+  kann das Quotientenkriterium aber nicht angewendet werden. \AntEnd
+\end{antwort}
+
+
+\section{Umordnung von Reihen, Reihenprodukte}\label{umordnung}
+
+%% --- 44 --- %%
+\begin{frage}\label{02_umo}
+  \index{Reihe!Umordnung}
+  Was versteht man unter einer \bold{Umordung} einer Reihe?
+\end{frage}
+
+\begin{antwort}
+  Locker formuliert ist die Umordnung einer Reihe eine weitere 
+  Reihe, in der dieselben 
+  Summanden in einer vertauschten Reihenfolge vorkommen. Um den Begriff 
+  präzise zu definieren, redet man von einer bijektiven Abbildung 
+  der Indexmenge $\NN$ auf sich selbst. Die Definition lautet dann: 
+
+  \medskip\noindent
+  Sei $\NN\to \NN,\, k\mapsto n_k$ eine bijektive Abbildung. 
+  Dann ist die Reihe $\sum_k a_{n_k}$ eine Umordnung der Reihe 
+  $\sum_n a_n$.
+
+  \medskip\noindent
+  Zum Beispiel ist die Reihe 
+  \[
+  \frac{1}{10}+\frac{1}{9}+\cdots + 1 + \frac{1}{20}+\frac{1}{19} + 
+  \cdots +\frac{1}{11}+\frac{1}{30}+\cdots 
+  \]
+  eine Umordung der harmonischen Reihe $\sum_n 1/n$.
+  \AntEnd
+\end{antwort}
+
+%% --- 45 --- %%
+\begin{frage}\label{02_unb}
+  \index{Reihe!bedingt konvergente}
+  Was ist eine \bold{bedingt bzw. unbedingt konvergente Reihe}?
+\end{frage}
+
+\begin{antwort}
+  Eine Reihe heißt \slanted{unbedingt konvergent}, wenn sie konvergent und 
+  invariant bezüglich Umordnungen in dem Sinne ist, dass jede ihrer 
+  Umordnungen gegen denselben Grenzwert konvergiert.
+
+  Eine Reihe heißt dagegen \slanted{bedingt konvergent}, wenn sie zwar 
+  konvergent (mit Grenzwert $S$), 
+  aber nicht unbedingt konvergent ist, {\dasheisst} wenn sie eine 
+  Umordnung besitzt, die nicht gegen $S$ konvergiert. Die Umordnung 
+  kann in diesem Fall entweder divergieren oder gegen einen anderen 
+  Grenzwert $S'\not= S$ konvergieren. 
+  \AntEnd
+\end{antwort}
+
+%% --- 46 --- %%
+\begin{frage}\label{02_klum}
+  \index{Umordnungssatz!kleiner}
+  Was besagt der sogenannte \bold{kleine Umordnungssatz} für Reihen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet:
+
+  \medskip\noindent 
+  \slanted{Eine beliebige Umordnung einer absolut konvergenten Reihe ist 
+    wieder absolut konvergent und hat dieselbe 
+    Summe wie die Ausgangsreihe.}
+
+  \medskip\noindent
+  Der Beweis des Umordnungssatzes 
+  ist im Detail etwas anstrengend zu führen, 
+  aber er beruht im Wesentlichen auf der einfachen Tatsache, 
+  dass zu jedem vorgegebenen $N\in\NN$ für jede Umordung 
+  $k\to n_k$ der natürlichen Zahlen ein $k_0$ existiert, sodass die Menge 
+  $\{ n_1, n_2, \ldots , n_{k_0} \}$ die ersten $N$ natürlichen 
+  Zahlen enthält, dass also gilt
+  \[
+  \{ 1, 2, \ldots, N \} \subset \{ n_1, n_2, \ldots , n_{k_0} \}.  
+  \]
+  Trivialerweise ist dann $k_0\ge N$. Für alle $m>k_0$ folgt daraus, dass 
+  in der Summe $\left|  \sum_{n=0}^m a_n - \sum_{k=0}^m a_{n_k} \right|$ 
+  ausschließlich Summanden mit einem größeren Index als $N$ vorkommen. 
+  Mit $M:=\max\{ n_{k_0},\ldots , n_m \}$ folgt daraus zusammen 
+  mit der Dreiecksungleichung
+  \[
+  \left|  \sum_{n=0}^m a_n - \sum_{k=0}^m a_{n_k} \right| \le 
+  \sum_{n=N+1}^M |a_n|.
+  \] 
+  Die rechte Summe wird wegen der absoluten Konvergenz der Reihe $\sum_n a_n$ 
+  beliebig klein, und zwar unabhängig von $M$, wenn nur $N$ 
+  genügend groß gewählt ist. Daraus folgt, dass sich mit dem vorgeführten 
+  Verfahren stets ein $m$ bestimmen 
+  lässt, sodass für alle $m'>m$ die Ungleichung  
+  \[
+  \left|  \sum_{n=0}^{m'} a_n - \sum_{k=0}^{m'} a_{n_k} \right| < \eps
+  \] 
+  erfüllt ist. Aus dieser folgt der kleine Umordnungssatz.
+  \AntEnd
+\end{antwort}
+
+%% --- 47 --- %%
+\begin{frage}\label{02_diri}
+  \index{Umordnungssatz!von Dirichlet-Riemann}
+  \index{Riemann@\textsc{Riemann}, Bernhard (1826-1866)}
+  Was besagt der \bold{Umordnungssatz von Dirichlet-Riemann} für konvergente, 
+  aber nicht absolut konvergente Reihen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: 
+
+  \medskip\noindent
+  \slanted{Jede konvergente, aber nicht absolut 
+    konvergente Reihe besitzt eine Umordnung, die gegen einen beliebig 
+    vorgegebenen Wert $S$ konvergiert oder divergiert.}
+
+  \medskip\noindent
+  Der Satz folgt daraus, dass für eine konvergente, aber nicht absolut 
+  konvergente Reihe die Reihen $\sum_n a^-_n$ und $\sum_n a^+_n$ mit 
+  \[
+  a^-_n = \left\{\begin{array}{ll} 
+      a_n & \text{falls $a_n < 0$} \\ 
+      0   & \text{sonst}
+    \end{array}\right.
+  \quad\text{und}\quad 
+  a^+_n = \left\{\begin{array}{ll} 
+      a_n & \text{falls $a_n > 0$} \\ 
+      0   & \text{sonst}
+    \end{array}\right.
+  \]
+  beide divergieren müssen, denn andernfalls wären 
+  $\sum_n |a^-_n| $ und $\sum_n |a^+_n| $ konvergent und somit auch 
+  $\sum_n |a_n|=\sum_n |a^-_n|+\sum_n |a^+_n|$. 
+
+  Da diese Reihen divergieren, sind sie unbeschränkt -- im einen Fall nach oben, 
+  im anderen nach unten. Um eine Umordnung zu konstruieren, die gegen 
+  einen willkürlich vorgegebenen Grenzwert $S$ konvergiert, kann man also  
+  so viele Summanden der positiven Reihe aufsummieren, 
+  bis $S$ zum ersten Mal überschritten wird, anschließend 
+  so viele der negativen Reihe, bis $S$ unterschritten wird. 
+  Wegen der Unbeschränktheit der negativen und positiven Reihen kann dieses 
+  Verfahren mit den übrigen Summanden beliebig oft wiederholt werden. 
+  Wird $S$ derart durch die Addition eines Glieds $a_k$ 
+  unter- bzw. überschritten, 
+  dann durch einen Wert kleiner als $|a_k|$. 
+  Da die Summanden $a_n$ wegen der 
+  Konvergenz von $\sum_n a_n$ eine Nullfolge bilden, 
+  kann dieser Differenzbetrag 
+  beliebig klein gemacht werden. 
+  \AntEnd
+\end{antwort}
+
+%% --- 48 --- %%
+\begin{frage}\label{02_cprod}
+  \index{Cauchy-Produkt}
+  Was versteht man unter dem \bold{Cauchy-Produkt (Faltung)} zweier Reihen?
+\end{frage}
+
+
+\begin{antwort}[]%
+  \Ant Das Cauchy-Produkt zweier Reihen $\sum_{n=0}^\infty a_n$ 
+  und $\sum_{k=0}^\infty b_k$ ist die Reihe
+  \[
+  \sum_{n=0}^\infty ( a_0 b_n + a_1 b_{n-1} + \cdots + a_n b_0 ) = 
+  \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k}.
+  \]
+  Die Summanden des Cauchy-Produkts sind gerade die  
+  Produkte $a_n b_k$ mit $k,n\in \NN$, die nach dem Diagonalschema 
+  in \Abb\ref{fig:02_cauchy_prod} angeordnet werden.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/03_cauchyprodukt}
+    \captionof{figure}{Reihenfolge der Summanden im Cauchy-Produkt.}
+    \label{fig:02_cauchy_prod}
+  \end{center}
+\end{antwort}
+
+%% --- 49 --- %%
+\begin{frage}\label{02_beab}
+  \index{Konvergenz!bedingte}
+  \index{Konvergenz!absolute}
+  Welcher Zusammenhang besteht zwischen bedingter und absoluter Konvergenz?
+\end{frage}
+
+\begin{antwort}
+  Nach dem kleinen Umordnungssatz ist jede absolut konvergente Reihe 
+  unbedingt konvergent. Aus dem Umordnungssatz von Dirichlet-Riemann 
+  folgt die Umkehrung dieses Zusammenhangs. Also gilt:
+
+  \medskip\noindent
+  \slanted{Eine Reihe ist genau dann unbedingt konvergent, wenn sie 
+    absolut konvergiert}. 
+  \AntEnd
+
+  \smallskip
+\end{antwort}
+
+\smallskip
+%% --- 50 --- %%
+\begin{frage}\label{02_pr}
+  \index{Produktreihe}
+  Was versteht man allgemein unter einer \bold{Produktreihe} zweier Reihen 
+  $\sans{\sum_n a_n}$ und $\sans{\sum_k b_k}$?
+\end{frage}
+
+\begin{antwort}[]
+  \Ant Ordnet man alle möglichen Produkte $a_n b_k$, $n,k\in\NN$ in einer 
+  Folge $c_\ell$ an, dann heißt die Reihe $\sum_\ell c_\ell$ eine Produktreihe 
+  der Reihen $\sum_n a_n$ und $\sum_k b_k$.  
+
+  Der Zuordnung $c_\ell \mapsto a_n b_k$ 
+  liegt eine \slanted{bijektive} Abbildung $\NN\to \NN \times \NN, \;
+  \ell \mapsto (n,k)$ zugrunde. Mit jeder derartigen Abbildung 
+  lässt sich zu zwei Reihen eine entsprechende Produktreihe angeben. 
+  Das Cauchy-Produkt ist beispielsweise eine spezielle 
+  Produktreihe, für die die Abbildung $\NN\to \NN \times \NN$ mit dem 
+  Diagonalschema konstruiert ist. Die \Abb\ref{fig:02_produktreihe} zeigt eine 
+  weitere Möglichkeit, die Menge $\NN \times \NN$ 
+  bijektiv auf $\NN$ abzubilden.\AntEnd
+
+  \begin{center}
+    \includegraphics{mp/03_produktreihe}
+    \captionof{figure}{
+      Mögliche Anordnung der Summanden in einer Produktreihe.
+    }
+    \label{fig:02_produktreihe}
+  \end{center}
+\end{antwort}
+
+\smallskip
+%% --- 51 --- %%
+\begin{frage}\label{02_prk}
+  \index{Produktreihe}
+  Warum ist eine Produkt-Reihe zweier absolut konvergenter Reihen 
+  $\sans{\sum_n a_n}$ und $\sans{\sum_k b_k}$ wieder absolut konvergent?
+\end{frage}
+
+\begin{antwort}
+  Der Zusammenhang ergibt sich aus der Tatsache, dass für 
+  eine Produktreihe $\sum_\ell c_\ell$ für alle $n\in\NN$ die Ungleichung 
+  \[
+  |c_0|+ |c_1| + \cdots + |c_n| \le (|a_0|+|a_1|+\cdots + |a_m| )
+  (|a_0|+|a_1|+\cdots + |a_m| )
+  \]
+  gilt, sofern $m$ nur groß genug gewählt ist. Also gilt erst recht 
+  \[
+  |c_0|+ |c_1| + \cdots + |c_n| \le 
+  \left( \sum_{j=0}^\infty |a_j| \right) 
+  \left( \sum_{k=0}^\infty |b_k| \right)  
+  \quad\text{für alle $n\in \NN$.}
+  \]
+  Wegen der absoluten Konvergenz der Reihen $\sum_j a_j$ und 
+  $\sum_k b_k$ steht auf der rechten Seite dieser Ungleichung eine 
+  reelle Zahl $S$, die eine obere Schranke für die Folge der 
+  Partialsummen $\left(\sum_{\ell=1}^n |c_\ell|\right)_{n\in\NN}$ ist. 
+  Da diese Folge monoton wächst, 
+  folgt die absolute Konvergenz der Produktreihe 
+  aus dem Monotoniekriterium für reelle Folgen. \AntEnd 
+\end{antwort}
+
+\smallskip
+%% --- 52 --- %%
+\begin{frage}\label{02_cpk}
+  \index{Produktreihe}
+  \index{Konvergenz!einer Produktreihe}
+  Was ergibt sich aus Frage \ref{02_prk} 
+  für das Cauchy-Produkt zweier absolut konvergenter Reihen?
+\end{frage}
+
+\begin{antwort}
+  Das Cauchy-Produkt ist nur eine Produktreihe spezieller Bauart. 
+  Also kann man aus Frage \ref{02_prk}
+  folgern, dass das Cauchy-Produkt zweier absolut konvergenter 
+  Reihen ebenfalls konvergiert, und zwar sogar absolut.
+  \AntEnd
+\end{antwort}
+
+%% --- 53 --- %%
+\begin{frage}\label{02_cpd}
+  \index{Produktreihe}
+  \index{Konvergenz!einer Produktreihe}
+  \index{Cauchy-Produkt}
+  Kennen Sie ein Beispiel für zwei konvergente Reihen, deren Cauchy-Produkt 
+  divergiert?
+\end{frage}
+
+\begin{antwort}
+  Ein Beispiel liefert die Reihe $\sum_{n=0}^\infty a_n$ mit 
+  $a_n := (-1)^n/ \sqrt{n+1}$. Diese Folge konvergiert (Leibniz-Kriterium), 
+  allerdings nicht absolut (sie besitzt in der 
+  harmonischen Reihe eine divergente Minorante). 
+  Wir zeigen, dass das Cauchy-Produkt dieser Reihe mit sich selbst 
+  divergiert. Dieses besitzt die Form 
+  \begin{equation}
+    \sum_{n=0}^{\infty} \left( 
+      \sum_{k=0}^n \frac{(-1)^k}{\sqrt{k+1}} \, 
+      \frac{(-1)^{(n-k)}}{\sqrt{(n-k)+1}} \right) 
+    =
+    \sum_{n=0}^{\infty} (-1)^n \sum_{k=0}^n \frac{1}{\sqrt{ (k+1)(n-k+1)}}
+    \tag{$\ast$}
+  \end{equation}
+  Für die hinteren endlichen Summen gilt die Abschätzung  
+  \[
+  \left| \sum_{k=0}^n \frac{1}{\sqrt{(k+1)(n-k+1)}} \right| \ge 
+  \left| \sum_{k=0}^n \frac{1}{n+1} \right| = \frac{n+1}{n+1} = 1.
+  \]
+  Die Summanden des Cauchy-Produkts ($\ast$) bilden also 
+  überhaupt keine Nullfolge, daher kann das Cauchy-Produkt auch nicht 
+  konvergieren. \AntEnd  
+\end{antwort}
+
+%% --- 54 --- %%
+\begin{frage}\label{02_expd}
+  \index{Exponentialfunktion!Reihendefinition}
+  Wie lautet die 
+  \bold{Reihendefinition der Exponentialfunktion} (in $\RR$ oder $\CC$)? 
+  Warum ist die betreffende Reihe absolut konvergent?
+\end{frage}
+
+\begin{antwort}
+  Der Wert der Exponentialfunktion $\exp\fd \KK\to \KK$ für 
+  $\KK=\CC$ oder $\KK=\RR$ ist für alle 
+  $z \in \KK$ gegeben durch den Wert der Reihe
+  \[
+  \exp( z ) := \sum_{k=0}^\infty \frac{z^k}{k!}.
+  \]
+  Die Reihe konvergiert trivialerweise für $z=0$. 
+  Für $z\in \KK$ mit $z\not=0$ folgt die absolute 
+  Konvergenz unmittelbar aus dem Quotientenkriterium, da 
+  \[
+  \frac{|z|^{k+1}}{(k+1)} \Big{/} \frac{|z|^{k}}{k!}
+  = \frac{|z|}{(k+1)!} \le \frac{1}{2}
+  \]
+  für alle $z\not=0$ und alle $k\ge 2|z|$ gilt.\AntEnd
+\end{antwort}
+
+%% --- 55 --- %%
+\begin{frage}\label{02_expfunk}\index{Exponentialfunktion!Funktionalgleichung}
+  Warum gilt die \bold{Funktionalgleichung} $\exp( z+w)=\exp( z )\exp(w)$?
+\end{frage}
+
+\begin{antwort}
+  Mit der Binomialentwicklung erhält man zunächst
+  \[
+  \exp( z+w )= \sum_{n=0}^\infty  \frac{1}{n!} (z+w)^n = 
+  \sum_{n=0}^\infty \frac{1}{n!} \sum_{k=0}^n \binom{n}{k} z^k w^{n-k} =
+  \sum_{n=0}^\infty \sum_{k=0}^n \frac{z^k}{k!} \frac{w^{n-k}}{(n-k)!}.
+  \]
+  Hier steht in der rechten Seite nun gerade das Cauchy-Produkt der 
+  beiden Reihen für $\exp(z)$ und $\exp(w)$. Wegen der absoluten Konvergenz 
+  der beiden Reihen konvergiert das Cauchy-Produkt 
+  gemäß Frage \ref{02_cpk} gegen den Wert $\exp(z)\exp(w)$. Das beweist die Funktionalgleichung.\AntEnd 
+\end{antwort} 
+
+
+\section{Elementares über Potenzreihen}
+\label{elmenentare_potenzreihen}
+
+Besonders wichtige Hilfsmittel der Analysis sind \slanted{Potenzreihen}. 
+Wir formulieren hier nur Fragen zu einigen elementaren Eigenschaften und 
+entwickeln das Thema in 
+Kapitel \ref{funktionenfolgen} in einem systematischeren 
+Rahmen weiter.   
+
+%% --- 56 --- %%
+\begin{frage}\label{02_potr}
+  \index{Potenzreihe}
+  Was versteht man unter einer \bold{Potenzreihe} mit Entwicklungspunkt 
+  $a$ und Koeffizienten $\sans{a_k}$ ($\sans{a_k\in\KK}$)?
+\end{frage}
+
+\begin{antwort}
+  Unter einer Potenzreihe mit Entwicklungspunkt $a$ und Koeffizienten $a_k$ 
+  versteht man die Reihe 
+  \begin{equation}
+    \sum_{k=0}^\infty a_k ( z-a)^k = a_0 + a_1(z-a)+a_2(z-a)^2 + \ldots \EndTag
+  \end{equation}
+\end{antwort}
+
+%% --- 57 --- %%
+\begin{frage}\label{02_kok}
+  \index{Konvergenzkreis}
+  \index{Konvergenzradius}
+  Was gilt f\"ur die Menge der Punkte, für die eine Potenzreihe 
+  konvergiert?
+\end{frage}
+\begin{antwort}[]%
+  \Ant Für jede Potenzreihe um den Entwicklungspunkt $a$ 
+  gibt es eine Kreisscheibe $K$ 
+  mit Mittelpunkt $a$ und Radius 
+  $R$ (wobei die entarteten Fälle $R=0$ und $R=\infty$ zugelassen sind), 
+  sodass die Reihe für alle Punkte \slanted{innerhalb} von $K$ absolut 
+  konvergiert und für alle Punkte \slanted{außerhalb} von $K$ divergiert 
+  ({\dasheisst}, sie konvergiert für alle $z$ mit $|z-a|<R$ und divergiert 
+  für alle $z$ mit $|z-a|>R$, \sieheAbbildung\ref{fig:02_konvergenzkreis}). 
+  
+  Wie sich die Punkte auf dem Rand 
+  der Kreisscheibe bezüglich Konvergenz verhalten, darüber kann 
+  man ohne eine speziellere Untersuchung der jeweiligen Potenzreihe 
+  keine allgemeinen Aussagen treffen. 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/02_konvergenzkreis}
+    \captionof{figure}{
+      Eine Potenzreihe konvergiert für alle Punkte innerhalb 
+      und divergiert für alle 
+      Punkte außerhalb ihres Konvergenzkreises.
+    }
+    \label{fig:02_konvergenzkreis}
+  \end{center}
+\end{antwort}
+
+%% --- 58 --- %%
+\begin{frage}
+  Können Sie begründen, 
+  warum eine Potenzreihe innerhalb ihres Konvergenzkreises 
+  konvergiert und außerhalb davon divergiert?
+\end{frage}
+
+\begin{antwort}
+  Sei $w_n := z_n-a$. Zunächst zeigt man, dass 
+  aus der Konvergenz von $\sum_n a_n w_0^n$ für ein $w_0\in\KK$ 
+  die Konvergenz von $\sum_n a_n |w|^n$ für alle $w$ mit $|w|<|w_0|$ folgt. 
+  Dazu beachte man, dass in diesem Fall $|a_n w_0^n| < S$ für ein $S\in\RR$ 
+  und alle $n\in\NN$ gilt. Das impliziert 
+  $|a_n w^n| < S \left|\frac{w}{w_0}\right|^n = : Sq^n$ mit $q<1$. Die Reihe 
+  $\sum_n |a_n w^n|$ hat also in $S \sum_n q^n$ eine konvergente Majorante. Das 
+  beweist den ersten Teil der Behauptung.
+
+  Man setze nun 
+  \[
+  R := \sup\, \left\{ x\in\RR\sets 
+    \sum_{n=0}^\infty a_n x^n \text{ konvergiert}\right\}.
+  \]
+  Die Reihe $\sum_n  a_n w^n$
+  konvergiert dann aufgrund des vorigen für jedes $w$ mit 
+  $|w| < R$. Würde sie für ein $w$ mit $|w|>R$ ebenfalls 
+  konvergieren, dann (wiederum aufgrund des 
+  vorigen Arguments) auch für jedes $x \in \RR$ mit 
+  $|w|>x>R$, im Widerspruch zur Supremumseigenschaft 
+  von $R$.
+  \AntEnd
+\end{antwort}
+
+%% --- 59 --- %%
+\begin{frage}\label{02_prbsp}
+  \index{Potenzreihe}
+  \index{Potenzreihe}
+  Kennen Sie ein Beispiel einer Potenzreihe, die genau in der 
+  offenen Kreisscheibe 
+  $\sans{\mathbb{E} = \{ z\in\CC;\; z <1 \}}$ konvergiert?
+\end{frage}
+
+\begin{antwort}
+  \index{geometrische Reihe}
+  Ein Beispiel dafür liefert die geometrische Reihe 
+  \[
+  \sum_{n=0}^\infty z^n.
+  \]
+  Diese konvergiert nach Frage \ref{02_rgeom} für genau die 
+  Zahlen $z$ mit $|z| < 1$, während sie sonst divergent ist.
+  \AntEnd
+\end{antwort}
+
+%% --- 60 --- %%
+\begin{frage}\label{02_prbspa}
+  \index{Potenzreihe}
+  \index{Potenzreihe}
+  \index{Konvergenzkreis}
+  \index{Konvergenzradius}
+  Kennen Sie ein Beispiel einer Potenzreihe, die genau in der 
+  abgeschlossenen Kreisscheibe 
+  $\overline{\mathbb{E}} = \{ z\in\CC;\; z  \le 1 \}$ 
+  konvergiert?
+\end{frage}
+
+
+
+\begin{antwort}
+  Die Reihe 
+  \[
+  \sum_{n=0}^\infty \frac{z^n}{n^2}
+  \] 
+  besitzt die 
+  gesuchte Eigenschaft. Für den Fall $|z| < 1$ besitzt sie in 
+  der geometrischen Reihe 
+  $\sum_n z^n$ eine konvergente Majorante, während sie für $|z|>1$ 
+  nicht konvergent sein kann, da ihre Summanden in diesem Fall 
+  wegen $\limm (|z|^n/n^2) = \infty$ (vgl. Frage 
+  \ref{q:folge_absch}) überhaupt keine Nullfolge bilden. 
+
+  Sie konvergiert allerdings noch für $|z|=1$. 
+  In diesem Fall gilt nämlich  
+  $\sum_n |z|^n / n^2=\sum_n 1/n^2$, und dass diese Reihe konvergiert, 
+  wurde in Frage \ref{03_harm} bereits gezeigt.
+  \AntEnd
+\end{antwort}
+
+%% --- 61 --- %%
+\begin{frage}\label{02_kokf}
+  \index{Konvergenzradius}
+  \index{Cauchy-Hadamard Formel}
+  Welche Formeln für den Konvergenzradius einer Potenzreihe sind Ihnen geläufig?
+\end{frage}
+
+\begin{antwort}
+  Das Wurzel- und Quotientenkriterium liefern 
+  im Zusammenspiel mit der speziellen Bauart der 
+  Summanden einer Potenzreihe $\sum_n a_n z^n$  
+  unmittelbar zwei Formeln für deren Konvergenzradius $R$. 
+  Für den Fall, dass $\lim \sup \sqrt[n]{|a_n|}$ bzw. 
+  $\limm |a_{n+1}|/|a_n|$ existieren, gilt 
+  \[\boxed{
+    \begin{array}{rclp{1mm}cp{1mm}rclp{2mm}l}
+      R  &=& \dis \frac{1}{W} & & \text{mit} & & 
+      W  &:=& \dis \lim_{n\to\infty} 
+      \sup \sqrt[n]{|a_n|} & & \text{(Cauchy-Hadamard)}\\[2mm]
+      R  &=& \dis \frac{1}{Q} & & \text{mit} & & 
+      Q  &:=& \dis \limm \left| \frac{a_{n+1}}{a_n}\right|
+      & & \text{(Euler).}
+    \end{array}}
+  \]
+  Hier darf mit den Festsetzungen 
+  $1/0 := \infty$ und $1/\infty :=0$ gerechnet werden.  
+  
+  Der Beweis ist in beiden Fällen sehr einfach und folgt unmittelbar 
+  aus dem Wurzel- bzw. Quotientenkriterium (hier in den 
+  Formulierungen \desc{W3} und \desc{Q2}). So gilt nach dem Wurzelkriterium, 
+  dass die Potenzreihe $\sum_n a_n z^n$ konvergiert bzw. divergiert, je 
+  nachdem, ob für $\lim\sup\sqrt[n]{|a_n z^n|}=|z| W$ gilt
+  \[
+  |z| W < 1 \LLa |z| < \frac{1}{W} \qquad\text{bzw.}\qquad 
+  |z| > \frac{1}{W}. 
+  \]
+  Daraus folgt schon unmittelbar die Formel von Cauchy-Hadamard, und diejenige 
+  von Euler erhält man mit einem vollkommen analogen Argument.   
+  \AntEnd
+\end{antwort}
+
+%% --- 62 --- %%
+\begin{frage}\label{02_chkok}
+  \index{Cauchy-Hadamard Formel}
+  Warum ist die Formel von Cauchy-Hadamard zur Bestimmung des Konvergenzradius 
+  für die Anwendungen schwerfällig, aber ab und zu doch nützlich?
+\end{frage}
+
+\begin{antwort}
+  Die "`Schwerfälligkeit"' des Kriteriums hängt damit zusammen,
+  dass hier zum einen Folgen von Wurzelausdrücken untersucht werden müssen, 
+  deren Eigenschaften in der Regel nicht besonders deutlich an der Oberfläche 
+  zu erkennen sind. Wollte man etwa den Konvergenzradius der 
+  Exponentialreihe mit dem Kriterium von Cauchy-Hadamard bestimmen, 
+  so führt das auf das Problem, den Grenzwert bzw. 
+  Limes Superior der Folge $(\sqrt[n]{1/n!})$ zu bestimmen, was weitergehende 
+  Argumente erfordert. Dagegen erhält man den Konvergenzradius mit dem 
+  Quotientenkriterium unmittelbar. 
+  Hinzu kommt, dass der Begriff des Limes Superior die Untersuchung 
+  einer oftmals unendlichen Menge von Häufungspunkten erfordert, was ein 
+  schwieriges Unterfangen sein kann. 
+
+  Ein Vorteil besteht jedoch darin, dass das Kriterium von Cauchy-Hadamard 
+  öfter anwendbar ist als das Kriterium von Euler, 
+  da es schwächere Voraussetzungen benutzt, nämlich nur 
+  die Existenz eines Limes Superior und nicht die Existenz eines Grenzwerts 
+  schlechthin. 
+
+  Als Beispiel betrachte man die Potenzreihe 
+  \[
+  \sum_{n=0}^\infty  a_n z^n \qquad\text{mit}\quad 
+  a_n := \left\{ \begin{array}{ll} 
+      2^{-n} & \text{für gerade $n$} \\
+      3^{-n} & \text{für ungerade $n$}
+    \end{array}\right.
+  \]
+  Der Grenzwert $\limm |a_{n+1}|/|a_n|$ existiert nicht, 
+  das Euler-Kriterium ist also nicht anwendbar. Dagegen existiert der Limes 
+  Superior der Folge $(\sqrt[n]{|a_n|})$ sehr wohl und besitzt den Wert $1/2$. 
+  Daraus kann man schließen, dass der Konvergenzradius der Reihe den 
+  Wert $2$ hat. \AntEnd 
+\end{antwort}
+
+%% --- 63 --- %%
+\begin{frage}\label{02_kok1}
+  \index{Potenzreihe!formale Ableitung}
+  \index{Potenzreihe!formale Stammfunktion}
+  Hat eine Potenzreihe $\sum_{n=0}^\infty c_n (z-a)^n$ 
+  den Konvergenzradius $\sans{R}$, dann haben die 
+  \[
+  \begin{array}{lp{2mm}l}
+    \text{"`formale"' Ableitung}  & &
+    \dis \sans{\sum_{n=1}^\infty  n c_n  (z-a)^{n-1}} 
+    \qquad\text{und die} \\[3mm]
+    \text{"`formale"' Stammfunktion} & &  
+    \sans{\dis \sum_{n=0}^\infty \frac{c_n}{n+1}  (z-a)^{n+1}} 
+  \end{array}
+  \]
+  ebenfalls den 
+  Konvergenzradius $R$. Können Sie das begründen?
+\end{frage}
+
+\begin{antwort}
+  Wegen $\lim\limits_{n\to\infty}\sqrt[n]{n} = 1$ und 
+  $\lim\limits_{n\to\infty} \sqrt[n]{1/(n+1)} = 1$ gilt  
+  \[
+  \lim_{n\to\infty} \sup\sqrt[n]{n|c_n|}= 
+  \lim_{n\to\infty} \sup\sqrt[n]{|c_n|} =
+  \lim_{n\to\infty} \sup\sqrt[n]{\frac{|c_n|}{n+1}} 
+  \]
+  Hieraus folgt die Gleichheit der Konvergenzradien aus der Formel 
+  von Cauchy-Hadamard. \AntEnd
+\end{antwort}
+
+\begin{frage}
+  Was ist der Konvergenzradius der Reihe 
+  \[
+  \sum_{n=0}^\infty (\cos n) z^n\,?
+  \]
+\end{frage}
+
+\begin{antwort}
+  Es ist $\lim_{n\to\infty} \sup \sqrt[n]{|\cos n|}=1$. Mit der Formel von Cauchy-Hadamard erhält man den Konvergenzradius $R = 1$
+\end{antwort}
+
+\section{Der Große Umordnungssatz}\label{umordungssatz}
+
+In vielen Situationen treten Reihen der Gestalt 
+$\sum_{s\in S} a_s$
+auf, in denen $S$ eine abzählbare Indexmenge ist und 
+$a \fd S \to \KK$ ($\KK=\CC$ oder $\KK=\RR$) eine gegebene Abbildung 
+mit $s\mapsto a(s)=:a_s$. In diesem Fall ist die Summation über eine 
+\slanted{Schar} oder reeller oder komplexer Zahlen zu führen.
+\index{Familie komplexer oder reeller Zahlen}
+\index{Schar komplexer oder reeller Zahlen} 
+
+Da $S$ abzählbar ist, gibt es in diesem Fall 
+eine Bijektion $\varphi \fd \NN_0\to S$, 
+$j\mapsto \varphi(j)$. Um die obige Reihe mit den bekannten Techniken zu 
+untersuchen ist es daher naheliegend, den Wert der Summe $\sum_{s\in S} a_s$ 
+durch
+\[
+\sum_{j=0}^\infty a_{\varphi(j)} 
+\]
+zu definieren. Man nennt $\sum a_{\varphi(j)}$ dann eine 
+\slanted{Realisierung} der Reihe. Die Definition ist allerdings nur dann 
+sinnvoll, wenn alle Realisierungen denselben Wert ergeben. Das ist 
+genau dann der Fall, wenn die Reihe $\sum a_{\varphi(j)}$ 
+\slanted{absolut} konvergiert. Nach dem 
+kleinen Umordnungssatz konvergiert dann nämlich jede Umordnung 
+gegen denselben Wert.
+
+%% --- 64 --- %%
+\begin{frage}\index{summierbar}
+  Sei $S$ eine abzählbare Menge und $(a_s)_{s\in S}$ eine Schar. Wann heißt 
+  $(a_s)$ \bold{summierbar}? 
+\end{frage}
+
+\begin{antwort}
+  Die Familie $(a_s)_{s\in S}$ heißt \slanted{summierbar}, wenn 
+  eine Bijektion $\varphi\fd \NN_0 \to S$ existiert, für die die 
+  Reihe $
+  \sum_{j=0}^\infty a_{\varphi(j)}$ 
+  absolut konvergiert. Nach dem kleinen Umordnungssatz konvergiert dann 
+  jede Realisierung von $\sum_{s\in S} a_s$, und zwar gegen denselben Wert 
+  wie $\sum_{j=0}^\infty a_{\varphi(j)}$. 
+  \AntEnd 
+  
+\end{antwort} 
+
+%% --- 65 --- %%
+\begin{frage}
+  Wie ist für eine summierbare Schar $(a_s)_{s\in S}$ der Wert der Summe 
+  $\sum_{s\in S} a_s$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Ist $\sum_{j=0}^\infty a_{\varphi(j)}$ eine absolut 
+  konvergente Realisierung, so setzt man 
+  \[
+  \sum_{s\in S} a_s:=  \sum_{j=0}^\infty a_{\varphi(j)}.
+  \]
+  Da jede Realisierung im Fall der Summierbarkeit der Schar denselben 
+  Grenzwert hat, ist die Summe damit wohldefiniert. \AntEnd
+\end{antwort} 
+
+%% --- 66 --- %%
+\begin{frage}\index{Indexmenge}\label{03_schema}
+  Können Sie einige Beispiele für Indexmengen nennen, die in Anwendungen 
+  häufig vorkommen?
+\end{frage}
+
+\begin{antwort}
+  Das einfachste Beispiel ist natürlich $\NN_0$ selbst. 
+  In vielen Anwendungen ({\zB} Fourierreihen) 
+  wird über die Indexmenge $\ZZ$ summiert. Für die Reihen 
+  $\sum_{k\in \ZZ} a_k $ schreibt man meist auch 
+  \[
+  \sum_{k=-\infty}^\infty a_k.
+  \]
+  Eine solche Reihe konvergiert genau dann absolut, wenn die 
+  Reihe $a_0+a_1+a_{-1}+ a_2+a_{-2}+\cdots$ absolut konvergiert und 
+  folglich genau dann, wenn die beiden Reihen 
+  \[
+  \sum_{k=0}^\infty a_k,\qquad\quad 
+  \sum_{k=1}^\infty a_{-k}
+  \]
+  absolut konvergieren. 
+
+  Ein weiteres Beispiel ist die Indexmenge 
+  $S=\NN_0\times \NN_0$. Die Elemente 
+  einer Familie $(a_s)_{s\in S}$  
+  lassen sich in diesem Fall übersichtlich in einem 
+  quadratischen Schema anordnen 
+  \[
+  \begin{array}{cccc} 
+    a_{00}, & a_{01} & a_{02} & \cdots \\
+    a_{10}, & a_{11} & a_{12} & \cdots \\
+    a_{20}, & a_{21} & a_{22} & \cdots \\
+    \vdots & \vdots & \vdots & \ddots 
+  \end{array}
+  \]
+  Dieses Beispiel lässt sich auf Indexmengen 
+  $S=\NN_0\times \cdots \times \NN_0$ 
+  mit beliebig vielen Faktoren verallgemeinern. 
+  Diese Mengen sind auch abzählbar. 
+  \AntEnd
+\end{antwort}
+
+%% --- 67 --- %%
+\begin{frage}\index{summierbar}
+  Durch was kann man die Voraussetzung 
+  $\sum_{j=0}^\infty | a_{\varphi(j)} |<\infty$ für Summierbarkeit 
+  ersetzen?
+\end{frage}
+
+\begin{antwort}
+  Eine Familie $(a_s)_{s\in S}$ ist genau dann summierbar, wenn es eine 
+  Zahl $C\in\RR$ gibt, sodass für jede endliche Teilmenge $\calli{E}\subset S$ 
+  gilt
+  \[
+  \sum_{s\in \calli{E}} |a_s| \le C.
+  \]
+  Ist diese Bedingung nämlich erfüllt, dann gilt auch für 
+  die endlichen Summen $\sum_{j=0}^N |a_{\varphi(j)}| \le C$, und zwar 
+  für jedes $N\in\NN_0$, daraus folgt die Konvergenz. \AntEnd
+\end{antwort} 
+
+%% --- 68 --- %%
+\begin{frage}\index{Zerlegung einer abzählbaren Menge}
+  Was versteht man unter einer \bold{Zerlegung} einer abzählbaren 
+  Menge $S$?
+\end{frage}
+
+\begin{antwort}
+  Eine \slanted{Zerlegung} von $S$ ist eine Folge $S_1, S_2, S_3, \ldots$ von 
+  Teilmengen mit der Eigenschaft, dass jedes Element von $S$ in 
+  \slanted{genau einer} der Mengen $S_k$ enthalten ist, also    
+  \[
+  S=S_1 \cup S_2 \cup S_3 \cup \ldots \qquad\text{und}\qquad
+  S_k \cap S_\ell=\emptyset\quad\text{für $k\not=\ell$}. \EndTag
+  \]
+\end{antwort}
+
+%% --- 69 --- %%
+\begin{frage}\index{Grosser Umordnungssatz@Großer Umordnungssatz}
+  \index{Umordnungssatz!kleiner}
+  Was besagt der \bold{Große Umordnungssatz} für Reihen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: 
+
+  \medskip\noindent
+  \satz{Sei $S=S_1 \cup  S_2 \cup S_3 \cup \ldots$ eine Zerlegung einer 
+    abzählbaren Menge $S$. Sei ferner $(a_s)_{s\in S}$ eine summierbare 
+    Familie. Dann gilt:
+    {\setlength{\labelsep}{4mm}
+      \begin{itemize}
+      \item[\desc{i}] Die Teilscharen $(a_s)_{s\in S_n}$
+        sind summierbar, die Zahlen 
+        \[
+        A_n := \sum_{s\in S_n} a_s \qquad\text{für $n=1,2,3,\ldots$}
+        \]
+        also wohldefiniert.\\[-3.5mm]
+      \item[\desc{ii}] Die Reihe $\sum_{n=1}^\infty A_n$ ist absolut konvergent 
+        und es gilt 
+        \[
+        \sum_{s\in S} a_s = \sum_{n=1}^\infty A_n 
+        = \sum_{n=1}^\infty \left( \sum_{s\in S_n} a_s \right).
+        \]
+      \end{itemize}}}
+  Für einen Beweis dieses Satzes verweisen wir {\zB} auf \citep{Kaballo}. \AntEnd
+\end{antwort} 
+
+%% --- 70 --- %%
+\begin{frage}\index{Cauchy-Produkt}
+  Wie kann man den Großen Umordnungssatz auf Doppelreihen, 
+  insbesondere die Multiplikation von Reihen und speziell das 
+  Cauchy-Produkt anwenden?
+\end{frage}
+
+\begin{antwort}
+  Für die Anwendung des Großen Umordnungssatzes auf Doppelreihen 
+  $\sum_{i,j=0}^\infty a_{ij}$ benötigt man die Existenz einer Konstanten 
+  $C\ge 0$ mit $\sum_{i,j=0}^m |a_{ij}|\le C$ für alle $m\in\NN_0$ bzw. die 
+  (äquivalente) Voraussetzung 
+  \[
+  \sum_{i=0}^\infty \left( \sum_{j=0}^\infty |a_{ij}| \right) < \infty.
+  \]
+  Man kann das Schema aus Frage \ref{03_schema} zerlegen 
+  \[
+  \begin{array}{lp{3mm}l}
+    \text{nach Zeilen} & & Z_i = \{ i \} \times \NN_0, \\
+    \text{nach Spalten} & & S_j = \NN_0 \times \{ j \}, \\
+    \text{nach Diagonalen} & & D_k = \big\{ (i,j) \in \NN_0\times \NN_0 \sets 
+    i+j=k \big\}
+  \end{array}
+  \]
+  und erhält den \slanted{Doppelreihensatz}:\index{Doppelreihensatz}
+  \[
+  \sum_{i,j=0}^\infty =  
+  \sum_{i=0}^\infty \left( \sum_{j=0}^\infty a_{ij} \right) =
+  \sum_{j=0}^\infty \left( \sum_{i=0}^\infty a_{ij} \right) =
+  \sum_{k=0}^\infty \left( \sum_{i+j=k} a_{ij} \right) = 
+  \sum_{k=0}^\infty \sum_{i=0}^k a_{i,k-i}.
+  \]
+  Für die Anwendung auf die Multiplikation zweier absolut konvergenter Reihen 
+  $\sum_i b_i $ und $\sum_j c_j $ setzt man $a_{ij} := b_i c_j$. \AntEnd 
+\end{antwort}

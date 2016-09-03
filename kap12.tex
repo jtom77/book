@@ -1,0 +1,2028 @@
+\chapter{Vektorfelder, Kurvenintegrale, Integrals\"atze}
+
+Die Fragen in diesem Kapitel betreffen \slanted{Vektorfelder}, 
+\slanted{Kurvenintegrale}, 
+\slanted{Integration auf $\calli{C}^1$-Untermannigfaltigkeiten} 
+und schließlich \slanted{Integralsätze}, 
+speziell den Gauß\sch en Integralsatz 
+in seiner klassischen Form. 
+Um den allgemeinen Stokes\sch en Integralsatz 
+mithilfe des Differentialformenkalküls formulieren zu können, 
+ist erheblich größerer Aufwand nötig, {\zB} 
+\begin{itemize}[2mm]\index{Grassmann@Graßmann-Algebra}
+  \index{berandete Mannigfaltigkeit}\index{Cartan-Ableitung}
+\item[\desc{i}] die Graßmann-Algebra (alternierende Multilinearformen),
+\item[\desc{ii}] Integration und Differenziation (Cartan-Ableitung) von 
+  Differenzialformen,
+\item[\desc{iii}] der Begriff der berandeten Mannigfaltigkeit,
+\item[\desc{iv}] der Begriff der \slanted{Orientierung} von Mannigfaltigkeiten.
+\end{itemize}
+Der Beweis des Stokes\sch en Integralsatzes ist nach der Entwicklung 
+dieses Begriffsapparates relativ einfach. Wir werden diese Themen im letzten 
+Abschnitt anreißen, jedoch ohne die Theorie systematisch zu entwickeln 
+und vollständige Beweise zu geben. Wir verweisen dafür 
+(insbesondere hinsichtlich der Rückübersetzung des Cartan-Kalküls in die 
+klassische Sprache der \index{Vektoranalysis}Vektoranalysis) auf 
+\citep{JaenichPhy}.
+
+\section{Vektorfelder, Kurvenintegrale, Pfaff'sche Formen}
+
+%% Question 1
+\begin{frage}\index{Vektorfeld}
+  Was versteht man unter einem \bold{Vektorfeld} auf einem Gebiet $D\subset\RR^n$? 
+\end{frage}
+
+\begin{antwort}
+  Unter einem \slanted{Vektorfeld} $F$ auf einem Gebiet 
+  $D\subset \RR^n$ versteht man eine Abbildung, die jedem Punkt $x\in D$ 
+  einen Vektor $F(x)\in\RR^n$ zuordnet. 
+
+  Eine Vekorfeld heißt ($s$-mal stetig) differenzierbar, wenn die 
+  Komponentenfunktionen die entsprechende Eigenschaft haben.
+
+  Für $D\subset\RR^2$ bzw. $D\subset\RR^3$ lässt sich ein Vektorfeld 
+  $F$ auf $D$ visualisieren, indem man an ausgewählten 
+  Punkten $x\in D$ den Vektor $F(x)$ anträgt (genauer den Pfeil mit der 
+  Länge und der Richtung des Vektors $F(x)$.)
+
+  \begin{center}
+    \includegraphics{mp/12_vektorfeld1}
+    \captionof{figure}{Beispiele von Vektorfeldern.}
+    \label{fig:12_vektorfeld1}
+  \end{center}
+
+  Abbildung~\ref{fig:12_vektorfeld1} zeigt 
+  einige Beispiele für Vektorfelder. Die zweite 
+  Abbildung zeigt ein \slanted{Zentralfeld}, die dritte ein 
+  \slanted{Rotationsfeld}.\AntEnd
+\end{antwort}
+
+%% Question 2
+\begin{frage}\index{Nabla@$\nabla$ (Nabla-Operator)}\label{12_nabla}
+  Wie ist der \bold{Nabla-Operator} erklärt? Welcher Zusammenhang besteht 
+  mit dem Gradienten einer Funktion $f\fd \RR^n\to\RR$. 
+\end{frage}
+
+\begin{antwort}
+  Der Nabla-Operator ist ein \slanted{vektorwertiger Differenzialoperator}, 
+  symbolisch schreibt man $\nabla := ( \partial_1, \ldots, \partial_n )^T$. 
+  Für eine partiell differenzierbare Funktion ist in einem Punkt 
+  $x\in D$ per Definition \nomenclature{$\nabla$}{Nabla-Operator}
+  \[
+  \nabla f(x) = \big(\partial_1 f(x), \ldots, \partial_n f(x) \big) =
+  \grad f(x).
+  \]  
+  Durch 
+  \[
+  D \to \RR^n; \qquad x \mapsto \nabla f(x) = \grad f(x),
+  \]
+  wird auf $D$ ein spezielles \slanted{Vektorfeld}, das sogenannte 
+  \slanted{Gradientenfeld}\index{Gradientenfeld} definiert. \AntEnd 
+\end{antwort}
+
+%% Question 3
+\begin{frage}\index{Divergenz}
+  Was versteht man unter der \slanted{Divergenz} eines Vektorfeldes 
+  $F=(F_1,\ldots,F_n)^T \fd D\to\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Die \slanted{Divergenz von $F$} ist ein Skalarenfeld auf $D$, definiert 
+  durch
+  \[\boxed{
+    \Div F(x) := \frac{\partial F_1}{\partial x_1} + 
+    \cdots + \frac{\partial F_n}{\partial x_n}.
+  }
+  \]
+  In der Antwort zur Frage \ref{12_quelldichte}\index{Quelldichte}
+  wird die $\Div F(x)$  
+  physikalisch als Maß der \slanted{Quelldichte} von $F$ im Punkt $x$ 
+  interpretiert. \AntEnd 
+\end{antwort}
+
+%% Question 4
+\begin{frage}\index{Rotation eines Vektorfelds}
+  Wie ist im Fall $n=3$ die \bold{Rotation} eines 
+  $\calli{C}^1$-Vektorfeldes $F$ erklärt?
+\end{frage}
+
+\begin{antwort}
+  Die \slanted{Rotation von $F$} ist ein Vektorfeld 
+  $\rot F \fd \RR^3\to\RR^3$, \nomenclature{$\rot F$}{
+    Rotation des Vektorfelds $F$}
+  definiert durch 
+  \[
+  \boxed{
+    \rot F :=\big( 
+    \partial_2F_3-\partial_3 F_2,\, 
+    \partial_3F_1-\partial_1 F_3,\,
+    \partial_1F_2-\partial_2 F_1 
+    \big)^T.
+  }
+  \]
+  Die Rotation lässt sich als \slanted{Wirbeldichte} eines Vektorfelds 
+  interpretieren, anschaulich als Maß dafür, wie stark die 
+  Richtungsänderung des Felds in einem Punkt ist. 
+  Die Rotation spielt in der Formulierung 
+  des klassischen Integralsatzes von Stokes eine große Rolle.
+\end{antwort} 
+
+%% Question 5
+\begin{frage}
+  Wie lassen sich $\grad f$, $\rot v$ und $\Div v$ mithilfe des 
+  Nabla-Operators symbolisch ausdrücken?
+\end{frage}
+
+\begin{antwort}
+  Man schreibt symbolisch 
+  \[
+  \boxed{
+    \grad f = \nabla f, \qquad 
+    \rot F  = \nabla \times F, \qquad 
+    \Div F = \nabla \cdot F.}
+  \]
+  Dabei ist "`$\cdot$"' bzw. "`$\times$"' in Analogie zum 
+  Skalarprodukt im $\RR^n$ bzw. Vektorprodukt im $\RR^3$ zu verstehen. 
+
+  Man muss bei der Verwendung dieser Schreibweise allerdings etwas aufpassen. 
+  Sie suggeriert, dass sich mit $\nabla$ wie mit einem Vektor rechnen ließe. 
+  Das ist aber aufgrund der Ableitungsregeln für Produkte und Quotienten 
+  nicht der Fall. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 6
+\begin{frage}\index{Laplace-Operator}
+  \index{Laplace@\textsc{Laplace}, Pierre-Simon (1749-1827)}
+  Wie lautet die Definition des \bold{Laplace-Operators}? 
+\end{frage}
+
+\begin{antwort}
+  Der \slanted{Laplace-Operator} $\Delta$ ist ein 
+  Differenzialoperator, für $U\subset\RR^n$ ist durch 
+  ihn eine lineare Abbildung 
+  \[
+  \calli{C}^2(U) \to \calli{C}(U), \qquad
+  \Delta f := \partial_1^2 f + \cdots + \partial_n^2 f
+  \] 
+  definiert. Man benutzt die Schreibweise
+  \[
+  \boxed{\Delta := \partial_1^2 + \cdots + \partial_n^2.} 
+  \]
+  Mit dem Nabla-Operator hat man auch die Darstellung 
+  $\Delta = \nabla \cdot \nabla.$ \AntEnd
+\end{antwort} 
+
+%% Question 7
+\begin{frage}
+  Was bedeutet die \bold{Drehinvarianz} des Laplace-Operators?
+\end{frage}
+
+\begin{antwort}
+  Der Laplace-Operator ist \slanted{drehinvariant} 
+  in folgendem Sinn: Ist $\{ v_1,\ldots,v_n \}$ eine 
+  Orthonormalbasis, dann gilt für $f\in\calli{C}^2$: 
+  \[
+  \Delta f = \partial_{v_1}^2 f + \cdots + \partial_{v_n}^2 f. 
+  \]
+  Für jeden Basisvektor $v_i$ gilt nämlich
+  \[
+  \partial_{v_i} \big(\partial_{v_i} f(x)\big) = 
+  \sum_{i,j=1}^n \partial_{ij} f(a) v_i v_j = v_i^T H_f(x) v_i, 
+  \]
+  wobei $H_f(x):=H$ die Hesse-Matrix von $f$ in $x$ ist. 
+  Bezeichnet $V$ die Matrix mit den Basisvektoren $v_i$ als Spalten, so  
+  folgt daraus $\partial_{v_i}\partial{v_i} f = e_i^T V^T H_f(x) V e_i$. 
+  Da $V$ orthogonal ist, haben $V^T H_f(x) V$ und $H_f(x)$ dieselbe Spur. 
+  Diese ist aber nach Definition des 
+  Laplace-Operators gleich $\Delta f(x)$. Es gilt 
+  also tatsächlich 
+  \[
+  \partial_{v_1}^2 f + \cdots + \partial_{v_n}^2 = 
+  \mathrm{Spur}\, V^T H_f(x) V = \mathrm{Spur}\,H_f(x)=\Delta f(x).
+  \EndTag
+  \]
+\end{antwort} 
+
+%% Question 8
+\begin{frage}\index{harmonische Funktion}\index{holomorphe Funktion}
+  Was versteht man unter einer \bold{harmonischen Funktion} 
+  $f\fd \RR^n\to\RR$? Kennen Sie eine wichtige Klasse 
+  von Funktionen, deren Elemente harmonische Funktionen sind?
+\end{frage}
+
+\begin{antwort}
+  Eine Funktion $f$ heißt \slanted{harmonisch}, wenn 
+  $\Delta f=0$ gilt. 
+
+  Wichtige harmonische Funktionen sind die 
+  \slanted{komplex differenzierbaren} bzw. \slanted{holomorphen Funktionen}.  
+  Das ist eine unmittelbare Folge der 
+  \slanted{Cauchy-Riemann\sch en Differenzialgleichungen}
+  \index{Cauchy-Riemann'sch e Differenzialgleichungen} 
+  (s. Frage \ref{10_cauchy_riemann}).    
+  \AntEnd 
+\end{antwort} 
+
+%% Question 9
+\begin{frage}\index{rotationssymmetrische Funktionen}
+  Wie lassen sich die \bold{rotationssymmetrischen 
+    harmonischen Funktionen} bestimmen?
+\end{frage}
+
+\begin{antwort}
+  Sei $\varphi$ eine $\calli{C}^2$-Funktion auf einem 
+  Intervall $I\subset\open{0,\infty}$ und sei 
+  \[
+  f(x)=\varphi(\n{x}_2)
+  \]
+  für $x\in K(I) := \{ x\in\RR^n\sets \n{x}_2 \in I\}$. 
+  Die Funktion $f$ heißt in diesem Fall \slanted{rotationssymmetrisch}
+
+  Mit $r:=\n{x}_2$ gilt $\partial_\nu f(x) = F'( r )\cdot \frac{x_\nu}{r}$ 
+  und damit
+  \[
+  \partial_\nu^2 f(x) = \varphi''( r ) \cdot \frac{x_\nu^2}{ r^2 } 
+  + \varphi'(r) \left( \frac{1}{r} - \frac{x_\nu^2}{r^3} \right), 
+  \]
+  also 
+  \[
+  \Delta f(x) = \varphi''(r) + \frac{n-1}{r} \varphi'(r), \qquad r=\n{x}_2. 
+  \]
+  Diese lineare Differenzialgleichung erster Ordnung in $\varphi'$ 
+  besitzt die Lösungen $ar^{n-1}$ mit $a\in\CC$. Also ist 
+  $\varphi(r) = c \log r + b$, falls $n=2$ und 
+  $\varphi(r) =  cr^{2-n}+b$ im Fall $n>2$ mit $c,b\in\CC$.
+  Speziell sind also die in 
+  $\RR\mengeminus\{0\}$ definierten 
+  Funktionen
+  \[
+  h(x) := \log\n{x}_2\quad\text{für $n=2$ und}, \qquad
+  g(x) := 1/\n{x}_2^{2-n}\quad \text{für $n>2$}
+  \]
+  harmonisch, erfüllen also die Potenzialgleichung $\Delta f=0$.\AntEnd
+\end{antwort} 
+
+%% Question 10
+\begin{frage}\index{Kurvenintegral!eines Vektorfelds}
+  Sei $\alpha\fd [a,b]\to D$ eine in einem Gebiet $D$ 
+  verlaufende stetig differenzierbare Kurve. Wie ist dann für ein 
+  stetig differenzierbares Vektorfeld $F\fd D\to\RR^n$ das 
+  \bold{Kurvenintegral} von $F$ längs $\alpha$ erklärt?
+\end{frage}
+
+\begin{antwort}
+  Man definiert 
+  \nomenclature{$\int_\alpha F$}{Kurvenintegral des Vektorfelds $F$ längs $\alpha$} 
+  \[
+  \boxed{
+    \int_\alpha F := \int_a^b F \big( \alpha(t) \big) \cdot 
+    \dot{\alpha}(t)\dift 
+    = 
+    \int_a^b \langle F ( \alpha(t) \big), \dot{\alpha}(t) \rangle \dift. 
+  }
+  \]
+
+  \begin{center}
+    \includegraphics{mp/12_kurvenintegral}
+    \captionof{figure}{Tangentieller Anteil des Vektorfeldes $F$ im Bezug auf $\alpha$}
+    \label{fig:12_kurvenintegral}
+  \end{center}
+
+  Das Integral $\int_\alpha F$ ist ein Maß für den 
+  \slanted{tangentiellen Anteil} des Vektorfeldes $F$ im Bezug 
+  auf $\alpha$ im Mittel (\sieheAbbildung\ref{fig:12_kurvenintegral}). 
+  Physikalisch wird dadurch etwa die Arbeit 
+  angegeben, die ein Probekörper bei Durchlaufen der Kurve $\alpha$ 
+  in einem Kraftfeld $F$ verrichtet. \AntEnd   
+\end{antwort}
+
+%% Question 11
+\begin{frage}\index{Permanenzeigenschaften!des Kurvenintegrals}
+  Welche \bold{Permanenzeigenschaften} hat das Kurvenintegral?
+\end{frage}
+
+\begin{antwort}
+  \desc{i}\, Für zwei Vektorfelder $F$ und $G$ auf $D\subset\RR^n$ 
+  und $a , b\in \RR$ gilt:
+  \[
+  \int_{\alpha} a F + b G   = 
+  a\int_\alpha F   + b\int_\alpha G.
+  \]
+  \noindent
+  \desc{ii}\, Für jede Umparametrisierung 
+  $\beta\fd [c,d] \to \RR^2$ von $\alpha$, 
+  also jede reguläre Kurve $\beta$, 
+  die dieselbe Spur wie $\alpha$ beschreibt,  
+  folgt aus der Substitutionsregel für Integrale einer reellen Veränderlichen
+  \[
+  \int_\beta F  = \left\{ \begin{array}{rr} 
+      \int_\alpha F , &\text{falls $\beta(c)=\alpha(a)$ gilt,}\\
+      -\int_\alpha F , &\text{falls $\beta(c)=\alpha(b)$ gilt}.
+    \end{array}\right.
+  \]
+  Insbesondere ändert das Integral sein Vorzeichen, wenn der Integrationsweg 
+  in entgegengesetzter Richtung durchlaufen wird.   
+
+  \noindent
+  \desc{iii}\, Ist $\alpha=\gamma_1 \oplus \gamma_2$ die Zusammensetzung 
+  zweier regulärer Kurven, dann gilt für das Kurvenintegral 
+  längs $\alpha$: 
+  \[
+  \int_\alpha F = \int_{\gamma_1} F + 
+  \int_{\gamma_2} F.
+  \]
+
+  \noindent
+  \desc{iv}\, Es gilt die Abschätzung 
+  \[
+  \int_\alpha F \le \nb{ F\circ \alpha }_{[a,b]} \cdot \ell( \alpha ), 
+  \]
+  wobei $\ell(\alpha)$ die \slanted{Kurvenlänge} angibt. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 12
+\begin{frage}\label{12_hauptsatz}\index{Hauptsatz für Kurvenintegrale}
+  Wie lautet der \bold{Hauptsatz über Kurvenintegrale}?
+\end{frage}
+
+\begin{antwort}
+  In völliger Analogie zum Hauptsatz der Differenzial- und 
+  Integralrechnung liefert der Hauptsatz für Kurvenintegrale eine Aussage 
+  über die Beziehung zwischen Integration (längs einer Kurve) und 
+  Differenziation. Er lautet 
+
+  \medskip\noindent
+  \satz{\noindent
+    Ist $F=\grad f\fd D\to\RR^n$ ein stetiges Gradientenfeld auf dem Gebiet 
+    $D\subset\RR^n$, dann gilt für jede stückweise reguläre Kurve 
+    $\alpha$ in $D$ mit Anfangspunkt $\alpha(a)$ und Endpunkt $\alpha(b)$: 
+    \[
+    \boxed{ 
+      \int_\alpha F = f \big( \alpha(b) \big)-f \big( \alpha(a) \big).
+    } 
+    \]
+  }
+
+  \medskip\noindent
+  Der Zusammenhang ergibt sich daraus, dass die Funktion 
+  $t\mapsto \grad f\big( \alpha(t) \big) \cdot\dot{\alpha}(t)$ 
+  nach der Kettenregel eine Stammfunktion der Funktion 
+  $t\mapsto f\big( \alpha(t) \big)$ ist. Damit folgt der Hauptsatz 
+  für Kurvenintegrale aus dem Hauptsatz der Differenzial- und 
+  Integralrechnung einer Veränderlichen
+  \[
+  \int_\alpha F  = 
+  \int_a^b \grad f\big(\alpha(t)\big)\cdot\dot{\alpha}(t) \dift = 
+  f \big( \alpha(b) \big)-f \big( \alpha(a) \big).\EndTag
+  \]
+\end{antwort}
+
+%% Question 13
+\begin{frage}\index{konservatives Vektorfeld}
+  \index{Stammfunktion!eines Vektorfelds}
+  \index{Potential}
+  Wann nennt man ein Vektorfeld \bold{konservativ}?
+\end{frage}
+
+\begin{antwort}
+  Ein Vektorfeld $F\fd D\to\RR^n$ heißt \slanted{konservativ}, 
+  wenn es ein Gradientenfeld ist, {\dasheisst} wenn eine Funktion 
+  $f\fd D\to\RR^n$ existiert, so dass $F=\grad f$ gilt. 
+  In diesem Fall heißt $f$ \slanted{Stammfunktion} von $F$  
+  und $u:=-f$ \slanted{Potenzial} von $F$.  
+  \AntEnd  
+\end{antwort} 
+
+%% Question 14
+\begin{frage}\label{12_integrab}
+  \index{Integrabilitätsbedingung!für die Existenz eines Potentials}
+  Welche notwendige Bedingung muss ein stetig 
+  differenzierbares Vektorfeld $F$ erfüllen, damit es 
+  ein Potenzial besitzt? 
+\end{frage}
+
+\begin{antwort}
+  Aus $F=\grad f$ folgt  
+  $\partial_i F_k = \partial_i \partial_k f$ für alle 
+  $i,k \in\{1,\ldots,n\}$.  
+  Nach dem Satz von Schwarz ist die Reihenfolge der 
+  partiellen Ableitungen in $\partial_i \partial_k f$ 
+  vertauschbar, und es folgt
+  \[
+  \partial_i F_k = \partial_k \partial_i f = \partial_k F_i, 
+  \qquad i,k \in{1,\ldots,n}.
+  \]
+  Das ist gleichbedeutend damit, dass die Jacobi-Matrix 
+  von $F$ in jedem Punkt $x\in D$ symmetrisch ist: 
+  \[
+  \calli{J}(F;x)=\calli{J}(F;x)^T.\EndTag
+  \] 
+\end{antwort}
+
+%% Question 15
+\begin{frage}
+  Wie lässt sich die Integrabilitätsbedingung aus der vorigen Frage 
+  für ein Vektorfeld $F\fd \RR^3 \to \RR^3$ ausdrücken?
+\end{frage} 
+
+\begin{antwort}
+  Im Fall $n=3$ ist die Bedingung gleichbedeutend mit $\rot F = 0$. \AntEnd 
+\end{antwort} 
+
+%% Question 16
+\begin{frage}
+  Kennen Sie ein Beispiel eines Vektorfeldes, welches die 
+  Integrabilitätsbedingung erfüllt, 
+  die auf ihrem Definitionsbereich aber keine Stammfunktion besitzt?
+\end{frage} 
+
+\begin{antwort}
+  Sei $D=\RR^2 \mengeminus\{ 0 \}$ und $F \fd D \to \RR^2$ definiert durch 
+  \[
+  F(x,y) := \frac{1}{x^2+y^2} (-y,x) .
+  \]
+  Für $F$ gilt $\partial_1 F_2 = \partial_2 F_1 = \frac{-x+y^2}{(x^2+y^2)^2}$, 
+  die Integrabilitätsbedingung ist also erfüllt. 
+
+  Wir zeigen, dass $F$ auf $D$ keine Stammfunktion 
+  besitzt. Dazu integrieren wir $F$ längs einer geschlossenen Kurve $\alpha$, 
+  deren Spur die Einheitskreislinie im $\RR^2$ ist. Da Anfangs- und Endpunkt 
+  von $\alpha$ identisch sind, müsste das Kurvenintegral $\int_\alpha F$ 
+  nach dem Hauptsatz gleich null sein, falls $F$ in $D$ eine Stammfunktion 
+  besitzt. Mit der Parametrisierung $\alpha(t)=(\cos t, \sin t)$ 
+  erhält man jedoch 
+  \[
+  \int_\alpha F(x) \difx = F\big( \alpha(t) \big) \cdot \dot{\alpha}(t) \dift 
+  =
+  \int_0^{2\pi} \begin{pmatrix} -\sin t \\ \cos t \end{pmatrix} 
+  \cdot  
+  \begin{pmatrix} -\sin t \\ \cos t \end{pmatrix} \dift = 
+  \int_0^{2\pi} 1 \dift =2\pi. 
+  \]
+  $F$ kann also auf $D$ also keine Stammfunktion besitzen. 
+  Der Grund liegt darin, dass $D$ kein einfach zusammenhängendes 
+  Gebiet ist (vgl. Frage \ref{12_poincare} und \ref{12_einfachzus}). \AntEnd 
+\end{antwort} 
+
+%% Question 17
+\begin{frage}\label{12_poincare}\index{Lemma von Poincar\'e}
+  \index{Poincare@\textsc{Poincar\'e}, Jules-Henri (1854-1912)}
+  Wenn $D\subset\RR^n$ ein Sterngebiet ist und $F\fd D\to\RR^n$ ein stetig 
+  differenzierbares Vektorfeld, das die Integrabilitätsbedingung erfüllt, 
+  wie kann man dann eine stetig differenzierbare Funktion 
+  $f\fd\RR^n\to\RR$ mit $\grad f=F$ konstruieren?
+\end{frage}
+
+\begin{antwort}
+  Sei $x_0$ das Zentrum des Sterngebiets. {\OBdA} können 
+  wir $x_0=0$ annehmen und integrieren $F$ längs des Streckenzugs 
+  $\alpha$ von $0$ nach $x\in D$, also der Kurve 
+  $\alpha\fd [0,1]\to D$ mit $t\mapsto xt$.  
+  Für eine eventuelle Stammfunktion $f$ von $F$ 
+  mit $f(0)=0$ müsste nach Frage \ref{12_hauptsatz} gelten: 
+  \[
+  f(x)=\int_{x_0}^x  F (u) \dd u = 
+  \int_0^1 \sum_{i=1}^n F_i (xt) x_i \dift 
+  \]
+  Wir zeigen, dass tatsächlich $\grad f = F$, also 
+  $\partial_k f=F_k$ für $k=1,\ldots,n$ gilt. Differen\-ziation 
+  unter dem 
+  Integral und die Voraussetzung $\partial_k F_i = \partial_i F_k$
+  ergibt zunächst  
+  \begin{align*}
+    \partial_k f(x) &= 
+    \int_0^1 \left( \sum_{i=1}^n t\cdot \partial_k F_i (xt) \cdot x_i + 
+      F_k(xt) \right) \dift \\
+    &=
+    \int_0^1 \left( 
+      t\cdot \Big( \sum_{i=1}^n  \partial_i F_k (xt) \cdot x_i \Big) + 
+      F_k(xt) \right)  \dift.
+  \end{align*}
+  Nach der Kettenregel ist 
+  $\sum_{i=1}^n \partial_i F_k (xt) \cdot x_i = 
+  \frac{\dd}{\dift} F_k(xt)$, also 
+  folgt zusammen mit Produktregel und dem Hauptsatz 
+  der Differenzialrechnung einer Veränderlichen 
+  \[
+  \partial_k f(x) = 
+  \int_0^1 \left(  t\cdot \Big( \frac{\dd}{\dift} F_k(xt) \Big) + 
+    F_k(xt) \right) \dift = 
+  \int_0^1 \Big( \frac{\dd}{\dift} t F_k(xt) \Big) \dift = 
+  F_k(x).\EndTag
+  \]
+  
+\end{antwort} 
+
+%% Question 18
+\begin{frage}\label{12_einfachzus}\index{einfach zusammenhängend}
+  Kennen Sie eine größere Klasse von Gebieten $D\subset\RR^n$, für welche die 
+  Integrabilitätsbedingung \slanted{hinreichend} für die Existenz eines 
+  Potenzials ist?
+\end{frage}
+
+\begin{antwort}
+  Der Satz gilt allgemein für \slanted{einfach zusammenhängende Gebiete}. 
+  Ein Gebiet $D\subset \RR^n$ heißt \slanted{einfach zusammenhängend}, wenn 
+  jede geschlossene Kurve in $D$ stetig auf einen Punkt in $D$ 
+  zusammengezogen werden kann, ohne dass $D$ verlassen wird. 
+  Speziell im Zweidimensionalen sind einfach zusammenhängende Gebiete  
+  als zusammenhängende Teilmengen dadurch ausgezeichnet, dass 
+  sie keine "`Löcher"' besitzen. 
+
+  Aus dem vorhergehenden Satz über Sterngebiete folgt zunächst, dass 
+  jedes Vektorfeld, das auf einer beliebigen offenen Menge 
+  $D\subset \RR^n$ die Integrabilitätsbedingung erfüllt, 
+  dort \slanted{lokal} eine Stammfunktion 
+  besitzt in dem Sinne, dass für jedes $x\in D$ eine Umgebung 
+  $U_x$ existiert, auf der $F$ eine Stammfunktion besitzt. 
+  Denn $D$ enthält zu jedem Punkt $x\in D$ eine $\eps$-Umgebung, 
+  und das ist ein Sterngebiet. 
+
+  Besitzt $F$ lokal eine Stammfunktion auf $D$, dann existiert eine globale 
+  Stammfunktion genau dann, wenn $\int_\alpha F=0$ für jede in $D$ 
+  verlaufende geschlossene Kurve $\alpha$ gilt. Das ist eine Konsequenz 
+  aus dem Hauptsatz für Kurvenintegrale. Diese Bedingung ist nicht für 
+  beliebige 
+  Gebiete $D$ erfüllt, wohl aber für die einfach zusammenhängenden (Beweis 
+  s. \citep{Koenig}).
+  \AntEnd  
+\end{antwort} 
+
+%% Question 19
+\begin{frage}\index{Pfaffsche Form@Pfaff\sch e Form}\index{Eins@$1$-Form}
+  \index{Pfaff@\textsc{Pfaff}, Johann Friedrich (1765-1932)}
+  Was versteht man unter einer \bold{Pfaff'schen Form ($1$-Form)} auf einer 
+  offenen Menge $D\subset\RR^n$? 
+\end{frage}
+
+\begin{antwort}
+  Eine Pfaff\sch e Form oder $1$-Form auf einer offenen Menge $D\subset\RR^n$ 
+  ist nach Definition eine Abbildung $\omega$, die jedem $x\in D$ 
+  eine lineare Abbildung $\omega(x)\fd \RR^n\to \RR$ zuordnet, also 
+  eine Abbildung 
+  \[
+  \omega\fd D \to \mathrm{L}(\RR^n,\RR).
+  \]
+  Eines der wichtigsten Beispiele einer Pfaff\sch en Form ist das 
+  Differenzial $\dd f$ einer differenzierbaren 
+  Funktion $f\fd \RR^n\to \RR$, welches  
+  jedem Punkt $x\in D$ die Linearform $\dd f(x)$ zuordnet. \AntEnd
+\end{antwort} 
+
+%% Question 20
+\begin{frage}
+  Gibt es eine Bijektion zwischen $1$-Formen und Vektorfeldern?
+\end{frage}
+
+\begin{antwort}
+  Pfaff\sch e Formen lassen sich als die zu Vektorfeldern 
+  $F\fd D\to\RR^n$ \slanted{dualen Objekte} verstehen. 
+  Der Zusammenhang wird wie in der linearen Algebra durch das 
+  Skalarprodukt hergestellt. Ist $F$ ein Vektorfeld auf $D$, dann ist  
+  durch 
+  \[
+  \omega(x) v := \langle F(x), v \rangle \qquad\text{für alle $v\in \RR^n$}
+  \asttag
+  \]     
+  für jeden Punkt $x\in D$ eine Linearform $\omega(x)$ definiert. 
+
+  Ist umgekehrt eine $1$-Form $\omega$ auf $D$ gegeben, dann folgt mit 
+  linearer Algebra, dass durch die Gleichung {\astref}
+  der Vektor $F(x)$ für jedes $x\in D$ eindeutig bestimmt ist. 
+  \AntEnd
+\end{antwort}
+
+%% Question 21
+\begin{frage}\index{Kurvenintegral!einer $1$-Form}
+  Wie ist das \bold{Kurvenintegral für eine $1$-Form $\omega$} erklärt?
+\end{frage}
+
+\begin{antwort}
+  \nomenclature{$\int_\alpha \omega$}{Integral 
+    der $1$-Form $\omega$ längs der Kurve $\alpha$}
+  Aufgrund der Beziehung {\astref} definiert man das Kurvenintegral 
+  von $\omega$ längs der Kurve $\alpha\fd [a,b]\to D$ durch 
+  \[
+  \int_\alpha \omega := 
+  \int_a^b \omega\big( \alpha(t) \big) \dot{\alpha}(t) \dift.
+  \]
+  Ist $F_\omega$ das der $1$-Form $\omega$ assozierte Vektorfeld, 
+  so gilt also $\int_\alpha \omega = \int_\alpha F_\omega$. \AntEnd
+\end{antwort}  
+
+%% Question 22
+\begin{frage}\index{Koordinatendifferenzial}\label{12_koorddiff}
+  \nomenclature{$\difx_i$}{Differenzial ($1$-Form) zur 
+    Koordinatenfunktion $(\xi_1,\ldots, \xi_n) \mapsto \xi_i$}
+  Wie sind die $1$-Formen $\dd x_i$ definiert und wie 
+  lassen sich allgemeine $1$-Formen durch diese ausdrücken? 
+\end{frage}
+
+\begin{antwort}
+  Die $1$-Formen $\dd x_i$ sind die Differenziale der 
+  Koordinatenfunktion $(\xi_1,\ldots, \xi_n) \mapsto \xi_i$. 
+  Es handelt sich also bei $\dd x_i$ um eine konstante $1$-Form, 
+  für die $\dd x_i (\xi ) v =v_i$ an jeder Stelle $\xi\in D$ und 
+  jeden Vektor $v\in \RR^n$ gilt.    
+  Ferner gilt aufgrund der Linearität von $\omega(\xi)$    
+  \[
+  \omega( \xi ) v = \sum_{i=1}^n \omega (\xi ) e_i \cdot v_i = 
+  \sum_{i=1}^n \omega (\xi ) e_i \cdot \dd x_i (\xi) v. 
+  \]
+  Durch $a(\xi) := \omega (\xi ) e_i$ sind eindeutig $n$ Funktionen 
+  $a_i \fd \RR^n \to \RR$ definiert. Mit diesen besitzt 
+  jede $1$-Form eine Darstellung der Gestalt 
+  \[
+  \boxed{
+    \omega = a_1 \difx_1 + \cdots + a_n \difx_n. 
+  } \EndTag
+  \]
+\end{antwort}
+
+%% Question 23
+\begin{frage}
+  Wie lautet die Darstellung aus der letzten Frage für den Fall, dass 
+  $\omega=\dd f$ das Differenzial einer 
+  differenzierbaren Funktion $f$ ist, wie lautet sie, 
+  wenn $\omega=\omega_F$ die dem Vektorfeld $F$ zugeordnete $1$-Form ist? 
+\end{frage}
+
+\begin{antwort}
+  Für $\omega=\dd f$ ist $a_i(\xi)=\dd f(\xi) e_i=\partial_i f(\xi)$, 
+  und damit besitzt $\dd f$ die Darstellung
+  \[
+  \dd f = \partial_1 f \difx_1 + \cdots +\partial_n f \difx_n.
+  \]
+
+  Ist $\omega$ die einem Vektorfeld $F=(F_1,\ldots,F_n)$ zugeordnete 
+  Form, so gilt $a_i(\xi)=\langle F(\xi), e_i \rangle =F_i(x)$ und 
+  damit 
+  \[
+  \omega_F = F_1 \difx_1 + \cdots + F_n \difx_n.
+  \EndTag
+  \]
+  
+\end{antwort}
+
+%% Question 24
+\begin{frage}\index{Stammfunktion!einer $1$-Form}
+  Was versteht man unter einer \slanted{Stammfunktion} einer 
+  $1$-Form $\omega$ auf einer offenen Teilmenge $U\subset\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Eine \slanted{Stammfunktion} einer 
+  $1$-Form $\omega = f_1 \difx_1 + \cdots + f_n \difx_n$ auf $U$ ist eine 
+  differenzierbare Funktion $f\fd U\to\RR$ mit 
+  $\omega = \dd f$, also $f_1 = \partial_1 f, \ldots, f_n=\partial_n f$. 
+
+  Eine $1$-Form heißt \slanted{exakt} auf $U$, wenn sie auf $U$ eine 
+  Stammfunktion besitzt. \AntEnd
+\end{antwort} 
+
+
+
+%% Question 25
+\begin{frage}\index{Integrabilitätsbedingung!fuer 1-Formen@für $1$-Formen}
+  Wie kann man die Integrabilitätsbedingung für eine $1$-Form formulieren?
+\end{frage}
+
+\begin{antwort}
+  Besitzt die $1$-Form $\omega= f_1 \dd x_1 +\cdots+ f_n\dd x_n$ auf $U$ eine 
+  Stammfunktion, dann gilt $f_k= \partial_k \varphi$ für $k=1,\ldots,n$ 
+  und einer Funktion $\varphi\fd U\to\RR$. Ist ferner $\omega$ stetig 
+  differenzierbar, dann auch die Komponentenfunktionen $\partial_k \varphi$. 
+  Wegen des Satzes von Schwarz gilt dann 
+  $\partial_k \partial_j \varphi=\partial_j\partial_k \varphi$ 
+  und folglich wegen $f_k = \partial_k\varphi$
+  \[
+  \boxed{ \partial_j f_k - \partial_k f_j = 0, 
+    \qquad\text{für alle $j,k=1,\ldots,n$.}}\asttag
+  \]  
+  Die Integrabilitätsbedingung für $1$-Formen ist also vergleichbar mit 
+  der für Vektorfelder, hat dieselbe Gestalt.\AntEnd 
+\end{antwort} 
+
+%% Question 26
+\begin{frage}\index{Lemma von Poincar\'e}
+  Was besagt das Poincar\'e\sch e Lemma im Bezug auf $1$-Formen?
+\end{frage} 
+
+\begin{antwort}
+  Das Poincar\'e\sch e Lemma besagt: 
+
+  \medskip%
+  \noindent%
+  \slanted{Erfüllt eine stetig differenzierbare 
+    $1$-Form $\omega$ auf einem 
+    Sterngebiet $D$ die Integrabilitätsbedingung {\astref}, dann 
+    besitzt sie auf $D$ eine Stammfunktion.}
+
+  \medskip
+  \noindent% 
+  Der Beweis geht wörtlich wie in Frage \ref{12_poincare}. 
+  Genauso treffen die Verallgemeinerungen aus Frage 
+  \ref{12_einfachzus} ebenso auf $1$-Formen zu.\AntEnd 
+\end{antwort}
+
+
+\section{Die Integralsätze von Gauß und Stokes}
+
+
+Mithilfe des Gauß'schen Integralsatzes kann man ein 
+Volumenintegral über die Divergenz eines Vektorfeldes 
+durch ein Oberflächenintegral ausdrücken.
+
+%% Question 27
+\begin{frage}\index{Orientierung!einer regulären Hyperfläche}
+  \index{regulaere Hyperflaeche@reguläre Hyperfläche} 
+  Wie definiert man für eine reguläre Hyperfläche $X \subset \RR^n$ den 
+  Begriff der \bold{Orientierung}? 
+
+  Dabei heißt eine Teilmenge $X\subset\RR^n$ reguläre Hyperfläche, wenn eine 
+  $(n-1)$-dimensionale $\calli{C}^1$-Untermannigfaltigkeit $M$ existiert, sodass 
+  $M$ offen und dicht in $X$ ist und $X\mengeminus M$ eine Nullmenge zur Dimension $n-1$ ist.
+\end{frage}
+
+\begin{antwort}
+  Den Orientierungsbegriff definiert man 
+  mithilfe eines \slanted{Einheitsnormalenfelds}\index{Einheitsnormalenfeld} 
+  auf $X$. Darunter versteht man ein stetiges Vektorfeld 
+  $\eta\fd X\to\RR^n$ derart, dass für jedes $x\in X\cap M$ der Vektor 
+  $\eta(x)$ senkrecht auf dem Tangentialraum 
+  $T_x M$ steht und $\n{x}=1$ gilt.
+
+  Eine reguläre Hyperfläche $X$ heißt \slanted{orientierbar}, falls 
+  sie ein Einheitsnormalenfeld besitzt. 
+  Mit $\eta$ ist stets auch $-\eta$ ein 
+  Einheitsnormalenfeld, die Orientierung 
+  einer Hyperfläche muss also in jedem speziellen Fall explizit angegeben werden.  
+
+  Das Standardbeispiel einer nicht orientierbaren regulären Hyperfläche 
+  im $\RR^3$ ist das \slanted{Möbius-Band}.\AntEnd
+\end{antwort}
+
+
+
+%% Question 28
+\begin{frage}\index{regulaerer Randpunkt@regulärer Randpunkt}
+  \index{singulaerer Randpunkt@singulärer Randpunkt}
+  Was versteht man unter einem \bold{regulären Randpunkt} einer 
+  offenen Teilmenge $G\subset\RR^n$, was unter einem \bold{singulären 
+    Randpunkt}? 
+\end{frage}
+
+\begin{antwort}
+  Ein Punkt $a\in\partial G$ heißt \slanted{regulärer Randpunkt} von $G$, 
+  wenn eine Umgebung $U\subset \RR^n$ von $a$ und eine $\calli{C}^1$-Funktion 
+  $g\fd U\to\RR$ mit $g'\not=0$ existiert, sodass gilt: 
+  $G\cap U = \{ x\in U\sets g(x) < 0 \}$ (\sieheAbbildung\ref{fig:12_reg}).
+
+  \begin{center}
+    \includegraphics{mp/12_reg}
+    \captionof{figure}{Der Punkt $a$ ist ein regulärer Randpunkt von $G$.}
+    \label{fig:12_reg}
+  \end{center}
+
+  Ein Punkt aus $\partial G$ heißt \slanted{singulärer Randpunkt}, wenn 
+  er nicht regulär ist. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 29
+\begin{frage}\index{Rand!einer Teilmenge des $\RR^n$}\index{glatt berandet}
+  Wann heißt eine offene Teilmenge $G\subset\RR^n$ \bold{glatt berandet}, 
+  was versteht man unter einem \bold{$\calli{C}^1$-Polyeder}?
+\end{frage}
+
+\begin{antwort}
+  $G\subset\RR^n$ heißt 
+  \begin{itemize}
+  \item \slanted{glatt berandet}, wenn jeder Randpunkt von $G$ 
+    regulär ist, 
+  \item \slanted{$\calli{C}^1$-Polyeder}, wenn die Menge der singulären 
+    Randpunkte von $G$ eine $(n-1)$-Nullmenge ist. 
+  \end{itemize}
+  Es gilt, dass der glatte Rand einer Teilmenge $G\subset\RR^n$ eine 
+  reguläre orientierbare $\calli{C}^1$-Hyperfläche ist. 
+  \AntEnd  
+\end{antwort} 
+
+%% Question 30
+\begin{frage}\label{12_flint}\index{Integral!über eine $\calli{C}^1$-Fläche}
+  Ist $(M,\eta)$ eine orientierbare reguläre Hyperfläche im $\RR^n$ und 
+  $F\fd M \to \RR^n$ ein Vektorfeld. Wann heißt dann 
+  $F$ über $M$ \slanted{integrierbar} und wie ist gegebenenfalls 
+  das Integral definiert?
+\end{frage}
+
+\begin{antwort}
+  $F$ heißt über $M$ integrierbar, wenn die Funktion 
+  $x\mapsto \langle F(x), n(x) \rangle$ über $M$ integrierbar ist. 
+  In diesem Fall ist das Integral von $F$ über $M$ definiert durch 
+  \[
+  \boxed{
+    \int_M F \overrightarrow{\dd S} = 
+    \int_M \langle F, \eta \rangle \dd S. 
+  }
+  \]
+  $\overrightarrow{\dd S}=\eta\dd S$ nennt man 
+  \slanted{vektorielles Flächenelement}.\index{vektorielles Flächenelement}
+  \nomenclature{$\int_{\partial G} F \overrightarrow{\dd S}$}{Integral über den Rand des 
+    $\calli{C}^1$-Polyeders $G$} 
+  \AntEnd
+\end{antwort} 
+
+%% Question 31
+\begin{frage}
+  Wie lässt sich diese Integraldefinition physikalisch deuten?
+\end{frage}
+
+\begin{antwort}
+  Man stelle sich $F$ als Geschwindigkeitsfeld\index{Geschwindigkeitsfeld}
+  einer stationären Strömung\index{stationäre Strömung} 
+  vor. Der Wert $\langle F(x), n(x) \rangle$ ist die Komponente des Vektors 
+  $F(x)$ in Richtung der Normalen an $M$ im Punkt $x$, und somit  
+  beschreibt $\langle F(x), \eta(x) \rangle \dd S$ die Menge  
+  an Flüssigkeit, die pro Zeiteinheit durch das Flächenelement $\dd S$ 
+  fließt, folglich $\int_M \langle F, n \rangle \dd S$ 
+  die Gesamtmenge der pro Zeiteinheit durch $M$ strömenden Flüssigkeit 
+  (\sieheAbbildung\ref{fig:12_physik1}). 
+  \AntEnd
+  
+  \begin{center}
+    \includegraphics{mp/12_physik1}
+    \captionof{figure}{$\langle F(x), \eta(x) \rangle \dd S$ beschreibt die Menge  
+      an Flüssigkeit, die pro Zeiteinheit durch das Flächenelement $\dd S$ fließt.}
+    \label{fig:12_physik1}
+  \end{center}
+
+\end{antwort}
+
+
+
+%% Question 32
+\begin{frage}\index{Gausscher Integralsatz@Gauß\sch er Integralsatz}
+  \index{Integralsatz!von Gauß}\index{Gauss@\textsc{Gauss}, Carl Friedrich (1777-1855)}
+  Wie lautet der \bold{Gauß\sch e Integralsatz} 
+  \begin{itemize}[2mm]
+  \item[\desc{a}] für ein Kompaktum $A\subset\RR^n$ mit glattem Rand,\\[-3mm]
+  \item[\desc{b}] ein beschränktes $\calli{C}^1$-Polyeder?
+  \end{itemize}
+\end{frage}
+
+\begin{antwort}
+  Der Fall $\desc{b}$ ist eine Verallgemeinerung von $\desc{a}$, 
+  deswegen genügt es, den Gauß'schen Integralsatz für $\calli{C}^1$-Polyeder 
+  zu formulieren. Der Satz lautet in diesem Fall 
+
+  \medskip\noindent
+  \satz{Sei $G\subset\RR^n$ ein beschränktes $\calli{C}^1$-Polyeder und 
+    $F\fd D\to \RR^n$ mit $\overline{G}\subset D$ ein stetig 
+    differenzierbares Vektorfeld. Ist dann $\Div F$ über $G$ und 
+    $F$ über $\partial G$ integrierbar, dann gilt 
+    \[
+    \boxed{ 
+      \int_G \Div F \difx = 
+      \int_{\partial G} F \overrightarrow{\dd S}.
+    } \EndTag\] 
+  }
+\end{antwort} 
+
+%% Question 33
+\begin{frage}
+  Können Sie den Gauß\sch en Integralsatz in dem Spezialfall beweisen, 
+  dass es sich bei $G$ um einen offenen Quader 
+  $Q=\open{a_1,b_1}\times \cdots \times \open{a_n,b_n}$ handelt?
+\end{frage}
+
+\begin{antwort}
+  Es genügt zu zeigen, dass für alle Komponentenfunktionen $F_k$ 
+  von $F$ und alle Komponenten $\eta_k$ des Einheitsnormalenfeldes 
+  $\eta$ die Gleichung 
+  \[
+  \int_{\partial Q} F_k \eta_k \dd S = \int_Q \partial_k F_k \difx
+  \]
+  gilt. Die Formel im Gauß'schen Integralsatz folgt daraus durch 
+  Summation über $k$.  
+
+  Nach einer eventuellen Umnummerierung der Variablen können wir 
+  $k=n$ annehmen (das vereinfacht die Notationen im Beweis). 
+  Sei $Q'\subset \RR^{n-1}$ der $(n-1)$-dimensionale Quader mit 
+  $Q= Q'\times \open{a_n,b_n}$. Die $n$-te Komponente 
+  $\eta_n$ des Einheitsnormalenfeldes verschwindet 
+  dann auf den Randstücken $\partial_{Q'} \times \open{a,b}$, 
+  $F_n \eta_n$ muss also nur über die "`oberen"' und "`unteren"'  
+  Randstücke $Q'\times \{ b \} $ und $Q'\times \{ a \}$ integriert 
+  werden (\sieheAbbildung\ref{fig:12_quader}). 
+  Auf dem oberen gilt $\eta_n(x)=1$ und auf dem unteren 
+  $\eta_n(x)=-1$. Mit der Notation $x':=(x_1,\ldots,x_{n-1})$ folgt dann 
+  \begin{align*}
+    \int_{\partial Q} F_n \eta_n \dd S &= 
+    \int_{Q'} F_n (x',b)  \difx' - 
+    \int_{Q'} F_n( x',a ) \difx' \\
+    &=
+    \int_{Q'}\left(\int_a^b\partial_n F_n( x',x_n) \difx_n \right) \difx' 
+    = \int_{Q'} \partial_n F_n \difx.
+  \end{align*}
+  Das beweist den Gauß'schen Integralsatz im Spezialfall eines offenen 
+  Quaders $Q$. Für einen Beweis der allgemeinen Version siehe 
+  \citep{Koenig}.\AntEnd
+
+  \begin{center}
+    \includegraphics{mp/12_quader}
+    \captionof{figure}{Zum Beweis des Gauß'schen Integralsatzes.}
+    \label{fig:12_quader}
+  \end{center}
+
+\end{antwort} 
+
+
+
+%% Question 34
+\begin{frage}\label{12_quelldichte}\index{Quelldichte}
+  Können Sie eine physikalische Interpretation des 
+  Gauß\sch en Integralsatzes geben?
+\end{frage}
+
+\begin{antwort}
+  Man stelle sich $F$ als das stationäre Geschwindigkeitsfeld einer 
+  Flüssigkeit vor, die den $\calli{C}^1$-Polyeder 
+  $G$ durchströmt (\sieheAbbildung\ref{fig:12_physik}). 
+  Dann misst $F \overrightarrow {\dd S}$ die Masse 
+  die in einer Zeiteinheit über das Flächenelement ${\dd S}$ strömt. 
+  Entsprechend gibt $\int_{\partial G} F\overrightarrow{\dd S}$ 
+  die Bilanz der Massen an, die in einer 
+  Zeiteinheit ins Innere des Polyeders bzw. aus ihm herausfließen. 
+  Diese Bilanz ist (bei einer inkompressiblen Flüssigkeit) gleich der 
+  Masse, die im Inneren von $G$ in einer Zeiteinheit in Senken 
+  verschwindet bzw. durch Quellen zugeführt wird. Entsprechend ist 
+  $\frac{1}{\vol(G)} \int_{\partial G} F \overrightarrow{\dd S}$ ein Maß 
+  für die \slanted{mittlere Quelldichte} des Vektorfeldes $F$ in $G$. 
+
+  \begin{center}
+    \includegraphics{mp/12_physik}
+    \captionof{figure}{Zur physikalischen Interpretation des Gauß'schen 
+      Integralsatzes.}
+    \label{fig:12_physik}
+  \end{center}
+
+
+  Im Grenzfall, in dem $G$ zu einem Punkt $x$ zusammenschrumpft, 
+  entspricht die mittlere Quelldichte von $F$ in $G$ gleich der Divergenz 
+  von $F$ in in $x$. Dies sieht man folgendermaßen: Sei $(Q_k)\subset G$ 
+  eine Folge abgeschlossener Quader mit $\lim Q_k = x$. Der Gauß'sche 
+  Integralsatz impliziert dann  
+  \[
+  \min_{x\in Q_k} \Div F(x) \le 
+  \frac{1}{v(Q_k)} \int_{\partial G} F\overrightarrow{\dd S} \le 
+  \max_{x\in Q_k} \Div F(x).
+  \] 
+  Wegen der Stetigkeit von $\Div F$ auf $G$ muss also  
+  \[
+  \lim_{k\to\infty} \frac{1}{v(Q_k)}\int_{\partial G} 
+  F \overline{\dd S}=\Div x
+  \]
+  gelten. 
+  Damit kann man $\Div F(x)$ als \slanted{Quelldichte} von $F$ im Punkt $x$ 
+  interpretieren. Das Volumenintegral über diese "`Dichten"' misst die 
+  in einem Zeitintervall in $G$ entstehende Flüssigkeitsmasse. 
+
+  Locker formuliert beinhaltet der Gauß'sche 
+  Integralsatz also eine Aussage der Art
+  \[
+  \Big\{
+  \begin{array}{l} \text{Bilanz der Mengen, die über den} \\
+    \text{Rand von $G$ ein- und ausfließen} \end{array}
+  \Big\}
+  = 
+  \Big\{
+  \begin{array}{l} \text{Bilanz der Mengen, die in $G$} \\
+    \text{erzeugt und vernichtet werden} \end{array}
+  \Big\} \EndTag
+  \] 
+\end{antwort} 
+
+
+
+%% Question 35
+\begin{frage}\index{Volumen!der Sphäre}\index{Volumen!der Einheitskugel}
+  Welchen Zusammenhang zwischen dem Volumen der $n$-dimensionalen 
+  Einheitskugel $K_1(0)$ im $\RR^n$ 
+  und des $(n-1)$-dimensionalen Volumens $\omega_n$ der 
+  Sphäre $S^{n-1}$ erhält man durch Anwendung des Gauß'schen Integralsatzes 
+  auf das Vektorfeld $F\fd \RR^n\to\RR^n$ mit $x\mapsto x$?
+\end{frage}
+
+\begin{antwort}
+  $F$ ist auch das Einheitsnormalenfeld der Sphäre $S^{n-1}$. Damit 
+  gilt 
+  \[
+  \int_{S^{n-1}} F\overrightarrow{\dd S} = 
+  \int_{S^{n-1}} \langle F, F \rangle \dd S = 
+  \int_{S^{n-1}} \n{x}_2 \dd S = 
+  \int_{S^{n-1}} 1 \dd S = \omega_n.
+  \]
+  Auf der anderen Seite erhält man wegen $\Div F=1+\cdots+1=n$ 
+  \[
+  \int_{K_1(0)} \Div F \difx =  
+  \int_{K_1(0)} n \difx = n\kappa_n,
+  \]
+  mit dem Gauß\sch en Integralsatz folgt also $\omega_n = n \kappa_n$. \AntEnd 
+\end{antwort} 
+
+
+
+%% Question 36
+\begin{frage}\index{Kontinuitaetsgleichung@Kontinuitätsgleichung}
+  Wie erhält man aus dem Gauß'schen Integralsatz die 
+  \bold{Kontinuitätsgleichung}?
+\end{frage}
+
+\begin{antwort}
+  Sei $D\subset\RR^n$ offen und 
+  $G\subset \RR^n$ ein $\calli{C}^1$-Polyeder 
+  mit $\overline{G}\subset D$. 
+  Wir betrachten eine $\calli{C}^1$-Abbildung und eine 
+  $\calli{C}^1$-Funktion 
+  \[
+  v \fd R\times D \to \RR^3, \qquad
+  \varrho \fd R\times D \to \RR.
+  \] 
+  Dabei können wir $v$ etwa als das zeitabhängige Geschwindigkeitsfeld 
+  einer strömenden Flüssigkeit interpretieren und $\varrho$ als 
+  ebenfalls zeitabhängige Funktion der Massendichte auf $D$. 
+
+  Die Änderung des durch das 
+  Oberflächenelement $\dd S$ fließenden Flüssigkeitsvolumens zum 
+  Zeitpunkt $t$ wird durch $\int_{\partial G} v(t,x) \overrightarrow{\dd S}$ 
+  beschrieben, die Gesamtänderung der Masse zum Zeitpunkt $t$ also durch 
+  $\int_{\partial G} \varrho(t,x) v(t,x) \overrightarrow{\dd S}$. 
+
+  Wird in $G$ keine Masse erzeugt oder vernichtet, dann ist die zeitliche 
+  Änderung der Masse auch durch 
+  $-\frac{\dd}{\dift} \int_G \varrho \dd V$ gegeben (das Minuszeichen 
+  kommt daher, dass das nach außen weisende Einheitsnormalenfeld zugrunde 
+  gelegt wurde). Es gilt also 
+  $\int_{\partial G} \varrho v \overrightarrow{\dd S} + 
+  \int_G \frac{\partial \varrho}{\partial t} \dd V =0$ 
+  (Differenziation unter dem Integralzeichen), 
+  und mit dem Gauß\sch en Integralsatz folgt daraus 
+  $
+  \int_{G} \left( 
+    \Div \varrho v + 
+    \frac{\partial \varrho}{\partial t} \right) \dd V  =0.
+  $
+
+  Da diese Gleichung (unter der Voraussetzung, dass 
+  die Gesamtmasse in $D$ erhalten bleibt)
+  für beliebige $\calli{C}^1$-Polyeder $G\subset D$ gilt und der 
+  Integrand stetig ist, folgt die \slanted{Kontinuitätsgleichung}
+  \[
+  \boxed{
+    \Div \varrho v + 
+    \frac{\partial \varrho}{\partial t} =0,
+  }\EndTag
+  \]
+  
+\end{antwort} 
+
+%% Question 37
+\begin{frage}
+  \index{Integralsatz!von Green}
+  \index{Green@\textsc{Green}, George (1793-1841)}
+  Können Sie die den folgenden (häufig \bold{Satz von Green} genannten) 
+  Satz aus dem Gauß\sch en Integralsatz herleiten:
+
+  Ist $G\subset\RR^2$ ein Gebiet mit stückweise glattem Rand und 
+  $U\subset\RR^2$ eine offene Menge, die den Abschluss $\overline{D}$ 
+  enthält und $F=(f,g)\fd U\to\RR^n$ ein stetig differenzierbares Vektorfeld. 
+  Dann ist 
+  \[
+  \boxed{
+    \int_G ( \partial_1 g - \partial_2 f ) \difx_1 \difx_2 = 
+    \int_{\partial G} f\difx_1 +g\difx_2,}
+  \]
+  wobei $\partial D$ so orientiert ist, dass das Gebiet $D$ links vom Rand liegt.
+\end{frage}
+
+\begin{antwort}
+  Sei $\Phi:=(g,-f)$ das "`um den Winkel $-\pi/2$ gedrehte"' 
+  Vektorfeld $F$. Für dieses gilt $\Div \Phi = \partial_1 g - \partial_2 f$ 
+  und 
+  \[
+  \langle \Phi, \eta \rangle = g\eta_1 - g\eta_2 = 
+  \langle F, \tau \rangle \quad\text{mit}\quad \tau := (-\eta_2,\eta_1).
+  \]
+  Für alle $x\in\partial G$ ist also $\tau(x)$ der um den Winkel 
+  $\pi/2$ gedrehte Einheitsnormalenvektor $\eta(x)$. 
+
+  \begin{center}
+    \includegraphics{mp/12_green}
+    \captionof{figure}{Die Menge $G$ liegt "`links"' von der Kurve $\alpha$.}
+    \label{fig:12_green}
+  \end{center}
+  
+
+  Man betrachte nun eine Kurve $\alpha \fd \open{0,1} \to \partial G$, 
+  mit $\n{\dot{\alpha}(t)}=1$, die ein glattes Teilstück von 
+  $\partial G$ so durchläuft, dass $G$ "`links"' von $\alpha$ liegt, 
+  \sieheAbbildung\ref{fig:12_green}. 
+  Für jedes $t\in\open{0,1}$ gilt dann 
+  $\dot{\alpha}(t)=\tau\big(\alpha(t)\big)$ und folglich für das 
+  Kurvenintegral von $F$ längs $\alpha$ 
+  \[
+  \int_\alpha F = 
+  \int_0^1 \langle F\big( \alpha(t) ), 
+  \tau\big( \alpha(t) \big) \rangle \dift = 
+  \int_0^1 \langle \Phi \big( \alpha(t) ), 
+  \eta\big( \alpha(t) \big) \rangle \dift
+  . \asttag
+  \]
+  Diese Gleichung gilt für beliebige Kurven, die die Spur von $\alpha$ 
+  in derselben Richtung wie $\alpha$ durchlaufen. Dies sind aber genau 
+  diejenigen Kurven, die so verlaufen, dass $G$ "`links"' von ihnen liegt, 
+  bzw. deren Einheitstangentialvektor im Punkt $x\in\partial G$ 
+  gleich $(-\eta_2(x), \eta(x))$ ist. 
+  Ist $\gamma$ eine beliege stückweise reguläre Kurve, die $\partial G$ 
+  in diesem Sinn umrundet, dann kann man 
+  durch $\int_{\partial G} F:=\int_{\gamma} F$ das Kurvenintegral längs 
+  $\partial G$ eindeutig definieren. 
+
+  Mit dieser Vereinbarung lautet {\astref} $
+  \int_{\partial G} F = \int_{\partial G} f\difx_1+g\difx_2 = 
+  \int_{\partial G} \Phi \overrightarrow{\dd S}.$
+  Das hintere Integral ist gleich 
+  $\int_G \Div \Phi \difx = \int_G (\partial_1 g - \partial_2 f)\difx_1\difx_2$ 
+  nach dem Gauß\sch en Integralsatz.
+  \nomenclature{$\int_{\partial G} F$}{Integral des Vektorfeldes $F$ längs des 
+    orientierten Randes von $G$}
+  \AntEnd
+\end{antwort} 
+
+%% Question 38
+\begin{frage}\index{k-Form@$k$-Form}
+  Was versteht man unter einer \bold{alternierenden $\mathbf{k}$}-Form auf 
+  einem reellen Vektorraum $V$?
+\end{frage}
+
+\begin{antwort}
+  Unter einer alternierenden $k$-Form $\omega$ auf $V$ 
+  versteht man eine $k$-fach lineare Abbildung 
+  \[ 
+  \omega \fd \underbrace{V\times \cdots \times V}_k \to \RR
+  \]
+  mit der Eigenschaft, dass für linear abhängige Vektoren 
+  $v_1,\ldots,v_n$ gilt: $\omega(v_1,\ldots,v_n)=0$. 
+
+  Den Vektorraum der alternierenden $k$-Formen auf $V$ bezeichnet man mit 
+  $\Alt^k(V)$. 
+  \AntEnd  
+\end{antwort}
+
+%% Question 39
+\begin{frage}\label{12_zuruck}\index{Zurückholen@einer alternierenden $k$-Form}
+  Ist $L\fd V \to W$ eine lineare Abbildung zwischen $\RR$-Vektorräumen 
+  $V$ und $W$ und $\omega$ eine alternierende 
+  $k$-Form auf $W$, wie ist dann die durch $L$ von $W$ 
+  \bold{zurückgeholte $k$-Form} $L^*\omega$ auf $V$ definiert? 
+\end{frage}
+
+\nomenclature{$L^*\omega$}{auf den Parameterraum 
+  zurückgeholte Differenzialform}
+\begin{antwort}
+  Die $k$-Form $L^*\omega \in \Alt^k(W)$ ist gegeben durch  
+  \[
+  L^*\omega (v_1,\ldots,v_n ):=\omega( Lv_1,\ldots,Lv_n).\EndTag
+  \]
+\end{antwort} 
+
+%% Question 40
+\begin{frage}\label{12_zuruckdet}\index{Zurückholen@einer alternierenden $k$-Form}
+  Ist $L\fd \RR^n\to \RR^n$ eine lineare Abbildung, die durch die 
+  Matrix $A$ beschrieben ist, wie stehen dann 
+  $\omega\in \Alt^k(V)$ und die zurückgeholte $k$-Form $L^*\omega$ 
+  zueinander in Beziehung?   
+\end{frage}
+
+\begin{antwort}
+  In diesem Fall gilt 
+  \[
+  \boxed{ L^* \omega = \det A \cdot \omega. } \EndTag
+  \]
+\end{antwort} 
+
+%% Question 41
+\begin{frage}\index{Dachprodukt}
+  Wie ist für $\omega\in\Alt^r(V)$ und $\eta\in\Alt^s(V)$ das 
+  \bold{Dachprodukt} oder 
+  \bold{äußere Produkt} $\omega\wedge\eta$ definiert?
+\end{frage}
+
+\begin{antwort}
+  \nomenclature{$\omega \wedge \eta$}{Dachprodukt} 
+  Das Dachprodukt ist die durch
+  \[
+  \omega\wedge\eta (v_1,\ldots,v_{r+s}) := 
+  \frac{1}{s!t!} \sum_{\tau\in\mathfrak{S}_{r+s}} \sign \tau 
+  \cdot \omega( v_{\tau(1)},\ldots,v_{\tau(r)} )\cdot 
+  \eta( v_{\tau(r+1)},\ldots,v_{\tau(r+s)} )
+  \]
+  gegebene $(k+s)$-Form auf $V$. 
+  Dabei bezeichnet $\mathfrak{S}_p$ die symmetrische Gruppe, also die 
+  Gruppe der Permutationen der Zahlen $1,\ldots,p$ 
+  \AntEnd 
+\end{antwort} 
+
+%% Question 42
+\begin{frage}\index{Basisvektoren von $\Alt^k(n)$}
+  Ist $e_1,\ldots,e_n$ die Standardbasis des $\RR^n$, 
+  wie lauten dann die dazugehörigen Basisvektoren von $\Alt^k(n)$?
+\end{frage}
+
+\begin{antwort}
+  \nomenclature{$\Alt^k(n)$}{Vektorraum der alternierenden $k$-Formen im $\RR^n$}
+  Man betrachte die in Frage \ref{12_koorddiff} eingeführten 
+  Koordinatendifferenziale $\dd x_i$ ($i=1,\ldots,n$). 
+  Bei diesen handelt es sich um $1$-Formen, daher sind alle äußeren 
+  Produkte $\dd x_{i_1}\wedge \cdots \wedge \dd x_{i_k}$ 
+  mit $k$ Faktoren Elemente aus $\Alt^k(\RR^n)$. 
+  Wegen $\dd x_i(e_j)=\delta_{ij}$ folgt (Induktion nach $k$):
+  \[    
+  \dd x_{i_1}\wedge \cdots \wedge 
+  \dd x_{i_k}(e_{j_1},\ldots,e_{j_k}) = 
+  \left\{ \begin{array}{ll} \sign \tau, & \text{falls 
+        $\sigma( \{i_1,\ldots,i_k \} )=\{ j_1,\ldots,j_k \}$} \\
+      & \text{für ein $\sigma\in\mathfrak{S}_k$} \\
+      0 & \text{sonst}. \end{array}\right.
+  \]
+  Ähnlich wie in der linearen Algebra bezüglich des 
+  Dualraums zeigt man, dass die $\tbinom{n}{k}$ 
+  $k$-Formen $\dd x_{i_1} \wedge \cdots \wedge \dd x_{i_k}$ mit 
+  $i_1 < i_2 < \cdots < i_n$ eine Basis von $\Alt^k(\RR^n)$ bilden. 
+  Beispielsweise ist 
+  \[
+  \begin{array}{lp{6mm}l}
+    \dd x_1,\; \dd x_2, \; \dd x_3 & & \text{eine Basis von $\Alt^1(\RR^3)$,} \\
+    \dd x_1 \wedge \dd x_2, \; \dd x_1 \wedge 
+    \dd x_3, \; \dd x_2 \wedge \dd x_3 & & \text{eine Basis von $\Alt^2(\RR^3)$,} \\
+    \dd x_1 \wedge \dd x_2 \wedge \dd x_3 & & 
+    \text{eine Basis von $\Alt^3(\RR^3)$.} 
+  \end{array}
+  \] 
+  Jede $k$-Form $\omega$ auf $\RR^n$ besitzt damit genau eine 
+  Darstellung 
+  \[
+  \omega = \sum_{i_1 < \cdots < i_k } a_{i_1 \cdots i_k} 
+  \dd x_{i_1} \wedge \cdots \wedge \dd x_{i_k},
+  \]
+  mit 
+  \[
+  a_{i_1 \cdots i_k} = \omega( e_{i_1}, \ldots, e_{i_k} ). \EndTag
+  \]
+\end{antwort} 
+
+%% Question 43
+\begin{frage}\index{Differenzialform}
+  Was ist eine 
+  \bold{Differenzialform vom Grad $\mathbf{k}$} 
+  auf einer offenen Teilmenge $U\subset\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Eine \slanted{Differenzialform vom Grad $\mathbf{k}$} oder 
+  kurz \slanted{$k$-Form} auf $U$ ist eine Abbildung, die jedem 
+  $x\in U$ eine alternierende $k$-Form $\omega(x)$ zuordnet, also 
+  eine Abbildung $U \to \Alt^k(\RR^n)$. Ist diese 
+  Abbildung differenzierbar, so heißt $\omega$ differenzierbar. Der 
+  Raum der differenzierbaren $k$-Formen auf $U$ wird mit 
+  $\Omega^k (U)$ bezeichnet.
+  \nomenclature{$\Omega^k(U)$}{Raum der differenzierbaren $k$-Formen auf $U$}
+  \AntEnd
+\end{antwort} 
+
+%% Question 44
+\begin{frage}\index{Null-Form}
+  Welches sind die $0$-Formen auf $\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Eine Form $\omega\in\Alt^0(\RR^n)$ ordnet jedem $x\in\RR^n$ eine 
+  Abbildung $\omega(x) \fd \RR^0 \to \RR$ zu, also einfach ein Element 
+  aus $\RR$. Die $0$-Formen sind 
+  somit gerade die Funktionen $\RR^n\to\RR$. \AntEnd 
+\end{antwort} 
+
+%% Question 45
+\begin{frage}\label{zuruck}\index{Zurückholen!einer Differenzialform}
+  Seien $V\subset\RR^m$ und $U\subset\RR^n$ offen und $\gamma \fd V \to U$ 
+  eine $\calli{C}^1$-Abbildung. Weiter sei $\omega$ eine Differenzialform 
+  vom Grad $k$ auf $U$. Wie ist dann die 
+  mittels $\gamma$ \bold{zurückgeholte} Differenzialform 
+  $\gamma^*\omega \in \Alt^k(\RR^m)$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die Definition der auf $V$ \slanted{zurückgeholte} 
+  Differenzialform $\gamma^*\omega$ wird über das Differenzial 
+  $\dd \gamma$ mit der linearen Version aus Frage \ref{12_zuruck} 
+  definiert: 
+  \[
+  \big(\gamma^*\omega \big)(x):=  
+  \big( \dd \gamma (a) \big)^* \omega\big( \gamma(x) \big).{\asttag}
+  \]
+  Für Vektoren $v_1,\ldots,v_k \in \RR^m$ gilt also 
+  \[
+  \boxed{\big( \gamma^* \omega )_x (v_1,\ldots,v_k)=
+    \omega_{\gamma(x)} \big( \dd\gamma (x) v_1, \ldots, \dd\gamma (x) v_k \big).}
+  \EndTag
+  \]
+\end{antwort} 
+
+
+%% Question 46
+\begin{frage}\index{Null-Form}
+  Was bedeutet diese Definition für eine $0$-Form, 
+  also eine Funktion $g\fd V\to U$?
+\end{frage} 
+
+\begin{antwort}
+  Für eine Funktion bedeutet das gerade $\gamma^* f=f\circ \gamma$. 
+  Die Definition stimmt in diesem Fall also mit der 
+  üblichen Methode überein, "`woanders"' definierte 
+  Funktionen via einer $\calli{C}^1$-Abbildung 
+  "`zurückzuholen"'. \AntEnd
+\end{antwort} 
+
+%% Question 47
+\begin{frage}
+  Ist speziell $\gamma\fd \RR^n\to\RR^n$, wie lautet dann die Gleichung 
+  {\astref}? Woran erinnert dieses Transformationsverhalten? 
+\end{frage}
+
+\begin{antwort}
+  Wegen dem Zusammenhang aus Frage \ref{12_zuruckdet} gilt 
+  in diesem Fall
+  \[
+  \big( \gamma^*\omega \big) (x)=
+  \det \calli{J}(x)\cdot \omega\big( \gamma(x) \big).{\asttag}
+  \]
+  Dieser Zusammenhang erinnert an die Transformationsformel. 
+  Diese stellt ja bei der Integration bezüglich verschiedener 
+  Koordinaten den Faktor $\big|\det \calli{x}\big|$ als Maß 
+  für die dabei auftretende infinitesimale Volumenverzerrung 
+  in Rechnung. Die Gleichung {\astref} deutet darauf hin, dass 
+  Differenzialformen diese bei der Integration zu berücksichtigende 
+  Invarianz gegenüber Parametertransformationen (bis auf das Vorzeichen) 
+  bereits von Natur aus besitzen. Diese Eigenschaft 
+  qualifiziert sie als die natürlichen Integranden 
+  bei einer Integration über Mannigfaltigkeiten. 
+  \AntEnd 
+\end{antwort} 
+
+%% Question 48
+\begin{frage}\label{12_integral1}\index{Integral!einer $n$-Form}
+  Wie definiert man das \bold{Integral} 
+  einer $n$-Form über eine Menge im $\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Eine $n$-Form 
+  $\omega=a \difx_1\wedge\cdots\wedge \difx_n$ 
+  ist genau dann integrierbar über $U\subset\RR^n$, wenn ihre 
+  Koeffizientenfunktion $a\fd \RR^n\to\RR$ über $U$ 
+  integrierbar ist. In diesem Fall definiert man das 
+  \slanted{Integral von $\omega$ über $U$} durch
+  \[
+  \int_U \omega := \int_U a(x) \difx.\EndTag
+  \]
+\end{antwort} 
+
+%% Question 49
+\begin{frage}\index{Differenzalform}
+  Wie definiert man eine Differenzialform 
+  auf einer $\calli{C}^1$-Untermannigfaltigkeit?
+\end{frage}
+
+\begin{antwort}
+  Eine Differenzialform vom Grad $k$ auf einer differenzierbaren 
+  Untermannigfaltigkeit $M$ ist eine Abbildung, die jedem 
+  $x\in M$ eine $k$-fach alternierende Abbildung auf dem Tangentialraum 
+  $T_xM$ zuordnet. \AntEnd
+\end{antwort} 
+
+%% Question 50
+\begin{frage}\index{Orientierung!einer Mannigfaltigkeit}
+  Können Sie die kurz erläutern, wie man für Mannigfaltigkeit 
+  $M$ den Begriff der 
+  \bold{Orientierung} definiert?
+\end{frage}
+
+\begin{antwort}
+  Mithilfe der lokalen Parameterdarstellungen führt man den 
+  Orientierungsbegriff für $M$ auf denjenigen des $\RR^k$ zurück. 
+  Der $\RR^k$ besitzt genau zwei Orientierungen, die definiert sind 
+  als die \slanted{Wegzusammenhangskomponenten} der Menge $\calli{B}(\RR^k)$ 
+  der geordneten Basen von $\RR^k$. Das heißt, zwei geordnete Basen 
+  $B=(b_1,\ldots,b_k)$ und $B'=(b_1',\ldots,b_k')$ besitzen genau dann 
+  dieselbe Orientierung, wenn sie stetig ineinander deformiert werden können, 
+  wenn also eine stetige Kurve $\beta\fd [0,1] \to \calli{B}(\RR^k)$ 
+  mit $\beta(0)=B$ und $\beta(1)=B'$ existiert. Das ist gleichbedeutend 
+  damit, dass der Automorphismus $\RR^k \to \RR^k$, der $B$ in $B'$ überführt, 
+  eine positive Determinante besitzt. Als die \slanted{positive} Orientierung 
+  von $\RR^k$ definiert man diejenige, die die Basis $(e_1,\ldots,e_k)$ 
+  enthält. 
+
+  Für jeden Punkt $a\in M$ besitzt damit auch der Tangentialraum 
+  $T_a M$ genau zwei Orientierungen. 
+  Ist $\alpha \fd V\to U$ eine Einbettung mit 
+  $\alpha( v_0 ) = a\in U \subset M$ und $V\subset\RR^k$, 
+  dann ordnet der Isomorphismus $\dd \alpha (v_0)  \RR^k \to T_a M$ 
+  der positiven Orientierung von $\RR^k$ genau eine 
+  der beiden Orientierungen von $T_a M$ zu. 
+
+  Eine Untermannigfaltigkeit $M$ heißt nun 
+  \slanted{orientierbar}, wenn sich dem Tangentialraum 
+  $T_a M$ für jedes $a\in M$ 
+  je eine der beiden Orientierungen \slanted{in stetiger Weise} 
+  zuordnen lässt. Das heißt, dass für jedes $v\in V$ 
+  der Isomorphismus 
+  \[
+  \dd \alpha (v) \fd \RR^k \to T_{\alpha(v)} M 
+  \]
+  der positiven Orientierung von $\RR^k$ 
+  die vorgeschriebene Orientierung 
+  von $T_{\alpha(v)}$ zuordnet. 
+
+  \index{Mobiusband@Möbiusband}
+  \index{Mobius@\textsc{Möbius}, August Ferdinand (1790-1868)}
+
+  \begin{center}
+    \includegraphics{mp/12_moebius}
+    \captionof{figure}{Das Möbiusband ist nicht orientierbar.}
+    \label{fig:12_moebius}
+  \end{center}
+  
+
+  Demnach ist zum Beispiel das Möbius-Band, das in Abbildung~\ref{fig:12_moebius} dargestellt ist, 
+  \slanted{nicht} orientierbar, da das plötzliche "`Umschlagen"' der Orientierung an den "`Nahtstelle"' 
+  jedenfalls nicht mit der Forderung in Einklang zu bringen ist, dass 
+  in einer Umgebung des Urbilds eines Punktes der Nahtstelle das 
+  Differenzial $\dd \alpha$ stetig \slanted{und} orientierungstreu ist. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 51
+\begin{frage}
+  \label{12_integral2}
+  \index{Integral!einer Differenzialform über ein Kartengebiet}
+  \nomenclature{$int_U \omega$}{Integral einer Differenzialform über 
+    ein Kartengebiet}
+  Sei $M$ eine $k$-dimensionale differenzierbare 
+  Untermannigfaltigkeit, $U\subset M$ ein Kartengebiet 
+  und $\alpha \fd V\to U$ eine orientierungstreue 
+  lokale Parametrisierung von $U$. Ferner sei $\omega$ eine 
+  $k$-Form auf $U$. Wie definiert man dann das Integral 
+  von $\omega$ über $U$? Welche Methode benutzt man, um ausgehend davon das 
+  Integral über die gesamte Untermannigfaltigkeit? 
+\end{frage}
+
+\begin{antwort}
+  $\omega$ heißt bezüglich über $U$ 
+  \slanted{integrierbar}, wenn die auf den Parameterraum 
+  $V$ zurückgeholte Differenzialform 
+  $\alpha^* \omega = a \difx_1 \wedge \cdots \wedge \difx_n$ 
+  dort integrierbar im Sinne von Frage 
+  \ref{12_integral1} ist. In diesem Fall ist das 
+  \slanted{Integral von $\omega$ über $U$} definiert durch: 
+  \[
+  \boxed{
+    \int_U \omega := \int_V \alpha^* \omega = \int_V a(x)\difx.
+  }  \asttag
+  \]
+  Das Integral über die gesamte Untermannigfaltigkeit wird mithilfe einer 
+  Zerlegung der Eins auf die Integration über Kartengebiete zurückgeführt, 
+  also mit derselben Methode, die in Antwort \index{Zerlegung der Eins} 
+  \ref{ZerlegungderEins} beschrieben wurde. \AntEnd
+\end{antwort}
+
+%% Question 52
+\begin{frage}\index{Integral!einer $k$-Form über ein Kartengebiet}
+  Können Sie der Definition {\astref} aus Frage \ref{12_integral2} einen 
+  anschaulichen Sinn geben?
+\end{frage}
+
+\begin{antwort}
+  \index{Differenzialform}
+  \index{Integral!einer Differenzialform über ein Kartengebiet}
+  Um eine anschauliche Vorstellung von Differenzialformen zu gewinnen, 
+  sieht man deren Aufgabe am besten darin, so etwas wie 
+  "`Dichteverteilungen"' im $\RR^n$ zu beschreiben -- mit der 
+  Besonderheit allerdings, dass diese aufgrund des alternierenden 
+  Verhaltens der Differenzialformen mit einen "'Richtungssinn"' 
+  ausgestattet sind. 
+
+  Im Fall einer $(n-1)$-Form hat man dafür das adäquate Bild 
+  einer Strömungsdichte, und an diesem speziellen Bild wollen wir die 
+  folgenden Überlegungen ausrichten. Sei $M$ eine 
+  $k$-dimensionale Untermannigfaltigkeit des $\RR^n$ und in einer Umgebung 
+  von $M$ sei eine $k$-Form $\omega$ gegeben, die man sich etwa  
+  als Geschwindigkeitsfeld einer durch $M$ strömenden Flüssigkeit 
+  vorstellen kann. Die Integration von $\omega$ über $M$ zielt 
+  natürlich darauf ab, die Strömungsbilanz zu erfassen, also die Menge an 
+  Flüssigkeit, die pro Zeiteinheit durch $M$ hindurchfließt.   
+
+  \begin{center}
+    \includegraphics{mp/12_spat}
+    \captionof{figure}{In einer infinitesimalen Umgebung von $a$ 
+      lässt sich die Differentialform als konstant auffassen und durch ihre 
+      Wirkung auf die $k$-Spate beschreiben.}
+    \label{fig:12_spat}
+  \end{center}
+  
+  Gemäß dem üblichen Vorgehen der Analysis betrachtet man 
+  zu dieser Situation zunächst das lokale Modell in einer 
+  Umgebung $U$ eines Punktes $a\in M$. Im Bezug auf diese Umgebung 
+  lässt sich die Differenzialform (die Strömungsdichte) als annähernd 
+  konstant betrachten, und augenscheinlich lässt sie sich  
+  durch ihre Wirkung auf die $k$-Spate charakterisieren, 
+  die von je $k$ Vektoren, die man sich am Punkt $a$ angeheftet denkt, 
+  aufgespannt werden, \sieheAbbildung\ref{fig:12_spat}. 
+  Die in einer kleinen Umgebung von $a$ durch 
+  $M$ strömende Flüssigkeitsmenge wird damit annähernd durch eine 
+  alternierende $k$-Form auf dem Tangentialraum $T_a M$ beschrieben.    
+
+  
+  \begin{center}
+    \includegraphics{mp/12_stokes}
+    \captionof{figure}{Das Bild des Quaders $\sigma_p$ unter dem 
+      Differenzial $\dd \alpha$ ist ein $k$-Spat im 
+      Tangentialraum $T_{\alpha(p)} U$.}
+    \label{fig:12_stokes}
+  \end{center}
+
+  Man betrachte nun ein Kartengebiet $U$ von $M$ und dazu eine 
+  lokale Parametrisierung $\alpha \fd V \to U$ mit 
+  $V\subset \RR^k$. In dem Parameterbereich $V$ wähle man einen Quader 
+  $Q'=[a_1,b_1]\times\cdots \times [a_k,b_k]$, 
+  und unterteile diesen im Sinne der Abbildung~\ref{fig:12_stokes} 
+  in kleine Teilquader 
+  $\sigma_p := \prod_{i=1}^k [ p, p+\Delta x_i \cdot e_i ]$. 
+  Das Bild von $Q'$ unter $\alpha$ bezeichnen wir mit $Q$, und 
+  die Menge aller Zerlegungspunkte $p\in Q'$ soll \slanted{Gitter} heißen. 
+
+  \noindent%
+  Das Bild des Quaders $\sigma_p$ unter dem 
+  Differenzial $\dd \alpha$ ist dann der $k$-Spat im 
+  Tangentialraum $T_{\alpha(p)} U$, der durch die Vektoren    
+  \[
+  \Delta x_1 \partial_1 \alpha(p), \ldots, \Delta x_k \partial \alpha(p)
+  \]
+  aufgespannt wird. Die Differenzialform $\omega$ ordnet diesem Spat die Zahl  
+  \[
+  \omega_{\alpha(p)} 
+  \big( \Delta x_1 \partial_1\alpha(p),\ldots, 
+  \Delta x_n \partial_k \alpha(p) \big) = 
+  \omega_{\alpha(p)} 
+  \big(\partial_1\alpha(p),\ldots, 
+  \partial_n\alpha(p) \big)  \Delta x_1 \cdots \Delta x_k
+  \]
+  zu, die sich als lineare Approximation an die durch die Masche 
+  $\alpha\big( \sigma_p \big)$ strömende Menge verstehen lässt, also 
+  als lineare Approximation an den Wert $\int_{\alpha(\sigma_p)} 
+  \omega$. Natürlich soll 
+  \[
+  \int_Q \omega = \sum_{p \in \text{Gitter} } \int_{\alpha(\sigma_p)} \omega 
+  \]
+  gelten. Die Gesamtbilanz der insgesamt durch $Q$ strömenden Menge 
+  wird damit annähernd beschrieben durch
+  \[
+  \sum_{p\in \text{Gitter}} \omega_{\alpha(p)}  
+  \left( \partial_1 \alpha(p), \ldots, \partial_k \alpha(p) \right) 
+  \Delta x_1 \cdots  \Delta x_k.
+  \]
+  Nach Frage \ref{zuruck} ist 
+  \[
+  \omega_{\alpha(p)}  
+  \big( \partial_1 \alpha(p), \ldots, \partial_n \alpha(p) \big) = 
+  \big( \alpha^* \omega )_p ( e_1,\ldots, e_n ) = : a(x),
+  \]
+  wobei $a(x)$ die Koeffezientenfunktion der 
+  aus $\RR^k$ zurückgeholten $k$-Form 
+  $\big( \alpha^* \omega )_p= a(x) \dd x_1 \wedge \cdots \wedge \dd x_k$ ist. 
+  Insgesamt erhält man als lineare Annäherung an $\int_Q \omega$ also 
+  \[
+  \sum_{p\in\text{Gitter}} a(p) \Delta x_1\cdots \Delta x_n.
+  \]
+  Wählt man nun eine Folge immer feiner werdender Rasterungen 
+  von $Q'$, sodass die Kantenlängen $\Delta x_i$ gegen $0$ konvergieren, 
+  dann gelangt man auf diesem Wege zu der Formel
+  \[
+  \int_\alpha \omega = \int_V \alpha^* \omega = \int_V a(x) \difx,
+  \]
+  die genau der Definition des Integrals aus Frage \ref{12_integral2} 
+  entspricht. 
+  \AntEnd   
+\end{antwort} 
+
+%% Question 53
+\begin{frage}\index{Differenzial!einer $k$-Form}\index{außere Ableitung@äußere Ableitung}
+  \index{Ableitung!einer Differenzialform}
+  \index{Cartan-Ableitung}
+  \index{Cartan@\textsc{Cartan}, Elie Joseph (1869-1951)}
+  Was für ein Objekt ist das \bold{Differenzial} oder die 
+  \bold{äußere Ableitung} $\dd \omega$ einer 
+  differenzierbaren $k$-Form $\omega$? 
+  Kennen Sie ein elementares Beispiel?  
+\end{frage} 
+
+\begin{antwort}
+  Ist $\omega$ eine differenzierbaren $k$-Form, dann 
+  ist $\dd \omega$ eine $(k+1)$-Form. 
+
+  \nomenclature{$\dd\omega$}{äußere Ableitung einer Differenzialform}
+  Ein einfaches Beispiel einer äußeren Ableitung ist das 
+  Differenzial $\dd f$ einer differenzierbaren Funktion $f$. 
+  $f$ ist eine $0$-Form, $\dd f$ eine $1$-Form.
+  \AntEnd 
+\end{antwort} 
+
+%% Question 54
+\begin{frage}
+  Durch welche Eigenschaften ist die Abbildung 
+  \[
+  \dd \fd \Omega^k(\RR^n) \to \Omega^{k+1}(\RR^n), \qquad 
+  \omega \mapsto \dd \omega, \qquad k=0,1,2,3,\ldots
+  \]
+  eindeutig bestimmt? Welche Rechenregel 
+  erhält man für die Ableitung einer Differenzialform 
+  \[
+  \omega = 
+  \sum_{i_1 <\cdots< i_k} a_{i_1\ldots i_k} \dd x_{i_1} \wedge 
+  \cdots \wedge \dd x_{i_k}
+  \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Die Abbildung $\dd$ ist durch die folgenden 
+  Eigenschaften eindeutig bestimmt:
+  \satz{\setlength{\labelsep}{5mm}
+    \begin{enumerate}
+    \item[\desc{i}] $\dd$ ist linear: $\dd( \omega_1 + \omega_2 )
+      =\dd \omega_1 + \dd \omega_2$.\\[-3.5mm]
+    \item[\desc{ii}] Für eine Funktion $f$, also im Fall $k=0$, ist 
+      $\dd f$ gleich dem Differenzial von $f$: 
+      $\dd f = \partial_1 \dd x_1 + \cdots + \partial_n \dd x_n$.\\[-3.5mm] 
+    \item[\desc{iii}] Es gilt die Produktregel: $
+      \dd( \omega \wedge \eta )=\dd \omega \wedge \eta +(-1)^k \omega 
+      \wedge \dd \eta$.\\[-3.5mm]
+    \item[\desc{iv}] $\dd$ hat die Komplexeigenschaft: $
+      \dd^2 \omega := (\dd \circ \dd) \omega = 0.$ \AntEnd
+    \end{enumerate}} 
+
+  Mit diesen Eigenschaften gilt die Regel
+  \[
+  \boxed{
+    \dd \left( \sum_{i_1 <\cdots< i_k} a_{i_1\ldots i_k} \dd x_{i_1} \wedge 
+      \cdots \wedge \dd x_{i_k} \right) = 
+    \sum_{i_1 <\cdots< i_k} \dd a_{i_1\ldots i_k} \wedge 
+    \dd x_{i_1} \wedge 
+    \cdots \wedge \dd x_{i_k}  }
+  \]
+  Für eine stetig differenzierbare $1$-Form 
+  $\omega = \sum_{i=1}^n a_i x_i $ erhält man zum Beispiel 
+  \[
+  \dd \omega = 
+  \sum_{i=1} \dd a_i \wedge \dd x_i = 
+  \sum_{i=1}^n \left( \sum_{k=1}^n \partial_k a_i \dd x_k \right) \dd x_i 
+  = 
+  \sum_{i<k} (\partial_i a_k - \partial_k a_i ) \dd x_i \wedge \dd x_k.
+  \] 
+
+  \begin{center}
+    \includegraphics{mp/12_differenzial}
+    \captionof{figure}{Zur Interpretation der Cartan'schen Ableitung.}
+    \label{fig:12_differenzial}
+  \end{center}
+  
+  Intuitiv kann man die Cartan'sche Ableitung etwa folgendermaßen 
+  interpretieren. Man betrachte eine $k$-dimensionale 
+  "`Masche"' $S$ im $\RR^k$, also das Bild eines Quaders 
+  $Q\subset \RR^n$ unter einer Immersion $\RR^n \to \RR^k$. 
+  Die Masche wird begrenzt von \index{Masche}
+  $2k$ Seitenmaschen $s_1,s_2,\ldots, s_{2k}$ 
+  der Dimension $(k-1)$, deren 
+  Orientierung durch diejenige von $S$ vorgegeben ist. 
+  Eine $(k-1)$-Form $\omega$  
+  wirkt auf jede dieser Seitenmaschen, ordnet diesen 
+  jeweils eine reelle Zahl $\int_{s_i} \omega$ zu, 
+  \sieheAbbildung\ref{fig:12_differenzial}. Der Durchfluss 
+  durch die Masche ist also gegeben durch
+  \[
+  \sum_{i=1}^{2k} \int_{s_i} \omega = 
+  \int_{\partial S} \omega.
+  \]
+  Die äußere Ableitung $\dd \omega$ ist nun gerade die $k$-Form, die auf 
+  die Masche selbst so wirkt wie die $(k-1)$-Form $\omega$ auf die $2n$ 
+  Seitenmaschen, für die also 
+  \[
+  \int_S \dd \omega = \int_{\partial S} \omega
+  \]
+  gilt. Im Prinzip ist das schon der Satz von Stokes \index{Satz!von Stokes} 
+  für Maschen \AntEnd
+\end{antwort}
+
+%% Question 55
+\begin{frage}\index{Rand!einer Mannigfaltigkeit}
+  \nomenclature{$\partial M$}{Rand der Mannigfaltigkeit $M$}
+  Können Sie (informal und ohne Beweise) erklären, 
+  wie man den Begriff der \bold{berandeten Mannigfaltigkeit} 
+  einführen kann? 
+\end{frage}
+
+\begin{antwort}
+  Um den Begriff zu definieren, geht man von dem lokalen Modell 
+  einer $k$-dimensionalen berandeten Mannigfaltigkeit aus, nämlich 
+  dem Halbraum   
+  \[
+  \RR^k_- := \{ (x_1, \ldots, x_n ) \in \RR^k \sets x_1 \le 0 \}. 
+  \]
+  Der Rand $\partial \RR^k_-$ dieses Halbraums ist dann die Menge 
+  aller Vektoren aus $\RR^k$, deren erste Komponente gleich null ist. 
+  Als Parameterbereiche für berandete Mannigfaltigkeiten kommen nun 
+  die offenen Mengen $V \subset \RR^k_-$ zum Einsatz. 
+  Solche Mengen sind im Allgemeinen nicht offen in $\RR^k$, sondern 
+  nur dann, wenn $V \cap \partial \RR^k_- = \emptyset$ gilt. 
+  Als \slanted{Rand} von $V$ definiert man 
+  $\partial V := \partial\RR^k_- \cap V$. (Man beachte, dass diese 
+  Randdefinition  nichts zu tun hat mit dem \slanted{topologischen} 
+  Rand von $V$.)  
+
+  Damit $V$ als Parameterbereich einer Einbettung 
+  $\alpha$ fungieren kann, muss noch geklärt werden, wie die 
+  Differenzierbarkeit von $\alpha$ in den Randpunkten zu verstehen ist. 
+  Dazu definiert man: $\alpha$ ist 
+  differenzierbar in einem Randpunkt $b\in V$, wenn $\alpha$ 
+  eine stetig differenzierbare Fortsetzung auf eine Umgebung 
+  $V' \subset \RR^k$ von $b$ besitzt. 
+  Die Fortsetzung ist dann zwar auf $V'\mengeminus V$ 
+  nicht eindeutig bestimmt, wohl aber das Differenzial $\dd \alpha( b )$.  
+
+  Eine $k$-dimensionale Mannigfaltigkeit heißt nun \slanted{glatt berandet}, 
+  wenn es zu jedem Punkt $a\in M$ eine Umgebung $U\subset M$ 
+  und eine Einbettung $\alpha \fd V \to U$ von einer in 
+  $\RR^k_-$ offenen Menge $V$ gibt, \sieheAbbildung\ref{fig:12_rand1}. 
+  
+  \begin{center}
+    \includegraphics{mp/12_rand1}
+    \captionof{figure}{Eine glatte berandete Mannigfaltigkeit.}
+    \label{fig:12_rand1}
+  \end{center}
+  
+  Der Rand $\partial M$ ist 
+  dann gegeben durch  $
+  \alpha( \partial \RR^k_- \cap V ) = \partial M \cap U$, 
+  und diese Festlegung ist \slanted{unabhängig} von der Einbettung. 
+  Ist nämlich $\beta \fd V' \to U$ mit $V' \in V$ eine weitere 
+  Einbettung, so überführt der Übergangsdiffeomorphismus 
+  $V \to V'$ die Menge $\partial \RR^k_- \cap V$ in die Menge
+  $\partial \RR^k_- \cap V'$.  
+
+  Mit der Einschränkung $\alpha | \partial \RR^k_- \cap V$ wird 
+  $\partial M$ damit selbst zu einer Untermannigfaltigkeit. \AntEnd
+\end{antwort}
+
+%% Question 56
+\begin{frage}\index{Orientierung!des Randes einer orientierbaren Mannigfaltigkeit}
+  Inwiefern induziert die Orientierung auf einer 
+  berandeten Mannigfaltigkeit $M$ eine Orientierung des Randes 
+  $\partial M$?
+\end{frage}
+
+\begin{antwort}
+  Für jeden Punkt $a\in \partial M$ ist der Tangentialraum 
+  $T_a \partial M$ ein Unterraum des Tangentialraums $T_a M$, und 
+  für jede Einbettung $\alpha$ ist 
+  \[
+  \dd \alpha ( \partial \RR^k_- \cap V ) = T_a \partial M. 
+  \]
+  Bezeichnet 
+  $\RR^k_+ = \{ \sum_{i=1}^k \lambda_i e_i \sets \lambda_1 > 0 \}$, 
+  dann ist der \slanted{Außenraum}  
+  \[
+  T^+ _a M := \dd \alpha \RR^k_+ 
+  \]
+  unabhängig von der Einbettung wohldefiniert. 
+  Ist $(v_2,\ldots, v_k)$ eine Basis von $T_ \partial M$, 
+  dann gehören für je zwei in den Außenraum $T^+ _a M$ 
+  weisende Vektoren $v_1$ und $v_1'$ die geordneten Basen 
+  $( v_1, v_2, \ldots, v_k )$ und 
+  $( v_1', v_2, \ldots, v_k )$ von $T_a M$ zur selben Orientierung 
+  von $T_a M$. Aufgrund dieser Tatsache ist der Rand von $M$ 
+  ebenfalls orientierbar. Die Randorientierung legt man durch die 
+  Konvention fest, dass eine Basis $(v_2,\ldots, v_k)$ von 
+  $T_a \partial M$ genau dann zur ausgezeichneten Orientierung von 
+  $T_a\partial M$ gehören soll, wenn für jeden in 
+  den Außenraum weisenden \index{Orientierungskonvention}
+  Vektor $v_1$ der Vektor $(v_1,v_2,\ldots,v_k)$ zur ausgezeichneten 
+  Orientierung von $T_a M$ gehört. \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/12_rand}
+    \captionof{figure}{Zur Orientierung des Randes 
+      einer berandeten orientierbaren Mannigfaltigkeit.}
+    \label{fig:12_rand}
+  \end{center}
+\end{antwort}
+
+%% Question 57
+\begin{frage}\index{Stokes@\textsc{Stokes}, George Gabriel (1819-1903)}
+  \index{Integralsatz!von Stokes}\index{Stokesscher@Sokes\sch er Integralsatz}
+  \index{Differenzialformenkalkül}
+  Kennen Sie eine Formulierung des Stokes\sch en Integralsatzes in der 
+  Sprache des Differenzialformenkalküls?
+\end{frage}
+
+\begin{antwort}
+  \satz{Ist $U\subset\RR^n$ offen und $M\subset U$ eine 
+    glatt berandete orientierbare Mannigfaltigkeit der Dimension $k\ge 2$ und 
+    $\omega$ eine stetig 
+    differenzierbare $k-1$-Form auf $U$, dann gilt für jedes Kompaktum 
+    $G\subset M$ mit glattem Rand:
+    \[
+    \boxed{ \int_G \dd \omega = \int_{\partial G} \omega.}
+    \]
+    Dabei besitzt der Rand die durch die Orientierung von $M$ induzierte 
+    Orientierung.
+  }
+
+  \medskip\noindent%
+  Man beweist den Satz schrittweise unter allgemeiner werdenden Voraussetzungen. 
+  Zuerst zeigt man ihn für den Halbraum und eine 
+  Differenzialform mit kompaktem Träger, erweitert dieses Ergebnis dann auf 
+  allgemeine Untermannigfaltigkeiten und Differenzialformen, deren 
+  Träger in einem Kartengebiet liegt. Den allgemeinen Fall führt man dann 
+  auf diesen mithilfe einer Zerlegung der Eins zurück. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 58
+\begin{frage}\label{tausend}\index{Vektoranalysis}\index{Linienelement}
+  Können Sie den Differenzialformenkalkül in die 
+  klassische Sprache der Vektoranalysis zurückübersetzen und 
+  die klassische Version des Satzes von Stokes formulieren?
+\end{frage}  
+
+\begin{antwort}
+  Die klassische Vektoranalysis handelt von Vektorfeldern 
+  im $\RR^3$ (oder $\RR^2$) und nicht von Differenzialformen. 
+  Die "`Übersetzung"' eines Vektorfeldes in eine Differenzialform 
+  geschieht mithilfe des \slanted{vektoriellen Linienelements} 
+  \index{Linienelement}\index{Flächenelement}\index{Volumenelement}
+  $\overrightarrow{ \dd {s} }$, des \slanted{vektoriellen Flächenelements} 
+  $\overrightarrow{ \dd {S} }$ sowie des Volumenelements $\dd V$, 
+  die schon an anderer Stelle rein symbolisch verwendet wurden. 
+  Diese lassen sich auch präzise als (vektorwertige) Formen im 
+  $\RR^3$ einführen, nämlich durch die Festsetzungen
+  \[
+  \overrightarrow{\dd s} := \begin{pmatrix} 
+    \dd x_1 \\ \dd x_2 \\ \dd x_3 \end{pmatrix},
+  \qquad 
+  \overrightarrow{ \dd {S} } := \begin{pmatrix} 
+    \dd x_2 \wedge \dd x_3 \\
+    \dd x_3 \wedge \dd x_1 \\
+    \dd x_1 \wedge \dd x_2
+  \end{pmatrix}, \qquad
+  \dd V := \dd x_1 \wedge \dd x_2 \wedge \dd x_3.
+  \]
+  Damit ist $\overrightarrow{ \dd s }$ also eine $\RR^3$-wertige 
+  $1$-Form, $\overrightarrow{ \dd S }$ eine $\RR^3$-wertige $2$-Form 
+  und $\dd V$ eine normale $3$-Form in $\RR^3$.
+  \nomenclature{$\overrightarrow{\dd S}$}{vektorielles Flächenelement}
+  \nomenclature{$\overrightarrow{\dd s}$}{vektorielles Linienelement}
+  \nomenclature{${\dd V}$}{Volumenelement}
+
+  Die Bedeutung dieser Formen wird durch ihre geometrischen 
+  Abbildungseigenschaften verständlich. Für jedes $x\in\RR^3$ ist nämlich 
+  \begin{align*}
+    \overrightarrow{ \dd s }_x \fd \RR^3 &\to \RR^3 & \text{die Identität}\\
+    \overrightarrow{ \dd S }_x \fd \RR^3 \times \RR^3 &\to \RR^3 & 
+    \text{das Kreuzprodukt}\\
+    \dd {V}_x \fd \RR^3 \times \RR^3 \times \RR^3 &\to 
+    \RR & \text{die Determinante},
+  \end{align*}
+  wie man leicht nachrechnet. Sei nun 
+  $U\subset \RR^3$ und $\calli{V}(U)$ der Vektorraum der 
+  stetig differenzierbaren Vektorfelder $U \to\RR^3$. Die Abbildungen 
+  \begin{align*}
+    \calli{V}( U ) \to \Omega^1 U, &\qquad 
+    F \mapsto  \langle F, \overrightarrow{ \dd s } \rangle \\
+    \calli{V}( U ) \to \Omega^2 U, &\qquad F \mapsto 
+    \langle  F, \overrightarrow{ \dd S } \rangle \\
+    \calli{C}^1( U ) \to \Omega^3 U, &\qquad f 
+    \mapsto f \dd V 
+  \end{align*}
+  siften dann eine eineindeutige Zuordnung zwischen 
+  den stetig differenzierbaren Vektorfeldern bzw. Funktionen auf $U$ 
+  und den Formen auf $U$. 
+
+  Mit dem Cartan-Kalkül lassen sich die äußeren \index{aussere@äußere Ableitung}
+  Ableitungen der Differenzialformen 
+  $\langle F , \overrightarrow{ \dd s } \rangle$, 
+  $\langle  F ,\overrightarrow{ \dd S } \rangle$ bestimmen, 
+  und zwar erhält man 
+  \begin{align}
+    \dd \langle F, \overrightarrow{ \dd s } \rangle &= 
+    \sum_{j=1}^3 \dd F_j \wedge \dd x_j = 
+    \sum_{j=1}^3 \left( \partial_1 F_j \dd x_1+ 
+      \partial_2 F_j \dd x_2  + 
+      \partial_3 F_j \dd x_3 \right) \wedge \dd x_j \notag \\
+    &=(\partial_2 F_3 - \partial_3 F_2) \dd x_2 \wedge \dd x_3+ 
+    (\partial_3 F_1-\partial_1 F_3)\dd x_3 \wedge \dd x_1 \notag \\[2mm] 
+    &\qquad +(\partial_1 F_2 - \partial_2 F_1) \dd x_1 \wedge \dd x_2 \notag \\[2mm]
+    &=\langle \rot F, \overrightarrow{ \dd S }\rangle. \asttag
+  \end{align}
+  und 
+  \begin{align}
+    \dd \langle F, \overrightarrow{ \dd S } \rangle &=
+    \dd F_1 \wedge \dd x_2 \wedge \dd x_3 +
+    \dd F_2 \wedge \dd x_3 \wedge \dd x_1 + 
+    \dd F_3 \wedge \dd x_1 \wedge \dd x_2 \notag \\
+    &=
+    (\partial_1 F_1 + \partial_2 F_2 + \partial_3 F_3)
+    \dd x_1 \wedge \dd x_2 \wedge \dd x_3 = \Div F \dd V. \aasttag
+  \end{align}
+  Aus der letzten Gleichung folgt zusammen mit dem Stokes'schen 
+  Integralsatz noch einmal der Gauß'sche Integralsatz für dreidimensionale 
+  Untermannigfaltigkeiten des $\RR^3$: 
+
+  \medskip
+  \noindent\slanted{Ist $U\subset\RR^3$ offen 
+    und $F$ ein differenzierbares Vektorfeld 
+    auf $U$, dann gilt für alle orientierten kompakten berandeten 
+    $3$-dimensionalen Untermannigfaltigkeiten $M^3\subset U$:
+    \[
+    \boxed{
+      \int_{M^3} \Div F \dd V   = 
+      \int_{\partial M^3} \langle F, \overrightarrow{\dd S} \rangle  
+    }
+    \]}
+
+
+
+  Aus der Gleichung {\astastref} erhält man den \slanted{Stokes'schen 
+    Integralsatz} in seiner klassischen Form: 
+
+  \medskip
+  \noindent\slanted{Sei $U\subset\RR^3$ offen 
+    und $F$ ein differenzierbares Vektorfeld 
+    auf $U$. Dann gilt für alle orientierten kompakten berandeten 
+    $2$-dimensionalen Untermannigfaltigkeiten $M^2\subset U$:
+    \[
+    \boxed{
+      \int_{M^2} \langle \rot F, \overrightarrow{\dd S}  \rangle  = 
+      \int_{\partial M^2} \langle F,\overrightarrow{\dd s}  \rangle } 
+    \]}    
+
+  Die letzte Formel kann man auch noch auf eine andere Weise ausdrücken.  
+  Mit $\dd s$ bzw. $\dd S$ bezeichnet man die sogenannten   
+  \slanted{kanonischen Volumenformen} von $\partial M$ bzw. 
+  $M$. Das heißt, $\dd s$ ist die $1$-Form, die jedem positiv 
+  orientierten Einheitsvektor aus einem Tangentialraum 
+  $T_a \partial M$ den Wert $+1$ zuordnet und entsprechend $\dd S$ diejenige  
+  $2$-Form, die jeder orthonormalen Basis von $T_b M$ den Wert $+1$ zuordnet. 
+  Ist auf $M$ ein Einheitsnormalenfeld $\eta$ 
+  und auf $\partial M$ Einheitstangentialfeld $\tau$ gegeben, 
+  dessen Orientierung von der durch $\eta$ auf $M$ gegebenen Orientierung 
+  induziert ist, dann kann man sich unter Berücksichtigung der 
+  Abbildungseigenschaften der vektoriellen Elemente $\overrightarrow{ \dd s }$ 
+  und 
+  $\overrightarrow{ \dd S }$ durch eine geometrische Überlegung zumindest 
+  plausibel machen, dass sich der klassische Stokes'sche Integralsatz 
+  auch in der 
+  Form      
+  \[
+  \boxed{
+    \int_{M^2} \langle \rot F, \eta \rangle \dd S = 
+    \int_{\partial M^2} \langle F, \tau \rangle \dd s} 
+  \]
+  schreiben lässt. \AntEnd
+  
+  \begin{center}
+    \includegraphics{mp/12_dS}
+    \captionof{figure}{Zur Interpretation von Linien- und Flächenelement.}
+    \label{fig:12_stokes}
+  \end{center}
+\end{antwort} 
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

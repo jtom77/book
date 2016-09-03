@@ -1,0 +1,1723 @@
+\chapter{Folgen reeller und komplexer Zahlen}
+
+Mit \slanted{Folgen} und deren Konvergenz beginnt die eigentliche 
+\slanted{Welt der Analysis}. 
+
+Der Konvergenzbegriff hat jedoch viele Facetten. 
+Der einfachste Konvergenzbegriff 
+ist sicherlich der für Folgen von reellen und komplexen Zahlen. 
+Wichtige Prinzipien für das tiefere Verständnis des Konvergenzbegriffs 
+({\zB} bei Funktionen) lassen sich am Beispiel konvergenter Zahlenfolgen 
+exemplarisch verdeutlichen und üben. 
+\slanted{Reihen} (reeller oder komplexer Zahlen) sind Folgen spezieller 
+Bauart, deshalb gelten die für Folgen gültigen Konvergenzkriterien auch 
+für Reihen. 
+Daneben gibt es wegen der speziellen Bauart von Reihen aber auch zahlreiche 
+spezifische Kriterien für deren Konvergenz. 
+
+Folgen und Reihen sind \slanted{zentrale Konstruktionswerkzeuge} der 
+Analysis. Mit ihrer Hilfe werden neue Objekte (etwa neue Zahlen oder 
+Funktionen) begrifflich konzipiert und formelmäßig dargestellt, 
+wie etwa die Euler'sche Zahl $e=2,718281828459\ldots$, die Kreiszahl 
+$\pi=3,1415926535\ldots$, die (reelle oder komplexe) 
+\slanted{Exponentialfunktion} oder die \slanted{Winkelfunktionen} 
+$\sin$ und $\cos$.
+
+Ziel ist es dabei ferner, die neuen Objekte mit \slanted{beliebiger 
+  Genauigkeit} in endlich vielen Schritten zu berechnen, 
+da sie exakt häufig nicht zu berechnen sind.
+
+Wir beschränken uns in diesem Abschnitt auf Folgen und Reihen reeller 
+oder komplexer Zahlen. Als Beispiele für Reihen werden jedoch auch einige 
+Potenzreihen, speziell die Exponentialreihe, auftreten. 
+Auch für Begriffe wie \slanted{Stetigkeit}, \slanted{Differenzierbarkeit}, 
+\slanted{Integrierbarkeit} ist der einfache Konvergenzbegriff für 
+Zahlenfolgen grundlegend. 
+
+\section{Definitionen, Beispiele, grundlegende Feststellungen}
+
+%% Question 1
+\begin{frage}%
+  \label{02_fdef}
+  \index{Folge}
+  Wenn $X$ eine beliebige nichtleere Menge ist, was versteht man dann 
+  unter einer \bold{Folge von Elementen aus $X$}?
+  Was versteht man speziell unter einer reellen oder komplexen 
+  Zahlenfolge? 
+\end{frage}
+
+\begin{antwort}
+  Um den Begriff der Folge präzise zu fassen, 
+  benutzt man den Abbildungsbegriff. Die Definition lautet: 
+
+  \medskip\noindent
+  \slanted{Eine Folge in $X$  
+    ist eine Abbildung $a\,:\, \NN\to X$ von den natürlichen Zahlen 
+    in die Menge $X$.}
+
+  \medskip\noindent
+  Die Bilder $a(n)=:a_n \in X$ mit $n\in \NN$
+  heißen $\slanted{Glieder der Folge}$.
+  Um eine reelle bzw. komplexe Zahlenfolge handelt es sich dann, wenn 
+  $X=\RR$ bzw 
+  $X=\CC$ gilt. \AntEnd
+\end{antwort}
+
+
+%% Question 2
+\begin{frage}%
+  \label{02_fnot}\nomenclature{$(a_n)$}{Folge $a_n$}
+  Welche Schreibweisen (Notationen) für Folgen sind Ihnen bekannt? 
+  Geben Sie Beispiele an.
+\end{frage}
+
+\begin{antwort}
+  Die Glieder einer Folge aus $X$ lassen sich als Bilder der 
+  Abbildung $a\,:\, \NN \to X$ in der Form $a(n)$ oder $a_n$ schreiben, wobei 
+  die zweite Darstellung die wesentlich üblichere ist. 
+
+  Um die Folge selbst zu bezeichnen benutzt man den Ausdruck $(a_n)_{n\in\NN}$, 
+  der, wo keine Missverständnisse zu befürchten sind, auch durch $(a_n)$ 
+  abgekürzt werden kann. So bezeichnet beispielsweise $(1/n)_{n\in\NN}$ die 
+  Folge der Kehrwerte der natürlichen Zahlen.
+
+  Eine nicht ganz präzise, aber sehr suggestive Schreibweise 
+  bietet sich dann an, wenn das Bildungsprinzip der Folge sich per Analogie 
+  schon aus den ersten paar Gliedern erschließen lässt. In diesem Fall schreibt 
+  man nur diese explizit auf und deutet die folgenden nach dem Motto 
+  "`und so weiter"' durch Punkte an, wie in dem Beispiel $1,1/2,1/3,\ldots$. 
+  \AntEnd
+\end{antwort}
+
+%% Question 3
+\begin{frage}%
+  \label{02_frek}
+  \index{Folge!rekursive}
+  Was versteht man unter einer \bold{rekursiven Folge} reeller oder 
+  komplexer Zahlen?
+\end{frage}
+
+\begin{antwort}
+  Das Adjektiv "`rekursiv"' bezieht sich darauf, wie die Folge definiert ist. 
+  Bei einer rekursiven Folge wird der Wert eines 
+  Folgenglieds $a_n$ durch die Werte des vorhergehenden oder 
+  mehrerer vorhergehender Glieder der Folge zusammen mit der 
+  expliziten Angabe eines oder mehrerer Startwerte $a_1, a_2, \ldots, a_{n_0}$ 
+  bestimmt. 
+  \AntEnd
+\end{antwort}
+
+%% Question 4
+\begin{frage}\index{Folge!rekursive}
+  Können Sie zwei Beispiele rekursiver Folgen nennen?
+\end{frage}
+
+\begin{antwort}
+  Zum Beispiel lässt sich die Folge $2^1, 2^2, 2^3,\ldots$ 
+  aller Zweierpotenzen rekursiv definieren durch
+  \[
+  a_1=2, \quad a_{n+1} = 2\cdot a_n.
+  \]
+  Die Folge $(e_n)_{n\in\NN}$ mit $E_n=\sum_{k=0}^n \frac{1}{k!}$ 
+  (vgl. dazu auch die Frage \ref{02_edef})
+  ließe sich ebenfalls rekursiv definieren durch
+  \[
+  E_1 =2, \qquad E_{n+1} = E_n + \frac{1}{(n+1)!}.\EndTag
+  \] 
+\end{antwort} 
+
+
+
+%% Question 5
+\begin{frage}%
+  \label{02_fib}
+  \index{Fibonacci-Folge}
+  \index{Fibonacci@\textsc{Fibonacci}, Leonardo Pisano (ca. 1170-1250}
+  Wie ist die (klassische) Fibonacci-Folge definiert?
+\end{frage}
+
+\begin{antwort}
+  Die Fibonacci-Folge $(f_n)$ ist eine rekursiv gegebene Folge 
+  natürlicher Zahlen, deren erste beide Glieder gleich $1$ und 
+  deren übrige Glieder jeweils die Summe der beiden vorhergehenden sind. 
+  Die Fibonacci-Folge ist somit gegeben durch  
+  \begin{equation}
+    f_1=f_2=1,\quad f_{n+1}=f_{n}+f_{n-1}.
+  \end{equation}
+
+Die Tabelle \ref{tab:fibo} listet die Werte der ersten 50 Fibonacci Zahlen auf:
+
+
+
+Für die hundertste Fibonacci-Zahl gilt bereits $f_{100} \approx 3,54\cdot 10^{20}$.
+
+Die Folge $\frac{F_{n+1}}{F_n}$ ist konvergent gegen die \slanted{goldene Zahl}
+\index{goldene Zahl} $\phi = \frac{1+\sqrt{5}}{2}$. \AntEnd\end{antwort}
+
+\begin{table}
+\begin{tabular}{r|r||r|r||r|r||r|r||r|r}
+$n$&$F_n$&$n$&$F_n$&$n$&$F_n$&$n$&$F_n$&$n$&$F_n$\\\hline
+1&1&11&89&21&10.946&31&1.346.269&41&165.580.141\\
+2&1&12&144&22&17.711&32&2.178.309&42&267.914.296\\
+3&2&13&233&23&28.657&33&3.524.578&43&433.494.437\\
+4&3&14&377&24&46.368&34&5.702.887&44&701.408.733\\
+5&5&15&610&25&75.025&35&9.227.465&45&1.134.903.170\\
+6&8&16&987&26&121.393&36&14.930.352&46&1.836.311.903\\
+7&13&17&1.597&27&196.418&37&24.157.817&47&2.971.215.073\\
+8&21&18&2.584&28&317.811&38&39.088.169&48&4.807.526.976\\
+9&34&19&4.181&29&514.229&39&63.245.986&49&7.778.742.049\\
+10&55&20&6.765&30&832.040&40&102.334.155&50&12.586.269.02\\
+\end{tabular}
+\caption{Die Fibonacci-Zahlen $F_1$ bis $F_{50}$.}
+\label{tab:fibo}
+\end{table}
+
+
+%% Question 6
+\begin{frage}%
+  \label{02_fag}
+  \index{Folge!arithmetische}
+  \index{Folge!geometrische}
+  Was ist eine \bold{arithmetische} bzw. \bold{geometrische} Folge?
+\end{frage}
+
+\begin{antwort}
+  Bei einer \slanted{arithmetischen} Folge ist die \slanted{Differenz} 
+  zweier aufeinanderfolgender Folgenglieder konstant, 
+  es ist also stets $a_{n+1}-a_n=k$. Folglich sind die Folgenglieder gegeben 
+  durch die Formel $a_{n+1}= a_1 + n k$ für alle $n\in\NN$. 
+  Beispielsweise ist die Folge $2,5,8,11,\ldots$ eine arithmetische 
+  Zahlenfolge.
+
+  Eine \slanted{geometrische} Folge ist eine Folge, bei der der 
+  \slanted{Quotient} zweier aufeinanderfolgender Glieder konstant ist, 
+  bei der also stets $a_{n+1}/a_n=k$ gilt. Für jedes $n\in\NN$ gilt damit 
+  $a_{n+1}=a_1 k^n$. Ein Beispiel dafür ist die  
+  Folge $1,3,9,27,\ldots$. 
+  \AntEnd
+\end{antwort}
+
+%% Question 7
+\begin{frage}%
+  \label{02_fmgl}
+  Worin besteht der Unterschied zwischen einer Folge und der Menge ihrer 
+  Folgenglieder?
+\end{frage}
+
+\begin{antwort}
+  Bei einer Folge kommt es auf die \slanted{Reihenfolge} der Glieder an.
+  Dagegen besitzt eine Menge keinerlei Informationen über irgendeine 
+  "`Reihenfolge"' ihrer Elemente. 
+  So sind die beiden Folgen $0,1,-1,2,-2,3,-3,\ldots$ und 
+  $0,-1,1,-2,2,-3,3,\ldots$ verschieden, die Menge ihrer Folgenglieder 
+  aber in beiden Fällen gleich $\ZZ$.
+
+  Die Glieder einer Folge sind durch ihren Index voneinander unterschieden, 
+  auch wenn sie dasselbe Element der Menge bezeichnen. Die Folge $1,1,1,\ldots$ 
+  besitzt unendlich viele Glieder, wohingegen die Menge der Glieder nur 
+  das Element $1$ enthält. 
+
+  Natürlich sind Folgen und Mengen auch schon allein deswegen 
+  verschieden, weil sie zu unterschiedlichen Klassen mathematischer 
+  Objekte gehören. \AntEnd
+\end{antwort}
+
+%% Question 8
+\begin{frage}%
+  \label{02_fvis}
+  Welche Möglichkeiten der \slanted{Visualisierung} einer reellen oder 
+  komplexen Zahlenfolge sind Ihnen geläufig?
+\end{frage}
+
+\begin{antwort}
+  Eine reelle Zahlenfolge lässt sich 
+  als Graph der Abbildung $\NN\to \RR$ in einem 
+  zweidimensionalen kartesischen Koordinatensystem eintragen. 
+  Jeder Punkt im Koordinatensystem markiert ein Folgenglied, so wie 
+  es in Abbildung (s. Abbildung \ref{fig:02_visual1}) veranschaulicht wird.
+
+  \begin{center}
+    \includegraphics{mp/02_visual1}
+    \captionof{figure}{Graph einer Abbildung $\NN\to\RR$.}
+    \label{fig:02_visual1}
+  \end{center}
+  
+  
+  Prinzipiell lässt sich die Darstellungsweise auch auf komplexe Folgen 
+  übertragen, wenn man ein dreidimensionales Koordinatensystem zugrunde legt  
+  und etwa die $xy$-Ebene als Gauß'sche Zahlenebene (den Bildbereich) 
+  wählt und die natürlichen Zahlen (den Wertebereich) an der $z$-Achse 
+  anträgt (s. \ref{fig:02_visual2}). 
+  Die Folgenglieder sind dann durch Punkte im dreidimensionalen Raum markiert.
+
+  \begin{center}
+    \includegraphics{mp/02_visual2}
+    \captionof{figure}{Graph einer Abbildung $\NN\to\CC$.}
+    \label{fig:02_visual2}
+  \end{center}
+  
+  Im Allgemeinen wird letzteres Verfahren jedoch eher ein verwirrendes 
+  als aufschlussreiches Bild liefern. Es ist daher in den meisten 
+  Fällen sinnvoll, die Folgenglieder nur im Bildbereich einzutragen 
+  und die Reihenfolge -- wo sie 
+  aus deren Anordnung nicht schon von selbst nahegelegt wird -- durch Indizes 
+  oder Verbindungslinien aufeinanderfolgender Glieder zu markieren (s. Abbildung \ref{fig:02_visual3}).
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/02_visual3}
+    \captionof{figure}{Bild einer komplexen Zahlenfolge.}
+    \label{fig:02_visual3}
+  \end{center}
+\end{antwort}
+
+%% Question 9
+\begin{frage}%
+  \label{02_epsu}
+  \index{eps@$\eps$-Umgebung}
+  Was versteht man unter der $\eps$-Umgebung einer reellen oder 
+  komplexen Zahl?
+\end{frage}
+
+\begin{antwort}
+  Unter der $\eps$-Umgebung einer reellen oder komplexen Zahl $a$, 
+  wobei $\eps$ eine positive reelle Zahl ist, versteht 
+  man die Menge aller derjenigen reellen oder komplexen Zahlen, 
+  die von $a$ einen kleineren Abstand als $\eps$ haben, also
+  \[
+  U_\eps( a) = \{ \xi \in \KK; \; |\xi-a|<\eps \}, \quad 
+  \text{mit $\KK=\RR$ oder $\KK=\CC$}.
+  \] 
+  In $\RR$ entspricht das geometrisch dem offenen 
+  Intervall $\open{a-\eps,a+\eps}$, in 
+  $\CC$ der offenen Kreisscheibe mit Mittelpunkt $a$ und Radius $\eps$ 
+  (vgl. dazu auch Frage \ref{01_ueps}).
+  \AntEnd
+\end{antwort}
+
+
+
+
+%% Question 10
+\begin{frage}%
+  \label{02_fa}
+  \index{fastalle@fast alle}
+  Was bedeutet die Aussage: 
+  "`Fast alle Glieder einer Folge liegen in $U_\eps(a)$"'.
+\end{frage}
+
+\begin{antwort}
+  Das heißt, dass \slanted{alle, bis auf endlich viele} Glieder der 
+  Folge in $U_\eps(a)$ liegen. M.\,a.\,W., es gibt ein $N\in\NN$, sodass 
+  für alle $n>N$ gilt $a_n\in U_\eps(a)$.
+  \AntEnd
+\end{antwort}
+
+
+
+%% Question 11
+\begin{frage}%%\label{02_fkon}
+  \index{Folge!Konvergenz}
+  \index{Konvergenz!einer Folge}
+  Wann heißt eine Folge reeller oder komplexer Zahlen \slanted{konvergent}?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(a_n)_{n\in\NN}$ heißt konvergent genau dann, 
+  wenn es eine Zahl $a$ 
+  ($a\in \RR$ oder $a\in\CC$) mit der folgenden Eigenschaft gibt: \satz{ 
+    Zu jedem $\eps>0$ gibt es eine natürliche Zahl $N:=N(\eps)$, sodass gilt
+    \begin{equation}
+      \boxed{
+        |a_n-a| < \eps \quad\text{für alle $n>N$}.
+      } \tag{$\ast$} 
+    \end{equation}}
+  Gegebenenfalls heißt $a$ dann der \slanted{Grenzwert}\index{Grenzwert!einer Folge} der Folge und man 
+  schreibt
+  \[
+  \dis a=\limm a_n 
+  \]
+  oder etwas flapsiger $a_n\to a$. Wir benutzen auch hin und wieder die 
+  abkürzende Schreibweise $\lim a_n$ für $\lim\limits_{n\to\infty}$. 
+  \AntEnd
+\end{antwort}
+
+
+
+%% Question 12
+\begin{frage}%
+  \label{02_fgeo}
+  \index{Folge!Konvergenz}
+  \index{Konvergenz!einer Folge}
+  Welche geometrische Deutung besitzt die Konvergenz einer Folge?
+\end{frage}
+
+\begin{antwort}
+  Die Eigenschaft $(\ast)$ aus der vorigen Frage ist gleichbedeutend 
+  mit $a_n\in U_\eps(a)$ für alle $n>N$. Damit erhält man folgende 
+  äquivalente Definition der Konvergenz mittels $\eps$-Umgebungen: 
+
+  \medskip
+  \slanted{Eine Folge $(a_n)_{n\in\NN}$ heißt konvergent genau dann, wenn eine 
+    Zahl $a$ mit der Eigenschaft existiert, dass für jedes $\eps>0$ 
+    fast alle Glieder der Folge in $U_\eps(a)$ liegen.}
+
+  \medskip
+  Abbildung \ref{fig:02_konvergenz_ueps} veranschaulicht den Sachverhalt. 
+  \AntEnd
+  
+  \begin{center}
+    \includegraphics{mp/02_konvergenz_ueps}
+    \captionof{figure}{Fast alle Glieder einer konvergenten Folge liegen in der 
+      $\eps$-Kreisscheibe um den Grenzwert.}
+    \label{fig:02_konvergenz_ueps}
+  \end{center}
+\end{antwort}
+
+
+%% Question 13
+\begin{frage}%
+  \label{02_fkon}
+  \index{Folge!Konvergenz}
+  \index{Folge!Grenzwert}
+  \index{Grenzwert!Eindeutigkeit}
+  Warum kann eine Folge in $\RR$ oder $\CC$ höchstens einen Grenzwert haben?
+\end{frage}
+
+\begin{antwort}
+  Ist $a$ ein Grenzwert der Folge und $b$ eine Zahl $\not=a$, dann existieren 
+  $\eps$-Umgebungen $U_\eps(a)$ und $U_\eps(b)$ mit 
+  $U_\eps(a)\cap U_\eps(b)=\emptyset$. 
+  In $U_\eps(a)$ liegen ab einem bestimmten 
+  Index $N$ alle Folgenglieder, daher können in $U_\eps(b)$ höchstens endlich 
+  viele Folgenglieder liegen, $b$ kann also kein Grenzwert der Folge sein. 
+
+  \begin{center}
+    \includegraphics{mp/02_zwei_grenzwerte}
+    \captionof{figure}{Disjunkte Umgebungen 
+      $U_\eps(a)$ und $U_\eps(b)$ können nicht beide fast 
+      alle Folgenglieder enthalten.}
+    \label{fig:02_zwei_grenzwerte}
+  \end{center}
+
+  Die Eindeutigkeit des Grenzwerts hängt also damit zusammen, 
+  dass zwei disjunkte $\eps$-Umgebungen nicht beide fast alle 
+  Glieder einer Folge enthalten können, 
+  \sieheAbbildung\ref{fig:02_zwei_grenzwerte}.
+  \AntEnd
+\end{antwort}
+
+
+%% Question 14
+\begin{frage}\label{01_hausdorff}
+  \index{Hausdorffsche@Hausdorff'sche Trennungseigenschaft}
+  \index{Hausdorff@\textsc{Hausdorff}, Felix (1868-1942)}
+  \hspace*{-2mm}\textbf{*} Auf welcher (topologischen) 
+  Eigenschaft basiert die Eindeutigkeit 
+  des Grenzwerts einer konvergenten Folge?
+\end{frage}
+
+\begin{antwort}
+  Es handelt sich um die \slanted{Hausdorff'sche Trennungseigenschaft}. 
+  Ein topologischer Raum $X$ besitzt diese Eigenschaft, wenn zu je zwei 
+  verschiedenen Punkten disjunkte Umgebungen existieren, wie in 
+  \Abb\ref{fig:02_hausdorff} veranschaulicht.  
+  
+  \begin{center}
+    \includegraphics{mp/02_hausdorff}
+    \captionof{figure}{In einem Hausdorff-Raum besitzen 
+      je zwei verschiedene Punkte 
+      disjunke Umgebungen.}
+    \label{fig:02_hausdorff}
+  \end{center}
+  In der Antwort zu Frage~\ref{02_fkon} wurde diese Eigenschaft implizit 
+  vorausgesetzt, was auch in Ordnung geht, da $\RR$ und $\CC$ als 
+  metrische Räume automatisch hausdorffsch sind.  
+  Allerdings gilt das nicht für beliebige topologischen Räume. 
+  \AntEnd
+\end{antwort}
+
+%% Question 15
+\begin{frage}%
+  \label{02_fbsp}
+  \index{Folge!Konvergenz}
+  \index{Konvergenz!einer Folge}
+  Welche in den Beispielen aufgeführten Folgen sind konvergent?
+\end{frage}
+
+\begin{antwort}
+  Die meisten der bisher aufgeführten Folgen sind \slanted{nicht} 
+  konvergent, so etwa die arithmetischen Folgen $(a_n)_{n\in\NN}$ mit 
+  $a_n=a_0+k\cdot n$ und $k\not=0$. Die Differenz zweier Folgenglieder 
+  $|a_{n+m}-a_n|=|km|$ wird mit zunehmendem $m\in\NN$ beliebig groß, 
+  daher kann es zu einem angenommenen Grenzwert $a$ keinen Index $N$ mit
+  $|a_n-a| < \eps$ für alle $n>N$ geben. 
+
+  Eine triviale konvergente Folge unter den bisher genannten ist die 
+  konstante Folge $1,1,1,\ldots$, die gemäß der Definition 
+  gegen den Grenzwert $1$ konvergiert.  
+
+  Ebenfalls konvergent ist die Folge $(1/n)_{n\in\NN}$. Diese hat den Grenzwert 
+  $0$. Ist nämlich $\eps>0$ vorgegeben, dann ist $0<1/n<\eps$, sofern 
+  nur $n\eps > 1$ ist, und da $\RR$ archimedisch angeordnet ist, 
+  existiert ein $n$ mit dieser Eigenschaft. 
+  (Die Voraussetzung, dass $\RR$ ein archimedisch 
+  angeordneter Körper ist, ist tatsächlich eine wesentliche Bedingung. In einem 
+  nicht-archimedischen Körper konvergiert die Folge $(1/n)_{n\in\NN}$ nicht.)   
+  \AntEnd
+\end{antwort}
+
+%% Question 16
+\begin{frage}%
+  \label{02_fbes}
+  \index{Beschränktheitskriterium!für Folgen}
+  Wann heißt eine Folge beschränkt? Warum ist jede konvergente Folge 
+  beschränkt? 
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(a_n)_{n\in\NN}$ heißt 
+  \slanted{beschränkt}, wenn es eine positive Zahl $S\in\RR$ gibt, 
+  sodass für alle Folgenglieder $|a_n| \le S$ gilt.
+
+  Ist eine Folge konvergent 
+  gegen den Grenzwert $a$, so gilt $a_n\in U_1(a)$ für 
+  alle $n>N$, wobei $n$ eine bestimmte natürliche Zahl ist. 
+  Für diese Glieder gilt $|a_n| < |a|+1$. Die Menge der restlichen Folgenglieder 
+  ist endlich und somit ebenfalls beschränkt. Insgesamt gilt also 
+  $|a_n| \le \max\{|a_0|,\ldots,|a_{N}|, |a|+1 \}$ für alle $n\in\NN$, die 
+  Folge ist somit beschränkt.
+  \AntEnd
+\end{antwort} 
+
+%% Question 17
+\begin{frage}
+  Gilt auch die Umkehrung, ist also jede beschränkte Folge konvergent?
+\end{frage}
+
+\begin{antwort}
+  Eine beschränkte Folge muss nicht konvergent sein. Als 
+  typisches Gegenbeispiel dient die alternierende Folge 
+  $1,-1,1,-1\ldots$, die beschränkt ist, aber offensichtlich  
+  nicht konvergiert. 
+  \AntEnd
+\end{antwort}
+
+%% Question 18
+\begin{frage}%
+  \label{02_tlf}
+  \index{Teilfolge}
+  Was versteht man unter einer \bold{Teilfolge} bzw. einer gegebenen Folge?
+\end{frage}
+
+\begin{antwort}
+  Die Bedeutung des Begriffs "`Teilfolge"' entspricht genau dem, 
+  was die Bezeichnung  nahelegt: 
+  eben eine Folge $(b_k)_{k\in\NN}$, deren sämtliche Glieder 
+  auch Glieder der Folge $(a_n)_{n\in\NN}$ sind, wobei die 
+  Anordnung der Folgenglieder 
+  erhalten bleibt. 
+  Somit gilt für die Glieder einer Teilfolge $(b_k)_{k\in\NN}$ von 
+  $(a_n)_{n\in\NN}$
+  \[
+  b_k = a_{n(k)} \quad\text{und}\quad n(k+1)>n(k).
+  \] 
+  Bei der Zuordnung $k\mapsto n(k)$ handelt es sich um eine 
+  streng monoton wachsende Folge natürlicher Zahlen. Die präzise 
+  Definition einer Teilfolge lautet damit: 
+  \slanted{Ist $(n_k)$ eine streng monoton wachsende Folge 
+    natürlicher Zahlen, dann ist die Folge $(a_{n_k})_{k\in\NN}$ 
+    eine Teilfolge von $(a_n)_{n\in\NN}$.}
+  \AntEnd
+\end{antwort}
+
+
+
+%% Question 19
+\begin{frage}%
+  \label{02_fibk}
+  \index{Fibonacci-Folge}
+  Ist die Fibonacci-Folge aus Frage \ref{02_fib} konvergent?
+\end{frage}
+
+\begin{antwort}
+  Die Folge konvergiert nicht, weil sie nicht beschränkt ist. 
+  \AntEnd 
+\end{antwort}
+
+%% Question 20
+\begin{frage}\index{Umordnung einer Folge}
+  Was versteht man unter einer \bold{Umordnung} einer gegebenen Folge?
+\end{frage}
+
+\begin{antwort}
+  Eine \slanted{Umordnung} erhält man  
+  durch eine \slanted{bijektive} Abbildung $\NN\to\NN$ 
+  der Indizes. Die Definition lautet: 
+  \slanted{Sei $\NN\to\NN$, $k\mapsto n(k)=:n_k$ bijektiv. 
+    Dann ist die Folge $(a_{n_k})_{k\in\NN}$ eine 
+    Umordnung der Folge $(a_n)_{n\in\NN}$.}
+  \AntEnd
+\end{antwort}
+
+%% Question 21
+\begin{frage}%
+  Warum hat bei einer konvergenten Folge auch jede Teilfolge und 
+  jede Umordnung denselben Grenzwert wie die Ausgangsfolge?
+\end{frage}
+
+\begin{antwort}
+  Sei $a$ der Grenzwert der Ausgangsfolge. Dann liegen für jedes 
+  $\eps >0$ höchs\-tens endlich viele ihrer Glieder außerhalb von 
+  $U_\eps(a)$ und somit auch nur endlich viele Glieder ihrer 
+  Teilfolgen bzw. ihrer Umordnungen. Das heißt, fast alle Folgenglieder 
+  liegen in $U_\eps(a)$. 
+  \AntEnd
+\end{antwort}
+
+
+\section{Einige wichtige Grenzwerte}
+
+In den folgenden Fragen werden die Grenzwerte einiger wichtiger 
+reeller und komplexer Folgen bestimmt. Neben den Ergebnissen, die an vielen 
+Stellen weiterbenutzt werden, lohnt es sich auch, die Techniken genau zu studieren, 
+mit denen die Abschätzungen hier ermittelt werden. 
+
+
+\begin{frage}%
+  \label{q:folge-geom-absch}
+  Zeigen Sie
+  \[
+  \lim_{n\to\infty}q^n=0\quad\text{für $q\in\CC$,~$|q|<1$}.
+  \]
+\end{frage}
+
+\begin{antwort}
+  Wegen $|q|<1$ ist $|q|^{-1}>1$. 
+  Man setze $|q|^{-1}=1+a$ mit $a>0$. Die 
+  Bernoulli'sche Ungleichung (s.~Frage~\ref{q:bernoulli-ungleichung}) 
+  liefert dann für $n\in \NN$ 
+  \[
+  \left( |q|^{-1} \right)^n =(1+a)^n>1+an>an \Ra |q|^n < \frac{1}{an}.
+  \]
+  Für jedes $\eps>0$ und $n>\frac{1}{\eps a}$ ist somit $|q|^n<\eps$ und 
+  damit $q^n\in U_\eps(0)$.
+  \AntEnd
+\end{antwort}
+
+
+\begin{frage}
+  Zeigen Sie 
+  \[
+  \lim_{n\to\infty}\frac{z^n}{n!}=0\quad\text{für $z\in\CC$.}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Sei $m:= [\, |z|\, ]$ 
+  (Gauß-Klammer von $|z|$, vgl. Frage \ref{01_gkl}). Dann gilt 
+  für $n>m$
+  \[
+  \left| \frac{z^n}{n!} \right| = \frac{ |z|^m }{ m! } \cdot 
+  \frac{ |z|^{n-m} }{ (m+1)\cdots n } \le 
+  |z|^m \cdot \left| \frac{z}{(m+1)} \right|^{n-m}.
+  \]
+  Der erste Faktor auf der rechten Seite ist konstant, der zweite konvergiert 
+  wegen 
+  $\left| \frac{z}{m+1} \right| < 1$ gegen $0$. 
+  Insgesamt folgt daraus die Behauptung.
+  \AntEnd
+\end{antwort}
+
+\begin{frage}
+  Zeigen Sie
+  \[
+  \lim_{n\to\infty} \sqrt[n]{a} = 1\quad\text{für $a\in\RR,\, a>0$.}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Man betrachte zunächst den Fall $a \ge 1$ und setze
+  $x_n := \sqrt[n]{a}-1$. Mit der Bernoulli'schen Ungleichung gilt dann 
+  \[
+  a = (x_n+1)^n \ge 1+nx_n \Ra x_n < \frac{a}{n}, 
+  \]
+  und somit $\lim\limits_{n\to \infty} x_n = 0$ oder $\lim\limits_{n\to\infty} 
+  \sqrt[n]{a}=1$. Den allgemeinen Fall kann man darauf nun 
+  mithilfe der in Frage \ref{02_freg} behandelten Rechenregel 
+  \desc{c} zurückführen: 
+  \[
+  \lim_{n\to\infty} \sqrt[n]{a} = \lim_{n\to\infty}\frac{1}{\sqrt[n]{a^{-1}}} = 
+  \frac{1}{\lim\limits_{n\to\infty} \sqrt[n]{a^{-1}}} = 1. 
+  \]
+\end{antwort}
+
+\begin{frage}
+  Zeigen Sie
+  \[
+  \lim_{n\to\infty} \sqrt[n]{n}=1.
+  \]
+\end{frage}
+
+\begin{antwort}
+  Man setze $x_n:= \sqrt[n]{n}-1$. Dann erhält man durch binomische Entwicklung 
+  \[
+  n=(1+x_n)^n > 1+ \binom{n}{2}x_n^2 \Ra n-1 > \frac{n(n-1)}{2}x_n^2 
+  \Ra x_n < \sqrt{\frac{2}{n}} 
+  \Ra \lim_{n\to\infty} x_n =0, 
+  \]
+  und damit  $\lim\limits_{n\to\infty} \sqrt[n]{n}=1$.
+\end{antwort}
+
+\begin{frage}
+  Zeigen Sie
+  \[
+  \lim_{n\to\infty} \frac{1}{\sqrt[n]{n!}} = 0.
+  \]
+\end{frage}
+
+
+\begin{antwort}
+  Für die Fakultät gilt die Abschätzung 
+  $n! \ge \left(\frac{n}{2}\right)^{n/2}$, wie man mit vollständiger 
+  leicht bestätigen kann. Mit dieser Abschätzung folgt  
+  \[
+  \sqrt[n]{n!} \ge   \left( \frac{n}{2} \right)^{
+    \frac{n}{2}\cdot\frac{1}{n}} = 
+  \sqrt{ \left( \frac{n}{2} \right ) }, \quad\text{und damit}
+  \quad
+  \lim\limits_{n\to\infty} \frac{1}{\sqrt[n]{n!}} =0.
+  \]
+\end{antwort}
+
+
+\begin{frage}
+  Zeigen Sie
+  \[
+  \lim_{n\to\infty} \frac{1}{n^s}=0\quad\text{für $s\in\QQ,\, s>0$}.
+  \]
+\end{frage}
+
+\begin{antwort}
+  Sei $s=p/q$ mit $p,q \in \NN$. Wegen $n^s=\left( \sqrt[q]{n} \right)^p$ 
+  ist nur $\sqrt[q]{n} \to \infty $ zu zeigen. Der Wert 
+  $\sqrt[q]{n}$ wird aber größer als jede beliebige Zahl $M$, sofern nur 
+  $n>M^q$ gilt. 
+\end{antwort}
+
+\begin{frage}
+Zeigen Sie
+\[
+  \lim_{n\to\infty} n^p z^n = 0\quad\text{für $p\in\NN,\,z\in\CC,\,|z|<1$.}
+\]
+\end{frage}
+
+\begin{antwort}
+  Um $\left| z^n \right|$ durch eine Potenz von $n$ abzuschätzen, betrachte man 
+  die Binomialentwicklung von $\left| z^{-n} \right|$. Dazu 
+  setze man $1<|z|^{-1}= (1+x)$ mit $x>0$. Damit erhält man für alle $n>2p$
+  \[
+  |z|^{-n}=(1+x)^n > \binom{n}{p+1} x^{p+1} = 
+  \frac{ n(n-1)\cdots (n-p+1)}{ (p+1)! } x^{p+1} 
+  > \left( \frac{n}{2} \right)^{p+1} \cdot \frac{x^{p+1}}{ (p+1)! }.
+  \]
+  Der erste Faktor rechts geht gegen unendlich für $n\to \infty$, während 
+  der hintere konstant ist. Somit gilt
+  \[
+  \left| n^p z^n \right| = \left| \frac{n^p}{ z^{-n} } \right|  <  
+  n^p \left(\frac{2}{n}\right)^{p+1} \cdot \frac{(p+1)!}{x^{p+1}} = 
+  \frac{1}{n} \cdot \frac{2^{p+1} \cdot (p+1)!}{x^{p+1}}.
+  \]
+  Der zweite Faktor auf der rechten Seite konstant, während der erste 
+  gegen 0 konvergiert. Daraus folgt insgesamt die Behauptung. 
+  \AntEnd
+\end{antwort}
+
+
+\begin{frage}
+  \label{q:folge_absch}
+  Zeigen Sie
+  \[
+  \lim_{n\to\infty} \sqrt[n]{a^n+b^n}=\max\{a,b\} \quad\text{für $a,b\ge0$}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Sei ohne Beschränkung der Allgemeinheit $a=\max\{ a,b \}$. 
+  Das Konvergenzerhalten erkennt man, wenn man den Term in der 
+  Form 
+  \[
+  \sqrt[n]{ a^n +b^n} = \sqrt[n]{ a^n ( 1+ (b/a)^n ) } = 
+  a\cdot \sqrt[n]{ 1+(b/a)^n }
+  \]
+  schreibt. Wegen $b\le a$ konvergiert der Wurzelausdruck 
+  für $n\to\infty$ gegen $1$ (dies gilt auch noch 
+  im Fall der Gleichheit). Damit folgt die Behauptung.  
+  \AntEnd
+\end{antwort}
+
+
+
+
+\section{Permanenzeigenschaften (Rechenregeln) 
+  für konvergente  Folgen}
+
+
+%% Question 23
+\begin{frage}%
+  \label{02_null}
+  \index{Nullfolge}
+  Wann heißt eine reelle oder komplexe Zahlenfolge eine \bold{Nullfolge}?
+\end{frage}
+
+\begin{antwort}
+  Ein reelle oder komplexe Folge heißt \slanted{Nullfolge}, wenn sie gegen 
+  den Grenzwert $0$ konvergiert. 
+  \AntEnd
+\end{antwort}
+
+%% Question 24
+\begin{frage}%
+  \label{02_nuko}
+  \index{Nullfolge}
+  Wie kann man mithilfe des Begriffs "`Nullfolge"' die Konvergenz einer 
+  Folge gegen eine Zahl $a$ beschreiben?
+\end{frage}
+
+\begin{antwort}
+  
+  Eine Folge $(a_n)$ konvergiert genau dann gegen den Grenzwert 
+  $a$, wenn 
+  die Folge $(a_n-a)$ eine Nullfolge ist. 
+  \AntEnd
+\end{antwort}
+
+%% Question 25
+\begin{frage}%
+  \label{02_gmon}
+  \index{Monotonie des Grenzwerts}
+  Was besagt der Satz über die \bold{Monotonie des Grenzwerts} bei reellen 
+  Zahlenfolgen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet: 
+
+  \medskip\noindent
+  \satz{{\noindent}Seien $(a_n)$ und $(b_n)$ zwei konvergente 
+    reelle Folgen mit $a_n \to a$ und $b_n \to b$. Gilt dann $a_n \le b_n$ für 
+    fast alle $n\in\NN$, so folgt $a\le b$. }
+
+  \medskip\noindent
+  Wäre $b<a$, so gäbe es zwei 
+  $\eps$-Umgebungen von $a$ und $b$ mit der Eigenschaft, dass 
+  alle Elemente aus $U_\eps(b)$ kleiner  
+  sind als diejenigen aus $U_\eps(a)$. Nun enthält aber 
+  nach Voraussetzung $U_\eps(b)$ fast alle 
+  $b_n$, $U_\eps(a)$ fast alle $a_n$. Also würde $b_n<a_n$ für fast alle 
+  $n$ gelten, im Widerspruch zur Voraussetzung. 
+  \AntEnd
+\end{antwort}
+
+%% Question 26
+\begin{frage}%
+  \label{02_sndw}
+  \index{Sandwichtheorem}
+  \index{Einschließungssatz}
+  Was besagt das \bold{Sandwichtheorem} (der \bold{Einschließungssatz}) 
+  für reelle Zahlenfolgen? 
+\end{frage}
+
+\begin{antwort}
+  Das Sandwichtheorem lautet:
+
+  \medskip
+  \noindent\textit{Seien 
+    $(A_n)$, $(a_n)$, $(B_n)$ drei reelle Folgen, und es gelte 
+    $A_n\le a_n\le B_n$ für fast alle $n$. 
+    Wenn $(a_n)$ und $(b_n)$ dann gegen denselben Grenzwert konvergieren, 
+    so konvergiert auch $(a_n)$ gegen diesen Grenzwert. } 
+
+  Um die Regel zu beweisen, geht man wie in der vorhergehenden Frage vor 
+  und zeigt $\lim A_n \le \lim a_n \le \lim B_n$. Aus $\lim A_n=\lim B_n$ 
+  folgt dann gleich die Behauptung. 
+
+  Das Sandwichtheorem kann man zum Beispiel bei der Untersuchung   
+  der Folge 
+  \[
+  (a_n):=\left( \sin (n)/ n \right)
+  \]
+  anwenden. 
+  Die Folge wird durch die beiden Nullfolgen 
+  $(a_n)= (-1/n)$ und $(b_n)=(1/n)$ eingeschlossen, nach dem 
+  Sandwichtheorem kann man daraus $\limm a_n = 0$ folgern (\sieheAbbildung\ref{fig:02_sandwich}).    
+  \AntEnd 
+
+  \begin{center}
+    \includegraphics{mp/02_sandwich}
+    \captionof{figure}{Die schwarz dargestellte Folge wird von der oberen und 
+      unteren Folge eingeschlossen.}
+    \label{fig:02_sandwich}
+  \end{center}
+\end{antwort}
+
+%% Question 27
+\begin{frage}%
+  \label{02_freg}
+  \index{Folge!Rechenregeln}
+  Wie verträgt sich der Grenzwertbegriff bei Folgen mit der Bildung von 
+  \bold{Summen}, \bold{Produkten} und \bold{Quotienten} von Folgen?
+\end{frage}
+
+\begin{antwort}
+  Für zwei Folgen $(a_n)$ und $(b_n)$ mit $\dis\limm a_n = a$ und 
+  $\dis \limm b_n = b$ gelten die folgenden Rechenregeln:
+  \satz{\setlength{\labelsep}{5mm}
+    \begin{enumerate}
+    \item[\desc{i}] $\lim\limits_{n\to\infty} (a_n+b_n)=a+b$,
+    \item[\desc{ii}] $\lim\limits_{n\to\infty} (a_nb_n) = ab$,
+    \item[\desc{iii}] Ist $b\not=0$, so sind fast alle $b_n\not=0$, 
+      und es gilt $\lim\limits_{n\to\infty} (a_n/b_n) = a/b$. 
+    \end{enumerate}}
+
+  \medskip\noindent
+  Die Regel \desc{i} ist eine unmittelbare Folge der Dreiecksungleichung: 
+  \[
+  \big|(a+b)-(a_n+b_n)\big| \le \big|a-a_n\big|+\big|b-b_n\big|.
+  \]
+  Regel \desc{ii} erkennt man nach der Umformung
+  \begin{eqnarray*}
+    \big|a_nb_n-ab\big| &=& \big|a_n(b_n-b)+b(a_n-a)\big| 
+    \le \big|a_n\big|\big|b_n-b\big|+\big|b\big|\big|a_n-a\big|.
+  \end{eqnarray*} 
+  Die Faktoren $|a_n|$ und $|b|$ auf der rechten Seite
+  sind nämlich beschränkt, 
+  während $|a_n-a|$ und $|b_n-b|$ nach der Voraussetzung kleiner als $\eps$  
+  werden, wenn man $n$ nur genügend groß wählt. 
+
+  Um \desc{iii} zu zeigen, wähle man ein genügend kleines 
+  $\eps$, sodass die Null nicht in $U_\eps(b)$ enthalten ist. Da fast 
+  alle Glieder $b_n$ in $U_\eps(b)$ liegen, sind auch fast alle $b_n$ von 
+  Null verschieden. Das beweist den ersten Teil von \desc{iii}, der zweite folgt 
+  nun aus Kombination mit \desc{ii}. \AntEnd
+\end{antwort}
+
+%% Question 28
+\begin{frage}%
+  \label{02_flin}
+  Warum ist die Abbildung 
+  $\lim: \; V\to \KK$ 
+  mit $(a_n)_{n\in\NN} \mapsto \limm a_n$  
+  ($\KK=\RR$ oder $\KK=\CC$)  
+  vom Vektorraum der konvergenten Folgen (aus $\KK$) in den 
+  Grundkörper ein lineares Funktional?
+\end{frage}
+
+\begin{antwort}
+  Es muss gezeigt werden, dass für je zwei Folgen 
+  $(a_n)_{n\in\NN}$ und $(b_n)_{n\in\NN}$ aus $V$ und jedes $\lambda \in \KK$ die Beziehungen 
+  \[
+  \mathrm{(i)}\;\limm (a_n+b_n) = \limm a_n + \limm b_n, 
+  \qquad
+  \mathrm{(ii)}\;\limm \lambda a_n = \lambda \limm a_n 
+  \]
+  gelten. Die erste ist aber gerade die Regel \desc{i} aus der vorigen 
+  Frage, die zweite folgt aus der Beziehung 
+  $|a_n-a|<\eps/\lambda \Ra |\lambda a_n - \lambda a| < \eps$.   
+  \AntEnd
+\end{antwort}
+
+%% Question 29
+\begin{frage}%
+  Können Sie begründen, warum für jedes Polynom 
+  \[
+  P\,:\, \KK\to \KK, \quad
+  x \mapsto a_kx^k+a_{k-1}x^{k-1}+\cdots + a_0, \quad
+  k\in\NN,\,a_j \in\KK,\, 0\le j\le k,
+  \]
+  und jede mit dem Grenzwert $\xi$ konvergente Folge $(x_n)$ gilt: 
+  $\lim\limits_{n\to\infty} P(x_n) = P( \xi )$? (Das bedeutet, dass Polynome 
+  \slanted{stetig} sind.)
+\end{frage}
+
+\begin{antwort}
+  Der Zusammenhang ergibt sich durch wiederholte Anwendung der Regeln 
+  \ref{02_freg}\,(i), 
+  \ref{02_freg}\,(ii) und 
+  \ref{02_flin}\,(ii). 
+  \AntEnd
+\end{antwort}
+
+%% Question 30
+\begin{frage}%
+  \label{02_fkom}
+  \index{Folge!komplexer Zahlen}
+  Wenn eine \bold{komplexe Zahlenfolge} konvergiert, was kann man dann 
+  über die Konvergenz der Folge der Beträge bzw. der Folge der Real- und 
+  Imaginärteile aussagen?
+\end{frage}
+
+\begin{antwort}
+  Unter diesen Bedingungen konvergieren sowohl 
+  die Folge der Real- und Imaginärteile als auch die Beträge. 
+
+  Abbildung~\ref{fig:02_komplex1} veranschaulicht den Zusammenhang. Liegen 
+  fast alle Folgenglieder in der $\eps$-Umgebung des Grenzwertes 
+  $a=x+iy$, dann 
+  liegen die Imaginär- und Realteile der entsprechenden Glieder 
+  in den \slanted{reellen} $\eps$-Umgebungen 
+  $U_\eps(x)$ bzw. 
+  $U_\eps(y)$. Aus ähnlichen Gründen folgt aus 
+  $a_n \in U_\eps(a)$ auch $|a_n| \in U_\eps( |a| )$.\AntEnd
+
+  \begin{center}
+    \includegraphics{mp/02_komplex1}
+    \captionof{figure}{Fast alle Realteile der Folge liegen in $U_\eps(x)$, 
+      fast alle Imaginärteile in $U_\eps(y)$.} 
+    \label{fig:02_komplex1}
+  \end{center}
+\end{antwort}
+
+%% Question 31
+\begin{frage}%
+  \label{02_fbet}
+  \index{Folge!Konvergenz}
+  Kann man aus der Konvergenz der Folge der Beträge einer Folge auf die 
+  Konvergenz der Folge schließen?
+\end{frage}
+
+\begin{antwort}
+  Die Antwort lautet nein. Als typisches Gegenbeispiel betrachte man die 
+  Folge $(a_n)_{n\in\NN}=((-1)^n)$ und die Folge ihrer Beträge $(1^n)$. Die 
+  letzte konvergiert, die erste aber nicht.
+  \AntEnd
+\end{antwort}
+
+%% Question 32
+\begin{frage}%
+  \label{02_fkoma}
+  \index{Konvergenz!einer komplexen Folge}
+  \index{Grenzwert!einer komplexen Folge}
+  \index{Folge!komplexer Zahlen}
+  Warum ist die Konvergenz einer komplexen Zahlenfolge gegen einen Grenzwert 
+  $a\in\CC$ äquivalent mit der Konvergenz der Folge der Realteile gegen 
+  $\Re a$ und der Konvergenz der Folge der Imaginärteile gegen $\Im a$?
+\end{frage}
+
+\begin{antwort}
+  Ähnlich wie in der Antwort zu Frage \ref{02_fkom}
+  lässt sich der Zusammenhang 
+  durch ein geometrisches Argument veranschaulichen. 
+
+  Liegen ab einem bestimmten Index $N$ alle Realteile der Folgenglieder 
+  in $U_{\eps'}(x)$ und alle Imaginärteile in $U_{\eps'}(y)$, dann liegen 
+  die komplexen Folgenglieder selbst in $U_{\eps}(a)$ mit 
+  $\eps=\sqrt{2} \eps'$, \sieheAbbildung\ref{fig:02_komplex2}
+
+  \begin{center}
+    \includegraphics{mp/02_komplex2}
+    \captionof{figure}{
+      Die Menge $\{z ; \; \Re z \in U_{\eps'}(x), \Im z \in U_{\eps'}(y)\} 
+      \subset \CC$ liegt innerhalb einer Kreisscheibe mit Radius $\sqrt2 \eps'$.}  
+    \label{fig:02_komplex2}
+  \end{center}
+  Formal folgt das Ergebnis unter den gegebenen Voraussetzungen aus
+  $|a_n-a| = \sqrt{ (x_n-a)^2 + (y_n-y)^2 } \le \sqrt{2{\eps'}^2} 
+  = \sqrt{2}\eps'.$ \AntEnd
+\end{antwort}
+
+%% Question 33
+\begin{frage}%
+  \label{02_gkom}
+  \index{Grenzwert!einer komplexen Folge}
+  Kann der Grenzwert einer reellen Zahlenfolge eine komplexe Zahl sein?
+\end{frage}
+
+\begin{antwort}
+  Nein. Der Trick beim Beweis besteht darin, 
+  die komplexe Konjugation heranzuziehen  
+  und die Tatsache auszunutzen, dass aus $z_n\to z$ stets auch 
+  $\overline{z_n}\to \overline{z}$ folgt 
+  (das ist eine direkte Folge von \ref{02_freg}\,(i)), und dass 
+  für reelle Folgen natürlich $\overline{a_n}=a_n$ gilt. Daraus folgt 
+  $\overline{\lim a_n}=\lim a_n$, und das geht nur 
+  für $\lim a_n \in \RR$.
+  \AntEnd  
+\end{antwort} 
+
+
+
+\section{Prinzipien der Konvergenztheorie}
+
+%% Question 34
+\begin{frage}%
+  \label{02_fmo}
+  \index{Folge!(streng) monoton wachsende}
+  \index{Folge!(streng) monoton fallende}
+  Was versteht man unter einer \bold{(streng) monoton wachsenden 
+    bzw. (streng) monoton fallenden Folge} reeller Zahlen?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(a_n)$ reeller Zahlen heißt 
+  \begin{itemize}[2mm]
+  \item[\desc{i}] \slanted{monoton wachsend}, wenn $a_{n+1} \ge a_n $ 
+    für alle $n\in\NN$ und 
+  \item[\desc{ii}] \slanted{monoton fallend}, wenn $a_{n+1} \le a_n $ 
+    für alle $n\in\NN$ gilt.
+  \end{itemize} 
+
+  \noindent 
+  Analog dazu sind die Bedingungen 
+  $a_{n+1}/a_n \ge 1$ bzw. $a_{n+1}/a_n \le 1$.  
+  Bei \slanted{streng} monotonen Folgen handelt es sich dabei um echte 
+  Ungleichungen, dann gilt also zudem $a_{n+1} \not= a_n$.
+  \AntEnd
+\end{antwort}
+
+%% Question 35
+\begin{frage}%
+  \label{02_mokr}
+  \index{Monotoniekriterium}
+  Was besagt das \bold{Monotoniekriterium} für die Konvergenz einer 
+  reellen Zahlenfolge?
+\end{frage}
+
+\begin{antwort}
+  Das Monotoniekriterium lautet: 
+
+  \medskip\noindent
+  Jede 
+  \emph{beschränkte monotone} 
+  Folge reeller Zahlen konvergiert, und zwar 
+  gilt 
+  \[
+  \lim_{n\to\infty} a_n = \left\{ \begin{array}{ll} 
+      \sup\, \{a_n\sets n\in \NN\}, & \text{falls $(a_n)$ monoton 
+        wächst,} \\
+      \inf\, \{a_n;\; n\in \NN\}, &\text{falls $(a_n)$ monoton fällt.} 
+    \end{array}\right. \EndTag
+  \]
+\end{antwort}
+
+%% Question 36
+\begin{frage}%
+  \label{02_mokb}
+  \index{Monotoniekriterium}
+  Können Sie das Monotoniekriterium beweisen?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_n)$ zunächst eine monoton \slanted{wachsende} Folge und sei 
+  $a:=\sup\{ a_n;\; n\in\NN \}$. Zu jedem $\eps>0$ gibt es aufgrund der 
+  Supremumseigenschaft von $a$ ein $N\in\NN$ mit $a-\eps < a_N<a$. Da die Folge 
+  monoton wächst, gilt diese Ungleichung auch für alle $n$ mit $n > N$, 
+  {\dasheisst}, fast alle Folgenglieder liegen in $U_\eps (a)$.
+
+  Für monoton fallende Folgen verläuft der Beweis analog. An der Stelle des 
+  Supremums betrachtet man hierbei das Infimum.
+  \AntEnd
+\end{antwort}
+
+%% Question 37
+\begin{frage}%
+  \label{Euler}
+  Können Sie zeigen, dass die Folge $(e_n)$ mit 
+  \[
+  e_n := \left( 1+\frac{1}{n} \right)^n 
+  \]
+  monoton wachsend und beschränkt sind?
+\end{frage} 
+
+\begin{antwort}
+  Die Monotonie der Folge $(e_n)_{n\in\NN}$ folgt mit der Bernoulli'schen 
+  Ungleichung aus
+  \begin{eqnarray*}
+    \frac{e_n}{e_{n-1}} &=& \left( \frac{n+1}{n} \right)^n 
+    \left( \frac{n-1}{n} \right)^{n-1} = 
+    \frac{n+1}{n} \left( \frac{n^2-1}{n^2} \right)^{n-1} =
+    \frac{n+1}{n} \left( 1-\frac{1}{n^2} \right)^{n-1} \\
+    & \ge & \left( 1+\frac{1}{n} \right) \left( 1-\frac{n-1}{n^2} \right) =
+    1+\frac{1}{n^3} \ge 1.
+  \end{eqnarray*}
+  Um die Beschränktheit zu zeigen, betrachte man die Folge 
+  $(\widetilde{e}_n)$ mit $\widetilde{e}_n= \left( 1+ \frac{1}{n} \right)^{n+1}$ 
+  Offensichtlich gilt $e_n\le \widetilde{e}_n$ für alle 
+  $n\in\NN$. Ferner ist die Folge $(\widetilde{e}_n)_{n\in\NN}$ monoton 
+  fallend, das ergibt sich aus 
+  \begin{eqnarray*}
+    \frac{\widetilde{e}_{n-1}}{\widetilde{e}_{n}} &=& \left( \frac{n}{n-1} \right)^n 
+    \left( \frac{n}{n+1} \right)^{n+1} = 
+    \frac{n}{n+1} \left( \frac{n^2}{n^2-1} \right)^{n} =
+    \frac{n}{n+1} \left( 1+\frac{1}{n^2-1} \right)^{n} \\
+    & \ge & \frac{n}{n+1} \left( 1+\frac{1}{n^2-1} \right) 
+    \ge \frac{n}{n+1} \left( 1+\frac{1}{n} \right) =1. 
+  \end{eqnarray*}
+  Hieraus erhält man insbesondere 
+  $e_n \le \widetilde{e}_1=4$ für alle $n\in\NN$, die 
+  Folge $(e_n)_{n\in\NN}$ ist somit beschränkt.\AntEnd
+\end{antwort}
+
+%% Question 38
+\begin{frage}
+  Die Folge $(E_n)$ mit  
+  \[
+  E_n := \sum_{k=0}^n \frac{1}{k!}
+  \]
+  ist ebenfalls monoton wachsend und beschränkt. Woraus folgt das?
+\end{frage}
+
+\begin{antwort}
+  Die Folge ist offensichtlich monoton wachsend, da alle Summanden 
+  positiv sind. Wegen $k! \ge 2^{k-1}$ für alle $k\in\NN$ ergibt sich die 
+  Beschränktheit durch Vergleich mit der geometrischen Reihe. Es gilt
+  \begin{equation}
+    E_n \le 2 \sum_{k=0}^{n} 2^{-k} = 2\cdot 
+    \frac{1-1/2^{n+1}}{1-1/2} \le 4.   \EndTag
+  \end{equation}
+\end{antwort} 
+
+%% Question 39
+\begin{frage}\label{02_edef}
+  Können Sie $\lim\limits_{n\to\infty} e_n=\lim\limits_{n\to\infty} E_n$ 
+  beweisen? 
+\end{frage}
+
+\begin{antwort}
+  Um eine sinnvolle Abschätzung des Ausdrucks $|e_n-E_n|$ zu erhalten, 
+  müssen wir den Term in Summanden aufspalten, die sich ihrerseits 
+  gesondert abschätzen lassen. 
+
+  Dazu benutzen wir die Tatsache, dass $(e_n)$ konvergiert. Man wähle 
+  $K\in \NN$ so groß, dass $\sum_{k=K}^\infty \frac{1}{k!} < \frac{\eps}{3}$ 
+  gilt. Mit der binomischen Entwicklung 
+  von $(1+1/n)^n$ erhält man 
+  \[
+  \left| \left( 1+ \frac{1}{n} \right)^n - \sum_{k=0}^n \frac{1}{k!} \right|
+  \le
+  \sum_{k=0}^{K-1} \left| \binom{n}{k} \frac{1}{n^k} - \frac{1}{k!} \right|
+  + \sum_{k=K}^n \binom{n}{k} \frac{1}{n^k} + 
+  \sum_{k=K}^{n} \frac{1}{k!}.
+  \]
+  Der letzte Summand ist aufgrund der Wahl von $K$ kleiner als 
+  $\frac{\eps}{3}$. Für die mittlere Summe gilt:
+  \[
+  \sum_{k=K}^n \binom{n}{k} \frac{1}{n^k} = 
+  \sum_{k=K}^n \frac{n(n-1)\cdots (n-k+1)}{k!n^k} \le
+  \sum_{k=K}^n \frac{1}{k!} < \frac{\eps}{3}.
+  \]
+  Für die erste Summe schließlich gilt:
+  \[
+  \limm \sum_{k=0}^{K-1} \left| \binom{n}{k} \frac{1}{n^k} - \frac{1}{k!} \right|
+  =  \sum_{k=0}^{K-1} \limm
+  \left| \frac{1}{k!} \cdot \left( 1-\frac{1}{n} \right )\cdots
+    \left( 1-\frac{k+1}{n} \right ) -\frac{1}{k!} \right| = 0.
+  \]
+  Es gibt also ein $N \ge K$, sodass die erste Summe für alle $n>N$ kleiner 
+  als $\eps/3$ ist. Für jedes $n>N$ gilt dann insgesamt 
+  $|E_n-e_n| < \eps$, was zu zeigen war. 
+\end{antwort}
+
+%% Question 40
+\begin{frage}
+  Welche berühmte Zahl wird durch den gemeinsamen 
+  Grenzwert von $(e_n)$ und 
+  $(E_n)$ definiert?
+  \nomenclature{$e$}{Euler'sche Zahl $e$}
+  \index{Eulersche Zahl@Euler'sche Zahl $e$}
+  \index{Euler@\textsc{Euler}, Leonhard (1707-1783)}
+\end{frage}
+
+\begin{antwort}
+  Der Grenzwert der Folgen $(e_n)_{n\in\NN}$ und $(e_n)_{n\in\NN}$ ist 
+  die \textit{Euler'sche Zahl}
+  $e=2,718281828459\ldots$.
+  \AntEnd
+\end{antwort}
+
+%% Question 41
+\begin{frage}\label{02_quaf}
+  \index{Quadratwurzel!Rekursionsfolge zur Berechnung}
+  Sei $a$ eine positive reelle Zahl. Warum ist die rekursive Folge 
+  $(x_n)$ mit 
+  \[
+  x_0 := a+1\qquad\text{und}\qquad x_{n+1}:= 
+  \frac{1}{2} \left( x_n+\frac{a}{x_n} \right)
+  \] 
+  konvergent, und was ist ihr Grenzwert?
+\end{frage}
+
+\begin{antwort}
+  Wegen $a>0$ sind alle $x_n$ positiv, die Folge ist also durch null 
+  nach unten beschränkt. 
+  Wenn man jetzt noch zeigen kann, dass die Folge monoton fällt, dann 
+  ergibt sich die Konvergenz unmittelbar aus dem Monotoniekrierium. 
+
+  Wegen $x_n-x_{n+1} = \frac{1}{2} \left( ( x_n^2-a ) / x_n \right)$ 
+  ist die Folge jedenfalls dann monoton fallend, wenn 
+  $x_n \ge \sqrt{a}$ für alle $n$ gilt. Das ergibt sich wegen der 
+  Positivität der $x_n$ mit 
+  \[
+  x_{n}-\sqrt{a} = \frac{1}{2}\left( x_{n-1} + \frac{a}{x_{n-1}} \right) 
+  - \sqrt{a} 
+  = \frac{ x_{n-1}^2+a-2\sqrt{a}x_{n-1} }{ 2x_{n-1} } 
+  = \frac{ (x_{n-1}-\sqrt{a})^2 }{2x_{n-1}} > 0.
+  \] 
+  Die Folge ist somit monoton fallend und besitzt einen Grenzwert in $\RR$.
+  Der Grenzwert $x$ muss die Gleichung  $x=\frac{1}{2}\left( x+\frac{a}{x} \right)$, also  $x^2=a$  
+  erfüllen. Daraus folgt $x=\sqrt{a}$. 
+
+  \medskip
+  \noindent
+  \slanted{Bemerkung}: Bei der Konstruktion der Folge handelt es sich um einen 
+  Spezialfall des \slanted{Newton-Verfahrens} (vgl. Frage~\ref{07_newtondef}).
+  \AntEnd
+\end{antwort}
+
+%% Question 42
+\begin{frage}%
+  \label{02_mont}
+  \index{Folge!Teilfolge}
+  \index{Teilfolge}
+  Warum hat \slanted{jede} reelle Zahlenfolge eine monotone Teilfolge?
+\end{frage}
+
+\begin{antwort}
+  Angenommen, eine 
+  Folge $(a_n)$ besitzt keine monoton \slanted{wachsende} Teilfolge. 
+  Zu jedem Folgenglied $a_n$ betrachte man die längstmögliche 
+  monoton wachsende Serie $a_n, a_{n_1}, \ldots, a_{n_\nu}$. 
+  Diese bricht in jedem Fall nach höchstens endlich vielen Schritten ab 
+  (andernfalls hätte man eine monoton wachsende Teilfolge),  
+  und für die Endpunkte $a_{n_\nu}$ gilt $a_m < a_{n_\nu}$ für alle 
+  $m>n_\nu$. Die Folge dieser "`Spitzen"' $(a_{n_u})$ ($n=1,2,3,\ldots$) ist 
+  dann eine (sogar streng) monoton fallende Teilfolge von $(a_n)$.
+  \AntEnd
+\end{antwort}
+
+%% Question 43
+\begin{frage}%
+  \label{02_bw}
+  \index{Satz!von Bolzano-Weierstraß}
+  \index{Weierstrass@\textsc{Weierstrass}, Karl Theodor Wilhelm (1815-1897)}
+  \index{Bolzano@\textsc{Bolzano}, Bernard (1781-1848)}
+  Was besagt der \bold{Satz von Bolzano-Weierstraß} für reelle Zahlenfolgen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz von Bolzano-Weierstraß lautet: 
+
+  \medskip\noindent
+  \slanted{Jede beschränkte Folge 
+    reeller Zahlen  besitzt eine konvergente Teilfolge}. 
+  \AntEnd
+\end{antwort}
+
+%% Question 44
+\begin{frage}
+  Gilt der Satz von Bolzano-Weierstraß auch für \slanted{komplexe} Folgen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz gilt auch für komplexe Folgen $(a_n)$ mit 
+  $a_n := x_n +i y_n$ ($x,y\in\RR$) und folgt aus der reellen Version. 
+  Die Folge der Realteile und die Folge der Imaginärteile 
+  sind in diesem Fall nämlich ebenfalls beschränkt. 
+  Man kann also nach dem Satz von Bolzano-Weierstraß für reelle Folgen 
+  zunächst eine 
+  konvergente Teilfolge $(x_{n_k})_{k\in\NN}$ von $(x_n)$ auswählen und 
+  anschließend eine konvergente Teilfolge $(y_{n_{k_\ell}})_{\ell\in\NN}$ von 
+  $(y_{n_k})_{k\in\NN}$. Die Folge $(a_{n_{k_\ell}})_{\ell\in\NN}$ 
+  ist dann eine konvergente Teilfolge von $(a_n)_{n\in\NN}$.
+  \AntEnd
+\end{antwort}
+
+%% Question 45
+\begin{frage}%
+  \label{02_hfw}
+  \index{Haufungswert@Häufungswert}
+  Was versteht man unter einem \bold{Häufungswert} einer Zahlenfolge? 
+\end{frage}
+
+\begin{antwort}
+  Ein \slanted{Häufungswert} einer Zahlenfolge $(a_n)$ ist der Grenzwert einer 
+  Teilfolge $(a_{n_k})$. Aus dieser Definition folgt sofort, dass 
+  in jeder $\eps$-Umgebung eines Häufungswerts $h$ unendlich viele 
+  Folgenglieder liegen. Hiervon gilt aber auch die Umkehrung. 
+  Liegen nämlich in jeder $\eps$-Umgebung einer Zahl $h$ unendlich viele 
+  Folgenglieder, dann lässt sich leicht eine Teilfolge auswählen, die 
+  gegen den Wert $h$ konvergiert. Dazu bestimme man das erste Element der 
+  Teilfolge aus $U_1(h)$, das zweite aus $U_{1/2}$ und allgemein 
+  das $k$-te Glied aus $U_{1/k}(h)$. Diese Teilfolge konvergiert 
+  dann gegen den Wert $h$.
+  \AntEnd
+\end{antwort}
+
+%% Question 46
+\begin{frage}%
+  \label{02_lsup}
+  \index{Limes Superior ($\lim\sup$)}
+  \index{Limes Inferior ($\lim\inf$)}
+  \nomenclature{$\lim\sup,\,\lim\inf$}{Limes Superior, Limes Inferior}
+  Warum hat die Menge der \bold{Häufungswerte} einer 
+  beschränkten reellen Zahlenfolge ein Maximum 
+  (genannt $\lim\sup$) bzw. Minimum (genannt $\lim\inf$)? 
+\end{frage}
+
+\begin{antwort}
+  Mit der Ausgangsfolge $(a_n)$ 
+  ist auch die Menge $\calli{H}$ ihrer Häufungswerte nach 
+  oben beschränkt und besitzt somit ein Supremum $s$, {\dasheisst},   
+  zu jedem $\eps > 0$ gibt es ein Element $h\in \calli{H}$ mit 
+  $s \ge h> s-\eps/2$. Da $h$ ein Häufungswert der Folge ist, 
+  gibt es eine Teilfolge, die gegen $h$ konvergiert. Ab einem 
+  bestimmten Index $N$ liegen alle Glieder dieser Teilfolge in 
+  $U_{\eps/2}(h)$ und somit in $U_\eps(s)$. Es liegen also unendlich 
+  viele Glieder der Folge $(a_n)$ in $U_\eps(s)$, also ist $s$ ein 
+  Häufungspunkt. Aus $s\in H$ und $s=\sup \calli{H}$ folgt $s=\max \calli{H}$, 
+  die Menge der Häufungswerte besitzt also ein Maximum. 
+
+  Der Beweis für die Existenz des Minimums lässt sich darauf durch Übergang zur 
+  Folge $(-a_n)$ zurückführen.
+  \AntEnd
+\end{antwort}
+
+%% Question 47
+\begin{frage}%
+  \label{02_cf}
+  \index{Cauchy@\textsc{Cauchy}, Augustin Louis (1789-1857)}
+  \index{Cauchy-Folge}
+  Wann heißt eine Folge reeller oder komplexer Zahlen eine 
+  \bold{Cauchy-Folge}?
+\end{frage}  
+
+\begin{antwort}
+  Eine Zahlenfolge heißt \slanted{Cauchy-Folge}, 
+  wenn es eine natürliche Zahl 
+  $N$ gibt, sodass für alle $n,m \ge N$ gilt: $|a_n - a_m|<\eps$.
+
+  Eine äquivalente Formulierung lautet: zu jedem $\eps>0$ 
+  existiert ein $N\in\NN$, sodass $a_n \in U_\eps(a_N)$ für 
+  fast alle $n$ gilt.   
+
+  \begin{center}
+    \includegraphics{mp/02_cauchy}
+    \captionof{figure}{
+      Fast alle Folgenglieder liegen in der $\eps$-Kreisscheibe um $a_N$.
+    }
+    \label{fig:02_cauchy}
+  \end{center}
+  Bei einer Cauchy-Folge "`verdichten"' sich die Glieder $a_n$ 
+  mit zunehmendem $n$ also beliebig stark, \sieheAbbildung\ref{fig:02_cauchy}.  
+  \AntEnd
+\end{antwort}
+
+%% Question 48
+\begin{frage}%
+  \label{02_cfa}
+  \index{Cauchy-Folge}
+  Warum ist jede konvergente reelle oder komplexe Zahlenfolge eine 
+  Cauchy-Folge?
+\end{frage}
+
+\begin{antwort}
+  Sei $a$ der Grenzwert der Folge. Aus $|a_n-a|\le \eps/2$ für alle 
+  $n>N$ folgt dann mit der Dreiecksungleichung für alle $k,m > N$:
+  \begin{equation}
+    |a_k-a_m| \le | a_k -a | + | a_m-a | < \eps.  \EndTag
+  \end{equation}
+\end{antwort}
+
+%% Question 49
+\begin{frage}%
+  \label{02_cfb}
+  \index{Vollständigkeit!von $\RR$ und $\CC$}
+  Warum sind $\RR$ und $\CC$ \bold{vollständig} in dem Sinne, dass 
+  jede Cauchy-Folge in $\RR$ oder $\CC$ einen reellen bzw. 
+  komplexen Grenzwert besitzt?
+\end{frage}
+
+\begin{antwort}
+  Sei $(a_n)$ eine Cauchy-Folge, sodass $|a_n-a_m| < \eps/2 $ für alle 
+  $n,m \ge N$ gilt, \sieheAbbildung\ref{fig:02_cauchy2}. 
+  Die Folge ist dann beschränkt, da nur endlich viele 
+  Glieder außerhalb von $U_\eps( a_N)$ liegen und 
+  besitzt somit nach Bolzano-Weierstraß eine konvergente 
+  Teilfolge $(a_{n_k})_{k\in\NN}$. Sei $a$ deren 
+  Grenzwert, dann gibt es ein $K\in\NN$, sodass für alle 
+  $k>K$ gilt $|a-a_{n_k}| < \eps/2$. Es bleibt zu zeigen, 
+  dass auch die Ausgangsfolge gegen $a$ konvergiert. 
+
+  Man wähle $k>K$ so, dass auch $n_k>N$ gilt. 
+  Dann folgt mit der Dreiecksungleichung 
+  aufgrund der Konvergenz der Teilfolge und der 
+  Cauchy-Eigenschaft der Ausgangsfolge für alle $n>N$
+  \[
+  |a-a_n| \le |a-a_{n_k}| + | a_{n_k} - a_n | < \eps.
+  \]      
+  Die Ausgangsfolge ist somit konvergent.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/02_cauchy2}
+    \captionof{figure}{
+      Jede Cauchy-Folge in $\CC$ (und $\RR$) besitzt einen Grenzwert.
+    }
+    \label{fig:02_cauchy2}
+  \end{center}  
+\end{antwort}
+
+%% Question 50
+\begin{frage}%
+  \label{02_cfc}
+  \index{Cauchy-Folge}
+  \index{Vollständigkeit!von $\RR$ und $\CC$}
+  Kennen Sie Beispiele für Cauchy-Folgen in $\QQ$, die in $\QQ$ keinen 
+  Grenzwert besitzen? 
+\end{frage}
+
+\begin{antwort}
+  Die Folge rationaler Zahlen $(x_n)$ mit $
+  x_n := \frac{1}{2} \left( x_{n-1} + \frac{m}{x_{n-1}} \right)$ 
+  konvergiert nach Frage \ref{02_quaf} für jedes 
+  $m\in\NN$ gegen den Grenzwert $\sqrt{m}$. Ist $m$ keine Quadratzahl, so ist 
+  dieser Grenzwert irrational.
+
+  Die Euler'sche Zahl $e$ als 
+  gemeinsamer Grenzwert der Folgen $(e_n)$ und $(E_n)$ aus 
+  Frage \ref{02_edef} ist ebenfalls irrational 
+  (siehe die Antwort zu Frage \ref{02_eirr}).
+  \AntEnd
+\end{antwort}
+
+%% Question 51
+\begin{frage}%
+  \label{02_ints}
+  \index{Intervallschachtelung}
+  Was versteht man bezüglich $\RR$ unter einer 
+  \bold{Intervallschachtelung}?
+\end{frage}
+
+\begin{antwort}[]
+  \Ant Unter einer \slanted{Intervallschachtelung} versteht man eine Folge 
+  $I_1,I_2,I_3,\ldots$ 
+  kompakter Intervalle $I_n$, für die gilt
+  \satz{\setlength{\labelsep}{4mm}
+    \begin{enumerate}
+    \item[\desc{a}] $I_{n+1} \subset I_n$ für alle $n\in\NN$.\\[-3.5mm]
+    \item[\desc{b}] Die Folge $( |I_n| )$ der Intervallängen ist eine 
+      Nullfolge. 
+    \end{enumerate}}
+
+  \noindent
+  Beispielweise bildet die Folge $(I_n)$ mit $I_n := [ 0, 1/n ]$ eine 
+  Intervallschachtelung.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/02_intschachtelung}
+    \captionof{figure}{Bei einer Intervallschachtelung gilt $I_{n+1}\subset I_n$.}
+    \label{fig:02_intschachtelung}
+  \end{center}
+\end{antwort}
+
+%% Question 52
+\begin{frage}%
+  \label{02_intp}
+  \index{Intervallschachtelung}
+  Was besagt das \bold{Intervallschachtelungsprinzip}?
+\end{frage}
+
+\begin{antwort}
+  Das Prinzip besagt: 
+
+  \medskip%
+  \noindent%
+  \textit{Zu jeder Intervallschachtelung 
+    $(I_n)_{n\in\NN} \subset \RR$ existiert eine 
+    reelle Zahl, die in allen Intervallen $I_n$ enthalten ist.}
+
+  \medskip\noindent
+  Die entsprechende Zahl ist damit eindeutig bestimmt. 
+  Wären nämlich $a,b\in\RR$ mit $a<b$ zwei verschiedene reelle Zahlen, die 
+  in allen $I_n$ enthalten sind, so würde $[ a,b ] \subset I_n$ und damit 
+  $|I_n| \ge b-a$ für alle $n\in\NN$ gelten. Die Folge der Intervallängen 
+  wäre damit keine Nullfolge.
+  \AntEnd
+\end{antwort}
+
+%% Question 53
+\begin{frage}%
+  \label{02_ein}
+  \index{Intervallschachtelung}
+  \index{Eulersche Zahl@Euler'sche Zahl $e$}
+  Können Sie nachweisen, dass die Folgen $(e_n)$ und $(\widetilde{e}_n)$ mit 
+  \[
+  e_n := \left( 1+\frac{1}{n} \right)^n \quad\text{und}\quad
+  \widetilde{e}_n :=  \left( 1+\frac{1}{n} \right)^{n+1}
+  \]
+  eine Intervallschachtelung bilden?
+\end{frage}
+
+\begin{antwort}
+  Es wurde bereits in Frage \ref{02_edef} gezeigt, dass 
+  die Folge $(e_n)$ monoton wächst  
+  und die Folge $(\widetilde{e}_n)$ 
+  monoton fällt. Wegen $\widetilde{e}_n \ge e_n$ 
+  gilt daher $[e_n,\widetilde{e}_{n}]
+  \subset [e_{n+1},\widetilde{e}_{n+1}]$ für alle $n\in \NN$.
+
+  Es bleibt noch zu zeigen, dass die Folge $(\widetilde{e}_n-e_n)$ 
+  der Intervallängen eine 
+  Nullfolge ist. Dies ergibt sich sofort aus 
+  \[
+  \left( 1+\frac{1}{n} \right)^{n+1} -
+  \left( 1+\frac{1}{n} \right)^n = 
+  \left( 1+\frac{1}{n} \right)^n \cdot \frac{1}{n}.
+  \]
+  Der erste Faktor auf der rechten Seite ist beschränkt 
+  (vgl. Frage \ref{02_edef}), der 
+  zweite konvergiert gegen null. Also gilt $\limm (\widetilde{e}_n -e_n )=0$, und 
+  die beiden Folgen bilden eine Intervallschachtelung.
+  \AntEnd  
+\end{antwort}
+
+%% Question 54
+\begin{frage}
+  Welche Zahl wird durch die Intervallschachtelung aus der letzten Frage erfasst?
+\end{frage}
+
+\begin{antwort}
+  Die dadurch erfasste Zahl ist wiederum die Euler'sche Zahl $e$.
+  \AntEnd
+\end{antwort} 
+
+%% Question 55
+\begin{frage}%
+  \label{02_eina}
+  \index{Intervallschachtelung}
+  Warum bilden auch die Folgen $(E_n)$ und $(\widetilde{E}_n)$ mit 
+  \[
+  E_n := \sumkn \frac{1}{k!} \qquad\text{und}\qquad
+  \widetilde{E}_n := E_n + \frac{1}{n\cdot n!}, \quad n\in\NN
+  \]
+  eine Intervallschachtelung?
+\end{frage}
+
+\begin{antwort}
+  Die Folge $(E_n)$ ist offensichtlich monoton wachsend, die 
+  Folge $(\widetilde{E}_n)$ wegen
+  \[
+  \widetilde{E}_{n+1} = E_n + \frac{1}{(n+1)!} + \frac{1}{(n+1)(n+1)!} 
+  = E_n + \frac{n+1}{(n+1)^2\cdot n!} \le 
+  E_n + \frac{1}{n\cdot n!} = \widetilde{E}_n
+  \]
+  monoton fallend. 
+  Da die Folge der Differenzen 
+  $(\widetilde{E}_n-E_n)=( \frac{1}{n\cdot n!} )$ 
+  eine Nullfolge ist, bilden die Intervalle 
+  $I_n := [ E_n,\widetilde{E}_n]$ somit eine Intervallschachtelung. 
+\end{antwort}
+
+%% Question 56
+\begin{frage}
+  Die durch $(E_n)$ und $(\widetilde{E}_n)$ gegebene Intervallschachtelung 
+  erfasst wiederum die Euler\sch e Zahl 
+  $e$. Können Sie das begründen?
+\end{frage} 
+
+\begin{antwort}
+  Die Antwort ergibt sich aus dem Ergebnis zu Frage \ref{02_edef}, 
+  demzufolge $(e_n)$ und $(E_n)$ 
+  den gleichen Grenzwert besitzen. 
+  \AntEnd
+\end{antwort} 
+
+%% Question 57
+\begin{frage}
+  Welche der beiden Intervallschachtelungen konvergiert schneller: die durch 
+  $(E_n)$ und $(\widetilde{E}_n)$ oder die durch 
+  $(e_n)$ und $(\widetilde{e}_n)$ gegebene?
+\end{frage}
+
+\begin{antwort}
+  Die erste Intervallschachtelung konvergiert wesentlich schneller. Für die 
+  Folge der Intervalllängen gilt hier $|(I_n)|=\frac{1}{n\cdot n!}$. 
+  Schon die Länge des fünften Intervalls beträgt nur noch $1/600=0.001666\ldots$
+  Dagegen sind die Intervalllängen $(|I'_n|)$ 
+  der durch $(e_n)$ und $(\widetilde{e}_n)$ gegebenen Intervallschachtelung 
+  größer als $\frac{1}{n}$.  
+  \AntEnd
+\end{antwort}
+
+%% Question 58
+\begin{frage}%
+  \label{02_eirr}
+  \index{Intervallschachtelung}
+  \index{Eulersche Zahl@Euler'sche Zahl $e$}
+  Können Sie beweisen, dass die Euler'sche Zahl 
+  $\dis e=\lim e_n = \dis \lim E_n$ keine rationale Zahl ist?
+\end{frage}
+
+\begin{antwort}
+  Angenommen, $e$ sei rational, etwa $e=m/n$ mit $m,n \in \NN$. Dann wäre
+  $n!\, e$ eine ganze Zahl. Mit $\alpha := e-E_n$ wäre also auch  
+  \[
+  n!\,\alpha := n! \,\left( e- E_n \right) = 
+  n!\, \left( e - 1-\frac{1}{2} - \cdots - \frac{1}{n!} \right).
+  \]
+  eine ganze Zahl. Auf der anderen Seite folgt aber aus $\widetilde{E}_n > E$ 
+  \[
+  \alpha = ( e-E_n ) < ( \widetilde{E}_n - E_n ) = \frac{1}{n\cdot n!} < \frac{2}{(n+1)!},
+  \] 
+  und damit $0<n! \, \alpha < 2/(n+1)$, im Widerspruch zur Ganzzahligkeit von 
+  $n! \, \alpha$. 
+  \AntEnd 
+\end{antwort}
+
+%% Question 59
+\begin{frage}%
+  \label{02_fqua}
+  \index{Quadratwurzel!Rekursionsfolge zur Berechnung}
+  Sei $(x_n)$ die in Frage \ref{02_quaf} definierte Folge zur Approximation 
+  von Quadratwurzeln. 
+  Versuchen Sie zu zeigen, dass  
+  für den \slanted{Fehler} $R_n := x_n-\sqrt{a}$ gilt: $
+  R_{n+1} \le \frac{1}{2\sqrt{a}} R_n^2$?
+\end{frage}
+
+\begin{antwort}
+  Da die Folge für $n>1$ monoton fällt, erhält man
+  \begin{equation}
+    R_{n+1} = \frac{1}{2} \left( x_n + \frac{a}{x_n} \right) - \sqrt{a} = 
+    \frac{1}{2}  \frac{ x_n^2 + a-2x_n \sqrt{a} }{ x_n } \le 
+    \frac{ ( x_n-\sqrt{a} )^2 }{ 2\sqrt{a} } = \frac{R_n^2}{2\sqrt{a}}.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% Question 60
+\begin{frage}%
+  \label{02_quak}
+  \index{Konvergenz!quadratische}
+  Was versteht man unter \bold{quadratischer Konvergenz} einer Folge?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(a_n)$ konvergiert \slanted{quadratisch} gegen 
+  den Grenzwert $a$, wenn es eine Konstante 
+  $C$ gibt, sodass gilt:
+  \[
+  |a_{n+1}-a| \le C \cdot |a_n-a|^2\quad\text{für alle $n\in\NN$}.
+  \]
+  Für die Folge mit $x_n=\frac{1}{2}( x_n + a/x_n)$ liegt also aufgrund 
+  der Ergebnisse aus der vorigen Frage quadratische Konvergenz vor. 
+  In diesem Fall ist $C=1/2\sqrt{a}$. 
+  \AntEnd
+\end{antwort}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 

@@ -1,0 +1,58 @@
+\documentclass[a4paper,10pt,openany,bibtotoc,indextotoc,liststotoc]
+{lehrbuch17x24}
+\usepackage{mymacros}
+
+
+%\includeonly{vorwort-zweite-auflage}
+
+%\def\incl#1{\setcounter{Frage}{0}\include{#1}}
+\def\incl#1{\include{#1}}
+
+
+
+\begin{document}
+
+\frontmatter
+\bibliographystyle{plain}
+
+\pagenumbering{roman}
+
+\tableofcontents
+
+\mainmatter
+
+\include{vorwort-zweite-auflage}
+\include{vor}
+\pagenumbering{arabic}
+
+   \incl{kap1}
+%   \incl{kap2}
+%   \incl{kap3}
+%  \incl{kap4}
+%   \incl{kap5}
+%   \incl{kap6}
+%   \incl{kap7}
+%   \incl{kap8}
+%   \incl{kap9}
+%   \incl{kap10}
+%   \incl{kap11}
+%  \incl{kap12}
+
+\nocite{*}
+
+\backmatter
+
+\medskip
+
+%\bibliography{literatur}
+
+\markboth{Symbolverzeichnis}{Symbolverzeichnis}
+\addcontentsline{toc}{chapter}{Symbolverzeichnis}
+\printnomenclature
+
+\printindex
+
+
+
+
+\end{document}

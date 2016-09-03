@@ -1,0 +1,4236 @@
+\chapter{Integralrechnung in mehreren Variablen} 
+
+"`Die mehrdimensionale Integration ist wahrscheinlich innerhalb der 
+mathematischen Grundvorlesungen das unangenehmste Stoffgebiet"' (Otto 
+Forster in \citep{Forster}).
+
+Eine der Schwierigkeiten ist sicher die Tatsache, dass mehrdimensionale 
+Integrationsbereiche im allgemeinen eine viel komplexere Gestalt haben können 
+als im Eindimensionalen, wo zunächst nur kompakte Intervalle als 
+Integrationsbereiche auftreten und das Integral über nicht beschränkte 
+Intervalle durch "`Ausschöpfen"' mit kompakten Intervallen auf die 
+Integration über diese zurückgeführt wird. 
+
+Ein Ziel der zu entwickelnden Integralrechnung sollte es sein, möglichst 
+vielen auf geeigneten Teilmengen $A\subset\RR^n$ erklärten Funktionen 
+ein $n$-dimensionales Integral $\int_A f$ so zuzuordnen, dass 
+\begin{enumerate}
+\item die Abhängigkeit von $A$ und $f$ überschaubaren Gesetzmäßigkeiten 
+  genügt, {\zB} dass für zwei Funktionen $f,g \fd A\to \RR$ gilt 
+  \[
+  \int_A (f+g) = \int_A f + \int_A g.
+  \]
+\item im Fall $A=[a,b]\in \RR$ $\int_{[a,b]} f$ das gewohnte Integral 
+  $\int_a^b f$ ist. 
+\item eine geometrische Interpretation des Integrals $\int_A f$ für eine 
+  nichtnegative Funktion $f\fd A\to \RR$ als $(n+1)$-dimensionales Volumen 
+  $v_{n+1}$ (als \slanted{Maß}) der Menge 
+  $
+  K := \big\{ (x,t) \in \RR^n \times \RR \sets x\in A, \; 0 \le t \le f(x) \big\}
+  $ ermöglicht wird, es soll also gelten 
+  \[
+  v_{n+1}( K) =\int_A f,
+  \]
+
+  insbesondere soll für die konstante 
+  Funktion $\eins$ das $(n+1)$-dimensionale Volumen $\int_A \eins$ des Zylinders 
+  mit "`Basis $A$"' und "`Höhe $1$"' (\Abb\ref{fig:11_zylinder}) mit dem $n$-dimensionalen Volumen 
+  von $A\subset\RR^n$ identisch sein. 
+
+  \begin{center}
+    \includegraphics{mp/11_zylinder}
+    \captionof{figure}{Zylinder mit "`Basis $A$"' und "`Höhe $1$"'}
+    \label{fig:11_zylinder}
+  \end{center}
+
+  In den niederen Dimensionen $n=1,2,3$ 
+  soll das $n$-dimensionale Volumen von $A$ mit den elementargeometrischen 
+  Begriffen von Länge, Flächeninhalt und Rauminhalt übereinstimmen. 
+\item möglichst weitreichende Konvergenzsätze des folgenden Typs 
+  gelten: Konvergiert eine Folge $(f_n)$ von Funktionen $f_n \fd A\to \RR$ 
+  gegen $f\fd A\to\RR$, so konvergiert auch die Folge der Integrale gegen 
+  das Integral von $f$:
+  \[
+  \lim_{n\to\infty} \int_A f_n = \int_A f.
+  \]
+\end{enumerate}
+
+\index{Daniell@\textsc{Daniell}, P.\, J. (1889-1946)}
+\index{Lebesgue@\textsc{Lebesgue}, Henri (1875-1941)}
+Die nachfolgenden Fragen beziehen sich auf die Konstruktion des 
+\slanted{Lebesgue-Integrals} mithilfe des 
+\slanted{Daniell-Lebesgue-Prozesses}. 
+Ausgangspunkt ist dabei das Integral für 
+\slanted{stetige Funktionen mit kompaktem Träger} (\slanted{Lebesgue'sches 
+  Elementarintegral}), das im ersten Schritt auf die 
+\slanted{halbstetigen Funktionen} 
+fortgesetzt und in einem zweiten Schritt auf die 
+\slanted{Lebesgue-integrierbaren}  
+Funktionen ausgedehnt wird. Dieser ökonomische und elegante Zugang, der 
+auch auf allgemeinere Räume ausdehnbar ist, findet sich {\zB} auch 
+bei O. Forster (vgl. \citep{Forster}). Wem dieser Zugang unbekannt ist, 
+kann die nächsten drei Abschnitte einfach im Sinne eines Lehrbuchs 
+lesen, die Begriffe werden ausführlich erläutert. 
+
+Es gibt alternative Zugänge zum Lebesgue-Integral, bei 
+denen {\zB} vom Integral für Treppenfunktionen als 
+"`Elementarintegral"' ausgegangen wird. Ein derartiger 
+Weg wir etwa in \citep{Koenig} und 
+\citep{Fritzsche} beschritten. Bei den Eigenschaften des 
+Lebesgue-Integrals treffen sich die verschiedenen Zugänge dann wieder. 
+
+Wir beginnen mit Integralen, die 
+von einem Parameter abhängen und fragen nach der Stetigkeit und 
+Differenzierbarkeit solcher Integrale.
+
+\section{Parameterabhängige und $n$-fache Integrale}
+\label{paramintegrale}
+
+%% --- 1 --- %%
+\begin{frage}\label{11_paramstet}
+  \index{parameterabhängige Integrale!Stetigkeit}
+  \index{Stetigkeit!parameterabhängiger Integrale} 
+  Ist $[a,b]\subset\RR$ ein kompaktes Intervall und $M\subset\RR^n$ eine 
+  beliebige nichtleere Teilmenge sowie $f\fd [a,b]\times M \to \RR$ 
+  eine stetige Funktion (s. \Abb\ref{fig:11_int}), warum ist dann die Funktion 
+  \[
+  G \fd M \to\RR; \qquad y \mapsto \int_a^b f(x,y) \difx
+  \]
+  stetig auf $M$? 
+
+  \begin{center}
+    \includegraphics[width=80mm]{povray/11_int.pdf}
+    \captionof{figure}{Der Wert der Funktion $G$ an einer Stelle $y_0\in M$ ist das 
+      Integral $\int_a^b f(x,y_0)\difx$.}
+    \label{fig:11_int}
+  \end{center}
+\end{frage}
+
+\begin{antwort}
+  Das folgt im Wesentlichen aus der 
+  \slanted{gleichmäßigen} Stetigkeit stetiger Funktionen 
+  auf kompakten Mengen (vgl. Frage \ref{09_glmstet}). 
+
+  Sei $(y_k)$ eine Folge in $M$, die gegen $y_0 \in M$ konvergiert. 
+  Es ist $\lim G(y_k)=G(y_0)$ zu zeigen, also dass es zu jedem 
+  $\eps>0$ ein $k_0\in \NN$ gibt, sodass für alle $k>k_0$ gilt 
+  \[
+  \bigl| G(y_k) - G(y_0) \bigr| = \left| \int_a^b 
+    \bigl( f(x,y_k)- f(x,y_0) \bigr) \difx \right| < \eps.
+  \]
+  Nun ist die Menge $Y:= \{ y_k \sets k\in \NN \}\cup\{ y_0\}$ 
+  eine kompakte Teilmenge von $M$ (vgl. Frage \ref{09_kompaktbsp}), 
+  und damit ist auch $K := [a,b]\times Y 
+  \subset \RR^1\times \RR^n = \RR^{1+n}$ kompakt, 
+  folglich $f$ auf $K$ gleichmäßig stetig. 
+  Insbesondere gibt es zu beliebig 
+  vorgegebenem $\eps>0$ ein $\delta>0$ mit der Eigenschaft, 
+  dass für alle $x\in [a,b]$ gilt
+  \[
+  \bigl| f(x,y_k)-f(x,y_0) \bigr| < \eps, 
+  \quad\text{falls\; $\nb{ (x,y_k) -(x,y_0) } = \nb{ y_k -y_0 } < \delta.$} 
+  \]
+  Wegen $\lim y_k \to y_0$ ist dies für $k\ge k_0$ erfüllt. Für diese 
+  $k$ gilt dann auch
+  \[
+  \bigl| G(y_k)-G(y_0) \bigr| = \left| \int_a^b 
+    \bigl( f(x,y_k)-f(x,y_0) \bigr)  \difx \right| < \eps(b-a). \nodpagebreak
+  \]
+  Das zeigt die Stetigkeit der Funktion $G$. \AntEnd
+\end{antwort}
+
+%% --- 2 --- %%
+\begin{frage}\label{11_paramdiff}
+  \index{parameterabhängige Integrale!Differenzierbarkeit}
+  Ist $[a,b]\subset\RR$ ein kompaktes Intervall und $U\subset \RR^n$ 
+  eine nichtleere offene Teilmenge (mit den Koordinaten $y_1,\ldots,y_n$) sowie 
+  $f\fd [a,b]\times U\to\RR$ eine stetige Funktion, die eine auf 
+  $[a,b]\times U$ stetig partielle Ableitung nach der $j$-ten Variable $y_j$ 
+  besitzt, warum ist dann die Funktion 
+  \[
+  G \fd U \to \RR; \qquad y \mapsto \int_a^b f(x,y_1,\ldots,y_n)\difx 
+  \]
+  stetig partiell differenzierbar, und es gilt 
+  \[
+  \partial_j G(y) = \int_a^b \partial_j f(x,y_1,\ldots,y_n) \difx \,\text{?}
+  \]
+  (Differenziation unter dem Integral, Leibniz'sche Regel)
+  \index{Differenziation!unter dem Integral}
+  \index{Leibniz'sche Regel}
+\end{frage} 
+
+\begin{antwort}
+  Wir können uns auf den Fall $n=1$ beschränken. 
+  Dann ist zu zeigen, dass für festes 
+  $y_0 \in U$ und alle hinreichend nahe bei $y_0$ 
+  gelegenen $y\in U \mengeminus{y_0}$ der Betrag von 
+  \[
+  \frac{G(y)-G(y_0)}{y-y_0} - 
+  \int_a^b \frac{\partial f}{\partial y} (x,y_0) \difx =
+  \int_a^b \left[ \frac{f(x,y)-f(x,y_0)}{y-y_0} - 
+    \frac{\partial f}{\partial y} (x,y_0) \right] \difx 
+  \]
+  beliebig klein wird. 
+
+  Dazu schreibt man den Integranden auf der rechten Seite in der Form 
+  \[
+  \frac{1}{y-y_0} \left[ f(x,y)-y
+    \frac{\partial f}{\partial y} (x,y_0) - \left( 
+      f(x,y_0)- y_0 \frac{\partial f}{\partial y} (x,y_0) \right) \right]
+  = \frac{ h(x,y)-h(x,y_0) }{y-y_0}
+  \]
+  mit $ h(x,y):= f(x,y)-y \frac{\partial f}{\partial y} (x,y_0)$. 
+  Es gilt $
+  \frac{\partial h}{\partial y} (x,y)=
+  \frac{\partial f}{\partial y} (x,y) -
+  \frac{\partial f}{\partial y} (x,y_0)$, 
+  also ist $\frac{\partial h}{\partial y}$ stetig mit 
+  $\frac{\partial h}{\partial y} (x,y_0)=0$. 
+
+  An dieser Stelle kommt wieder die gleichmäßige Stetigkeit ins Spiel. 
+  Da $\frac{\partial h}{\partial y}$ auf kompakten Mengen gleichmäßig 
+  stetig ist, können wir zu vorgegebenem $\eps>0$ ein $\delta>0$ so wählen, 
+  dass für die abgeschlossene Kugel $K := \overline{U_\delta (y_0)}$ 
+  gilt 
+  \[
+  \left| \frac{\partial h}{\partial y} (x,y) \right| < \eps 
+  \quad\text{für $(x,y) \in [a,b]\times K$}. 
+  \]
+  Der Mittelwertsatz liefert dann für $(x,y) \in [a,b]\times K$ 
+  für $y\not=y_0$ 
+  \[
+  \left| \frac{h(x,y)-h(x,y_0)}{y-y_0} \right| 
+  \le \sup \left\{ \left| \frac{\partial h}{\partial y} (x,y) \right| \sets
+    (x,y) \in [a,b]\times K \right\}
+  < \eps,
+  \]
+  und daraus folgt
+  \[
+  \left| \frac{G(y)-G(y_0)}{y-y_0} - \int_a^b 
+    \frac{\partial f}{\partial y} (x,y) \difx \right| < \eps.
+  \]
+  $G$ besitzt also die behauptete Ableitung. Deren Stetigkeit 
+  folgt aus der Antwort zur vorhergehenden Frage.
+
+  Bemerkung: Die Ableitung parameterabhängiger 
+  Integrale spielt eine große Rolle bei der Herleitung der 
+  Euler-Lagrange'schen Differenzialgleichungen der Variationsrechnung.
+  \index{Variationsrechnung}
+  \index{Euler-Lagrange'sche Differenzialgleichungen} 
+  Man vergleiche hierzu \citep{Koenig}.
+  \AntEnd
+\end{antwort} 
+
+%% --- 3 --- %%
+\begin{frage}
+  Bleibt der Zusammenhang aus Frage \ref{11_paramdiff} auch richtig, wenn 
+  $U$ durch einen kompakten achsenparallelen Quader $Q\subset\RR^n$ ersetzt 
+  wird?
+\end{frage}
+
+\begin{antwort}
+  Der Zusammenhang bleibt gültig, da im Fall eines kompakten 
+  Quaders auch auf den Randpunkten alle partiellen Ableitungen 
+  (zumindest in einer Richtung) existieren. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 4 --- %%
+\begin{frage}\label{11_doppelint}\index{Doppelintegral}
+  \index{mehrdimensionales}
+  Seien $[a,b]\subset \RR$ und $[c,d] \subset \RR$ kompakte Intervalle und 
+  $Q := [a,b]\times [c,d]$. Wie sind für eine stetige Funktion 
+  $f\fd Q\to \RR$ dann die "`Doppelintegrale"'
+  \[
+  A := \int_a^b \left( \int_c^d f(x,y) \difx \right) \dify \quad\text{bzw.}\quad
+  B := \int_c^d \left( \int_a^b f(x,y) \dify \right) \difx
+  \]
+  erklärt, und warum gilt $A=B$?
+\end{frage}
+
+\begin{antwort}
+  Als partielle Funktion der stetigen Funktion $f$ ist die Funktion 
+  $[a,b]\to\RR$ mit $x\mapsto f(x,y)$ bei festgehaltenem $y$ stetig, kann 
+  also über $[a,b]$ integriert werden. Sei 
+  $G(y) := \int_a^b f(x,y)\difx$. Lässt man $y$ im Intervall $[c,d]$ variieren, 
+  dann ist $G\fd [c,d]\to \RR$ nach Frage \ref{11_paramstet} stetig, kann 
+  also integriert werden. Damit existiert 
+  \[
+  A := \int_c^d G(y) \dify = \int_c^d \left( \int_a^b f(x,y) \difx \right) \dify,
+  \]
+  und aus Symmetriegründen auch 
+  \[
+  B := \int_a^b \left( \int_c^d f(x,y) \dify \right) \difx.
+  \]
+  Um $A=B$ zu zeigen, definieren wir $\varphi \fd [c,d]\to\RR$ durch 
+  \[
+  \varphi(y) = \int_a^b \left( \int_c^y f(x,t) \dift \right) \difx. 
+  \]
+  Offensichtlich ist $\varphi(c)=0$. Nach Frage \ref{11_paramdiff} 
+  ist $\varphi$ stetig differenzierbar, und es gilt
+  \[
+  \varphi'(y) = \int_a^b \left( 
+    \frac{\partial}{\partial y} \int_c^y f(x,t) \dift \right) \difx 
+  = \int_a^b f(x,y) \difx 
+  \]
+  nach dem Hauptsatz der Differenzial- und Integralrechnung. 
+  Wiederum aufgrund des Hauptsatzes gilt
+  \[
+  \varphi(y)=\varphi(y)-\varphi(c) = 
+  \int_c^y \varphi'(t) \dift = \int_c^y 
+  \left( \int_a^b f(x,t) \difx \right)\dift.
+  \]
+  Für $y=d$ erhält man einerseits
+  \[
+  \varphi(d)=\int_c^d \left( \int_a^b f(x,t) \difx \right) \dift,
+  \]
+  andererseits ist nach Definition 
+  \[
+  \varphi(d)=\int_a^b \left( \int_c^d f(x,t) \dift \right) \difx.
+  \]
+  Damit ist die Gleichheit der Doppelintegrale $A$ und $B$ gezeigt. 
+  Man nennt diese das \slanted{Doppelintegral von $f$ über den Quader 
+    $[a,b]\times[c,d]$.}
+  \AntEnd
+\end{antwort}
+
+%% --- 5 --- %%
+\begin{frage}\label{11_mehrfachint}\index{Mehrfachintegral}
+  Sei $Q := [a_1,b_1]\times \cdots \times [a_n,b_n] \subset\RR^n$ ein 
+  achsenparalleler kompakter Quader und $f\fd Q\to\RR$ eine 
+  stetige Funktion. Wie kann man rekursiv das $n$-fache 
+  Integral $I_Q(f)$ von $f$ über den Quader $Q$ erklären?
+\end{frage}
+
+\begin{antwort}
+  Man denkt sich die Variablen $(x_2,x_3,\ldots,x_n)$ festgehalten und 
+  betrachtet die stetige Funktion $[a_1,b_1]\to \RR$ mit 
+  $x_1 \mapsto f(x_1,x_2,\ldots,x_n)$. Integriert man diese 
+  Funktion, dann hängt das Resultat
+  \[
+  F_1(x_1,x_2,\ldots,x_n ):= \int_{a_1}^{b_1} f(x_1,x_2,\ldots,x_n)\difx_1 
+  \]
+  von den Parametern $(x_2,\ldots,x_n)$ ab. Lässt man diese Variablen 
+  nun wieder variieren, dann erhält man nach Frage \ref{11_paramstet} 
+  eine stetige Funktion
+  \[
+  F_1 \fd Q' \to \RR; 
+  (x_2,\ldots,x_n) \mapsto F_1(x_2,\ldots,x_n) := \int_{a_1}^{b_1} 
+  f(x_1,\ldots, x_n ) \difx_1,
+  \]
+  wobei $Q':=[a_2,b_2]\times \cdots\times [a_n,b_n]$. 
+
+  Somit kann das Mehrfachintegral induktiv definiert 
+  werden. Im Fall $n=1$ setzt man  
+  \[
+  \int_{[a,b]} f(x_1) \difx_1 := \int_a^b f(x_1) \difx_1 ,
+  \]
+  und für $n\ge 2$ ist $I(Q)$ definiert durch
+  \begin{align}
+    I_Q(f) &:= \int_Q f(x_1,\ldots,x_n)\difx_1 \cdots \difx_n 
+    := \int_{Q'} F_1( x_2,\ldots, x_n ) \difx_2\cdots\difx_n \notag \\
+    &=
+    \int_{Q'} \left( \int_{a_1}^{b_1} f(x_1,\ldots,x_n ) \difx_1 \right)
+    \difx_2 \cdots \difx_n . \EndTag
+  \end{align}
+\end{antwort}
+
+%% --- 6 --- %%
+\begin{frage}
+  Ist $Q := [a_1,b_1]\times \cdots \times [a_n,b_n] \subset\RR^n$ 
+  und $V := \calli{C}(Q)$ der Vektorraum der stetigen Funktionen auf 
+  $Q$, welche Haupteigenschaften hat dann die Abbildung (das Integral) 
+  \[
+  I_Q \fd V \to \RR; \qquad f\mapsto I_Q(f).
+  \]
+\end{frage}
+
+\begin{antwort}
+  $I_Q$ ist ein \slanted{lineares Funktional} mit den Eigenschaften 
+  \satz{\setlength{\labelsep}{3mm}
+    \begin{enumerate}
+    \item[\desc{a}] 
+      $I_Q$ ist \slanted{nichtnegativ}, {\dasheisst}, aus $f\ge 0$ folgt 
+      $I_Q(f) \ge 0$. Diese Eigenschaft ist äquivalent zur \slanted{Monotonie}
+      \[
+      f \le g \Ra I_Q (f) \le I_Q (f),\qquad f,g\in V.
+      \]
+    \item[\desc{b}] Es gilt die \slanted{Standardabschätzung}
+      \[
+      \big| I_Q(f) \big| \le \nb{ f }_\infty v_n (Q).
+      \]
+      Dabei ist $\n{\;\,}_\infty$ die Maximumsnorm von $f$ auf $Q$ und 
+      $v_n(Q) := (b_1-a_1)\cdots(b_n-a_n)$ das elementargeometrische 
+      Volumen des Quaders $Q$. 
+    \item[\desc{c}] Ist $(f_k)\subset V$ eine Folge von Funktionen, 
+      die \slanted{gleichmäßig} gegen $f\fd Q\to\RR$ konvergiert 
+      (woraus $f\in V$ folgt), dann gilt
+      \[
+      \lim_{k\to\infty} I(f_k) = I(f) = I(\lim_{k\to\infty} f_k ).
+      \]
+    \end{enumerate}}
+
+  \noindent
+  Die Beweise für die Eigenschaften ergeben sich unmittelbar aus 
+  denen in einer Variablen. Ferner erfüllt das Mehrfachintegral 
+  nach den Fragen \ref{11_doppelint} und \ref{11_mehrfachint} 
+  noch folgende wichtige Eigenschaft
+
+  \satz{\setlength{\labelsep}{3mm}
+    \begin{enumerate}
+    \item[\desc{$\ast$}] $I_Q(f)$ ist unabhängig von der Integrationsreihenfolge, 
+      {\dasheisst}, für jede Permutation 
+      $\sigma \fd \{1,\ldots,n\}\to\{1,\ldots,n\}$ gilt 
+      \begin{multline}
+        \Int_{a_{\sigma(n)}}^{b_{\sigma(n)}} \cdots 
+        \Int_{a_{\sigma(2)}}^{b_{\sigma(2)}}  
+        \Big( 
+        \Int_{a_{\sigma(1)}}^{b_{\sigma(1)}} 
+        f(x_1,\ldots,x_n) \difx_{\sigma(1)} \Big) 
+        \difx_{\sigma(2)}\cdots\difx_{\sigma(n)} = \\
+        \Int_{a_n}^{b_n} \cdots 
+        \Int_{a_2}^{b_2}  
+        \Big( 
+        \Int_{a_1}^{b_1} 
+        f(x_1,\ldots,x_n) \difx_1) \Big) 
+        \difx_2\cdots\difx_n.
+        \EndTag   
+      \end{multline}
+    \end{enumerate}}
+\end{antwort}
+
+%% --- 7 --- %%
+\begin{frage}\label{11_unabreihe}\label{11_integrationsreihenfolge}
+  Können Sie für die Unabhängigkeit des Integrals $I_Q(f)$ 
+  von der Integrationsreihenfolge zwei methodisch verschiedene 
+  Beweise geben?
+\end{frage}
+
+\begin{antwort}
+  1. Beweis: Jede Permutation ist die Hintereinanderausführung 
+  von Nachbarschaftsvertauschungen. Damit lässt sich das Problem auf den 
+  Fall $n=2$ aus Frage \ref{11_doppelint} reduzieren. 
+
+  2. Beweis: Die Behauptung ist klar für 
+  stetige Funktionen $\varphi\fd Q\to\RR$ der 
+  Gestalt $\varphi(x)=\varphi_1(x_1)\cdots \varphi_n(x_n)$ 
+  mit $\varphi_i \in \calli{C}( [a,b] )$. Nun wurde in Frage 
+  \ref{09_stonekonsequenz} mit dem Satz von Stone-Weierstraß gezeigt, dass 
+  die Algebra $\calli{C}([a_1,b_1])\otimes \cdots \otimes \calli{C}([a_n,b_n])$ 
+  dicht in $\calli{C}(Q)$ liegt. Das heißt, zu jedem $f\in \calli{C}(Q)$ 
+  und jedem $\eps>0$ gibt es eine Funktion $\varphi \in \calli{C}([a_1,b_1])
+  \otimes \cdots \otimes \calli{C}([a_n,b_n])$ mit 
+  \[
+  \big| f(x) - \varphi(x) \big| < \eps \quad\text{für alle $x\in Q$.}
+  \]
+  Bezeichnet man mit $I_{Q}(f;\sigma)$ das Mehrfachintegral von $f$ über 
+  $Q$ mit der durch die Permutation $\sigma$ vorgegebenen 
+  Integrationsreihenfolge, dann gilt für 
+  beliebige Permutationen $\sigma_1$, $\sigma_2$ also 
+  \[
+  \big| I_{Q}(f;\sigma_1) - I_Q(\varphi;\sigma_1) \big| < v_n(Q) \cdot \eps 
+  \quad\text{und}\quad 
+  \big| I_{Q}(f;\sigma_2) - I_Q(\varphi;\sigma_2) \big| < v_n(Q) \cdot\eps,
+  \]
+  und wegen $I_Q(\varphi;\sigma_1) = I_Q(\varphi;\sigma_2)$ also 
+  \[
+  \big| I_{Q}(f;\sigma_1) - I_Q(f;\sigma_2) \big| < 2
+  v_n(Q)\cdot\eps.
+  \]
+  Da $\eps$ beliebig klein gewählt werden kann, folgt die Behauptung.
+  \AntEnd
+\end{antwort}
+
+
+\section{Das Integral f\"ur stetige Funktionen mit kompaktem Tr\"ager}
+
+Wir beginnen jetzt damit, das Lebesgue-Integral mithilfe eines 
+Fortsetzungsprozesses in mehreren Schritten zu konstruieren. Dazu wird 
+das Integral in diesem Abschnitt zunächst für 
+\slanted{stetige Funktionen mit kompaktem Träger} definiert. Ausgehend 
+von diesem 
+"`Elementarintegral"' 
+erweitern wir den Integralbegriff in den darauf folgenden Abschnitten 
+auf eine wesentlich größere Klasse von Funktionen. 
+Wir konzentrieren uns dabei zunächst auf den $\RR^n$ als Integrationsbereich. 
+
+%% --- 8 --- %%
+\begin{frage}\index{Traeger@Träger einer Funktion}
+  \nomenclature{$\Tr(f)$}{Träger der Funktion $f$}
+  Was versteht man unter dem \bold{Tr\"ager} einer Funktion 
+  $f\fd X\to\RR$ ($X$ beliebiger metrischer Raum)?
+\end{frage}
+
+\begin{antwort}
+  Unter dem \slanted{Tr\"ager von $f$} 
+  (englisch $\supp$ wie "`support"') versteht man die 
+  \slanted{abgeschlossene Menge} 
+  \[
+  \Tr (f ) := \overline{ \{ x\in X \sets f(x)\not=0 \} }.
+  \]
+  Ein Punkt $x\in X$ geh\"ort also genau dann zum Tr\"ager von $f$, 
+  wenn $f(x)\not=0$ gilt oder wenn es eine Folge $(x_k)$ gibt 
+  mit $x_k\in X$, $\lim x_k = x$ und $f(x_k) \not=0$. 
+  Zum Beispiel hat die Funktion $f \fd \RR\times\RR\to\RR$ mit 
+  $(x,y) \mapsto \sin x\sin y$ den Träger $\Tr(f) = \RR\times\RR$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 9 --- %%
+\begin{frage}\nomenclature{$\calli{C}_c(\RR^n)$}{Raum der stetigen Funktionen 
+    mit kompaktem Träger auf $\RR^n$}
+  \index{kompakter Träger}
+  Hier und im Folgenden bezeichne
+  \[
+  \calli{C}_c = 
+  \calli{C}_c (\RR^n) := \{f\fd \RR^n \to \RR\sets 
+  \text{$f$ stetig, $\Tr(f)$ kompakt}\}.
+  \]
+  die Menge der stetigen Funktionen auf $\RR^n$ mit kompaktem 
+  Träger. 
+  Warum ist $\calli{C}_c (\RR^n)$ 
+  ein $\RR$-Vektorraum, der mit $f,g$ 
+  auch 
+  \begin{align*}
+    f\wedge g\fd \RR^n \to \RR; &\qquad x\mapsto
+    (f \wedge g) (x) := \min \{ f(x), g(x) \},\\
+    f\vee g\fd \RR^n \to \RR; &\qquad x\mapsto
+    (f \vee g) (x) := \max \{ f(x), g(x) \},
+  \end{align*}
+  ferner $f_+ := f\vee0$, $f_- := (-f)\vee 0$ und $|f|$ enth\"alt? 
+  Warum liegt mit $f$ auch $1\wedge f$ in $\calli{C}_c(\RR^n)$? 
+\end{frage}
+
+\begin{antwort}
+  
+  Da $\calli{C}_c(\RR^n)$ 
+  ein Untervektorraum des Vektorraums $\calli{C}( \RR^n )$ der 
+  stetigen Funktionen ist, braucht man 
+  zum Nachweis der Vektorraumeigenschaft nur die 
+  Abgeschlossenheit bez\"uglich 
+  der Addition und der Multiplikation 
+  mit Skalaren sowie der Bildung von 
+  $f\wedge g$, $f\vee g$ und $|f|$ nachzuweisen. Dies folgt aus 
+  \begin{align*}
+    \Tr (f+g) &\subset \Tr(f)\cup\Tr(g) & \Tr(C \cdot f) &= Tr (f) 
+    &\Tr ( | f | ) &= \Tr (f)  \\
+    \Tr (f\wedge g) &\subset \Tr(f)\cup\Tr(g) & 
+    \Tr (f\vee g) &\subset \Tr(f)\cup\Tr(g) & &
+  \end{align*} 
+  Ferner gilt $\Tr( 1\wedge f)=\Tr(f)$. Damit gehört auch 
+  $1\wedge f$ zu $\calli{C}_c(\RR^n)$. 
+
+  Zusammengefasst besagen diese Eigenschaften, dass $\calli{C}_c(\RR^n)$ 
+  ein \slanted{Stone'scher Verband} ist. \index{Stone'scher Verband}
+  \AntEnd
+\end{antwort}
+
+%% --- 10 --- %%
+\begin{frage}
+  K\"onnen Sie begr\"unden, warum f\"ur eine stetige 
+  Funktion $f\fd \RR^n \to \RR$ gilt: 
+  $f$ hat kompakten Tr\"ager genau dann, wenn es einen 
+  kompakten W\"urfel $W\subset\RR^n$ gibt mit der 
+  Eigenschaft $f(x)=0$ f\"ur alle $x\in\RR^n \mengeminus W$?
+\end{frage}
+
+\begin{antwort}
+  Als Teilmenge von $\RR^n$ ist die abgeschlossene Menge $\Tr(f)$ genau 
+  dann kompakt, wenn sie beschr\"ankt 
+  ist. Ist sie beschr\"ankt, dann liegt sie in einem kompakten W\"urfel $W$. 
+  Liegt sie umgekehrt in einem kompakten W\"urfel, so ist sie 
+  beschr\"ankt. 
+  \AntEnd
+\end{antwort}
+
+%% --- 11 --- %%
+\begin{frage}\index{Integral!stetiger Funktionen mit kompaktem Träger}
+  Wie ist das Integral f\"ur eine Funktion $f\in\calli{C}_c (\RR^n)$ 
+  erkl\"art?
+\end{frage}
+
+\begin{antwort}
+  F\"ur eine stetige Funktion $f$ mit kompaktem Träger $\Tr(f)$ 
+  definiert man das Integral $I(f)$ als das Mehrfachintegral über einen 
+  beliebigen achsenparallelen Quader 
+  $Q:= [a_1,b_1]\times\cdots\times [a_n,b_n]$ mit 
+  $Q\supset \Tr(f)$, also  
+  \[
+  I(f) = \Int_{\RR^n} f(x) \difx := \Int_Q f(x) \difx
+  =\Int_{a_n}^{b_n}\cdots \Int_{a_1}^{b_1}
+  f(x_1,\ldots,x_n) \difx_1 \cdots \difx_n.
+  \]
+  Offensichtlich ist diese Definition unabhängig von dem gewählten 
+  Quader $Q$, sofern nur $\Tr(f)\subset Q$ gilt (Beweis durch Rückführung 
+  auf den eindimensionalen Fall).  
+  \AntEnd  
+\end{antwort} 
+
+%% --- 12 --- %%
+\begin{frage}\label{11_haupteigenschaft}
+  Welche Permanenzeigenschaften hat die Abbildung (das Integral) 
+  \[
+  I \fd L \to \RR; \qquad f \mapsto I(f)\; \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  \satz{Für $f,g\in\calli{C}_c$ und $a,b\in\RR$ gilt
+    \[
+    \begin{array}{rp{2mm}lp{15mm}r}
+      \text{\desc{a}} & &
+      I(a f+b g)= a \cdot I( f)+b\cdot I(g),  & &
+      \text{(Linearität)} \\
+      \text{\desc{b}} & &
+      f \le g \Ra I(f) \le I(g ), & &
+      \text{(Monotonie)}\\
+      \text{\desc{c}} & &
+      \left| I(f) \right| \le \nb{f}_\infty \cdot v_n(Q). & &
+      \text{(Beschränktheit)}
+    \end{array}
+    \]
+    Damit ist $I$ ein \slanted{lineares, monotones, beschränktes} Funktional.} 
+
+  Ferner ist $I$ \slanted{translationsinvariant} in folgendem Sinne: 
+  Für einen Vektor $v\in\RR^n$ sei $\tau_v f \fd \RR^n \to\RR$ die durch 
+  $\tau_v f(x)=f(x+v)$ gegebene Funktion. Dann gilt
+  $I(\tau_v f)=I(f)$. Das folgt wiederum durch Rückführung 
+  auf den eindimensionalen Fall und Anwendung der 
+  Substitutionsregel. \AntEnd
+\end{antwort}
+
+%% --- 13 --- %%
+\begin{frage}\index{Satz!von Dini}
+  \index{Dini@\textsc{Dini}, Ulisse (1845-1918)}
+  Was besagt der Satz von Dini?
+\end{frage}
+
+\begin{antwort}
+  Der Satz liefert ein entscheidendes Verbindungsglied zwischen 
+  monotoner und gleichm\"a{\ss}iger Konvergenz f\"ur Funktionenfolgen 
+  auf einer kompakten Menge. Dieser Zusammenhang ist deswegen zentral, 
+  weil man sich bei der Konstruktion des Lebesgue-Integrals durch einen 
+  Fortsetzungsprozess von der Einschränkung der \slanted{gleichmäßigen 
+    Konvergenz} lösen möchte, andernfalls käme man nie über den Raum der 
+  stetigen Funktionen hinaus. Der Satz von Dini lautet:
+
+  \medskip\noindent
+  \satz{Es sei $K\subset \RR^n$ kompakt und $(f_k)$ eine Folge 
+    stetiger Funktionen, die monoton wachsend gegen $f$ konvergiert, 
+    {\dasheisst}, es gilt  
+    \[
+    \begin{array}{lp{3mm}l}
+      \text{\desc{i}} & & f_1 \le  f_2 \le f_3 \le \cdots, \\[2mm]
+      \text{\desc{ii}} & &  \lim\limits_{k\to\infty} f_k=f,
+    \end{array}
+    \]
+    dann konvergiert $(f_k)$ auf $K$ sogar gleichmäßig gegen $f$. 
+  }
+
+  \medskip 
+  Für den Beweis zeigt man, dass die Folge $(g_k)$ mit 
+  $g_k := f - f_k$ auf $K$ gleichmäßig gegen null konvergiert, das genügt. 
+  Sei dazu $\eps>0$ vorgegeben,  dann gibt es zu jedem $\xi\in K$ 
+  eine Schranke $N(\xi) \in \NN$, sodass 
+  \[
+  \left| g_{N(\xi)} (\xi) \right| < \eps
+  \]
+  gilt. Wegen der Stetigkeit von $g_{N(\xi)}$ gilt die Ungleichung 
+  auch noch in einer Umgebung $U(\xi)$ von $\xi$, also hat man
+  \[
+  \left| g_{N(\xi)} (x) \right| < \eps \qquad\text{für alle $x\in U(\xi)$}. 
+  \]
+  Da $K$ kompakt ist, wird $K$ von endlich vielen Umgebungen 
+  $U(\xi_1),\ldots,U(\xi_r)$ überdeckt. Setzt man 
+  $N:=\max\{ N(\xi_1),\ldots, N(\xi_r) \}$, dann gilt 
+  \[
+  \left| g_N (x) \right| < \eps \qquad\text{für alle $x\in K$}, 
+  \]
+  und da $(g_k)$ monoton fällt, folgt daraus 
+  \[
+  \left| g_k (x) \right| < \eps 
+  \qquad\text{für alle $x\in K$ und alle $k\ge N$},
+  \]
+  {\dasheisst}, die Folge $(g_k)$ konvergiert gleichmäßig. 
+  \AntEnd
+\end{antwort}
+
+%% --- 14 --- %%
+\begin{frage}\label{11_sigma}\index{sigma-Stetigkeit@$\sigma$-stetig}
+  Was versteht man unter der \bold{$\mathbf{\sigma}$-Stetigkeit} 
+  eines linearen, nichtnegativen Funktionals auf einem Unterraum 
+  $L \subset \mathrm{Abb}(X,\RR)$?
+\end{frage}
+
+\begin{antwort}
+  Ein Funktional $I \fd L\to \RR$ hei{\ss}t 
+  \slanted{$\sigma$-stetig}, wenn f\"ur jede Folge 
+  $(f_k)$ mit $f_k\in\calli{C}_c( \RR^n )$ und 
+  \[
+  f_1 \ge f_2 \ge f_3 \ge \ldots, 
+  \]
+  die punktweise gegen $0$ konvergiert, gilt
+  \[
+  \lim_{k\to\infty} I(f_k) = I (\lim_{k\to\infty} f_k).
+  \]
+  Für ein $\sigma$-stetiges Funktional sind "`Integration"' und 
+  Grenzwertbildung also vertauschbar, falls $(f_k)$ monoton fallend 
+  gegen $0$ konvergiert.
+
+  Diese Eigenschaft ist äquivalent dazu, 
+  dass für jede Folge $(f_k)$ mit $f_k\in\calli{C}_c(\RR^n)$ mit 
+  $f_1 \le f_2 \le f_3 \le \cdots $, die punktweise gegen eine 
+  Funktion $f$ konvergiert, der Zusammenhang 
+  $\lim\limits_{k\to\infty} I(f_k)=I(f)$ gilt.   
+  \AntEnd 
+\end{antwort}
+
+%% --- 15 --- %%
+\begin{frage}
+  Warum ist das Funktional (Integral) $I \fd \calli{C}_c (\RR^n ) 
+  \to \RR$ mit $f \mapsto I(f)$ $\sigma$-stetig?
+\end{frage}
+
+\begin{antwort}
+  Ist $(f_k)$ eine monoton fallende Folge von Funktionen 
+  $f_k\in \calli{C}_c(\RR^n)$, die punktweise gegen 
+  Null konvergiert, dann ist nach dem Satz von Dini die Konvergenz 
+  gleichm\"a{\ss}ig auf 
+  dem Kompaktum $K:= \Tr(f_1)$. Aufgrund der Monotonie 
+  gilt $\Tr(f_{k}) \subset \Tr(f_1)$ f\"ur alle $k\in \NN$  
+  und damit $\lim_{k\to\infty} \nb{f_k}_K=0$. Die 
+  Behauptung folgt dann aus der Standardabsch\"atzung \desc{c} aus 
+  Frage \ref{11_haupteigenschaft}.
+  \AntEnd
+\end{antwort}
+
+
+
+
+\section{Fortsetzung des Integrals auf halbstetige Funktionen}
+
+
+\index{Daniell@\textsc{Daniell}, P.\, J. (1889-1946)}
+\index{Lebesgue@\textsc{Lebesgue}, Henri (1875-1941)}
+Wir wollen auch Funktionen integrieren, die nicht stetig sind und/oder die 
+keinen kompakten Tr\"ager haben. Wir erweitern daher zun\"achst in einem ersten 
+Schritt das Integral f\"ur Funktionen aus $\calli{C}_c ( \RR^n )$ 
+auf eine gr\"o{\ss}ere 
+Funktionenklasse, n\"amlich auf solche 
+Funktionen, die sich als \slanted{monotone Limites} 
+von Funktionen aus $\calli{C}_c(\RR^n)$ darstellen 
+lassen. Im Wesentlichen sind das die von unten bzw. oben \slanted{halbstetigen Funktionen}.
+
+%% --- 16 --- %%
+\begin{frage}\index{erweiterte Zahlengerade}
+  \nomenclature{$\overline{\RR}$}{erweiterte Zahlengerade 
+    $\RR\cup\{ -\infty, \infty \}$} 
+  Was versteht man unter der 
+  \bold{erweiterten Zahlengeraden $\mathbf{\overline{\RR}}$}?
+\end{frage}
+
+\begin{antwort}
+  Unter der \slanted{erweiterten Zahlengeraden} versteht man 
+  die mit den Elementen $-\infty$ und $+\infty$ erweiterten reellen Zahlen, 
+  also 
+  \[
+  \overline{\RR} = \RR \cup \{ -\infty, \infty \}.
+  \]
+  Die Elemente $-\infty$ und $\infty$ sind charakterisiert durch
+  \[
+  -\infty < x <  \infty \qquad\text{f\"ur alle $x\in \RR$}. 
+  \asttag
+  \]
+  Die Erweiterung von $\RR$ auf $\overline{\RR}$ 
+  hat sich in der Integrationstheorie als n\"utzlich erwiesen, 
+  da man auch Funktionen mit Werten in $\{ -\infty, \infty\}$ 
+  zulassen m\"ochte. Ein entscheidender Vorteil besteht darin, dass 
+  jede Teilmenge von $\overline{\RR}$ eine größte obere und kleinste 
+  untere Schranke besitzt. Überträgt man die Definition von "`Supremum"' und 
+  "`Infimum"' auf $\overline{\RR}$, dann besitzt also jede Teilmenge von 
+  $\overline{\RR}$ ein Supremum und ein Infimum.  
+
+
+  Die Menge $\overline{\RR}$ besitzt in dem kompakten Intervall 
+  $[-1,1]$ ein topologisches Modell, und zwar {\zB} 
+  verm\"oge der bijektiven Abbildung $s\fd \overline{\RR}\to[-1,1]$ 
+  (\sieheAbbildung\ref{fig:11_infty}), 
+  definiert durch
+  \[
+  s(x) := \left\{ \begin{array}{cl} 
+      \dis \frac{x}{1+|x|} & \text{f\"ur $x\not=\pm\infty$} \\
+      \dis 1 & \text{f\"ur $x=\infty$} \\
+      \dis -1 & \text{f\"ur $x=-\infty$}. 
+    \end{array}\right.
+  \]
+
+  \begin{center}
+    \includegraphics{mp/11_infty}
+    \captionof{figure}{Die Funktion $s$ bildet $\overline{\RR}$ bijektiv auf 
+      $[-1,1]$ ab.}
+    \label{fig:11_infty}
+  \end{center}
+
+  Die Köperstruktur von $\RR$ lässt sich nicht widerspruchsfrei  
+  auf $\overline{\RR}$ erweitern. Die folgenden Regeln 
+  für das Rechnen mit $\infty$ und $-\infty$ implizieren aber keine 
+  Widersprüche:   
+  \begin{gather}
+    \begin{array}{rlrl}
+      \infty + x = \infty & \text{f\"ur alle $x\in\RR\cup\{\infty\}$} & 
+      x \cdot \infty = \infty & \text{f\"ur alle $x\in\RR_+$} \\
+      -\infty + x = \infty & \text{f\"ur alle $x\in\RR\cup\{-\infty\}$} &
+      -x \cdot \infty = -\infty & \text{f\"ur alle $x\in\RR_+$} \\
+    \end{array}  \notag \\
+    \infty \cdot \infty = \infty, \quad 
+    \infty \cdot (-\infty ) = -\infty, \quad
+    (-\infty) \cdot(- \infty) = \infty, \quad 
+    0\cdot (\pm\infty)=0.\notag
+  \end{gather}
+  Man beachte, dass $\infty +(-\infty)$ und $(-\infty)+\infty$ nicht 
+  definiert sind. \AntEnd
+\end{antwort}
+
+%% --- 17 --- %%
+\begin{frage}\index{Supremum!in $\overline{\RR}$}
+  \nomenclature{$\Sup$}{verallgemeinertes Supremum in $\overline{\RR}$}
+  Wieso ist f\"ur eine nichtleere Teilmenge $M\subset\RR$ die Definition
+  \[
+  \Sup( M) = \left\{ \begin{array}{ll} \sup M, & \text{falls $M$ nach oben beschr\"ankt ist,}\\
+      \infty, & \text{falls $M$ nicht nach oben beschr\"ankt ist,}
+    \end{array}\right.
+  \]
+  sinnvoll?
+\end{frage}
+
+\begin{antwort}
+  Ist $M \subset \RR$ eine nach oben unbeschr\"ankte Menge, dann 
+  ist $\infty$ aufgrund von {\astref} eine obere Schranke von $M$, 
+  gleichzeitig aber auch die \slanted{kleinste} obere Schranke, hat 
+  also dieselben Eigenschaften wie das gew\"ohnliche Supremum einer 
+  nichtleeren beschr\"ankten Teilmenge von $\RR$. Insofern macht die 
+  Definition Sinn.
+  \AntEnd 
+\end{antwort}
+
+%% --- 18 --- %%
+\begin{frage}\index{Bairesche Klasse@Baire\sch e Klasse}
+  \index{Funktion!Baire'sche}
+  \index{Baire@\textsc{Baire}, Louis (1874-1932)}
+  Wie ist die sogenannte \bold{Baire\sch e Klasse} auf $\RR^n$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die Baire\sch e Klasse besteht aus Abbildungen $f\fd \RR^n\to \overline{\RR}$, die 
+  die folgende Eigenschaft besitzen: 
+  Es gibt eine Folge $(f_k)\subset \calli{C}_c ( \RR^n ) $ mit  
+  \[
+  \begin{array}{lp{3mm}l}
+    \text{\desc{i}} & & 
+    f_1(x) \le f_2(x) \le f_3(x) \le \ldots \quad 
+    \text{f\"ur alle $x\in\RR^n$}, \\[1mm]
+    \text{\desc{ii}} & & 
+    \dis f(x)=\lim_{k\to\infty} f_k(x) = 
+    \Sup \left\{ f_k (x)\sets k\in\NN \right\}.
+  \end{array}
+  \]
+  Gilt \desc{i} und \desc{ii}, dann schreiben wir $f_k \uparrow f$. 
+  Für die Baire'sche Klasse sind unterschiedliche Bezeichnungen gebräuchlich,
+  etwa $B^+ ( \RR^n )$. Wir verwenden in Anlehnung an \citep{Forster} 
+  die suggestive Schreibweise 
+  $\calli{H}^{\uparrow}(\RR^n)$ \nomenclature{$\calli{H}^\uparrow$}
+  {Baire\sch e Klasse}
+  oder auch einfach nur $\calli{H}^{\uparrow}$. Ferner definieren wir 
+  $\calli{H}^{\downarrow}( \RR^n ) := - \calli{H}^{\uparrow}( \RR^n ).$ \AntEnd
+\end{antwort}
+
+%% --- 19 --- %%
+\begin{frage}\label{11_heig}
+  Welche Haupteigenschaften hat die Klasse $\calli{H}^{\uparrow} (\RR^n)$?
+\end{frage}
+
+\begin{antwort}
+  F\"ur $f,g \in \calli{H}^{\uparrow}$ und $C\in \RR$ mit $C\ge 0$ gilt 
+  \[
+  f+g \in \calli{H}^{\uparrow},\quad
+  Cf \in \calli{H}^{\uparrow},\quad 
+  f\wedge g \in \calli{H}^{\uparrow},\quad
+  f\vee g \in \calli{H}^{\uparrow}, 
+  \]
+  wie man leicht nachpr\"uft. 
+  Man beachte, dass mit $f\in \calli{H}^\uparrow$ noch lange 
+  nicht $-f \in \calli{H}^\uparrow $ zu gelten braucht. 
+  $\calli{H}^\uparrow$ ist also kein Vektorraum. 
+
+
+
+  Die wichtigste Eigenschaft der Baire\sch en Klasse allerdings ist ihre  
+  \slanted{Abgeschlossenheit gegen\"uber monotoner Konvergenz}: Ist 
+  $(f_k)$ eine Folge von Funktionen $f_k \in \calli{H}^{\uparrow}$, 
+  die monoton wachsend gegen eine Funktion $f\fd \RR^n \to\RR$ konvergiert, 
+  dann gilt auch $f\in \calli{H}^{\uparrow}$. Das zeigt man, 
+  indem man aus den Folgen 
+  \[
+  f_{k,1},f_{k,2}, f_{k,3},\ldots 
+  \qquad f_{k,j}\in \calli{C}_c(\RR^n), \qquad f_{k,j}\uparrow f_k
+  \]
+  eine geeignete Folge $(g_\ell)$ mit $g_\ell \in \calli{C}_c (\RR^n)$ und 
+  $g_\ell \uparrow f$ konstruiert. Man kann nachprüfen, dass etwa die durch 
+  \[
+  g_{\ell} = \bigvee_{j+k\le \ell} f_{k,j}, \quad 
+  \text{also $g_\ell(x)=\dis\max_{j+k\le \ell} \{ f_{k,j}(x) \}$}
+  \]
+  gegebene Folge das Gewünschte leistet.
+  \AntEnd
+\end{antwort}
+
+%% --- 20 --- %%
+\begin{frage}\label{11_intdef}
+  \index{Integral!fuer H@für halbstetige Funktionen}
+  Wie wird das Integral f\"ur eine Funktion $f\in\calli{H}$ 
+  definiert?                                             
+\end{frage}
+
+\begin{antwort}
+  Das Integral $\widetilde{I}(f)$ für eine Funktion 
+  $f\in\calli{H}^\uparrow$ wird in naheliegender Weise als der Grenzwert der
+  Integrale der approximierenden Folge aus $\calli{C}_c(\RR^n)$ definiert. 
+  Da dieser Grenzwert, wie in der nächsten Frage gezeigt wird, unabhängig 
+  von der approximierenden Funktionenfolge ist, ist diese Definition sinnvoll. 
+
+  Ist $f\in \calli{H}^{\uparrow}$ und $(f_k)$ eine Folge mit 
+  $f_k \in \calli{C}_c(\RR^n)$ und $f_k \uparrow f$, dann definiert man 
+  also durch  
+  \[
+  \boxed{
+    \widetilde{I}(f) := \lim_{k\to\infty} I(f_k) = 
+    \Sup_k \,\{ I(f_k) \} \in \overline{\RR} 
+  }
+  \]
+  das \slanted{Integral von $f\in \calli{H}^{\uparrow} ( \RR^n )$}. 
+
+  Da die Folge $\big( I(f_k) \big)$ monoton 
+  wächst, existiert der Grenzwert immer im 
+  eigentlichen oder uneigentlichen Sinn. 
+  F\"ur $f\in \calli{C}_c(\RR^n)$ ist offensichtlich $\widetilde{I}(f)=I(f)$, 
+  aus diesem Grund 
+  verzichten wir im Folgenden zur Vereinfachung der Bezeichnungen auf 
+  die Tilde $\widetilde{\quad}$. Ferner verwenden wir die Bezeichnung 
+  $\lim_{k\to\infty} a_k$ stets als Synonym für $\Sup_k \{ a_k \}$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 21 --- %%
+\begin{frage}
+  Warum ist die Integraldefinition in Frage 
+  \ref{11_intdef} unabh\"angig von der approximierenden Folge?
+\end{frage}
+
+\begin{antwort}
+  F\"ur zwei Folgen $(f_k)$ und $(g_k)$ aus $\calli{C}_c(\RR^n)$ 
+  mit $f_k \uparrow f$ und $g_k \uparrow g$ ist zu zeigen:
+  \[
+  \lim_{k\to\infty} I(f_k) = \lim_{k\to\infty} I(g_k).
+  \]
+  Zu festem $\ell\in\NN$ und jedem $k\in\NN$ sei
+  \[
+  h_k := g_k \wedge f_\ell. 
+  \]
+  Die Folge $(h_k)$ liegt dann in $\calli{C}_c (\RR^n)$, und es gilt 
+  $h_k \!\uparrow \! f_\ell$. Wegen $\Tr( h_k) \subset \Tr( f_\ell )$ 
+  konvergiert $(h_k)$ nach dem Satz von Dini   
+  sogar gleichm\"a{\ss}ig gegen $f_\ell$, und daher gilt:  
+  \[
+  I (f_\ell) = \lim_{k\to\infty} I(h_k) \qquad\text{f\"ur alle $\ell\in\NN$}.
+  \]
+  Wegen $h_k \le g_k$ folgt daraus aufgrund der Monotonie des Integrals 
+  \[
+  I(f_\ell) \le \lim_{k\to\infty} I(g_k) 
+  \qquad\text{f\"ur alle $\ell\in\NN$}, 
+  \]
+  also $\lim\limits_{\ell\to\infty} I(f_\ell) \le
+  \lim\limits_{k\to\infty}  I(g_k)$. Aus Symmetriegründen gilt aber 
+  auch $\lim\limits_{k\to\infty} I(g_k) \le 
+  \lim\limits_{\ell\to\infty} I(f_\ell)$,  
+  da die Rollen von $(g_k)$ und $(f_\ell)$ 
+  in dem Beweis vertauscht werden können. 
+  Insgesamt folgt daraus die Behauptung. 
+
+  Man beachte, dass hier in einem zentralen Argumentationsschritt der 
+  Satz von Dini und damit letztendlich die Stabilitätseigenschaften 
+  gleichmäßig konvergenter Funktionenfolgen benutzt wurden, 
+  um die Vertauschung von Integration und Limesbildung zu rechtfertigen. 
+  \AntEnd
+\end{antwort}
+
+%% --- 22 --- %%
+\begin{frage}\index{Integral!fuer H@für halbstetige Funktionen}
+  Welche \bold{Permanenzeigenschaften} besitzt die Abbildung 
+  \[
+  I \fd \calli{H}^{\uparrow} \to \overline{\RR},\qquad 
+  f \mapsto I(f)\, \text{?}
+  \]
+\end{frage}
+
+\begin{antwort}
+  Es gelten die folgenden Eigenschaften: 
+
+  \slanted{
+    \setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] Mit $f,g\in \calli{H}^{\uparrow}$ 
+      und $C\ge 0$ 
+      liegen nach Frage 
+      \ref{11_heig} auch $f+g$ und $C\cdot f$ in 
+      $\calli{H}^{\uparrow}$, und es gilt $I(f+g)=I(f)+I(g)$ 
+      sowie $I(C\cdot f)=C\cdot I(f)$.\\[-3.5mm]
+    \item[\desc{ii}] Aus $f\le g$ folgt $I(f) \le I(g)$.\\[-3.5mm]
+    \item[\desc{iii}] F\"ur eine Folge $(f_k)$ von Funktionen 
+      $f_k\in\calli{H}^{\uparrow}$ mit $f_k \uparrow f$ 
+      ist nach Frage \ref{11_heig} auch $f\in\calli{H}^{\uparrow}$, und 
+      es gilt 
+      \[
+      I \left( \lim\limits_{k\to\infty} f_k \right) =I(f) = 
+      \lim\limits_{k\to\infty} I(f_k).
+      \]
+      Das heißt, dass 
+      auch das auf $\calli{H}^\uparrow$ fortgesetzte Integral $\sigma$-stetig ist.  
+    \end{itemize}}
+  \noindent
+  Die Eigenschaften \desc{i} und \desc{ii} sind offensichtlich. 
+  Die Eigenschaft \desc{iii} muss man dagegen 
+  wirklich \slanted{beweisen}. Dafür benutzt man die Eigenschaften 
+  der in Frage \ref{11_heig} angegeben Folge 
+  $(g_\ell)\subset \calli{C}_c(\RR^n)$. Für diese 
+  gilt wegen $g_\ell \uparrow f$ 
+  nach Definition einerseits $\Sup_\ell I(g_\ell)=I(f)$, 
+  andererseits gilt nach Konstruktion auch $g_k \le f_k$ für alle 
+  $k$ und damit wegen der Monotonie des Integrals 
+  $I(g_k)\le I(f_k) \le I(f)$. Daraus folgt 
+  zusammen wie gewünscht $\lim\limits_{k\to\infty} (f_k)=I(f)$.     
+  \AntEnd
+\end{antwort}
+
+%% --- 23 --- %%
+\begin{frage}
+  Warum hat eine Funktion $f\in\calli{H}^\uparrow$ 
+  die folgende Eigenschaft: 
+  Ist $a\in\RR^n$ und $c$ eine beliebige reelle Zahl mit 
+  $c<f(a)$, dann gibt es eine 
+  Umgebung $U(a)$ von $a$ mit der Eigenschaft $c<f(x)$ 
+  f\"ur alle $x\in U(a)$.
+\end{frage}
+
+\begin{antwort}
+  Sei $(f_k)$ eine Folge von Funktionen $f_k \in \calli{C}_c(\RR^n)$ 
+  mit $f_k \uparrow f$. Dann gilt insbesondere 
+  $f_k(a) \uparrow f(a)$. Wegen $f(a) = \Sup_k\{ f_k(a) \}$ 
+  gibt es nach der Definition des Supremums einen Index $N$ mit 
+  $c < f_N (a) \le f(a)$. 
+  Da $f_N$ stetig ist, gilt $c< f_N(x)$ auch noch in einer 
+  Umgebung $U(a)$ von $a$. 
+  F\"ur alle $x\in U(a)$ gilt dann aber erst recht 
+  $c< f(x)$. \AntEnd
+\end{antwort}
+
+%% --- 24 --- %%
+\begin{frage}\index{halbstetig}
+  Wann heißt eine Funktion $f\fd \RR^n \to\overline{\RR}$ 
+  in einem Punkt $a\in \RR^n$ (bzw. in $\RR^n$)
+  \bold{von unten bzw. von oben halbstetig?}
+\end{frage}
+
+\begin{antwort}
+  \desc{a} Die Funktion $f$ hei{\ss}t 
+  \slanted{von unten halbstetig} in $a$, wenn zu jedem 
+  $c\in\RR$ mit $c<f(a)$ eine Umgebung $U(a)$ existiert, 
+  in der die Ungleichung immer noch gilt: 
+  \[
+  c<f(x) \quad\text{f\"ur alle $x\in U(a)$}.
+  \]
+  \desc{b} Analog heißt $f$ \slanted{von oben halbstetig} in $a$, 
+  wenn zu jedem $c\in\RR$ mit $c>f(a)$ eine Umgebung 
+  $U(a)$ existiert mit, in der $c>f(x)$ 
+  f\"ur alle $x\in U(a)$ gilt, \sieheAbbildung\ref{fig:11_halbstetig1}
+
+  \begin{center}
+    \includegraphics{mp/11_halbstetig1}
+    \captionof{figure}{Graph einer in $a$ von unten (links) bzw. oben (rechts) 
+      halbstetigen Funktion.}
+    \label{fig:11_halbstetig1}
+  \end{center}
+
+  $f$ hei{\ss}t von \slanted{unten (von oben) halbstetig 
+    auf $\RR^n$}, wenn sie in jedem Punkt $a\in\RR^n$ von unten (von oben) 
+  halbstetig ist. 
+  Insbesondere sind also alle stetigen Funktionen 
+  von unten \slanted{und} oben halbstetig. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 25 --- %%
+\begin{frage}\index{charakteristische Funktion}
+  \nomenclature{$\chi_M$}{charakteristische Funktion der Menge $M$}
+  Wie ist f\"ur eine nichtleere Teilmenge $M\subset \RR^n$ die 
+  \bold{charakteristische Funktion} $\chi_M \fd \RR^n \to \RR$ 
+  definiert?
+\end{frage}
+
+\begin{antwort}
+  Die charakteristische Funktion von $M$ ist definiert durch
+  \[
+  {\chi}_M (x) := \left\{ \begin{array}{ll} 1 & \text{falls $x\in M$} \\
+      0 & \text{falls $x\in \RR^n \mengeminus M$}. 
+    \end{array}
+  \right.
+  \EndTag
+  \]
+\end{antwort} 
+
+%% --- 26 --- %%
+\begin{frage}\label{11_charakhalb}
+  K\"onnen Sie zeigen: 
+  \begin{itemize}[1mm]
+  \item[\desc{a}] 
+    ${\chi}_M$ ist von unten halbstetig $\LLa$ $M$ ist offen in $\RR^n$, 
+    \\[-3.5mm] 
+  \item[\desc{b}] ${\chi}_M$ ist von oben halbstetig $\LLa$ $M$ ist 
+    abgeschlossen in $\RR^n$ 
+  \end{itemize}
+\end{frage}
+
+\begin{antwort}
+  \desc{a} Sei $c\in \RR$. Es ist 
+  \[
+  \mathfrak{M}(c) := \{ x\in \RR^n \sets c < \chi_M(x) \} = \left\{ 
+    \begin{array}{lll} \RR^n, & \text{falls $c<0$,} \\
+      M, & \text{falls $0\le c < 1$,} \\
+      \emptyset, & \text{falls $c \ge 1$.}
+    \end{array}\right.
+  \]
+  Ist $M$ offen, so sind alle drei Mengen offen und enthalten 
+  zu jedem ihrer Punkte eine volle Umgebung, $\chi_M$ ist also 
+  von unten halbstetig. Ist umgekehrt $\chi_M$ halbstetig 
+  von unten, dann ist $\mathfrak{M}(c)$ für alle $c \in \RR$ offen, 
+  insbesondere ist $M$ offen. 
+
+  \desc{b} Wegen $\chi_{\RR^n\mengeminus M}=1-\chi_M$ lässt sich dieser 
+  Fall auf \desc{a} zurückführen.\AntEnd
+  
+\end{antwort}
+
+%% --- 27 --- %%
+\begin{frage}\label{11_foff}\index{triviale Fortsetzung}
+  \nomenclature{$\widetilde{f}$}{triviale Fortsetzung von $f$}
+  Ist $U\subset \RR^n$ eine nichtleere offene Menge, 
+  $f\fd U\to\RR_+$ eine stetige Funktion und 
+  \[
+  \widetilde{f} \fd \RR^n \to\RR, \qquad 
+  \widetilde{f} = \left\{ \begin{array}{ll}
+      f(x) & \text{falls $x\in U$}, \\
+      0    & \text{falls $x\in \RR^n \mengeminus U$}
+    \end{array} \right.
+  \]
+  die triviale Fortsetzung von $f$. 
+  Warum ist dann $\widetilde{f}$ von unten halbstetig?
+\end{frage}
+
+\begin{antwort}
+  Die Funktion $\widetilde{f}$ ist in jedem Punkt $a\in U$ stetig, 
+  und damit f\"ur alle $a\in U$ erst recht halbstetig 
+  (von unten und  von oben). 
+  In einem Punkt $b\in \RR^n \mengeminus U$ ist sie aber ebenfalls von unten  
+  halbstetig, denn aus $\widetilde{f}(b) =0 > c$ folgt wegen 
+  $\widetilde{f} \ge 0$, dass sogar f\"ur alle $x\in \RR^n$ die Ungleichung 
+  $\widetilde{f}(x)>c$ gilt. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 28 --- %%
+\begin{frage}\label{11_fkom}
+  Ist $K\subset\RR^n$ eine nichtleere kompakte Teilmenge des 
+  $\RR^n$ und 
+  $f\fd K \to \RR_+$ eine stetige Funktion. 
+  Warum ist dann die triviale Fortsetzung 
+  $\widetilde{f}$ von $f$ von oben halbstetig?
+\end{frage}
+
+\begin{antwort}
+  Zu jedem Punkt $b\in\RR^n \mengeminus K$ gibt es wegen der Offenheit 
+  von $\RR^n \mengeminus K$ auch eine Umgebung $U(b)$, die vollkommen in 
+  $\RR^n \mengeminus K$ enthalten ist. 
+  Wegen $\widetilde{f}(x)=0$ f\"ur alle $x\in U(b)$ 
+  folgt aus $\widetilde{f}(b)<c$ dann auch $\widetilde{f}(x)<c$ f\"ur 
+  alle $x\in U(b)$. Also 
+  ist $\widetilde{f}$ von oben halbstetig f\"ur $b\in \RR^n \mengeminus K$. 
+
+  Sei nun $a\in K$ und $c>f(a)$. Dann ist $c > 0$, und 
+  wegen der Stetigkeit von $f$ gibt es eine Umgebung 
+  $U(a)$ mit $c>\widetilde{f}(x)$ f\"ur alle $x\in U(a)\cap K$. Ist 
+  $U(a)$ ganz in $K$ enthalten, dann sind wir fertig. 
+  Im anderen Fall gibt es ein $y\in U(a)\mengeminus K$. 
+  Dann gilt aber $\tilde{f}(y)=0$ und damit ebenfalls $\tilde{f}(y)<c$. 
+  Es folgt $\tilde{f}(x)<c$ f\"ur alle $x\in U(a)$, also ist $\tilde{f}$ 
+  von oben halbstetig in $a$. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 29 --- %%
+\begin{frage}\label{11_halbstetig}
+  \index{Baire'sche Funktion}
+  \index{Funktion!halbstetige}
+  Wie kann man mithilfe des Begriffs der Halbstetigkeit die Funktionen aus 
+  $\calli{H}^\uparrow$ und $\calli{H}^\downarrow$ charakterisieren?
+  Warum gilt 
+  $\calli{H}^\uparrow \cap \calli{H}^\downarrow = \calli{C}_c$ ? 
+\end{frage}
+
+\begin{antwort}
+  \satz{Es ist $f\in\calli{H}^\uparrow$ genau dann, wenn gilt
+    \setlength{\labelsep}{3mm}
+    \begin{enumerate}
+    \item[\desc{i}] $f$ ist von unten halbstetig.\\[-3.5mm]
+    \item[\desc{ii}] Es gibt ein Kompaktum $K\subset\RR^n$, sodass für alle 
+      $x\in \RR^n\mengeminus K$ gilt: $f(x)\ge 0$ (äquivalent hierzu: 
+      es gibt ein $g\in\calli{C}_c(\RR^n)$ mit $g\le f$. 
+    \end{enumerate}} 
+  \noindent
+  Die eine Richtung der Aussage ist klar. 
+  Die Umkehrung erfordert einigen Aufwand. Einen Beweis findet man 
+  {\zB} bei \citep{Forster}.
+  \AntEnd
+\end{antwort} 
+
+%% --- 30 --- %%
+\begin{frage}
+  Zu einer nichtleeren offenen Menge $U\subset \RR^n$ und ihrer 
+  charakteristischen Funktion 
+  $\chi_U$ kann man direkt eine Folge $(\chi_k)$ mit 
+  $\chi_k \in \calli{C}_c$ und $\chi_k \uparrow \chi_U$ konstruieren. 
+
+  Die Existenz einer solchen Folge werde vorausgesetzt. 
+  Wie kann man dann zu einer 
+  nichtleeren kompakten Menge $K\subset\RR^n$ eine Folge $(\chi_k)$ mit 
+  $\chi_k \in \calli{C}_c (\RR^n)$ und $\chi_k \downarrow \chi_{_{\footnotesize K}}$ konstruieren?
+\end{frage}
+
+\begin{antwort}
+  Da die Menge $\RR^n\mengeminus K$ offen ist, gibt es nach Voraussetzung 
+  eine Folge $(\chi_l)$ in $\calli{C}_c$ mit 
+  $\chi_l \uparrow \chi_{\RR^n\mengeminus K}$. Wegen 
+  $\chi_K = 1-\chi_{\RR^n\mengeminus K}$ und $1-\chi_l \in \calli{C}_c$ 
+  gilt dann $1-\chi_l \downarrow \chi_K$. \AntEnd
+\end{antwort} 
+
+%% --- 31 --- %%
+\begin{frage}\label{11_bairecharak}
+  \desc{a} Ist $U\subset \RR^n$ eine nichtleere offene 
+  Teilmenge, $f\fd U\to\RR_+$ eine stetige Funktion und 
+  $\tilde{f}$ die triviale Fortsetzung von $f$ auf $\RR^n$,  
+  warum gilt dann $\tilde{f}\in \calli{H}^\uparrow$? 
+
+  \desc{b} Ist $K\subset\RR^n$ eine nichtleere kompakte Teilmenge und 
+  $f\fd K\to\RR_+$ stetig. Warum gilt dann 
+  $\widetilde{f}\in \calli{H}^\downarrow$
+\end{frage}
+
+\begin{antwort}
+  \desc{a} $\widetilde{f}$ erfüllt nach der Antwort zu Frage \ref{11_foff} 
+  und wegen $\widetilde{f}\ge 0$ die Voraussetzungen von \desc{ii} aus Frage 
+  \ref{11_halbstetig}
+
+  \desc{b} Das folgt aus denselben Gründen wie unter \desc{a} aus 
+  Frage \ref{11_fkom} und \ref{11_halbstetig}.\AntEnd 
+\end{antwort}
+
+%% --- 32 --- %%
+\begin{frage}\label{11_trans}
+  \index{Transformationsformel!fuer Baireschen@für Baire\sch e Funktionen}
+  Was besagt der Spezialfall der 
+  \bold{Transformationsformel} für eine Funktion 
+  $f \in \calli{H}^\uparrow (\RR^n)$ und eine affine Abbildung 
+  $\varphi \fd \RR^n \to \RR^n$, die durch $\varphi(x) = Ax +b$ 
+  mit $A\in \mathrm{GL}(\RR^n)$ gegeben ist?
+\end{frage}
+
+\begin{antwort}
+  Die Transformationsformel lässt sich als Verallgemeinerung 
+  der Substitutionsregel für Regelintegrale auffassen. 
+  Sie lautet für den in der Frage formulierten Spezialfall 
+  \[
+  \boxed{
+    \int_{\RR^n} f(y) \dify = 
+    \int_{\RR^n} f(Ax+b) \big| \det A \big| \difx.
+  }
+  \]   
+  Um die Transformationsformel in diesem Spezialfall zu beweisen, 
+  betrachte man zunächst eine Funktion $g\in \calli{C}_c(\RR^n)$. 
+  Für diese lässt sich das Integral $\int_{\RR^n} g(x) \difx$ 
+  auf iterierte Regelintegrale über $\RR$ zurückführen. 
+  Durch Anwendung der Substitutionsformel für das Regelintegral erhält man 
+  \begin{align}
+    &\int g(x_1,\ldots, x_{i-1}, x_i+x_j, x_{i+1}, \ldots, x_n ) 
+    \difx = \int f(x) \difx. \tag{1}\\
+    &\int g(a_1 x_1,\ldots, a_n x_n ) 
+    \difx = \big| a_1\cdots a_n \big| \int g(x) \difx. \tag{2}\\
+    &\int g(x_1,\ldots, x_n ) \difx_{\sigma(1)} \cdots \difx_{\sigma(n)} 
+    = \int g(x) \difx_1\cdots \difx_n. \tag{3}\\
+    &\int g(x+b)\difx =\int g(x) \difx.\tag{4}
+  \end{align}
+  Man betrachte nun $\int g( Ax+b) \difx$. Wegen \desc{4} kann man 
+  {\oBdA} $b=0$ annehmen. Nun muss man aus der Linearen Algebra nur wissen, 
+  dass sich die Matrix $A$ als Produkt von Matrizen $A_1 \cdots A_\ell$ 
+  schreiben lässt, die jeweils eine der Variablentransformationen 
+  des Typs \desc{1} bis \desc{3} beschreiben. 
+  Wegen $\det(A)=\det(A_1)\cdots \det(A_\ell)$ folgt daraus 
+  die Transformationsformel für Funktionen $g\in \calli{C}_c (\RR^n)$. 
+
+  Für $f\in \calli{H}^\uparrow$ folgt die Transformationsformel nun 
+  einfach aus der Tatsache, dass mit $f_k \uparrow f$ und 
+  $f_k \in \calli{C}_c$ auch die Funktionen $g_k\fd\RR^n\to\RR$ mit 
+  \[
+  g_k (x) = f_k(Ax+b)
+  \]
+  in $\calli{C}_c$ liegen und monoton wachsend gegen $f\circ\varphi$ 
+  konvergieren. Nach der Definition des Integrals für 
+  Funktionen der Baire'schen 
+  Klasse gilt also
+  \[
+  \int f (y) \dify = 
+  \lim_{k\to\infty} \int f_k(y) \difx = 
+  \lim_{k\to\infty} \int f_k(Ax+b) \big|\det A \big|  \difx  = 
+  \int  f (Ax+b) \big|\det A \big|  \difx.
+  \]
+  Das beweist die Transformationsformel im Fall 
+  $f\in \calli{H}^\uparrow$ und $\varphi(x)=Ax+b$. In Frage 
+  \ref{11_transformationsformel} 
+  formulieren wir eine wesentliche Verallgemeinerung für 
+  Lebesgue-integrierbare Funktionen $f$ und Diffeomorphismen $\varphi$. 
+  \AntEnd  
+\end{antwort} 
+
+%% --- 33 --- %%
+\begin{frage}\label{11_kleinerfubini}\index{Satz!von Fubini, kleiner}
+  Was besagt der \bold{(kleine) Satz von Fubini} für Funktionen 
+  $f\in\calli{H}^\uparrow$?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet in diesem Spezialfall:
+
+  \medskip\noindent
+  \satz{Sei $n=k+m$ und 
+    $f \fd \RR^n \to \RR$ eine 
+    Funktion aus $f\in\calli{H}^\uparrow (\RR^{n})$. 
+    Dann liegen für $(x,y) \in \RR^n = 
+    \RR^{k+m}=\RR^k\times\RR^m$ die Funktionen  
+    \[
+    F\fd \RR^k\to\RR,\quad x \mapsto \int_{\RR^m} f(x,y)\dify, \qquad 
+    G\fd \RR^m\to\RR,\quad y \mapsto \int_{\RR^k} f(x,y)\difx 
+    \]
+    in $\calli{H}^\uparrow (\RR^k)$ bzw. $\calli{H}^\uparrow (\RR^m)$ 
+    und es gilt die Formel
+    \[
+    \boxed{
+      \int_{\RR^{n}} f(x,y)\dd (x,y) = 
+      \int_{\RR^k} F(x) \difx = 
+      \int_{\RR^m} G(y) \dify.
+    }
+    \]
+  }
+  \noindent
+  Der Zusammenhang ist aufgrund von Frage 
+  \ref{11_integrationsreihenfolge} richtig für stetige 
+  Funktionen mit kompaktem Träger. Für $f\in\calli{H}^\uparrow (\RR^{n})$ 
+  wähle man eine Folge $(f_\ell)$ mit $f_\ell\in\calli{C}_c(\RR^{n})$ 
+  und $f_\ell\uparrow f$. Dann ist 
+  \[
+  \int_{\RR^{n}} f(x,y)\dd (x,y) = 
+  \lim_{\ell\to\infty} \int_{\RR^{n}} f_\ell(x,y)\dd (x,y) = 
+  \lim_{\ell\to\infty} \int_{\RR^k} 
+  \left(\int_{\RR^{m}} f_\ell(x,y)\dify \right)\difx. 
+  \asttag
+  \]
+  Bei festgehaltenem $x$ gilt dann
+  \[
+  F_\ell(x):=\int_{\RR^m} f_\ell(x,y) \dify 
+  \;\;\Big{\uparrow}\;\; \int_{\RR^m} f(x,y) \dify = F(x).  
+  \]
+  Die Funktionen $F_\ell$ verschwinden außerhalb eines Kompaktums und sind 
+  nach Frage \ref{11_paramstet} stetig, also 
+  ist $F\in\calli{H}^\uparrow (\RR^k)$. Mit der Definition des Integrals 
+  für halbstetige Funktionen folgt also
+  \[
+  \int_{\RR^{n}} f(x,y) \dd (x,y) = 
+  \lim_{\ell\to\infty} \int_{\RR^k} F_\ell(x) \difx = 
+  \int_{\RR^k} \lim_{\ell\to\infty} F_\ell(x) \difx = :
+  \int_{\RR^k} F(x) \difx.
+  \]
+  Aus Symmetriegründen und der Vertauschbarkeit der Integrationsreihenfolge 
+  im letzten Term von {\astref} gilt ebenso 
+  \[
+  \Int_{\RR^{n}} f(z)\difz = \Int_{\RR^{m}} G(y) \dify. \EndTag
+  \]
+\end{antwort}
+
+
+
+
+\section{Berechnung von Volumina einiger kompakter Mengen}
+
+Da f\"ur ein nichtleeres Kompaktum $K\subset\RR^n$ gilt 
+$\chi_K \in \calli{H}^\downarrow (\RR^n)$, und das 
+$n$-dimensionale Volumen durch 
+\[
+\vol_n (K) := \int_{\RR^n} \chi_K (x) \difx 
+\]
+\index{Volumen!n-dimensionales@$n$-dimensionales}
+\index{Volumen!elementargeometrisches}
+\nomenclature{$v_n(G)$}{elementargeometrisches Volumen von $G$}
+\noindent%
+definiert ist, kann man f\"ur zahlreiche geometrische K\"orper wie 
+Quader, Zylinder, Simplices und Kugeln ihre Volumina berechnen. 
+Entscheidende Hilfsmittel sind der Satz von Fubini 
+und ein Spezialfall des 
+Cavalieri-Prinzips.
+
+%% --- 34 --- %%
+\begin{frage}\label{11_quader}
+  Warum stimmen im Fall eines achsenparallelen Quaders 
+  $Q=[a_1,b_1]\times \cdots \times [a_n,b_n]$ das elementargeometrische 
+  Volumen $v_n(Q) = (b_1-a_1)\cdots (b_n-a_n)$ und das mithilfe des 
+  Integrals 
+  \[
+  \vol_n(Q) = \int_{\RR^n} \chi_Q (x) \difx 
+  \]
+  definierte Volumen \"uberein? Ist $\varphi\fd \RR^n\to\RR^n$ die durch 
+  $x\mapsto Ax+b$ mit $A\in O(n,\RR)$ und $b\in\RR^n$ gegebene Abbildung. 
+  Warum gilt dann $\vol_n\big( \varphi(Q) \big) = \vol_n (Q)$ ?
+\end{frage}
+
+\begin{antwort}
+  Es ist $\chi_Q(x_1,\ldots,x_n) = 
+  \chi_{[a_1,b_1]} (x_1) \cdots \chi_{[a_n,b_n]} (x_n)$, wenn 
+  $Q$ ein achsenparalleler Quader ist. Da außerdem nach Frage 
+  \ref{11_charakhalb} $\chi_Q\in\calli{H}^\downarrow$ gilt,
+  folgt mit dem "`kleinen"' Satz von Fubini 
+  \[
+  \vol_n (Q) = \Int_\RR \cdots \Int_\RR 
+  \chi_Q(x_1,\ldots,x_n) \difx_1\cdots \difx_n = 
+  \Int_\RR \chi_{[a_1,b_1]} (x) \difx \cdots 
+  \Int_\RR \chi_{[a_1,b_1]} (x) \difx. 
+  \]
+
+  Im Sinne der Abbildung lassen sich die Funktionen $\chi_{[a_k,b_k]}$ 
+  durch eine Folge von "`Trapezfunktionen"' $f_{k,i}$ 
+  (\sieheAbbildung\ref{fig:11_charak}) approximieren.
+
+  \begin{center}
+    \includegraphics{mp/11_charak}
+    \captionof{figure}{Approximation von $\chi_{[a_k,b_k]}$ durch 
+      Trapezfunktionen.}
+    \label{fig:11_charak}
+  \end{center}
+
+
+  Es gilt $f_{k,i}\in\calli{C}_c(\RR^n)$, 
+  $f_{k,i} \downarrow \chi_{[a_k,b_k]}$ und 
+  $\lim_{i\to\infty} I(f_{k,i})= b_k-a_k$. Das beantwortet die 
+  erste Frage.     
+
+  Die zweite Behauptung folgt unmittelbar aus der Transformationsformel, 
+  da für eine Matrix $A\in O(n,\RR)$ stets $| \det A | =1$ gilt. 
+  \AntEnd
+\end{antwort}
+
+%% --- 35 --- %%
+\begin{frage}\index{Cavalieri-Prinzip}\index{Schnittmenge}
+  Was besagt das \bold{Cavalieri-Prinzip} zur Berechnung des $n$-dimensionalen 
+  Volumens einer kompakten Teilmenge $K\subset\RR^n$ mithilfe 
+  von $(n-1)$-dimensionalen "`Schnittmengen"'? 
+  Was besagt das klassische Prinzip von Cavalieri?
+\end{frage}
+
+
+\begin{antwort}[]%
+  \Ant F\"ur $t\in \RR$ sei 
+  \[
+  K(t):= \{ (x_1,\ldots,x_{n-1}) \in \RR^{n-1} \sets 
+  (x_1,\ldots,x_{n-1}, t ) \in K\} 
+  \]
+  die $(n-1)$-dimensionale "`Schnittmenge"' von $K$ zum Wert  
+  $x_n=t$ (\sieheAbbildung\ref{fig:11_cavalieri}). 
+  Nach dem \slanted{Cavalieri-Prinzip} gilt dann 
+  \[
+  \boxed{
+    \vol_n( K ) = \int_\RR \vol_{n-1} K(t) \dift.}
+  \]
+
+  \begin{center}
+    \includegraphics{mp/11_cavalieri}
+    \captionof{figure}{"`Schnittmenge"' $K(t)$ von $K$ zum Wert $t$}
+    \label{fig:11_cavalieri}
+  \end{center}
+
+  (Die Bezeichnung "`Schnittmenge"' f\"ur $K(t)$ ist 
+  sprachlich nicht ganz richtig. Die 
+  Schnittmenge ist eigentlich $K(t) \times \{ t \}$.)
+
+  Das klassische Prinzip von Cavalieri besagt: Sind $K,L\in\RR^n$ zwei 
+  vorgegebene Kompakta, f\"ur die 
+  $\vol_{n-1}\big( K(t) \big)=\vol_{n-1} \big( L(t) \big)$ f\"ur 
+  \slanted{jedes} $t\in\RR$ gilt, dann gilt auch $\vol_n(K)=\vol_n(L)$ 
+  (\sieheAbbildung\ref{fig:11_cavalieri2}). 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/11_cavalieri2}
+    \captionof{figure}{Klassisches Prinzip von Cavalieri: Die horizontalen 
+      Schnitte mit den Figuren sind jeweils gleich lang, also haben beide 
+      Figuren dasselbe Volumen.}
+    \label{fig:11_cavalieri2}
+  \end{center}
+\end{antwort}
+
+%% --- 36 --- %%
+\begin{frage}\label{11_kappa}
+  \index{Volumen!der $n$-dimensionalen Einheitskugel}
+  \nomenclature{$K_n(1)$}{Einheitskugel im $\RR^n$}
+  \nomenclature{$\kappa_n$}{Volumen der $n$-dimensionalen Einheitskugel}
+  K\"onnen Sie mithilfe des Cavalieri-Prinzips das Volumen 
+  der $n$-dimensionalen Kugel 
+  $K_n (r) = \{ x\in\RR^n \sets \nb{ x }_2 \le r\} $ berechnen?
+\end{frage}
+
+\begin{antwort}
+  Die Kugel $K_n(r)$ ist das Bild der Einheitskugel $K_n(1)$ unter 
+  der Abbildung $\RR^n \to \RR^n $ mit $x \mapsto rx$. Diese 
+  Abbildung hat die Determinante $r^n$. 
+  Damit folgt aus der Transformationsformel zunächst 
+  $\vol_n\big( K_n(r)\big) = r^n \vol_n\big( K_n(1)\big)$, und daher genügt es, 
+  das Volumen 
+  \[
+  \kappa_n := \vol_n \big( K_n(1) )
+  \]
+  zu berechnen. F\"ur $n=1$ gilt $K_1 = [-1,1]$ und man erh\"alt $\kappa_1=2$. 
+
+  \begin{center}
+    \includegraphics{mp/11_kugel}
+    \captionof{figure}{
+      Durch Betrachtung der "`Schnitte"' $K(1,t)$ lässt sich 
+      die Volumenberechung der $n$-dimensionalen Einheitskugel auf die Dimension 
+      $n-1$ zurückführen.
+    }
+    \label{fig:11_kugel}
+  \end{center}
+
+  Die Berechnung von $\kappa_n$ f\"ur $n>1$ l\"asst sich nun  
+  mit dem Cavalieri-Prinzip auf die von $\kappa_{n-1}$ 
+  zur\"uckf\"uhren.  
+  Die Mengen $K_n(1;t)$ (vgl. Abbildung~\ref{fig:11_kugel}) haben das Volumen 
+  \[
+  \vol_{n-1}\big( K_n(1;t) \big) = \left\{ \begin{array}{ll}
+      \kappa_{n-1} \sqrt{1-t^2}^{n-1} & \text{f\"ur $|t|\le 1$,}  \\
+      \emptyset   & \text{f\"ur $|t|>1$.}
+    \end{array}\right.
+  \]
+  Also erh\"alt man mit dem Cavalieri-Prinzip und der Transformationsformel 
+  \begin{align*}
+    \kappa_n &= \vol_n\big( K_n(1) \big) = 
+    \int_{-1}^1 \vol_{n-1}\big( K_{n-1} (1;t) \big) \dift = 
+    \kappa_{n-1} \int_{-1}^1 (1-t^2)^{\frac{n-1}{2}} \dift. \\
+    &= \kappa_{n-1} \int_\pi^0 \sin^{n-1} x (-\sin x) \difx = 
+    \kappa_{n-1} \int_0^\pi \sin^n x \difx = 
+    2\cdot \kappa_{n-1} \int_0^{\frac{\pi}{2}} \sin^n x \difx 
+  \end{align*}
+  \picskip{0}
+  F\"ur das Integral $I_n := \int_0^{\pi/2} \sin^n x \difx$
+  hatten wir in Frage \ref{06_wallis1} bereits eine Rekursionsformel 
+  angegeben und 
+  \[
+  I_{2n} = \frac{2n-1}{2n}\cdots\frac{3}{4}\cdot\frac{1}{2}\cdot\frac{\pi}{2}, 
+  \qquad 
+  I_{2n+1} = \frac{2n}{2n+1}\cdots\frac{4}{5}\cdot\frac{2}{3}
+  \]
+  hergeleitet. Damit gilt 
+  $I_n I_{n-1} = \frac{\pi}{2n}$  f\"ur alle $n\in \NN$. 
+  F\"ur die Kugelvolumina $\kappa_n$ liefert das die Rekursionsformel
+  \[
+  \kappa_n = 2 \kappa_{n-1} I_n = 4 \kappa_{n-2} I_n I_{n-1} = 
+  \frac{2\pi}{n}\kappa_{n-2}.
+  \]
+  Damit lassen sich nun alle $\kappa_n$ berechnen. 
+  Es gelten die Formeln 
+  \[
+  \boxed{
+    \kappa_{2k} = \frac{1}{k!}\pi^k, \qquad
+    \kappa_{2k+1} = \frac{2^{k+1}}{1\cdot 3\cdots (2k+1)}\pi^k.
+  }
+  \EndTag
+  \] 
+\end{antwort}
+
+%% --- 37 --- %%
+\begin{frage}
+  Kennen Sie eine explizite Formel f\"ur das Volumen der 
+  $n$-dimensionalen Einheitskugel?
+\end{frage}
+
+\begin{antwort}
+  Eine einheitliche Formel erh\"alt man mithilfe 
+  der $\Gamma$-Funktion. F\"ur gerades $n=2k$ gilt 
+  \[
+  \Gamma \left( \frac{n}{2}+1 \right) = \Gamma(k+1) = k!, 
+  \]
+  und f\"ur ungerade $n=2k+1$ hat man
+  \begin{align*}
+    \Gamma \left(\frac{n}{2} +1 \right) &= \Gamma\left(k+\frac{3}{2}\right) = 
+    \left(k+\frac{1}{2}\right)\Gamma\left( k+\frac{1}{2} \right)= 
+    \left(k+\frac{1}{2}\right)\left(k-\frac{1}{2}\right)\Gamma\left( k-\frac{1}{2} \right)\\
+    &= \cdots 
+    = \left( \frac{2k+1}{2} \right)\left( \frac{2k-1}{2} \right) \cdots 
+    \left( \frac{3}{2} \right) 
+    \left( \frac{1}{2} \right) \Gamma\left(\frac{1}{2}\right).
+  \end{align*}
+  Wegen $\Gamma(\frac{1}{2})=\sqrt{\pi}$ folgt 
+  daraus durch Vergleich mit {\astref} die Formel
+  \[
+  \boxed{
+    \kappa_n = \frac{\pi^{n/2}}{\Gamma( n/2 +1 )} 
+  }  \EndTag
+  \]
+\end{antwort}
+
+%% --- 38 --- %%
+\begin{frage}
+  Ist $\kappa_n=\vol_n \big( K_n(1) \big)$, f\"ur welches $n$ 
+  ist $\kappa_n$ dann maximal?
+\end{frage}
+
+\begin{antwort}
+  Aus den Rekursionsformeln am Ende von Frage \ref{11_kappa} folgt 
+  für $k\in \NN$  
+  \begin{align*}
+    \frac{\kappa_{2k}}{\kappa_{2k+1}} = 
+    \frac{1}{2} \cdot \left( 
+      \frac{3}{2}\cdot \frac{5}{4} \cdots \frac{2k+1}{2k} \right) > 1 
+    &\LLa  2k+1 > 5, \\[1mm]
+    \frac{\kappa_{2k+1}}{\kappa_{2k+2}} = 
+    \frac{2}{\pi} \cdot \left(  
+      \frac{4}{3}\cdot \frac{6}{5} \cdots \frac{2k+2}{2k+1} \right) > 1 
+    &\LLa  2k+1 \ge 5.
+  \end{align*}
+  Daraus folgt $\kappa_1  \kappa_2 \le \cdots \le \kappa_5$ 
+  und $\kappa_{n+1}\le \kappa_n$ für $n\ge 5$. Damit nimmt 
+  $\kappa_n$ genau f\"ur $n=5$ ein Maximum an.  
+  Die Tabelle listet die ersten zehn Werte von $\kappa_n$ auf. 
+  \[ 
+  \begin{array}{c|cccccccccc}
+    $n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\ \hline
+    \kappa_n & 2 & \pi & \frac{4}{3}\pi & \frac{\pi^2}{2} & 
+    \frac{8}{15}\pi^2 & \frac{\pi^3}{6} & \frac{16}{105}\pi^3 & 
+    \frac{1}{24}\pi^4 & 
+    \frac{32}{945}\pi^4 & 
+    \frac{1}{120}\pi^5
+    \\ \approx &
+    2 & 3.141 & 4.189 & 4.935 & 5.264 & 5.168 & 4.729 & 4.059 
+    & 3.299 & 2.550 
+  \end{array}
+  \EndTag
+  \]
+\end{antwort}
+
+%% --- 39 --- %%
+\begin{frage}
+  Warum gilt $\lim\limits_{n\to\infty}\kappa_n=0$?
+\end{frage}
+
+\begin{antwort}
+  Aus den Ungleichungen der letzten Antwort folgt, 
+  dass die Folge $(\kappa_n)$ f\"ur $n>5$ streng monoton f\"allt. 
+  Da alle Glieder positiv sind, besitzt sie also einen Grenzwert. Es gilt 
+  \[
+  \lim_{n\to\infty} \kappa_n = \lim_{k\to\infty } \kappa_{2k} = 
+  \lim_{k\to\infty}\frac{1}{k!}\pi^k = 0.
+  \EndTag
+  \]
+\end{antwort} 
+
+\section{Die Lebesgue-integrierbaren Funktionen}
+
+Wir erweitern nun den Integralbegriff ein weiteres Mal. Dazu definieren 
+wir f\"ur beliebige Funktionen $f\fd\RR^n \to\overline{\RR}$ ein Oberintegral 
+$I^*(f)$ und ein Unterintegral $I_* (f)$. F\"ur die Funktionen 
+$f\in\calli{H}^\uparrow$ bzw. $f\in\calli{H}^\downarrow$ 
+wird sich dadurch nichts Neues ergeben. Die Funktionen 
+$f\fd \RR^n  \to\overline{\RR}$, f\"ur welche 
+$I(f):= I_*(f)=I^*(f)$ gilt und f\"ur welche dieser gemeinsame Wert 
+endlich ist, sind genau die Lebesgue-integrierbaren Funktionen. 
+Die Lebesgue-integrierbaren Funktionen 
+mit Werten in $\RR$ 
+bilden einen Vektorraum $\calli{L}^1 ( \RR^n )$, 
+auf dem
+\nomenclature{$\calli{L^1}(\RR^n)$}{Raum der Lebesgue-integrierbaren 
+  Funktionen $\RR^n\to\RR$} 
+\index{Lebesgue-integrierbar}\index{LaaL1@$\calli{L}^1$}
+\[
+I\fd \calli{L}^1 (\RR^n)\to\RR \qquad 
+f \mapsto I(f)
+\]
+ein nichtnegatives lineares Funktional ist und in dem 
+starke Konvergenzs\"atze gelten 
+(Satz von Beppo Levi, Grenzwertsatz von Lebesgue), die unter 
+geeigneten Voraussetzungen 
+gestatten, aus der punktweisen Konvergenz 
+auf die Integration der Grenzfunktion und 
+auf die Vertauschbarkeit von Grenzwertbildung und 
+Integration zu schlie{\ss}en.   
+
+%% --- 40 --- %%
+\begin{frage}\index{Oberintegral}\index{Unterintegral}
+  \nomenclature{$I^*(f),\,I_*(f)$}{Ober- bzw. Unterintegral von $f$}
+  Wie sind f\"ur eine Funktion $f\fd \RR^n\to\overline{\RR}$ das 
+  \bold{Ober- bzw. Unterintegral} definiert?
+\end{frage}
+
+\begin{antwort}
+  F\"ur $f\fd\RR^n\to\overline{\RR}$ hei{\ss}t 
+  \begin{align*}
+    I^*(f) = \Inf\, \{ I(h)\sets h\in\calli{H}^\uparrow,\, h\ge f \}
+    & \quad\text{das \slanted{Oberintegral von $f$} und} \\
+    I_*(f) = \Sup\, \{ I(g)\sets g\in\calli{H}^\downarrow,\, g\le f \}
+    & \quad\text{das \slanted{Unterintegral von $f$}}.
+  \end{align*}
+  Wegen $\calli{H}^\downarrow = - \calli{H}^\uparrow $ gilt 
+  stets $I_*(f)= -I^*(-f)$. \AntEnd
+\end{antwort} 
+
+%% --- 41 --- %%
+\begin{frage}
+  Warum sind die Mengen, \"uber die das Infimum bzw. Supremum gebildet werden, 
+  nicht leer?
+\end{frage}
+
+\begin{antwort}
+  Die konstante Funktion $h\fd \RR^n \to\overline{\RR}$ mit 
+  $x\mapsto \infty$ liegt in 
+  $\calli{H}^\uparrow$, und die konstante Funktion 
+  $g\fd \RR^n \to\overline{\RR}$ mit $x\mapsto -\infty$ 
+  liegt in $\calli{H}^\downarrow$. 
+
+  \parpic[r]{}
+  Beide Behauptungen zeigt man, indem man explizit eine Folge aus 
+  $\calli{C}_c(\RR^n)$ angibt, die monoton wachsend gegen $\infty$ bzw. 
+  monoton fallend gegen $-\infty$ konvergiert, wie etwa für $n=1$ 
+  die Folge der "`Trapezfunktionen"' in der Abbildung~\ref{fig:11_dreieck}.
+
+  \begin{center}
+    \includegraphics{mp/11_dreieck}
+    \captionof{figure}{Die Folge der Trapezfunktionen konvergiert 
+      monoton wachsend gegen $\infty$.}
+    \label{fig:11_dreieck}
+  \end{center}
+
+
+  Die Konstruktion lässt sich leicht auf 
+  höhere Dimensionen verallgemeinern, 
+  \AntEnd
+\end{antwort} 
+
+
+
+%% --- 42 --- %%
+\begin{frage}\label{11_lebeab}
+  Warum gilt f\"ur alle Funktionen $f\fd \RR^n \to \overline{\RR}$ stets $
+  I_*(f) \le I^*(f)$,
+  und warum gilt f\"ur $f\in \calli{H}^\uparrow (\RR^n)$ stets $
+  I(f)= I_*(f)=I^*(f)$?
+\end{frage}
+
+\begin{antwort}
+  F\"ur den ersten Teil der Frage muss 
+  nur gezeigt werden, dass mit $h \in \calli{H}^\uparrow$ 
+  und $g\in \calli{H}^\downarrow$ aus $h\ge g$ stets 
+  $I(h) \ge I(g)$ folgt. 
+  Wegen $\calli{H}^\downarrow = - \calli{H}^\uparrow$ 
+  ergibt sich das aus den Monotonieeigenschaften 
+  des Integrals f\"ur halbstetige Funktionen:
+  \[
+  0 \le I(h-g) = I(h+(-g))=I(h)-I(g). \asttag
+  \]
+  Zum zweiten Teil: Die Identit\"at $I^* (f)=f$ f\"ur 
+  $f\in \calli{H}^\uparrow$ folgt direkt aus der Definition des 
+  Oberintegrals. Um $I_*(f)=I(f)$ zu zeigen, w\"ahle man eine Folge 
+  $(f_k)\subset \calli{C}_c (\RR^n)$ mit $f_k \uparrow f$. Dann gilt 
+  nach Definition 
+  \[
+  I(f) = \Sup_k \int_{\RR^n} f_k (x) \difx. \aasttag
+  \]
+  Andererseits folgt aus der Definition des Unterintegrals 
+  zusammen mit $f_k \le f$, 
+  $f_k \in \calli{C}_c \subset \calli{H}^\downarrow$ 
+  und {\astref}
+  \[
+  \Sup_{k} \int_{\RR^n} f_k (x) \difx \le I_*(f) \le I^*(f) = I(f).
+  \]
+  Wegen {\astastref} muss hier \"uberall ein Gleichheitszeichen 
+  stehen.\AntEnd
+\end{antwort} 
+
+%% --- 43 --- %%
+\begin{frage}\index{Lebesgue-integrierbar}
+  Wann hei{\ss}t eine Funktion $f\fd \RR^n\to\overline{\RR}$ 
+  \bold{Lebesgue-integrierbar}?
+\end{frage}
+
+\begin{antwort}
+  
+  Eine Funktion $f\fd \RR\to\overline{\RR}$ hei{\ss}t 
+  \slanted{Lebesgue-integrierbar} genau dann, wenn 
+  \[
+  \boxed{ I^*(f)=I_*(f) }
+  \]
+  gilt und dieser gemeinsame Wert von $\infty$ und $-\infty$ verschieden ist. 
+  Der gemeinsame Wert hei{\ss}t in diesem Fall das 
+  \slanted{Integral von $f$} und wird wiederum mit $I(f)$ bezeichnet. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 44 --- %%
+\begin{frage}
+  Welche Bedingung ist für eine Funktion $f\in \calli{H}^\uparrow$ 
+  (bzw. $f\in \calli{H}^\downarrow$) notwendig und hinreichend 
+  für ihre Lebesgue-Integrierbarkeit?
+\end{frage}
+
+\begin{antwort}
+  Nach Frage \ref{11_lebeab} gilt für halbstetige Funktionen 
+  $f$ stets $I^*(f)=I_*(f)$. Für ihre Integrierbarkeit ist es 
+  daher hinreichend und notwendig, dass $I^*(f)$ einen endlichen Wert 
+  hat. \AntEnd
+\end{antwort} 
+
+%% --- 45 --- %%
+\begin{frage}\label{11_lebekrit}\index{epsilon@$\eps$-Kriterium 
+    für Integrierbarkeit}
+  Kennen Sie ein Kriterium f\"ur die Lebesgue-Integrierbarkeit einer 
+  Funktion $f\fd \RR^n \to \overline{\RR}$, in welcher $\Sup$ und $\Inf$ 
+  nicht vorkommen?
+\end{frage}
+
+\begin{antwort}
+  Durch eine Anwendung der Definition 
+  des Supremums erh\"alt man {\zB} das folgende 
+  (häufig $\eps$-Kriterium genannte) Kriterium: 
+
+  \medskip\noindent
+  \satz{Eine Funktion $f\fd \RR^n\to\overline{\RR}$ ist genau dann 
+    Lebesgue-integrierbar, wenn es zu jedem $ \eps>0$ Funktionen 
+    $ g\in \calli{H}^\downarrow $ und  
+    $ h\in \calli{H}^\uparrow $ mit endlichen Integralen gibt, 
+    f\"ur die gilt:
+    \[
+    g\le f\le h \qquad\text{und}\qquad
+    0 \le I(h-g) = I(h)-I(g) \le \eps \EndTag
+    \]
+  }  
+\end{antwort}
+
+%% --- 46 --- %%
+\begin{frage}\label{11_lebesgue}
+  \index{LaaL1@$\calli{L}^1$!Eigenschaften}
+  Welche Haupteigenschaften hat die Menge 
+  \[
+  \boxed{
+    \calli{L}^1 = \calli{L}^1 (\RR^n) := 
+    \big\{ f \fd \RR^n \to \RR \sets \text{$f$ Lebesgue-integrierbar} \big\}.
+  }
+  \]
+  (Wir schlie{\ss}en hier die Werte $\infty$ und $-\infty$ noch aus. 
+  Wie wir sehen werden, bedeutet das aber keine wesentliche 
+  Einschr\"ankung.)
+\end{frage}
+
+\begin{antwort}
+  $\calli{L}^1$ ist ein $\RR$-Vektorraum, {\dasheisst} 
+  \[
+  f, g \in \calli{L}^1 \Ra f+g \in \calli{L}^1 \text{ und } 
+  c f \in \calli{L}^1 \text{ für $c\in\RR$}.
+  \]
+  Ferner gilt, dass mit $f$ und $g$ auch 
+  $f\wedge g$, $f\vee g$,
+  $f^+$ und $f^{-}$ und $|f|$ in $\calli{L}^1$ enthalten sind.
+  Ist $g$ zus\"atzlich beschr\"ankt und ist $f(x)\not=\pm \infty$ 
+  f\"ur alle $x\in \RR^n$, dann liegt auch 
+  $fg$ in $\calli{L}^1$. 
+
+  Diese Eigenschaften sind \slanted{nicht} offensichlich, sondern 
+  müssen einzeln nachgewiesen werden. Dies gelingt in jedem 
+  einzelnen Fall aber mühelos mit den Ergebnissen aus Frage 
+  \ref{11_lebeab} und dem Kriterium aus Frage \ref{11_lebekrit}.
+
+  Speziell für den Nachweis der Linearität benutze man 
+  folgenden Zusammenhang: Sind $f,g,h$ Funktionen mit $f+g=h$, so gilt
+  \[
+  I^*(f)+I^*(g) \ge I^*(h), \qquad
+  I_*(f)+I_*(g) \le I_*(h). \asttag
+  \]
+  Dies ist für Baire\sch e Funktionen offensichtlich und folgt daraus 
+  für allgemeine Funktionen aus der Definition des Unter- und Oberintegrals. 
+  (Man beachte, dass der Zusammenhang $I^*(f+g)=I^*(f)+I^*(g)$ und 
+  $I_*(f+g)=I_*(f)+I_*(g)$ im Allgemeinen nicht gilt.) \AntEnd 
+\end{antwort} 
+
+%% --- 47 --- %%
+\begin{frage}\index{Permanenzeigenschaften!des Lebesgue-Integrals}
+  Welche \bold{Permanenzeigenschaften} hat die Abbildung 
+  $I\fd\calli{L}^1(\RR^n)\to \RR$?
+\end{frage} 
+
+\begin{antwort}
+  Die Abbildung $I$ ist ein \slanted{lineares, monotones Funktional}, 
+  für $f,g \in \calli{L}^1$ und $a,b\in \RR$ gilt also
+  \[
+  \begin{array}{rp{2mm}lp{15mm}r}
+    \text{\desc{a}} & &
+    I(a f+b g)= a \cdot I( f)+b\cdot I(g),  & &
+    \text{(Linearität)} \\
+    \text{\desc{c}} & &
+    f \le g \Ra I(f) \le I(g ). & &
+    \text{(Monotonie)}
+  \end{array}
+  \]
+  Ferner ist $\calli{L}^1(\RR^n)$ $\sigma$-stetig 
+  im Sinne von Frage \ref{11_sigma}.  
+  Ist also $(f_k)$ eine Folge mit $f_k \in \calli{L}^1$ und 
+  $f_k \downarrow 0$, dann gilt stets $\lim_{k\to\infty} I(f_k)=0$.
+  \AntEnd
+\end{antwort}
+
+%% --- 48 --- %%
+\begin{frage}\index{LaaL1@$\calli{L}^1$!Halbnorm}
+  \nomenclature{$\n{\,\;}_{\calli{L}^1}$}{$\calli{L}^1$-Halbnorm}
+  Wie ist die $\calli{L}^1$-Halbnorm für Funktionen 
+  $f\fd \RR^n\to\overline{\RR}$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die $\calli{L}^1$-Halbnorm $\n{\,\;}_{\calli{L}^1}$ ist 
+  definiert durch
+  \[
+  \nnb{ f }_{\calli{L}^1} = I^*( |f| ).
+  \]
+  Die Eigenschaften einer Halbnorm folgen für 
+  $\nnb{\;\,}_{\calli{L}^1}$ unmittelbar aus denen des Lebesgue-Integrals. 
+  Da aber aus $\nnb{ f }_{\calli{L}^1}=0$ nicht $f=0$ folgt, handelt 
+  es sich nicht um eine Norm. \AntEnd  
+\end{antwort}
+
+%% --- 49 --- %%
+\begin{frage}
+  Was besagt die Aussage "`$\calli{C}_c(\RR^n)$ ist dicht 
+  in $\calli{L}^1(\RR^n)$"'?
+\end{frage}
+
+\begin{antwort}
+  Die Aussage bedeutet: \satz{Eine Funktion $f\fd \RR^n \to\overline{\RR}$ 
+    liegt genau dann im Raum $\calli{L}^1(\RR^n)$, wenn es zu jedem 
+    $\eps>0$ eine Funktion $g\in\calli{C}_c(\RR^n)$ gibt mit 
+    \[
+    \nnb{ f-g }_{\calli{L}^1} = I^*\big( | f-g | \big)<\eps.
+    \asttag\]
+  }
+  \noindent
+  Es ist, wenn man die Konstruktion des 
+  Lebesgue-Integrals nachvollzieht, relativ klar, 
+  dass die Voraussetzungen \slanted{notwendig} sind. Denn $I(f)$ wird 
+  durch das Integral einer Baire'schen Funktion beliebig genau approximiert, 
+  und dieses wiederum durch das Integral einer stetigen Funktion mit kompaktem 
+  Träger.  
+  
+  Gilt umgekehrt {\astref}, dann gibt es eine Baire'sche Funktion $h$ 
+  mit $|f(x)-g(x)| < h(x)$ und $I^*( h ) < \eps$. Die Behauptung folgt 
+  dann durch Anwendung des Kriteriums aus Frage \ref{11_lebekrit} auf 
+  die Funktionen $g-h \in \calli{H}^\downarrow $ und 
+  $g+h \in \calli{H}^\uparrow$. \AntEnd
+\end{antwort}
+
+
+
+\section{Die Grenzwerts\"atze von Beppo Levi und Lebesgue}
+
+Die St\"arke des Lebesgue-Integrals liegt in seiner 
+fabelhaften Stabilit\"at gegen\"uber Grenzprozessen. 
+Unter bestimmten Voraussetzungen erlaubt die nur punktweise 
+Konvergenz einer Funktionenfolge bereits, auf die 
+Integrierbarkeit der Grenzfunktion und die Vertauschbarkeit von Limesbildung 
+und Integration zu schließen. 
+
+%% --- 50 --- %%
+\begin{frage}\index{Satz!von Beppo Levi}\index{monotone Konvergenz}
+  \index{Satz!von der monotonen Konvergenz}
+  Was besagt der \bold{Satz von Beppo Levi}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz wird auch 
+  \slanted{Satz von der monotonen Konvergenz} genannt und besagt 
+  kurz formuliert, dass f\"ur eine monoton wachsende Folge 
+  Lebesgue-integrierbarer Funktionen mit beschr\"ankter Integralfolge 
+  auch die Grenzfunktion Lebesgue-integrierbar ist, und dass deren Integral 
+  der Grenzwert der Integralfolge ist, genauer:
+
+  \medskip
+  \noindent\slanted{Ist $(f_k)$ eine Folge von Funktionen  
+    mit $f_k \in\calli{L}^1(\RR^n)$ und $f_{k+1} \ge f_k$ 
+    für die die Folge der Integrale $I(f_k)$ beschränkt ist, 
+    dann ist auch die 
+    punktweise gebildete Grenzfunktion $f=\lim\limits_{k\to\infty} f_k$ 
+    Lebesgue-integrierbar, und es gilt:
+    \[
+    \boxed{
+      I(f)=I \left( \lim_{k\to\infty} f \right)= \lim_{k\to\infty} I(f_k).
+    } \notag 
+    \]
+  }  
+  \noindent
+  Dieser wichtige Satz lässt sich folgendermaßen beweisen. 
+  Zunächst gilt wegen $f_k \le f$ 
+  \[
+  \lim_{k\to\infty} I(f_k) \le I_*(f).
+  \]
+  Der Satz von Beppo Levi folgt also, wenn man zusätzlich 
+  \[
+  \lim_{k\to\infty} I (f_k) \ge I^*(f)
+  \asttag
+  \]
+  zeigen kann. Um das zu beweisen, schreiben wir die Funktionen 
+  $f_k$ als Summe
+  \[
+  f_k = \sum_{\ell=1}^k h_\ell , 
+  \qquad h_\ell = f_\ell - f_{\ell-1}, \quad f_0 := 0.
+  \]
+  Die Funktionen $h_\ell$ sind wegen der Vektorraumeigenschaft 
+  von $\calli{L}^1$ integrierbar. Nach Definition 
+  des Integrals gibt es daher zu jedem $\ell\in\NN$ 
+  eine Funktion $\overline{h}_\ell \in \calli{H}^\uparrow$ 
+  mit $\overline{h}_\ell \ge h_\ell$ sowie  
+  \[
+  I ( \overline{h}_\ell ) \le I(h_\ell) + \frac{\eps}{2^\ell}.
+  \]
+  Aufgrund der Stabilität der Baire\sch en Funktionen bezüglich 
+  monotoner Konvergenz (Frage \ref{11_heig}) gilt 
+  $\sum_{k=1}^\infty \overline{h}\in \calli{H}^\uparrow$, also 
+  ist Integration und Grenzwertbildung vertauschbar.  
+  Daraus folgt 
+  \[
+  I^*(f) = I^* \left( \sum_{\ell=1}^\infty h_\ell \right) \le 
+  I \left( \sum_{\ell=1}^\infty \overline{h}_\ell \right) = 
+  \sum_{\ell=1}^\infty I (\overline{h}_\ell ) \le 
+  \sum_{\ell=1}^\infty \left( I ( h_\ell ) + \frac{\eps}{2^\ell} \right) =
+  \lim_{k\to\infty} I(f_k)+\eps.
+  \]
+  Da $\eps$ beliebig klein gewählt werden kann, folgt daraus {\astref} 
+  und damit der Satz von Beppo Levi. 
+
+  Ein entsprechender Zusammenhang gilt für monoton fallende Folgen $(f_k)$, 
+  deren Integralfolge nach unten beschränkt ist. Durch Übergang zur Folge 
+  $(-f_k)$ führt man das auf die im Satz formulierten Voraussetzungen zurück.
+  \AntEnd
+\end{antwort}
+
+%% --- 51 --- %%
+\begin{frage}
+  \index{Satz!von Lebesgue}\index{Satz!von der majorisierten Konvergenz}
+  Was besagt der \bold{Lebesgue\sch e Grenzwertsatz 
+    (Satz von der majorisierten Konvergenz)}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet (in einer Formulierung, die zunächst noch keine 
+  Ausnahme-Nullmengen zulässt):
+
+  \medskip
+  \noindent\slanted{Sei $(f_k) \subset \calli{L}^1 (\RR_n)$ eine Folge 
+    Lebesgue-integrierbarer Funktionen, die punktweise gegen eine 
+    Funktion $f\fd \RR^n \to \RR$ konvergiert. Gibt es dann eine 
+    Funktion $F\fd \RR^n \to \overline{\RR}$ mit $I^*(F)<\infty$, sodass 
+    \[
+    | f_k | \le F \quad\text{f\"ur alle $k\in\NN$} 
+    \]
+    gilt, dann ist auch $f$ integrierbar, und es gilt 
+    \[
+    \boxed{ I(f)=\lim_{k\to\infty} I(f_k). }
+    \]}
+  \noindent\bold{Anmerkung und Zusatz:} 
+  Aufgrund des \slanted{Modifikationssatzes}, der in Frage 
+  \ref{11_modisatz} gezeigt wird, genügt es, 
+  die Konvergenz nur \slanted{fast überall} zu fordern, was die Voraussetzungen 
+  für die Gültigkeit des Satzes abschwächt. 
+
+  \medskip\noindent
+  Man kann den Lebesgue\sch en Grenzwertsatz auf den Satz von Beppo Levi 
+  zurückführen, indem man die Folge der Funktionen 
+  $(\underline{g}_k)$ und $(\overline{g}_k)$ mit 
+  \[
+  \underline{g}_k ( x ) = \Inf \,\{ f_\ell (x) \sets \ell\ge k \}, \qquad
+  \overline{g}_k ( x ) = \Sup \,\{ f_\ell (x) \sets \ell\ge k \}
+  \]
+  betrachtet. Es gilt dann offensichtlich 
+  $\underline{g}_k \uparrow f$ 
+  und $\overline{g}_k \downarrow f$. Ferner lässt sich zeigen, dass die 
+  $\underline{g}_k$ und $\overline{g}_k$ integrierbar sind 
+  (s. \citep{Forster}). Aus der Ungleichungskette 
+  \[
+  - F \le \underline{g}_k \le f_k \le \overline{g}_k \le F 
+  \]
+  folgt dann 
+  \[
+  - I^*(F) \le I (\underline{g}_k) \le I(f_k) \le I(\overline{g}_k) \le I^*(F). 
+  \]
+  Insbesondere sind die Folgen der Integrale $I (\underline{g}_k)$ und 
+  $I (\overline{g}_k)$ beschränkt. Nach dem Satz von Beppo Levi 
+  ist $f$ damit integrierbar und es gilt 
+  \[
+  \lim_{k\to\infty} I (\underline{g}_k) = 
+  \lim_{k\to\infty} I (f_k) = 
+  \lim_{k\to\infty} I (\overline{g}_k) = 
+  I(f). \EndTag
+  \]
+\end{antwort} 
+
+%% --- 52 --- %%
+\begin{frage}\index{messbar}\index{Volumen!einer endlich messbaren Menge}
+  Wann hei{\ss}t eine Teilmenge $A\subset\RR^n$ 
+  \bold{endlich messbar} und wie ist ihr Volumen definiert?
+\end{frage}
+
+\begin{antwort}
+  Eine Teilmenge $A\subset\RR^n$ heißt \slanted{endlich messbar} genau 
+  dann, wenn ihre charakteristische Funktion Lebesgue-integrierbar ist.
+  \AntEnd
+\end{antwort}
+
+%% --- 53 --- %%
+\begin{frage}\index{Integrierbarkeit!im Sinne des Lebesgue-Integrals}
+  Wann hei{\ss}t eine Funktion $f\fd X\to\overline{\RR}$ 
+  mit $X\subset\RR^n$ \bold{integrierbar}?
+\end{frage}
+
+\begin{antwort}
+  Eine Funktion $f\fd X\to\overline{\RR}$ heißt 
+  \slanted{integrierbar} genau dann, wenn die triviale Fortsetzung 
+  $\widetilde{f}$ Lebesgue-integrierbar ist. 
+  In diesem Fall schreibt man auch $\int_X f(x) \difx$ für 
+  $\int_{\RR^n} \widetilde{f}(x) \difx$. \AntEnd
+\end{antwort}
+
+%% --- 54 --- %%
+\begin{frage}
+  Warum ist jede stetige beschr\"ankte Funktion $f\fd D \to\RR$ 
+  ($D\subset\RR^n$ offen und beschr\"ankt) integrierbar?
+\end{frage}
+
+\begin{antwort}
+  Die triviale Fortsetzung $\tilde{f}$ gehört nach Frage 
+  \ref{11_bairecharak} \desc{a} 
+  unter diesen Voraussetzungen zu $\calli{H}^\uparrow$. 
+  Wegen der Beschränktheit ist $\widetilde{f}$ integrierbar.  
+  \AntEnd 
+\end{antwort} 
+
+%% --- 55 --- %%
+\begin{frage}\index{Integrierbarkeit!stetiger Funktionen}
+  Ist $K\subset\RR^n$ kompakt, warum ist dann jede stetige Funktion 
+  \"uber $K$ integrierbar?
+\end{frage}
+\begin{antwort}
+  
+  Die Funktion liegt in diesem Fall in 
+  $\calli{H}^\downarrow $ (vgl. Frage 
+  \ref{11_bairecharak} \desc{b}). 
+  \AntEnd 
+\end{antwort} 
+
+%% --- 56 --- %%
+\begin{frage}
+  Warum ist jede beschr\"ankte offene Menge des $\RR^n$ endlich messbar?
+  Warum ist jede kompakte Teilmenge des $\RR^n$ endlich messbar?
+\end{frage}
+
+\begin{antwort}
+  Nach den vorhergehenden beiden Fragen gehören die charakteristischen 
+  Funktionen zu $\calli{H}^\uparrow$ bzw. $\calli{H}^\downarrow$ und sind 
+  daher integrierbar, da das Oberintegral (im ersten 
+  Fall) bzw. das Unterintegral (im zweiten Fall) in $\RR$ liegen. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 57 --- %%
+\begin{frage}\label{11_riemannlebesgue}
+  \index{Integral!Zusammenhang zwischen Regel- und Lebesgue-Integral}
+  Welcher Zusammenhang besteht zwischen der Integrierbarkeit einer 
+  Funktion $f\fd\to\RR$ ($D\subset\RR$ ein Intervall)
+  im Lebesgue\sch en Sinne und der Integrierbarkeit von $f$ im 
+  Sinne des Regelintegrals?
+\end{frage}
+
+\begin{antwort}
+  Es gilt der Zusammenhang: 
+  \setlength{\labelsep}{4mm}
+  \begin{itemize}
+  \item[\desc{i}] \slanted{Ist die Funktion $f\fd [a,b] \to \RR$ 
+      integrierbar im Sinne des Regelintegrals, 
+      dann ist sie auch Lebesgue-integrierbar, und die beiden 
+      Integrale stimmen überein.} \\[-3.5mm]
+  \item[\desc{ii}] \slanted{Eine Regelfunktion $f$ auf einem offenen Intervall $]a,b[$ 
+      (die Werte $a=-\infty$ und $b=\infty$ sind zugelassen) ist genau dann 
+      Lebesgue-integrierbar, wenn das uneigentliche Regelintegral 
+      $\int_a^b | f | \difx$ existiert. In diesem Fall stimmen die Werte des 
+      uneigentlichen Regelintegrals und des Lebesgue-Integrals überein:
+      \[
+      \int_{]a,b[} f(x) \difx = \int_a^b f(x) \difx.
+      \]
+    }
+  \end{itemize}
+  \noindent
+  Die erste Behauptung beweist man, indem man zunächst für 
+  Treppenfunktionen zeigt, dass sie zu $\calli{H}^\uparrow$ gehören, 
+  wenn man die Werte an den Unstetigkeitsstellen entsprechend festlegt 
+  und dass für Treppenfunktionen Riemann- und Lebesgue-Integral übereinstimmen.  
+  Anschließend zeigt man, dass jede Regelfunktion auf $[a,b]$ der Grenzwert 
+  einer monoton wachsenden Folge $(t_k)$ von Treppenfunktionen mit 
+  $\n{t_k-f}_\infty \to 0$ ist. Daraus folgt dann die Übereinstimmung 
+  von Regel- und Lebesgue-Integral von $f$ über $[a,b]$. 
+
+  Für den Beweis der zweiten Behauptung schließt man an dieses 
+  Ergebnis an und benutzt eine Ausschöpfung von $\open{a,b}$ durch 
+  eine Folge kompakter Intervalle $[a_k,b_k]$. Die uneigentliche 
+  Regel-Integrierbarkeit von $f$ über $\open{a,b}$ 
+  folgt aus der Lebesgue-Integrierbarkeit dann aus der für 
+  alle $k$ gültigen Abschätzung 
+  \[
+  \int_{a_k}^{b_k} \big|f(x)\big| \difx = 
+  \int_{a_k}^{b_k} \big|f(x)\big| \difx \le 
+  \int_{\open{a,b}} \big|f(x)\big| \difx.
+  \]
+  (Man beachte, dass nach 
+  Frage \ref{11_lebesgue} mit $f$ auch 
+  $|f|$ Lebesgue-integrierbar ist). 
+
+  Um die andere Richtung zu zeigen, sei $f_k$ die triviale Fortsetzung 
+  von $f$ auf $[a_k,b_k]$. Die Folge $(|f_k|)$ konvergiert dann 
+  monoton wachsend gegen $|f|$, und für die Integrale gilt  
+  $\int_{[a_k,b_k]}|f_k| = \int_{a_k}^{b_k} f$. Ferner ist die Folge 
+  der Integrale beschränkt. Die Behauptung ergibt sich dann aus dem Satz 
+  von Beppo Levi.
+  \AntEnd
+\end{antwort}
+
+%% --- 58 --- %%
+\begin{frage}
+  Kennen Sie ein Beispiel einer Funktion, deren uneigentliches Regelintegral 
+  über $\open{a,b}$ existiert, die aber nicht Lebesgue-integrierbar ist?
+\end{frage}
+
+\begin{antwort}
+  Das uneigentliche Regelintegral $\int_1^\infty \frac{\sin x}{x} \difx$ 
+  konvergiert nach der Antwort zu Frage \ref{07_sinxdurchx}. 
+  Wenn man das dortige Argument nachvollzieht, erkennt man schnell, dass 
+  die Konvergenz wesentlich mit dem alternierenden Verhalten der Sinus-Funktion 
+  zusammenhängt, und dass das Integral nicht absolut konvergiert. 
+  Nach der Antwort zur vorigen Frage ist $\frac{\sin x}{x}$ 
+  (\sieheAbbildung \ref{fig:11_sinus}) über 
+  $\open{a,\infty}$ daher nicht Lebesgue-integrierbar. 
+
+  \begin{center}
+    \includegraphics{mp/11_sinus}
+    \captionof{figure}{Die Funktion $\frac{\sin x}{x}$ ist nicht 
+      Lebesgue-integrierbar.}
+    \label{fig:11_sinus}
+  \end{center} 
+
+  \vspace*{-3mm}
+\end{antwort}
+
+
+
+
+\section{Nullmengen und fast überall geltende Eigenschaften}
+
+%% --- 59 --- %%
+\begin{frage}\index{Nullfunktion}
+  Wann hei{\ss}t eine Funktion 
+  $f\fd \RR^n \to \overline{\RR}$ eine \bold{Nullfunktion}?
+\end{frage}
+
+\begin{antwort}
+  Eine Funktion $f\fd \RR^n \to \overline{\RR}$ hei{\ss}t 
+  \slanted{Nullfunktion} genau dann, wenn das Oberintegral 
+  von $|f|$ gleich null ist: $I^*(|f|) = 0$.\AntEnd
+\end{antwort}
+
+%% --- 60 --- %%
+\begin{frage}\index{Nullmenge}
+  Wann hei{\ss}t eine Teilmenge $A\subset\RR^n$ eine \bold{Nullmenge}?
+\end{frage}
+
+\begin{antwort}
+  Eine Teilmenge $A\subset\RR^n$ heißt Nullmenge, 
+  wenn deren charakteristische 
+  Funktion $\chi_A$ eine Nullfunktion ist. Da das Unterintegral einer 
+  charakteristischen Funktion stets nichtnegativ und kleiner als 
+  das Oberintegral ist, ist diese Charakterisierung gleichbedeutend mit 
+  $\int \chi_A =0$.
+  \AntEnd
+\end{antwort}
+
+%% --- 61 --- %%
+\begin{frage}\label{11_teilnull}
+  Warum ist eine Teilmenge einer Nullmenge wieder eine Nullmenge?
+\end{frage}
+
+\begin{antwort}
+  Aus $B\subset A$ folgt $0\le \chi_B \le \chi_A$. 
+  Gilt $I^*(\chi_A)=0$, dann gilt also auch $I^*(\chi_B)=0$. \AntEnd
+\end{antwort}
+
+%% --- 62 --- %%
+\begin{frage}
+  Warum ist eine abzählbare Vereinigung von Nullmengen ebenfalls wieder 
+  eine Nullmenge?
+\end{frage}
+
+\begin{antwort}
+  Für eine endliche Vereinigung folgt das aus der Linearität des 
+  Integrals, da sich die charakteristische Funktion der Vereinigung 
+  dann als endliche Summe charakteristischer Funktionen 
+  von Nullmengen schreiben lässt.  
+
+  Sind $A_1, A_2, A_3,\ldots$ abzählbar viele Nullmengen, dann ist 
+  \[
+  \chi_{A_1}, \chi_{A_1\cup A_2}, \chi_{A_1\cup A_2 \cup A_3} ,\ldots 
+  \]
+  eine monoton wachsende Folge integrierbarer Funktionen, deren Integrale 
+  nach der obigen Teilantwort alle gleich null sind. Die Behauptung folgt 
+  dann aus dem Satz von Beppo Levi.
+  \AntEnd
+\end{antwort}
+
+%% --- 63 --- %%
+\begin{frage}\index{Q@$\QQ$!ist eine Nullmenge}
+  Ist $\QQ^n$ in $\RR^n$ eine Nullmenge?
+\end{frage}
+
+\begin{antwort}
+  Für $\xi\in \RR^n$ ist $\{ \xi \}$ eine Nullmenge in $\RR^n$. 
+  Da $\QQ^n$ die Vereinigung abzählbar vieler derartiger Mengen ist, 
+  ist $\QQ^n$ eine Nullmenge.
+  \AntEnd  
+\end{antwort}
+
+
+
+%% --- 64 --- %%
+\begin{frage}
+  Wie lautet das $\eps$-Kriterium für Nullmengen?
+\end{frage}
+
+\begin{antwort}
+  Das Kriterium lautet:
+  
+  \begin{Satz}%
+    Eine Menge $M\subset \RR^n$ ist genau dann eine Nullmenge, wenn 
+    es zu jedem $\eps>0$ abzählbar viele Quader $Q_1,Q_2,Q_3,\ldots $ gibt mit 
+    \[
+    M \subset \bigcup_{k=1}^\infty, \qquad 
+    \sum_{k=1}^\infty v(Q_n) < \eps. 
+    \]
+  \end{Satz}%
+  Beweis s. etwa\citep{Koenig}. \AntEnd
+\end{antwort}
+
+
+%% --- 65 --- %%
+\begin{frage}
+  Warum ist jeder affine Unterraum $A=a+U\subset \RR^n$ 
+  der Dimension $<n$ eine Nullmenge in $\RR^n$.
+\end{frage}
+
+\begin{antwort}
+  Dies folgt für achsenparalle Unterräume direkt aus der Antwort 
+  zu Frage \ref{11_quader}. Der allgemeine Fall lässt sich darauf 
+  mithilfe der Transformationsformel zurückführen.
+  \AntEnd
+\end{antwort}
+
+%% --- 66 --- %%
+\begin{frage}\index{Cantormenge}
+  Kennen Sie ein Beispiel einer überabzählbaren Nullmenge?
+\end{frage}
+
+\begin{antwort}
+  Die Cantormenge $\mathfrak{C}$ liefert ein Beispiel. 
+  Das Bildungsprinzip ist in der unteren Grafik gezeigt. 
+  Ausgehend vom Intervall $[0,1]$ verdoppelt man in jedem Schritt die 
+  Anzahl der Intervalle, indem man aus den bestehenden Intervallen $[a,b]$ 
+  das offene mittlere Intervall der Länge $1/3\cdot(b-a)$ 
+  herausschneidet. Im Grenzfall erhält man die Cantormenge, 
+  \sieheAbbildung \ref{fig:cantormenge}.
+
+  \begin{center}
+    \includegraphics{mp/cantormenge}
+    \captionof{figure}{Die ersten sechs Rekursionsstufen 
+      zur Bildung der Cantormenge.}
+    \label{fig:cantormenge}
+  \end{center}
+
+  \noindent%
+  Jedes der $2^n$ Intervalle, die man nach $n$ Schritten erhält, 
+  lässt sich eindeutig durch ein $n$-Tupel $(a_1, \ldots, a_n)$ mit 
+  $a_i \in \{0,1\}$ identifizieren 
+  (wo "`$0$"' das jeweils linke Intervall, "`$1$"' das jeweils rechte bedeuten möge). 
+  Es gibt also eine bijekitve Abbildung der Cantormenge 
+  auf die Menge aller Folgen $(a_n)$ mit $a_n \in \{0,1\}$. Da diese überabzählbar ist, 
+  ist auch die Cantormenge überabzählbar.  
+  
+  Nach $n$ Konstruktionsschritten hat man $2^n$ Intervalle der Länge $1/3^n$. 
+  Damit gilt 
+  \[
+  v( \mathfrak{C} ) = \lim_{n \to \infty} \left( \frac{2}{3} \right)^n =0 \EndTag
+  \]
+\end{antwort}
+
+
+%% --- 67 --- %%
+\begin{frage}\index{fast ueberall@fast überall (f.\,ü.)}
+  \nomenclature{f.\,ü.}{"`fast überall"'}
+  Was bedeutet die Sprechweise \bold{"`fast \"uberall"' (f.\,\"u)}? 
+\end{frage}
+
+\begin{antwort}
+  Ist $E$ eine Eigenschaft, die jeder Punkt $x\in\RR^n$ haben kann 
+  oder nicht haben kann, dann sagt man 
+  "`$E$ gilt \slanted{fast überall}"', wenn die Menge aller Punkte 
+  $x\in\RR^n$, für die $E$ nicht gilt, eine Nullmenge ist.  
+  \AntEnd 
+\end{antwort} 
+
+%% --- 68 --- %%
+\begin{frage}
+  Warum ist eine Funktion $f\fd \RR^n\to\RR$ 
+  genau dann eine Nullfunktion, wenn sie fast überall verschwindet?
+\end{frage}
+
+\begin{antwort}
+  Man betrachte die monoton wachsende Funktionenfolge 
+  $(h_k)$ mit 
+  \[
+  h_k (x) := \left\{ \begin{array}{ll} k\cdot \big| f(x) \big|, & 
+      \text{falls $|f(x)| < \infty$,}\\
+      0,& \text{falls $|f(x)| = \infty$}. \end{array}\right. 
+  \asttag
+  \]
+  Sei $h$ deren Grenzwert. 
+
+  Ist $f$ eine Nullfunktion, 
+  so folgt daraus $I^*(h_k)=I(h_k)=0$ für alle 
+  $k$, und der Satz von Beppo Levi liefert $I(h)=0$. 
+  Aus $f(x)=0$ folgt $h(x)=0$, und aus $f(x)\not=0$ folgt $h(x)=\infty$. 
+  Mit $A:= \{ x\in\RR^n \sets f(x)\not=0 \}$ gilt also 
+  $\chi_A \le h$ und damit $I(\chi_A)=0$. Die Menge $A$ ist somit eine 
+  Nullmenge. 
+
+  Ist umgekehrt $A:= \{ x\in\RR^n \sets f(x)\not=0 \}$ eine Nullmenge, 
+  dann folgt wegen {\astref}, dass $h$ eine Nullfunktion ist. Wegen 
+  $|f|<h$ ist dann auch $f$ eine Nullfunktion. \AntEnd  
+\end{antwort}
+
+
+%% --- 69 --- %%
+\begin{frage}\label{11_modisatz}\index{Modifikationssatz} 
+  Was besagt der \bold{Modifikationssatz}?
+\end{frage}
+
+\begin{antwort}
+  Der Modifikationssatz besagt:
+
+  \medskip\noindent
+  \satz{Ist $f\fd \RR^n\to \overline{\RR}$ 
+    eine integrierbare Funktion und $g$ eine Funktion, 
+    die fast überall mit $f$ übereinstimmt, dann ist auch $g$ integrierbar 
+    und es gilt $\int f= \int  g $.}
+
+  \medskip
+  Gilt nämlich fast überall $f=g$, dann ist 
+  $f=g+h$ mit einer Nullfunktion $h$, und der Rest folgt dann aus der 
+  Ungleichung {\astref} in Frage \ref{11_lebesgue}. 
+
+  Aus dem Modifikationssatz folgt insbesondere, 
+  dass man die Werte einer integrierbaren 
+  Funktion auf einer Nullmenge willkürlich verändern darf, ohne  
+  die Integrierbarkeit der Funktion 
+  zu beeinflussen bzw. den Wert ihres Integrals zu verändern.
+  \AntEnd 
+\end{antwort} 
+
+%% --- 70 --- %%
+\begin{frage}
+  Wenn $A_1 \subset A_2 \subset A_3\subset \ldots$ eine aufsteigende 
+  Folge endlich messbarer Teilmengen des $\RR^n$ ist und die Folge 
+  $\big(\vol_n(A_k)\big)$ beschränkt ist, warum ist dann auch die 
+  Vereinigung $A:=\bigcup_{k=1}^\infty A_k$ endlich messbar und warum gilt 
+  $\vol_n(A)=\lim\limits_{k\to\infty} \vol_n(A_k)$? 
+\end{frage}
+
+\begin{antwort} 
+  Man wende den Satz von Beppo Levi auf die Folge 
+  $(\chi_{A_k})$ an. \AntEnd
+\end{antwort} 
+
+%% --- 71 --- %%
+\begin{frage}
+  Können Sie zeigen: 
+  Ist $B_1, B_n, B_3, \ldots$ eine beliebige Folge endlich messbarer 
+  Mengen derart, dass für alle $\nu,\mu$ mit 
+  $\nu\not=\mu$ die Menge $B_\nu\cap B_\mu$ 
+  eine Nullmenge ist und außerdem 
+  $\sum_{k=1}^\infty \vol_n(B_k) < \infty$ gilt, 
+  dann ist $ \vol_n \left( \bigcup_{k=1}^\infty \right) B_k = 
+  \sum_{k=1}^\infty \vol_n(B_k)$.
+\end{frage}
+
+\begin{antwort}
+  Wegen der ersten Eigenschaft ist 
+  $\chi_{B_\nu \cup B_\mu}=\chi_{B_\nu} + \chi_{B_\mu} + h_{\nu\mu}$ mit einer 
+  Nullfunktion $h_{\nu\mu}$. Für jedes $N\in \NN$ gilt daher  
+  \[
+  \vol_n \left( \bigcup_{n=1}^N B_k \right)= 
+  \sum_{k=1}^N \int  \chi_{B_k} = \int \sum_{k=1}^N \chi_{B_k} =
+  \sum_{k=1}^N \vol_n ( B_k ).
+  \]
+  Wegen der zweiten Eigenschaft ist die Folge der Integrale 
+  $\int \sum_{k=1}^N \chi_{B_k}$ beschränkt und 
+  konvergiert damit nach dem Satz von Beppo Levi gegen  
+  $\sum_{k=1}^\infty\int \chi_{B_k} = 
+  \sum_{k=1}^\infty \vol_n(B_k).$\AntEnd
+\end{antwort} 
+
+%% --- 72 --- %%
+\begin{frage}\index{Ausschoepfung@Ausschöpfung}
+  \index{Integration!durch Ausschöpfung}
+  Was besagt der Satz über die \bold{Integration durch Ausschöpfung}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: 
+
+  \medskip
+  \slanted{Sei $A_1\subset A_2 \subset A_3 \subset\ldots$ eine aufsteigende 
+    Folge von Teilmengen des $\RR^n$ und sei $A := \bigcup_{k=1}^\infty A_k$ 
+    (die Folge $(A_k)$ nennt man in diesem Fall eine 
+    \slanted{Ausschöpfungsfolge von $A$}). 
+    Sei ferner $f\fd A\to\RR$ eine Funktion mit der Eigenschaft, die 
+    für alle $k$ über $A_k$ integrierbar ist. Dann ist $f$ über 
+    $A$ integrierbar genau dann, wenn die Folge 
+    $\int_{A_k} |f|$ beschränkt ist. In diesem Fall 
+    gilt $\int_A f = \lim\limits_{k\to\infty} \int_{A_k} f$. }
+
+  \medskip\noindent
+  Der Satz folgt wiederum aus dem Satz von Beppo Levi. Man betrachte 
+  \[
+  f_k(x) := \left\{ \begin{array}{ll} 
+      f(x) & \text{für $x\in A_k$},\\
+      0    & \text{für $x\in \RR^n\mengeminus A_k$}.
+    \end{array}\right.
+  \]
+  Dann gilt $f(x)=\lim f_k(x)$ für alle $x\in\RR^n$. Insbesondere 
+  ist $|f_k|$ eine monoton wachsende Folge integrierbarer 
+  Funktionen mit beschränkter Integralfolge. 
+  Aus dem Satz von Beppo Levi folgt 
+  $\lim\limits_{k\to\infty} \int |f_k| = \int |f|$ und daraus die 
+  Behauptung. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 73 --- %%
+\begin{frage}\index{Integration!rotationssymmetrischer Funktionen}
+  \index{Funktion!rotationssymmetrische}
+  Was besagt der \bold{Satz über rotationssymmetrische Funktionen}? 
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet: 
+
+  \slanted{Ist $f\fd\RR_+\to\overline{\RR}$ eine 
+    über $\open{a,b}$ integrierbare Funktion, dann ist die durch Funktion 
+    $g(x) := f( \n{x}_2 )$ definiert Funktion 
+    $g\fd \RR^n\to\overline{\RR}$ genau dann über die Kugelschale 
+    $K_{a,b}:=\{x\in\RR^n\sets a< \n{x}_2 < b\}$ integrierbar, 
+    wenn $|f(r)|r^{n-1}$ über das Intervall $\open{a,b}$ integrierbar 
+    ist, und in diesem Fall gilt 
+    \[
+    \boxed{
+      \int_{K_{a,b}} g(x) \dd^n x = 
+      \int_{K_{a,b}} f( \n{x}_2 ) \dd^n x =  
+      n\kappa_n \int_a^b f(r) r^{n-1} \dd r.}
+    \]
+    wobei $\kappa_n$ das Volumen der $n$-dimensionalen 
+    Einheitskugel $K_1(0)$ ist. 
+  }
+
+  \medskip\noindent
+  Dieser Satz über rotationssymmetrische Funktionen 
+  wird in der Antwort zu Frage \ref{11_rot} mithilfe 
+  der Transformationsformel bewiesen. Für einen Beweis, der nur 
+  Konzepte aus dem gegenwärtigen Kontext benutzt s. \citep{Koenig}
+  \AntEnd 
+\end{antwort} 
+
+%% --- 74 --- %%
+\begin{frage}
+  Ist $\alpha$ eine reelle Zahl mit $\alpha>n$ und ist 
+  $M:=\{ x\in\RR^n\sets \n{x}_2 \ge r \}$ mit $r>0$, 
+  warum ist dann die Funktion $M\to\RR$ mit 
+  $x\mapsto \n{x}_2^{-\alpha}$ über $M$ integrierbar und warum gilt 
+  \[
+  \int_M \frac{1}{\n{x}_2^\alpha} \dd^n x = 
+  \frac{n\kappa_n}{\alpha-n} \cdot \frac{1}{r^{\alpha-n}}.
+  \]
+\end{frage}
+
+\begin{antwort}  
+  Da die Funktion $r\mapsto r^{n-1-\alpha}$ unter den gegebenen 
+  Voraussetzungen über $\ropen{r,\infty}$ integrierbar ist, liefert der 
+  Satz über rotationssymmetrische Funktionen 
+  \[
+  \int_M \frac{1}{\n{x}_2^\alpha}  \dd^n x = 
+  n\kappa_n \int_r^\infty \frac{1}{r^\alpha} r^{n-1}\dd r = 
+  \frac{n\kappa_n}{\alpha-n} \cdot \frac{1}{r^{\alpha-n}}.\EndTag
+  \] 
+\end{antwort} 
+
+%% --- 75 --- %%
+\begin{frage}\index{sigma@$\sigma$-kompakt}
+  Was versteht man unter einer \bold{$\mathbf{\sigma}$-kompakten Teilmenge} 
+  im $\RR^n$. Kennen Sie Beispiele?
+\end{frage}
+
+\begin{antwort}
+  Eine Menge $A\subset\RR^n$ heißt \slanted{$\sigma$-kompakt}, wenn sie eine 
+  Vereinigung abzählbar vieler kompakter Mengen ist. Beispiele 
+  $\sigma$-kompakter Mengen sind alle offenen Mengen und alle abgeschlossenen 
+  Mengen sowie die Vereinigung endlich vieler $\sigma$-kompakter Mengen.
+  \AntEnd 
+\end{antwort} 
+
+%% --- 76 --- %%
+\begin{frage}\index{lokal integrierbar}
+  Wann heißt eine Funktion auf einer $\sigma$-kompakten Teilmenge 
+  $A\subset\RR^n$ \bold{lokal integrierbar}?
+\end{frage}
+
+\begin{antwort}
+  Eine Funktion $f\fd A\to \overline{\RR}$ heißt \slanted{lokal integrierbar}, 
+  wenn sie über jede kompakte Teilmenge $K\subset A$ integrierbar ist. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 77 --- %%
+\begin{frage}\index{Majorantenkriterium!für Integration über 
+    $\sigma$-kompakte Teilmengen}
+  Was besagt das \bold{Majorantenkriterium} für eine Funktion auf einer 
+  $\sigma$-kompakten Teilmenge $A\subset\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Das Kriterium besagt: \satz{Ist $f$ eine lokal integrierbare 
+    Funktion auf der $\sigma$-kompakten Teilmenge $A$ und existiert  
+    eine integrierbare Funktion $F\fd A\to\RR^n$ mit $|f|\le F$, dann 
+    ist $f$ über $A$ integrierbar.}
+
+  \medskip\noindent
+  Es gibt in diesem Fall eine Ausschöpfung $(A_k)$ von $A$ durch kompakte 
+  Mengen. Das Kriterium folgt dann durch Anwendung des Lebesgue\sch en 
+  Grenzwertsatzes auf die Folge der Funktionen $f_{A_k}$. \AntEnd
+\end{antwort}  
+
+%% --- 78 --- %%
+\begin{frage}\index{Satz!von Fubini}
+  \index{Fubini@\textsc{Fubini}, Guido (1879-1943)}
+  Was besagt der \bold{Satz von Fubini}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz von Fubini besagt:
+
+  \medskip
+  \noindent\slanted{
+    Ist $f \fd \RR^k \times \RR^m \to \overline{\RR}$ eine 
+    Lebesgue-integrierbare Funktion. Dann gibt es eine Nullmenge 
+    $N\subset\RR^m$, so dass f\"ur jedes feste $y\in \RR^m\mengeminus N$ 
+    die Funktion
+    \[
+    \RR^k \to \overline{\RR}; \qquad x\mapsto f(x,y)
+    \]
+    über $\RR^k$ integrierbar ist. Definiert man 
+    f\"ur $y\in\RR^m\mengeminus N$
+    \[
+    F(y) := \Int_{\RR^k} f(x,y)  \dd^k x 
+    \]
+    und definiert $F(y)$ beliebig f\"ur $y\in N$, so ist die 
+    Funktion $F\fd \RR^m \to \overline{\RR}$ integrierbar, und es gilt 
+    \[
+    \Int_{\RR^{k+m}} f(x,y) \dd (x,y) = 
+    \Int_{\RR^m} F(y) \dd^m y,
+    \]
+    oder pr\"agnanter
+    \[
+    \boxed{ 
+      \Int_{\RR^{k+m}} f(x,y) \dd (x,y) = 
+      \Int_{\RR^m} \Big( \Int_{\RR^k} f(x,y) \dd^k x\Big) \dd^m y,
+    }
+    \]}%
+  \noindent
+  Der Satz von Fubini wurde im Spezialfall $f\in\calli{H}^\uparrow$ bereits 
+  in Frage \ref{11_kleinerfubini} 
+  bewiesen. Man kann an dieses Zwischenergebnis anknüpfen, 
+  um den allgemeinen Fall zu beweisen, indem man den Satz Schritt für 
+  Schritt gemäß der Konstruktion des Lebesgue-Integrals auf eine größere 
+  Klasse von Funktionen und schließlich auf die Lebesgue-integrierbaren 
+  Funktionen ausdehnt. \AntEnd
+\end{antwort}
+
+%% --- 79 --- %%
+\begin{frage}\index{Satz!von Tonelli}
+  Was besagt der \bold{Saz von Tonelli}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz von Tonelli liefert ein Kriterium für die Integrierbarkeit 
+  einer Funktion über einen Produktraum $\RR^n\times \RR^m=\RR^{n+m}$ 
+  durch Rückführung auf das Mehrfachintegral über die Faktoren. Der Satz 
+  lautet
+
+  \medskip
+  \noindent\slanted{Eine lokal integrierbare 
+    Funktion $f\fd \RR^{n+m}\to \RR$ ist genau dann über 
+    $\RR^{n+m}$ integrierbar, wenn wenigstens eines der beiden 
+    Integrale 
+    \[
+    \int_{\RR^n} \Big( \int_{\RR^m} \big| f(x,y) \big| \dd y \Big) \dd x 
+    \qquad\text{oder}\qquad
+    \int_{\RR^n} \Big( \int_{\RR^m} \big| f(x,y) \big| \dd x \Big) \dd y
+    \]
+    existiert. 
+  }
+
+  \medskip\noindent%
+  Die Notwendigkeit der Bedingung folgt sofort mit dem Satz von Fubini. Für den 
+  Beweis der anderen Richtung konstruiert man wieder eine monoton wachsende 
+  Folge und wendet den Satz von Beppo-Levi an. Sei dazu 
+  $f_k := \min \left( |f|, k \cdot \chi_{W_k} \right)$, wobei $W_k := [-k,k]^n$ 
+  den abgeschlossenen Würfel mit Kantenlänge $k$ bezeichnet. Die $f_k$ sind dann 
+  nach der Voraussetzung alle integrierbar und konvergieren monoton wachsend 
+  gegen $f$. Ferner gilt mit dem Satz von Fubini
+  \[
+  \Int_{\RR^{n+m}} f_k(x,y) \dd (x,y) =
+  \Int_{\RR^m} \Big( \Int_{\RR^n} f_k(x,y) \dd x \Big) \dd y \le  
+  \Int_{\RR^m} \Big( \Int_{\RR^n} \left| f_k(x,y) \right| \dd x \Big) \dd y.
+  \]
+  Unter der Voraussetzung des Satzes, 
+  dass das rechte Integral existiert, ist die Folge $(f_k)$ also beschränkt und damit 
+  nach dem Saz von Beppo Levi $f$ über $\RR^{n+m}$ integrierbar. \AntEnd  
+\end{antwort} 
+
+%% --- 80 --- %%
+\begin{frage}\index{Faltung}
+  Was versteht man unter der \bold{Faltung} von zwei Funktionen 
+  $f, g \in  \calli{L}^1 (\RR^n )$?
+\end{frage}
+
+\begin{antwort}
+  Betrachtet man die Funktion 
+  \[
+  \RR^n \times \RR^n \to \RR, \qquad
+  (x,y) \mapsto f(x) g(y-x),
+  \]
+  dann ist diese \"uber $\RR^{2n}$ integrierbar. Nach dem Satz von Fubini 
+  existiert das Integral 
+  \[
+  (f \ast g)(y) = \int_{\RR^n} f(x)g(y-x) \difx
+  \]
+  f\"ur alle $y\in\RR^n \mengeminus N$, wobei $N\subset\RR^n$ 
+  eine geeignete Nullmenge ist. Setzt man {\zB} $(f\ast g)(y)=0$ 
+  f\"ur $y\in N$, dann erh\"alt man eine integrierbare Funktion 
+  $f\ast g \fd \RR^n$, indem man 
+  \[
+  \boxed{
+    (f \ast g)(y) := \int_{\RR^n} f(x)g(y-x) \difx} 
+  \]
+  setzt. 
+  Die Funktion $f\ast g$ hei{\ss}t \slanted{Faltung} von $f$ und $g$. 
+  Für das Integral über das Faltungsprodukt gilt
+  \begin{align*}
+    \int_{\RR^n} (f\ast g)(y) \dify &=
+    \int_{\RR^{2n}}  f(x) g(y-x) \difx \dify \\
+    &= \int_{\RR^n} f(x) \Big( \int_{\RR^n} g(y-x) \dd y \Big) \difx 
+    =
+    \int_{\RR^{n}} f(x) \difx \int_{\RR^n} g(y)\dify.
+  \end{align*}
+  Es ist leicht nachzuweisen, dass das Faltungsprodukt 
+  kommutativ ist: 
+  \[
+  f\ast g = g\ast f, \qquad f,g\in\calli{L}^1(\RR^n).
+  \EndTag
+  \]
+\end{antwort} 
+
+%% --- 81 --- %%
+\begin{frage}\index{Laapp1@$L^1$-Raum}
+  \index{Banachraum!$L^1$}
+  \nomenclature{$L^1(\RR^n)$}{Quotientenraum $\calli{L}^1/\calli{N}$}
+  Wie ist der Raum $L^1 ( \RR^n ) $ definiert?
+\end{frage}
+
+\begin{antwort}
+  Der Raum $\calli{L}^1(\RR^n)$ der Lebesgue-integrierbaren 
+  Funktionen ist bezüglich der $\calli{L}^1$-Halbnorm kein normierter 
+  Raum, da aus $\n{f}_{\calli{L}^1}=0$ nicht $f=0$ folgen muss, 
+  sondern nur, dass $f$ eine Nullfunktion ist. 
+
+  Aus diesem Grund bildet man den Quotientenraum 
+  \[ 
+  \boxed{
+    L^1( \RR^n ) : = \calli{L}^1 (\RR^n )\Big/ \calli{N},
+  }
+  \] 
+  wobei $\calli{N}$ die Menge der Nullfunktionen in $\calli{L}^1(\RR^n)$ 
+  ist. Die Elemente des Raums $L^1(\RR^n)$ sind also 
+  die \slanted{Äquivalenzklassen integrierbarer Funktionen}, 
+  wobei zwei Funktionen $f, g \in \calli{L}^(\RR^n)$ genau dann äquivalent 
+  sind, wenn $f-g$ eine Nullfunktion ist. 
+
+  Die $\calli{L}^1$-Halbnorm induziert auf $L^1(\RR^n)$ 
+  eine Norm, bezüglich der $L^1(\RR^n)$ ein \slanted{Banachraum} ist. 
+  Die Vollständigkeit von $L^1(\RR^n)$ folgt dabei aus dem 
+  \slanted{Satz von Riesz-Fischer} (vgl. Frage \ref{11_riesz} und 
+  \ref{11_Lpraum}).
+  \AntEnd  
+\end{antwort}
+
+
+
+\section{Der Banachraum $L^1$ und der Hilbertraum $L^2$}
+
+Analog zur Definition des Raums $\calli{L}^1(\RR^n)$ 
+der Lebesgue-integrierbaren Funktionen lassen sich für beliebiges 
+$p\in \RR$ mit $p\ge 1$ die Funktionenräume $\calli{L}^p(\RR^n)$ definieren. 
+Im Wesentlichen bestehen diese Räume aus den Funktionen $f\fd \RR^n\to\RR$, 
+für die $|f|^p$ Lebesgue-integrierbar ist. Nach dem 
+\slanted{Satz von Riesz-Fischer} sind diese Räume 
+vollständig bezüglich der auf ihnen definierten $\calli{L}^p$-Halbnorm. 
+Durch Übergang zum Quotientenraum $L^p(\RR^n)$ erhält man aus 
+$\calli{L}^p(\RR^n)$ einen \slanted{Banachraum}. 
+
+Wir konzentrieren uns hier im Wesentlichen auf die 
+Fälle $p=1$ und $p=2$. 
+
+
+%% --- 82 --- %%
+\begin{frage}
+  \index{LaaLP@$\calli{L}^p$!Halbnorm}
+  \nomenclature{$\n{\,\;}_{\calli{L}^p}$}{$\calli{L}^p$-Halbnorm}
+  \nomenclature{$\n{\,\;}_p$}{$\calli{L}^p$-Halbnorm bzw. $p$-Norm auf $L^p$}
+  Für eine Funktion $f\fd\RR^n\to\overline{\RR}$ hatten wir durch 
+  $\n{f}_{\calli{L}^1} = \n{f}_1 := I^*(|f|)$ eine Pseudo-Norm definiert. 
+  Wie kann man diese Pseudo-Norm verallgemeinern?
+\end{frage}
+
+\begin{antwort}
+  Man definiert für $p\in \RR$, $p\ge 1$:
+  \[
+  \boxed{
+    \n{f}_{\calli{L}^p} = \n{f}_p := \big( I^*(|f|^p) \big)^{\frac{1}{p}} 
+    \in \RR_+ \cup \{ \infty \}.
+  } \EndTag
+  \]
+\end{antwort}
+
+
+
+%% --- 83 --- %%
+\begin{frage}\index{LaaLP@$\calli{L}^p$!Räume}
+  \nomenclature{$\calli{L}^p(\RR^n)$}{$\{ f\fd \RR^n\to \RR \sets |f|^p 
+    \text{Lebesgue-integrierbar} \} $} 
+  Wie sind für $p\in\RR$, $p\ge 1$ die Räume $\calli{L}^p(\RR^n)$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Die Räume $\calli{L}^p(\RR^n)$ sind definiert durch
+  \[
+  \boxed{
+    \calli{L}^p ( \RR^n ):= \big\{ f\fd \RR^n \to\RR \sets \,
+    \text{$f$ lokal integrierbar},\; \n{f}_{\calli{L}^p} <\infty \big\}.
+  }
+  \]
+  Von besonderem Interesse ist dabei neben dem Fall $p=1$ der 
+  Raum $\calli{L}^2(\RR^n)$, der sich dadurch auszeichnet, dass man auf 
+  ihm ein (Pseudo-)Skalarprodukt definieren kann (s. Frage \ref{11_l2}), 
+  und der damit eine besonders reichhaltige Struktur besitzt. \AntEnd
+\end{antwort}
+
+%% --- 84 --- %%
+\begin{frage}
+  Wann konvergiert eine Folge $(f_k)$ von Funktionen $f_k \fd \RR^n\to \RR$ 
+  f.\,ü. gegen eine Funktion $f\fd \RR^n \to \RR$? 
+  Wann konvergiert eine Folge $(f_k)$ mit $f_k\in\calli{L}^p$ im Sinne der 
+  $\calli{L}^p$-Halbnorm gegen $f\in\calli{L}^p(\RR^n)$. 
+\end{frage} 
+
+\begin{antwort}
+  Eine Folge von Funktionen $f_k\fd \RR^n\to \RR$ konvergiert dann 
+  f.\,ü. gegen $f$, wenn es eine Nullmenge $M$ gibt, so dass für alle 
+  $x\in \RR^n\mengeminus M$ gilt: $\lim\limits_{k\to\infty} |f_k(x)-f(x)| =0$, 
+  {\dasheisst} wenn $(f_k)$ f.\,ü. punktweise gegen $f$ konvergiert. 
+
+  Die Funktionenfolge $(f_k)$ konvergiert im Sinne der $\calli{L}^p$-Halbnorm 
+  gegen $f$, wenn $\lim\limits_{k\to\infty} \n{ f-f_k }_p=0$ gilt. 
+  \AntEnd
+\end{antwort}
+
+%% --- 85 --- %%
+\begin{frage}
+  Welche Formel benutzt man um zu zeigen, dass die 
+  $\calli{L}_p$-Halbnorm die Dreiecksungleichung erfüllt?
+\end{frage}
+
+\begin{antwort}
+  Die Dreicksungleichung ergibt sich mit der Integralversion der 
+  Hölder\sch en Ungleichung aus Frage \ref{01_hldi}. 
+  \AntEnd
+\end{antwort}
+
+%% --- 86 --- %%
+\begin{frage}\index{Konvergenz!im absoluten Mittel}
+  \index{Konvergenz!im quadratischen Mittel}
+  Wann spricht man von \bold{Konvergenz im absoluten Mittel}, 
+  wann von \bold{Konvergenz im quadratischen Mittel}?
+\end{frage}
+
+\begin{antwort}
+  \slanted{Konvergenz im absoluten Mittel} bedeutet "`Konvergenz bezüglich 
+  der $\calli{L}^1$-Halbnorm"', 
+  \slanted{Konvergenz im quadratischen Mittel} bedeutet 
+  "`Konvergenz bezüglich der $\calli{L}^2$-Halbnorm"'. \AntEnd
+\end{antwort} 
+
+%% --- 87 --- %%
+\begin{frage}\index{Cauchy-Folge!bzgl. der $\calli{L}^p$-Halbnorm}
+  Was versteht man unter einer $\calli{L}^p$-Cauchy-Folge?
+\end{frage}
+
+\begin{antwort}
+  Eine Folge $(f_k)$ von Funktionen $f_k \in \calli{L}^p$ ist eine 
+  $\calli{L}^p$-Cauchy-Folge, wenn für alle $\eps>0$ ein $N\in \NN$ existiert, 
+  so dass gilt 
+  \[
+  \n{ f_n-f_m }_{\calli{L}^p} < \eps \qquad\text{für alle $n,m>N$}.
+  \EndTag
+  \] 
+\end{antwort}
+
+%% --- 88 --- %%
+\begin{frage}\label{11_riesz}
+  Wenn eine Folge $(f_k)$ im Sinne der $\calli{L}^p$-Halbnorm 
+  gegen eine Funktion $f$ konvergiert, dann ist $(f_k)$ eine 
+  $\calli{L}^p$-Cauchy-Folge. Gilt hiervon auch die Umkehrung, 
+  {\dasheisst}, hat jede Cauchy-Folge in $\calli{L}^p(\RR^n)$ einen Grenzwert 
+  $f\in\calli{L}^p(\RR^n)$?
+\end{frage}  
+
+\begin{antwort}
+  Die Umkehrung gilt auch. 
+  Das ist die Aussage des \slanted{Satzes von Riesz-Fischer} über 
+  die Vollständigkeit der Räume $\calli{L}^p$. 
+  \index{Satz!von Riesz-Fischer}
+  \index{Vollständigkeit!der Räume $\calli{L}^p$}
+
+  \medskip\noindent
+  \satz{Die Räume $\calli{L}^p(\RR^n)$ sind vollständig bezüglich der 
+    $\calli{L}^p$-Halbnorm. Das heißt, 
+    jede $\calli{L}^p$-Cauchy-Folge $(f_k)$ von Funktionen 
+    $f_k\in\calli{L}^p(\RR^n)$ besitzt einen Grenzwert in 
+    $\calli{L}^p(\RR^n)$.
+    \AntEnd
+  }
+\end{antwort}
+
+%% --- 89 --- %%
+\begin{frage}\label{11_Lpraum}
+  \index{Laapp-Raum@$L^p$-Räume}\index{Banachraum}
+  \nomenclature{$L^p(\RR^n)$}{Quotientenraum $\calli{L}^p/\calli{N}_p$}
+  Wie sind die Räume $L^p(\RR^n)$ definiert und warum handelt es sich dabei um 
+  Banachräume?
+\end{frage}
+
+\begin{antwort}
+  Die Elemente der Räume $L^p(\RR^n)$ sind die Äquivalenzklassen $[f]$ 
+  von Funktionen $f\in\calli{L}^p(\RR^n)$, wobei $f$ und $g$ genau dann 
+  äquivalent sind, wenn $f-g$ eine Nullfunktion bezüglich der 
+  $\calli{L}^p$-Halbnorm ist. Bezeichnet $\calli{N}_p$ die Menge der 
+  Nullfunktionen bezüglich $\n{\,\;}_{\calli{L}^p}$, dann ist also
+  \nomenclature{$\calli{N}_p$}{Menge der Nullfunktionen 
+    bzgl. der $\calli{L}^p$-Halbnorm} 
+  \[
+  \boxed{L^p(\RR^n) := \calli{L}^p(\RR^n) \big/ \calli{N}_p.}
+  \] 
+  Für $[f]\in L^p$ wähle 
+  man einen Repräsentanten $f\in\calli{L}^p(\RR^n)$ und definiere die 
+  $L^p$-Norm durch 
+  \[
+  \nb{ [f] }_p = \nb{ f+\calli{N}_p }_p := 
+  \nb{ f }_{\calli{L}^p}.
+  \]
+  Die Definition ist offensichtlich unabhängig von der 
+  Auswahl der Repräsentanten. Ferner übertragen sich die Eigenschaften 
+  einer Halbnorm von $\n{\,\;}_{\calli{L}^p}$ auf $\n{\,\;}_p$. Zusätzlich 
+  erfüllt $\n{\,\;}_p$ aber jetzt auch 
+  \[
+  \nb{ [f] }_p = 0 \LLa [f]=0.
+  \]
+  Damit ist $\n{\,\;}_p$ eine Norm auf $L^p(\RR^n)$. Mit dem Satz von 
+  Riesz-Fischer folgt, dass $L^p(\RR^n)$ ein \slanted{vollständiger} 
+  normierter Raum, also ein Banachraum ist.
+  \AntEnd   
+\end{antwort} 
+
+%% --- 90 --- %%
+\begin{frage}
+  Wie definiert man für komplexwertige Funktionen $f\fd\RR^n\to\CC$ 
+  die Räume $\calli{L}^p( \RR^n, \CC)$? 
+\end{frage}
+
+\begin{antwort}
+  Für eine komplexwertige Funktion $f\fd\RR^n \to \CC$ gilt 
+  \[
+  \int f = \int \Re f + \i \int \Im f.
+  \]
+  Daraus folgt, dass $f$ genau dann (lokal) 
+  integrierbar ist, wenn $\Re f$ und $\Im f$ integrierbare Funktionen sind. 
+  In Analogie zum reellen Fall kann man also definieren:
+  \[
+  \calli{L}^p (\RR^n,\CC):= \big\{ f\fd \RR^n \to\CC \sets \quad 
+  \text{$\Re f$ und $\Im f$ lokal integrierbar},\, 
+  \n{f}_{\calli{L}^p} <\infty \big\}. \EndTag
+  \]
+\end{antwort} 
+
+%% --- 91 --- %%
+\begin{frage}\label{11_l2}
+  \index{L2-Raum@$\calli{L}^2$-Raum}
+  \index{L22-Raum@$L^2$-Raum}
+  \index{Hilbertraum}
+  Wie kann man auf $\calli{L}^2( \RR^n,\CC)$ eine positiv-semidefinite 
+  Hermitesche Form definieren, die beim Übergang zu $L^2(\RR^n,\CC)$ 
+  dort ein (positiv-definites) Skalarprodukt induziert, so dass 
+  $\calli{L}^2(\RR^n,\CC)$ bezüglich der aus dem Skalarprodukt abgeleiteten 
+  Norm vollständig, also ein Hilbertraum ist?
+\end{frage}
+
+\begin{antwort}
+  Die Abbildung \index{Skalarprodukt!auf $L^2$}
+  $\langle\;,\;\rangle \fd \calli{L}^1(\RR^n,\CC) \times 
+  \calli{L}^1(\RR^n,\CC)  \to \CC$ mit 
+  \[
+  \langle f,g \rangle := \Int_{\RR^n} f\overline{g} \difx 
+  \]
+  erfüllt alle Rechenregeln einer positiv-semidefiniten Hermiteschen Form. 
+  Offensichtlich gilt $\langle f,f \rangle = \nb{f}_{\calli{L}^2}$. Durch 
+  Übergang zu $L^2(\RR^n)$ erhält man daraus ein positiv-definites 
+  Skalarprodukt auf $L^2(\RR^n)$. Wegen seiner Vollständigkeit wird der 
+  Raum $L^2(\RR^n)$ damit zu einem Hilbertraum.\AntEnd 
+\end{antwort} 
+
+\section{Parameterabhängige Integrale, Fouriertransformierte}
+
+Mit Hilfe des Lebesgue\sch en Grenzwertsatzes erhält man starke 
+Verallgemeinerungen der Sätze über Stetigkeit und Differenzierbarkeit 
+parameterabhängiger Integrale aus Kapitel \ref{paramintegrale}. 
+Wir legen folgende Notation zugrunde: Sei 
+$X\subset \RR^n$ und $T \subset \RR^m$ und 
+\[
+f\fd X \times T \to\CC, \qquad 
+(x,t) \mapsto f(x,t),
+\asttag
+\]
+sodass für jeden fixierten Parameter $x$ die Funktion 
+$t\mapsto f(x,t)$ über $T$ integrierbar ist. Die durch 
+Integration über $T$ entstehende Funktion sei
+\[
+F(x) := \int_{T} f(x,t) \dift.
+\]
+
+%% --- 92 --- %%
+\begin{frage}\label{11_paramstetigkeit}
+  \index{Stetigkeitssatz für parameterabhängige Integrale}
+  Was besagt der \bold{Stetigkeitssatz} für die Funktion $F$? 
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: 
+  \satz{Besitzt die Funktion $f$ die Eigenschaften 
+    {\setlength{\labelsep}{3mm}
+      \begin{enumerate}
+      \item[\desc{i}] Für jedes fixierte $t\in T$ ist $x\mapsto f(x,t)$ stetig,
+        \\[-3.5mm]
+      \item[\desc{ii}] Es gibt eine auf $T$ integrierbare Funktion $G\ge 0$ mit 
+        \[
+        | f(x,t)| \le G(t) \qquad\text{für alle $(x,t) \in \RR^m \times T$}.
+        \]
+      \end{enumerate}}%
+    \noindent
+    Dann ist die durch {\astref} definierte Funktion stetig.
+  }
+
+  \medskip\noindent
+  Sei $(x_k)$ eine Folge in $\RR^m$ mit $x_k \to x$. Für die Stetigkeit 
+  von $F$ in $x$ genügt es zu zeigen, dass daraus $F(x_k) \to F(x)$ folgt. 
+  Dazu betrachte man die Folge der Funktionen $f_k \fd T \to \CC$ 
+  mit $f_k(t) := f(x_k,t)$. 
+  Die Folge $(f_k)$ konvergiert nach \desc{i} dann punktweise 
+  gegen die Funktion $t\mapsto f(x,t)$, ferner gilt $|f_k| \le G$ für 
+  alle $k\in\NN$. Damit sind die Voraussetzungen 
+  des Lebesgue'schen Grenzwertsatzes für $(f_k)$ erfüllt, und aus diesem 
+  folgt
+  \[
+  \lim_{k\to\infty} F(x_k)=
+  \lim_{k\to\infty} \int_T f_k(t)\dift=
+  \int_T f(x,t)\dift = F(x).\EndTag
+  \]
+\end{antwort}
+
+%% --- 93 --- %%
+\begin{frage}
+  Können Sie zeigen, dass für eine integrierbare Funktion 
+  $f\fd \RR\to\CC$ die durch 
+  \[
+  \widehat{f}(x) := \frac{1}{\sqrt{2\pi}} \int_\RR f(t)e^{-\i xt} \dift 
+  \]
+  definierte Funktion $\widehat{f}\fd \RR\to\CC$ stetig ist?
+\end{frage}
+
+\begin{antwort}
+  Die Funktion $x\mapsto f(t)e^{\i xt}$ ist für alle $t\in\RR$ stetig. 
+  Ferner ist $|f|$ eine integrierbare Majorante des Integranden. Aus dem 
+  Stetigkeitssatz folgt damit die Stetigkeit von $\widehat{f}$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 94 --- %%
+\begin{frage}\label{11_paramdifferenzierbarkeit}
+  \index{Differentiationssatz!für parameterabhängige Integrale}
+  Was besagt der \bold{Differenziationssatz} für $F$?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt:
+
+  \medskip\noindent 
+  \slanted{Sei $X\subset \RR^n$ offen und $f$ habe die folgenden 
+    Eigenschaften 
+    {\setlength{\labelsep}{4mm}
+      \begin{enumerate}
+      \item[\desc{i}] Für jedes fixierte $t\in T$ ist $x\mapsto f(x,t)$ stetig 
+        partiell differenzierbar. \\[-3.5mm]
+      \item[\desc{ii}] Es gibt eine auf $T$ integrierbare Funktion $G\ge 0$ mit 
+        \[
+        \left| \frac{\partial f}{\partial x_\nu} (x,t) \right| \le G(t) 
+        \qquad\text{für alle $(x,t) \in X \times T$ und $\nu=1,\ldots,n$}.
+        \]
+      \end{enumerate}}\noindent
+    Dann ist die durch \textrm{{\astref}} 
+    definierte Funktion stetig differenzierbar. 
+    Ferner ist für jedes $x\in X$ die Funktion 
+    $t\mapsto \partial_{x_\nu} f(x,t)$ integrierbar, und es gilt 
+    \[
+    \frac{\partial F}{\partial x_\nu}(x)=\int_T 
+    \frac{\partial f}{\partial x_\nu} (x,t) \dift. \aasttag
+    \]
+  }%
+  \noindent
+  Den Beweis erhält man wiederum durch eine Anwendung des Lebesgue'schen 
+  Grenzwertsatzes. Sei $x_0 \in X$. Man wähle eine Nullfolge 
+  $(h_k)$ reeller Zahlen derart, dass für alle $k\in\NN$ 
+  die Punkte $x_k := x_0 + h_k e_\nu$ in $X$ liegen und betrachte die 
+  Funktionen 
+  \[
+  \varphi_k (t) := \frac{f(x_k,t)-f(x_0,t)}{h_k}.
+  \]
+  Die $\varphi_k$ sind integrierbare Funktionen, und für jedes $t\in T$ gilt 
+  $\lim\varphi_k (t) = \frac{\partial f}{\partial x_\nu} 
+  (x_0,t)$. 
+  Eine integrierbare Majorante für die $\varphi_k$ erhält man aus dem
+  Schrankensatz der Differenzialrechnung einer Veränderlichen. Fasst man 
+  $f$ als Funktion der $\nu$-ten Variablen auf, so gilt 
+  $| f(x_k,t)-f(x_0,t) | \le \big| G(t) \big| \cdot h_k$,  
+  also $| \varphi_k | \le G$. 
+
+  Nach dem Lebesgue'schen Grenzwertsatz ist damit die 
+  Grenzfunktion der $\varphi_k$ integrierbar, und es gilt 
+  \[
+  \lim_{k\to\infty} \int_T \varphi_k (t)\dift = 
+  \int_T \frac{\partial f}{\partial x_\nu} (x_0,t) \dift.
+  \]
+  Wegen $
+  \frac{1}{h_k}( F(x_k)-F(x_0) ) = \int_T \varphi_k (t)\dift$ 
+  existieren die partiellen Ableitungen von $F$ und es gilt 
+  {\astastref}.
+  
+  Schließlich ergibt sich aus {\astastref} zusammen mit dem Stetigkeitssatz 
+  die Stetigkeit der partiellen Ableitungen $\partial_{x_\nu} F$. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 95 --- %%
+\begin{frage}\label{11_gammafunktion}\index{Gammafunktion!Stetigkeit}
+  \index{Gammafunktion!Differenzierbarkeit}
+  Können Sie den Differenziationssatz anwenden, um zu zeigen, dass 
+  die durch 
+  \[
+  \Gamma(x) := \int_0^\infty e^{-t}t^{x-1} \dift\qquad\text{für $x>0$}
+  \]
+  definierte $\Gamma$-Funktion auf $\RR_+$ stetig und unendlich 
+  oft differenzierbar ist und dass für alle $k\in\NN$ gilt: 
+  \[
+  \Gamma^{(k)}(x)= \int_0^\infty (\log t)^k \cdot t^{x-1} e^{-t} \dift
+  \fragezeichen 
+  \]
+\end{frage}
+
+\begin{antwort}
+  Der Integrand ist für jedes feste $t$ eine stetige Funktion von $x$. 
+  Auf jedem fixierten kompakten 
+  Intervall $[\alpha,\beta]\subset \RR_+$ ist ferner die Funktion 
+  \[
+  G(t) := \left\{ \begin{array}{ll} 
+      t^{\alpha-1} & \text{für $0<t\le 1$}\\
+      Me^{-t/2}    & \text{für $t>1$}
+    \end{array} \right.
+  \]
+  für ein geeignetes (von $\beta$ abhängiges) $M\in\RR_+$ 
+  eine Majorante des Integranden (vgl. Frage \ref{06_gamk}), 
+  die uneigentlich Riemann-integrierbar und damit 
+  nach Frage nach der Antwort zu Frage \ref{11_riemannlebesgue} 
+  auch Lebesgue-integrierbar ist. Damit sind die Voraussetzungen 
+  des Stetigkeitssatzes für die $\Gamma$-Funktion erfüllt. 
+
+  Da ferner die stetige Funktion 
+  $\frac{\partial^k}{\partial x}t^{x-1}e^{-t}=\log^k t \cdot t^{x-1}e^{-t}$ 
+  für alle $x\in\open{\alpha,\beta}$ und alle $k\in \NN$ 
+  die integrierbare Majorante $|\log^k t| G(t)$ besitzt, liefert der 
+  Differenziationssatz auch den zweiten Zusammenhang. \AntEnd
+\end{antwort}
+
+%% --- 96 --- %%
+\begin{frage}
+  Was besagt der \bold{Holomorphiesatz} für die Funktion $F$?
+\end{frage}
+
+\begin{antwort}
+  \slanted{Die Menge $X=U$ sei jetzt eine offene Menge in $\CC$ und 
+    $f \fd U\times T \to \CC$ habe die Eigenschaften 
+    {\setlength{\labelsep}{4mm}
+      \begin{itemize}
+      \item[\desc{i}] Für jedes fixierte $t\in T$ ist $z\mapsto f(z,t)$ 
+        holomorph in $U$.\\[-3.5mm]
+      \item[\desc{ii}] Es gibt eine über $T$ integrierbare Funktion 
+        $G$ derart, dass 
+        \[
+        \big| f(z,t) \big| \le G(t) \qquad \text{für alle $(z,t) \in U\times T$}
+        \]
+      \end{itemize}}\noindent%
+    Dann ist die durch $F(z):= \int_T f(z,t) \dift$ definierte Funktion 
+    $F \fd U \to \CC$ holomorph, und es gilt
+    \[
+    F'(z) = \int_T \frac{\partial}{\partial z} f(z,t) \dift.
+    \]
+  }
+  Man beweist den Satz, indem man zeigt, dass die Funktion $F$ 
+  die Cauchy-Riemann'schen Differenzialgleichungen 
+  $\partial_1 F = -\i \partial_2 F$ erfüllt, wobei man an einer 
+  Stelle ausnutzt, dass für eine in $U$ holomorphe Funktion 
+  in jeder abgeschlossenen Kreisscheibe $\overline{K}_{r}(a) \subset U$ 
+  die Abschätzung 
+  \[
+  \big| f'(z) \big|_{\overline{K}_{r}(a)} 
+  \le \frac{1}{r} \n{ f }_{\overline{K}_{r}(a)} 
+  \]
+  gilt, die sich aus der Cauchy'chen Integralformel 
+  für die Ableitung ergibt (vgl. \citep{Freitag}). \AntEnd 
+\end{antwort}
+
+%% --- 97 --- %%
+\begin{frage}\label{11_fouri}
+  Können Sie mithilfe des Differenziationssatzes folgendes Integral berechnen: 
+  \[
+  \widehat{f}(x) = \frac{1}{\sqrt{2\pi}} \Int_\RR e^{-t^2/2} e^{-\i xt}\dift 
+  \fragezeichen
+  \]
+\end{frage}
+
+\begin{antwort}
+  Der Integrand wird durch die integrierbare Funktion $e^{-t^2/2}$ majorisiert, 
+  Differenziation unter dem Integralzeichen ist also erlaubt. Mit partieller 
+  Integration erhält man
+  \[
+  \widehat{f}'(x) = \frac{-\i}{\sqrt{2\pi}} \Int_\RR te^{-t^2/2} e^{-\i xt}\dift
+  = \frac{-x}{\sqrt{2\pi}} \Int_\RR e^{-t^2/2} e^{-\i xt} \dift
+  =-x \widehat{f}(x).
+  \]
+  Daraus folgt $\frac{\dd}{\difx}(\widehat{f}(x) \cdot e^{x^2/2})=
+  (-x\widehat{f}(x)+x\widehat{f}(x))e^{x^2/2}=0$,  
+  also $\widehat{f}(x)=C\cdot e^{-x^2/2}$ mit einer Konstanten 
+  $C\in\RR$. Das Ergebnis von Frage \ref{11_gaussintegral} liefert 
+  $\widehat{F}(0)=1$ und damit $C=1$. Folglich gilt 
+  $\widehat{f}(x)= e^{-x^2/2}$.
+  \AntEnd
+\end{antwort}
+
+%% --- 98 --- %%
+\begin{frage}\index{Fouriertransformierte}
+  Wie ist allgemein die \bold{Fouriertransformierte} einer Funktion 
+  $f\in\calli{L}^1(\RR^n)$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Für eine Funktion $f \in\calli{L}^1(\RR^n,\CC)$ ist die 
+  \slanted{Fouriertransformierte} zu $f$ die Funktion 
+  $\widehat{f} \fd \RR^n \to\CC$ mit 
+  \[
+  \boxed{ 
+    \widehat{f}(x) := \frac{1}{(2\pi)^{n/2}} \Int_{\RR^n} 
+    f(t)e^{-\i \langle x,t\rangle} \dift.
+  }
+  \]
+  Dabei ist $\langle x,t \rangle$ das Standardskalarprodukt 
+  von $x\in\RR^n$ und $t\in\RR^n$. 
+
+  Man vergleiche diese Darstellung für den Fall $n=1$ auch mit der 
+  Darstellung der \slanted{Fourierkoeffizienten} einer 
+  $2\pi$-periodischen Regelfunktion aus Frage \ref{07_fourierkoeff}.   
+  \AntEnd
+\end{antwort}
+
+%% --- 99 --- %%
+\begin{frage}
+  Wieso stimmt die durch 
+  \[
+  f(x):=e^{-\n{x}_2^2/2} = e^{-(x_1^2+\cdots + x_n^2)/2}
+  \]
+  definierte Funktion $f\fd \RR^n\to\RR$ mit ihrer Fouriertransformierten 
+  überein?
+\end{frage}
+
+\begin{antwort}
+  Mit dem Satz von Fubini und der Antwort zu Frage \ref{11_fouri} 
+  erhält man
+
+  \begin{align*}
+    \widehat{f}(x) &= \frac{1}{(2\pi)^{n/2}} 
+    \Int_{\RR^n} e^{-(x_1^2+\cdots +x_n^2)} e^{-\i \langle x,t \rangle} \dift  
+    = \frac{1}{(2\pi)^{n/2}} \Int_{\RR^n} \prod_{\nu=1}^n e^{-x_\nu^2/2} 
+    e^{-\i x_\nu t_\nu} \dift \\
+    &= 
+    \prod_{\nu=1}^n \frac{1}{\sqrt{2\pi}} \Int_\RR 
+    e^{-x_\nu^2/2} e^{-\i x_\nu t_\nu} \dift_\nu = 
+    \prod_{\nu=1}^n e^{-x_\nu^2/2} = f(x).
+    \EndTag
+  \end{align*}
+\end{antwort}
+
+
+
+%% --- 100 --- %%
+\begin{frage}\index{Umkehrsatz der Fourier-Transformation}
+  Was besagt der \bold{Fourier\sch e Umkehrsatz}?
+\end{frage}
+
+\begin{antwort}
+  Die Aussage des Umkehrsatzes lässt sich als kontinuierliches Analagon 
+  zu der Darstellung einer Funktion durch ihre Fourier\slanted{reihe} 
+  verstehen. Er besagt:
+
+  \medskip%
+  \noindent%
+  \slanted{Ist $f\in\calli{L}^1(\RR^n)$ 
+    eine Funktion, deren Fourier-Transformierte 
+    $\widehat{f}$ ebenfalls zu $\calli{L}^1(\RR^n)$ gehört. Dann gilt 
+    für alle $t\in\RR^n$ mit eventueller Ausnahme einer Nullmenge
+    \[
+    \boxed{
+      f(t) = \frac{1}{(2\pi)^{n/2}} \int_{\RR^n} \widehat{f}(x) 
+      e^{\i\langle x,t \rangle } \difx.}
+    \]
+    Dabei gilt die Identität in jedem Stetigkeitspunkt $t\in\RR^n$ von $f$. 
+    Insbesondere gilt dort $\widehat{\widehat{f}}(t)=f(-t)$. 
+  }
+
+  \medskip\noindent
+  Ein Beweis dieses Satzes wird etwa in \citep{Koenig}, 
+  \citep{Forster} oder \citep{Rudin} gegeben.
+
+  Im Fall $n=1$ kann man den Umkehrsatz 
+  durch ein Plausiblitätsargument 
+  als Grenzfall aus der Darstellung einer periodischen 
+  Funktion durch ihre Fourier\slanted{reihe} ableiten,  
+  wobei der Grenzfall der Situation entspricht, dass die 
+  Periode der Funktion \slanted{unendlich} wird, was 
+  bedeutet, dass überhaupt keine Voraussetzungen mehr an 
+  die Periodizität von $f$ gestellt werden.
+
+  Wir betrachten für $N\in \NN$ eine Funktion $f$ mit der Periode 
+  $N\pi$, die wir der Einfachheit wegen als \slanted{stetig} voraussetzen.  
+  Die Funktion $g(t) := f(Nt)$ ist dann eine stetige $2\pi$-periodische 
+  Funktion, und der Satz von Fej\'er liefert für diese die Darstellung 
+  \[
+  g(t) = \frac{1}{2\pi} \sum_{k=-\infty}^\infty \widehat{g}(k) e^{\i k t}
+  \]
+  bzw. nach der Substitution $Nt \mapsto t$
+  \[
+  f(t) = \frac{1}{2\pi} \sum_{k=-\infty}^\infty \widehat{g}(k) 
+  e^{\i\frac{k}{N} t}.
+  \]
+  Die Funktion $f$ wird in dieser Darstellung in physikalischer Hinsicht 
+  in ihre harmonischen Oberschwingungen zerlegt. 
+  Die Periodenlängen dieser Oberschwingungen 
+  durchlaufen die Zahlen $N\pi, N\pi/2, N\pi/3, \ldots$. 
+  Mit wachsendem $N$ liegt die Menge dieser Zahlen beliebig dicht in 
+  $[0,N\pi]$. Der Grenzügergang $N\to\infty$ führt damit 
+  verständlicherweise auf ein Integral über $\RR$. 
+
+  Wir wollen das auch noch rechnerisch nachvollziehen. 
+  Für den Fourierkoeffizenten von $g$ erhält man nach Frage 
+  \ref{fkoeffi}
+  \[
+  \widehat{g}( k ) = 
+  \frac{1}{2\pi} \int_{-\pi}^\pi f(N u) e^{-\i k u}\difu=
+  \frac{1}{2\pi N} \int_{-N \pi}^{N\pi} f(u) e^{\i \frac{k}{N} u} \difu.
+  \]
+  Die Fourierreihe von $g(t)=f(N t)$ lautet also 
+  \[
+  f(N t) = \frac{1}{2\pi N}\sum_{k=-\infty}^\infty 
+  \Big( \int_{-N\pi}^{N\pi} 
+  f(t) e^{-\i \frac{k}{N} u}\difu \Big)  e^{\i k t }.
+  \]
+  bzw. nach der Substitution $Nt \mapsto t$
+  \[
+  f(t) = \frac{1}{2\pi}\sum_{k=-\infty}^\infty 
+  \Big( \int_{-N\pi}^{N\pi} 
+  f(u) e^{- \i \frac{k}{N} u}\difu \Big)  e^{\i \frac{k}{N} t } \cdot 
+  \frac{1}{N}.
+  \]
+  Für $N\to\infty$ liegen die Zahlen $\frac{k}{N}$ dicht in $\RR$. 
+  Ferner wird jeder Summand der Reihe mit dem Faktor $\frac{1}{N}$ 
+  gewichtet. Es liegt also nahe, für den 
+  Grenzfall die Variable $\frac{k}{N}$ durch 
+  die reelle Variable $x$ zu ersetzen, sowie $\frac{1}{N}$ durch $\difx$ 
+  und die Summe durch ein Integral. Das führt auf 
+  \[
+  f(t) = \frac{1}{2\pi} \int_\RR \Big( \int_\RR f(u) e^{-i x u} \difu \Big) 
+  e^{\i x t } \difx,
+  \]
+  und das ist gerade die Fourier'sche Umkehrformel im Fall $n=1$, 
+  die auf diese Weise plausibel gemacht werden kann.
+  \AntEnd  
+\end{antwort}
+
+\section{Die Transformationsformel f\"ur Lebesgue-integrierbare 
+  Funktionen}
+
+%% --- 101 --- %%
+\begin{frage}\label{11_transformationsformel}
+  \index{Transformationsformel!fur Lebesgue@für Lebesgue-integrierbare Funktionen}
+  Was besagt die \bold{Transformationsformel} f\"ur das 
+  $n$-dimensionale Lebesgue-Integral?
+\end{frage}
+
+\begin{antwort}
+  Die Transformationsformel f\"ur das $n$-dimensionale 
+  Lebesgue-Integral ist eine starke Verallgemeinerung 
+  der Substitutionsregel f\"ur das eindimensionale Integral. Der 
+  Beweis erfordert jedoch erheblich mehr Aufwand. 
+  Die Transformationsformel besagt:
+
+  \medskip
+  \noindent\slanted{
+    Sind $U,V \subset \RR^n$ nicht leere offene Mengen und 
+    ist $\varphi\fd U\to V$ ein $\calli{C}^1$-Diffeomorphismus. 
+    Dann ist eine Funktion $f\fd V\to \RR$ genau dann 
+    integrierbar, wenn die Funktion 
+    $(f\circ \varphi) \det \calli{J}(\varphi; \,\cdot\,)$ \"uber $U$ 
+    integrierbar ist. Ferner gilt dann 
+    \[
+    \boxed{
+      \int_U f \big( \varphi(x) \big) 
+      \big| \det \calli{J}(\varphi; x ) \big| 
+      \dd x = \int_V f(y)\dd y .
+    }
+    \] 
+  }%
+  \noindent
+  Die Transformationsformel ist insofern geometrisch plausibel, 
+  als der Faktor $\big|\det\calli{J}(\varphi;x)\big|$ ein Maß dafür ist, 
+  wie das Volumen einer "`infinitesimalen Umgebung"' von $x$ unter der 
+  Abbildung $\varphi$ verzerrt wird. \AntEnd  
+\end{antwort}
+
+%% --- 102 --- %%
+\begin{frage}
+  Haben Sie eine Idee, wie man die Transformationsformel beweisen 
+  k\"onnte?
+\end{frage}
+
+\begin{antwort}
+  Man kann die Transformationsformel gem\"a{\ss} der Einf\"uhrung des 
+  Lebesgue-Integrals in mehreren Schritten beweisen. 
+
+  Zun\"achst beweist man sie f\"ur stetige Funktionen mit kompaktem 
+  Tr\"ager und f\"ur die speziellen Diffeomorphismen
+  \[
+  \varphi \fd  \RR^n \to \RR^n; \qquad
+  x\mapsto Ax+b \quad\text{mit $A\in \mathrm{GL}(n,\RR)$}.
+  \]
+  Diesen Beweisschritt haben wir in der Antwort zu Frage 
+  \ref{11_trans} ausgearbeitet.  
+
+  F\"ur einen beliebigen Diffeomorphismus f\"uhrt man die 
+  Transformationsformel 
+  durch lineare Approximation dann auf den linearen Fall zur\"uck. Dabei 
+  spielen spezielle W\"urfel\"uberdeckungen eine wichtige Rolle. 
+
+  In einem n\"achsten Schritt zeigt man, dass sich die G\"ultigkeit 
+  der Transformationsformel auf die nichtnegativen halbstetigen Funktionen 
+  \"ubertr\"agt. Damit gilt sie dann auch f\"ur das Ober- und Unterintegral 
+  einer beliebigen Funktion und damit schlie{\ss}lich allgemein 
+  f\"ur die Lebesgue-integrierbaren Funktionen. 
+
+  Entscheidend bei dem Beweis ist unter anderem die Tatsache, dass 
+  ein Diffeomorphismus Nullmengen stets in Nullmengen \"uberf\"uhrt.
+  \AntEnd
+\end{antwort} 
+
+%% --- 103 --- %%
+\begin{frage}\label{11_polar}\index{Integration!mittels Polarkoordinaten}
+  Wie lautet die Transformationsformel f\"ur ebene bzw. r\"aumliche 
+  Polarkoordinaten?
+\end{frage}
+
+\begin{antwort}
+  \desc{a} F\"ur ebene Polarkoordinaten ergibt sich die folgende Formulierung: 
+  Ist $p\fd \RR_+^* \times \, ]-\pi, \pi [ \,$ 
+  definiert durch 
+  \[
+  (r,\varphi) \mapsto (r \cos\varphi, r\sin\varphi ) = (x,y),
+  \]
+  dann ist eine Funktion $f\fd \RR^2 \to \RR$ genau dann 
+  integrierbar, wenn die Funktion
+  \[
+  \RR_+^* \times \, ] -\pi, \pi [ \, \to \RR; 
+  \qquad 
+  (r,\varphi) \mapsto r f \big( p(r,\varphi) \big) 
+  \]
+  integrierbar ist, und es gilt dann 
+  \[
+  \Int_{\RR^2} f(x,y) \difx\dify = 
+  \Int_{-\pi}^{\pi} \Int_0^\infty 
+  f( r\cos\varphi, r\sin\varphi ) r \dd r \dd \varphi.
+  \]
+
+  \medskip\noindent
+  \desc{b} Im dreidimensionalen Fall lautet 
+  eine Polarkoordinatenabbildung (vgl. \Abb\ref{fig:12_polarkoord}) 
+  \begin{align*}
+    p\fd \RR_+^* \times \open{-\pi,\pi} 
+    \times \open{-\tfrac{\pi}{2}, \tfrac{\pi}{2} } 
+    &\to \RR^3 \\  
+    (r,\varphi,\psi) &\mapsto (r \cos\varphi \cos \psi, r\sin\varphi \cos\psi, 
+    r\sin\psi ) = (x,y,z).
+  \end{align*}
+
+  \begin{center}
+    \includegraphics{mp/12_polarkoord}
+    \captionof{figure}{Zum Verständnis der Polarkoordinatenabbildung.}
+    \label{fig:12_polarkoord}
+  \end{center}
+
+  \noindent
+  Mit der Transformationsformel ergibt sich,  
+  dass eine Funktion $f\fd \RR^3 \to \RR$ genau dann 
+  integrierbar ist, wenn die Funktion
+  \begin{align*}
+    \RR_+^* \times \open{-\pi,\pi}
+    \times \open{-\tfrac{\pi}{2}, \tfrac{\pi}{2}} &\to \RR, \\ 
+    (r,\varphi,\psi) &\mapsto  f \big( p(r,\varphi,\psi) \big) r^2  \cos \psi 
+  \end{align*}
+  \picskip{0}\vspace*{-3mm}%
+  integrierbar ist, und in diesem Fall gilt: 
+  \[
+  \Int_{\RR^3} f(x,y,z) \difx\dify\dd z = 
+  \Int_0^\infty
+  \Int_{-\pi}^\pi 
+  \Int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 
+  f\big( p( r,\varphi,\psi) \big) r^2 \cos\psi  \dd \varphi \dd \psi \dd r.
+  \EndTag
+  \]
+  
+\end{antwort} 
+
+%% --- 104 --- %%
+\begin{frage}\index{Volumen!$n$-dimensionaler Kugeln}
+  \nomenclature{$K_R(0)$}{$n$-dimensionale Kugel 
+    mit Radius $R$ und Mittelpunkt $0$}
+  K\"onnen Sie mit der letzten Formel das Volumen der 
+  Kugel $K_R(0) \subset \RR^3$ berechnen?
+\end{frage}
+
+\begin{antwort}
+  Man erh\"alt 
+  \begin{align*}
+    K_R(0) &=
+    \Int_0^\infty
+    \Int_{-\pi}^\pi 
+    \Int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 
+    \chi_{K_R(0)}
+    \big( p( r,\varphi,\psi) \big) r^2 \cos\psi  \dd \varphi \dd \psi \dd r \\
+    &= 
+    \Int_0^R r^2 \dd r
+    \Int_{-\pi}^\pi \dd \varphi 
+    \Int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}  \cos\psi \dd \psi = 
+    \frac{R^3}{3} \cdot 2\pi \cdot 2 = \frac{4}{3} R^3 \pi. \EndTag
+  \end{align*}
+\end{antwort} 
+
+%% --- 105 --- %%
+\begin{frage}\label{11_gaussintegral}
+  \index{Gauss-Integral@Gauß-Integral}
+  Können Sie das \bold{Gauß-Integral} $I := \int_{\RR} e^{-t^2} \dift$
+  berechnen, indem Sie es auf ein Doppelintegral zurückführen?
+\end{frage}
+
+\begin{antwort}
+  Durch Quadrieren erhält man das Doppelintegral
+  \[
+  I^2 = \big( \int_{\RR} e^{-x^2} \difx \big)\cdot 
+  \big( \int_{\RR} e^{-y^2} \dify \big) = 
+  \int_{\RR} \int_{\RR} e^{-x^2-y^2} \difx\dify,  
+  \]
+  das man mittels Polarkoordinaten nun sehr leicht bestimmen kann:
+  \[
+  I^2 = \int_{-\pi}^\pi \int_{0}^\infty e^{-r^2} r \dd r \dd\varphi 
+  = \int_{-\pi}^\pi \left[ -\frac{e^{-r^2}}{2} \right]_0^\infty \dd \varphi 
+  = \pi.
+  \]
+  Daraus folgt 
+  \[
+  \boxed{\int_\RR e^{-t^2} \dift= \sqrt{\pi}.}\EndTag
+  \]
+\end{antwort} 
+
+%% --- 106 --- %%
+\begin{frage}
+  Welche Variante der Transformationsformel ist in den Anwendungen 
+  häufig nützlich?
+\end{frage}
+
+\begin{antwort}
+  Die Variante lässt Nullmengen als Ausnahmemengen zu. Sie besagt 
+  genauer: 
+
+  \medskip%
+  \noindent
+  \slanted{Sei $U\subset\RR^n$ offen und $\varphi\fd U \to \RR^n$ 
+    stetig differenzierbar sowie $A\subset U$ eine messbare 
+    Teilmenge (eine Menge heißt messbar, wenn sie die abzählbare 
+    Vereinigung endlich messbarer Mengen ist) mit den folgenden 
+    Eigenschaften:
+    {\setlength{\labelsep}{4mm}
+      \begin{itemize}
+      \item[\desc{i}] $A\setminus A^\circ$ ist eine Nullmenge \\[-3.5mm]
+      \item[\desc{ii}] Die Einschränkung von $\varphi$ auf $A^\circ$ induziert 
+        einen Diffeomorphismus zwischen $A^\circ$ und $\varphi(A^\circ)$
+      \end{itemize}
+    }
+    Unter diesen Voraussetzungen ist eine Funktion $f\fd \varphi(A) \to\RR$ 
+    genau dann über $\varphi(A)$ integrierbar, wenn 
+    $(f\circ\varphi) \big| \det \calli{J}( \varphi; \cdot) \big|$ über $A$ 
+    integrierbar ist, und es gilt dann
+    \[
+    \int_A  (f\circ\varphi) \big| \det \calli{J}( \varphi; \cdot) \big| \dd^n x =
+    \int_{\varphi(A)} f(y) \dd^n y.
+    \]
+  }
+
+  \medskip\noindent
+  Denn $N:=A\mengeminus A^\circ$ ist nach Voraussetzung eine Nullmenge, 
+  daher kann man bei der Integration $A$ durch $A^\circ$ ersetzen. 
+  Es ist aber auch $\varphi(N)$ eine Nullmenge, und daher kann man auch 
+  $\varphi(A)$ durch $\varphi(A^\circ)$ ersetzen. Die Behauptung folgt 
+  nun aus dem allgemeinen Transformationssatz für den durch $\varphi$ 
+  induzierten Diffeomorphismus zwischen $A^\circ$ und $\varphi(A^\circ)$. 
+  \AntEnd
+\end{antwort} 
+
+
+
+
+
+\section{Integration über Untermannigfaltigkeiten im $\RR^n$}
+
+Im Folgenden sollen speziell \slanted{Flächeninhalte} und 
+\slanted{Flächenintegrale} über Flächen im $\RR^3$ definiert werden 
+(klassischer Fall). Auch schon der Fall eindimensionaler Mannigfaltigkeiten 
+(regulär parametrisierte Kurven) ist von Interesse. Allgemein betrachten 
+wir $p$-dimensionale $\calli{C}^1$-Untermannigfaltigkeiten im $\RR^n$ 
+und erinnern zur Vorbereitung an den 
+\slanted{Äquivalenzsatz für Untermannigfaltigkeiten} 
+(s. Frage \ref{10_manniaeq}). 
+
+%% --- 107 --- %%
+\begin{frage}\index{Mannigfaltigkeit!parametrisierbare}
+  Wann heißt eine Teilmenge $M\subset\RR^n$ eine 
+  \bold{zusammenhängende eindimensionale parametrisierbare 
+    (Unter-)Mannigfaltigkeit}?
+\end{frage}
+
+\begin{antwort}
+  $M\subset\RR^n$ heißt zusammenhängende eindimensionale parametrisierbare 
+  (Unter-)Mannigfaltigkeit, wenn es eine topologische Abbildung 
+  $\alpha\fd\open{0,1} \to M$ gibt, die regulär ist und 
+  für die $\dot{\alpha}(t)\not=0$ für alle $t\in\open{0,1}$ gilt.
+
+  Eine solche Abbildung nennt man auch \slanted{reguläre Parametrisierung} 
+  von $M$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 108 --- %%
+\begin{frage}\index{regulaere Parametrisierung@reguläre Parametrisierung}
+  Wie unterscheiden sich zwei reguläre Parametrisierungen 
+  $\alpha\fd\open{0,1}\to M$ und 
+  $\beta\fd\open{0,1}\to M$?
+\end{frage}
+
+\begin{antwort}
+  Sind $\alpha$ und $\beta$ reguläre Parametrisierungen, dann ist 
+  \[
+  \tau := \beta^{-1}\circ\alpha \fd \open{0,1}\to\open{0,1} 
+  \]
+  ein Diffeomorphismus.
+  \AntEnd
+\end{antwort}
+
+%% --- 109 --- %%
+\begin{frage}
+  Wenn $M\subset\RR^n$ eine $1$-dimensionale 
+  zusammenhängende parametrisierbare Mannigfaltigkeit und 
+  $f\fd M\to\RR$ eine stetige Funktion ist, und wenn das Integral 
+  \[
+  \int_0^1  f\big(\alpha( t)\big) \nb{ \dot{\alpha}(t)}_2 \dift 
+  \]
+  für \slanted{eine} reguläre Parametrisierung $\alpha$ von $M$ 
+  existiert, warum existiert es dann auch für jede andere reguläre 
+  Parametrisierung von $M$ und warum haben die Integrale den gleichen Wert?
+\end{frage}
+
+\begin{antwort}
+  Für eine zweite Parametrisierung $\beta$ gilt 
+  nach der Antwort zur vorigen Frage $\beta =\alpha\circ\tau$ 
+  mit einem Diffeomorphismus $\tau\fd\open{0,1}\to\open{0,1}$. 
+  Die Integrierbarkeit folgt damit aus der Transformationsformel, 
+  ebenso die Identität der Integrale:
+  \begin{align*}
+    \int_0^1  f\big(\alpha( t)\big) \nb{ \dot{\alpha}(t)}_2 \dift &= 
+    \int_0^1  f\big(\alpha( \tau(u) )\big) \nb{ \dot{\alpha}(\tau(u))}_2 
+    \big|\det \big( \tau'(u) \big)\big|\difu \\ &= 
+    \int_0^1  f\big( \beta(u) \big) \nnb{ \frac{\dot{\beta}(u)}{\tau'(u)} }_2 
+    |\tau'(u)|\difu = 
+    \int_0^1  f\big( \beta(t) \big) \nb{ \dot{\beta}(t)}_2 \dift. \EndTag
+  \end{align*}
+\end{antwort} 
+
+%% --- 110 --- %%
+\begin{frage}\index{Kurvenintegral!skalares}
+  \nomenclature{$\ell_f(M)$}{Kurvenintegral von $f$ über die 
+    $1$-dimensionale Untermannigfaltigkeit $M$}
+  Wie ist das \bold{skalare Kurvenintegral} 
+  $\ell_f (M)$ einer Funktion $f\fd D \to \RR$ mit $D\subset\RR^n$ 
+  und $M\subset D$ über eine $1$-dimensionale parametrisierbare 
+  Untermannigfaltigkeit $M$ im $\RR^n$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Das skalare Kurvenintegral von $f$ über $M$ ist definiert durch
+  \[
+  \boxed{
+    \ell_f (M) := \int_0^1 f \big(\alpha(t)\big) \nb{\dot{\alpha}(t) }_2 \dift, 
+  }
+  \]
+  wobei $\alpha$ eine beliebige reguläre Parametrisierung von $M$ ist. 
+  Nach der Antwort zur vorigen Frage hängt der Wert von $\ell_f(M)$ nicht 
+  von der Parametrisierung ab. \AntEnd
+\end{antwort} 
+
+%% --- 111 --- %%
+\begin{frage}\index{Kurvenlänge}
+  Wie lässt sich die \bold{Länge der Kurve} $\alpha$ berechnen?
+\end{frage}
+
+\begin{antwort}
+  Für $f \equiv 1$ erhält man 
+  \[
+  \ell_1 (M) = \int_0^1 \n{\dot{\alpha}(t)}_2\dift = 
+  \int_0^1 \sqrt{ \langle \dot{\alpha}(t), \dot{\alpha}(t) \rangle }\dift
+  = : \ell (\alpha ). 
+  \]
+  $\ell_1(M)$ kann man als eindimensionales Maß von $M$ bezeichnen, 
+  es stimmt mit der Länge der Kurve $\alpha$ überein.
+  \AntEnd
+\end{antwort} 
+
+%% --- 112 --- %%
+\begin{frage}\index{Immersion}\index{Einbettung}
+  Was versteht man unter einer \bold{Immersion} von einer offenen Menge 
+  $V\subset\RR^p$ in den $\RR^n$ ($p<n$).
+\end{frage}
+
+\begin{antwort}
+  Ist $V\subset\RR^p$ offen und $\alpha\fd V\to\RR^n$ stetig partiell 
+  differenzierbar, dann heißt $\alpha$
+  \slanted{Immersion}, falls das Differenzial 
+  $\dd\alpha(v)$ für alle $v\in V$ injektiv abbildet, {\dasheisst} wenn 
+  $\Rang \calli{J}(\alpha;v)=p$ für alle $v\in V$ gilt. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 113 --- %%
+\begin{frage}\index{Einbettung}
+  Was ist der Unterschied zwischen einer Immersion und einer 
+  \bold{Einbettung}?
+\end{frage}
+
+\begin{antwort}
+  Eine Immersion $\alpha\fd V\to\RR^n$ heißt \slanted{Einbettung}, 
+  wenn $\alpha$ zusätzlich einen Homöomorphismus 
+  zwischen $V$ und $\alpha(V)$ induziert. Dass eine Immersion diese 
+  Eigenschaft nicht notwendigerweise besitzt, zeigt das Beispiel der 
+  regulären Kurve in der Antwort zu Frage \ref{10_manniaeq}. 
+
+  Für eine Einbettung $\alpha \fd V\to\RR^n$ mit $V\subset\RR^p$ 
+  ist $\alpha(V)$ stets eine $p$-dimensionale Mannigfaltigkeit. Das folgt 
+  aus dem Satz in Frage \ref{10_nomanni}. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 114 --- %%
+\begin{frage}
+  Ist $M$ eine $p$-dimensionale Untermannigfaltigkeit im $\RR^n$ und 
+  $(\varphi,U)$ eine Karte auf $M$ ($U\subset M$ offen in $M$), warum gibt es 
+  dann stets eine Einbettung $\alpha\fd V\to U$?
+\end{frage}
+
+\begin{antwort}
+  Nach der Definition einer Karte in Frage \ref{10_mannidef} 
+  gibt es offene Umgebungen $U', V'\subset \RR^n$ mit 
+  $U=U'\cap M$, so dass $\varphi \fd U'\to V'$ ein Diffeomorphismus 
+  ist, für den gilt
+  \[
+  \varphi(U)=V' \cap \RR_0^p.  
+  \]
+  Sei $V\subset \RR^p$ die Teilmenge mit $V'\cap\RR_0^p=V\times\{0\}$. 
+  Die Abbildung 
+  \[
+  \alpha( u ) := \varphi^{-1}(u,0)
+  \]
+  bildet $V$ dann homöomorph auf $U$ ab. Ferner ist $\alpha$ injektiv, 
+  denn die Jacobi-Matrix $\calli{J}(\alpha,u)$ besteht aus den 
+  ersten $p$ Spalten der Jacobi-Matrix von $\varphi^{-1}$ in $u$. 
+  Da $\varphi^{-1}$ ein Diffeomorphismus ist, sind diese Spalten 
+  linear unabhängig. 
+  \AntEnd
+\end{antwort}
+
+%% --- 115 --- %%
+\begin{frage}\index{Masstensor@Maßtensor}
+  \index{Gramsche Determinnate@Gram\sch e Determinante}
+  Wie ist der \bold{Maßtensor}, 
+  wie die \bold{Gram\sch e Determinante} 
+  einer Einbettung $\alpha \fd V\to U$ definiert?  
+  Wie lässt sich die Gram\sch e Determinente geometrisch interpretieren?
+\end{frage}
+
+
+\begin{antwort} 
+  Für eine Einbettung $\alpha\fd V\to U$ mit $V\subset \RR^p$, 
+  $V$ offen ist der Maßtensor von $\alpha$ im Punkt 
+  $v\in V$ die positiv definite symmetrische $p\times p$-Matrix 
+  \[
+  \calli{J}(\alpha;v)^T \cdot \calli{J}(\alpha;v).
+  \]
+  Die Elemente der Matrix sind die Skalarprodukte 
+  \[
+  g_{ij}(v) := \langle \partial_i \alpha(v), \partial_j \alpha(v) \rangle
+  \]
+  der Spaltenvektoren von $\calli{J}(\alpha;v)$.
+
+  Die \slanted{Gram'sche Determinante} $g^\alpha (v)$ 
+  \nomenclature{$g^\alpha (v)$}{Gram\sch e Determinante der Einbettung 
+    $\alpha$ im Punkt $v$}
+  von $\alpha$ im Punkt $v\in V$ ist die Determinante des Maßtensors in $v$:
+  \[
+  \boxed{
+    g^\alpha(v):= 
+    \det\left( \calli{J}(\alpha;v)^T \cdot \calli{J}(\alpha;v) \right). 
+  }
+  \]
+  Für eine lineare Abbildung $L\fd \RR^p\to\RR^n$, die durch die Matrix 
+  $A$ beschrieben wird, ist $\sqrt{\det A^T A}$ 
+  gerade das $p$-dimensionale Volumen des Bildes $L( W_p)$ des 
+  Einheitswürfels $W_p = \open{0,1}^p$ unter $l$.
+
+  \begin{center}
+    \includegraphics{mp/12_gram}
+    \captionof{figure}{%
+      Die Gram'sche Determinante misst die 
+      "`infinitesimale Volumenverzerrung"', die $\alpha$ in einem Punkt
+      bewirkt. }
+    \label{fig:12_gram}
+  \end{center}
+
+  Für eine allgemeine Einbettung $\alpha\fd\RR^n\to\RR^p$ 
+  lässt sich die Gram\sch e Determinante (bzw. deren Quadratwurzel)
+  somit als Maß der "`infinitesimalen Volumenverzerrung"', 
+  die $\alpha$ in $x$ bewirkt, interpretieren. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 116 --- %%
+\begin{frage}\index{Integral!ueber ein Kartengebiet@über ein Kartengebiet}
+  Ist $(\varphi,U)$ eine Karte für $M$ und $\alpha\fd V\to U$ 
+  eine lokale Parametrisierung von $U$ und $f\fd U\to\RR$ eine 
+  stetige Funktion, wann heißt $f$ über $U$ integrierbar und wie 
+  ist das Integral von $f$ über $U$ erklärt?
+\end{frage}
+
+\begin{antwort}
+  $f$ heißt über $U$ integrierbar, wenn die Funktion
+  \[
+  V\to\RR, \qquad v\mapsto f\big( \alpha(v) \big) \sqrt{g^\alpha(v)}
+  \]
+  über $V$ integrierbar ist. In diesem Fall definiert man 
+  \[\boxed{
+    \int_U f \dd S := 
+    \int_U f(x) \dd S(x) := 
+    \int_V f\big(\alpha(v)\big) \sqrt{g^\alpha (v)} \dd v.}\asttag
+  \]
+  \nomenclature{$\int_U f\dd S$}{Integral über ein Kartengebiet $U$}  
+  Die Funktion $f$ wird via Einbettung also auf $V$ 
+  "`heruntergeholt"', was es ermöglicht, die Integration 
+  über Teilmengen einer Mannigfaltigkeit 
+  auf die Integration im $\RR^p$ zurückzuführen, wobei die dabei 
+  auftretende Volumenverzerrung durch die 
+  Gram\sch e Determinante in Rechnung gestellt wird.   
+  
+  \index{Flaechenelement@Flächenelement}
+  \nomenclature{$\dd S$}{Flächenelement} 
+  $\dd S= \sqrt{g^\alpha}\dd v$ nennt man \slanted{Flächenelement}. 
+  In Frage \ref{tausend} interpretieren wir diese als Differenzialform. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 117 --- %%
+\begin{frage}
+  Warum ist die Definition des Integrals in {\astref} 
+  unabhängig von der Parametrisierung $\alpha$?
+\end{frage}
+
+\begin{antwort}
+  Ist $\beta\fd V'\to U$ eine weitere lokale Parametrisierung von $U$, 
+  dann gilt $\alpha=\beta \circ T$ mit einem Diffeomorphismus 
+  $T \fd V'\to V$. Für die Maßtensoren der beiden Einbettungen 
+  liefert die Kettenregel in einem Punkt $u\in V$ und $v=T(u)\in V'$ 
+  \[
+  \calli{J}(\alpha; u)^T \cdot 
+  \calli{J}(\alpha; u) = 
+  \calli{J}(T; u)^T \cdot 
+  \Big( \calli{J}(\beta; v)^T \cdot \calli{J}(\beta; v) \Big) \cdot 
+  \calli{J}(T;u).
+  \]
+  Es folgt 
+  \[
+  \sqrt{ g^\alpha(u) } = \big| \det T(u) \big| \cdot 
+  \sqrt{ g^\beta(v) }, 
+  \]
+  und daraus erhält man schließlich mit der Transformationsformel
+  \[
+  \int_V f \big( \alpha(u) \big) \cdot \sqrt{g^\alpha(u)} \difu =
+  \int_{V'} f \big( \beta(v) \big) \cdot \sqrt{g^\beta(v)} \dd v.
+  \EndTag
+  \]
+\end{antwort}
+
+%% --- 118 --- %%
+\begin{frage}\label{ZerlegungderEins}\index{Zerlegung der Eins}
+  \index{Integral!einer Funktion über eine Untermannigfaltigkeit}
+  Welche Technik verwendet man, um das Integral $\int_M f$ für eine 
+  stetige Funktion auf einer $p$-dimensionalen Mannigfaltigkeit zu erklären?
+\end{frage}
+
+\begin{antwort}
+  \index{Zerlegung der Eins}
+  Man benutzt dazu eine \slanted{Zerlegung der Eins} auf $M$. 
+  Darunter versteht man eine Familie stetiger 
+  Funktionen $\eps_i\fd M\to [0,1]$, $i\in\NN$  mit den Eigenschaften
+  \satz{\begin{itemize}[2mm]
+    \item[\desc{i}] Zu jedem $x\in M$ gibt es eine Umgebung $U(x)$ derart, dass 
+      alle bis auf endlich viele der Funktionen $\eps_i$ auf $U(x)$ verschwinden 
+      (die Zerlegung ist \slanted{lokal endlich})\index{lokal endlich}.
+    \item[\desc{ii}] Es ist $\sum_{i=1}^\infty \eps_i(x)=1$ für alle $x\in M$. 
+    \end{itemize}} 
+  Enscheidend ist nun, dass es zu jeder offenen Überdeckung 
+  $\{U_\lambda\}_{\lambda\in\Lambda}$ von $x$ eine 
+  \slanted{subordinierte Zerlegung der Eins} gibt, {\dasheisst}, dass der 
+  Träger $\Tr \eps_i$ für jedes $i\in\NN$ in einer der Mengen 
+  $U_\lambda$ enthalten ist. 
+
+  Zu einem Atlas von $M$ kann man also eine diesem Atlas untergeordnete 
+  Zerlegung der Eins $\{ \eps_i\}$ wählen. Die Funktion $\sum f\eps_i$ 
+  stimmt dann auf $M$ mit $f$ überein und die Summanden $f\eps_i$ 
+  verschwinden jeweils außerhalb eines Kartengebiets $U(i)$. 
+  Ist $f\eps_i$ über $U(i)$ integrierbar, so kann man für diese Funktion 
+  das Integral über $M$ einfach durch 
+  $\int_M f\eps_i \dd S := \int_{U(i)} f\eps_i \dd S$ definieren. 
+
+  Sind alle Funktionen $f\eps_i$ in diesem Sinne über $M$ integrierbar 
+  und gilt zusätzlich noch 
+  $\sum_{i=1}^\infty \int_M |f| \eps_i \dd S < \infty$, dann 
+  definiert man 
+  \[
+  \boxed{ 
+    \int_M f \dd S := \sum_{i=1}^\infty \int_M f\eps_i \dd S.
+  }
+  \]\nomenclature{$\int_M f \dd S$}{Integral über eine Untermannigfaltigkeit $M$}
+  Dabei muss noch gezeigt werden, dass die Bedingungen und der Wert des 
+  Integrals nicht von der 
+  Wahl der Zerlegung der Eins abhängen. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 119 --- %%
+\begin{frage}\label{11_pdimvol}
+  \index{Volumen!einer Karte}
+  Was versteht man unter dem $p$-dimensionalen Volumen einer 
+  Karte $(\varphi,U)$ einer $p$-dimensionalen Mannigfaltigkeit?
+\end{frage}
+
+\begin{antwort}
+  Falls die konstante Funktion $1$ über $U$ integrierbar ist, dann heißt 
+  \[\boxed{
+    \vol_p (U) := \int_U 1\cdot \dd S = \int_V \sqrt{g^\alpha (v) } \dd v}
+  \]
+  das $p$-dimensionale Volumen von $U$. 
+  \AntEnd
+\end{antwort} 
+
+%% --- 120 --- %%
+\begin{frage}
+  Können Sie die in der Literatur häufig anzutreffende Schreibweise 
+  \[
+  \vol_2(M) = \int_V \sqrt{EG-F^2} \dd u \dd v \asttag
+  \]
+  erläutern?
+\end{frage}
+
+\begin{antwort}
+  Für eine Einbettung $\alpha \fd V\to U$ 
+  im Fall $V\subset\RR^2$ und $U\subset\RR^3$ bezeichnen die Buchstaben 
+  $E$, $G$ und $F$ die Einträge in der Maßtensor-Matrix $g_{ij}(u)$, 
+  und zwar ist $E=g_{11}$, $F=g_{12}=g_{21}$ und $G=g_{22}$. Mit diesen 
+  Bezeichnungen schreibt sich der Maßtensor von $\alpha$ im Punkt $(u,v)$ 
+  dann in der Form
+  \[
+  \begin{pmatrix} E(u,v) & F(u,v) 
+    \\ F(u,v) & G(u,v) \end{pmatrix}.
+  \]
+  Für die Gramsche Determinante gilt damit
+  $\sqrt{g^\alpha(u,v)}=\sqrt{ E(u,v)G(u,v) -F^2(u,v) }$. 
+  Also ist {\astref} gleichbedeutend mit der Formel in Frage 
+  \ref{11_pdimvol}\AntEnd 
+\end{antwort}
+
+
+
+%% --- 121 --- %%
+\begin{frage}\index{Integration!zwiebelweise@"`zwiebelweise"'}
+  \index{Satz!ueber die zwiebelweise@über die "`zwiebelweise Integration"'}
+  Was besagt der Satz von der "`\bold{zwiebelweisen Integration}"'? 
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: 
+
+  \medskip\noindent
+  \satz{Ist $f\fd\RR^n\to\RR$ eine integrierbare Funktion, 
+    dann ist für alle $r\in\RR_+$ außerhalb einer Nullmenge die Funktion 
+    $f$ über die Sphäre $S_r := \{ x\in \RR^n \sets \n{x}_2 = r \}$ 
+    integrierbar, und es gilt
+    \[
+    \boxed{
+      \Int_{\RR^n} f(x) \dd^n x = 
+      \Int_0^\infty 
+      \Big( \Int_{S_r}  f(x) \dd S \Big) \dd r =
+      \Int_0^\infty 
+      \Big( \Int_{S^{n-1}}  f(r x) \dd S \Big) r^{n-1} \dd r. }
+    \asttag
+    \]
+  }
+
+  \medskip\noindent
+  Wir zeigen den Satz hier im Spezialfall $n=3$. Der Beweis für die allgemeine 
+  Version funktioniert nach demselben Prinzip, nur dass man dafür erst 
+  Informationen über allgemeine Polarkoordinatenabbildungen 
+  $\RR^n\to\RR^n$ und deren Funktionaldeterminanten sammeln muss. 
+
+  Sei also $f\fd \RR^3\to\RR$ eine integrierbare Funktion. 
+  Nach Frage \ref{11_polar} gilt mit der dort definierten 
+  Polarkoordinatenabbildung 
+  $p\fd \RR_+^* \times \open{-\pi,\pi} \times 
+  \open{ -\frac{\pi}{2}, \frac{\pi}{2} }$ zunächst 
+  \[
+  \Int_{\RR^3} f(x) \difx = 
+  \Int_0^\infty
+  \Int_{-\pi}^\pi 
+  \Int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 
+  f\big( p( r,\varphi,\psi) \big) r^2 \cos\psi  \dd \varphi \dd \psi \dd r.
+  \aasttag
+  \]
+
+  Nun berechnen wir für festes $r\in\RR$ das Oberflächenintegral $
+  \int_{S_r} f \dd S$ und betrachten dazu die 
+  Abbildung $\Phi \fd \open{-\pi,\pi} \times 
+  \open{ -\frac{\pi}{2}, \frac{\pi}{2} } \to \RR^3$ mit 
+  \[
+  (\varphi,\psi) \mapsto ( 
+  r  \cos \varphi \cos \psi,
+  r   \sin \varphi \cos\psi, 
+  r \sin \psi )^T
+  \]
+
+  \begin{center}
+    \includegraphics{mp/12_polar}
+    \captionof{figure}{Parametrisierung der Sphäre $S_r$ mittels 
+      Polarkoordinaten.}
+    \label{fig:12_polar}
+  \end{center}
+
+  Diese ist für jedes feste $r\in\RR$ eine zulässige Parametrisierung der 
+  geschlitzten Sphäre 
+  \[
+  S'_r = S_r \mengeminus N\quad\text{mit}\quad 
+  N := \{ (x, 0, z)\sets x \le 0 \}.
+  \]
+  Nach dem Satz von Fubini und dem Transformationssatz ist $f$ über $S_r$ 
+  für jedes $r\in\RR_+$ außerhalb einer Nullmenge integrierbar. 
+  Für den Maßtensor von $\Phi$ erhält man 
+  \[
+  \sqrt{g^\Phi(\varphi,\psi)} := \sqrt{\det \begin{pmatrix} 
+      r^2 \cos^2 \psi & 0 \\ 0 & r^2 
+    \end{pmatrix} } = r^2\cdot \cos \psi,
+  \]
+  und damit 
+  \[
+  \Int_{S_r} f(x) \dd S = 
+  \Int_{S'_r} f(x) \dd S =\Int_{-\pi}^\pi 
+  \Int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 
+  f( \Phi(\varphi,\psi) ) r^2 \cos \psi 
+  \dd\varphi  \dd \psi.
+  \]
+  Wegen $\Phi(\varphi,\psi)=p(r,\varphi,\psi)$ folgt daraus 
+  durch Vergleich mit {\astastref} die erste Gleichung 
+  in {\astref} für den Fall $n=3$, 
+  die zweite ergibt sich mit der Transformationsformel. 
+  \AntEnd 
+\end{antwort}
+
+
+
+%% --- 122 --- %%
+\begin{frage}
+  Wie kann man den Satz anwenden, um die Formel 
+  \[
+  \boxed{ 
+    \omega_n = n \kappa_n
+  }
+  \]
+  zu zeigen, wobei $\omega_n:=\vol_{n-1}(S^{n-1})$ die Oberfläche und 
+  $\kappa_n := \vol_n ( K_1(0) )$ 
+  wie in Frage das Volumen Einheitskugel im $\RR^n$ ist?
+\end{frage}
+
+\begin{antwort}
+  Integration über die charakteristische Funktion $\chi_{K_0(1)}$ und 
+  Anwendung des Satzes aus der letzten Frage liefert
+  \begin{align}
+    \kappa_n &= \Int_{\RR^n} \chi_{K_0(1)} (x) \difx = 
+    \Int_0^1 \Big(\Int_{S^{n-1}}  \chi_{K_0(1)}(rx) r^{n-1} \dd S \Big) \dd r 
+    \notag
+    \\
+    &= \Big( \Int_0^1 r^{n-1} \dd r\Big) \cdot \Big(\Int_{S^{n-1}} 1 \dd S \Big)=
+    \frac{1}{n} \omega_n. \notag
+  \end{align}
+  Damit weiß man jetzt speziell auch über die Oberfläche der dreidimensionalen 
+  Einheitskugel Bescheid. Deren Wert ist $\omega_3 = 4\pi$. \AntEnd
+\end{antwort}
+
+%% --- 123 --- %%
+\begin{frage}\label{11_rot}\index{Funktion!rotationssymmetrische}
+  \index{Integration!rotationssymmetrischer Funktionen}
+  Was besagt der Satz über \bold{rotationssymmetrische Funktionen}? 
+  Wie kann man ihn mit Hilfe des Satzes über zwiebelweise Integration beweisen?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet: \satz{Ist $f\fd \RR_+ \to\RR$ eine Funktion, für 
+    welche die Funktion 
+    \[
+    g\fd \RR^n\to\RR,\qquad 
+    x\mapsto g(x) := f( \n{x}_2 )
+    \]
+    über $\RR^n$ integrierbar ist, dann gilt
+    \[
+    \Int_\RR g(x) \dd^n x = 
+    \Int_{\RR^n} f( \n{x}_2 ) \dd^n x =  
+    \omega_n \Int_0^\infty f(r)r^{n-1} \dd r.
+    \]
+  } 
+  
+  \noindent
+  Der Satz ergibt sich mit dem Satz über zwiebelweise Integration 
+  folgendermaßen:  
+  \begin{align}
+    \Int_{\RR^n} f( \nnb{x}_2 ) \dd^n x &= 
+    \Int_0^\infty 
+    \Big( \Int_{S^{n-1}} f( r \n{x}_2 ) \dd S \Big) r^{n-1}\dd r \notag
+    \\ 
+    &=\Int_0^\infty 
+    \Big( \Int_{S^{n-1}} f( r )  \dd S \Big) r^{n-1}\dd r =
+    \Int_0^\infty r^{n-1} f( r )r^{n-1} \dd r \cdot 
+    \Int_{S^{n-1}}  1 \dd S.
+    \EndTag
+  \end{align}
+\end{antwort} 
+
+
+
+
+

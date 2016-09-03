@@ -1,0 +1,923 @@
+\chapter{Funktionenfolgen, Funktionenreihen, 
+Potenzreihen}\label{funktionenfolgen}
+
+Bei C.\,F. Gauß (Werke 3, S. 198) findet sich die 
+folgende Bemerkung\index{Gauss@\textsc{Gauss}, Carl Friedrich (1777-1855)}
+\begin{quote}
+"`Die transzendenten Funktionen haben ihre wahre Quelle 
+allemal, offenliegend oder versteckt, im Unendlichen. 
+Die Operationen des Integrierens, der Summation unendlicher 
+Reihen $\ldots$ oder überhaupt die Annäherung an eine 
+Grenze durch Operationen, die nach bestimmten 
+Gesetzen \slanted{ohne Ende} festgesetzt werden -- dies ist der 
+eigentliche Boden, auf dem die transzendenten Funktionen 
+erzeugt werden $\ldots$."'
+\end{quote}
+Durch endlich häufige Anwendung der vier Grundrechenarten 
+erhält man aus der identischen Funktion und den konstanten 
+Funktionen \slanted{Polynome} und \slanted{rationale Funktionen}, 
+die in ihrem jeweiligen Definitionsbereich stetig sind. 
+Alle anderen wichtigen Funktionen, die nicht zu dieser Klasse gehören,
+erhält man dagegen erst durch (zum Teil mehrfache) 
+Grenzprozesse. So ist etwa die Exponentialfunktion 
+$\exp\fd \CC\to\CC$ für jedes $z\in\CC$ 
+durch den Grenzwert der Folge  
+$\left( \left( 1+\frac{z}{n} \right )^n \right)$ bzw. der Folge 
+$\left( \sum_{k=0}^n \frac{z^k}{k!} \right)$ definiert. 
+
+Ausgangspunkt aller Grenzprozesse bei Funktionenfolgen $(f_n)$ mit 
+$f_n\fd D\to\KK$ ist der Begriff der \slanted{punktweisen Konvergenz}, 
+der die Situation beschreibt, dass die Folgen $(f_n(x))$ für jedes $x\in D$ im 
+Sinne der für Zahlenfolgen eingeführten Definition konvergieren. 
+Durch die Festsetzung $f(x):=\lim f_n(x)$ wird unter dieser Voraussetzung  
+eine Funktion $f \fd D \to \KK$ definiert. Naheliegende 
+Fragestellungen sind nun:
+{\setlength{\labelsep}{4mm}
+\begin{itemize}
+\item[\desc{i}] Übertragen sich die "`guten"' Eigenschaften wie Stetigkeit, 
+Differenzierbarkeit, Integrierbarkeit der $f_n$ auf 
+die Grenzfunktion $f$?
+\item[\desc{ii}] Unter welchen Bedingungen ist die 
+"`Vertauschung von Grenzprozessen"' gerechtfertigt, {\dasheisst},  
+wann gelten Beziehungen etwa von der Art
+\[
+\lim_{n\to\infty} f_n'(x) = f'(x)  
+\quad\text{oder}\quad 
+\lim_{n\to\infty} \int_a^b  f_n(x) \difx = 
+\int_a^b f(x) \difx\quad\text{?}
+\]
+\end{itemize} }
+\noindent
+Einfache Beispiele zeigen, dass der Begriff der punktweisen 
+Konvergenz zu schwach ist, um die Gültigkeit solcher Übertragungs- 
+und Vertauschungsbeziehungen zu gewähr\-lei\-sten. Aus diesem 
+Grund nimmt man Zuflucht zum stärkeren Begriff der 
+\slanted{gleichmäßigen Konvergenz}, den man elegant mithilfe der 
+\slanted{Supremumsnorm} beschreiben kann.
+
+Die gleichen Fragestellungen lassen sich auch im Bezug auf 
+Funktionen\slanted{reihen} $\left(\sum_{k=0}^n f_k \right)$ stellen, zu 
+deren wichtigsten Vertretern die Potenzreihen zählen. 
+Aufgrund der speziellen Bauart von Reihen 
+gibt es zahlreiche Kriterien für deren punktweise bzw. 
+gleichmäßige Konvergenz, deren bedeutendstes (in Bezug auf gleichmäßige 
+Konvergenz) der \slanted{Weierstraß'sche Majorantentest} ist. 
+
+Es sei noch darauf hingewiesen, dass bei der 
+Untersuchung von Funktionenreihen die Terminologie in den Lehrbüchern 
+leider nicht immer einheitlich gehalten ist. Man muss die manchmal 
+kleinen, aber feinen Unterschiede beachten.  
+
+
+\section{Punktweise und gleichmäßige Konvergenz}
+
+%% --- 1 --- %%
+\begin{frage}\label{04_glk}\index{Konvergenz!gleichmäßige}
+\index{Konvergenz!punktweise}
+Wann heißt eine Folge $(f_n)$ von Funktionen $f_n \fd D \to \KK$ 
+($\emptyset \not= D \subset \KK$) \bold{punktweise}, wann 
+\bold{gleichmäßig konvergent}?
+\end{frage}
+
+\begin{antwort}
+\slanted{Punktweise Konvergenz} einer Funktionenfolge $(f_n)$
+bedeutet, dass die Folge $(f_n(x))$ der Funktionswerte für 
+jedes $x\in D$ im Sinne einer reellen oder komplexen Zahlenfolge 
+konvergiert. Bezeichnet man mit $f(x)$ den Grenzwert der Folge $(f_n(x))$, 
+so heißt das also: Zu jedem $x\in D$ und jedem 
+$\eps >0$ existiert ein $N:=N(x,\eps) \in \NN$, sodass gilt
+\[
+| f_n (x) - f(x) | < \eps  \qquad\text{für alle $n>N$}.
+\]
+Man beachte, dass in diesem Fall die Schranke $N$ sowohl von $\eps$ 
+\slanted{als auch von $x$} abhängig ist. Hierin liegt der Unterschied 
+zur gleichmäßigen Konvergenz. 
+
+Ist die Folge $(f_n)$ \slanted{gleichmäßige konvergent}, so gibt es 
+zu jedem $\eps >0$ eine \slanted{von $x$ unabhängige, universelle Schranke}
+$N:=N(\eps)$, sodass gilt 
+\[
+| f_n (x) - f(x ) | < \eps \qquad\text{für alle $n>N$ und alle $x\in D$}.\EndTag
+\] 
+\end{antwort}
+
+%% --- 2 --- %%
+\begin{frage}
+Wie lauten die Definitionen für punktweise bzw. 
+gleichmäßige Konvergenz in Quantorenschreibweise? 
+\end{frage}
+
+\begin{antwort}
+ Dir Definitionen lauten:
+\begin{align}
+\forall \eps > 0\; \forall x\in D\;  
+\exists N\in\NN\; \forall n > N:\;| f_n(x)-f(x) | < \eps &\qquad 
+\text{(punktweise)} \notag \\
+\forall \eps > 0\;  \exists N\in\NN\;
+\forall n > N\; \forall x\in D:\; | f_n(x)-f(x) | < \eps &\qquad 
+\text{(gleichmäßig)} \EndTag 
+\end{align}
+\end{antwort} 
+
+%% --- 3 --- %%
+\begin{frage}\label{04_gbsp}\index{Grenzfunktion einer Funktionenfolge}
+Können Sie ein einfaches Beispiel für eine Folge $(f_n)$ von 
+auf $D:= [0,1]$ stetigen Funktionen $f_n\fd D \to \RR$ angeben, für welche 
+die Grenzfunktion $f$ nicht stetig ist? Analysieren Sie den Grund für die 
+Unstetigkeit.
+\end{frage}
+ 
+
+\begin{antwort}
+Ein Beispiel liefert die Folge $(f_n)$ mit 
+$f_n(x) =x^n$, \sieheAbbildung\ref{fig:04_glm1}. 
+Jede Funktion $f_n$ ist stetig auf $[0,1]$. 
+Die punktweise gebildete Grenzfunktion $f\fd [0,1]\to\RR$ 
+mit 
+\[
+f(x)= \left\{ \begin{array}{ll}
+0 & \text{für $0\le x < 1$} \\
+1 & \text{für $x=1$,} 
+\end{array}\right.
+\]
+ist dagegen unstetig im Punkt $1$. 
+
+\begin{center}
+  \includegraphics{mp/04_glm1}
+  \captionof{figure}{Die Grenzfunktion dieser Folge stetiger 
+    Funktionen ist nicht stetig.}
+  \label{fig:04_glm1}
+\end{center}
+
+Die Ursache für dieses Phänomen liegt darin, 
+dass die Funktionenfolge $(x^n)$ auf $[0,1]$ 
+nicht \slanted{gleichmäßig} konvergiert. 
+
+Für jedes $n\in\NN$ ist der maximale Abstand des Graphen von 
+$f_n$ zu dem benachbarten Graphen von $f_{n+1}$ größer als 
+eine bestimmte positive Zahl. Wegen der 
+Stetigkeit der $f_n$ gibt es nämlich zu jedem $n\in\NN$ 
+einen Punkt $x\in[0,1]$ mit $x^n=\frac{1}{2}$. 
+Dann gilt $x^{n+1}=\frac{1}{4}$ und 
+$|x^{n+1}-x^n|=\frac{1}{4}$. Damit erfüllt die Folge $(f_n)$ 
+nicht das Cauchy-Kriterium für gleichmäßige Konvergenz, das in Frage 
+\ref{04_cau} beschrieben wird. 
+\AntEnd
+\end{antwort}
+
+%% --- 4 --- %%
+\begin{frage}\label{04_glmdiff}
+\index{Grenzfunktion einer Funktionenfolge}
+Begründen Sie, warum die Funktionenfolge $(f_n)$ mit 
+$f_n (x) := \frac{\sin nx}{\sqrt{n}}$
+gleichmäßig gegen die Nullfunktion konvergiert, 
+die Folge $(f_n')$ der Ableitungen aber divergiert. 
+(Hier wird der Ableitungsbegriff als bekannt vorausgesetzt.) 
+\end{frage}
+
+\begin{antwort}
+Für $\eps > 0$ gilt 
+\[
+\left| \frac{\sin nx}{\sqrt{n}} \right| \le \frac{1}{\sqrt{n}} 
+< \eps \qquad\text{für $n>\frac{1}{\eps^2}$}. 
+\]
+Die Funktionenfolge $(f_n)$ konvergiert somit auf ganz $\RR$ 
+gegen die Nullfunktion, und da die gegebene Abschätzung 
+unabhängig vom Punkt $x$ ist, konvergiert sie dort sogar gleichmäßig gegen 
+$f(x)\equiv 0$.
+
+Die Folge der Ableitungen 
+$f_n' = \sqrt{n}\cos n x$ divergiert allerdings für jedes $x$. Denn aus 
+$\lim\limits_{n\to\infty} \sqrt{n}\cos n x = a\in\RR$ würde wegen 
+$\lim\limits_{n\to\infty} \sqrt{n} =\infty$ 
+zunächst 
+$\lim\limits_{n\to\infty} \cos nx =0$ und damit auch 
+$\lim\limits_{n\to\infty} \cos 2n x=0$ folgen. 
+Mit dem Addtionstheorem für die Cosinus-Funktion 
+(vgl. Frage \ref{05_trei} Teil (5))
+gilt aber $\cos 2n x= 2\cos^2 nx -1$. Zusammen ergäbe sich  
+der Widerspruch $0=-1$. 
+\AntEnd   
+\end{antwort}
+
+%% --- 5 --- %%
+\begin{frage}\label{04_glmint}
+\index{Grenzfunktion einer Funktionenfolge}
+Können Sie für die in Abbildung~\ref{fig:04_glmint} angedeutete 
+Folge von Funktionen zeigen,  dass der Grenzwert der Integrale 
+$\int_0^2 f_n$ nicht mit dem Integral der Grenzfunktion 
+$\int_0^2 f$ übereinstimmt, also den Zusammenhang
+\[
+\int_0^2 \left( \limm f_n(x) \right) \difx \not= \limm \int_0^2 f_n(x)\difx.
+\]
+(Hier wird die Integration vorausgesetzt.)
+\end{frage}  
+
+
+\begin{antwort}
+Für die Integrale der $f_n$ gilt 
+\[
+\int_0^2 f_n(x)\difx = 
+\int_0^{1/n} f_n(x) \difx + \int_{1/n}^{2/n} f_n(x) \difx = 1
+\quad\text{für alle $n\in \NN$}.
+\]
+Die Folge der Integrale konvergiert somit gegen $1$. 
+Dagegen konvergiert die Folge $(f_n)$ punktweise gegen die 
+Funktion $f(x)\equiv 0$, 
+und für deren Integral gilt freilich $\int_0^2 f(x)\difx =0$.
+
+\begin{center}
+  \includegraphics{mp/04_glmint}
+  \captionof{figure}{Das Integral jeder Funktion $f_n$ ist 1, das Integral der 
+    Grenzfunktion jedoch 0.}
+  \label{fig:04_glmint}
+\end{center}
+
+Dass die Vertauschung des Grenzprozesses hier nicht zulässig ist, 
+hängt wiederum mit der nicht gleichmäßigen Konvergenz der 
+Folge $(f_n)$ zusammen. Diese wiederum ist offensichtlich, 
+da die Maximalwerte von $f_n$ und $f_{n+1}$ 
+sich für alle $n\in\NN$ um den Wert $n$ unterscheiden.   
+\AntEnd 
+\end{antwort}
+
+%% --- 6 --- %%
+\begin{frage}\label{04_gsup}\index{Supremumsnorm}
+Wie kann man die gleichmäßige Konvergenz mithilfe der 
+\bold{Supremumsnorm} ${\| f \|}_D := \sup \{ |f(x)|;\; x\in D\}$  
+beschreiben?
+\end{frage}
+
+\begin{antwort}
+Die Äquivalenz
+\[
+|f_n(x)-f(x)|< \eps \quad\text{für alle $x\in D$}\quad  
+\LLa
+{\| f_n-f \|}_D < \eps.  
+\]
+ermöglicht folgende Definition der gleichmäßigen Konvergenz: \slanted{
+Eine Folge von Funktionen $f_n\fd D\to \RR$ konvergiert gleichmäßig 
+gegen $f$ genau dann, wenn für alle $\eps>0$ ein $N\in \NN$ existiert, 
+sodass für alle $n>N$ gilt: $\| f_n-f \|_D < \eps.$} \AntEnd
+\end{antwort}
+
+
+
+%% --- 7 --- %%
+\begin{frage}\index{eps@$\eps$-Schlauch}
+Wie kann man die gleichmäßige Konvergenz im Fall reellwertiger Funktionen 
+mithilfe des "`$\eps$-Schlauches"' veranschaulichen?
+\end{frage}
+
+\begin{antwort}
+Bei gleichmäßiger Konvergenz verlaufen die Graphen der $f_n$ ab einem 
+bestimmten Index $N$ alle innerhalb des $\eps$-Schlauches 
+\[
+\{ (x,y)\in D\times \RR; \; |y-f(x)| < \eps \}.
+\] 
+
+\picskip{3}\noindent
+Abbildung\ref{fig:04_schlauch} zeigt den grau gezeichneten Graphen von $f$ mit  
+$\eps$-Schlauch und eine der Annäherungsfunktionen $f_n$ mit $n>N$.\AntEnd
+
+\begin{center}
+  \includegraphics{mp/04_schlauch}
+  \captionof{figure}{$\eps$-Schlauch einer reellen Funktion $f$.}
+  \label{fig:04_schlauch}
+\end{center}
+\end{antwort}
+
+%% --- 8 --- %%
+\begin{frage}\label{04_cau}\index{Cauchy-Kriterium!für gleichmäßige Konvergenz}
+Wie lautet das \bold{Cauchy-Kriterium} für gleichmäßige Konvergenz?
+\end{frage}
+
+\begin{antwort}
+Mit diesem Kriterium lässt sich die gleichmäßige Konvergenz einer 
+Funktionenfolge ohne Bezug auf eine eventuelle Grenzfunktion untersuchen. 
+Es besagt: 
+
+\medskip
+\noindent\satz{Eine Folge $(f_n)$ von Funktionen 
+$f_n\fd D\to \RR$ konvergiert gleichmäßig genau 
+dann, wenn zu jedem $\eps>0$ ein $N\in n$ existiert, sodass 
+für alle $m,n>N$ gilt:
+\begin{equation}
+\| f_n- f_m\| <\eps.\notag
+\end{equation}}
+Wie in den anderen Versionen beweist man auch dieses Cauchy-Kriterium 
+unter Ausnutzung der 
+Eigenschaften der Norm mit einfachen Standardmethoden.  
+\AntEnd
+\end{antwort}
+
+%% --- 9 --- %%
+\begin{frage}\label{04_stet}\index{Grenzfunktion einer Funktionenfolge}
+Warum ist für eine \bold{gleichmäßig konvergente} Folge 
+von stetigen Funktionen $f_n \fd D\to \KK$ die Grenzfunktion $f$ ebenfalls 
+stetig?
+\end{frage}
+
+\begin{antwort}
+ Sei $a$ ein beliebiger Punkt aus $D$. Es geht darum, zu zeigen, 
+dass $f$ in $a$ stetig ist.  
+Wegen der gleichmäßigen Konvergenz der $f_n$ 
+gibt es ein $N\in \NN$, sodass  
+\[
+|f_N(x)-f(x)|<\eps/3
+\qquad\text{für jedes $x\in D$}
+\] 
+gilt. Mit der Dreiecksungleichung folgt daraus 
+\begin{align*}
+|f(x)-f(a)| &\le |f(x)-f_N(x)| + |f_N(x)-f_N(a)| + |f_N(a)-f(a)| \\
+&< |f_N(x)-f_N(a)| + \frac{2}{3}\eps. 
+\end{align*}
+Nun ist $f_N$ nach der Voraussetzung stetig, und somit 
+gibt es ein $\delta>0$ derart, dass für alle $x\in U_\delta(a)$ 
+die Differenz $|f_N(x)-f_N(a)|$ 
+ebenfalls kleiner als $\eps/3$ ausfällt. Insgesamt folgt  
+\[
+|f(x)-f(a)| < \eps \qquad\text{für alle $x\in U_\delta(a)$},
+\]
+also die Stetigkeit von $f$ in $a$.
+\AntEnd
+\end{antwort}
+
+%% --- 10 --- %%
+\begin{frage}\index{Konvergenz!bei Funktionenreihen}
+Wie wird die punktweise bzw. gleichmäßige Konvergenz bei Funktionenreihen 
+erklärt?
+\end{frage}
+
+\begin{antwort}
+Für eine Funktionenreihe $\sum_{k} f_k$ erklärt man diese Begriffe, 
+indem man die in Frage \ref{04_glk} gegebene Definition 
+auf die Folge der Partialsummenfunktionen 
+$\left( \sum_{k=0}^n f_k \right)$ anwendet. 
+
+Eine Reihe $\sum_k f_k$ von Funktionen 
+$f\fd D\to \KK$ konvergiert somit 
+\slanted{punktweise} gegen die 
+Funktion $f$, wenn zu jedem $\eps>0$ und jedem $x\in D$ 
+ein $N\in\NN$ existiert, sodass gilt:
+\[
+\left| f(x) - \sum_{k=0}^n f_k(x) \right| < \eps 
+\qquad\text{für alle $n>N$}. 
+\]
+Die Funktionenreihe 
+konvergiert \slanted{gleichmäßig}, 
+wenn die Schranke $N$ unabhängig von $x$ gewählt 
+werden kann, wenn also zusätzlich gilt:
+\begin{equation}
+\left| f(x) - \sum_{k=0}^n f_k(x)\right| < \eps 
+\qquad\text{für alle $n>N$ und alle $x\in D$}. \EndTag
+\end{equation}
+\end{antwort}
+
+%% --- 11 --- %%
+\begin{frage}\label{04_caur}
+\index{Cauchy-Kriterium!für gleichmäßige Konvergenz}
+Wie lautet das Cauchy-Kriterium für die gleichmäßige Konvergenz einer 
+Funktionenreihe?
+\end{frage}
+
+\begin{antwort}
+Das Cauchy-Kriterium lautet: 
+
+\medskip
+\noindent\satz{Eine Funktionenreihe 
+$\sum_k f_k$ mit $f_k\fd D\to\RR$ konvergiert 
+gleichmäßig genau dann, wenn zu jedem $\eps > 0$ ein $N\in\NN$ existiert, 
+sodass für alle $n,m>N$ mit $n>m$ gilt 
+\[
+\left\| \sum_{k=0}^n f_k - \sum_{k=0}^m f_k \right\|_D = 
+\left\| \sum_{k=m+1}^n f_k  \right\|_D <\eps.
+\]}
+\noindent
+Dieses Kriterium ist eine unmittelbare Folge des Cauchy-Kriteriums 
+für Funktionenfolgen.  
+\AntEnd
+\end{antwort}
+
+%% --- 12 --- %%
+\begin{frage}\index{absolute Konvergenz}
+\index{Konvergenz!absolute}\index{Konvergenz!absolut gleichmäßige}
+Wann heißt eine Funktionenreihe $\sum f_k$ auf $D$ \bold{absolut konvergent} 
+bzw. \bold{absolut gleichmäßig konvergent}?
+\end{frage}
+
+\begin{antwort}
+Eine Funktionenreihe $\sum f_k$ heißt 
+\slanted{absolut konvergent}, wenn die 
+Reihe $\sum |f_k|$ für alle $x\in D$ punktweise konvergiert, 
+sie heißt \slanted{absolut gleichmäßig konvergent}, 
+wenn $\sum |f_k|$ gleichmäßig konvergiert.
+\AntEnd
+\end{antwort}
+
+%% --- 13 --- %%
+\begin{frage}\label{04_abgl}
+Wieso folgt aus absolut gleichmäßiger Konvergenz die gleichmäßige 
+Konvergenz?
+\end{frage}
+
+\begin{antwort}
+Ist $\sum f_k$ absolut gleichmäßig konvergent, so gilt  
+$\sum_{k=m}^n |f_k(x)|<\eps$ für alle 
+$x\in D$ und alle $n,m\in\NN$ mit $n>m>N$ mit einem hinreichend großen 
+$N$. Daraus folgt $
+\left| \sum_{k=m}^n f_k(x) \right| \le 
+\sum_{k=m}^n |f_k(x)| < \eps$ für alle $x\in D$ und alle 
+$m,n>N$ mit $n>m$. 
+Die Reihe $\sum f_k$ konvergiert somit gleichmäßig aufgrund des 
+Cauchy-Kriteriums aus Frage \ref{04_caur}.
+\AntEnd 
+\end{antwort}
+
+%% --- 14 --- %%
+\begin{frage}\index{Konvergenz!normale}\index{normal konvergent}
+Wann heißt eine Reihe $\sum_n f_n$ von Funktionen 
+$f_n \fd D\to \RR$ auf einem Intervall $D\subset\RR$ 
+\bold{normal konvergent}?
+\end{frage}
+
+\begin{antwort}
+Die Reihe heißt \slanted{normal konvergent}, wenn jeder Summand 
+$f_n$ auf $D$ beschränkt und die Reihe der Normen bezüglich 
+$D$ konvergiert: $\sum_{n=1}^\infty \n{f}_D  < \infty$.
+\AntEnd
+\end{antwort}
+
+%% --- 15 --- %%
+\begin{frage}
+Bei verschiedenen Lehrbuchautoren werden im Zusammenhang mit der Konvergenz 
+von Funktionenreihen $\sum f_k$ folgende Konvergenzbegriffe verwendet: 
+
+\medskip
+\begin{tabular}{lp{3mm}l}
+\rule{4pt}{4pt}\quad punktweise Konvergenz & &
+\rule{4pt}{4pt}\quad gleichmäßige Konvergenz \\
+\rule{4pt}{4pt}\quad absolut gleichmäßige Konvergenz & &
+\rule{4pt}{4pt}\quad normale Konvergenz
+\end{tabular}
+
+\medskip\noindent%
+Ge Sie je ein Beispiel für eine 
+\bold{punktweise konvergente} 
+Funktionenreihe angeben, die 
+\begin{itemize}[4mm]
+\item[\desc{1}] gleichmäßig und absolut konvergiert.\\[-4mm]
+\item[\desc{2}] gleichmäßig und nicht absolut konvergiert.\\[-4mm]
+\item[\desc{3}] nicht gleichmäßig und absolut konvergiert.\\[-4mm]
+\item[\desc{4}] nicht gleichmäßig und nicht absolut konvergiert.\\[-4mm]
+\item[\desc{5}] in jedem kompakten Teilintervall $[a,b]\subset D$ 
+gleichmäßig, aber in $D$ nicht normal konvergiert.
+\end{itemize}
+\end{frage}
+
+
+\begin{antwort}
+\desc{1} Die Reihe $\sum  x^k$ konvergiert 
+gleichmäßig und absolut auf jedem kompakten Intervall 
+$[a,b]\subset \open{-1,1}$.  
+Die gleichmäßige Konvergenz folgt dabei aus der Konvergenz der 
+Reihe $\sum M^k$ mit $M:=\max\{|a|,|b|\}$. Für ein hinreichend 
+großes $N\in\NN$ gilt $\sum_{k=n}^m M^k < \eps$ für alle $n,m>N$, 
+und wegen $|x| \le M$ für alle $x\in [a,b]$ folgt $\sum_{k=n}^m |x|^k < \eps$ 
+für alle $x\in \open{a,b}$ und alle $n,m>N$ mit $m>n$. 
+Mit dem Cauchy-Kriterium aus Frage \ref{04_cau} 
+und dem Ergebnis von Frage \ref{04_abgl} folgt daraus die 
+gleichmäßige Konvergenz von $\sum x^k$ auf $[a,b]$. 
+
+\medskip
+\noindent
+\desc{2} Die Reihe $\sum x^k/k$ konvergiert gleichmäßig auf jedem 
+kompakten Intervall $[-1,a]$ mit $a<1$. Auf dem Intervall $\open{-1,a}$ 
+folgt die (sogar absolute) Konvergenz durch Vergleich mit 
+der geometrischen Reihe. Im Fall $x=-1$ handelt es sich um die alternierende 
+harmonische Reihe, die konvergiert, aber nicht absolut konvergiert. 
+
+\medskip
+\noindent
+\desc{3} Die Reihe $\sum x^k$ konvergiert absolut für jedes 
+$x\in \open{-1,1}$. 
+Sie konvergiert auf dem Intervall $\open{-1,1}$ 
+allerdings nicht gleichmäßig, denn für $x>1/2$ gilt 
+\[
+\left| \sum_{k=N}^\infty x^k \right|  =  
+x^N \sum_{k=0}^\infty x^k > \frac{1}{2^N}\cdot \frac{1}{1-x}. 
+\]  
+Der Term rechts ist unbeschränkt für $x\to 1$, es kann also kein 
+$N\in\NN$ geben, für das $\left|\sum_{k=N}^\infty x^k\right|< \eps$ 
+für alle $x\in \open{-1,1}$ gilt. Die Reihe hat somit nicht die 
+Cauchy-Eigenschaft aus Frage \ref{04_cau} und kann daher nicht 
+gleichmäßig konvergent sein.
+
+\medskip
+\noindent
+\desc{4} 
+Aus der Kombination von Teilantwort (2) und (3) folgt, 
+dass die Reihe $\sum_k x^k$ im Intervall $\ropen{-1,1}$ zwar konvergiert, 
+aber weder gleichmäßig noch absolut. 
+
+\medskip
+\noindent
+\desc{5} Die Reihe $\sum x^k$ ist gleichmäßig konvergent auf 
+jedem kompakten Teilintervall von $\open{-1,1}$, aber wegen 
+$\| x^k \|_{\open{-1,1}} = 1$ kann sie im Intervall $\open{-1,1}$ 
+nicht normal konvergieren.
+\AntEnd
+  
+ 
+\end{antwort}
+%% --- 16 --- %%
+\begin{frage}\label{04_norm}
+\index{Konvergenz!normale}
+\index{Konvergenz!absolute}
+\index{Konvergenz!gleichmäßige}
+Warum folgt aus der normalen Konvergenz einer Funktionenreihe die 
+absolute und die gleichmäßige Konvergenz der Reihe?
+\end{frage}
+
+\begin{antwort}
+ Konvergiert die Reihe $\sum f_k$ normal, so besitzen die 
+Reihen $\sum | f_k(x) |$ für jedes $x\in D$ in $\sum \| f_k \|$ eine 
+konvergente Majorante und sind damit ebenfalls konvergent. Die Reihe 
+$\sum f_k$ konvergiert also absolut.
+
+Ferner gilt dann für jedes $\eps>0$ und hinreichend großes $N\in\NN$ 
+\[
+\left| \sum_{k=n}^\infty f_k(x) \right| \le 
+\sum_{k=n}^\infty | f(x) | \le
+\sum_{k=n}^\infty \| f_k \|_D < \eps\qquad 
+\text{für alle $n>N$ und alle $x\in D$},
+\]
+und somit konvergiert $\sum f_k$ nach dem Cauchy-Kriterium gleichmäßig.
+\AntEnd 
+\end{antwort}
+
+%% --- 17 --- %%
+\begin{frage}
+\index{Weierstrassches Majorantenkriterium@
+Weierstraß'sches Majorantenkriterium}
+\index{Majorantenkriterium!für eine Funktionenreihe}
+\index{Weierstrass@\textsc{Weierstra{\ss}}, Karl (1815-1897)}
+Was besagt das \bold{Weierstraß'sche Majorantenkriterium} für die 
+normale Konvergenz einer Funktionenreihe?
+\end{frage}
+
+\begin{antwort}
+Das Kriterium besagt: 
+
+\medskip\noindent
+\slanted{Gilt für eine Funktionenreihe $\sum f_k$ für 
+jedes $k\in \NN$ und jedes $x\in D$ die Ungleichung $|f_k(x)| \le c_k$ 
+und konvergiert die Reihe $\sum c_k$, 
+so konvergiert die Funktionenreihe $\sum f_k$ normal und damit gleichmäßig auf $D$.}
+
+\medskip\noindent
+Dieses Kriterium erhält man durch eine Anwendung  
+des Majorantenkriteriums für reelle oder 
+komplexe Zahlenfolgen auf die Reihe $\sum \| f_k \|_D$. 
+Diese besitzt unter den gegebenen Bedingungen in $\sum c_k$ eine 
+konvergente Majorante und ist damit selbst konvergent. 
+Nach der Antwort zu Frage \ref{04_norm} 
+folgt daraus die gleichmäßige Konvergenz von $\sum f_k$.\AntEnd
+\end{antwort} 
+  
+
+\section{Potenzreihen}
+
+\slanted{Potenzreihen} wurden schon in Abschnitt \index{Potenzreihe}
+\ref{elmenentare_potenzreihen} als Reihen 
+bestimmter Bauart eingeführt (vgl. Frage \ref{02_potr}\,ff.).
+
+Ein Aspekt, der in diesem Kapitel allerdings noch nicht 
+deutlich werden konnte, war die Rolle, 
+die Potenzreihen als spezielle \slanted{Funktionenfolgen bzw. -reihen} 
+spielen. Auf der Menge aller $z\in\CC$, für 
+die eine Potenzreihe $\sum_k c_k(z-a)^k$ konvergiert, 
+definiert sie eine Funktion, die sich hinsichtlich ihrer spezifischen 
+Funktionseigenschaften wie Stetigkeit, 
+Differenzierbarkeit usw. untersuchen lässt. Es zeigt sich, dass 
+die durch Potenzreihen gegebenen Funktionen alle diese angenehmen 
+Eigenschaften besitzen. 
+Potenzreihen stellen daher eines der wirkungsvollsten Mittel der Analysis dar, 
+um neue Funktionen zu definieren bzw. konstruieren 
+oder andere, die zunächst nur durch 
+bestimmte Eigenschaften charakterisiert und gegeben sind, 
+durch einen durchschaubaren analytischen Ausdruck darzustellen, 
+mit dem sich "`fast"' so rechnen lässt wie mit Polynomen. Die 
+Klasse derjenigen Funktionen, die sich durch Potenzreihen darstellen 
+lässt, nennt man daher auch \slanted{analytische Funktionen}.
+
+
+%% --- 18 --- %%
+\begin{frage}\index{Potenzreihe}
+Was versteht man unter einer \bold{Potenzreihe} in $\KK$ 
+(mit $\KK=\RR$ oder $\KK=\CC$)?
+\end{frage}
+
+\begin{antwort}
+Eine \slanted{Potenzreihe} im Punkt $z\in \KK$ zum Entwicklungspunkt 
+$a\in \KK$ ist eine Reihe der Gestalt  
+\[
+\sum_{k=0}^\infty c_k(z-a)^k,\quad{a_k \in \KK}.
+\]
+Bezeichnet $D$ die Menge aller $z\in\KK$, für die die Potenzreihe 
+konvergiert, so ist durch 
+\[
+P(z) := \sum_{k=0}^\infty c_k(z-a)^k
+\]
+eine Funktion $P\fd D\to\KK$ definiert. 
+\AntEnd
+\end{antwort}
+
+%% --- 19 --- %%
+\begin{frage}\index{Konvergenzradius}
+Was versteht man unter dem \bold{Konvergenzradius} einer Potenzreihe?
+\end{frage}
+
+\begin{antwort}
+ Nach Frage \ref{02_kok} gibt es zu jeder Potenzreihe 
+$\sum a_k(z-a)^k$ ein $R\in \RR_+\cup\{\infty\}$, sodass die Reihe für alle 
+$z\in U_R(a)$ konvergiert (sogar absolut) und außerhalb davon 
+divergiert. 
+Die Zahl $R$ nennt man den \slanted{Konvergenzradius} der Potenzreihe. 
+
+Die durch 
+\[
+P(z):=\sum_{k=0}^\infty a_k(z-a)^k
+\]
+definierte Funktion ist somit 
+zumindest auf der Menge $U_R(a)$ definiert. Unter Umständen  
+macht diese Definition auch noch auf dem Rand von $U_R(a)$ Sinn, 
+allerdings nur unter bestimmten Bedingungen. Der in Frage 
+\ref{04_abel} besprochene \slanted{Abel'sche Grenzwertsatz}
+ liefert dazu für 
+reelle Potenzreihen ein erstes Ergebnis.\AntEnd 
+  
+\end{antwort}
+
+%% --- 20 --- %%
+\begin{frage}\index{Cauchy-Hadamard Formel}
+\index{Konvergenzradius}
+Welche Formeln zur Ermittlung des Konvergenzradius einer 
+Potenzreihe sind Ihnen geläufig?
+\end{frage}
+
+\begin{antwort}
+ Wichtig sind hier 
+die Formeln von Cauchy-Hadamard und Euler, die 
+jeweils eine Folge des Wurzel- bzw. Quotientenkriteriums für 
+reelle oder komplexe Zahlenreihen sind. Sie wurden bereits in Frage 
+\ref{02_kokf} formuliert und bewiesen.
+\AntEnd
+\end{antwort}
+
+%% --- 21 --- %%
+\begin{frage}\label{04_part}\index{partielle Summation}
+Wie lässt sich eine Funktionenreihe $\sum_k a_k f_k$ mittels 
+\bold{partieller Summation} darstellen?
+\end{frage}
+
+\begin{antwort}
+Die \slanted{partielle Summation} einer Funktionenreihe 
+lässt sich als diskrete Variante 
+der aus der Integralrechnung bekannten \slanted{partiellen 
+Integration} verstehen. 
+
+Seien $a_1,\ldots, a_n$ und $f_1,\ldots,f_n$ beliebige 
+Zahlen oder Funktionen (wobei man sich natürlich 
+hauptsächlich für den Fall interessiert, dass diese als Glieder einer 
+Folge gegeben sind). Mit $A_k := \sum_{j=1}^k a_j$ gilt dann
+\[
+\boxed{
+\sum_{k=1}^n a_k f_k = \sum_{k=1}^n A_k ( f_k-f_{k+1} ) + A_n f_{n+1}, }
+\]
+wobei $f_{n+1}$ sogar beliebig gewählt werden kann.
+
+Der Beweis ergibt sich rein rechnerisch durch Manipulation 
+endlicher Summen. Setzt man $A_0 :=0$, so gilt $a_k=(A_k-A_{k-1})$ 
+für alle $k\in\{ 1,\ldots n \}$. Durch geeignetes Zusammenfassen  
+der Summanden und Indexverschiebungen erhält man
+\begin{align}
+\sum_{k=1}^n a_k f_k &= 
+\sum_{k=1}^n ( A_k-A_{k-1} ) f_k = 
+\sum_{k=1}^n A_k f_k - \sum_{k=1}^n A_{k-1} f_k \notag \\
+&=
+\sum_{k=1}^n A_k f_k -\sum_{k=1}^{n-1} A_k f_{k+1} = 
+\sum_{k=1}^n A_k f_k -\sum_{k=1}^{n} A_k f_{k+1} + A_n f_{n+1} \notag \\ 
+&= 
+\sum_{k=1}^n A_k ( f_k-f_{k+1} ) + A_n f_{n+1}.\EndTag
+\end{align}
+\end{antwort}
+
+%% --- 22 --- %%
+\begin{frage}
+Warum haben die Potenzreihen
+\[
+\sum \frac{z^k}{k!},\quad
+\sum (-1)^k \frac{z^{2k}}{(2k)!},\quad
+\sum (-1)^k \frac{z^{k+1}}{(2k+1)!},\quad
+\sum \frac{z^{2k}}{(2k)!},\quad
+\sum \frac{z^{2k+1}}{(2k+1)!}
+\]
+alle den Konvergenzradius $R=\infty$? 
+\end{frage}
+
+\begin{antwort}
+Die Exponentialreihe $\sum \frac{z^k}{k!}$ 
+konvergiert absolut für jedes $z\in \CC$, was in Frage 
+\ref{02_expd} gezeigt wurde. 
+Hieraus ergibt sich auch für jedes $z\in \CC$ die absolute 
+Konvergenz der anderen vier Reihen, da die Beträge von deren Summanden 
+alle auch in der Reihe $\sum \left| \frac{z^k}{k!}\right|$ vorkommen. 
+Jede der vier Reihen besitzt also in der Exponentialreihe eine konvergente 
+Majorante.   
+\AntEnd
+\end{antwort}
+
+%% --- 23 --- %%
+\begin{frage}\label{04_glpo}\index{Konvergenzradius}
+Hat eine Potenzreihe $\sum c_k (z-a)^k$ einen Konvergenzradius 
+$R>0$ und ist $P\fd U_R(a) \to \KK$ definiert durch $
+ z\mapsto P(z) = \sum_{k=0}^\infty c_k( z-a )^k$, 
+warum ist dann $P$ in $U_R(a)$ stetig?
+\end{frage}
+
+\begin{antwort}
+ Für jedes $r<R$ konvergiert die Potenzreihe wegen 
+\[
+\left| \sum_{k=0}^\infty c_k (z-a) \right| 
+\le \sum_{k=0}^\infty |c_k| r^k 
+\qquad\text{für alle $z$ mit $|z-a|\le r$}
+\] 
+gleichmäßig in der abgeschlossenen Umgebung 
+$\overline{U_r (a)}$. Nach Frage \ref{04_stet} ist $P$ somit stetig 
+in jeder abgeschlossenen Umgebung $\overline{U_r (a)}$ mit $r<R$, 
+und daraus folgt die Stetigkeit von $P$ in  $U_R(a)$, da es für jedes 
+$z\in U_R( a )$ ein $r<R$ mit $z\in  \overline{U_r (a)}$ gibt, 
+\sieheAbbildung\ref{fig:04_potglm}.
+\AntEnd
+
+\begin{center}
+  \includegraphics{mp/04_potglm}
+  \captionof{figure}{Jeder Punkt $z\in U_R(a)$ liegt in einer 
+    \slanted{abgeschlossenen} Kreisscheibe $\overline{U_r(a)}\subset U_R(a)$.}
+  \label{fig:04_potglm}
+\end{center}
+\end{antwort} 
+
+%% --- 24 --- %%
+\begin{frage}
+Können Sie eine komplexe Potenzreihe angeben, deren Konvergenzradius 
+$R=1$ ist, die aber für keinen Punkt $|z|=1$ konvergiert?
+\end{frage}
+
+\begin{antwort}
+Die geometrische Reihe $\sum z^{k}$
+liefert ein entsprechendes Beispiel. 
+Für alle Punkte $|z|<1$ folgt die (absolute) Konvergenz aus derjenigen 
+der geometrischen Reihe. Für $|z|=1$ kann die Reihe aber nicht konvergieren, 
+da in diesem Fall die Summanden überhaupt keine Nullfolge bilden. 
+\AntEnd
+\end{antwort}
+
+
+%% --- 25 --- %%
+\begin{frage}\label{04_abel}
+\index{Abelscher_Grenzwertsatz@Abel'scher Grenzwertsatz}
+\index{Abel@\textsc{Abel}, Nils Henrik (1802-1829)}
+Was besagt der \bold{Abel'sche Grenzwertsatz} für reelle Potenzreihen?
+\end{frage}
+
+\begin{antwort}
+Nach Frage \ref{04_glpo} konvergiert eine reelle Potenzreihe 
+$\sum a_kx^k$ innerhalb ihres Konvergenzradius gleichmäßig 
+und stellt dort eine stetige Funktion $f$
+dar. Es stellt sich die naheliegende Frage, ob in den 
+Fällen, in denen die Reihe auch noch in den Randpunkten 
+ihres Konvergenzintervalls konvergiert, sich die Definition 
+$f(x)=\sum a_kx^k$ auf diese Randpunkte ausdehnen lässt, so dass 
+$f$ dort immer noch stetig ist. Der Abel'sche Grenzwertsatz liefert 
+dafür die positive Antwort. Er lautet:
+
+\medskip
+\noindent\satz{Die reelle Potenzreihe 
+$\sum a_kx^k$ konvergiere für die positive Zahl $x=R$. 
+Dann konvergiert sie gleichmäßig auf dem Intervall $[0,R]$ und stellt 
+dort eine stetige Funktion dar. (Ein entsprechender Satz gilt, wenn 
+die Reihe für $x=-R$ konvergiert.)}
+ 
+\medskip\noindent
+Es genügt, den Abel'schen Grenzwertsatz für den Fall $R=1$ zu beweisen 
+(da sich der allgemeine Fall durch Übergang zur Reihe $\sum a'_k x^k$ 
+mit $a'_k=a_k/R^k$ auf diesen zurückführen lässt).  
+Unter dieser Voraussetzung ist die Reihe $\sum_{k=0}^\infty a_k$ konvergent. 
+Mit $A:= \sum_k a_k$ liefert die Abel'sche partielle Summation 
+(s. Frage \ref{04_part}) 
+\begin{eqnarray*}
+\sum_{k=n+1}^m a_k x^k &=&
+\sum_{k=n}^{m-1} A_k( x^k -x^{k+1} ) + A_m x^m - A_n x^n \\
+&=&
+\sum_{k=n}^{m-1} (A_k-A)(x^k-x^{k+1}) + (A_m-A)x^m - (A_n-A)x^n. 
+\end{eqnarray*}
+Wegen der Konvergenz von $\sum_k a_k$ gibt es ein $N\in\NN$, sodass  
+$|A-A_k|<\eps$ ist für alle $k>N$. Folglich gilt für alle $m>n>N$
+\[
+\left| \sum_{k=n+1}^m a_k x^k \right|  \le 
+\eps \sum_{k=n}^{m-1} |x^k-x^{k+1}| +2 \eps \le 4\eps 
+\quad\text{für alle $x\in [0,1]$.}
+\] 
+Mit dem Cauchy-Kriterium folgt hieraus die gleichmäßige Konvergenz der 
+Reihe auf dem Intervall $[0,1]$.
+\AntEnd
+\end{antwort}
+
+%% --- 26 --- %%
+\begin{frage}\label{04_caup}\index{Cauchy-Produkt}
+Wie ist das \bold{Cauchy-Produkt (die Faltung)} zweier Potenzreihen 
+$P(z)=\sum_k a_k z^k$ und $Q(z)=\sum_n b_n z^n$ definiert?
+\end{frage}
+
+\begin{antwort}
+Das Cauchy-Produkt ist die durch 
+\begin{equation}
+\sum_{k=0}^\infty \left( \sum_{n=0}^k a_n b_{k-n} \right) z^k \tag{$\ast$}
+\end{equation}
+definierte Potenzreihe. 
+Man erhält sie also durch formale Cauchy-Multiplikation der beiden 
+Potenzreihen für $\sum a_kz^k$ und $\sum b_n z^n$. Diese konvergieren 
+beide zusammen in dem kleineren ihrer Konvergenzkreise absolut. 
+Innerhalb dieses Konvergenzkreises konvergiert nach Frage 
+\ref{02_cprod} damit auch deren Cauchy-Produkt ($\ast$) und stellt 
+dort die Funktion $p(z)q(z)$ dar.
+\AntEnd
+\end{antwort}
+
+
+
+%% --- 27 --- %%
+\begin{frage}\index{Identitatssatz fur Potenzreihen@
+Identitätssatz für Potenzreihen}
+Was besagt der \bold{Identitätssatz für Potenzreihen}? 
+\end{frage}
+
+\begin{antwort}
+Der Satz lautet: 
+
+\medskip\noindent
+\slanted{Seien 
+\[
+f(z) = \sum_{\ell=0}^\infty a_\ell( z-z_0)^\ell, \qquad
+g(z) = \sum_{\ell=0}^\infty b_\ell( z-z_0)^\ell
+\]
+zwei Potenzreihen, die beide in $U_R( z_0 )$ mit $R>0$ konvergieren. 
+Stimmen dann die Funktionen $f$ und $g$ nur 
+auf irgendeiner Folge $(z_k)\subset U_R(z_0)$ 
+mit $\lim z_k = z_0$ überein, 
+so sind beide Funktionen vollkommen identisch, es gilt also 
+$a_\ell=b_\ell$ für alle $\ell\in\NN_0$.} \AntEnd
+\end{antwort}
+
+%% --- 28 --- %%
+\begin{frage}
+Wie lässt sich der Identitätssatz beweisen?
+\end{frage} 
+
+\begin{antwort}
+Der Satz lässt sich induktiv beweisen. Zunächst gilt wegen 
+der Stetigkeit von $f$ und $g$ und der Übereinstimmung von 
+$f$ und $g$ auf der Folge $(z_k)$
+\[
+f(z_0)=\lim_{k\to\infty} f(z_k) = \lim_{k\to\infty} g(z_k) = g(z_0).
+\]
+Daraus folgt $a_0=b_0$, was uns den Induktionsanfang liefert. 
+
+Angenommen, $a_\ell=b_\ell$ sei nun bereits für alle $\ell\le n$ gezeigt. 
+Die beiden Potenzreihen 
+\[
+f_n (z) := \sum_{\ell=n+1}^\infty a_\ell(z-z_0)^\ell, \qquad
+g_n (z) := \sum_{\ell=n+1}^\infty b_\ell(z-z_0)^\ell 
+\]
+konvergieren beide auf $U_R(z_0)$ und stimmen auf der Folge 
+$(z_k)$ überein. Hieraus folgt mit demselben Argument wie oben folgt
+\[
+f_n(z_0)=\lim_{k\to\infty} f_n(z_k) = \lim_{k\to\infty} g_n(z_k) = g_n(z_0),
+\]
+und damit $a_{n+1}=b_{n+1}$, was im Induktionsschritt zu zeigen war. 
+
+Insgesamt gilt also $a_\ell=b_\ell$ für alle $\ell\in\NN_0$, 
+und selbstverständlich 
+folgt daraus, dass die beiden Funktionen $f$ und $g$ identisch sind.
+\AntEnd 
+\end{antwort} 
+
+
+
+  
+
+ 
+
+ 

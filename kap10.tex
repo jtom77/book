@@ -1,0 +1,2908 @@
+\chapter{Differenzialrechnung in mehreren Variablen}
+
+Die folgenden Fragen beziehen sich auf \slanted{Differenzierbarkeitsbegriffe} 
+und \slanted{Differenziationsregeln} im Mehrdimensionalen sowie 
+deren Anwendungen (lokale Extrema, lokaler Umkehrsatz, 
+implizite Funktionen u.\,a.). Die Grundidee der mehrdimensionalen 
+Differenzialrechnung ist dieselbe wie bei Funktionen einer Variablen, bei 
+welchen die Änderungsrate einer Funktion, also die 
+Zahl $f(a+h)-f(a)$ durch eine lineare Funktion $L\fd \RR\to\RR$ in einer 
+Umgebung von $a$ so gut approximiert wird, dass 
+\[
+\lim_{h\to 0} \frac{f(a+h)-f(a)-L(h)}{h} =0 
+\]
+gilt. Da jede lineare Funktion $L \fd\RR\to\RR$ die Form $h\mapsto lh$ 
+(mit $l=L(1)$) hat, ist die Existenz des Grenzwerts gleichbedeutend 
+mit der Existenz einer Zahl $l$ mit
+\[
+\lim_{h\to 0} \frac{f(a+h)-f(a)}{h} = l = f'(a).
+\] 
+Im Eindimensionalen steht meist die Zahl $l=f'(a)$ im Fokus des Interesses 
+und nicht in erster Linie die approximierende lineare Abbildung $L$. 
+Im Mehrdimensionalen dagegen rückt der Approximationsgedanke zwangsläufig 
+in den Vordergrund, dabei sind Hilfsmittel aus der linearen Algebra 
+unverzichtbar. 
+
+Wir beschränken uns hier auf Abbildungen zwischen den Standardvektorräumen 
+$\RR^n$ und $\RR^m$ (eine Übertragung auf $\CC^n$ und $\CC^m$ ist 
+direkt möglich, aber auch eine solche auf Abbildungen 
+$f\fd V\to W$, in denen $V$ und $W$ nicht notwendig 
+endlichdimensionale normierte $\KK$-Vektorräume sind). Ein naheliegender 
+Begriff ist der der \slanted{partiellen Differenzierbarkeit}. Aus der 
+partiellen Differenzierbarkeit einer Funktion an einer Stelle folgt 
+aber im Allgemeinen nicht die Stetigkeit an der betreffenden Stelle. Dies 
+ist jedoch bei den stärkeren Begriffen der \slanted{stetigen partiellen 
+  Differenzierbarkeit} und der \slanted{totalen Differenzierbarkeit} 
+der Fall.
+
+\section{Partielle Ableitungen}
+
+%% --- 1 --- %%
+\begin{frage}\nomenclature{$\partial_j f$}{partielle Ableitung von $f$}
+  \index{partiell differenzierbar}
+  Ist $D\subset \RR^n$ eine nicht leere offene Menge. Wann heißt eine 
+  Funktion $f \fd D\to \RR$ 
+  \begin{itemize}[2mm]
+  \item[\desc{a}] im Punkt $a\in D$ nach der $j$-ten Variablen 
+    (Koordinatenrichtung) ($1\le j \le n$)  
+    partiell differenzierbar, \\[-3.5mm]
+  \item[\desc{b}] in $D$ partiell differenzierbar, \\[-3.5mm]
+  \item[\desc{c}] stetig partiell differenzierbar in $D$?
+  \end{itemize}
+\end{frage}
+
+
+
+\begin{antwort}
+  Die Funktion $f\fd D\to \RR$ heißt
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{a}] \slanted{partiell differenzierbar 
+        nach der $j$-ten Variablen im Punkt $a\in D$}, 
+      falls der Grenzwert
+      \[
+      \partial_j f(a) := \lim_{\substack{t\to 0\\t \not=0}} 
+      \frac{f(a+te_j)-f(a)}{t}  
+      \]
+      existiert (dabei bezeichnet $e_j$ den $j$-ten Einheitsvektor im $\RR^n$),
+
+    \item[\desc{b}] \slanted{partiell differenzierbar auf $D$}, falls 
+      $\partial_j f(x)$ für \slanted{alle} $x\in D$ und 
+      alle $j\in\{1,\ldots,n\}$ existiert,\\[-3.5mm]
+    \item[\desc{c}] \slanted{stetig partiell differenzierbar auf $D$}, 
+      falls alle Funktionen $\partial_j f\fd D\to \RR$ stetig sind.
+      \AntEnd
+    \end{itemize} }
+\end{antwort}
+
+%% --- 2 --- %%
+\begin{frage}
+  Welche alternativen Notationen für partielle Ableitungen sind 
+  Ihnen geläufig?
+\end{frage}
+
+\begin{antwort}
+  Statt $\partial_j f(a)$ schreibt man auch 
+  $\partial_{x_j} f(a)$ oder $D_{x_j}f(a)$ oder 
+  $\frac{\partial f}{\partial x_j}(a)$. 
+
+  Jede der Schreibweisen hat Vor- und Nachteile, 
+  das hängt vom Kontext ab. Wir benutzen in den meisten 
+  Fällen die Schreibweise $\partial_j f(a)$, greifen aber hin und wieder 
+  auch auf die Schreibweise $\frac{\partial f}{\partial x_j}(a)$ zurück, 
+  wo es der Verständlichkeit dient.
+  \AntEnd
+\end{antwort}
+
+%% --- 3 --- %%
+\begin{frage}\index{partielle Ableitung}
+  Wie lassen sich die partiellen Ableitungen einer Funktion $f\fd D\to\RR$ 
+  als gewöhnliche Ableitungen von Funktionen \slanted{einer} Variablen 
+  interpretieren?
+\end{frage}
+
+\begin{antwort}[]%
+  \noindent\Ant 
+  Mit $a=(a_1,\ldots,a_n)$ und $e_j = (0,\ldots,0,1,0,\ldots,0)$ unterscheidet 
+  sich der Vektor $a+te_j$ von $a$ nur in der $j$-ten Koordinate. Es ist
+  \[
+  a+te_j = (a_1, \ldots, a_{j-1}, a_j+t, a_{j+1}, \ldots, a_n ),
+  \]
+  %% \parpic[r]{\includegraphics{mp/10_richtungsableitung}}\noindent
+  die restlichen Komponenten bleiben "`eingefroren"'. 
+
+  Betrachtet man daher 
+  für $j\in \{ 1,\ldots, n \}$ in  einer geeigneten Umgebung $U(a_j)$ die 
+  "`partiellen Funktionen"' $f_{[j]}\fd U(a_j)\to \RR$ mit 
+  \[
+  f_{[j]} (\xi) := f(a_1,\ldots,a_{j-1}, \xi, a_{j+1},\ldots, a_n ),
+  \]
+  so ist gerade 
+  \[
+  \partial_j f(a) = \lim_{t\to 0} 
+  \frac{ f_{[j]} (a_j+t )-f_{[j]} (a_j)}{ t } = f_{[j]}'(a_j).
+  \]
+
+  \begin{center}
+    \includegraphics[width=5cm]{povray/diff-rn.pdf}
+    \captionof{figure}{Die partiellen Funktionen $f_{[1]}$ und $f_{[2]}$ einer Funktion $f\fd \RR^2\to\RR^2$} 
+    \label{fig:diff-rn.pdf}
+  \end{center}    
+  
+  Die Variablen $a_k$ werden für $k\not= j$ festgehalten, \sieheAbbildung\ref{fig:diff-rn.pdf}. Aus diesem 
+  Grund gelten für partielle Ableitungen vollkommen analoge Rechenregeln 
+  wie für gewöhnliche Ableitungen. \AntEnd
+\end{antwort}
+
+%% --- 4 --- %%
+\begin{frage}\label{10_partbsp}\index{partielle Ableitung}
+  Können Sie die partiellen Ableitungen der folgenden Funktionen berechnen?
+  \begin{itemize}[2mm]
+  \item[\desc{a}] $\dis f\fd \RR^n \to \RR,\quad 
+    x \mapsto \exp (x_1^2+\cdots + x_n^2 )$ \\
+  \item[\desc{b}] $\dis \upsilon \fd \RR^n \mengeminus \{ 0 \} \to \RR,\quad 
+    x \mapsto \n{ x }_2 := \sqrt{ x_1^2+\cdots + x_n^2 }.$ 
+  \end{itemize}
+\end{frage}
+
+\begin{antwort}
+  \desc{a}
+  Wir denken uns $x_2,\ldots, x_n$ festgehalten. Dann ist nach der 
+  Kettenregel $\partial_1 f(x) = \exp( x_1^2 + \cdots + x_n^2 )\cdot 2x_1$. 
+  Analog erhält man für alle $j\in \{ 1,\ldots, n \}$ 
+  \[
+  \partial_j f(x) = \exp( x_1^2 + \cdots + x_n^2 )\cdot 2x_j.
+  \]
+  \desc{b} Die Funktion $\upsilon$ ist auf $\RR^n \mengeminus \{ 0 \}$ 
+  nach allen Variablen partiell differenzierbar. Wir denken uns 
+  $x_1,\ldots,x_{j-1}, x_{j+1}, \ldots, x_n $ festgehalten. 
+  Damit erhält man durch Anwendung der Kettenregel und Ableitung der Wurzel 
+  für $j=1,\ldots,n$
+  \begin{equation}
+    \partial_j \upsilon(x) = 
+    \partial_j (x_1^2 + \cdots + x_j^2 + \cdots + x_n^2 )^{1/2} 
+    = \frac{1}{2} \cdot \frac{2x_j}{ \sqrt{x_1^2 + \cdots + x_n^2 } }= 
+    \frac{x_j}{\upsilon(x)} 
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% --- 5 --- %%
+\begin{frage}\index{partiell differenzierbar}
+  Kennen Sie ein Beispiel einer Funktion $f\fd \RR^2 + \RR$, die in ganz 
+  $\RR^2$ partiell differenzierbar ist, die aber an der Stelle $(0,0)$ nicht 
+  stetig ist?
+\end{frage}
+
+\begin{antwort}[]%
+  Ein Beispiel für eine solche Funktion ist etwa 
+  $f \fd \RR^n \to \RR$ mit $f(0,0) := 0$ und 
+  \[
+  f(x,y) :=  \frac{2xy}{x^2+y^2} 
+  \quad \text{für $(x,y)\not=(0,0)$}.
+  \]
+  Abbildung~\ref{fig:10-02.pdf} zeigt den Graphen von $f$. 
+  Als rationale Funktion ist $f$ in $\RR^2 \mengeminus \{0,0\}$ 
+  partiell differenzierbar, und wegen $f(x,0)=f(0,y)=0$ ist auch 
+  $\partial_1 f(0,0)=\partial_2 f(0,0)=0$. Die Funktion ist in $(0,0)$ aber 
+  nicht stetig, denn die Folge $( \frac{1}{k}, \frac{1}{k} )_{k\in\NN}$ 
+  konvergiert gegen $0$, aber es ist $f(\frac{1}{k},\frac{1}{k})=1$ und 
+  damit $1=\lim f(\frac{1}{k}, \frac{1}{k} ) \not=0 = f(0,0)$.
+  \AntEnd
+
+  \begin{center}
+    \includegraphics[width=50mm]{povray/10-02.pdf}
+    \captionof{figure}{Eine im Nullpunkt unstetige, aber überall partiell differenzierbare Funktion.}
+    \label{fig:10-02.pdf}
+  \end{center}
+\end{antwort}
+
+%% --- 6 --- %%
+\begin{frage}
+  \label{10_grad_def}\index{Gradient}\index{Nabla@$\nabla$ (Nabla-Operator)}
+  \nomenclature{$\grad f$}{Gradient von $f$}
+  Was versteht man unter dem \bold{Gradienten} einer 
+  partiell differenzierbaren Funktion $f\fd D\to \RR$ 
+  ($D\subset \RR^n$ offen und nicht leer)?
+\end{frage}  
+
+\begin{antwort}[]%
+  \Ant 
+  Für eine partiell differenzierbare Funktion $f\fd D\to \RR$ und $x\in D$ 
+  heißt der Vektor 
+  \[
+  \grad f(x) := \big( \partial_1 f(x), \ldots, \partial_n f(x) \big)^\top
+  \]
+  der \slanted{Gradient von $f$ in $x$}, \sieheAbbildung\ref{fig:grad1}. 
+  Statt $\grad f$ schreibt man speziell in der physikalischen Literatur 
+  auch $\nabla f$ (gesprochen "`Nabla $f$"', s. Frage \ref{12_nabla}). 
+  Zur Interpretation des Gradienten vergleiche auch 
+  die Fragen \ref{10_orthograd} und 
+  \ref{10_gradanstieg}.
+  \AntEnd 
+
+  \begin{center}
+    \includegraphics[width=50mm]{povray/grad1.pdf}
+    \captionof{figure}{Der Gradient wird von den partiellen Ableitungen gebildet.}
+    \label{fig:grad1}
+  \end{center}
+\end{antwort}
+
+\begin{frage}
+  Bestimmen Sie den Gradienten der Funktionen $f$ und 
+  $\upsilon$ aus Frage \ref{10_partbsp}.
+\end{frage}
+
+\begin{antwort}
+  Man erhält 
+  \begin{align*}
+    \grad f(x) 
+    &= 2\exp\left(\|x\|\right) \cdot (x_1,\ldots,x_n) = 
+    2\exp\left(\|x\|\right)\cdot x,  \\
+    \grad \upsilon(x) 
+    &= \frac{1}{\|x\|} \cdot (x_1,\ldots,x_n) = \frac{x}{\|x\|}.
+    \EndTag
+  \end{align*}
+\end{antwort}
+
+%% --- 7 --- %%
+\begin{frage}\index{Produktregel}
+  Können Sie für zwei partiell differenzierbare Funktionen 
+  $f, g \fd D\to \RR$ die \bold{Produktregel}
+  \[
+  \grad (fg)(a) = g(a) \grad f(a) + f(a) \grad g(a)
+  \]
+  beweisen?
+\end{frage}
+
+\begin{antwort}
+  Diese Produktregel folgt sofort aus der Produktregel für Funktionen 
+  einer Variablen wegen
+  \[
+  \partial_j (fg)(a)=\partial_j f(a)\cdot g(a) + f(a) \cdot \partial_j g(a). 
+  \]
+  Aufgrund desselben Zusammenhangs erhält man auch Summen- und 
+  Quotientenregel für partiell differenzierbare Funktionen
+  \begin{align}
+    \grad(f+g)(a) &= \grad f(a) + \grad g(a) \notag \\[2mm]
+    \grad \left(\frac{f}{g} \right)(a) &=  
+    \frac{\grad f(a) \cdot g(a) - f(a) \cdot \grad g(a) }{ g(a)^2 }, 
+    \quad g(a)\not=0. \EndTag
+  \end{align}  
+\end{antwort}
+
+
+\section{Höhere partielle Ableitungen, Satz von Schwarz}
+\index{Schwarz}
+
+
+%% --- 8 --- %%
+\begin{frage}\index{hohere@höhere partielle Ableitungen}
+  Wie sind die \bold{höheren Ableitungen} einer partiell differenzierbaren 
+  Funktion $f\fd D\to \RR$ definiert?
+\end{frage}
+
+\begin{antwort}
+  Falls die partiellen Ableitungen $\partial_j f \fd D \to \RR$ selbst 
+  alle wieder partiell differenzierbar sind, so nennt man $f$ 
+  \slanted{zweimal partiell differenzierbar}. Man kann in diesem Fall 
+  $\partial_l \partial_k f$ für $1 \le l,k \le n$ bilden. Sind diese 
+  $n^2$ Funktionen wieder alle partiell differenzierbar, kann man 
+  dritte partielle Ableitungen $\partial_m \partial_l \partial_k f$ 
+  bilden usw. 
+
+  Dies führt auf folgende präzise rekursive Definition: Die Funktion  
+  $f\fd D\to \RR$ heißt \slanted{$(k+1)$-mal partiell differenzierbar} 
+  ($k\in \NN_0$), wenn $f$ $k$-mal partiell differenzierbar ist und alle 
+  partiellen Ableitungen 
+  \[
+  \partial_{i_k}\partial_{i_{k-1}} \ldots \partial_{i_2}\partial_{i_1} f \fd 
+  D \to \RR
+  \]
+  partiell differenzierbar sind. \AntEnd
+\end{antwort}
+
+%% --- 9 --- %%
+\begin{frage}
+  Wann heißt $f\fd D\to \RR$ \bold{$\mathbf{k}$-mal stetig partiell differenzierbar}?
+\end{frage}
+
+\begin{antwort}
+  Die Funktion $f$ heißt 
+  \slanted{$k$-mal stetig partiell differenzierbar}, wenn 
+  sie $k$-mal partiell differenzierbar ist und alle Ableitungen 
+  der Ordnung $\le k$ stetig sind. \AntEnd 
+\end{antwort}
+
+%% --- 10 --- %%
+\begin{frage}
+  Welche Notationen verwendet man für die höheren partiellen Ableitungen?
+\end{frage}
+
+\begin{antwort}
+  Statt $\partial_l \partial_j f(a)$ 
+  (bedeutet: Erst wird nach der $j$-ten, dann nach der $l$-ten Variable 
+  abgeleitet) schreibt man auch 
+  $\frac{\partial^2 f }{ \partial x_l \partial x_j }(a)$. Unglücklicherweise 
+  bedeutet dieser Ausdruck bei manchen Autoren aber auch, dass 
+  zuerst nach der $l$-ten Variable, dann nach der $j$-ten Variable abgeleitet 
+  wird. Weniger mißverständlich ist die ebenfalls gebräuchliche Ausdrucksweise 
+  $\frac{\partial}{\partial x_l}
+  \left( \frac{\partial f }{\partial x_j }\right).
+  $ Wir bevorzugen die Schreibweise $\partial_l \partial_j f(a)$. Für 
+  $\partial_j \partial_j f(a)$ schreiben wir auch $\partial_j^2 f(a)$.
+  \AntEnd
+\end{antwort}
+
+%% --- 11 --- %%
+\begin{frage}
+  Für $x>0$ und $y\in\RR$ sei $f(x,y):=x^y=\exp(y \log x)$. Können Sie 
+  zeigen
+  \[
+  \partial_1\partial_2f(x,y)=\partial_2\partial_1 f(x,y)
+  \] 
+  zeigen?
+\end{frage}
+
+\begin{antwort}
+  Man erhält
+  \begin{align*}
+    \partial_1 f(x,y)& = \frac{y}{x} e^{y\log x},& 
+    \partial_2\partial_1 f(x,y)& = \frac{1+y\log x}{x} e^{y\log x} \\
+    \partial_2 f(x,y)& = \log x\cdot e^{y\log x},& 
+    \partial_1\partial_2f(x,y)& = \frac{1+y\log x}{x} e^{y\log x}. \EndTag
+  \end{align*}
+\end{antwort} 
+
+%% --- 12 --- %%
+\begin{frage}
+  \index{Satz!von Schwarz}\index{Vertauschbarkeit partieller Ableitungen}
+  \index{Schwarz}
+  Was besagt der \bold{Satz von H.\,A. Schwarz} über die 
+  Vertauschbarkeit der Differenziationsreihenfolge bei mehrfacher 
+  partieller Differenziation?
+\end{frage}
+
+
+\begin{antwort}
+  Der Satz von Schwarz sagt Folgendes aus: 
+
+  \medskip
+  \noindent\slanted{Sei $a\in \RR^n$ und $U$ eine offene Umgebung von $a$. 
+    Die Funktion 
+    $f \fd U \to \RR$ besitze auf $U$ die partiellen Ableitungen 
+    $\partial_l f$, $\partial_j f$ und $\partial_j \partial_l f$. Ist 
+    dann $\partial_j \partial_l f$ \slanted{stetig in $a$}, dann existiert 
+    auch die partielle Ableitung $\partial_l \partial_j f(a)$ und es gilt 
+    die Gleichheit
+    \[
+    \boxed{ \partial_l \partial_j f(a) = \partial_j \partial_l f(a), }
+    \]
+    die partiellen Ableitungen sind dann also vertauschbar. 
+  }
+
+  \medskip\noindent
+  Meist wird der Satz von Schwarz in einer schwächeren 
+  Version unter stärkeren Voraussetzungen 
+  bewiesen, nämlich dass alle gemischten Ableitungen existieren und 
+  stetig sind. In dieser Form wurde er bereits von Euler bewiesen. Ein Beweis 
+  findet sich z.\,B. in \citep{Kaballo} oder \citep{Koenig}.
+  \AntEnd
+\end{antwort}
+
+%% --- 13 --- %%
+\begin{frage}\index{Satz!von Schwarz}
+  Welche Vereinfachung bringt der Satz von Schwarz mit sich?
+\end{frage}
+
+\begin{antwort}
+  Aus dem Satz von Schwarz folgt insbesondere, dass für eine 
+  mindestens 2-mal stetig differenzierbare Funktion die Reihenfolge der 
+  Ableitungen keine Rolle spielt. Das erleichtert die Berechnung der Ableitungen 
+  erheblich, denn deren Anzahl steigt mit der Ordnung der Ableitungen rasch an. 
+  So gibt es etwa schon $n^2$ partielle Ableitungen der Ordnung $2$. 
+  Unter der Voraussetzung der zweimaligen stetigen  partiellen 
+  Differenzierbarkeit braucht man aber nur $\frac{1}{2}n (n+1)$ 
+  partielle Ableitungen auszurechnen. Anders formuliert, die 
+  Matrix\index{Hesse-Matrix}\nomenclature{$H_f(a)$}{Hesse-Matrix}
+  \[
+  \begin{pmatrix} 
+    \partial_1 \partial_1 f(a) & \cdots & \partial_n \partial_1 f(a)  \\
+    \vdots    & \ddots & \vdots \\
+    \partial_1 \partial_n f(a) & \cdots & \partial_n \partial_n f(a)
+  \end{pmatrix} \qquad\text{(\slanted{Hesse-Matrix})}
+  \]
+  ist symmetrisch. \AntEnd
+\end{antwort}
+
+
+
+%% --- 14 --- %%
+\begin{frage}\index{Schwarz}
+  Kennen Sie ein Beispiel für eine Funktion $f \fd \RR^2\to\RR$, 
+  für welche der Satz von Schwarz \slanted{nicht} gilt?
+\end{frage}
+
+\begin{antwort}
+  Ein solches Beispiel stammt von H.\,A. Schwarz selbst. Man betrachte die 
+  Funktion $f \fd \RR^2 \to \RR$ mit $f(0,0):=0$ und 
+  \[
+  f(x,y) :=  xy\frac{x^2-y^2}{x^2+y^2} \quad \text{für $(x,y) \not= (0,0)$}.
+  \]
+  $f$ ist in $\RR^2$ zweimal partiell differenzierbar, aber es gilt
+  \[
+  \partial_2 \partial_1 f(0,0) =-1 \not=1 = \partial_1 \partial_2 f(0,0), 
+  \]
+  folglich können die Ableitungen $\partial_1 \partial_2 f$ bzw. 
+  $\partial_2 \partial_1 f$ nicht stetig sein. 
+  \AntEnd 
+\end{antwort}
+
+
+\section{(Totale) Differenzierbarkeit, Kettenregel}\label{total}
+
+Der Begriff der \slanted{totalen Differenzierbarkeit} 
+scheint für Studierende um einiges schwieriger zu sein als der Begriff 
+der partiellen Differenzierbarkeit. Er ist jedoch der stärkere Begriff, 
+aus der totalen Differenzierbarkeit folgt die partielle Differenzierbarkeit 
+und die Stetigkeit der betrachteten Funktion.
+
+%% --- 15 --- %%
+\begin{frage}\label{10_total}\index{total differenzierbar}
+  Wann heißt eine Abbildung $f \fd D\to \RR^n$ ($D\subset \RR^n$ offen) an der 
+  Stelle $a\in D$ \bold{total differenzierbar} oder 
+  schlicht \bold{differenzierbar}?
+\end{frage}
+
+\begin{antwort}
+  \index{Abbildung!differenzierbare}
+  \index{Ableitung!einer differenzierbaren Abbildung}
+  $f$ heißt genau dann an der Stelle $a\in D$ (total) differenzierbar, wenn 
+  es eine (im Allgemeinen von $a$ abhängige) lineare Abbildung 
+  $L \fd \RR^n \to \RR^m$ gibt, sodass gilt 
+  \begin{equation}\boxed{
+      \lim_{x\to a} \frac{f(x)-f(a)-L(x-a)}{ \n{x-a} } =0
+    }
+    \tag{D1}
+  \end{equation}
+  Äquivalent hierzu ist die Existenz einer linearen Abbildung 
+  $L\fd \RR^n \to \RR^m$ und einer in $a$ stetigen Funktion 
+  $\varphi \fd D \to \RR^m$ mit $\varphi(a)=0$ und 
+  \begin{equation}\boxed{
+      f(x)-f(a)=L(x-a)+ \n{ x-a } \cdot \varphi(x).}
+    \tag{D2}
+  \end{equation}
+  Die lineare Abbildung $L$ aus (D2) ist im Fall der Existenz eindeutig 
+  bestimmt (s. Frage \ref{10_jacobi}) 
+  und heißt das \slanted{Differenzial}\index{Differenzial!einer Abbildung $D\to\RR^n$} von $f$ in $a$. Die 
+  Bezeichnungen $\diff (a)$, $\diff |_a$, $\mathrm{D} f(a)$ sind üblich, 
+  manche Autoren schreiben auch einfach $f'(a)$, wieder andere benutzen 
+  die Bezeichnung $f'(a)$ für die der linearen Abbildung $L$ zugeordneten 
+  Matrix bezüglich der kanonischen Basen im $\RR^n$ bzw. $\RR^m$ (der 
+  sogenannten \slanted{Funktional-} oder \slanted{Jacobi-Matrix}). 
+
+  In der Darstellung (D2) kommt die Idee der Approximation durch eine 
+  lineare Abbildung sehr klar zum Ausdruck: Das Differenzial approximiert die 
+  Änderung $f(x)-f(a)$ bis auf einen Fehler (Rest) 
+  $r(x) := \n{ x-a } \varphi(x)$, der die Eigenschaft hat, beim 
+  Grenzübergang $x\to a$ schneller gegen null zu konvergieren als $\n{x-a}$. 
+  Da im $\RR^n$ alle Normen äquivalent sind, ist es gleichgültig, welche 
+  Norm man hier verwendet.
+
+  Da lineare Abbildungen stetig sind, kann man aus 
+  der Darstellung (D1) auch unmittelbar ablesen:
+
+  \medskip\noindent
+  \slanted{Eine in $a$ total differenzierbare Abbildung ist dort auch stetig.}
+  \AntEnd
+\end{antwort}
+
+
+%% --- 16 --- %%
+\begin{frage}
+  Sei $A \in \RR^{m\times n}$ eine $m\times n$-Matrix und 
+  $f \fd \RR^n \to \RR^m$ die Abbildung $x\mapsto Ax+b$ mit 
+  $b:=(b_1,\ldots, b_m)^T \in \RR^m$ und $x=(x_1,\ldots,x_n)^T \in \RR^n$. 
+  Können Sie möglichst einfach begründen, warum für jedes $a\in \RR^n$ und 
+  jedes $h\in \RR^n$ gilt: $\diff (a)h=Ah$?
+\end{frage}
+
+
+\begin{antwort}
+  Wegen $f(x)-f(a)=A(x-a)$ erfüllt die durch die Matrix $A$ gegebene lineare 
+  Abbildung die Bedingung (D1).
+  \AntEnd
+\end{antwort}
+
+
+%% --- 17 --- %%
+\begin{frage}\label{10_jacobi}\index{Jacobi-Matrix}
+  \index{Jacobi@\textsc{Jacobi}, Carl Gustav (1804-1851)}
+  \index{Differenzial}
+  \nomenclature{$\calli{J}(f;a)$}{Jacobi-Matrix von $f$ im Punkt $a$}
+  Können Sie den folgenden Satz beweisen: Sei $D\subset \RR^n$ offen und 
+  $f\fd D\to \RR^m$ eine Abbildung. Ist $f$ in $a\in D$ total differenzierbar, 
+  dann sind alle Komponentenfunktionen $f_1,\ldots,f_m$ von $f$ in 
+  $a$ partiell differenzierbar und das Differenzial $\diff (a)$ hat bezüglich 
+  der kanonischen Basen im $\RR^n$ bzw. $\RR^m$ die \bold{Jacobi-Matrix} 
+  \[
+  \calli{J}(f;a) = 
+  \begin{pmatrix} \grad f_1(a)^\top \\ \vdots \\ \grad f_m (a)^\top \end{pmatrix}
+  = 
+  \begin{pmatrix} \partial_1 f_1(a) & \cdots & \partial_n f_1(a) \\
+    \vdots & \ddots & \vdots \\
+    \partial_1 f_m(a) & \cdots & \partial_n f_m(a)
+  \end{pmatrix}
+  \]
+  als Darstellungsmatrix. (Hieraus folgt insbesondere die Eindeutigkeit 
+  der linearen Abbildung $L$ in der Definition (D1).)
+\end{frage}
+
+
+\begin{antwort}
+  Ist $( e_1,\ldots, e_n )$ bzw. $( \tilde{e}_1, \ldots , \tilde{e}_m )$ 
+  die kanonische Basis im $\RR^n$ bzw. $\RR^m$, so ist nach der Definition 
+  der Matrix einer linearen Abbildung zu zeigen
+  \[
+  \diff (a) e_k = \sum_{j=1}^m \partial_k f_j(a) \tilde{e}_j, \quad k=1,\ldots,n.
+  \]
+  Das folgt aber einfach durch Grenzübergang $t\to 0$ aus
+  \begin{align*}
+    \sum_{j=1}^m \frac{f_j(a+te_k)-f_j(a)}{t} \tilde{e}_j &= 
+    \frac{f(a+te_k)-f(a)}{t} 
+    = \frac{\diff (a)(te_k)+r(te_k)}{t} \\
+    &= \diff (a)e_k \pm 
+    \frac{ r(te_k) }{ \n{ t e_k } } \qquad\text{(wegen $\n{e_k}=1$)}. 
+  \end{align*}
+  Die rechte Seite hat nach Voraussetzung den Grenzwert $\diff (a) e_k$, also 
+  existiert auch der Grenzwert der linken Seite. Da dieser koordinatenweise 
+  gebildet wird, erhält man als $k$-te Spalte der Darstellungsmatrix
+  \begin{equation}
+    \big( \partial_k f_1(a), \partial_k f_2(a), \ldots, \partial_k f_m(a) \big)^T
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+%% --- 18 --- %%
+\begin{frage}\index{Hauptkriterium für Differenzierbarkeit}
+  \label{10_diffkrit}
+  Wie lautet das \bold{Hauptkriterium für totale Differenzierbarkeit}?
+\end{frage}
+
+\begin{antwort}
+  Das Kriterium lautet:
+
+  \medskip
+  \noindent\satz{Existieren für eine Abbildung $f\fd D\to \RR^m$ in einer 
+    Umgebung $U$ von $a$ alle partiellen Ableitungen $\partial_\nu f_k$ 
+    der Komponentenfunktionen von $f$ und sind diese in $a$ stetig, 
+    dann ist $f$ in $a$ total differenzierbar.}
+
+  \medskip\noindent
+  Da man partielle Ableitungen meist leicht berechnen kann und man ihnen 
+  die Stetigkeit häufig auch ohne Rechnung ansieht, ist dieses hinreichende 
+  (allerdings nicht notwendige!) Kriterium ausgesprochen von Vorteil 
+  gegenüber einer direkten Verwendung der Definitionen 
+  (D1) oder (D2), bei der man erst die Jacobi-Matrix berechnen muss 
+  (was in der Regel noch relativ problemlos ist), dann aber nachprüfen 
+  muss, ob für den durch $r(x):= f(x) -f(a)- \calli{J}(f;a) (x-a)$ 
+  gegebenen Rest $\lim\limits_{x\to a}\frac{r(x)}{\n{ x-a }} =0$ gilt.
+  \AntEnd  
+\end{antwort}
+
+%% --- 19 --- %%
+\begin{frage}\index{Kettenregel!für differenzierbare Abbildungen}
+  Können Sie die \bold{Kettenregel} formulieren und einen Beweis skizzieren?
+\end{frage}
+
+\begin{antwort}
+  \slanted{
+    Sind $U\subset \RR^n$ und $V\subset \RR^m$ nichtleere offene Mengen  
+    sowie $f\fd U\to\RR^m$ und $g\fd V\to\RR^k$ Abbildungen mit $f(U)\subset V$. 
+    Ist dann die Abbildung $f$ im Punkt $a\in U$ total differenzierbar und 
+    die Abbildung $g$ im Punkt $b=f(a)\in V$ total differenzierbar, dann ist die 
+    zusammengesetzte Abbildung $g\circ f \fd U \to \RR^k$ im Punkt $a$ total 
+    differenzierbar und für die Jacobi-Matrix gilt:}
+  \[
+  \boxed{ 
+    \calli{J} ( g\circ f; a) = 
+    \calli{J} \big(g;f(a)\big)\cdot
+    \calli{J} \big(f;a\big)\cdot
+  }
+  \]
+  \medskip\noindent
+  Beweisskizze: Nach Voraussetzung gilt:
+  \begin{align*}
+    f(a+h)=f(a)+Ah + r(h) &
+    \qquad\text{mit $\dis\lim_{h\to 0} \frac{r(h)}{\n{h}}=0$ 
+      und $\dis A= \calli{J}(f;a)$,}& \\
+    g(b+k)=g(b)+Bk + s(k) &\qquad\text{mit 
+      $\dis\lim_{h\to 0} \frac{s(k)}{\n{k}}=0$ 
+      und $\dis B= \calli{J}(g;b)$.}&
+  \end{align*}
+  Setzt man speziell $k := f(a+h)-f(a)=Ah+r(h)$, so folgt 
+  \begin{eqnarray*}
+    (g\circ f)(a+h) &=& g \big( f(a+h) \big) = g \big( f(a)+k \big) 
+    = g \big( f(a)+ Ah + r(h) \big)
+    \\
+    &=& g \big( f(a) \big) + BAh + Br(h) + s\big( Ah + r(h) \big) \\
+    &=& (g\circ f) (a) + BAh + \chi( h ) 
+  \end{eqnarray*}
+
+  \medskip\noindent
+  mit $\chi(h) := Br(h)+ s \big(Ah+r(h) \big)$. 
+
+  An dieser Stelle muss jetzt "`nur noch"' 
+  $ \dis \lim_{h\to h} \frac{\chi(h)}{ \n{h} }=0$ gezeigt werden. 
+  Dies ergibt sich 
+  aber leicht aus den Voraussetzungen 
+  $ \dis \lim_{h\to 0} \frac{r(h)}{ \n{h} } =0$ und 
+  $ \dis \lim_{h\to 0} \frac{s(k)}{ \n{k} } =0$ zusammen mit der Stetigkeit 
+  linearer Abbildungen.\AntEnd
+\end{antwort}
+
+
+%% --- 20 --- %%
+\begin{frage}\label{10_kettspez}\index{Kettenregel!für 
+    differenzierbare Abbildungen}
+  Welche Spezialfälle der Kettenregel sind von besonderer Bedeutung?
+\end{frage}
+
+
+\begin{antwort}
+  Von besonderer Bedeutung ist der Fall $n=1$. 
+  Dann ist $U\subset \RR$ ein (nicht notwendig offenes) Intervall 
+  und $\alpha \fd U \to \RR^m$ eine 
+  \slanted{stetig differenzierbare Kurve}. Die Abbildung 
+  \[
+  g\circ \alpha \fd U \to \RR^k 
+  \]
+  ist nach der Kettenregel ebenfalls differenzierbar und 
+  hat an der Stelle $t_0 \in U$ den Tangentialvektor 
+  \[
+  ( g\circ \alpha)'(t_0) = 
+  \calli{J}\big( g; \alpha(t_0) \big) \cdot \dot{\alpha}(t_0).
+  \]
+  ($\alpha$ werde als Spaltenvektor geschrieben.)
+
+  Gilt auch noch $k=1$, dann erhält man eine Abbildung 
+  $\varphi \fd U \to \RR$ mit 
+  $t \mapsto g\big( \alpha(t) \big)$, und für diese gilt 
+  \begin{equation}
+    \boxed{
+      \varphi'(t) = \grad g\big( \alpha(t) \big)\cdot \dot{\alpha}(t).
+    }
+    \EndTag
+  \end{equation} 
+
+
+\end{antwort}
+
+%% --- 21 --- %%
+\begin{frage}\label{10_orthograd}\index{Gradient}\index{Niveaumenge}
+  Können Sie erläutern, was die 
+  "`Orthogonalität von Gradient und Niveaumenge"' bedeutet?
+\end{frage}
+
+\begin{antwort}
+  Ist $f\fd D \to \RR$ eine differenzierbare 
+  Funktion auf einer offenen Menge $D\subset\RR^n$
+  und $\alpha \fd M \to \RR^n$ eine 
+  differenzierbare Kurve, die in einer \slanted{Niveaumenge} von $f$ verläuft, 
+  {\dasheisst}, es gilt 
+  $\varphi(t):= f\big( \alpha(t) \big) = c$ für 
+  alle $t\in M$, dann folgt aus der Gleichung aus Frage 
+  \ref{10_kettspez} 
+  \[
+  0 = \varphi'(t) = \grad f \big( \alpha(t) \big) \cdot \dot{\alpha}(t).
+  \]
+  \picskip{0}\noindent%
+
+  \begin{center}
+    \hbox{\includegraphics{mp/10_gradient}
+      \hskip10mm\includegraphics[width=60mm]{povray/21_12.pdf}}
+    \captionof{figure}{Der Gradient steht senkrecht auf den Niveaulinien. Die linke Abbildung zeigt einzelne Niveaulinien einer Funktion, die rechte zeigt den Graph einer Funktion im Dreidimensionalen und deutet deren \textit{Vektorfeld} an.}
+  \end{center}
+
+  Versieht man den $\RR^n$ mit dem Standardskalarprodukt, so sagt diese 
+  Gleichung aus, dass der Tangentialvektor $\dot{\alpha}(t)$ für alle 
+  $t\in M$ senkrecht zum Gradienten von $f$ im Punkt $t$ steht 
+  (vgl. bezüglich der Eigenschaften des Gradienten 
+  auch die Frage \ref{10_gradanstieg}). 
+  \AntEnd
+\end{antwort}
+
+
+%% --- 22 --- %%
+\begin{frage}
+  \index{Mittelwertsatz!für differenzierbare Funktionen $\RR^n\to\RR$} 
+  \label{10_mittelwertsatz}
+  Wie lauten der \bold{Mittelwertsatz} für 
+  differenzierbare Funktionen $f\fd D\to \RR$ auf einer 
+  offenen Menge $D\subset \RR^n$?
+\end{frage}  
+
+
+
+\begin{antwort}
+  Der Mittelwertsatz lautet: 
+
+  \medskip\noindent
+  \slanted{Sind $x,y\in D$ zwei verschiedene Punkte, für welche auch die 
+    Verbindungsstrecke $S_{a,b} := \{ x+t(y-x)\sets 0 \le t \le 1 \}$ 
+    in $D$ liegt, dann gibt es einen Punkt $\xi\in S_{x,y}$ mit 
+    \[
+    f(y)-f(x) = \grad f(\xi) \cdot ( y-x ).
+    \]
+  }
+  Denn definiert man eine Kurve $\alpha \fd [0,1] \to D$ durch 
+  $\alpha(t)=x+t(y-x)$ und betrachtet  
+  \[
+  \varphi\fd [0,1] \to \RR; \qquad t \mapsto f \big( \alpha(t) \big),
+  \]
+  dann ist einerseits $f(y)-f(x)=\varphi(1)-\varphi(0)$, andererseits liefert 
+  der gewöhnliche Mittelwertsatz in einer Variablen für die 
+  Funktion $\varphi \fd [0,1]\to \RR$ die Existenz eines Zwischenpunktes 
+  $\tau \in (0,1)$ mit $\varphi(1)-\varphi(0) = \varphi'(\tau)\cdot 1 = 
+  \varphi'(\tau)$. Daher gilt 
+  \[
+  f(y)-f(x) = \varphi(1)-\varphi(0)=\varphi'(\tau) = 
+  \grad f\big( \alpha(\tau) \big) \cdot (y-x ) = 
+  \grad f( \xi ) \cdot (y-x).
+  \]
+  Übrigens: die Voraussetzung, dass zu zwei Punkten aus $D$ auch deren 
+  Verbindungsstrecke $S_{a,b}$ in $D$ liegt, ist für jede 
+  \slanted{konvexe} Menge erfüllt.
+  \AntEnd 
+\end{antwort}
+
+
+
+%% --- 23 --- %%
+\begin{frage}\index{Schrankensatz}
+  Wie lautet der \bold{Schrankensatz} für eine Funktion 
+  $f\fd D \to \RR$ ($D\subset \RR^n$ offen)?
+\end{frage}
+
+\begin{antwort}
+  Der Schrankensatz besagt: 
+
+  \medskip\noindent
+  \slanted{Ist $f\fd D\to \RR$ stetig 
+    differenzierbar und liegt für $x,y\in D$ auch deren Verbindungsstrecke 
+    in $D$, dann gilt
+    \[
+    \left| f(y)-f(x) \right| \le M \n{ y-x } \quad\text{mit} \quad 
+    M = \max_{\xi \in S_{x,y}} \n{ \grad f (\xi ) }.
+    \]}
+  Der Schrankensatz folgt aus dem Mittelwertsatz durch Anwendung 
+  der Cauchy-Schwarz'schen Ungleichung 
+  $ | \langle a,b \rangle | \le \n{a} \cdot \n{b}$.
+  \AntEnd 
+\end{antwort}
+
+%% --- 24 --- %%
+\begin{frage}\index{Integraldarstellung für den Funktionszuwachs}
+  Wie lautet die \bold{Integraldarstellung} für den Funktionszuwachs?
+\end{frage}
+
+\begin{antwort}
+  \satz{Unter der Voraussetzung des Schrankensatzes gilt für eine stetig 
+    differenzierbare Kurve $\alpha\fd [0,1] \to D$ mit $\alpha(0)=\alpha$ 
+    und $\alpha(1)=y$ 
+    \[
+    \boxed{ 
+      f(y)-f(x) = \int_0^1 \grad f\big( \alpha(t) \big) \cdot \dot{\alpha}(t) 
+      \dift.
+    }
+    \]
+  }
+  Das folgt aus der Tatsache, dass $\varphi \fd [0,1] \to \RR$ 
+  mit $\varphi(t) := f \big( \alpha(t) \big)$ eine Stammfunktion 
+  von $t\mapsto \grad f\big( \alpha(t) \big) \cdot \dot{\alpha}(t)$ ist. 
+  Mit dem Hauptsatz der Differenzial- und Integralrechnung gilt 
+  also 
+  \begin{eqnarray*}
+    f(y) -f(x) &=& f \big( \alpha(1) \big) - f\big( \alpha(0) \big) = 
+    \varphi(1)-\varphi(0) \\
+    &=& 
+    \int_0^1 \varphi'(t) \dift = 
+    \int_0^1 \grad f \big( \alpha(t) \big) \cdot \dot{\alpha}(t) \dift.
+  \end{eqnarray*}
+  Aus dieser Darstellung ergibt sich nochmal der Schrankensatz.
+  \AntEnd
+\end{antwort}
+
+%% --- 25 --- %%
+\begin{frage}
+  Können Sie begründen, warum eine stetig differenzierbare 
+  reellwertige Funktion $f$ auf einem Gebiet $D\subset \RR^n$ 
+  genau dann konstant ist, wenn $\grad f(x) =0$ für alle $x\in D$ 
+  gilt?
+\end{frage}
+
+
+\begin{antwort}[]%
+  \Ant Ist eine Funktion konstant, so verschwinden alle partiellen Ableitungen und damit auch der Gradient. 
+  Das folgt unmittelbar aus der Definition der partiellen Ableitung und zeigt die eine Richtung der Behauptung.  
+
+  Die andere Richtung ergibt sich zunächst für offene Mengen aus dem Mittelwertsatz (Frage \ref{10_mittelwertsatz}). 
+  Dabei kann dasselbe Argument wie für reelle Funktionen verwendet werden (Frage \ref{06_rolle}). 
+
+  Die Verallgemeinerung auf ein beliebiges Gebiet $D$ folgt daraus, dass man in einem Gebiet je zwei Punkte durch einen in $D$ 
+  verlaufenden Streckenzug verbinden kann, \sieheAbbildung\ref{fig:10_gebiet}. 
+  Wendet man auf jede Teilstrecke den Mittelwertsatz an, erhält man die allgemeine Behauptung. 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/10_gebiet}
+    \captionof{figure}{In einem Gebiet lassen sich je zwei Punkte $x$ und $y$ durch einen Streckenzug verbinden.}
+    \label{fig:10_gebiet}
+  \end{center}
+\end{antwort}
+
+
+
+%% --- 26 --- %%
+\begin{frage}\index{Richtungsableitung}
+  Was versteht man unter der \bold{Richtungsableitung} nach einem 
+  Einheitsvektor einer stetig differenzierbaren Funktion $f\fd D \to \RR$ 
+  ($D\subset \RR^n$ offen) in einem Punkt $a\in D$? Welcher Zusammenhang 
+  besteht mit den partiellen Ableitungen?
+\end{frage}
+
+\begin{antwort}
+  Unter der \slanted{Richtungsableitung} von $f$ in einem Punkt $a\in D$ 
+  nach einem Einheitsvektor $v\in \RR^n$ ({\dasheisst} $\n{v}=1$) versteht man 
+  im Fall der Existenz den Grenzwert 
+  \[
+  \partial_v f(a) := \lim_{t\to 0 } \frac{f(a+tv)-f(a)}{t}.
+  \]  
+  Speziell für die Basisvektoren $e_j$ des $\RR^n$ 
+  gilt $\partial_{e_j} f(a) = \partial_j f(a)$. 
+
+  Im Fall einer Funktion $f\fd \RR^2 \to\RR$ lässt sich die Richtungsableitung 
+  als Steigung der Tangente an den Graph von $f$ in Richtung $v$ interpretieren, 
+  \sieheAbbildung\ref{fig:10_richtungsableitung}. \AntEnd
+
+  \begin{center}
+    \includegraphics[width=50mm]{povray/10_richtungsableitung.pdf}
+    \captionof{figure}{Richtungsableitung einer Funktion entlang $v$.}
+    \label{fig:10_richtungsableitung}
+  \end{center}
+
+\end{antwort} 
+
+
+
+%% --- 27 --- %%
+\begin{frage}\index{Richtungsableitung}
+  Warum existieren für stetig differenzierbare Funktionen $f\fd D\to \RR$ 
+  in jedem Punkt $x\in D$ und für jeden Einheitsvektor 
+  $v\in \RR^n$ mit $\n{v}=1$ die Richtungsableitungen 
+  $\partial_v f(x)$, und warum gilt dann 
+  $\partial_v f(x) = \grad f(x) \cdot v$ für alle $x\in D$?
+\end{frage}
+
+\begin{antwort}
+  Aus der stetigen Differenzierbarkeit folgt insbesondere die 
+  Differenzierbarkeit in jedem Punkt $x\in D$. Die 
+  Abbildung $\alpha \fd \RR \to \RR^n$, die durch 
+  \[
+  t \mapsto \alpha(t) := x+tv = 
+  (x_1+tv_1, \ldots, x_n +tv_n )
+  \]
+  gegeben ist, ist die Parameterdarstellung einer Geraden 
+  durch den Punkt $x$ mit dem Richtungsvektor $v$. Für hinreichend 
+  kleines $\eps>0$ gilt dann  
+  $\varphi \big( ] - \eps, \eps [ \big) \subset D$, und daher ist die 
+  Zusammensetzung $g := f \circ \alpha \fd ]-\eps, \eps[ \to \RR$ definiert. 
+  Nach Definition der Richtungsableitung ist dann 
+  \[
+  \partial_\nu f(x) = \lim_{t\to 0} \frac{f(x+tv)-f(v)}{t} = g'(0).
+  \]
+  Andererseits gilt nach der Kettenregel 
+  $g'(t)=\grad f\big( \alpha(t) \big) \cdot \dot{\alpha}(t)$. 
+  Nun gilt mit 
+  $\alpha(t) = \big( \alpha_1 (t), \ldots, \alpha_n (t) \big)^t$ 
+  gerade  
+  $\dot{\alpha}_j (t) = \frac{\mathrm{d}}{\dift} (x_j+tv_j )=v_j$, und 
+  daher folgt insgesamt
+  \begin{equation}
+    \partial_v f(x) = g'(0)=\grad f\big( \alpha(0) \big) 
+    \cdot \dot{\alpha}(t)= \grad f(x) \cdot v. \EndTag
+  \end{equation}
+\end{antwort}
+
+%% --- 28 --- %%
+\begin{frage}\label{10_gradanstieg}\index{Gradient}
+  Was besagt die Sprechweise: "`Der Gradient zeigt in die Richtung 
+  des stärksten Anstiegs einer Funktion"'?
+\end{frage}
+
+\begin{antwort}
+  Die Voraussetzungen der vorhergehenden Frage seien erfüllt, und es sei 
+  $\grad f(a) \not=0 $ für ein $a\in D$. Es gibt dann aufgrund der 
+  Cauchy-Schwarz'schen Ungleichung ein $\vartheta \in [0,\pi]$ mit 
+  \[
+  \partial_v f(a) = \grad f(a) \cdot v = \nnb{ \grad f(a) } \cdot 
+  \n{ v } \cdot \cos\vartheta = \nnb{ \grad f(a) }\cdot  \cos \vartheta.
+  \]
+  Der Ausdruck rechts ist genau dann maximal, wenn $\cos \vartheta=1$ gilt. 
+  In diesem Fall haben $\grad f(a)$ und $v$ dieselbe Richtung. 
+
+  Zum Verhältnis des Gradienten $\grad f(a)$ und der "'Steilheit"` an der Stelle $a$ siehe auch die Abbildungen in den Fragen \ref{10_grad_def} und \ref{10_orthograd}.
+  \AntEnd 
+
+  % und es ist
+  % \[
+  % \nnb{ \grad f(a) } = \max \{ \partial_v f(a) \sets v \in \RR^n, \, 
+  % \n{v} =1 \} =: M.
+  % \]
+  % %% \parpic[r]{\includegraphics[width=4cm]{mp/10_gradient2}}
+
+  % Mit dem Vektor $\dis v_0 := \frac{\grad f(a)}{ \nnb{ \grad f(a) }}$ gilt 
+  % dann
+  % \[
+  % \grad f(a) = M v_0.
+  % \]
+  % Ist $D\subset\RR^2$, dann kann man sich den Graphen von $f$ als 
+  % Landschaft über $D$ vorstellen, indem man über jeden Punkt 
+  % $x\in D$ den Funktionswert abträgt. Die Niveaus 
+  % $N_c (f) := \{ x\in D \sets f(x)=c \}$ nennt man in diesem Fall auch 
+  % \slanted{Höhenlinien}. Der Gradient $\grad f(x)$ steht nach Frage 
+  % \ref{10_orthograd} senkrecht auf der Höhenlinie durch den Punkt 
+  % $x$ und $\grad f(x)$ weist in Richtung des stärks\-ten Anstiegs, $-\grad f(x)$ 
+  % in Richtung des stärks\-ten Abstiegs (Fallinie) von $f$. Die Norm 
+  % $\nnb{ \grad f(x) }$ ist ein Maß für die \slanted{Steilheit} an der 
+  % Stelle $x$. 
+
+  % Das alles sind Daten, die etwa einem Skifahrer   
+  % äußerst vetraut sind und durch die seine Umwelt wesentlich chrakterisiert 
+  % ist. 
+\end{antwort}
+
+%% --- 29 --- %%
+\begin{frage}\index{Richtungsableitung}
+  Kennen Sie ein Beispiel einer Funktion $f \fd \RR^2 \to \RR$, 
+  für welche in einem Punkt $a\in \RR$ \slanted{alle} Richtungsableitungen 
+  existieren, die aber in $a$ nicht total differenzierbar ist?
+\end{frage}
+
+
+\begin{antwort}
+  Ein Beispiel ist etwa die Funktion 
+  $f \fd \RR^2 \to \RR$ mit  
+  \[
+  f(x,y) := \left\{ \begin{array}{ll} 
+      \dis \frac{xy^2}{x^2+y^2} & \text{für $(x,y)\not=(0,0)$} \\
+      0 & \text{für $(x,y)=(0,0)$}. \end{array}\right.
+  \]
+  $f$ ist wegen $| f(x,y) | \le |x| $ stetig auf $\RR^2$ und für $v=(v_1,v_2)$ 
+  mit $\n{v}=1$ ist $\partial_v f(0,0) = v_1 v_2^2$. Speziell ist 
+  $\partial_1 f(0,0) = \partial_2 f(0,0)=0$ und damit $\grad f(0,0)=(0,0)$. 
+
+  \begin{center}
+    \includegraphics[width=60mm]{povray/10-03.pdf}
+    \captionof{figure}{Für die Funktion $f$ existieren im Nullpunkt alle Richtungsableitungen, sie ist dort aber nicht total differenzierbar.}
+    \label{fig:10-03}
+  \end{center}
+  Es gilt also $\partial_v f\left((0,0)\right) \not= \grad f\left((0,0)\right) \cdot v$, und daher ist $f$ im Nullpunkt nicht 
+  total differenzierbar.\AntEnd
+\end{antwort}
+
+%% --- 30 --- %%
+\begin{frage}\index{partiell differenzierbar}
+  Sei $D\subset \RR^n$ offen und $f\fd D\to \RR^n$ eine Abbildung, 
+  $f=(f_1, \ldots, f_m)$. Wann heißt $f$ stetig (partiell) differenzierbar? 
+  Welche Bezeichnung ist für die Menge aller stetig partiell differenzierbaren 
+  Abbildungen üblich? Wann heißt $f$ $k$-mal stetig differenzierbar?
+\end{frage}
+
+\begin{antwort}
+  Die Abbildung $f \fd D\to \RR^n$ heißt \slanted{stetig differenzierbar}, 
+  wenn die Abbildung 
+  \[
+  \mathrm{d}\fd D \to \{ \text{lineare Abbildungen $D\to \RR^m$} \}; \qquad 
+  x\mapsto \diff (x)
+  \]
+  stetig ist. $f$ heißt \slanted{stetig partiell differenzierbar}, wenn alle 
+  partiellen Ableitungen $\partial_j f_i$ ($1\le j \le n$, $1\le i \le k$) 
+  stetige Funktionen auf $D$ sind. Ferner heißt $f$ 
+  $k$-mal stetig differenzierbar, wenn alle Komponentenfunktionen 
+  $f_1, \ldots, f_m$ $k$-mal stetig differenzierbar sind.
+
+  Die Menge der $k$-mal stetig differenzierbaren Funktionen 
+  $D \to \RR^m$ bezeichnet man mit $\calli{C}( D, \RR^m )$.
+  \AntEnd
+\end{antwort}
+
+%% --- 31 --- %%
+\begin{frage}\label{10_stet}
+  Warum gilt die folgende Aussage: Eine Abbildung $f\fd D\to\RR^m$ auf 
+  einer offenen Menge $D\subset\RR^n$ liegt genau dann im 
+  Raum $\calli{C}^1 (D, \RR^m)$, falls $f$ in jedem Punkt 
+  $a\in D$ total differenzierbar ist und die Abbildung 
+  \[
+  D\to \RR^{m\times n}; \qquad x \mapsto \calli{J} (f; x )
+  \]
+  stetig ist 
+  ($\RR^{m\times n}$ werde dabei mit irgendeiner Matrixnorm versehen)?
+\end{frage}
+
+\begin{antwort}
+  Ist die Abbildung $x \mapsto \calli{J} (f; x )$ stetig, dann sind  
+  alle $jk$ Komponenten $\partial_j f_k$ der Jacobi-Matrix stetig. Daraus 
+  folgt, dass $f$ total differenzierbar ist und das Differenzial $\diff (x)$ 
+  für alle $x\in D$ bezüglich der kanonischen Basen durch die Jacobi-Matrix 
+  $\calli{J}(f;x)$ dargestellt wird. Nach Voraussetzung ist 
+  dann auch $x \mapsto \diff (x)$ stetig und $f$ somit eine 
+  $\calli{C}^1$-Funktion. 
+
+
+
+  Ist umgekehrt $f$ stetig differenzierbar, 
+  dann gilt bezüglich der kanonischen Basen wiederum
+  $\diff (x) (v) = \calli{J}(f;x) v$ für alle $x,v\in \RR^n$. Aus der 
+  Stetigkeit von $x\mapsto \diff (x)$ folgt daher 
+  diejenige von $x \mapsto \calli{J}(f;x)$.
+
+
+
+  Mit anderen Worten, "`stetige Differenzierbarkeit"' 
+  und "`stetig partielle Differenzierbarkeit"' 
+  sind äquivalente Begriffe. 
+  (Man beachte aber, dass deswegen nicht jede total differenzierbare Funktion 
+  auch stetig differenzierbar sein muss. Das Hauptkriterium 
+  zeigt die Implikation "`stetig partiell differenzierbar"' $\Ra$ 
+  "`total differenzierbar"', die Umkehrung hiervon gilt aber nicht.)  
+  \AntEnd
+\end{antwort}
+
+%% --- 32 --- %%
+\begin{frage}\index{stetig differenzierbar}
+  \index{stetig partiell differenzierbar}
+  \index{Richtungsableitung}
+  \index{partiell differenzierbar}\nomenclature{$\calli{C}^s(M)$}{Raum der 
+    $s$-mal stetig differenzierbaren Funktionen auf $M$} 
+  Welche Implikationen bestehen zwischen den Begriffen
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] stetig differenzierbar,
+    \item[\desc{ii}] stetig partiell differenzierbar,
+    \item[\desc{iii}] Existenz aller Richtungsableitungen,
+    \item[\desc{iv}] partiell differenzierbar.
+    \end{itemize}}
+\end{frage}
+
+\begin{antwort}
+  Der Begriff der partiellen Differenzierbarkeit ist der schwächste 
+  von allen, er impliziert keinen der drei anderen Begriffen. Aus der Existenz 
+  aller Richtungsableitungen folgt die partielle Differenzierbarkeit, 
+  jedoch weder die stetig partielle noch die stetige Differenzierbarkeit. 
+  Die Begriffe "`stetige partielle Differenzierbarkeit"' und 
+  "`stetige Differenzierbarkeit"' sind nach Frage \ref{10_stet} äquivalent, und 
+  aus ihnen folgen die beiden anderen Begriffe.  
+  \AntEnd
+\end{antwort}
+
+
+
+
+\section{Differenzierbarkeit in $\CC$, 
+  Cauchy-Riemann'sche Differenzialgleichungen}
+
+Zwischen der totalen Differenzierbarkeit einer Abbildung $\RR^2\to\RR^2$ und 
+der Differenzierbarkeit einer Funktion $\CC\to\CC$ besteht ein enger 
+Zusammenhang.
+
+%% --- 33 --- %%
+\begin{frage}\index{komplexe Differenzierbarkeit}
+  \index{Ableitung!einer holomorphen Funktion}
+  \index{holomorph}
+  Wie ist der Begriff der Differenzierbarkeit für 
+  \slanted{komplexe} Funktionen $f\fd D\to \CC$ definiert, wobei 
+  $D$ eine offene Teilmenge von $\CC$ ist?
+\end{frage}
+
+\begin{antwort}
+  Der Begriff wird für Funktionen einer komplexen Veränderlichen 
+  genauso definiert wie für Funktionen einer reellen Veränderlichen. 
+  Eine Funktion $f\fd D\to \CC$ heißt also \slanted{komplex 
+    differenzierbar} oder schlicht \slanted{differenzierbar} in $a\in D$, 
+  wenn der Grenzwert 
+  \[
+  f'(a) := \lim_{z\to a } \frac{f(z)-f(a)}{z-a}
+  \tag{C1}
+  \]
+  existiert. $f$ heißt (komplex) differenzierbar in $D$, wenn 
+  $f$ in jedem Punkt $a\in D$ komplex differenzierbar ist. In diesem 
+  Fall nennt man $f$ auch \slanted{holomorph in $D$}.  
+
+  Ferner gelten sinngemäß auch die alternativen Differenzierbarkeitskriterien 
+  \desc{D2} und \desc{D2}. $f$ ist demnach $a\in D$ 
+  komplex differenzierbar genau dann, 
+  wenn 
+  {\setlength{\labelsep}{4mm}
+    \begin{itemize}
+    \item[\desc{i}] eine stetige Funktion $\varphi\fd \CC\to\CC$ existiert mit 
+      \[ 
+      f(z)-f(a)=(z-a) \cdot \varphi (z), \tag{C3} 
+      \]
+      wobei gegebenenfalls $\varphi(a)=f'(a)$ ist, \\[-3.5mm]
+    \item[\desc{ii}] es eine $\CC$-lineare Abbildung 
+      $L \fd \CC\to\CC$ gibt mit der Eigenschaft  
+      \[
+      \lim_{z\to 0} \frac{f(a)-f(z)-L(z-a)}{z-a} =0. \tag{C2}
+      \]
+      Gegebenenfalls gilt $f'(a)=l:= L(1)$. 
+    \end{itemize}}
+  \noindent
+  Da bei der Herleitung der algebraischen Differenziationsregeln 
+  für reelle Funktionen nur die Definition der Differenzierbarkeit 
+  sowie die Körpereigenschaften von $\RR$ benutzt wurden, übertragen sich 
+  diese Regeln unmittelbar auf komplexe Funktionen. Dasselbe gilt 
+  für die Kettenregel 
+  (allerdings nicht für die Differenziation der Umkehrfunktion, da bei deren 
+  Herleitung für reelle Funktionen Monotonieargumente verwendet wurden, die 
+  sich nicht aufs Komplexe übertragen lassen).  \AntEnd
+\end{antwort} 
+
+%% --- 34 --- %%
+\begin{frage}\label{10_cauchy_riemann}
+  Wie lässt sich für eine Funktion 
+  $f\fd D\to\CC$ durch Vergleich mit dem Begriff der 
+  \slanted{totalen Ableitung} eine hinreichende und notwendige 
+  Bedingung für komplexe Differenzierbarkeit finden?
+\end{frage}
+
+\begin{antwort}
+  Von der Isomorphie $\CC \simeq \RR^2$ ausgehend lässt sich 
+  die Funktion $f$ auch als eine 
+  Abbildung $f\fd \RR^2 \to \RR^2$ verstehen. 
+
+  Da die Multiplikation mit einer komplexen Zahl, aufgefasst als 
+  Abbildung $\RR^2\to\RR^2$ stets $\RR$-linear ist, 
+  folgt aus \desc{C2} 
+  durch Vergleich mit der Definition  
+  \desc{D2} der totalen Differenzierbarkeit aus Frage 
+  \ref{10_total}
+  unmittelbar: 
+
+  \medskip\noindent
+  \satz{Eine in $a\in D$ komplex differenzierbare Funktion ist dort 
+    als Abbildung $\RR^2\to\RR^2$ auch total differenzierbar.}
+
+  \medskip\noindent
+  Die Umkehrung hiervon gilt allerdings nicht, da nicht jede 
+  lineare Abbildung $\RR^2\to\RR^2$ in $\CC$ durch Multiplikation mit 
+  einer komplexen Zahl realisiert werden kann. 
+
+  Das führt auf die folgende Frage: 
+  Welche Eigenschaften muss eine lineare Abbildung 
+  $L \fd \RR^2 \to \RR^2$ erfüllen, damit eine 
+  komplexe Zahl $l\in \CC$ existiert mit der Eigenschaft
+  \[
+  L(z) = l \cdot z, \qquad z=a+\i b \simeq (a,b)\in\RR^2. 
+  \]
+  Aus Linearitätsgründen ist das äquivalent zu der Bedingung 
+  \[
+  \boxed{
+    L( \i )= \i L(1).
+  }\asttag
+  \]
+  Sei $A=\left( \begin{smallmatrix} a & b \\ c & d \end{smallmatrix} \right)$ die 
+  die Abbildung $L$ bezüglich der kanonischen Basis beschreibende 
+  Matrix. Dann gilt einerseits $L(\i)=(b,d)^T$, und wegen 
+  $\i \cdot(x+\i y)=-y+\i x$ auf der anderen Seite 
+  $\i L(1)=\i (a,c)^T=(-c,a)$. Aus der Bedingung {\astref} folgt also 
+  $a=d$ und $-b=c$.
+
+  Da die lineare Abbildung $L$ für eine im Punkt $a$ total 
+  differenzierbare Abbildung gerade durch deren  
+  Jacobi-Matrix in $a$ beschrieben wird, erhält man hieraus das 
+  folgende Kriterium für komplexe Differenzierbarkeit:
+
+  \medskip
+  \noindent\slanted{Eine Funktion $f\fd D\to\CC$ mit $D\subset \CC$ 
+    ist genau dann 
+    komplex differenzierbar in $a\in D$, wenn sie dort als 
+    reelle Abbildung $\RR^2\to\RR^2$ total differenzierbar ist  
+    und die Jacobi-Matrix $\calli{J}(f;a)$ die Form 
+    \[
+    \calli{J}(f;a)=
+    \begin{pmatrix} \alpha & -\beta \\ \beta & \alpha \end{pmatrix}.
+    \]
+    besitzt. Sind $u,v\fd D\to \RR$ die Real- und Imaginärteile von $f$, $f=u+\i v$, 
+    dann bedeutet das, dass die Cauchy-Riemann\sch en Differenzialgleichungen
+    \index{Cauchy-Riemann'sche Differenzialgleichungen} 
+    \[ 
+    \boxed{ \partial_1 u(a) = \partial_2 v(a),\qquad 
+      \partial_2 u(a) = -\partial_1 v(a). } 
+    \]
+    erfüllt sind. Es gilt dann 
+    \[
+    \boxed{
+      f'(a) = \partial_1 u(a) + \i \partial_1 v (a)=\partial_2 v(a) - \i 
+      \partial_2 u(a).} \EndTag
+    \]}
+\end{antwort} 
+
+%% --- 35 --- %%
+\begin{frage}
+  Kennen Sie ein einfaches Beispiel einer auf ganz $\CC$ \slanted{stetigen}, 
+  dort aber nicht komplex differenzierbaren Funktion nennen?
+\end{frage}
+
+\begin{antwort}
+  Ein Beispiel liefert die komplexe Konjugation 
+  $z = x+\i y \mapsto \overline{z} = x-\i y$. 
+  Diese Funktion ist offensichtlich 
+  stetig in ganz $\CC$, wegen 
+  $\partial_1 u(z) =1 \not= \partial_2 v(z) = -1 $ erfüllt sie  
+  aber nicht die Cauchy-Riemann'schen Differenzialgleichungen 
+  und kann daher nicht komplex differenzierbar sein.  
+  \AntEnd 
+  
+\end{antwort} 
+
+%% --- 36 --- %%
+\begin{frage}
+  Warum ist die komplexe Exponentialfunktion für alle $z\in\CC$ komplex 
+  differenzierbar und warum stimmt sie mit ihrer Ableitung überein?
+\end{frage}
+
+\begin{antwort}
+  Ist $z=x+\i y$ mit $x,y\in\RR$, dann ist 
+  \begin{align*}
+    \exp (z) &= \exp( x+\i y) = \exp(x) \exp(\i y) = 
+    \exp(x) ( \cos y+ \i \sin y) \\
+    &= 
+    \exp (x) \cos(y) + \i \exp(x)\sin(y).
+  \end{align*}
+  Durch $u(x,y):=\exp(x)cos(y)$ und $v(x,y):=\exp(x)\sin(y)$ werden stetig 
+  partiell differenzierbare Funktionen definiert, die die Cauchy-Riemann'schen 
+  Differenzialgleichungen erfüllen, also ist $\exp \fd \CC\to\CC$ 
+  komplex differenzierbar, und es gilt:
+  \begin{align*}
+    \exp'(z) &= \partial_1 u(x,y) + \i \partial_1  v(x,y) = 
+    \exp(x) \cos(y) + \i \exp(x) \sin(y) \\
+    &= \exp(x) ( \cos y+\i \sin y ) = 
+    \exp( x ) \exp(\i y ) = \exp (z). \EndTag
+  \end{align*} 
+  
+\end{antwort}
+
+
+
+\section{Lokale Extremwerte, Taylor\sch e Formel}
+
+Mithilfe der Taylor\sch en Formel für Funktionen mehrerer Variablen lassen 
+sich auch allgemeine 
+differenzierbare Funktionen auf lokale Extremwerte untersuchen. 
+Ein wichtiges Werkzeug ist dafür die Taylor\sch e Formel in 
+einer Veränderlichen, aus der sich eine analoge 
+Formel für Funktionen mehrerer Variablen herleiten lässt. 
+
+%% --- 37 --- %%
+\begin{frage}
+  \index{Taylor'sche Formel!für Funktionen mehrerer Variablen}\index{Taylor}
+  Wie geht man vor, um die Taylor\sch e Formel erster 
+  Ordnung bzw. den \bold{Mittelwertsatz} für 
+  eine $\calli{C}^1$-Funktion 
+  $f \fd D\to \RR$ auf einer nichtleeren offenen Menge 
+  $D\subset\RR^n$ in einem Punkt $a\in D$ herzuleiten?
+\end{frage}
+
+
+\begin{antwort}
+  Man untersucht dabei das  
+  Änderungsverhalten von $f$ längs aller in $D$ liegenden 
+  Strecken $S_{a,a+h} := \{ a+th \sets 0 \le t \le 1 \}$, \sieheAbbildung\ref{fig:10_taylor}.  
+  Zu diesem Zweck betrachtet man die Funktion $g\fd [0,1]\to\RR$ mit $g(t)=f(a+th)$. 
+  Die Taylorentwicklung für $g(1)$ im Entwicklungspunkt $0$ ergibt eine Darstellung  
+  von $f(a+h)$. Da $D$ offen ist, gibt es ein $\delta>0$ mit 
+  $U_\delta (a) \subset D$ und $S_{a,b} \subset D$ 
+  für $\n{ h } < \delta$. Die Taylorentwicklung von $g$ ergibt dann 
+  \[
+  g(1) = g(0) + g'(\tau) \quad\text{mit $\tau \in [0,1]$}.
+  \]
+  Durch eine Anwendung der Kettenregel \big($g'(\tau) = \grad f(a+\tau h)\cdot h$\big) erhält man 
+  daraus den \slanted{Mittelwertsatz:} 
+
+  \begin{center}
+    \includegraphics{mp/10_taylor}
+    \captionof{figure}{Die Verbindungsstrecke $S_{a,a+h}$ liegt für $\| h \|<\delta$ in $U_\delta(a)$.} 
+    \label{fig:10_taylor}
+  \end{center}
+  \satz{Sei $f\in \calli{C}^1(D)$. Liegt dann mit $a\in D$ auch die 
+    Verbindungsstrecke $S_{a,a+h}$ in $D$, dann gibt es ein $\tau \in [0,1]$ 
+    mit 
+    \[ 
+    \boxed{
+      f(a+h)=f(a)+\grad f(a+\tau h) \cdot h.
+    }
+    \]}
+  Das ist schon die Taylor\sch e Formel 1. Ordnung. \AntEnd
+\end{antwort}
+
+%% --- 38 --- %%
+\begin{frage}\label{10_taylor}
+  Sei $f\in \calli{C}^2(D)$ und $a\in D$ so, dass auch die 
+  Verbindungsstrecke $S_{a,a+h}$ in $D$ liegt. Können Sie begründen, warum 
+  es dann ein $\tau\in [0,1]$ gibt mit 
+  \[
+  f(a+h)=f(a)+ \sum_{k=1}^n \partial_k f(a) h_k + 
+  \frac{1}{2} \sum_{j=1}^n \sum_{k=1}^n \partial_j \partial_k 
+  f( a+ \tau h )\cdot h_j h_k.
+  \]
+\end{frage}
+
+\begin{antwort}
+  Man betrachtet die Funktion $g\fd [0,1] \to\RR$ mit 
+  $g(t)=f(a+th)$. Für ihre Taylorentwicklung mit dem Lagrange\sch en 
+  Restglied gilt einerseits für ein $\tau \in [0,1]$ 
+  \[
+  g(1)=g(0)+g'(0)+\frac{1}{2} g''(\tau).
+  \]
+  Andererseits berechnet man nach der Kettenregel
+  \[
+  g'(t) = \sum_{k=1}^n \partial_k f(a+th) \cdot h_k = 
+  \grad f(a+th)\cdot h 
+  \]
+  und 
+  \[
+  g''(t) = \sum_{j=1}^n\sum_{k=1}^n \partial_j \partial_k f(a+th)
+  \cdot h_j h_k.  
+  \]
+  Somit erhält man wegen $g(1)=f(a+h)$, $g(0)=f(a)$ und 
+  $g'(0)=\grad f(a)\cdot h$
+  \[
+  f(a+h)=f(a)+\grad f(a) \cdot h + \frac{1}{2} 
+  \sum_{j=1}^n \sum_{k=1}^n f(a+\tau h)\cdot h_j h_k.
+  \]
+  Diese Formel kann man viel einprägsamer mit der  
+  Hesse-Matrix 
+  \[
+  H_f (x ) := \big( \partial_j \partial_k f(x) \big),
+  \]
+  schreiben, die wegen des Satzes von Schwartz symmetrisch ist. Man erhält
+  \begin{equation}
+    \boxed{
+      f(a+h)=f(a)+\grad f(a)\cdot h + \frac{1}{2} h^T H_f(a+\tau h) h.
+    }
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+%% --- 39 --- %%
+\begin{frage}\index{lokales Maximum}\index{lokales Minimum}
+  \index{globales Maximum}\index{globales Minimum}
+  Ist $X$ ein metrischer Raum, $D\subset X$ eine nichtleere Teilmenge und 
+  $f\fd D\to\RR$ eine Funktion. Wann hat $f$ in einem Punkt $a\in D$ ein 
+  \bold{lokales Maximum bzw. Minmum}? 
+  Was ist der Unterschied zwischen einem lokalen Maximum (Mini\-mum) und 
+  einem \bold{globalen}?
+  Wann spricht man von einem \bold{isolierten Maximum oder Minimum}?
+\end{frage}
+
+\begin{antwort}
+  $f$ besitzt in $a$ ein \slanted{lokales Maximum}, wenn eine Umgebung 
+  $U$ von $a$ existiert, sodass $f(x) \le f(a)$ für alle $x\in U$ gilt. 
+  Ein \slanted{globales Maximum} liegt dann vor, wenn $f(x) \le f(a)$ sogar auf 
+  ganz $D$ gilt. Man spricht von einem 
+  \slanted{isolierten Maximum}, wenn $f(x)< f(a)$ auf einer Umgebung 
+  $U$ von $a$ gilt. Die Minimumsbegriffe werden analog mit umgekehrtem 
+  Ungleichheitsszeichen definiert. \AntEnd
+\end{antwort}
+
+%% --- 40 --- %%
+\begin{frage}\label{10_fermat}\index{Extremum!Existenzkriterium}
+  Sei $D\subset\RR^n$ offen, $f\in \calli{C}^1(D)$ und $a\in D$ eine 
+  lokale Extremalstelle von $f$. Warum gilt dann für \slanted{jede} 
+  Richtungsableitung $\partial_v f(a)=0$, speziell also $\grad f(a)=0$?
+\end{frage}
+
+\begin{antwort}
+  Sei $v\in \RR^n$ ein Einheitsvektor, also $\n{ n }_2=1$ und 
+  $g \fd ]-\eps,\eps [ \to \RR$ definiert durch 
+  $g_\nu(t)=f(a+tv)$ (wobei $\eps>0$ so gewählt ist, dass 
+  $a+tv\in D$ gilt). 
+  Hat $f$ in $a$ eine lokale Extremalstelle, so hat $g_v$ in Null eine 
+  lokale Extremalstelle, und nach dem Fermat\sch en Kriterium (vgl. Frage 
+  \ref{06_ferm}) muss $g'(0)=0$ gelten, also wegen 
+  $g'(0)=\grad f(a)\cdot v = \partial_v f(a)$ auch $\partial_v f(a)=0$ und 
+  $\grad f(a) =0$. 
+  \AntEnd
+\end{antwort}
+
+%% --- 41 --- %%
+\begin{frage}\index{kritischer Punkt}
+  Was versteht man unter einem \bold{kritischen Punkt} von $f \fd D \to\RR$?
+\end{frage}
+
+\begin{antwort}
+  $f$ hat einen kritischen Punkt in $a\in D$, wenn $\grad f(a)=0$ gilt. 
+  Nach der Antwort zur vorigen Frage können lokale Extrema von $f$ also 
+  höchstens in kritischen Punkten vorliegen. Leider ist dieses notwendige 
+  Kriterium -- wie schon bei Funktionen in einer Variablen -- 
+  im Allgemeinen nicht hinreichend für das Vorliegen einer Extremalstelle. 
+  \AntEnd
+\end{antwort}
+
+%% --- 42 --- %%
+\begin{frage}\index{positiv definit}\index{quadratische Form}
+  \index{indefinit}\index{negativ definit}
+  Sei $A= A^T \in \RR^{n\times m}$ eine symmetrische Matrix und 
+  $g_A \fd \RR^n \to \RR$ mit $x\mapsto x^T A x$ die zugehörige 
+  assoziative quadratische Form. Wann heißen $A$ bzw. $g_A$ 
+  \bold{positiv (semi-) definit}, wann \bold{negativ (semi-) definit} 
+  und wann \bold{indefinit}?
+\end{frage}
+
+\begin{antwort}
+  Die Matrix $A$ bzw. die quadratische Form $g_A$ heißen 
+  \begin{itemize}
+  \item \slanted{positiv definit} $\LLa$ $x^T A x >0$ für alle $x\not= 0$.
+  \item \slanted{negativ definit} $\LLa$ $x^T A x < 0$ für alle $x\not=0$.
+  \item \slanted{positiv semidefinit} $\LLa$ $x^T A x \ge0$ für alle $x$.
+  \item \slanted{negativ semidefinit} $\LLa$ $x^T A x \le0$ für alle $x$.
+  \item \slanted{indefinit} $\LLa$ es gibt zwei Vektoren $v,w \in \RR^n$ mit 
+    $v^T A v >0$ und $w^T A w < 0$. \AntEnd
+  \end{itemize}
+\end{antwort}
+
+%% --- 43 --- %%
+\begin{frage}
+  Welche Kriterien zur Untersuchung einer symmetrischen Matrix $A$ bzw. der 
+  zugeordneten quadratischen Form $q(x)=x^T A x$ 
+  auf ihre Definitheitseigenschaften sind 
+  Ihnen bekannt? Welches von diesen Kriterien würden Sie bei einer 
+  $1000 \times 1000$-Matrix anwenden?
+\end{frage}
+
+\begin{antwort}
+  \index{Satz!von der Hauptachsentransformation}
+  Eine reelle symmetrische $n\times n$-Matrix besitzt $n$ reelle 
+  Eigenwerte $\lambda_1,\ldots,\lambda_n$ (vgl. Frage \ref{10_hauptachse}). 
+  Bezüglich einer Basis 
+  aus Eigenvektoren $\tilde{e}_1, \ldots, \tilde{e}_n$ gilt dann für jedes 
+  $x=( \tilde{x}_1, \ldots, \tilde{x}_n )$ 
+  \[
+  q( x) = \lambda_1 \Tilde{x}^2 + \cdots \lambda_n \Tilde{x}_n^2.
+  \]
+  Demnach ist $q$ bzw. $A$
+  \begin{itemize}
+  \item \slanted{positiv definit} $\LLa$ alle Eigenwerte sind $>0$, 
+  \item \slanted{negativ definit} $\LLa$ alle Eigenwerte sind $<0$, 
+  \item \slanted{positiv semidefinit} $\LLa$ alle Eigenwerte sind $\ge0$, 
+  \item \slanted{negativ semidefinit} $\LLa$ alle Eigenwerte sind $\le0$,
+  \item \slanted{indefinit} $\LLa$ $A$ hat positive und negative Eigenwerte.
+  \end{itemize}
+  Um diese Informationen zu bekommen, muss man die Eigenwerte nicht 
+  explizit bestimmen (was im Allgemeinen äußerst aufwendig ist), sondern kann 
+  den \slanted{Trägheitssatz von Sylvester} heranziehen.
+  \index{Trägheitssatz von Sylvester} 
+  Demzufolge hat für jede symmetrische Matrix $A$ und jede 
+  invertierbare Matrix $S$ die Matrix $S^T A S$ nämlich dieselbe 
+  Anzahl an positiven und negativen Eigenwerten 
+  wie $A$ selbst. Führt man an der Matrix $A$ 
+  eine Reihe elementarer Zeilenumformungen, gefolgt von den analogen 
+  Spaltenumformungen aus, so führt das gerade auf Matrizen der Gestalt  
+  $S^T A S$. Bringt man $A$ also durch eine Umformung dieser Art  
+  auf eine Diagonalform (was für eine symmetrische Matrix möglich ist), 
+  dann entspricht die Anzahl der negativen und positiven Diagonalelemente 
+  genau der Anzahl positiver und negativer Eigenwerte von $A$. 
+
+  Dieses Verfahren ist, zumal bei großen Matrizen, wesentlich effektiver 
+  als die Eigenwerte selbst zu bestimmen. 
+
+  Hieraus lässt sich noch das  \slanted{Hauptminoren-Kriterium} 
+  \index{Hauptminoren-Kriterium}
+  herleiten, das besagt, dass 
+  eine symmetrische Matrix genau dann positiv definit 
+  ist, wenn die Determinanenten aller ihrer Hauptminoren 
+  positiv sind. Dieses Verfahren ist aber auch nur für kleine 
+  Matrizen praktikabel. 
+  \AntEnd
+  
+\end{antwort}
+
+%% --- 44 --- %%
+\begin{frage}\index{positiv definit}
+  Wie lautet ein notwendiges und hinreichendes Kriterium 
+  für positive Definitheit bei einer $2\times 2 $-Matrix? 
+  Können Sie dieses Kriterium beweisen?
+\end{frage}
+
+\begin{antwort}
+  \satz{Eine symmetrische $2\times 2$-Matrix 
+    $A = 
+    \bigl( \begin{smallmatrix} a & b \\ b & c \end{smallmatrix} \bigr) $ 
+    ist genau dann 
+    positiv definit, wenn 
+    \begin{equation}
+      \det A > 0 \quad\text{und}\quad a>0
+      \asttag
+    \end{equation}
+    gilt.} 
+  Das folgt unmittelbar aus dem Hauptminoren-Kriterium oder durch 
+  Umformungen der Art, wie sie in der vorigen Frage erwähnt wurden. 
+
+  Man kann das aber auch ohne Kriterien direkt beweisen. 
+  Für $x=(x_1,x_2)$ erhält man durch quadratische Ergänzung
+  \begin{align*}
+    x^T A x &= ax_1^2 + 2bx_1 x_2 + cx_2^2 
+    = a \bigg( x_1^2 + 2\frac{b}{a} x_1 x_2 + \frac{b^2}{a^2} x_2^2 \bigg)   
+    +cx_2^2 - \frac{b^2}{a^2} x_2^2 \\
+    &= a \bigg( x_1 + \frac{b}{a} x_2 \bigg)^2 + \bigg( c-\frac{b^2}{a} \bigg)
+    x_2^2 = 
+    a \bigg( x_1 + \frac{b}{a} x_2 \bigg)^2 + \frac{\det A}{a} 
+    x_2^2
+  \end{align*}
+  Der Ausdruck rechts ist genau dann positiv, wenn {\astref} gilt.\AntEnd
+\end{antwort}
+
+%% --- 45 --- %%
+\begin{frage}\label{10_extremkrit}\index{lokales Maximum}
+  \index{lokales Minimum}
+  \index{Extremum!Existenzkriterium}
+  Können Sie den folgenden Satz beweisen:
+  \begin{itemize}[1mm]
+  \item[\desc{a}] Hat $f\in\calli{C}^2(D)$ in $a\in D$ ein lokales 
+    Minimum, so ist notwendig $\grad f(a)=0$ und die Hesse-Matrix 
+    $H_f(a)$ ist positiv-semidefinit.
+  \item[\desc{b}] Die Bedingungen $\grad f(a)=0$ und die positive Definitheit 
+    der Hesse-Matrix sind \slanted{hinreichend} für das Vorliegen eines 
+    lokalen Minimums an der Stelle $a\in D$, das dann sogar ein isoliertes 
+    Minimum ist.
+  \item[\desc{c}] Nimmt die quadratische Form $\RR^n \to \RR$ mit 
+    $h \mapsto h^T H_f(a) h$ sowohl positive als auch negative Werte an, dann 
+    ist $a$ keine Extremalstelle von $f$. 
+  \end{itemize}
+  Entsprechende Zusammenhänge wie in \desc{a} und \desc{b} gelten 
+  für lokale Maxima, wenn man "`positiv (semi-)definit"' durch 
+  "`negativ (semi-)definit"' ersetzt.
+\end{frage}
+
+\begin{antwort}
+  Man betrachte die aus Frage \ref{10_taylor} 
+  gewonnene, auf einer geeigneten Umgebung von $a$ gültigen Darstellung 
+  \begin{equation}
+    f(a+h)=f(a)+\grad f(a)\cdot h + \frac{1}{2} h^T H_f(a+\tau h) h, \quad 
+    \tau \in [0,1].
+    \asttag
+  \end{equation}
+  Die Antworten zu \desc{a} und \desc{b} 
+  folgen hieraus relativ problemlos 
+  zusammen mit dem in Frage \ref{10_fermat} bereits 
+  gezeigten notwendigen Kriterium $\grad f(a)=0$  
+  und der Stetigkeit der Abbildung 
+  $x\mapsto H_f(x)$ in $a$. \AntEnd
+\end{antwort}
+
+%% --- 46 --- %%
+\begin{frage}
+  Betrachtet man die Funktionen $f,g,h \fd \RR^2 \to \RR$ mit 
+  \[
+  f(x,y)=x^2+y^4, \quad g(x,y)=x^2, \quad h(x,y)=x^2-y^3,
+  \]
+  dann ist in allen drei Fällen der Punkt $(0,0)$ der einzige 
+  kritische Punkt. Warum ist das hinreichende Kriterium aus 
+  Frage \ref{10_extremkrit} nicht anwendbar?
+
+  Welches Extremum liegt bei $f$ bzw. $g$ vor? Was kann man bei $h$ 
+  sagen?
+\end{frage}
+
+
+
+\begin{antwort}
+  Man erhält in allen drei Fällen die Hesse-Matrix 
+  \[
+  H := H_f \big( (0,0) \big) = H_g \big( (0,0) \big) = H_h \big( (0,0) \big)
+  =\begin{pmatrix} 2 & 0 \\ 0 & 0 \end{pmatrix}.
+  \]
+  Wegen $\det H=0$ ist diese nicht positiv oder negativ definit, und 
+  ist das Kriterium aus Frage \ref{10_extremkrit} ist nicht anwendbar. 
+
+  Die Extremstellen der jeweiligen 
+  Funktionen lassen sich aber anhand der 
+  Funktionsgleichungen (oder an den Abbildungen) unmittelbar erkennen.  
+
+  \vspace*{-4mm}
+
+  \begin{center}
+    \includegraphics[width=3cm]{povray/10-04a.pdf}
+    \captionof{figure}{Für die Funktionen $f(x,y)=x^2+y^4$, $g(x,y)=x^2$, $h(x,y)=x^2-y^3$ ist die Determinante der Hesse-Matrix im Nullpunkt gleich Null.}
+  \end{center}
+
+  \vspace*{-4mm}
+\end{antwort}
+
+\bigskip\noindent
+\textbf{Schlussbemerkung:} 
+Unter geeigneten Differenzierbarkeitsvoraussetzungen kann man mit 
+den geschilderten Methoden Taylorentwicklungen höherer Ordnungen ableiten. 
+Lesen Sie dazu die einschlägigen Ausführungen etwa in \citep{Kaballo}, \citep{Amann} oder 
+\citep{Koenig}.
+
+
+
+
+
+
+
+\section{Der lokale Umkehrsatz}\label{umkehrsatz}
+
+Der lokale Umkehrsatz befasst sich mit der folgenden Frage. 
+Gegeben seien zwei nichtleere offene Mengen $D\subset\RR^n$ und 
+$D^* \subset \RR^n$ sowie eine stetig differenzierbare Abbildung 
+$f \fd D \to D^*$. Unter welchen Voraussetzungen besitzt $f$ dann eine 
+Umkehrabbildung $g \fd D^* \to D$, die wieder stetig differenzierbar ist? 
+
+Die Idee, die man zur Lösung dieser Frage verfolgt, 
+bezieht sich direkt auf das für die Differenzialrechnung grundlegende 
+Konzept der  \slanted{linearen Approximierbarkeit}. 
+Salopp formuliert bedeutet dieses ja, dass  
+in einer kleinen Umgebung eines Punktes $a\in D$ das Verhalten 
+der $\calli{C}^1$-Funktion $f$ durch die lineare Abbildung 
+$\diff (a)$ "`relativ gut"' beschrieben wird. Wenn $\diff (a)$ nun in einem 
+Punkt $a\in D$ die Eigenschaft besitzt, bijektiv zu sein, dann sollte man 
+deswegen doch vermuten, dass $f$ in einer hinreichend kleinen Umgebung $U$ 
+von $a$ sich ebenso verhält, dass also 
+die Einschränkung von $f$ auf $U$ bijektiv abbildet. Der lokale 
+Umkehrsatz bestätigt diese Vermutung und liefert darüber hinaus Aussagen 
+über die Differenzierbarkeit der lokalen Umkehrfunktionen sowie darüber, 
+wie die dabei auftretenden Jacobi-Matrizen zueinander in Beziehung stehen. 
+
+
+%% --- 47 --- %%
+\begin{frage}\label{10_diffdim}
+  Seien $D\subset \RR^n$ und $D^* \subset \RR^m$ nichtleere offene Teilmengen.
+  Es gebe stetig differenzierbare Abbildungen 
+  $f \fd D \to D^*$ und $g\fd D^* \to D$ mit $g\circ f=\id_D$ und 
+  $f\circ g=\id_{D^*}$. Warum gilt dann notwendig $n=m$?
+\end{frage}
+
+\begin{antwort}
+  Für jedes $x\in D$ und $y=f(x) \in D^*$ gilt mit der Kettenregel
+  \[
+  \calli{J}(f;x) \cdot \calli{J}(g;y)= E_n \quad\text{und}\quad 
+  \calli{J}(g;y) \cdot \calli{J}(f;x)= E_m
+  \]
+  Demnach müssen $\calli{J}(f;x)$ und $\calli{J}(g;y)$ 
+  quadratische Matrizen aus $\RR^{q\times q}$ sein. 
+  Die erste Gleichung liefert dann $q=n$, und die zweite 
+  $q=m$.   
+  \AntEnd
+\end{antwort}
+
+%% --- 48 --- %%
+\begin{frage}\label{10_diffeodef}\index{Diffeomorphismus}
+  Was versteht man unter einem 
+  \bold{$\mathbf{\calli{C}^1}$-Diffeomorphismus} 
+  $f\fd D \to D^*$ zwischen offenen Mengen 
+  $D, \, D^* \subset \RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Eine $\calli{C}^1$-Diffeomorphismus ist eine \slanted{bijektive} 
+  $\calli{C}^1$-Abbildung $f\fd D\to D^*$ mit der Eigenschaft, dass auch 
+  die Umkehrfunktion $f^{-1} \fd D^* \to D$ stetig differenzierbar ist, 
+  also eine $\calli{C}^1$-Funktion.
+  \AntEnd
+\end{antwort}
+
+%% --- 49 --- %%
+\begin{frage}\index{Diffeomorphismus}
+  Warum ist für einen $\calli{C}^1$-Diffeomorphismus $\Psi \fd D\to D^*$ 
+  zwischen zwei offenen Mengen $D, D^* \subset \RR^n$ 
+  für jedes $x\in D$ die Jacobi-Matrix $\calli{J}( \Psi; x)$ invertierbar?
+\end{frage}
+
+\begin{antwort}
+  Wie in Frage \ref{10_diffdim} folgt für jedes 
+  $x\in D$ mit $y=\Psi(x)$ wegen $\Psi \circ \Psi^{-1}=\id_{D^*}$ 
+  aus der Kettenregel
+  \[
+  \calli{ J }(\Psi ; x) \cdot \calli{ J }( \Psi^{-1}; y ) = E_n.
+  \]
+  Damit ist die Matrix $\calli{J}( \Psi^{-1}; y )$ gerade die zu 
+  $\calli{J}( \Psi; x )$ inverse Matrix. \AntEnd
+\end{antwort}
+
+%% --- 50 --- %%
+\begin{frage}\index{Diffeomorphismus}\index{Umkehrabbildung}
+  Ist $M\subset\RR$ ein echtes offenes Intervall und $f\fd M\to \RR$ stetig 
+  differenzierbar, und gilt $f'(x)\not=0$ für alle $x\in M$, warum ist in 
+  diesem Fall $f$ ein $\calli{C}^1$-Diffeomorphismus 
+  auf dem Intervall $N=f(M)$, und warum 
+  gilt für die Umkehrabbildung $g \fd N\to M$ dann $g'(y)=f'(x)=1$ 
+  für alle $y=f(x)\in M$?
+\end{frage}
+
+\begin{antwort}
+  Aufgrund des Zwischenwertsatzes ist entweder $f'(x)>0$  
+  oder $f'(x)< 0$ für alle $x\in M$. Im ersten Fall ist $f$ streng monoton 
+  wachsend auf $M$, im zweiten streng monoton fallend, also in jedem Fall 
+  injektiv. Damit ist $N=f(M)$ wieder ein offenes Intervall (Zwischenwertsatz). 
+  Nach dem Satz über die Differenzierbarkeit der Umkehrfunktion ist $g$ in 
+  $y=f(x)$ differenzierbar und es gilt $g'(y)\cdot f'(x)=1$, was man auch als 
+  $g'(y)=\left( f'(x) \right)^{-1}$ schreiben kann.
+  \AntEnd
+\end{antwort}
+
+%% --- 51 --- %%
+\begin{frage}
+  Seien $U,V \subset \RR^n$ nichtleere offene Mengen und $f\fd U\to V$ 
+  eine surjektive $\calli{C}^1$-Funktion. 
+  Die Jacobi-Matrix $\calli{J}(f;x)$ sei für alle $x\in U$ invertierbar. 
+  Ist $f$ dann ein Diffeomorphismus?
+\end{frage}
+
+\begin{antwort}
+  Nein. Man betrachte etwa die Abbildung $f\fd \RR^2 \to \RR^2$ mit 
+  \[
+  \begin{pmatrix} x \\ y \end{pmatrix} \mapsto 
+  \begin{pmatrix} e^x \cos y \\ e^x \sin y \end{pmatrix} 
+  \]
+  $f$ ist surjektiv und stetig differenzierbar. Für jeden 
+  Punkt$(x,y)\in \RR^2$ gilt  
+  \[
+  \det \calli{J} \big( f; (x,y)^t \big) = 
+  \det \begin{pmatrix} 
+    e^x \cos y &  -e^x \sin y \\ e^x \sin y & e^x \cos y
+  \end{pmatrix} = e^{2x} > 0.
+  \]
+  Die Jacobi-Matrix ist somit in jedem Punkt $(x,y)\in \RR^2$ invertierbar. 
+
+  Wegen $f(x,y+2k\pi)=f(x,y)$ für alle $k\in \ZZ$ ist $f$ aber nicht 
+  injektiv und damit erst recht nicht bijektiv.
+
+  Man kann die Injektivität und damit die Umkehrbarkeit jedoch 
+  erzwingen, indem man $f$ geeignet einschränkt, etwa $y$ auf das 
+  Intervall $]-\pi,\pi[$ beschränkt. \AntEnd
+\end{antwort}
+
+%% --- 52 --- %%
+\begin{frage}
+  Was ist das Bild der Funktion $f \fd \RR \times ]-\pi,\pi[ \to \RR^2$ 
+  aus der vorigen Frage?
+\end{frage}
+
+\begin{antwort}
+  $f$ bildet $\RR \times ]-\pi,\pi[$ auf die \slanted{geschlitzte Ebene} 
+  $\RR^2 \mengeminus \{ (x,0)\sets x\le 0 \}$ ab. \AntEnd
+\end{antwort}
+
+%% --- 53 --- %%
+\begin{frage}\index{lokaler Umkehrsatz}
+  Was besagt der \bold{lokale Umkehrsatz}?
+\end{frage}
+
+\begin{antwort}
+  Der lokale Umkehrsatz ist die folgende Aussage: 
+
+  \medskip
+  \noindent\satz{Sei $f\fd D\to \RR^n$ eine $\calli{C}^1$-Abbildung auf einer 
+    nichtleeren offenen Menge $D\subset \RR^n$ und sei $a\in D$ ein 
+    Punkt, für welchen die Jacobi-Matrix $\calli{J}(f;a)$ invertierbar ist. Dann 
+    gibt es eine offene Umgebung $U$ von $a$ und $V$ von $b := f(a)$, sodass 
+    die auf $U$ eingeschränkte Abbildung $f | U$
+    ein $\calli{C}^1$-Diffeomorphismus zwischen $U$ und $V$ ist, {\dasheisst} 
+    die Umkehrabbildung $g\fd V\to U$ von $f|U$ ist ebenfalls stetig 
+    differenzierbar, und für alle $y\in V$, $x\in U$ mit $y=f(x)$ gilt:
+    \[
+    \boxed{
+      \calli{J}(g;y)= \calli{J}(f;x)^{-1}.
+    }
+    \]}\noindent
+  Zusätzlich gilt noch: Ist $f\in \calli{C}^s (D,\RR^n)$, die Funktion $f$ also 
+  $s$-mal stetig partiell differenzierbar ($s\in \RR \cup \{\infty \}$), dann 
+  hat auch $g$ diese Eigenschaft. 
+
+  \medskip
+  \noindent
+  Einen Beweis des Umkehrsatzes findet man \zB\ in \citep{Arens}.\AntEnd
+\end{antwort}
+
+%% --- 54 --- %%
+\begin{frage}\index{lokaler Umkehrsatz}
+  Warum kann man beim Beweis des lokalen Umkehrsatzes ohne Beschränkung der 
+  Allgemeinheit $a=f(a)=0$ und $\calli{J}(f,0)=E_n$ annehmen? Welche 
+  Rolle spielt der Schrankensatz (für vektorwertige Abbildungen) beim Beweis?
+\end{frage}
+
+\begin{antwort}
+  Anstelle von $f$ kann man die Abbildung $f(x+a)-f(a)$ auf der 
+  Definitionsmenge $D_* := \{ x\in \RR^n \sets x+a\in D \}$ betrachten, 
+  deshalb kann man von Anfang an $a=f(a)=0$ annehmen. 
+
+  Ferner ist $f \fd D \to \RR^n$ genau dann differenzierbar und umkehrbar, 
+  wenn dies für die Funktion $I\cdot f$ mit einem Isomorphismus 
+  $I \fd \RR^n\to \RR^n$ gilt. Nach der Voraussetzung beschreibt  
+  $\calli{J}(f;0)^{-1}$ einen Isomorphismus, man kann also 
+  gleich die Funktion 
+  $\Phi := \calli{J}(f;0)^{-1} \cdot f$ betrachten. Für diese 
+  gilt dann ebenfalls $\Phi(0)=0$ und außerdem nach der Kettenregel
+  \[
+  \calli{J} ( \Phi; 0 ) = \calli{J}(f;0)^{-1} \cdot \calli{J}( f;0 ) = E_n. 
+  \]
+  Damit sind dann die Voraussetzungen so zurechtgerückt, wie man 
+  sie haben wollte. 
+  \AntEnd
+\end{antwort}
+
+%% --- 55 --- %%
+\begin{frage}\label{10_umkbanach}
+  Welchen fundamentalen Existenzsatz kann man zum Beweis des 
+  lokalen Umkehrsatzes verwenden?
+\end{frage}
+
+\begin{antwort}
+  Gemeint ist der \slanted{Banach'sche Fixpunktsatz} 
+  \index{Banachscher Fixpunksatz@Banach\sch er Fixpunktsatz} 
+  für kontrahierende 
+  Selbstabbildungen eines vollständigen metrischen Raumes 
+  (\satz{"`Eine kontrahierende Selbstabbildung $\varphi\fd X\to X$ eines 
+    vollständigen metrischen Raumes $X$ besitzt genau einen Fixpunkt."'}). 
+  
+  Dieser Satz wurde in Frage \ref{09_banach} gezeigt.  \AntEnd
+\end{antwort}
+
+%% --- 56 --- %%
+\begin{frage}\index{lokaler Umkehrsatz}
+  Wie kann man die nach $x$ aufzulösende Gleichung $f(x)=y$ auf 
+  eine Fixpunktgleichung umschreiben?
+\end{frage}
+
+\begin{antwort}
+  Wegen $\calli{J}(f;0)=E_n$ ist nahe bei null 
+  \[
+  y= f(x) =f(0)+ \calli{J}(f;0) x + r(x) = x+ r(x),
+  \]
+  also $x=y-r(x)=y+(x-f(x))=: \Phi_y (x)$. 
+  Die Lösungen der Fixpunktgleichung
+  \[
+  \Phi_y( x ) := y+x-f(x)
+  \]
+  sind zu gegebenem $y$ dann gerade die Urbilder von $y$ unter $f$, 
+  also die Punkte $x\in U$ mit $f(x)=y$. 
+
+  Solange $y$ und der Definitionsbereich von $\Phi_y$ noch nicht 
+  weiter spezifiziert sind, kann man nichts darüber sagen, ob überhaupt 
+  ein Fixpunkt existiert und ob dieser gegebenenfalls eindeutig ist. 
+  Man kann aber die Menge $V$ der zugelassenen $y$ und den Definitionsbereich 
+  $U$ von $\Phi_y$ so festlegen, dass $\Phi_y$ eine kontrahierende 
+  Selbstabbildung ist, wobei in einem zentralen Argumentationsschritt der 
+  \slanted{Schrankensatz} für die Ermittlung einer Kontraktionskonstante 
+  angewendet wird. 
+
+  Damit sind die Voraussetzungen des Banach'schen Fixpunktsatzes 
+  für $\Phi_y$ erfüllt, und man kann schließen, dass für jedes 
+  $y\in V$ genau ein $x\in U$ mit $\Phi_y(x)=x$, also $y=f(x)$ existiert. 
+  Das zeigt die Existenz der Umkehrabbildung.   
+  \AntEnd
+\end{antwort}
+
+
+
+%% --- 57 --- %%
+\begin{frage}\index{Satz!über die Gebietstreue}
+  Was besagt der \bold{Satz über die Gebietstreue}?
+\end{frage}
+
+
+\begin{antwort}
+  Der Satz besagt: 
+
+
+  \medskip\noindent\satz{Ist $D\subset \RR^n$ ein Gebiet und 
+    $f \fd D\to \RR^n$ stetig differenzierbar sowie $\calli{J}(f;x)$ invertierbar 
+    für alle $x\in D$, dann ist die Bildmenge $f(D)$ wieder ein Gebiet, es ist 
+    sogar für jede in $D$ offene Menge $U$ (was gleichbedeutend mit der Offenheit 
+    in $\RR^n$ ist) auch das Bild $f(U)$ offen}
+
+
+  \medskip\noindent
+  Jeder Punkt $x\in U$ besitzt nämlich nach dem Umkehrsatz eine 
+  offene Umgebung $U_x$, deren Bild $f(U_x)$ offen ist. Die Vereinigung beliebig 
+  vieler offener Mengen ist aber offen, daher ist auch 
+  $f(D) = \cup_{x\in D} f(U_x)$ offen.
+
+
+  Dass $f(D)$ wieder zusammenhängend, also wieder ein Gebiet ist, folgt damit 
+  aus der Stetigkeit von $f$. \AntEnd
+\end{antwort}
+
+
+%% --- 58 --- %%
+\begin{frage}\index{Diffeomorphiesatz}
+  Was besagt der \bold{Diffeomorphiesatz}?
+\end{frage}
+
+
+\begin{antwort}
+  Der Diffeomorphiesatz besagt: 
+
+
+  \medskip
+  \noindent\satz{Ist $f\fd D\to\RR^n$ stetig differenzierbar 
+    ($D\subset \RR^n$ offen) und sind für alle $x\in D$ die 
+    Jacobi-Matrizen $\calli{J}(f;x)$ invertierbar und ist 
+    zusätzlich $f$ injektiv, dann stiftet $f$ einen Diffeomorphismus 
+    zwischen $D$ und dem Bild $f(D)$.}
+
+
+  \medskip\noindent
+  Denn jedenfalls ist die Umkehrabbildung $f^{-1} \fd f(D) \to D$ stetig, 
+  weil das Urbild jeder in $f(D)$ offenen Menge nach dem vorhergehenden Satz 
+  offen in $D$ ist. $f$ ist also ein 
+  stetig differenzierbarer Homöomorphismus zwischen $D$ und 
+  $f(D)$, dessen Jacobi-Matrizen an jeder Stelle 
+  $x\in D$ invertierbar sind. Man kann dann zeigen, dass unter diesem 
+  Fall die Umkehrabbildung ebenfalls stetig differenzierbar 
+  sein muss. \AntEnd
+\end{antwort}
+
+%% --- 59 --- %%
+\begin{frage}\label{10_diffs1}\index{Einheitskugel}
+  Im $\RR^n$ mit dem Standardskalarprodukt sei 
+  $U_1(0):= \{ x\in \RR^n\sets \n{ x}_2^2 < 1 \}$ die offene 
+  Einheitskugel. Warum ist die Abbildung 
+  \[
+  f \fd U_1 (0) \to \RR^n; \qquad 
+  x \mapsto x/ \sqrt{1-\n{x}_2^2 }
+  \]
+  ein Diffeomorphismus?
+\end{frage}
+
+\begin{antwort}
+  Man rechnet leicht nach, dass $f$ stetig partiell differenzierbar ist. Die
+  Umkehrabbildung ist gegeben durch
+  \[
+  g \fd \RR^n \to U_1(0); \qquad 
+  y \mapsto y / \sqrt{1+\n{y}_2^2}. \EndTag
+  \]
+\end{antwort}
+
+
+
+%% --- 60 --- %%
+\begin{frage}\index{offener Würfel}
+  Können Sie einen Diffeomorphismus von $U_1(0)$ auf den offenen Würfel 
+  $W := ]-1,1[^n$ angeben?
+\end{frage}
+
+\begin{antwort}
+  Wir benutzen den Diffeomorphismus $f$ aus Frage \ref{09_homokugel} 
+  und kombinieren ihn mit der Abbildung 
+  \[
+  h\fd \RR^n \to \open{-1,1}^n , \qquad
+  h(x_1,\ldots,x_n)=\left( \tfrac{2}{\pi} \arctan(x_1), \ldots, 
+    \tfrac{2}{\pi} \arctan(x_n) \right).
+  \]
+  Die Abbildung $h$ ist stetig differenzierbar und besitzt die 
+  stetig differenzierbare Umkehrabbildung
+  \[
+  \open{-1,1}^n  \to \RR^n, \qquad
+  (y_1,\ldots,y_n) \mapsto 
+  \left( \tan \left( \tfrac{2}{\pi}y_1 \right), \ldots, 
+    \tan \left( \tfrac{2}{\pi}y_n \right)\right).
+  \]
+  Daher ist die Zusammensetzung $h\circ f\fd U_1(0) \to \open{-1,1}^n$ ein 
+  Diffeomorphismus. \AntEnd
+\end{antwort} 
+
+\section{Der Satz über implizite Funktionen}
+
+Der Satz über implizite Funktionen behandelt die Frage, inwiefern 
+sich die Nullstellenmenge einer stetig differenzierbaren Abbildung 
+zumindest lokal durch eine Funktion bestimmen lässt. Man denke etwa 
+an das sehr einfache Beispiel 
+der Einheitskreislinie $S^1$ im $\RR^2$. Diese ist die Nullstellenmenge der 
+reellwertigen Funktion $f\fd \RR^2\to\RR$ mit $f(x,y)=x^2+y^2-1$. 
+Nun kann es aus offensichtlichen Gründen keine Funktion 
+$\varphi \fd [0,1]\to \RR$ geben, deren Graph genau der Einheitskreis wäre, 
+aber es ist doch immerhin so, dass \slanted{fast} jeder Punkt aus $S^1$ 
+eine Umgebung $U \subset S^1$ besitzt, in der die Punkte $(x,y)$ durch 
+eine funktionelle Beziehung $y=\varphi(x)$ einander zugeordnet sind 
+(nämlich durch $\varphi(x)=\sqrt{1-x^2}$ bzw. $\varphi(x)=-\sqrt{1-x^2}$). 
+Nur die Punkte $(-1,0)$ und $(1,0)$ besitzen keine solche Umgebung. 
+Bezeichnenderweise sind das gerade die Punkte, 
+an denen die partielle Ableitung $\partial_y f$ verschwindet. 
+
+Um die Problematik in einem allgemeineren Rahmen zu entfalten,   
+orientiert man sich am besten an unterbestimmten 
+linearen Gleichungssystemen. Sei dazu $A=(a_{ij})\in \RR^{m\times n}$ 
+eine $m\times n$-Matrix $(m<n)$ mit $\Rang A =m$. 
+Ist $x=(x_1,\ldots,x_n)^T$ eine Lösung des linearen Gleichungssystems 
+$Ax=0$, dann können nach eventueller Umnummerierung die ersten $m$ Variablen 
+durch die restlichen $n-m$ Variablen ausgedrückt werden. 
+
+Um das Problem für nichtlineare Gleichungen zu formulieren, führt 
+man zweckmäßigerweise die folgenden Notationen ein. 
+Wir setzen $n=k+m$, $\RR^n =\RR^{k+m} \cong \RR^k \times \RR^m.$ 
+
+Sei $D\subset \RR^{k+m}$ offen und 
+$f =(f_1,\ldots,f_m)^T \fd D\to\RR^k$ eine stetig differenzierbare 
+Abbildung. Ferner gebe es ein $c =(a,b) \in D$ mit $f(c)=0$. 
+Die Jacobi-Matrix von $f$ in $c$ hat die Gestalt
+\begin{gather}
+  \calli{J}(f;c) =
+  \left( \begin{array}{ccc|ccc}
+      \partial_{x_1} f_1 (c ) &\cdots& \partial_{x_k} f_1 (c) &   
+      \partial_{y_1} f_1 (c ) &\cdots& \partial_{y_m} f_1 (c) \\
+      \vdots & & \vdots & \vdots &  & \vdots \\
+      \partial_{x_1} f_m (c ) &\cdots& \partial_{x_k} f_m (c) &   
+      \partial_{y_1} f_m (c ) &\cdots& \partial_{y_m} f_m (c) 
+    \end{array} \right)  \notag \\[2mm]
+  \rule{1.3cm}{0cm}= 
+  \bigg( \partial_X f(c) \, \bigg| \,\partial_Y f(c) \bigg), \notag
+\end{gather}
+dabei ist $\partial_Y f(c)$ eine quadratische Teilmatrix 
+vom Typ $m\times m$.
+
+%% --- 61 --- %%
+\begin{frage}\index{Satz!über implizite Funktionen}
+  Können Sie nach diesen Vorbereitungen den 
+  \bold{Satz über implizite Funktionen} formulieren?
+\end{frage}
+
+\begin{antwort}
+  Der Satz über implizite Funktionen lautet: 
+
+  \medskip\noindent
+  \satz{Sei $D\subset \RR^{k+m}$ offen und 
+    $f=(f_1,\ldots,f_m)\fd D\to \RR^m$ eine $\calli{C}^s$-Abbildung 
+    $(s\in \NN\cup \{\infty\})$. Es gebe ein $c=(a,b)\in D$ mit 
+    $f(c)=0$, und die partielle Jacobi-Matrix $\partial_Y f(c)$ sei 
+    invertierbar. Dann existieren offene Umgebungen $U \subset \RR^k$ von $a$ 
+    und $V\subset \RR^m$ von $b$ mit $U\times V \subset D$, sodass die Gleichung 
+    $f(x,y)=0$ in $U\times V$ eindeutig nach $y$ auflösbar ist, {\dasheisst},  
+    es gibt genau eine $\calli{C}^s$-Abbildung $\varphi \fd U\to V$ mit 
+    der Eigenschaft
+    \begin{equation}
+      f(x,y)=0 \LLa y= \varphi(x) \qquad\text{für $(x,y\in U\times V)$}.
+      \EndTag
+    \end{equation}
+  }   
+\end{antwort}
+
+
+%% --- 62 --- %%
+\begin{frage}\index{Satz!über implizite Funktionen}
+  \index{lokaler Umkehrsatz}
+  Können Sie anhand des unten stehenden 
+  (kommutativen) Diagramms eine Beweisskizze 
+  des Satzes implizite Funktionen geben, indem sie diesen auf 
+  den lokalen Umkehrsatz zurückführen?
+  \begin{center}
+    \includegraphics{mp/10_diagramm}
+  \end{center}
+\end{frage}
+
+\begin{antwort}
+  Die Abbildung $f\fd D\to \RR^m$ wird hier zu einer 
+  Abbildung 
+  \[
+  F\fd D\to \RR^{k+m} \text{ mit } F(x,y):=\big( x, f(x,y) \big)
+  \]
+  erweitert. Es ist $\pr_1 \circ F = \pr_1$ und $\pr_2 \circ F = f$, und somit 
+  kommutiert das Diagramm.  
+  Die Jacobi-Matrix von $F$ in $c=(a,b)$ ist quadratisch und hat die 
+  Gestalt 
+  \begin{align*}
+    \calli{J}( F;c ) &=   \left(
+      \begin{array}{c|c}  
+        \rule{12mm}{0mm} & \rule{12mm}{0mm} \\[-4mm] 
+        E_k & 0 \\[-3mm] \\ \hline  & \\[-3mm]
+        \ast & \partial_Y f(c)  \\[-4mm] & \end{array} \right) 
+    \hspace*{-2mm}
+    \begin{array}{l} 
+      \bigg\rbrace \, k \\[1mm]
+      \bigg\rbrace \, m 
+    \end{array} \\[-5mm]
+    & 
+    \hspace*{9mm} \underbrace{\rule{12mm}{0mm}}_{\dis k} \quad 
+    \underbrace{\rule{12mm}{0mm}}_{\dis m}  
+  \end{align*}
+  und ist wegen $\det \big( \partial_Y f(c) \big) \not=0$ auch invertierbar. 
+  Also ist der lokale Umkehrsatz anwendbar. Es gibt daher offene Umgebungen 
+  $W\subset D$ von $c=(a,b)$ und $W'$ von $(a,0)$ in $\RR^k\times \RR^m$, 
+  zwischen denen $F$ einen $\calli{C}^1$-Diffeomorphismus stiftet. Wir berechnen 
+  die lokale Umkehrung $G\fd W' \to W$.  
+
+  Wegen der Kommutativität des Diagramms ist $G$ vom gleichen Typ 
+  wie $F$, {\dasheisst}, $G(u,v)=\big( u, \varphi(u,v) \big)$, wobei 
+  $\varphi \fd W' \to \RR^m$ eine $\calli{C}^1$-Abbildung ist. Es gilt 
+  daher 
+  \begin{itemize}[2mm]
+  \item[\desc{1}] 
+    $\dis \begin{pmatrix} u \\ v \end{pmatrix} = F\big( G(u,v) \big) = 
+    \begin{pmatrix} u \\ f\big( G(u,v) \big) \end{pmatrix} $ 
+    für $(u,v)$ nahe bei $(a,0)$, \\[2mm] 
+  \item[\desc{2}] 
+    $\dis \begin{pmatrix} x \\ y \end{pmatrix} = G\big( F(x,y) \big) = 
+    G \big( x, f(x,y) \big) $ 
+    für $(x,y)$ nahe bei $(a,b)$.
+  \end{itemize}
+  Setzt man in \desc{1} $v=0$, so ergibt sich $
+  0 = f \big( G(u,0) \big)=f \big( u, \Phi(u,0) \big)$. 
+  Definiert man nun $\varphi$ durch $\varphi(u)=\Phi( u,0)$, dann ist $\varphi$ 
+  $s$-mal stetig differenzierbar in einer Umgebung $U$ von $a$, und 
+  es gilt $f\big( x, \varphi(x) \big)=0$ für $(x,y)\in U\times V$. 
+  Nach \desc{2} ist 
+  \[
+  \begin{pmatrix} x \\ y \end{pmatrix} =G(x,0) = 
+  \begin{pmatrix} x \\ \Phi(x,0) \end{pmatrix} = 
+  \begin{pmatrix} x \\ \varphi(x) \end{pmatrix},
+  \]
+  {\dasheisst} $y=\varphi(x)$. \AntEnd
+\end{antwort}
+
+%% --- 63 --- %%
+\begin{frage}\index{Jacobi-Matrix}
+  Die Funktion $\varphi$ explizit zu bestimmen ist in der Regel 
+  schwierig. Die Jacobi-Matrix $\calli{J}(f;x)$ 
+  aber lässt sich leicht finden. Auf welche Weise?
+\end{frage}  
+
+\begin{antwort}
+  Stichwort Kettenregel. Aus $f \big( x, \varphi(x) \big)=0$ folgt 
+  \[
+  \calli{J}\big( f; (x,\varphi(x) \big) \cdot 
+  \big( E_k , \calli{J}(\varphi; x) \big)=0.  
+  \]
+  Dies lässt sich mit den partiellen Jacobi-Matrizen 
+  $\partial_X f(c)$ und $\partial_Y f(c)$ in der Form  
+  \[
+  \partial_X f \big( x, \varphi(x) \big) + 
+  \partial_Y f \big( x, \varphi(x) \big) \cdot 
+  \calli{J}(\varphi; x)
+  \]
+  schreiben. Damit erhält man die Darstellung
+  \begin{equation}
+    \calli{J}(\varphi; x) = 
+    - \partial_Y f \big( x, y \big)^{-1} \cdot 
+    \partial_X f \big( x, y \big).
+    \EndTag 
+  \end{equation}
+\end{antwort}
+
+
+\section{Untermannigfaltigkeiten im $\RR^n$}
+
+Eine $k$-dimensionale Untermannigfaltigkeit des $\RR^n$ ist 
+eine Teilmenge von $\RR^n$, die durch die Eigenschaft ausgezeichnet 
+ist, \slanted{lokal}, also in einer hinreichend 
+kleinen Umgebung jeder ihrer Punkte, "`so ähnlich"' 
+auszusehen wie der $\RR^k$. Das Ähnlichkeitskriterium, das dabei zugrunde 
+gelegt wird, ist das der \slanted{Diffeomorphie}. Zu jedem 
+Punkt $a$ einer $k$-dimensionalen Mannigfaltigkeit gibt es eine 
+offene Umgebung und eine Abbildung $\varphi$, die $U$ diffeomorph auf eine 
+offene Teilmenge des $\RR^k$ abbildet (wobei sowohl $\RR^k$ als auch $M$ als 
+Teilmengen des $\RR^n$ aufzufassen sind). Im Hinblick 
+auf die Strukturen, die in der Differenzial- und Integralrechnung  
+bedeutend sind, besitzen die beiden Mengen 
+dann dieselben Eigenschaften, 
+was es ermöglicht, eine Analysis auf Mannigfaltigkeiten zu betreiben.
+
+Mannigfaltigkeiten treten in vielen Zusammenhängen als Lösungsmengen 
+bestimmter Gleichungssysteme oder als  
+\slanted{Niveaumengen} stetig differenzierbarer 
+Abbildungen $f\fd \RR^n \supset D \to \RR^{n-k}$ in Erscheinung. 
+An diesem Punkt knüpft der Begriff der differenzierbaren 
+Untermannigfaltigkeit direkt an den Satz über implizite Funktionen an.
+
+
+%% --- 64 --- %%
+\begin{frage}\label{10_mannidef}\index{Mannigfaltigkeit}
+  \index{Untermannigfaltigkeit}
+  Wie lautet die Definition einer $k$-dimensionalen Untermannigfaltigkeit 
+  von $M\subset \RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Eine nichtleere Menge $M\subset \RR^n$ heißt \slanted{$k$-dimensionale 
+    differenzierbare Untermannigfaltigkeit des $\RR^n$}, wenn sie  
+  folgende Eigenschaft besitzt: Zu jedem $a\in M$ gibt es eine 
+  Umgebung $U$ und einen Diffeomorphismus $\varphi\fd U\to V$ auf 
+  eine Teilmenge $V\subset\RR^n$, sodass gilt 
+  \[
+  \boxed{
+    \varphi( M \cap U ) = \RR_0^k \cap V.
+  }
+  \]
+  Dabei bezeichnet $\RR_0^k \subset \RR^n$ die Menge 
+  $\{ (x_1,\ldots,x_n) \in \RR^n \sets x_{k+1}=\cdots = x_n=0 \} 
+  \cong \RR^k$. 
+
+  \noindent%
+  Die Abbildung $\varphi$ nennt man in diesem Fall eine \slanted{Karte 
+    von $M$ bei $a$}. 
+
+  \begin{center}
+    \includegraphics{mp/10_karte}
+    \captionof{figure}{Die Karte $\varphi$ bildet $U\subset\RR^n$ diffeomorph auf $\varphi(U) \subset \RR^n$ ab, sodass $\varphi(M\cap U)=\varphi(U)\cap \RR^k_0$ gilt.}
+  \end{center}
+
+  Der folgende \slanted{Äquivalenzsatz für Untermannigfaltigkeiten} liefert  
+  für differenzierbare Untermannigfaltigkeiten noch drei alternative 
+  Charakterisierungen bzw. Definitionen. \AntEnd
+\end{antwort}
+
+%% --- 65 --- %%
+\begin{frage}\label{10_manniaeq}\index{Aquivalenzsatz@Äquivalenzsatz für 
+    Untermannigfaltigkeiten}
+  Wie lautet der \bold{Äquivalenzsatz} für $k$-dimensionale 
+  $\calli{C}^1$-Untermannigfaltigkeiten im $\RR^n$? 
+\end{frage}
+
+\begin{antwort}
+  Eine nicht leere Teilmenge $M\subset \RR^n$ ist 
+  genau dann eine $k$-dimensionale differenzierbare 
+  Untermannigfaltigkeit von $\RR^n$, wenn eine der folgenden 
+  drei äquivalenten Bedingungen erfüllt ist:
+  \slanted{{\setlength{\labelsep}{4mm}
+      \begin{itemize}
+      \item[\desc{a}] (\bold{lokale Parameterdarstellung}) 
+        \index{lokale Parameterdarstellung}
+        Zu jedem Punkt $a\in M$ gibt 
+        es eine offene Umgebung $U\subset\RR^n$ sowie eine offene Teilmenge 
+        $D\subset \RR^k$ und eine Immersion\index{Immersion}, {\dasheisst} eine 
+        $\calli{C}^1$-Abbildung  
+        \[
+        \alpha \fd D \to \RR^n,
+        \]
+        deren Funktionalmatrix $\calli{J}(\alpha;x)$ in jedem Punkt $x\in D$ 
+        den Rang $k$ hat, sodass $\alpha$ die Menge $D$ diffeomorph auf 
+        $\alpha(D) = M\cap U$ abbildet. \\[-3.5mm]
+      \item[\desc{b}] (\bold{Darstellung als Graph}) Zu jedem Punkt 
+        $a\in M$ gibt es nach eventueller Umnummerierung der Koordinaten 
+        offene Umgebungen 
+        $U'\subset \RR^k$ von $a':=(a_1,\ldots,a_k)$ und 
+        $U''\subset \RR^k$ von $a'':=(a_{k+1},\ldots,a_n)$ und eine 
+        $\calli{C}^1$-Abbildung $g\fd U'\to U''$, sodass 
+        \[
+        M\cap (U' \times U'') = 
+        \big\{ (x',x'') \in U'\times U'' \sets x''=g(x') \big\}.
+        \]
+      \item[\desc{c}] (\bold{Beschreibung durch Gleichungen}) Zu jedem 
+        Punkt $a\in M$ gibt es eine Umgebung $U\subset\RR^n$ 
+        und $(n-k)$ reellwertige Funktionen 
+        $f_1,\ldots,f_{n-k} \fd U \to \RR$ gibt, sodass gilt:
+        \begin{itemize}
+        \item[\desc{i}] $M\cap U = \{ x \in U \sets f_1(x)=f_2(x)=\cdots 
+          = f_{n-k}(x) =0 \}$.
+        \item[\desc{ii}] Die Differenziale $\diff_1(a),\ldots,\diff_{n-k}(a)$ 
+          sind linear unabhängig. 
+        \end{itemize}
+      \end{itemize}
+    }}
+  \noindent
+  Zum Beweis sei \desc{d} die Aussage in der Definition einer 
+  $\calli{C}^1$-Untermannigfaltigkeit aus Frage \ref{10_mannidef}. 
+  Wir zeigen die Äquivalenzen in der Richtung 
+  \desc{d} $\Ra$ \desc{a} $\Ra$ \desc{b} $\Ra$ \desc{c} $\Ra$ \desc{d}.
+
+  \medskip\noindent
+  \desc{d} $\Ra$ \desc{a}: Ist $\varphi$ 
+  eine Karte zu $M$ bei $a$, dann leistet (mit den 
+  Bezeichnungen aus Frage \ref{10_mannidef}) die Abbildung 
+  \[
+  \alpha\fd D \to \RR^k, \qquad
+  \alpha( x_1, \ldots, x_k ) := \varphi^{-1} ( x_1, \ldots, x_k, 0,\ldots,0) 
+  \]
+  das Gewünschte, wobei $D$  die Teilmenge im $\RR^k$ mit 
+  $\varphi( M\cap U ) = D \times \{ 0 \}$ bezeichnet. 
+
+  \medskip\noindent
+  \desc{a} $\Ra$ \desc{b}: 
+  Sei $a\in M$ gegeben sowie eine Immersion $\alpha \fd D \to \RR^n$ 
+  mit $D\subset \RR^k$ und $\alpha(D)= M\cap U$ mit einer Umgebung 
+  $U$ von $a$. Der Punkt $t\in D$ sei das Urbild von $a$ unter $\alpha$. 
+  Man betrachte die Abbildung.  
+  \[
+  \tilde{\alpha} := (\alpha_1, \ldots , \alpha_k ) \fd D \to \RR^k. 
+  \]
+  {\OBdA} kann man $\det \calli{J}( \tilde{\alpha}; t)\not=0$ 
+  annehmen. Nach dem lokalen Umkehrsatz bildet $\tilde{\alpha}$ 
+  daher eine Umgebung $D' \subset D$ von $t$ bijektiv und 
+  $\calli{C}^1$-invertierbar auf eine Menge 
+  $U' \subset\RR^k$ ab, die eine Umgebung des Punktes 
+  $a'=(a_1,\ldots,a_k)$ ist. Sei $\psi \fd U' \to D'$ 
+  die Umkehrabbildung von $\tilde{\alpha}$.  
+  Für $x':=(x_1,\ldots,x_k) \in U'$ gilt dann 
+  \[
+  \alpha \circ \psi (x') =  
+  \big( \alpha_1 \circ \psi(x'), \ldots, \alpha_k \circ \psi(x'), 
+  \alpha_{k+1} \circ \psi(x'), \ldots, 
+  \alpha_n \circ \psi(x') \big) = 
+  \big( x', g(x') \big) 
+  \]
+  mit einer $\calli{C}^1$-Abbildung 
+  \[
+  g := \big( \alpha_{k+1} \circ \psi, 
+  \ldots,  
+  \alpha_{n} \circ \psi \big) 
+  \fd U' \to \RR^{n-k}.
+  \]
+
+  \begin{center}
+    \includegraphics{mp/12_tori}
+  \end{center}
+
+  Die Abbildung $g$ hat in diesem Fall die gesuchten Eigenschaften. 
+
+  \medskip\noindent
+  \desc{b} $\Ra$ \desc{c}: Wird $M$ in einer Umgebung von $a$ als Graph der 
+  Funktion $g=(g_{k+1},\ldots, g_n)$ dargestellt, so ist $M$ dort die 
+  Lösungsmenge der $n-k$ Gleichungen 
+  \[
+  f_\nu (x_1,\ldots, x_n) := x_{k+\nu} - g_{k+\nu} ( x_1,\ldots, x_k ), 
+  \qquad \nu = 1,\ldots,n-k.
+  \]
+  Wegen $\grad f_\nu := e_\nu$ sind die Differenziale linear unabhängig. 
+
+  \medskip\noindent
+  \desc{c} $\Ra$ \desc{d}: 
+  Gilt \desc{ii}, dann lassen sich die 
+  $n-k$ Linearformen 
+  $\diff _1(a),\ldots, \diff _{n-k}(a) \fd \RR^n \to \RR$ 
+  durch Hinzufügung von $k$ Linearformen $l_1,\ldots,l_k \fd \RR^n\to \RR$ zu 
+  einer Basis des Vektorraums der Linearformen auf $\RR^n$ ergänzen. 
+  Man betrachte die Abbildung 
+  \[
+  \Phi \fd U \to \RR; \qquad x \mapsto \big( l_1(x),\ldots, l_k(x), f_1(x), 
+  \ldots, f_{n-k} (x) \big).
+  \]
+  Nach der Voraussetzung ist $\mathrm{d}\Phi(a)$ dann ein Isomorphismus, nach 
+  dem Satz von der lokalen Umkehrbarkeit gibt es also eine Umgebung 
+  $U'\subset U$, die durch $\varphi: = \Phi|U'$ diffeomorph auf 
+  $V:=\varphi(U')$ abgebildet wird. 
+  Gilt dann für $f$ auch noch \desc{i}, 
+  so ist die Abbildung $\varphi \fd U'\to V$ 
+  eine Karte von $M$ bei $a$. \AntEnd 
+\end{antwort} 
+
+
+%% --- 66 --- %%
+\begin{frage}
+  Was sind die $0$-dimensionalen bzw. $n$-dimensionalen 
+  Untermannigfaltigkeiten im $\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Die nulldimensionalen Untermannigfaltigkeiten des $\RR^n$ sind 
+  genau die diskreten Teilmengen $M$ des $\RR^n$, 
+  also diejenigen Teilmengen, die keinen Häufungspunkt 
+  in $\RR^n$ besitzen. Ist $a$ ein Punkt aus $M$, dann gibt es eine Umgebung 
+  $U$ von $a$, in der keine weiteren Punkte von $M$ liegen. Die Abbildung 
+  $\varphi \fd U \to \RR^n$ mit $\varphi(x)=x-a$ ist dann eine Karte 
+  von $M$ bei $a$. 
+
+  Die $n$-dimensionalen Untermannigfaltigkeiten sind genau die 
+  nichtleeren offenen Teilmengen $M \subset \RR^n$. Eine Karte ist 
+  für jeden Punkt $a \in M$ durch die identische Abbildung 
+  $\id \fd M \to \RR^n$ gegeben.  
+  \AntEnd
+\end{antwort}
+
+%% --- 67 --- %%
+\begin{frage}\label{10_nomanni}\index{reguläre Kurve}
+  Ist $I\subset \RR$ ein nichtleeres offenes Intervall und 
+  $\alpha\fd N\to \RR^n$ eine glatte und reguläre Kurve 
+  ($\alpha$ ist \slanted{regulär}, wenn $\dot{\alpha}(t)\not=0$ für alle 
+  $t\in I$ gilt). Ist dann $M=\alpha(I)$ stets eine eindimensionale 
+  Untermannigfaltigkeit des $\RR^n$?
+\end{frage}
+
+\begin{antwort}
+  Nein. Aus der Definition einer Mannigfaltigkeit folgt 
+  insbesondere, dass die beiden Mengen $U\cap M$ und 
+  $V \cap \RR_0^k$ (Bezeichnungen wie in Frage \ref{10_mannidef})
+  homöomorph sind, diese sind jeweils offen in $M$ 
+  bzw. $\RR_0^k$. Daraus folgt (nach einer eventuellen Verkleinerung 
+  von $U$), dass jeder Punkt einer $k$-dimensionalen differenzierbaren 
+  Untermannigfaltigkeit eine Umgebung besitzt, die zu einer offenen 
+  Kugel in $\RR^k$ homöomorph ist. Insbesondere hat jede solche 
+  Umgebung dieselben Zusammenhangseigenschaften wie eine offene Kugel 
+  in $\RR^k$. 
+
+  Aus diesem Grund kann zum Beispiel die Kurve 
+  \[
+  \gamma\fd ]-3,3[ \to \RR^2; \qquad t \mapsto (t^2-1, t^3-t )
+  \]
+  keine $1$-dimensionale differenzierbare Untermannigfaltigkeit des 
+  $\RR^2$ sein, denn durch Herausnahme des Nullpunktes zerfällt 
+  deren Graph in drei disjunkte offene Mengen, \sieheAbbildung\ref{fig:10_kurve}. 
+  Es gibt aber keine offene Kugel in $\RR$, die diese Eigenschaft besitzt. 
+  \AntEnd
+
+  \begin{center}
+    \includegraphics{mp/10_kurve}
+    \captionof{figure}{Durch Herausnahme des Nullpunkts zerfällt der Graph von $\gamma$ in \textit{drei} disjunkte offene Mengen.}
+    \label{fig:10_kurve}
+  \end{center}
+\end{antwort}
+
+%% --- 68 --- %%
+\begin{frage}
+  Warum ist $M=\{ (x,y) \in \RR^2 \sets xy=0 \}$ keine 
+  Untermannigfaltigkeit?
+\end{frage}
+
+\begin{antwort}
+  $M$ ist die Vereinigung der beiden Geraden $x=0$ und $y=0$ des 
+  $\RR^2$. Durch Herausnahme des Nullpunktes zerfällt $M$ in 
+  vier disjunkte offene Mengen und kann daher aus denselben Gründen 
+  wie in der vorigen Frage keine Untermannigfaltigkeit sein.\AntEnd
+\end{antwort}
+
+
+
+%% --- 69 --- %%
+\begin{frage}
+  \index{Tangentialraum}
+  \index{Tangentialvektor}
+  \nomenclature{$T_aM$}{Tangentialraum an $M$ im Punkt $a$}
+  Ist $M$ eine $\calli{C}^1$-Mannigfaltigkeit der Dimension $k$ und $a$ ein Punkt aus $M$. Was versteht man einem \bold{Tangentialvektor} $v$ an $M$ in $a$ bzw.  dem \bold{Tangentialraum} an $M$ in $a$?
+\end{frage}
+
+\begin{antwort}
+  \Ant Der Vektor $v \subset \RR^n$ ist ein Tangentialvektor in dem Punkt 
+  $a\in M$, wenn eine in $M$ verlaufende 
+  Kurve $\alpha \fd ]-\eps, \eps[ \to M \subset \RR^n$ 
+  mit $\alpha(0)=a$ existiert, die im Punkt  
+  $t=0$ den Richtungsvektor $v$ besitzt, für die 
+  also $\dot{\alpha}(0)=v$ gilt. 
+
+  \medskip
+  Der Tangentialraum $T_aM $ ist die Vereinigung aller Tangentialvektoren 
+  von $M$ in $a$, \sieheAbbildung\ref{fig:10_tangentialvektor}. 
+  In der Antwort zur Frage \ref{10_tangraum} wird gezeigt, dass 
+  es sich bei $T_aM $ um einen Vektorraum handelt. \AntEnd 
+  
+  \begin{center}
+    \includegraphics[width=60mm]{povray/10_tangentialvektor.pdf}
+    \captionof{figure}{Ein Tangentialvektor einer Untermannigfaltigkeit $M$ ist Tangentenvektor einer in $M$ verlaufenden Kurve.}
+    \label{fig:10_tangentialvektor}
+  \end{center}
+\end{antwort} 
+
+
+
+%% --- 70 --- %%
+\begin{frage}\index{regulärer Punkt}\index{regulärer Wert}
+  Was versteht man unter einem \bold{regulären Punkt} 
+  und einem \bold{regulären Wert} einer differenzierbaren 
+  Abbildung $f\fd D\to \RR^m$ ($D\subset \RR^n$ offen)?
+\end{frage}  
+
+\begin{antwort}
+  Ein Punkt $a \in D$ heißt \slanted{regulärer Punkt} von $f$, wenn 
+  das Differenzial $\diff (a)\fd D\to \RR^m$ surjektiv ist bzw. 
+  die Jacobi-Matrix $\calli{J}(f;a)$ den maximalen Rang $m$ hat.  
+  Ein Punkt $c \in f(U) \subset \RR^m$ heißt \slanted{regulärer Wert}, 
+  wenn alle Urbilder $a$ mit $f(a)=c$ reguläre Punkte sind.
+
+  Die Begriffe spielen in diesem Zusammenhang deswegen eine 
+  Rolle, weil die Niveaumengen $N_cf$ zu 
+  differenzierbaren Abbildungen $f \fd D\to \RR^m$
+  Mannigfaltigkeiten sind, falls die Voraussetzung erfüllt ist, 
+  dass das "`Niveau"' $c$ ein regulärer Wert von $f$ ist 
+  (vgl. Frage \ref{10_regwert}). 
+  \AntEnd 
+\end{antwort}
+
+%% --- 71 --- %%
+\begin{frage}\label{10_regwert}\index{Satz!vom regulären Wert}
+  Was besagt der \bold{Satz vom regulären Wert}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz besagt: \satz{Sei $f\fd D \to \RR^{n-k}$ eine 
+    $\calli{C}^1$-Abbildung auf einer 
+    offenen Teilmenge $D\subset \RR^n$ und sei 
+    $c\in f(D)$ ein regulärer Wert von $f$. 
+    Dann ist die Niveaumenge 
+    $M := f^{-1}(\{ c \})= \{ a\in D\sets f(a)=c \}$ eine differenzierbare 
+    Untermannigfaltigkeit von $\RR^n$. Für die Dimension 
+    von $M$ gilt
+    \[
+    \dim M :=  n - (n-k) = k. 
+    \]}
+  \noindent 
+  Der Satz ergibt sich als eine einfache Folgerung aus dem Äquivalenzsatz. 
+  Denn {\oBdA} kann man $c=0$ annehmen. Dann 
+  ist $M$ durch  $f_1( M )=\cdots = 
+  f_{n-k}( M )=0$ eindeutig bestimmt. Ferner gilt 
+  wegen der Surjektivität von 
+  $\diff (a) \fd \RR^n \to \RR^{n-k}$, 
+  dass die Komponentendifferenziale 
+  $\diff_1(a),\ldots, \diff_{n-k}(a)$ linear unabhängig 
+  sind. 
+  Mit dem Äquivalenzsatz folgt, 
+  dass $M$ eine Untermannigfaltigkeit ist.
+  \AntEnd
+\end{antwort}
+
+%% --- 72 --- %%
+\begin{frage}\label{10_tangraum}\index{Tangentialraum}
+  Warum ist der Tangentialraum $T_aM$ an eine $k$-dimensionale 
+  Untermannigfaltigkeit $M$ in einem Punkt $a$ überhaupt 
+  ein Vektorraum? 
+\end{frage}
+
+\begin{antwort}
+  Mittels einer Karte für $M$ bei $a$ führt man die Frage auf den 
+  $\RR_0^k$ zurück, 
+  dessen Tangentialräume in jedem Punkt offensichtlich 
+  Vektorräume sind. Genauer gilt $T_x \RR_0^k = \RR_0^k$ für 
+  alle $x\in \RR_0^k$. 
+
+  Sei also $\alpha \fd ] -\eps , \eps [ \to M$ eine Kurve in $M$ mit 
+  $\alpha(0)=a$. $U\subset \RR^n$ sei eine Umgebung von $a$  
+  und $\varphi \fd U \to V$ eine Karte von $M$ bei $a$. Dann ist 
+  $\alpha^* := \varphi \circ \alpha $ eine Kurve in $\RR^k_0$, es gilt  
+  $\alpha := \varphi^{-1} \circ \alpha^*$ und folglich mit der Kettenregel
+  \[
+  \dot{\alpha}(0) =\big( \mathrm{d} \varphi (a) \big)^{-1} \dot{\alpha}^* (0).
+  \]
+  Der Isomorphismus $\big( \mathrm{d} \varphi (a) \big)^{-1} $ bildet 
+  jeden Tangentialvektor $w= \dot{\alpha}^* (0) 
+  \in T_{\varphi(a)} \RR^k_0$ auf einen 
+  Tangentialvektor $v = \dot{\alpha}(0) \in T_a (M)$ ab. Daraus 
+  folgt $T_a(M) \cong \RR_0^k$. Der Tangentialraum $T_aM$ an einen Punkt 
+  $a$ einer $k$-dimensionalen Untermannigfaltigkeit $M$ ist also  
+  ein Vektorraum der Dimension $k$. 
+  \AntEnd 
+\end{antwort}
+
+%% --- 73 --- %%
+\begin{frage}\label{10_tangkern}\index{Niveaumenge}\index{Tangentialraum}
+  Wie lässt sich der Tangentialraum $T_aM$ charakterisieren, falls 
+  $M$ die Niveaumenge einer $\calli{C}^1$-Abbildung 
+  $f \fd \RR^n \subset D \to \RR^{n-k}$ 
+  zu einem regulären Wert $c$ ist?
+\end{frage}
+
+\begin{antwort}
+  In diesem Fall gilt 
+  \begin{equation}
+    \boxed{
+      T_a M = \Kern \diff (a).
+    } \asttag
+  \end{equation}
+  Denn für $\alpha \fd ]-\eps,\eps[ \to M$ gilt 
+  $f\circ \alpha \equiv c$, und daher 
+  $\diff(a) \dot{\alpha}(0) = 0$. Also ist 
+  \[
+  T_aM \subset \Kern \diff (a).
+  \]
+  Die beiden Vektorräume haben aber auch die gleiche Dimension, 
+  denn wegen der Surjektivität von
+  $\diff(a) \fd  \RR^n \to \RR^{n-k}$ gilt 
+  $\dim \Kern \diff(a)=k=\dim M = \dim T_a M$ (nach Frage 
+  \ref{10_regwert} und \ref{10_tangraum}). Insgesamt 
+  folgt daraus {\astref}. \AntEnd
+\end{antwort} 
+
+%% --- 74 --- %%
+\begin{frage}\index{O@$O(n,\RR)$}
+  Können Sie begründen, warum der Tangentialraum der Gruppe 
+  $O(n,\RR)$ der orthogonalen Matrizen im Einselement $E_n$ genau aus 
+  den \slanted{schiefsymmetrischen} Matrizen besteht?
+\end{frage}
+
+\begin{antwort}
+  Die Gruppe $O(n,\RR)$ lässt sich beschreiben als die Niveaumenge 
+  zum Wert $E_n$ der Abbildung 
+  \[
+  f \fd \RR^{n\times n} \to \RR^{n\times n}, 
+  \qquad 
+  f(X) = X^T X.
+  \]
+  Als lineare Abbildung ist $f$ stetig differenzierbar. 
+  Man kann direkt die Definition der Differenzierbarkeit 
+  (D1) in Frage \ref{10_total} heranziehen, um zu sehen, dass 
+  für jede Matrix $A\in O(n,\RR)$ und jede Matrix 
+  $H \in \RR^{n\times n}$ gilt
+  \begin{equation}
+    \diff (A) H = A^T H + H^T A.
+    \asttag
+  \end{equation}
+  Insbesondere ist $\diff( E_n) H = H+H^T$. 
+  Da jede orthogonale Matrix den Rang $n$ hat, folgt aus {\astref} 
+  die Surjektivität von $\diff(A)$, {\dasheisst} $E_n$ ist ein regulärer 
+  Wert von $f$. 
+  Mit Frage \ref{10_tangkern} gilt daher 
+  \[
+  T_{E_n} O(n,\RR) = \Kern \diff( E_n ) = \big\{ 
+  H \in \RR^{n\times n} \sets H+H^T = 0 \big\} 
+  \]
+  Die Menge rechts ist gerade die Menge der schiefsymmetrischen 
+  Matrizen aus $\RR^{n\times n}$. \AntEnd
+\end{antwort} 
+
+%% --- 75 --- %%
+\begin{frage}
+  Wie lässt sich der Tangentialraum der Sphäre $S^{n-1}$ beschreiben?
+\end{frage}
+
+\begin{antwort}
+  \Ant Die Sphäre $S^{n-1}$ ist die Niveaumenge zum Wert $1$ der 
+  Abbildung 
+  \[
+  \upsilon \fd \RR^n \to \RR; \qquad x \mapsto \nnb{x}_2.
+  \]
+  Das Differenzial von $\upsilon$ 
+  an der Stelle $a$ ist nach Frage \ref{10_partbsp} gegeben durch
+  \[
+  \mathrm{d}\upsilon (a) = \left( \frac{a_1}{\n{a}_2}, \ldots, 
+    \frac{a_n}{\n{a}_2} \right),
+  \]
+  und ist offensichtlich für alle $a\in S^{n-1}$ surjektiv. $1$ ist also 
+  ein regulärer Wert von $\upsilon$, und es gilt 
+  \[
+  T_a S^{n-1} = \Kern \mathrm{d}\upsilon (a) = a^{\perp}. \EndTag
+  \]
+  Der Tangentialraum $T_a S^{n-1}$ ist damit das orthogonale Komplement zum Vektor $a\in \RR^n$, 
+  \sieheAbbildung\ref{fig:10_sphere}.
+  \begin{center}
+    \includegraphics[width=50mm]{povray/10_sphere.pdf}
+    \captionof{figure}{Der Tangentialraum $T_a S^{n-1}$ ist das orthogonale Komplement zum Vektor $a\in \RR^n$.}
+    \label{fig:10_sphere}
+  \end{center}
+\end{antwort} 
+
+%% --- 76 --- %%
+\begin{frage}\label{10_normalenraum}\index{Normalenraum}
+  Können Sie begründen, warum im Falle, dass $M=f^{-1}( \{ c \} )$ 
+  mit einer stetig differenzierbaren Abbildung 
+  $f=(f_1,\ldots,f_{n-k}) \fd U\to \RR^{n-k}$ ($U\subset\RR^n$ offen) 
+  und einem regulären Wert $c$ gilt, 
+  dass die Gradienten $\grad f_1(a), \ldots, \grad f_{n-k} (a)$ in einem 
+  Punkt $a\in M$ eine Basis des Normalenraumes $N_aM := (T_aM)^{\perp}$ bilden?
+\end{frage}
+
+\begin{antwort}
+  Das Differenzial $\diff (a)$ wird bezüglich der kanonischen Basen 
+  durch die Jacobi-Matrix $\calli{J}(f;a)$ dargestellt, und diese 
+  hat die Gestalt 
+  \[
+  \calli{J}(f;a) = \big( \grad f_1(a), \ldots, \grad f_{n-k} (a) \big)^T.
+  \]  
+  Ferner liegt nach Frage \ref{10_tangkern} ein Vektor $v\in\RR^k$ genau 
+  dann in $T_a M$, wenn $v\in \Kern \diff(a)$, also 
+  $\calli{J}( f;a ) v =0$ gilt. Letztere Beziehung bedeutet aber 
+  gerade, dass 
+  $\langle  \grad f_i(a), v \rangle$ für alle $i \in \{ 1, \ldots, n-k \}$ 
+  gilt. Die Gradienten $\grad f_i(a)$ stehen also alle senkrecht auf $T_aM$ 
+  und liegen im Normalenraum $T_aM^\perp$. 
+  Da $c$ ein regulärer Wert ist, bildet $\calli{J}(f;a)$ surjektiv ab, und 
+  daher sind alle $\grad f_i (a)$ linear unabhängig. Außerdem gilt 
+  $\dim T_aM=k$, also $\dim T_aM^\perp = n-k$, 
+  woraus sich insgesamt die Behauptung ergibt. \AntEnd
+\end{antwort}
+
+\section{Extrema unter Nebenbedingungen, Lagrange'sche Multiplikatoren}
+
+In vielen Anwendungen ist man mit dem Problem konfrontiert, dass 
+die Variablen einer Funktion, deren Werte man maximieren 
+oder minimieren möchte, sich nicht "`frei"' in ihrem Definitionsbereich 
+bewegen können, sondern Nebenbedingungen unterworfen sind, {\zB} sich 
+nur auf einer Kurve oder Fläche bewegen zu dürfen.
+
+%% --- 77 --- %%
+\begin{frage}\index{Satz!uber Lagrange@über Lagrange'sche Multiplikatoren}
+  \index{Lagrange'sche Multiplikatoren}\index{Lagrange}
+  Was besagt der Satz über die 
+  \bold{Lagrange'schen Multiplikatoren 
+    (die Lagrange'sche Multiplikatorregel)}?
+\end{frage}
+
+\begin{antwort}
+  Der Satz lautet: 
+
+  \medskip\noindent
+  \slanted{Seien  
+    $f, \varphi_1, \ldots, \varphi_r \fd U\to\RR$
+    stetig differenzierbare Funktionen auf einer nichtleeren offenen    
+    Menge $U\subset\RR^n$ und   
+    $\varphi=\big( \varphi_1, \ldots, \varphi_r \big)^T$. 
+    Ferner sei $M=\{ x\in U\sets f(x)=0 \}$ die Nullstellenmenge von $f$ und 
+    die Jacobi-Matrix $\calli{J}( \varphi ; x)$ habe in jedem Punkt 
+    $x \in M$ den maximalen Rang $r$. Dann gilt: hat die 
+    Funktion $f|M$ in einem Punkt $a\in M$ ein lokales Minimum 
+    (lokales Maximum), {\dasheisst} es gibt eine $\eps$-Umgebung 
+    $U_\eps(a) \subset U$ mit $f(x) \le f(a)$ für alle 
+    $x\in M\cap U_\eps(a)$, dann ist $\grad f(a)$ orthogonal 
+    zu jedem Tangentialvektor $v$ an $M$ im Punkt $a$. }
+
+  \medskip\noindent
+  Wegen $(T_aM)^\perp = N_a M$ kann man auch sagen, dass 
+  $\grad f(a)$ ein Normalenvektor von $M$ in $a$ ist. Da 
+  $\grad \varphi_1( a),\ldots,\grad \varphi_r (a)$ nach Frage 
+  \ref{10_normalenraum} eine Basis 
+  von $N_aM$ bilden, gibt es daher eindeutig bestimmte Zahlen 
+  $\lambda_1, \ldots, \lambda_r \in \RR$ mit 
+  \[
+  \grad f(a) = \lambda_1 \grad \varphi_1 (a)+ \cdots + 
+  \lambda_r \grad  \varphi_r (a).
+  \]
+  Man nennt die Zahlen $\lambda_1, \ldots, \lambda_r$ 
+  \slanted{Lagrange'sche Multiplikatoren} und sagt: 
+  \slanted{$f$ hat im Punkt $a$ ein Extremum unter der Nebenbedingung 
+    $\varphi=0$ ($\varphi_1=\cdots = \varphi_r =0)$}. 
+
+  Man beachte: Der Satz liefert lediglich ein notwendiges Kriterium 
+  für das Vorliegen eines lokalen Extremums. 
+  
+  \medskip
+  Zum Beweis des Satzes hat man lediglich zu zeigen, dass jeder 
+  Tangentialvektor $v\in T_aM$ auf dem Gradienten $\grad f(a)$ senkrecht 
+  steht: $v \perp \grad f(a)$. Nach Definition gibt es zu jedem 
+  $v\in T_aM$ eine stetig differenzierbare Kurve 
+  $\alpha \fd ] -\eps, \eps [ \to M$ mit $\alpha(0)=a$ und 
+  $\dot{\alpha}(0)=v$. Die Funktion 
+  \[
+  g\fd ]-\eps, \eps[ \to \RR; \qquad t\mapsto f \big( \alpha(t) \big)
+  \]
+  hat nach Voraussetzung in $t=0$ ein lokales Extremum, also ist nach dem 
+  Fermat'schen Lemma notwendig $g'(0)=0$. Nach der Kettenregel ist andrerseits
+  $g'(t)=\grad\big( f(\alpha(t) \big) \cdot \dot{\alpha}(t)$, also 
+  speziell 
+  \[
+  g'(0)=\grad\big( f(\alpha(0) \big) \cdot \dot{\alpha}(0)=
+  \grad f(a) \cdot v,
+  \]
+  und daher $v \perp \grad f(a)$. \AntEnd
+\end{antwort}
+
+%% --- 78 --- %%
+\begin{frage}\index{Eigenwert!einer symmetrischen Matrix}
+  Können Sie als Anwendung des Satzes über die Lagrange'schen Multiplikatoren 
+  zeigen, dass jede reelle symmetrische Matrix auch einen reellen Eigenwert 
+  hat?
+\end{frage}
+
+\begin{antwort}
+  Sei $A=A^T \in\RR^{n\times n}$ die gegebene reelle Matrix, der 
+  wir die Abbildung (quadratische Form)
+  \[
+  f \fd \RR^n \to \RR; \qquad x \mapsto x^T Ax
+  \]
+  zuordnen. Wir fragen nach dem Minimum von $f$ auf der Sphäre 
+  $S^{n-1}$. Diese lässt sich als Nullstellenmenge 
+  der Funktion $\varphi(x):= x_1^2 + \cdots + x_n^2-1$ schreiben, deren  
+  Jacobi-Matrix $\calli{J}(\varphi; x) = 
+  \grad\varphi(x)=2( x_1,\ldots,x_n)$ 
+  für alle $x\in S^{n-1}$ den Maximalrang $1$ hat. 
+
+  Die Sphäre $S^{n-1}$ ist kompakt, und $f|S^{n-1}$ besitzt daher 
+  nach dem Satz von Weierstraß ein Minimum (und ein Maximum). 
+  Es gibt also ein $v\in S^{n-1}$ mit 
+  \[
+  f(v) = m := \min \left\{ x^T A x\sets x\in S^{n-1} \right\}.
+  \]
+  Nach der Lagrange'schen Multiplikatorregel gibt es ein $\lambda\in \RR$ mit 
+  $\grad f( v )= \lambda \grad \varphi(v)$. Wegen 
+  $\grad f(v)=2v^T A$  folgt $2v^T A=2 \lambda v^T$, 
+  oder transponiert geschrieben 
+  \[
+  \boxed{ 
+    Av = \lambda v. 
+  } 
+  \]
+  Also ist $\lambda$ ein Eigenwert von $A$ zum Eigenvektor $v$. 
+  Wegen $v^T v = \langle v,v \rangle =1$ und der Bilinearität des 
+  Skalarprodukts gilt außerdem
+  \[
+  \lambda = \lambda \cdot 1 = \lambda v^T v = v^T \lambda v = v^T A v =f(v)=m.
+  \]
+  Wir halten das Ergebnis fest: 
+
+  \medskip\noindent%
+  \slanted{Jede Minimalstelle $v$ von $f|S^{n-1}$ 
+    ist ein Eigenvektor von $A$ und das Minimum  $m=f(v)$ ist der Eigenwert 
+    von $A$ zu $v$, speziell besitzt $A$ einen reellen Eigenwert. }
+  \AntEnd
+\end{antwort}
+
+
+%% --- 79 --- %%
+\begin{frage}\label{10_hauptachse}
+  \index{Satz!über die Hauptachsentransformation}
+  Folgern Sie aus den vorhergehenden Überlegungen den 
+  \bold{Satz über die Hauptachsentransformation}.
+\end{frage}
+
+\begin{antwort} 
+  
+  Der Satz von der Hauptachsentransformation besagt, dass jede symmetrische 
+  Matrix $A^{n\times n}$ ein orthogonales System von $n$ 
+  Eigenvektoren besitzt, genauer:  
+
+  \medskip\noindent
+  \slanted{Jede symmetrische Matrix $A\in \RR^{n\times n}$ hat Eigenvektoren 
+    $v_1, \ldots, v_n$, die paarweise aufeinander senkrecht stehen. 
+    Mit $H_k := \Span\{ v_1, \ldots, v_k \}$ gilt außerdem, dass der 
+    Eigenwert $\lambda_{k+1}$ zum Eigenvektor  
+    $v_{k+1}$ das Minimum der Funktion $f$ auf der kompakten Menge 
+    $S^{n-1} \cap  H_k $ ist.} 
+
+  \medskip\noindent
+  Den Satz beweist man mit vollständiger Induktion. Nach 
+  dem Ergebnis der vorigen Frage gibt es einen Eigenvektor $v_1$, 
+  der das Minimum von $f$ auf $S^{n-1}$ ist. Seien nun bereits 
+  $k$ paarweise orthogonale Eigenvektoren $v_1,\ldots, v_k$ ($k<n$) 
+  mit der zusätzlichen obigen Eigenschaft gefunden. Bei der Konstruktion 
+  von $v_{k+1}$ geht es nun darum, das Minimum von $f$ unter den 
+  Nebenbedingungen
+  \begin{align*}
+    \varphi_0(x) &:= \varphi(x) = \langle x, x \rangle -1 =0,\\
+    \varphi_1(x) &:= \langle v_1, x\rangle = 0, \\
+    \ldots &\ldots \ldots \\
+    \varphi_k(x) &:=\langle v_k, x \rangle = 0,
+  \end{align*}
+  zu bestimmen. 
+  Wegen der Kompaktheit von $S^{n-1}\cap H_k$ nimmt $f$ an einer 
+  Stelle $v_{k+1}$ auf $S^{n-1}\cap H_k$ ein Minimum $m$ an. 
+  Da die Vektoren  
+  \[
+  \grad \varphi_0 (x) = 2x^T, \quad
+  \grad \varphi_1 (x) = v_1^T, \quad \ldots \quad 
+  \grad \varphi_k (x) = v_k^T
+  \]
+  für alle $x\in S^{n-1} \cap H_k$ linear unabhängig sind, gibt es 
+  Zahlen $\mu_0,\ldots,\mu_k$ mit 
+  \[
+  \grad f(v_{k+1}) = \sum_{i=0}^k \mu_i \grad\varphi_i(v_{k+1}),
+  \]
+  das heißt
+  \begin{equation}
+    2v_{k+1}^T A  = 2\mu_0 v^T_{k+1} + 
+    \sum_{i=1}^k \mu_i v_i^T. 
+    \asttag
+  \end{equation}
+  Nun gilt mit den Eigenwerten $\lambda_i$
+  nach der Induktionsvoraussetzung  
+  $v_{k+1}^T A v_i = 
+  \lambda_i v_{k+1}^T v_i = 
+  \lambda_i \langle v_{k+1}, v_i \rangle =0
+  $ für alle $i \in \{ 1,\ldots, k \}$. Eingesetzt in {\astref} folgt 
+  daraus zusammen mit der Orthogonalität der $v_1,\ldots, v_k$, dass 
+  $\mu_1 = \cdots = \mu_k =0$ und damit 
+  $v_{k+1}^T A v_{k+1} = \mu_0 v_{k+1}^T v_{k+1}$, also 
+  $Av_{k+1}=\mu_0 v_{k+1}$ gilt. 
+  Also ist $v_{k+1}$ ein Eigenvektor von $A$ mit dem Eigenwert $\mu_0$. 
+  Dass $\mu_0$ das Minimum von $f$ auf $S^{n-1} \cap H_k$ ist, folgt 
+  wegen 
+  \begin{equation}
+    \mu_0 = \mu_0 v_{k+1}^T v_{k+1} = v_{k+1}^T A v_{k+1} = f(v_{k+1})=m.
+    \EndTag
+  \end{equation}
+\end{antwort}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
